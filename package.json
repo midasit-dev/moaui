@@ -1,14 +1,14 @@
 {
-  "name": "moaui",
-  "version": "1.0.0",
+  "name": "@midasit-dev/moaui",
+  "version": "1.0.3",
   "description": "user interface of midas open api for developers",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/midasit-dev/moa-ui.git"
+    "url": "git+https://github.com/midasit-dev/moaui.git"
   },
   "keywords": [
     "moa",
-    "moa-ui",
+    "moaui",
     "midasit",
     "midasitdev",
     "midasopenapi"
