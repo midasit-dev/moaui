@@ -1,0 +1,21 @@
+{
+  "name": "@moa-ui/monorepo",
+  "version": "1.0.0",
+  "description": "user interface of midas open api for developers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/midasit-dev/moa-ui.git"
+  },
+  "keywords": [
+    "moa",
+    "moa-ui",
+    "midasit",
+    "midasitdev",
+    "midasopenapi"
+  ],
+  "author": "midasit-dev",
+  "bugs": {
+    "url": "https://github.com/midasit-dev/moa-ui/issues"
+  },
+  "homepage": "https://github.com/midasit-dev/moa-ui#readme"
+}
