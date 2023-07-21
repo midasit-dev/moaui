@@ -1,5 +1,5 @@
 {
-  "name": "@moa-ui/monorepo",
+  "name": "moaui",
   "version": "1.0.0",
   "description": "user interface of midas open api for developers",
   "repository": {
@@ -15,7 +15,7 @@
   ],
   "author": "midasit-dev",
   "bugs": {
-    "url": "https://github.com/midasit-dev/moa-ui/issues"
+    "url": "https://github.com/midasit-dev/moaui/issues"
   },
-  "homepage": "https://github.com/midasit-dev/moa-ui#readme"
+  "homepage": "https://github.com/midasit-dev/moaui#readme"
 }
