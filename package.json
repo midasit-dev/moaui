@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/midasit-dev/moaui/issues"
   },
-  "homepage": "https://github.com/midasit-dev/moaui#readme"
+  "homepage": "https://github.com/midasit-dev/moaui#readme",
+  "dependency": {
+    "react": "^17.0.0"
+  }
 }
