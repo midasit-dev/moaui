@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as LogoIcon } from "src/svg/logo_circle.svg";
+import { ReactComponent as LogoIcon } from "@/svg/logo_circle_40.svg";
 
 function Header() {
 	return (
