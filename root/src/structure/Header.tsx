@@ -1,6 +1,6 @@
-import TypographyT1 from "@/common/typography/T1";
+import { TypographyType, Typography } from "@/components/Typography";
 
-const IconLogo = () => {
+const IconLogo = (): JSX.Element => {
 	return (
 		<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1">
 			<path className="fill-moa-mono-300 dark:fill-moa-mono-300" fillOpacity={1} d="M 40 20 C 40 31.046875 31.046875 40 20 40 C 8.953125 40 0 31.046875 0 20 C 0 8.953125 8.953125 0 20 0 C 31.046875 0 40 8.953125 40 20 Z M 40 20 "/>
@@ -9,7 +9,7 @@ const IconLogo = () => {
 	)
 }
 
-function Header() {
+function Header(): JSX.Element {
 	return (
 		<div className={`
 			flex justify-center p-4 
@@ -18,7 +18,7 @@ function Header() {
 		`}>
 			<div className='flex items-center space-x-3 cursor-default'>
 				<IconLogo />
-				<TypographyT1 value={"moaui"} />
+				<Typography type={TypographyType.header} value={"moaui"} />
 			</div>
 		</div>
 	);

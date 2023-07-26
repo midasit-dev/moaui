@@ -28,7 +28,31 @@ module.exports = {
 				lineHeight: '2.125rem',
 				letterSpacing: '-0.04rem',
 				fontWeight: '400'
-			}]
+			}],
+			'moa-h1': ['0.75rem', {
+				lineHeight: '0.875rem',
+				letterSpacing: '-0.04rem',
+				fontWeight: 'Bold'
+			}],
+			'moa-body1': ['0.75rem', {
+				lineHeight: '0.875rem',
+				letterSpacing: '-0.04rem',
+				fontWeight: 'Regular'
+			}],
+			'moa-body2': ['0.75rem', {
+				lineHeight: '0.875rem',
+				letterSpacing: '-0.04rem',
+				fontWeight: 'Medium'
+			}],
+			'moa-body3': ['0.688rem', {
+				lineHeight: '0.875rem',
+				letterSpacing: '-0.04rem',
+				fontWeight: 'Regular'
+			}],
+		},
+		minWidth: {
+			'moa-menu': '18rem',
+			'moa-content': '61rem'
 		}
   },
   plugins: [],
