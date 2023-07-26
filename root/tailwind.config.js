@@ -5,9 +5,7 @@ module.exports = {
   theme: {
     extend: {},
 		colors: {
-			'moa-white': {
-				100: '#FFFFFF',
-			},
+			'moa-white': '#FFFFFF',
 			'moa-gray': {
 				100: '#D1D1D1',
 			},
@@ -21,6 +19,16 @@ module.exports = {
 				200: '#1E2429',
 				300: '#343A3F',
 			}
+		},
+		fontFamily: {
+			'moa-primary': "Pretendard"
+		},
+		fontSize: {
+			'moa-3xl': ['2rem', {
+				lineHeight: '2.125rem',
+				letterSpacing: '-0.04rem',
+				fontWeight: '400'
+			}]
 		}
   },
   plugins: [],

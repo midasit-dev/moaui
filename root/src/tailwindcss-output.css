@@ -612,18 +612,6 @@ video {
   justify-content: center;
 }
 
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -642,9 +630,9 @@ video {
   border-bottom-width: 1px;
 }
 
-.border-moa-gray-100 {
+.border-moa-white {
   --tw-border-opacity: 1;
-  border-color: rgb(209 209 209 / var(--tw-border-opacity));
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .border-b-moa-gray-100 {
@@ -652,20 +640,11 @@ video {
   border-bottom-color: rgb(209 209 209 / var(--tw-border-opacity));
 }
 
-.bg-moa-mono-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(52 58 63 / var(--tw-bg-opacity));
-}
-
 .fill-moa-mono-300 {
   fill: #343A3F;
 }
 
-.fill-moa-gray-100 {
-  fill: #D1D1D1;
-}
-
-.fill-moa-white-100 {
+.fill-moa-white {
   fill: #FFFFFF;
 }
 
@@ -677,9 +656,15 @@ video {
   padding: 1rem;
 }
 
-.text-moa-mono-200 {
-  --tw-text-opacity: 1;
-  color: rgb(30 36 41 / var(--tw-text-opacity));
+.font-moa-primary {
+  font-family: Pretendard;
+}
+
+.text-moa-3xl {
+  font-size: 2rem;
+  line-height: 2.125rem;
+  letter-spacing: -0.04rem;
+  font-weight: 400;
 }
 
 .text-moa-mono-300 {
@@ -713,9 +698,9 @@ video {
   border-bottom-color: rgb(103 174 255 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:border-moa-mono-300) {
+:is(.dark .dark\:border-moa-mono-200) {
   --tw-border-opacity: 1;
-  border-color: rgb(52 58 63 / var(--tw-border-opacity));
+  border-color: rgb(30 36 41 / var(--tw-border-opacity));
 }
 
 :is(.dark .dark\:border-b-moa-mono-300) {
@@ -723,24 +708,12 @@ video {
   border-bottom-color: rgb(52 58 63 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:fill-moa-mono-300) {
-  fill: #343A3F;
-}
-
-:is(.dark .dark\:fill-moa-white-100) {
-  fill: #FFFFFF;
-}
-
 :is(.dark .dark\:fill-moa-gray-100) {
   fill: #D1D1D1;
 }
 
-:is(.dark .dark\:fill-moa-mono-200) {
-  fill: #1E2429;
-}
-
-:is(.dark .dark\:fill-moa-mono-100) {
-  fill: #5F666B;
+:is(.dark .dark\:fill-moa-mono-300) {
+  fill: #343A3F;
 }
 
 :is(.dark .dark\:text-moa-gray-100) {

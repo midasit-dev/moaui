@@ -18,7 +18,7 @@ function ToggleButtons() {
 			<div 
 				className={`
 					flex w-8 h-8 p-2 rounded-full justify-center items-center 
-					border border-moa-gray-100 dark:border-moa-mono-300 
+					border border-moa-white dark:border-moa-mono-200  
 					transition duration-500 hover:cursor-pointer hover:border-moa-blue-100 dark:hover:border-moa-blue-300
 				`}
 				onClick={() => setDarkMode(!darkMode)}

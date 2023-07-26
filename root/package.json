@@ -2,6 +2,7 @@
   "name": "@midasit-dev/moaui-document",
   "version": "1.0.0",
   "private": true,
+	"homepage": "https://midasit-dev.github.io/moaui",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.17.0",
