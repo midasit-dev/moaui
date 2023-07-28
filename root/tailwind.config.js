@@ -4,8 +4,20 @@ module.exports = {
 	darkMode: "class",
   theme: {
     extend: {},
+		transitionDuration: {
+			'moa-base': '500ms'
+		},
 		colors: {
+			'moa-light-base': '#343A3F',
+			'moa-light-base-hover': '#67AEFF',
+			'moa-dark-base': '#D1D1D1',
+			'moa-dark-base-hover': '#3884DA',
 			'moa-white': '#FFFFFF',
+			'moa-light-line': '#D1D1D1',
+			'moa-light-line-hover': '#67AEFF',
+			'moa-dark-line': '#343A3F',
+			'moa-dark-line-hover': '#3884DA',
+
 			'moa-gray': {
 				100: '#D1D1D1',
 			},
@@ -29,29 +41,42 @@ module.exports = {
 				letterSpacing: '-0.04rem',
 				fontWeight: '400'
 			}],
-			'moa-h1': ['0.75rem', {
+			'moa-h1': ['0.9rem', {
 				lineHeight: '0.875rem',
 				letterSpacing: '-0.04rem',
-				fontWeight: 'Bold'
+				fontWeight: 'bold'
 			}],
-			'moa-body1': ['0.75rem', {
-				lineHeight: '0.875rem',
+			'moa-body1': ['0.9rem', {
+				lineHeight: '1.1rem',
 				letterSpacing: '-0.04rem',
-				fontWeight: 'Regular'
+				fontWeight: '400'
 			}],
 			'moa-body2': ['0.75rem', {
 				lineHeight: '0.875rem',
 				letterSpacing: '-0.04rem',
-				fontWeight: 'Medium'
+				fontWeight: '400'
 			}],
 			'moa-body3': ['0.688rem', {
 				lineHeight: '0.875rem',
 				letterSpacing: '-0.04rem',
-				fontWeight: 'Regular'
+				fontWeight: '400'
+			}],
+			'moa-menu-header': ['1rem', {
+				lineHeight: '0.875rem',
+				letterSpacing: '-0.04rem',
+				fontWeight: 'bold'
+			}],
+			'moa-menu-item': ['0.9rem', {
+				lineHeight: '0.875rem',
+				letterSpacing: '-0.04rem',
+				fontWeight: '400'
 			}],
 		},
 		minWidth: {
 			'moa-menu': '18rem',
+			'moa-content': '61rem'
+		},
+		width: {
 			'moa-content': '61rem'
 		}
   },
