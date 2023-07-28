@@ -1,17 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.a1d565e6.css",
-    "main.js": "/static/js/main.c9a18d53.js",
-    "static/js/787.0411eb07.chunk.js": "/static/js/787.0411eb07.chunk.js",
-    "static/media/sun_24.svg": "/static/media/sun_24.04a4981e50ace57ee1aa52418eb60f83.svg",
-    "index.html": "/index.html",
-    "static/media/moon_24.svg": "/static/media/moon_24.99eb803d2693d94ece8300a8ffab2c2a.svg",
-    "main.a1d565e6.css.map": "/static/css/main.a1d565e6.css.map",
-    "main.c9a18d53.js.map": "/static/js/main.c9a18d53.js.map",
-    "787.0411eb07.chunk.js.map": "/static/js/787.0411eb07.chunk.js.map"
+    "main.css": "/moaui/static/css/main.f4086bb1.css",
+    "main.js": "/moaui/static/js/main.29d1fd3a.js",
+    "static/js/787.0411eb07.chunk.js": "/moaui/static/js/787.0411eb07.chunk.js",
+    "index.html": "/moaui/index.html",
+    "main.f4086bb1.css.map": "/moaui/static/css/main.f4086bb1.css.map",
+    "main.29d1fd3a.js.map": "/moaui/static/js/main.29d1fd3a.js.map",
+    "787.0411eb07.chunk.js.map": "/moaui/static/js/787.0411eb07.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a1d565e6.css",
-    "static/js/main.c9a18d53.js"
+    "static/css/main.f4086bb1.css",
+    "static/js/main.29d1fd3a.js"
   ]
 }
