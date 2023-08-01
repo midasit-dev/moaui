@@ -24,5 +24,8 @@
 )](https://www.github.com/midasit-dev/moaui)
 [![npm downloads](https://img.shields.io/npm/dm/%40midasit-dev%2Fmoaui
 )](https://www.npmjs.com/package/@midasit-dev/moaui)
+[![collaborators](https://img.shields.io/npm/collaborators/%40midasit-dev%2Fmoaui
+)](https://www.npmjs.com/package/@midasit-dev/moaui)
+
 
 </div>
