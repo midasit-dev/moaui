@@ -9,20 +9,21 @@
 		"react-components"
 	],
 	"author": {
-		"name": "midasit-dev",
+		"name": "APIDEV Team",
 		"email": "developer@midasit.com",
 		"url": "https://github.com/midasit-dev"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/midasit-dev/moaui"
+		"url": "https://github.com/midasit-dev/moaui.git"
 	},
+	"homepage": "https://midasit-dev.github.io/moaui",
 	"contributors": [
 		"lhy0118",
 		"bce0404",
 		"kh1012"
 	],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
