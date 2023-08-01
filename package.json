@@ -1,7 +1,32 @@
 {
-  "name": "moaui",
+  "name": "@midasit-dev/moaui",
+	"description": "react components for midas plugins",
+	"keywords": [
+		"moaui",
+		"midasit",
+		"plugin",
+		"react",
+		"react-components"
+	],
+	"author": {
+		"name": "midasit-dev",
+		"email": "developer@midasit.com",
+		"url": "https://github.com/midasit-dev"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/midasit-dev/moaui"
+	},
+	"contributors": [
+		"lhy0118",
+		"bce0404",
+		"kh1012"
+	],
   "version": "0.0.1",
-  "private": true,
+  "private": false,
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"browser": "./browser/specific/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -18,9 +43,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+		"build": "rm -rf dist && mkdir dist && tsc",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
