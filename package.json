@@ -23,7 +23,7 @@
     "bce0404",
     "kh1012"
   ],
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,7 +39,6 @@
     "@mui/material": "^5.14.3"
   },
 	"devDependencies": {
-    "@craco/craco": "^7.1.0",
     "react-scripts": "5.0.1",
 		"@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -50,8 +49,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
-    "test": "craco test",
+    "start": "react-scripts start",
+    "test": "react-scripts test",
     "prepare": "rmdir /s /q dist && mkdir dist && tsc"
   },
   "eslintConfig": {
