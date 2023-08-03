@@ -1,11 +1,26 @@
 import React from "react";
 import MoaButton from "@moaui/lib/button/Styled";
 
-function Moabutton(props: any) {
+type MoabuttonProps = {
+	children: string,
+	onClick: Function
+}
+
+Moabutton.defaultProps = {
+	children: "Button",
+	onClick: () => {},
+}
+
+function Moabutton(props: MoabuttonProps) : React.ReactElement {
 	const buttonText:string = props.children;
-	const onClickEvent = props.onClick;
+	const onClickEvent:Function = props.onClick;
+
+	async function onClickHandler(){
+		await onClickEvent();
+	}
+	
 	return (
-		<MoaButton onClick={onClickEvent}>{buttonText}</MoaButton>
+		<MoaButton onClick={onClickHandler}>{buttonText}</MoaButton>
 	)
 }
 
