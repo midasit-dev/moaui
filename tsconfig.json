@@ -21,7 +21,9 @@
     "noEmit": false,
     "jsx": "react-jsx",
 		"declaration": true,
-		"outDir": "./dist"
+		"outDir": "./dist",
+		"noEmitHelpers": true,
+		"importHelpers": true,
   },
 	"include": [
 		"./src/lib/**/*.tsx", 
