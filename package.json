@@ -52,9 +52,7 @@
   "scripts": {
     "start": "craco start",
     "test": "craco test",
-    "prepare": "rmdir /s /q dist && mkdir dist && tsc",
-		"a": "rmdir /s /q dist & mkdir dist",
-		"b": "cross-env NODE_ENV=production babel src/lib --out-dir dist --copy-files"
+    "prepare": "rmdir /s /q dist && mkdir dist && tsc"
   },
   "eslintConfig": {
     "extends": [
