@@ -1,26 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Button from "./lib/button";
-
+import Button from "./lib/button/index";
+import IconButton from "./lib/IconButton/index";
+import QuizIcon from '@mui/icons-material/Quiz';
 function App() {
+  function hanlderButtonClick(){
+    console.log("Button click test");
+  }
+
+  function hanlderIconButtonClick(){
+    console.log("Icon Button click test");
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-				<Button />
-      </header>
+				<Button onClick={hanlderButtonClick}>
+          Button Text
+        </Button>
+        <br/>
+        <IconButton onClick={hanlderIconButtonClick}>
+          <QuizIcon/>IconButton Text
+        </IconButton>
     </div>
   );
 }

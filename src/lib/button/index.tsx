@@ -1,8 +1,27 @@
 import React from "react";
-import * as Styled from "@moaui/lib/button/Styled";
+import MoaButton from "@moaui/lib/button/Styled";
 
-function Button() {
-	return <Styled.Container>버튼 테스트</Styled.Container>
+type MoabuttonProps = {
+	children: string,
+	onClick: Function
 }
 
-export default Button;
+Moabutton.defaultProps = {
+	children: "Button",
+	onClick: () => {},
+}
+
+function Moabutton(props: MoabuttonProps) : React.ReactElement {
+	const buttonText:string = props.children;
+	const onClickEvent:Function = props.onClick;
+
+	async function onClickHandler(){
+		await onClickEvent();
+	}
+	
+	return (
+		<MoaButton onClick={onClickHandler}>{buttonText}</MoaButton>
+	)
+}
+
+export default Moabutton;

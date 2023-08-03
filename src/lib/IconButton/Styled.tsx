@@ -1,10 +1,10 @@
 import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 
-const MoaButton = styled(Button)(({theme}) => ({
+const MoaIconButton = styled(IconButton)(({theme}) => ({
 	display: "inline-flex",
 	height: "1.75rem",
-	padding: "0.625rem 1.25rem",
+	padding: "0.625rem",
 	justifyContent: "center",
 	alignItems: "center",
 	gap: "0.25rem",
@@ -31,4 +31,4 @@ const MoaButton = styled(Button)(({theme}) => ({
 	lineHeight: "0.875rem"
 }))
 
-export default MoaButton;
+export default MoaIconButton;
