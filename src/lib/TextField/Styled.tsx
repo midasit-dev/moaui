@@ -40,7 +40,7 @@ const MoaTextField = styled((props:MoaTextFieldProps) => (
 				flexShrink: 0,
 				//text
 				color: Color.text.secondary,
-				fontFeatureSettings: "'clig' off, 'liga' off",
+				fontFeatureSettings: Font.fontFeatureSettings,
 				fontFamily: Font.fontFamily,
 				fontSize: "0.75rem",
 				fontStyle: "normal",
