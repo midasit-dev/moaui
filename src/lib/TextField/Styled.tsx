@@ -2,12 +2,16 @@ import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Color from '../Color/index';
 
-type Props = {
-	value:string
+type Position = "left" | "label" | "right";
+
+export type MoaTextFieldProps = {
+	title?:string,
+	titlePosition?:Position,
+	defaultValue:string
 }
 
-const MoaTextField = styled((props:Props) => (
-	<TextField defaultValue={props.value}
+const MoaTextField = styled((props:MoaTextFieldProps) => (
+	<TextField defaultValue={props.defaultValue}
 		sx={{
 			'& .MuiOutlinedInput-root': {
 				'& fieldset':{
@@ -17,15 +21,16 @@ const MoaTextField = styled((props:Props) => (
 					border: `1px solid ${Color.component.gray_02}`,
 				},
 				'&.Mui-focused fieldset':{
-					border: '1px solid #8F8F8F'
+					border: `1px solid ${Color.component.gray_dark}`,
 				}
 			},
 			'& .MuiInputBase-input':{
 				padding:0
 			},
 			borderRadius: "0.25rem",
+			background: Color.primary.white
 		}}
-		InputProps={{
+		InputProps={{ // input component의 스타일 변경
 			sx:{
 				width:"8.125rem",
 				height:"1.75rem",
@@ -33,7 +38,7 @@ const MoaTextField = styled((props:Props) => (
 				alignItems: "center",
 				flexShrink: 0,
 				//text
-				color: "#4B5563",
+				color: Color.text.secondary,
 				fontFeatureSettings: "'clig' off, 'liga' off",
 				fontFamily: "Pretendard",
 				fontSize: "0.75rem",
@@ -46,11 +51,6 @@ const MoaTextField = styled((props:Props) => (
 ))(({theme}) => ({
 	display:"flex",
 	fullWidth: true,
-	inputProps:{
-		background: "#FFFFFF",
-		padding:0
-	},
-
 }))
 
 export default MoaTextField;
