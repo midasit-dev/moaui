@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import Color from '../color';
 
 const MoaIconButton = styled(IconButton)(({theme}) => ({
 	display: "inline-flex",
@@ -11,17 +12,17 @@ const MoaIconButton = styled(IconButton)(({theme}) => ({
 	flexShrink: 0,
 	borderRadius: "0.25rem",
 	border: "1px solid #C4C6C8",
-	background: "#EEEEEE",
+	background: Color.primary.main,
 	"&:hover": {
-		background: "#5F666B",
-		color:"#FFFFFF"
+		background: Color.primary.hover,
+		color: Color.primary.white
 	},
 	":focus":{
-		background: "#1E2429",
-		color:"#FFFFFF"
+		background: Color.primary.focus,
+		color: Color.primary.white
 	},
 	//text
-	color: "#1F2937",
+	color: Color.text.primary,
 	textAlign: "center",
 	fontFeatureSettings: "'clig' off, 'liga' off",
 	fontFamily: "Pretendard",
