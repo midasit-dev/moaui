@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import Color from "../color";
 
 const MoaButton = styled(Button)(({theme}) => ({
 	display: "inline-flex",
@@ -10,18 +11,18 @@ const MoaButton = styled(Button)(({theme}) => ({
 	gap: "0.25rem",
 	flexShrink: 0,
 	borderRadius: "0.25rem",
-	border: "1px solid #C4C6C8",
-	background: "#EEEEEE",
+	border: `1px solid ${Color.component.gray}`,
+	background: Color.component.gray_light,
 	"&:hover": {
-		background: "#5F666B",
-		color:"#FFFFFF"
+		background: Color.primary.hover,
+		color: Color.primary.white
 	},
 	":focus":{
-		background: "#1E2429",
-		color:"#FFFFFF"
+		background: Color.primary.focus,
+		color: Color.primary.white
 	},
 	//text
-	color: "#1F2937",
+	color: Color.text.primary,
 	textAlign: "center",
 	fontFeatureSettings: "'clig' off, 'liga' off",
 	fontFamily: "Pretendard",
