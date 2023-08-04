@@ -2,19 +2,17 @@ import React from "react";
 import MoaIconButton from "./Styled";
 
 type MoaIconbuttonProps = {
-	icon: any,
-	children: string,
+	children: React.ReactNode,
 	onClick: Function
 }
 
 MoaIconbutton.defaultProps = {
-	icon: <></>,
 	children: "Iconbutton",
 	onClick: () => {},
 }
 
 function MoaIconbutton(props: MoaIconbuttonProps) : React.ReactElement {
-	const buttonText: string = props.children;
+	const buttonText:React.ReactNode = props.children;
 	const onClickEvent:Function = props.onClick;
 
 	async function onClickHandler(){
@@ -22,7 +20,7 @@ function MoaIconbutton(props: MoaIconbuttonProps) : React.ReactElement {
 	}
 	
 	return (
-		<MoaIconButton onClick={onClickHandler}>{props.icon}{buttonText}</MoaIconButton>
+		<MoaIconButton onClick={onClickHandler}>{buttonText}</MoaIconButton>
 	)
 }
 
