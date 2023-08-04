@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import Color from '../color';
+import Color from '../Color';
 
 const MoaIconButton = styled(IconButton)(({theme}) => ({
 	display: "inline-flex",
