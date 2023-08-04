@@ -1,6 +1,6 @@
 import React from "react";
 import MoaTextField, {type  MoaTextFieldProps} from "./Styled";
-import { Typography, Box } from "@mui/material";
+import Box  from "@mui/material/Box";
 
 MoaTextfield.defaultProps = {
 	title :"",
