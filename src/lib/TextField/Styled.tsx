@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Color from '../Color/index';
+import Font from '../Font/index';
 
 type Position = "left" | "label" | "right";
 
@@ -40,7 +41,7 @@ const MoaTextField = styled((props:MoaTextFieldProps) => (
 				//text
 				color: Color.text.secondary,
 				fontFeatureSettings: "'clig' off, 'liga' off",
-				fontFamily: "Pretendard",
+				fontFamily: Font.fontFamily,
 				fontSize: "0.75rem",
 				fontStyle: "normal",
 				fontWeight: 400,
