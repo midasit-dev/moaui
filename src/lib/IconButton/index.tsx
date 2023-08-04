@@ -1,5 +1,5 @@
 import React from "react";
-import MoaIconButton from "@moaui/lib/button/Styled";
+import MoaIconButton from "./Styled";
 
 type MoaIconbuttonProps = {
 	children: React.ReactNode,

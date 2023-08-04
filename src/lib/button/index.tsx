@@ -1,5 +1,4 @@
-import React from "react";
-import MoaButton from "@moaui/lib/button/Styled";
+import MoaButton from "./Styled";
 
 type MoabuttonProps = {
 	children: string,
