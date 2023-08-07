@@ -1,3 +1,4 @@
+//from https://stackoverflow.com/questions/40682848/how-to-clean-delete-contents-folder-with-npm
 var fs = require('fs');
 
 function deleteFolderRecursive(path) {
