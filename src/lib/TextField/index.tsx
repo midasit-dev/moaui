@@ -11,7 +11,7 @@ MoaTextfield.defaultProps = {
 function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 	const textFieldText:string = props.defaultValue;
 	const title:string = props.title ? props.title : "";
-	const titlePosition:string = props.titlePosition ? props.titlePosition : "";
+	const titlePosition:string = props.titlePosition ? props.titlePosition : "left";
 
 	const boxStyle = (position: string) => {
 		if(position === "left")
