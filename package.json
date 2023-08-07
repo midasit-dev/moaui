@@ -53,7 +53,7 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "prepare": "rmdir /s /q dist && mkdir dist && tsc"
+    "prepare": "node prepare.js && mkdir dist && tsc"
   },
   "eslintConfig": {
     "extends": [
