@@ -30,7 +30,7 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 
 	return (
 		<React.Fragment>
-			{ title !== "" &&
+			{ title !== "" ?
 				<Box style={boxStyle(titlePosition)} sx={(titlePosition === "label") ? {flexDirection:"column"} : {flexDirection:"row"}}>
 					{
 						titlePosition === "right" ?
@@ -45,6 +45,8 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 						</React.Fragment>
 					}
 				</Box>
+				:
+				<MoaTextField defaultValue={textFieldText} />
 			}
 		</React.Fragment>
 	)
