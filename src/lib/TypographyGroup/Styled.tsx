@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Color from "../Color";
 import Font from "../Font";
 
-type StyledProps = {
+export type StyledProps = {
 	titleText: string;
 	bodyText: string;
 }
