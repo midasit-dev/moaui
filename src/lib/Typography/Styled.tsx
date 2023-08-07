@@ -64,10 +64,10 @@ class FontColor {
 	}
 }
 
-type StyledProps = {
-	children: React.ReactNode;
-	variant: string;
-	color: string;
+export type StyledProps = {
+	children: string;
+	variant: 'h1' | 'body1' | 'body2' | 'body3';
+	color: 'primary' | 'secondary' | 'third' | 'disable';
 }
 const StyledComponent = styled((props: StyledProps) => {
 	return (

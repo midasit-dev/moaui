@@ -1,16 +1,10 @@
-import StyledComponent from "./Styled";
-
-type MoaTypographyGroupProps = {
-	titleText: string;
-	bodyText: string;
-}
+import StyledComponent, { type StyledProps } from "./Styled";
 
 MoaTypographyGroup.defaultProps = {
 	titleText: "",
 	bodyText: ""
 }
-
-function MoaTypographyGroup(props: MoaTypographyGroupProps) : React.ReactElement {
+function MoaTypographyGroup(props: StyledProps) : React.ReactElement {
 	const titleText = props.titleText;
 	const bodyText = props.bodyText;
 
