@@ -91,8 +91,8 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 		<FormControlLabel
 			aria-label={props?.ariaLabel}
 			onChange={props?.onChange}
-			disabled={props?.disabled}
 			checked={props?.checked}
+			disabled={props?.disabled}
 			value={props?.value}
 			name={props?.name}
 			control={

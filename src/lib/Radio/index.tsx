@@ -1,7 +1,6 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MoaRadio.defaultProps = {
-	checked: false,
+MoaRadioButton.defaultProps = {
 	disabled: false,
 	value: "",
 	ariaLabel: "Radio button",
@@ -13,4 +12,4 @@ MoaRadio.defaultProps = {
  * @param props 
  * @returns React.ReactElement
  */
-export default function MoaRadio(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function MoaRadioButton(props: StyledProps) { return (<StyledComponent {...props} />) };
