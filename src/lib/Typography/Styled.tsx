@@ -5,8 +5,17 @@ import Font from "../Font";
 
 /** Font Style */
 type FontStyleObject = {
+	/**
+	 * Set the font weight
+	 */
 	fontWeight: number;
+	/**
+	 * Set the font size
+	 */
 	fontSize: string;
+	/**
+	 * Set the Line-Height
+	 */
 	lineHeight: string;
 }
 class FontStyle {
@@ -65,8 +74,20 @@ class FontColor {
 }
 
 export type StyledProps = {
+	/**
+	 * Represent a text string in typography component
+	 * @default ''
+	 */
 	children: string;
+	/**
+	 * Set the typography type
+	 * @default 'body1'
+	 */
 	variant: 'h1' | 'body1' | 'body2' | 'body3';
+	/**
+	 * Set the text color
+	 * @default 'primary'
+	 */
 	color: 'primary' | 'secondary' | 'third' | 'disable';
 }
 const StyledComponent = styled((props: StyledProps) => {
