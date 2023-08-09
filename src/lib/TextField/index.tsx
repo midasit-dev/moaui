@@ -18,7 +18,7 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 	const title:string = props.title ? props.title : "";
 	const titlePosition:string = props.titlePosition ? props.titlePosition : "left";
 
-	const boxStyle = (position: string) => {
+	const boxStyle = React.useCallback((position: string) => {
 		if(position === "left")
 			return {
 				display: "inline-flex", alignItems:"center", gap:"0.25rem"
@@ -31,7 +31,7 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 			return {
 				display: "inline-flex",  alignItems:"center", gap:"0.25rem"
 			}
-	}
+	}, [titlePosition])
 
 	return (
 		<React.Fragment>
