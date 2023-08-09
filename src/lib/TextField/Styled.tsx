@@ -1,13 +1,12 @@
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import Color from '../Color/index';
-import Font from '../Font/index';
+import Color from '../Color';
+import Font from '../Font';
 
-type Position = "left" | "label" | "right";
 
 export type MoaTextFieldProps = {
 	title?:string,
-	titlePosition?:Position,
+	titlePosition?:"left" | "label" | "right",
 	defaultValue:string
 }
 
