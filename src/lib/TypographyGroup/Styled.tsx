@@ -5,7 +5,15 @@ import Color from "../Color";
 import Font from "../Font";
 
 export type StyledProps = {
+	/**
+	 * text of title
+	 * @default ''
+	 */
 	titleText: string;
+	/**
+	 * text of body
+	 * @default ''
+	 */
 	bodyText: string;
 }
 const StyledComponent = styled((props: StyledProps) => {
