@@ -63,35 +63,38 @@ type RadioButtonIconProps = {
 }
 
 function RadioButtonIcon(props : RadioButtonIconProps) {
-	return (
-		<Fragment>
-			{ props?.disabled ?
-				props?.checked ?
-					<CircleTwoToneIcon sx={{
-						fill: Color.component.gray,
-					}} />
-					: 
-					<Circle sx={{
-						fill: Color.component.gray_light,
-					}} />
-				:
+	if (props?.disabled) {
+		if (props?.checked) {
+			return (
 				<CircleTwoToneIcon sx={{
-					"circle": {
-						fill: Color.component.gray,
-					},
-					"&:hover": {
-						fill: Color.component.gray_dark,
-					}
+					fill: Color.component.gray,
 				}} />
+			)
+		} else {
+			return (
+				<Circle sx={{
+					fill: Color.component.gray_light,
+				}} />
+			)
+		}
+	}
+
+	return (
+		<CircleTwoToneIcon sx={{
+			"circle": {
+				fill: Color.component.gray,
+			},
+			"&:hover": {
+				fill: Color.component.gray_dark,
 			}
-		</Fragment>
-	);
+		}} />
+	)
 }
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	return (
 		<FormControlLabel
-			aria-label={props?.ariaLabel}
+			aria-label={props?.ariaLabel} 
 			onChange={props?.onChange}
 			checked={props?.checked}
 			disabled={props?.disabled}
