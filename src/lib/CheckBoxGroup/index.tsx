@@ -1,6 +1,6 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MoaCheckBoxGroup.defaultProps = {
+MoaCheckboxGroup.defaultProps = {
 	checked: false,
 	disabled: false,
 	value: "",
@@ -14,4 +14,4 @@ MoaCheckBoxGroup.defaultProps = {
  * @param props 
  * @returns React.ReactElement
  */
-export default function MoaCheckBoxGroup(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function MoaCheckboxGroup(props: StyledProps) { return (<StyledComponent {...props} />) };

@@ -1,10 +1,10 @@
 import { Fragment } from "react"
 
-function MoaCheckBoxGroupDemo() {
+function MoaCheckboxGroupDemo() {
 	return (
 		<Fragment>
 		</Fragment>
 	)
 }
 
-export default MoaCheckBoxGroupDemo;
+export default MoaCheckboxGroupDemo;
