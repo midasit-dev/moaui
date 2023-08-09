@@ -49,7 +49,7 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 					}
 				</Box>
 				:
-				<MoaTextField defaultValue={defaultValue} />
+				<MoaTextField defaultValue={defaultValue} {...rest}/>
 			}
 		</React.Fragment>
 	)

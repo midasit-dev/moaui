@@ -19,11 +19,23 @@ export type MoaTextFieldProps = {
 	 * The value to display by default in the textfield.
 	 * @default ""
 	 */
-	defaultValue:string
+	defaultValue:string,
+		/**
+	 * If the value is true, The Textfield border is displayed in red.
+	 * @default false
+	 */
+	error?: boolean,
+			/**
+	 * If the value is true, The state of the textfield is disabled.
+	 * @default false
+	 */
+	disabled?: boolean
 }
 
 const MoaTextField = styled((props:MoaTextFieldProps) => (
 	<TextField defaultValue={props.defaultValue}
+		error = {props.error}
+		disabled = {props.disabled}
 		sx={{
 			'& .MuiOutlinedInput-root': {
 				'& fieldset':{
