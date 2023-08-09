@@ -5,7 +5,9 @@ import Box  from "@mui/material/Box";
 MoaTextfield.defaultProps = {
 	title :"",
 	titlePosition: "left",
-	defaultValue: ""
+	defaultValue: "",
+	error: false,
+	disabled : false
 }
 
 /**
