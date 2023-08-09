@@ -8,6 +8,11 @@ MoaTextfield.defaultProps = {
 	defaultValue: ""
 }
 
+/**
+ * @param {MoaTextFieldProps} props - deafaultValue, title, titlePosition
+ * @returns {React.ReactElement} moaTextField
+ */
+
 function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 	const textFieldText:string = props.defaultValue;
 	const title:string = props.title ? props.title : "";
