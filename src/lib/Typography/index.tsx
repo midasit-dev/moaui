@@ -7,10 +7,11 @@ MoaTypography.defaultProps = {
 }
 
 /**
- * <Typography />
+ * Typography
+ * @param props
  * @returns TypographyComponent
  */
-function MoaTypography(props: StyledProps) : React.ReactElement {
+function MoaTypography(props: StyledProps) : JSX.Element {
 	const children = props.children;
 	return (
 		<StyledComponent {...props}>
