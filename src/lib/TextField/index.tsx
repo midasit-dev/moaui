@@ -14,11 +14,9 @@ MoaTextfield.defaultProps = {
  */
 
 function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
-	const textFieldText:string = props.defaultValue;
-	const title:string = props.title ? props.title : "";
-	const titlePosition:string = props.titlePosition ? props.titlePosition : "left";
+	const {defaultValue, title, titlePosition, ...rest} = props;
 
-	const boxStyle = React.useCallback((position: string) => {
+	const boxStyle = React.useCallback((position: MoaTextFieldProps["titlePosition"]) => {
 		if(position === "left")
 			return {
 				display: "inline-flex", alignItems:"center", gap:"0.25rem"
@@ -40,18 +38,18 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 					{
 						titlePosition === "right" ?
 						<React.Fragment>
-							<MoaTextField defaultValue={textFieldText} />
-							<div>{props.title}</div>
+							<MoaTextField defaultValue={defaultValue} {...rest} />
+							<div>{title}</div>
 						</React.Fragment>
 						:
 						<React.Fragment>
-							<div>{props.title}</div>
-							<MoaTextField defaultValue={textFieldText} />
+							<div>{title}</div>
+							<MoaTextField defaultValue={defaultValue} {...rest}/>
 						</React.Fragment>
 					}
 				</Box>
 				:
-				<MoaTextField defaultValue={textFieldText} />
+				<MoaTextField defaultValue={defaultValue} />
 			}
 		</React.Fragment>
 	)
