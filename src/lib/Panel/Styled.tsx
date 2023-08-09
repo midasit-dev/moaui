@@ -26,9 +26,25 @@ class StyleVariant {
 }
 
 export type StyledProps = {
+	/**
+	 * Panel inner contents
+	 */
 	children: React.ReactNode;
+
+	/**
+	 * `shadow` panel or `strock` panel
+	 * @default 'shadow'
+	 */
 	variant: 'shadow' | 'strock';
+	/**
+	 * Set the width of panel
+	 * @default 'fit-content'
+	 */
 	width: string;
+	/**
+	 * Set the height of panel
+	 * @default 'fit-content'
+	 */
 	height: string;
 }
 const StyledComponent = styled((props: StyledProps) => {

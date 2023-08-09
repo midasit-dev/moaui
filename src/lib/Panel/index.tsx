@@ -6,19 +6,14 @@ MoaPanel.defaultProps = {
 	width: 'fit-content',
 	height: 'fit-content',
 }
-function MoaPanel(props: StyledProps) : React.ReactElement {
-	const children = props.children;
-	const variant = props.variant;
-	const width = props.width;
-	const height = props.height;
-	return (
-		<StyledComponent 
-			children={children}	
-			variant={variant}
-			width={width}
-			height={height}
-		/>
-	)
+
+/**
+ * Panel
+ * @param props
+ * @returns JSX.Element
+ */
+function MoaPanel(props: StyledProps) : JSX.Element {
+	return ( <StyledComponent {...props} /> )
 }
 
 export default MoaPanel;

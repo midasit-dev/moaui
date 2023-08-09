@@ -5,16 +5,16 @@ MoaTypography.defaultProps = {
 	variant: "body1",
 	color: "primary"
 }
-function MoaTypography(props: StyledProps) : React.ReactElement {
-	const children = props.children;
-	const variant = props.variant;
-	const color = props.color;
 
+/**
+ * Typography
+ * @param props
+ * @returns TypographyComponent
+ */
+function MoaTypography(props: StyledProps) : JSX.Element {
+	const children = props.children;
 	return (
-		<StyledComponent 
-			variant={variant} 
-			color={color}
-		>
+		<StyledComponent {...props}>
 			{children}
 		</StyledComponent>
 	)

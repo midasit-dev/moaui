@@ -4,15 +4,15 @@ MoaTypographyGroup.defaultProps = {
 	titleText: "",
 	bodyText: ""
 }
-function MoaTypographyGroup(props: StyledProps) : React.ReactElement {
-	const titleText = props.titleText;
-	const bodyText = props.bodyText;
 
+/**
+ * Typography Group
+ * @param props
+ * @returns JSX.Element
+ */
+function MoaTypographyGroup(props: StyledProps) : JSX.Element {
 	return (
-		<StyledComponent 
-			titleText={titleText} 
-			bodyText={bodyText}
-		/>
+		<StyledComponent {...props} />
 	)
 }
 
