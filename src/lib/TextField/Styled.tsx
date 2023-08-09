@@ -5,8 +5,20 @@ import Font from '../Font';
 
 
 export type MoaTextFieldProps = {
+	/**
+	 * This is the title attached to the textfield. 
+	 * @default ""
+	 */
 	title?:string,
+	/**
+	 * Sets where the title will be located outside of the Textfield.
+	 * @default "left"
+	 */
 	titlePosition?:"left" | "label" | "right",
+	/**
+	 * The value to display by default in the textfield.
+	 * @default ""
+	 */
 	defaultValue:string
 }
 

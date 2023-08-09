@@ -4,8 +4,8 @@ import Box  from "@mui/material/Box";
 
 MoaTextfield.defaultProps = {
 	title :"",
-	titlePosition: "",
-	defaultValue: "TextField"
+	titlePosition: "left",
+	defaultValue: ""
 }
 
 function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
