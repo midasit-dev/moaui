@@ -64,9 +64,7 @@ function RadioButtonIcon(props : RadioButtonIconProps) {
 			{ props?.disabled ?
 				props?.checked ?
 					<CircleTwoToneIcon sx={{
-						"circle": {
-							fill: Color.component.gray,
-						},
+						fill: Color.component.gray,
 					}} />
 					: 
 					<Circle sx={{
