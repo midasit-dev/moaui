@@ -8,10 +8,11 @@ MoaPanel.defaultProps = {
 }
 
 /**
- * <Panel />
- * @returns PanelComponent
+ * Panel
+ * @param props
+ * @returns JSX.Element
  */
-function MoaPanel(props: StyledProps) : React.ReactElement {
+function MoaPanel(props: StyledProps) : JSX.Element {
 	return ( <StyledComponent {...props} /> )
 }
 
