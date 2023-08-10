@@ -27,15 +27,18 @@ export type StyledProps = {
 
 	/**
 	 * If `true`, the component appears disabled.
+	 * @default false
 	 */
 	disabled?: boolean,
 
 	/**
 	 * The Name of the component.
+	 * @default ""
 	 */
 	name?: string,
 	/**
 	 * Defines a string value that labels the current element.
+	 * @default "Checkbox"
 	 */
 	ariaLabel?: string,
 

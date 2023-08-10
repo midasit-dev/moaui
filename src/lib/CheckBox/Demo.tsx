@@ -13,8 +13,7 @@ function ControlledCheckboxDemo() {
 	);
 }
 
-
-function CheckBoxDemo() {
+function CheckboxDemo() {
 	return (
 		<Fragment>
 			<MoaTypography variant="h1">Uncontrolled</MoaTypography>
@@ -38,4 +37,4 @@ function CheckBoxDemo() {
 	)
 }
 
-export default CheckBoxDemo;
+export default CheckboxDemo;
