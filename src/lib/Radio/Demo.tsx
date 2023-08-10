@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react"
+import { Fragment, useState, useCallback } from "react"
 import MoaRadio from "./index"
 import MoaTypography from "../Typography";
 import MoaPanel from "../Panel";
@@ -6,6 +6,11 @@ import MoaPanel from "../Panel";
 function RadioWithSelectionDemo() {
 	const [selected, setSelected] = useState('a');
 	const radioSet = ['a', 'b', 'c'];
+
+	const handleOnChange = useCallback((e: React.SyntheticEvent, checked: boolean) => {
+		const event = e as React.ChangeEvent<HTMLInputElement>;
+		checked && setSelected(event.target.value);
+	}, []);
 
 	return (
 		<MoaPanel>
@@ -18,9 +23,9 @@ function RadioWithSelectionDemo() {
 							<MoaRadio
 								checked={selected===value}
 								key={value}
-								onChange={() => setSelected(value)}
+								onChange={handleOnChange}
 								value={value}
-								text={value}
+								name={value}
 							/>)
 				}
 			</div>
@@ -31,6 +36,11 @@ function RadioWithSelectionDemo() {
 function RadioWithValueSelectionAndDisabledDemo() {
 	const [selected, setSelected] = useState('a');
 	const radioSet = ['a', 'b', 'c'];
+
+	const handleOnChange = useCallback((e: React.SyntheticEvent, checked: boolean) => {
+		const event = e as React.ChangeEvent<HTMLInputElement>;
+		checked && setSelected(event.target.value);
+	}, []);
 
 	return (
 		<MoaPanel>
@@ -43,7 +53,7 @@ function RadioWithValueSelectionAndDisabledDemo() {
 							<MoaRadio
 								checked={selected===value}
 								key={value}
-								onChange={() => setSelected(value)}
+								onChange={handleOnChange}
 								value={value}
 								name={value}
 							/>
