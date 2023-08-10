@@ -12,7 +12,6 @@ function ControlledCheckGroupDemo() {
 
 	const handleCheckboxChange = (e: React.SyntheticEvent, checked: boolean) => {
 		const event = e as React.ChangeEvent<HTMLInputElement>;
-		console.log(event);
 		
 		setValues({
 			...values,
