@@ -27,6 +27,7 @@ export type StyledProps = {
 
 	/**
 	 * The Name of the component.
+	 * If not empty, text will appears after button.
 	 */
 	name?: string,
 
@@ -41,11 +42,6 @@ export type StyledProps = {
 	 * @default false
 	 */
 	disabled?: boolean,
-
-	/**
-	 * If not empty, text will appears after button.
-	 */
-	text?: string,
 };
 
 
@@ -94,7 +90,7 @@ function RadioButtonIcon(props : RadioButtonIconProps) {
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	return (
 		<FormControlLabel
-			aria-label={props?.ariaLabel} 
+			aria-label={`${props?.ariaLabel} FormControlLabel`} 
 			onChange={props?.onChange}
 			checked={props?.checked}
 			disabled={props?.disabled}
@@ -104,6 +100,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 				<Radio
 					disableFocusRipple
 					disableRipple
+					aria-label={`${props?.name} ${props?.ariaLabel}`}
 					checkedIcon={<RadioButtonChecked />}
 					icon={<RadioButtonIcon />}
 					sx={{
@@ -130,7 +127,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					}}
 				/>
 			}
-			label={props?.text}
+			label={props?.name}
 			sx={{
 				margin: 0,
 				".MuiFormControlLabel-label": {

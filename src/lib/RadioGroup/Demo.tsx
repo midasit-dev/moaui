@@ -6,8 +6,8 @@ import MoaTypography from "../Typography";
 function RadioGroupUncontrolledDemo() {
 	return (
 		<MoaRadioButtonGroup defaultValue="Value 1">
-			<MoaRadioButton text="Value 1" value="Value 1" />
-			<MoaRadioButton text="Value 2" value="Value 2" />
+			<MoaRadioButton name="Value 1" value="Value 1" />
+			<MoaRadioButton name="Value 2" value="Value 2" />
 		</MoaRadioButtonGroup>	
 	);
 }
@@ -21,8 +21,8 @@ function RadioGroupControlledDemo() {
 
 	return (
 		<MoaRadioButtonGroup onChange={onChange} value={state}>
-			<MoaRadioButton text="Value 1" value="Value 1" />
-			<MoaRadioButton text="Value 2" value="Value 2" />
+			<MoaRadioButton name="Value 1" value="Value 1" />
+			<MoaRadioButton name="Value 2" value="Value 2" />
 		</MoaRadioButtonGroup>	
 	);
 }
@@ -36,8 +36,8 @@ function RadioGroupLabelDemo() {
 
 	return (
 		<MoaRadioButtonGroup onChange={onChange} value={state} text="Header Text">
-			<MoaRadioButton text="Value 1" value="Value 1" />
-			<MoaRadioButton text="Value 2" value="Value 2" />
+			<MoaRadioButton name="Value 1" value="Value 1" />
+			<MoaRadioButton name="Value 2" value="Value 2" />
 		</MoaRadioButtonGroup>	
 	);
 }
@@ -51,9 +51,9 @@ function RadioGroupLabelWithDisabledItemDemo() {
 
 	return (
 		<MoaRadioButtonGroup onChange={onChange} value={state} text="Header Text">
-			<MoaRadioButton text="Value 1" value="Value 1" />
-			<MoaRadioButton text="Value 2" value="Value 2" />
-			<MoaRadioButton text="Value 3" value="Value 3" disabled />
+			<MoaRadioButton name="Value 1" value="Value 1" />
+			<MoaRadioButton name="Value 2" value="Value 2" />
+			<MoaRadioButton name="Value 3" value="Value 3" disabled />
 		</MoaRadioButtonGroup>	
 	);
 }
