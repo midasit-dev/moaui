@@ -3,7 +3,7 @@ import MoaCheckGroup from ".";
 import MoaCheck from "../Check";
 import MoaTypography from "../Typography";
 
-function ControlledCheckboxGroupDemo() {
+function ControlledCheckGroupDemo() {
 	const [values, setValues] = useState({
 		"test1" : true,
 		"test2" : false,
@@ -45,7 +45,7 @@ function CheckGroupDemo() {
 			</MoaCheckGroup>
 
 			<MoaTypography variant="h1">Controlled</MoaTypography>
-			<ControlledCheckboxGroupDemo />
+			<ControlledCheckGroupDemo />
 		</Fragment>
 	)
 }
