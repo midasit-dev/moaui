@@ -5,7 +5,7 @@ export type StyledProps = {
 	/**
 	 * The content of the component, normally `TableRow`.
 	 */
-	children?: React.ReactNode[],
+	children?: React.ReactNode,
 };
 
 type InnerStyledProps = {

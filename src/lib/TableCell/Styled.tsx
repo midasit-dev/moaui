@@ -11,7 +11,7 @@ export type StyledProps = {
 	/**
 	 * The content of the component.
 	 */
-	children?: React.ReactNode[],
+	children?: React.ReactNode,
 
 	/**
 	 * Sets the padding applied to the cell.

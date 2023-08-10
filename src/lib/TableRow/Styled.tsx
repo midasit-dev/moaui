@@ -5,7 +5,7 @@ export type StyledProps = {
 	/**
 	 * Should be valid <tr> children such as `TableCell`.
 	 */
-	children?: React.ReactNode[],
+	children?: React.ReactNode,
 
 	/**
 	 * If `true`, the table row will shade on hover.

@@ -5,7 +5,7 @@ export type StyledProps = {
 	/**
 	 * Override or extend the styles applied to the component.
 	 */
-	children?: React.ReactNode[],
+	children?: React.ReactNode,
 
 	/**
 	 * Allow TableCells to inherit padding of the table.
