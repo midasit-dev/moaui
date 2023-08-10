@@ -1,6 +1,8 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 MoaTableRow.defaultProps = {
+	hover: false,
+	selected: false,
 } as StyledProps;
 
 /**

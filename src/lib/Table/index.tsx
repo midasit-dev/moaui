@@ -1,6 +1,9 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 MoaTable.defaultProps = {
+	padding: 'normal',
+	size: 'medium',
+	stickyHeader: false,
 } as StyledProps;
 
 /**

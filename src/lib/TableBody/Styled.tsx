@@ -1,7 +1,11 @@
 import { styled } from '@mui/material/styles';
+import TableBody from '@mui/material/TableBody';
 
 export type StyledProps = {
-
+	/**
+	 * The content of the component, normally `TableRow`.
+	 */
+	children?: React.ReactNode[],
 };
 
 type InnerStyledProps = {
@@ -10,7 +14,7 @@ type InnerStyledProps = {
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	return (
-		<div />
+		<TableBody {...props} />
 	)
 })((props: InnerStyledProps) => ({}));
 

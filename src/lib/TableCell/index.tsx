@@ -1,6 +1,10 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 MoaTableCell.defaultProps = {
+	align: 'center',
+	padding: 'normal',
+	size: 'medium',
+	variant: 'body',
 } as StyledProps;
 
 /**
