@@ -1,17 +1,26 @@
 import { styled } from '@mui/material/styles';
+import FormGroup from '@mui/material/FormGroup';
+import FormControl from '@mui/material/FormControl';
+import MoaTypography from '../Typography';
 
 export type StyledProps = {
-
+	children?: React.ReactElement[],
+	/**
+	 * Value of the header text. If leave empty this field, header field will not show.
+	 */
+	text?: string,
 };
 
-type InnerStyledProps = {
-	theme: any;
-};
-
-const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
+const StyledComponent = styled((props: StyledProps) => {
+	const { text, ...rest } = props;
+	
 	return (
-		<div />
+		<FormControl>
+			{text && <div style={{padding: '0.25rem'}}><MoaTypography>{text}</MoaTypography></div>}
+			<FormGroup {...rest} style={{paddingLeft: text ? '0.5rem' : '0rem'}} />
+		</FormControl>
 	)
-})((props: InnerStyledProps) => ({}));
+
+})(({theme}) => ({}));
 
 export default StyledComponent;

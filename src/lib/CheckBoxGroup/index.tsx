@@ -1,15 +1,7 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MoaCheckboxGroup.defaultProps = {
-	checked: false,
-	disabled: false,
-	value: "",
-	name: "",
-	ariaLabel: "Check Button",
-} as StyledProps;
-
 /**
- * MoaUI Styled Check Box(Multi)
+ * Wrapper for MoaUI Styled Radio Button.
  * 
  * @param props 
  * @returns React.ReactElement
