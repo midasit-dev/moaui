@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import Color from "../Color";
 import TableHead from '@mui/material/TableHead';
 
 export type StyledProps = {
@@ -14,7 +15,9 @@ type InnerStyledProps = {
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	return (
-		<TableHead {...props} />
+		<TableHead {...props} sx={{
+			backgroundColor: Color.component.gray_01,
+		}} />
 	)
 })((props: InnerStyledProps) => ({}));
 

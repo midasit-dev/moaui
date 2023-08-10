@@ -31,11 +31,36 @@ export type StyledProps = {
 	 */
 	sortDirection?: 'asc' | 'desc' | false,
 
+	//below are custom props
 	/**
-	 * Specify the cell type.
-	 * @default 'body'
+	 * Set view state of the checkbox.
+	 * @default false
 	 */
-	variant?: 'head' | 'body' | 'footer',
+	showCheckbox?: boolean,
+
+	/**
+	 * Set view state of the label.
+	 * @default true
+	 */
+	hideLabel?: boolean,
+
+	/**
+	 * Set view state of left icon.
+	 * @default false
+	 */
+	showLeftIcon?: boolean,
+
+	/**
+	 * Set view state of right icon.
+	 * @default false
+	 */
+	showRightIcon?: boolean,
+
+	/**
+	 * Set enabled state of the component.
+	 * @default true
+	 */
+	enabled? : boolean,
 };
 
 type InnerStyledProps = {
@@ -43,8 +68,12 @@ type InnerStyledProps = {
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
+	const { showCheckbox, hideLabel, showLeftIcon, showRightIcon, enabled, ...muiProps } = props;
+	
 	return (
-		<TableCell {...props} />
+		<TableCell {...muiProps} sx={{
+			padding: "0.75rem"
+		}} />
 	)
 })((props: InnerStyledProps) => ({}));
 
