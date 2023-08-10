@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react"
-import MoaCheckboxGroup from ".";
-import MoaCheckbox from "../Checkbox";
+import MoaCheckGroup from ".";
+import MoaCheck from "../Check";
 import MoaTypography from "../Typography";
 
 function ControlledCheckboxGroupDemo() {
@@ -22,11 +22,11 @@ function ControlledCheckboxGroupDemo() {
 
 	return (
 		<Fragment>
-			<MoaCheckboxGroup text="title">
-				<MoaCheckbox name="test1" checked={values?.test1} onChange={handleCheckboxChange} />
-				<MoaCheckbox name="test2" checked={values?.test2} onChange={handleCheckboxChange} />
-				<MoaCheckbox name="test3" checked={values?.test3} onChange={handleCheckboxChange} />
-			</MoaCheckboxGroup>
+			<MoaCheckGroup text="title">
+				<MoaCheck name="test1" checked={values?.test1} onChange={handleCheckboxChange} />
+				<MoaCheck name="test2" checked={values?.test2} onChange={handleCheckboxChange} />
+				<MoaCheck name="test3" checked={values?.test3} onChange={handleCheckboxChange} />
+			</MoaCheckGroup>
 			<MoaTypography>
 				{`Checked : ${Object.entries(values).reduce((acc, [key, value]) => acc + (value ? `${key} ` : ""), "")}`}
 			</MoaTypography>
@@ -34,15 +34,15 @@ function ControlledCheckboxGroupDemo() {
 	)
 }
 
-function CheckboxGroupDemo() {
+function CheckGroupDemo() {
 	return (
 		<Fragment>
 			<MoaTypography variant="h1">Uncontrolled</MoaTypography>
-			<MoaCheckboxGroup text="title">
-				<MoaCheckbox name="test1" />
-				<MoaCheckbox name="test2" />
-				<MoaCheckbox name="test3" />
-			</MoaCheckboxGroup>
+			<MoaCheckGroup text="title">
+				<MoaCheck name="test1" />
+				<MoaCheck name="test2" />
+				<MoaCheck name="test3" />
+			</MoaCheckGroup>
 
 			<MoaTypography variant="h1">Controlled</MoaTypography>
 			<ControlledCheckboxGroupDemo />
@@ -50,4 +50,4 @@ function CheckboxGroupDemo() {
 	)
 }
 
-export default CheckboxGroupDemo;
+export default CheckGroupDemo;
