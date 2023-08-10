@@ -33,7 +33,7 @@ export type StyledProps = {
 
 	/**
 	 * The Name of the component.
-	 * @default ""
+	 * If not empty, text will appears after button.
 	 */
 	name?: string,
 	/**
@@ -41,11 +41,6 @@ export type StyledProps = {
 	 * @default "Checkbox"
 	 */
 	ariaLabel?: string,
-
-	/**
-	 * If not empty, text will appears after button.
-	 */
-	text?: string,
 
 	/**
 	 * If `true`, the component appears indeterminate.
@@ -60,11 +55,11 @@ type InnerStyledProps = {
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	return (
 		<FormControlLabel
-			label={props?.text}
+			label={props?.name}
 			required={props?.required}
 			onChange={props?.onChange}
 			disabled={props?.disabled}
-			aria-label={props?.ariaLabel}
+			aria-label={`${props?.ariaLabel} FormControlLabel`}
 			name={props?.name}
 			checked={props?.checked}
 			control={
@@ -75,7 +70,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					disableRipple
 					disableTouchRipple
 					inputProps={{
-						"aria-label": props?.text || props?.ariaLabel
+						"aria-label": `${props?.name || ""} ${props?.ariaLabel}`
 					}}
 					sx={{
 						".MuiSvgIcon-root": {

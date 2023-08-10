@@ -25,11 +25,11 @@ function CheckboxDemo() {
 			<MoaCheckbox disabled defaultChecked={false} />
 			<MoaCheckbox disabled indeterminate />
 			<MoaTypography variant="h1">With Label</MoaTypography>
-			<MoaCheckbox text="Checked" defaultChecked />
-			<MoaCheckbox text="Unchecked" defaultChecked={false} />
-			<MoaCheckbox text="Indeterminate" indeterminate />
-			<MoaCheckbox text="Required" required />
-			<MoaCheckbox text="Disabled" disabled />
+			<MoaCheckbox name="Checked" defaultChecked />
+			<MoaCheckbox name="Unchecked" defaultChecked={false} />
+			<MoaCheckbox name="Indeterminate" indeterminate />
+			<MoaCheckbox name="Required" required />
+			<MoaCheckbox name="Disabled" disabled />
 
 			<MoaTypography variant="h1">Controlled</MoaTypography>
 			<ControlledCheckboxDemo />

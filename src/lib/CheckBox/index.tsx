@@ -2,7 +2,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 MoaCheckbox.defaultProps = {
 	disabled: false,
-	name: "",
 	ariaLabel: "CheckBox",
 } as StyledProps;
 
