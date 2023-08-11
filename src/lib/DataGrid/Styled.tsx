@@ -14,13 +14,13 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	const { sx, ...rest } = props;
 	return (
 		<DataGrid
-			autoHeight
 			density="compact"
-			columnVisibilityModel={{
-				defaultValue: true,
-				
-			}}
 			{...rest}
+			// slotProps={{
+			// 	cell: {
+			// 		align: "center",
+			// 	},
+			// }}
 			sx={{
 				".MuiDataGrid-columnHeaders": {
 					backgroundColor: Color.component.gray_01,
