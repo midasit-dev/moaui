@@ -4,6 +4,7 @@ MoaRadioButton.defaultProps = {
 	disabled: false,
 	value: "",
 	ariaLabel: "Radio button",
+	sx: {},
 } as StyledProps;
 
 /**

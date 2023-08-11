@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-import { Fragment } from 'react';
 import Color from '../Color';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -42,6 +41,12 @@ export type StyledProps = {
 	 * @default false
 	 */
 	disabled?: boolean,
+
+	/**
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @default undefined
+	 */
+	sx: never,
 };
 
 

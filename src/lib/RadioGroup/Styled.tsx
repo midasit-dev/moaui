@@ -35,10 +35,16 @@ export interface StyledProps extends RadioGroupProps {
 	 * Value of the header text. If leave empty this field, header field will not show.
 	 */
 	text?: string,
+
+	/**
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @default {}
+	 */
+	sx: never,
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { ariaLabel, text, ...rest } = props;
+	const { ariaLabel, text, sx, ...rest } = props;
 	
 	return (
 		<FormControl aria-label={`${text} ${ariaLabel}`}>
