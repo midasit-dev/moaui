@@ -2,7 +2,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 MoaRadioGroup.defaultProps = {
 	ariaLabel: "Radio Group",
-	sx: {},
 };
 
 /**

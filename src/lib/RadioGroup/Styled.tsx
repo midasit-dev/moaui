@@ -38,9 +38,9 @@ export interface StyledProps extends RadioGroupProps {
 
 	/**
 	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
-	 * @default {}
+	 * @default undefined
 	 */
-	sx: never,
+	sx?: never,
 };
 
 const StyledComponent = styled((props: StyledProps) => {

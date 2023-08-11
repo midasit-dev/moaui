@@ -46,7 +46,7 @@ export type StyledProps = {
 	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
 	 * @default undefined
 	 */
-	sx: never,
+	sx?: never,
 };
 
 
