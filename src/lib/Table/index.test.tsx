@@ -4,6 +4,12 @@ import Demo from './Demo';
 
 test('renders table', () => {
   render(<Demo />);
-  const linkElement = screen.getAllByText(/test title/i);
-  expect(linkElement[0]).toBeInTheDocument();
+  const headElement = screen.getAllByText(/head/i);
+  headElement.forEach((element) => {
+	expect(element).toBeInTheDocument();
+ });
+  const bodyElement = screen.getAllByText(/body/i);
+  bodyElement.forEach((element) => {
+	expect(element).toBeInTheDocument();
+  });
 });

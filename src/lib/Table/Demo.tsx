@@ -1,11 +1,9 @@
-import { Fragment } from "react"
 import MoaTable from ".";
 import MoaTableHead from "../TableHead";
 import MoaTableBody from "../TableBody";
 import MoaTableRow from "../TableRow";
 import MoaTableCell from "../TableCell";
 import MoaTypography from "../Typography";
-import TableContainer from "@mui/material/TableContainer";
 import MoaPanel from "../Panel";
 
 function TableDemo() {

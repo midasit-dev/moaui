@@ -4,6 +4,6 @@ import Demo from './Demo';
 
 test('renders table body', () => {
   render(<Demo />);
-  const linkElement = screen.getAllByText(/test title/i);
-  expect(linkElement[0]).toBeInTheDocument();
+  const bodyElement = screen.getAllByText(/body/i);
+  expect(bodyElement[0]).toBeInTheDocument();
 });

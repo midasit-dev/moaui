@@ -1,9 +1,19 @@
-import { Fragment } from "react"
+import TableRow from "../TableRow";
+import Table from "../Table";
+import TableBody from "../TableBody";
+import TableCell from "./";
 
 function TableCellDemo() {
 	return (
-		<Fragment>
-		</Fragment>
+		<Table>
+			<TableBody>
+				<TableRow>
+					<TableCell>
+						TableCellDemo
+					</TableCell>
+				</TableRow>
+			</TableBody>
+		</Table>
 	)
 }
 
