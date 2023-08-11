@@ -1,14 +1,14 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MoaCheckbox.defaultProps = {
+MoaCheck.defaultProps = {
 	disabled: false,
 	ariaLabel: "CheckBox",
 } as StyledProps;
 
 /**
- * MoaUI Styled Check Box(Single)
+ * MoaUI Styled Check(Single)
  * 
  * @param props 
  * @returns React.ReactElement
  */
-export default function MoaCheckbox(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function MoaCheck(props: StyledProps) { return (<StyledComponent {...props} />) };
