@@ -46,6 +46,12 @@ export type StyledProps = {
 	 * If `true`, the component appears indeterminate.
 	 */
 	indeterminate?: boolean,
+
+	/**
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @default undefined
+	 */
+	sx?: never,
 };
 
 type InnerStyledProps = {
