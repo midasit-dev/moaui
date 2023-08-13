@@ -1,0 +1,23 @@
+import React from "react";
+import Droplist from './index';
+import { SelectChangeEvent } from '@mui/material/Select';
+function Demo() {
+	const [value, setValue] = React.useState("");
+
+	function onChangeHandler(event:SelectChangeEvent){
+		setValue(event.target.value);
+	}
+	const itemList = new Map();
+	itemList.set("subheader", "Category");
+	itemList.set("TEST1", 10);
+	itemList.set("TEST2", 20);
+
+	return (
+		<React.Fragment>
+			<br/>
+			<Droplist value={value} width={"100px"} onChange={onChangeHandler} defaultValue="">{itemList}</Droplist>
+		</React.Fragment>
+	);
+}
+
+export default Demo;
