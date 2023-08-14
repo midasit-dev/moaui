@@ -21,7 +21,7 @@ export type StyledProps = {
 	
 	/**
 	 * The value of the component.
-	 * @default ""
+	 * @defaultValue ""
 	 */
 	value?: unknown,
 
@@ -32,13 +32,13 @@ export type StyledProps = {
 
 	/**
 	 * Defines a string value that labels the current element.
-	 * @default "Radio Button"
+	 * @defaultValue "Radio Button"
 	 */
 	ariaLabel?: string,
 
 	/**
 	 * If `true`, the component appears disabled.
-	 * @default false
+	 * @defaultValue false
 	 */
 	disabled?: boolean,
 
@@ -52,7 +52,7 @@ export type StyledProps = {
 type RadioButtonIconProps = {
 	/**
 	 * If `true`, the component appears in disabled state.
-	 * @default false
+	 * @defaultValue false
 	*/
 	disabled?: boolean,
 	

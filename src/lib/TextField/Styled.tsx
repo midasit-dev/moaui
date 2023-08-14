@@ -7,27 +7,27 @@ import Font from '../Font';
 export type MoaTextFieldProps = {
 	/**
 	 * This is the title attached to the textfield. 
-	 * @default ""
+	 * @defaultValue ""
 	 */
 	title?:string,
 	/**
 	 * Sets where the title will be located outside of the Textfield.
-	 * @default "left"
+	 * @defaultValue "left"
 	 */
 	titlePosition?:"left" | "label" | "right",
 	/**
 	 * The value to display by default in the textfield.
-	 * @default ""
+	 * @defaultValue ""
 	 */
 	defaultValue:string,
 		/**
 	 * If the value is true, The Textfield border is displayed in red.
-	 * @default false
+	 * @defaultValue false
 	 */
 	error?: boolean,
 			/**
 	 * If the value is true, The state of the textfield is disabled.
-	 * @default false
+	 * @defaultValue false
 	 */
 	disabled?: boolean
 }
