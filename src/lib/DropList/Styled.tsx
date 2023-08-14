@@ -14,6 +14,7 @@ export type MoaDropListProps = {
 	width? : string
 	/**
 	 * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
+	 * @defaultValue new Map()
 	 */
 	itemList : Map<string, string | number>
 	/**
@@ -23,6 +24,8 @@ export type MoaDropListProps = {
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
+	 * 
+	 * @defaultValue () => {}
    */
 	onChange: (event: SelectChangeEvent) => void;
   /**
@@ -36,6 +39,7 @@ export type MoaDropListProps = {
 	value : string;
 	/**
    * The default value. Use when the component is not controlled.
+	 * @defaultValue ""
    */
 	defaultValue?: string;
 }
