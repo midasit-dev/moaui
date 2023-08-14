@@ -3,7 +3,6 @@ import MoaDropList, { type MoaDropListProps } from "./Styled";
 
 MoaDroplist.defaultProps = {
 	itemList : new Map(),
-	children : <></>,
 	value : "",
 	onChange: () => {},
 	defaultValue: ""

@@ -13,9 +13,9 @@ export type MoaDropListProps = {
 	 */
 	width? : string
 	/**
-	 * 우선 Children으로 하위 항목들을 받았는데 itemList라는걸 새로 만들어서 뺄지 고민중
+	 * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
 	 */
-	children : Map<string, string | number>
+	itemList : Map<string, string | number>
 	/**
    * Callback fired when a menu item is selected.
    *
@@ -41,7 +41,7 @@ export type MoaDropListProps = {
 }
 
 const MoaDropList = styled((props:MoaDropListProps) => {
-	const {children, width, value, onChange, defaultValue} = props;
+	const {itemList, width, value, onChange, defaultValue} = props;
 
 	return (
 		<React.Fragment>
@@ -71,7 +71,7 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 					}}
 					onChange={onChange}
 				>
-					{Array.from(children.keys()).map((key, index) => {
+					{Array.from(itemList.keys()).map((key, index) => {
 						if(key === "subheader")
 							return (
 								<ListSubheader key={"subheader" + index}
@@ -95,12 +95,12 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 										lineHeight: "0.875rem", /* 116.667% */
 									}}
 								>
-									{children.get(key)}
+									{itemList.get(key)}
 								</ListSubheader>
 							)
 
 						return (
-							<MenuItem key={"item"+index} value={children.get(key)}
+							<MenuItem key={"item"+index} value={itemList.get(key)}
 								sx={{
 									display: "flex",
 									padding: "0.25rem 0.625rem",

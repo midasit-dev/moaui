@@ -16,7 +16,13 @@ function Demo() {
 	return (
 		<React.Fragment>
 			<br/>
-			<Droplist value={value} width={"100px"} onChange={onChangeHandler} defaultValue="">{itemList}</Droplist>
+			<Droplist 
+				itemList={itemList} 
+				value={value} 
+				width={"100px"} 
+				onChange={onChangeHandler} 
+				defaultValue=""
+			/>
 		</React.Fragment>
 	);
 }
