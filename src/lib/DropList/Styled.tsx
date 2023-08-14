@@ -31,6 +31,7 @@ export type MoaDropListProps = {
    *
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
+	 * @defaultValue ""
    */
 	value : string;
 	/**
@@ -119,6 +120,12 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 									fontStyle: "normal",
 									fontWeight: 400,
 									lineHeight: "0.875rem",
+									'&.Mui-selected':{
+										backgroundColor: `${Color.primary.enable_strock}!important`,
+									},
+									'&:hover': {
+										backgroundColor: `${Color.component.gray_light}!important`,
+									}
 								}}
 							>
 								{key}
@@ -138,6 +145,5 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 	border: `1px solid ${Color.component.gray}`,
 	background: Color.primary.white,
 }))
-
 
 export default MoaDropList;

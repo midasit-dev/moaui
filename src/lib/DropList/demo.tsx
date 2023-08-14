@@ -9,8 +9,9 @@ function Demo() {
 	}
 	const itemList = new Map();
 	itemList.set("subheader", "Category");
-	itemList.set("TEST1", 10);
-	itemList.set("TEST2", 20);
+	itemList.set("TEST2", 10);
+	itemList.set("TEST1", 20);
+	itemList.set("a", 2);
 
 	return (
 		<React.Fragment>
