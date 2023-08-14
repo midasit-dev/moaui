@@ -4,7 +4,7 @@ import TableCell from '@mui/material/TableCell';
 export type StyledProps = {
 	/**
 	 * Set the text-align on the table cell content.
-	 * @default center
+	 * @defaultValue center
 	 */
 	align?: 'center',
 
@@ -16,13 +16,13 @@ export type StyledProps = {
 	/**
 	 * Sets the padding applied to the cell.
 	 * The prop defaults to the value inherited from the parent Table component.
-	 * @default 'normal'
+	 * @defaultValue 'normal'
 	 */
 	padding?: 'checkbox' | 'none' | 'normal',
 	
 	/**
 	 * Specify the size of the cell.
-	 * @default 'medium'
+	 * @defaultValue 'medium'
 	 */
 	size?: 'medium',
 
@@ -34,33 +34,39 @@ export type StyledProps = {
 	//below are custom props
 	/**
 	 * Set view state of the checkbox.
-	 * @default false
+	 * @defaultValue false
 	 */
 	showCheckbox?: boolean,
 
 	/**
 	 * Set view state of the label.
-	 * @default true
+	 * @defaultValue true
 	 */
 	hideLabel?: boolean,
 
 	/**
 	 * Set view state of left icon.
-	 * @default false
+	 * @defaultValue false
 	 */
 	showLeftIcon?: boolean,
 
 	/**
 	 * Set view state of right icon.
-	 * @default false
+	 * @defaultValue false
 	 */
 	showRightIcon?: boolean,
 
 	/**
 	 * Set enabled state of the component.
-	 * @default true
+	 * @defaultValue true
 	 */
 	enabled? : boolean,
+
+	/**
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @defaultValue undefined
+	 */
+	sx?: never,
 };
 
 type InnerStyledProps = {
@@ -68,7 +74,7 @@ type InnerStyledProps = {
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
-	const { showCheckbox, hideLabel, showLeftIcon, showRightIcon, enabled, ...muiProps } = props;
+	const { showCheckbox, hideLabel, showLeftIcon, showRightIcon, enabled, sx, ...muiProps } = props;
 	
 	return (
 		<TableCell {...muiProps} sx={{

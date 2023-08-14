@@ -7,6 +7,12 @@ export type StyledProps = {
 	 * The content of the component, normally `TableRow`.
 	 */
 	children?: React.ReactNode,
+
+	/**
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @defaultValue undefined
+	 */
+	sx?: never,
 };
 
 type InnerStyledProps = {
@@ -14,8 +20,9 @@ type InnerStyledProps = {
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
+	const { sx, ...rest } = props;
 	return (
-		<TableHead {...props} sx={{
+		<TableHead {...rest} sx={{
 			backgroundColor: Color.component.gray_01,
 		}} />
 	)

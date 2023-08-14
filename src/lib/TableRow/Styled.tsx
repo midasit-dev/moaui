@@ -9,15 +9,21 @@ export type StyledProps = {
 
 	/**
 	 * If `true`, the table row will shade on hover.
-	 * @default false
+	 * @defaultValue false
 	 */
 	hover?: boolean,
 
 	/**
 	 * If `true`, the table row will have the selected shading.
-	 * @default false
+	 * @defaultValue false
 	 */
 	selected?: boolean,
+
+	/**
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @defaultValue undefined
+	 */
+	sx?: never,
 };
 
 type InnerStyledProps = {
@@ -25,8 +31,9 @@ type InnerStyledProps = {
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
+	const { sx, ...rest } = props;
 	return (
-		<TableRow {...props} />
+		<TableRow {...rest} />
 	)
 })((props: InnerStyledProps) => ({}));
 

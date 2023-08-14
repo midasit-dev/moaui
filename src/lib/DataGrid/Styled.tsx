@@ -3,7 +3,7 @@ import { DataGrid, DataGridProps } from "@mui/x-data-grid";
 import Color from '../Color';
 
 export interface StyledProps extends DataGridProps {
-	sx: never,
+	sx?: never,
 };
 
 type InnerStyledProps = {
