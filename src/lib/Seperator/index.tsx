@@ -1,13 +1,16 @@
 import React from "react";
 import MoaSeperator, {type  MoaSeperatorProps} from "./Styled";
-import Box  from "@mui/material/Box";
 
 Moaseperator.defaultProps = {
-
+	Direction: "horizontal"
 }
 
-export default function Moaseperator(props:MoaSeperatorProps) {
+/**
+ * @param {MoaSeperatorProps} props - Direction
+ * @returns {React.ReactElement} MoaSeperator
+ */
+export default function Moaseperator(props:MoaSeperatorProps): React.ReactElement {
 	return (
-		<MoaSeperator />
+		<MoaSeperator {...props}/>
 	)
 }
