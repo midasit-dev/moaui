@@ -12,7 +12,7 @@ export type StyledProps = {
   /**
    * A text or an element to be used in an enclosing label element.
    */
-  label?: React.ReactNode;
+  name?: React.ReactNode;
 	/**
    * Callback fired when the state is changed.
    *
@@ -73,7 +73,8 @@ const StyledComponent = styled((props: StyledProps) : JSX.Element => {
 		<FormControlLabel
 			sx={{
 				padding: 0,
-				margin: 0
+				margin: 0,
+				opacity: 1,
 			}}
 			control={
 				<Switch 
@@ -108,7 +109,7 @@ const StyledComponent = styled((props: StyledProps) : JSX.Element => {
 								color: '#EEEEEE'
 							},
 							'&.Mui-disabled + .MuiSwitch-track': {
-								opacity: 0.7
+								opacity: 1
 							},
 						},
 						/** UnChecked 되었을 경우! */
@@ -126,13 +127,13 @@ const StyledComponent = styled((props: StyledProps) : JSX.Element => {
 							height: '14px',
 							borderRadius: 26 / 2,
 							opacity: 1,
-							transition: 'background-color 500ms linear',
+							transition: 'background-color 300ms linear',
 							...trackStyle,
 						},
 					}}
 				/>
 			}
-			label={props?.label}
+			label={props?.name}
 		/>
 	)
 })((props: InnerStyledProps) => ({}));

@@ -5,14 +5,14 @@ function Demo() {
 	return (
 		<Fragment>
 			<Switch />
-			<Switch label="label test" />
-			<Switch checked={false} label="only false" />
-			<Switch checked={true} label="only true" />
+			<Switch name="label test" />
+			<Switch checked={false} name="only false" />
+			<Switch checked={true} name="only true" />
 			
 			<Switch disabled />
-			<Switch disabled label="label test" />
-			<Switch disabled checked={false} label="only false" />
-			<Switch disabled checked={true} label="only true" />
+			<Switch disabled name="label test" />
+			<Switch disabled checked={false} name="only false" />
+			<Switch disabled checked={true} name="only true" />
 		</Fragment>
 	);
 }
