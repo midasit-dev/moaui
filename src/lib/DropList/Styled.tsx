@@ -49,7 +49,7 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 
 	return (
 		<React.Fragment>
-			<FormControl sx={{ml:5, width:`${width}`, maxHeightight:"1.75rem"}}>
+			<FormControl sx={{width:`${width}`, maxHeightight:"1.75rem"}}>
 				<DropList
 					defaultValue={defaultValue}
 					autoWidth
