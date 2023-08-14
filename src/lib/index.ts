@@ -7,3 +7,5 @@ export { default as TypographyGroup } from "./TypographyGroup";
 export { default as TextField } from "./TextField";
 export { default as Radio } from "./Radio";
 export { default as RadioGroup } from "./RadioGroup"
+export { default as Check } from "./Check";
+export { default as CheckGroup } from "./CheckGroup";
