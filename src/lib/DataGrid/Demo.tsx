@@ -1,8 +1,6 @@
 import MoaTypography from "../Typography";
 import MoaDataGrid from ".";
 import MoaPanel from "../Panel";
-import Box from '@mui/material/Box';
-import { Fragment } from "react";
 
 function DataGridDemo() {
 	return (
