@@ -7,15 +7,15 @@ export type MoaSeperatorProps = {
 	 * The component orientation.
 	 * @defaultValue "horizontal"
 	 */
-	Direction?: "horizontal" | "vertical"
+	direction?: "horizontal" | "vertical"
 }
 
 const MoaSeperator= styled((props:MoaSeperatorProps) => {
-	const {Direction} = props;
+	const {direction} = props;
 	return(
 		<Divider
-			orientation={Direction}
-			flexItem={Direction === "vertical" ? true : false}
+			orientation={direction}
+			flexItem={direction === "vertical" ? true : false}
 			sx={{
 				width: "inherit",
 				margin: "0.125rem 0rem",

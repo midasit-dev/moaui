@@ -2,11 +2,11 @@ import React from "react";
 import MoaSeperator, {type  MoaSeperatorProps} from "./Styled";
 
 Moaseperator.defaultProps = {
-	Direction: "horizontal"
+	direction: "horizontal"
 }
 
 /**
- * @param {MoaSeperatorProps} props - Direction
+ * @param {MoaSeperatorProps} props - direction
  * @returns {React.ReactElement} MoaSeperator
  */
 export default function Moaseperator(props:MoaSeperatorProps): React.ReactElement {
