@@ -9,4 +9,4 @@ MoaStack.defaultProps = {
  * @param props 
  * @returns React.ReactElement
  */
-export default function MoaStack(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function MoaStack(props: StyledProps) : React.ReactElement { return (<StyledComponent {...props} />) };

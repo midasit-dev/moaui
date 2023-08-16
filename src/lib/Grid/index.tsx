@@ -9,4 +9,4 @@ MoaGrid.defaultProps = {
  * @param props 
  * @returns React.ReactElement
  */
-export default function MoaGrid(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function MoaGrid(props: StyledProps) : React.ReactElement { return (<StyledComponent {...props} />) };
