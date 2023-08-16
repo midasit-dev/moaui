@@ -6,6 +6,13 @@ export type MoaSeperatorProps = {
 	/**
 	 * The component orientation.
 	 * @defaultValue "horizontal"
+	 * 
+	 * @privateRemarks
+	 *
+	 * The `@privateRemarks` tag starts a block of additional commentary that is not meant
+	 * for an external audience.  A documentation tool must omit this content from an
+	 * API reference web site.  It should also be omitted when generating a normalized
+	 * *.d.ts file.
 	 */
 	direction?: "horizontal" | "vertical"
 }
