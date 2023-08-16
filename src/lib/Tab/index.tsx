@@ -1,8 +1,9 @@
+import React from "react";
 import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
  * Tab
  * @param props
- * @returns JSX.Element
+ * @returns React.Element
  */
-export default function MoaTab(props: StyledProps) : JSX.Element { return ( <StyledComponent {...props} /> ) }
+export default function MoaTab(props: StyledProps) : React.ReactElement { return ( <StyledComponent {...props} /> ) }	

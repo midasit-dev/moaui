@@ -18,7 +18,7 @@ export type StyledProps = {
 	setValue?: React.Dispatch<any>;
 	/**
 	 * If `true`, the component is disabled.
-	 * @default false
+	 * @defaultValue false
 	 */
 	disabled?: boolean;
 }

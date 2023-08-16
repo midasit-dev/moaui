@@ -1,3 +1,4 @@
+import React from 'react';
 import { Children, useState, cloneElement } from 'react';
 import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
@@ -27,11 +28,10 @@ export type StyledProps = {
 }
 const StyledComponent = styled((props: StyledProps) => {
 	const [value, setValue] = useState(props?.value);
-
-	if (!props?.children) return (<></>);
-	const cloneArr = Children.map(props.children, (child, idx) => 
-		cloneElement(child, { setValue: setValue })
-	);
+	const cloneArr = Children.map(props.children, (child, idx) => {
+		if (!child) return React.createElement(React.Fragment, { key: idx });
+		return cloneElement(child, { setValue: setValue })
+	});
 
 	return (
 		<Tabs
