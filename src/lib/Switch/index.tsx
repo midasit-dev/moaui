@@ -4,8 +4,8 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * MoaUI Styled Switch (Single)
  * 
  * @param props 
- * @returns JSX.Element
+ * @returns React.ReactElement
  */
-export default function MoaSwitch(props: StyledProps): JSX.Element { 
+export default function MoaSwitch(props: StyledProps): React.ReactElement { 
 	return (<StyledComponent {...props} />) 
 };

@@ -31,7 +31,7 @@ type InnerStyledProps = {
 	theme: any;
 };
 
-const StyledComponent = styled((props: StyledProps) : JSX.Element => {
+const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	//thumb 스타일 (Switch 내부 버튼)
 	const thumbStyle = props?.disabled ? {
 		border: 'none',

@@ -4,8 +4,8 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * MoaUI Styled Switch (Group)
  * 
  * @param props 
- * @returns JSX.Element
+ * @returns React.ReactElement
  */
-export default function MoaSwitchGroup(props: StyledProps): JSX.Element { 
+export default function MoaSwitchGroup(props: StyledProps): React.ReactElement { 
 	return (<StyledComponent {...props} />) 
 };
