@@ -76,17 +76,17 @@ class FontColor {
 export type StyledProps = {
 	/**
 	 * Represent a text string in typography component
-	 * @default ''
+	 * @defaultValue ''
 	 */
 	children: string;
 	/**
 	 * Set the typography type
-	 * @default 'body1'
+	 * @defaultValue 'body1'
 	 */
 	variant: 'h1' | 'body1' | 'body2' | 'body3';
 	/**
 	 * Set the text color
-	 * @default 'primary'
+	 * @defaultValue 'primary'
 	 */
 	color: 'primary' | 'secondary' | 'third' | 'disable';
 }

@@ -27,7 +27,7 @@ export type StyledProps = {
 
 	/**
 	 * If `true`, the component appears disabled.
-	 * @default false
+	 * @defaultValue false
 	 */
 	disabled?: boolean,
 
@@ -38,7 +38,7 @@ export type StyledProps = {
 	name?: string,
 	/**
 	 * Defines a string value that labels the current element.
-	 * @default "Checkbox"
+	 * @defaultValue "Checkbox"
 	 */
 	ariaLabel?: string,
 
@@ -49,7 +49,7 @@ export type StyledProps = {
 
 	/**
 	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
-	 * @default undefined
+	 * @defaultValue undefined
 	 */
 	sx?: never,
 };

@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-import { Fragment } from 'react';
 import Color from '../Color';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -21,38 +20,40 @@ export type StyledProps = {
 	
 	/**
 	 * The value of the component.
-	 * @default ""
+	 * @defaultValue ""
 	 */
 	value?: unknown,
 
 	/**
 	 * The Name of the component.
+	 * If not empty, text will appears after button.
 	 */
 	name?: string,
 
 	/**
 	 * Defines a string value that labels the current element.
-	 * @default "Radio Button"
+	 * @defaultValue "Radio Button"
 	 */
 	ariaLabel?: string,
 
 	/**
 	 * If `true`, the component appears disabled.
-	 * @default false
+	 * @defaultValue false
 	 */
 	disabled?: boolean,
 
 	/**
-	 * If not empty, text will appears after button.
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @default undefined
 	 */
-	text?: string,
+	sx?: never,
 };
 
 
 type RadioButtonIconProps = {
 	/**
 	 * If `true`, the component appears in disabled state.
-	 * @default false
+	 * @defaultValue false
 	*/
 	disabled?: boolean,
 	
@@ -94,7 +95,7 @@ function RadioButtonIcon(props : RadioButtonIconProps) {
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	return (
 		<FormControlLabel
-			aria-label={props?.ariaLabel} 
+			aria-label={`${props?.ariaLabel} FormControlLabel`} 
 			onChange={props?.onChange}
 			checked={props?.checked}
 			disabled={props?.disabled}
@@ -104,6 +105,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 				<Radio
 					disableFocusRipple
 					disableRipple
+					aria-label={`${props?.name} ${props?.ariaLabel}`}
 					checkedIcon={<RadioButtonChecked />}
 					icon={<RadioButtonIcon />}
 					sx={{
@@ -130,7 +132,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					}}
 				/>
 			}
-			label={props?.text}
+			label={props?.name}
 			sx={{
 				margin: 0,
 				".MuiFormControlLabel-label": {

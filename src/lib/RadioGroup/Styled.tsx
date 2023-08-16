@@ -4,6 +4,11 @@ import FormControl from '@mui/material/FormControl';
 import MoaTypography from '../Typography';
 
 export interface StyledProps extends RadioGroupProps {
+	/**
+	 * Defines a string value that labels the current element.
+	 * @default "Radio Group"
+	 */
+	ariaLabel?: string,
 	children?: React.ReactElement[],
 	/**
 	 * The default value. Use when the component is not controlled.
@@ -30,13 +35,21 @@ export interface StyledProps extends RadioGroupProps {
 	 * Value of the header text. If leave empty this field, header field will not show.
 	 */
 	text?: string,
+
+	/**
+	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+	 * @default undefined
+	 */
+	sx?: never,
 };
 
 const StyledComponent = styled((props: StyledProps) => {
+	const { ariaLabel, text, sx, ...rest } = props;
+	
 	return (
-		<FormControl>
-			{props?.text && <div style={{padding: '0.25rem'}}><MoaTypography>{props.text}</MoaTypography></div>}
-			<RadioGroup {...props} style={{paddingLeft: props?.text ? '0.5rem' : '0rem'}} />
+		<FormControl aria-label={`${text} ${ariaLabel}`}>
+			{text && <div style={{padding: '0.25rem'}}><MoaTypography>{text}</MoaTypography></div>}
+			<RadioGroup {...rest} style={{paddingLeft: text ? '0.5rem' : '0rem'}} />
 		</FormControl>
 	)
 
