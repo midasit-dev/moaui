@@ -1,14 +1,14 @@
 import MenuHeader from "@/components/menu/Header";
 import MenuItem from "@/components/menu/Item";
 import { Typography, TypographyType } from "@/components/Typography";
-
+import ReferencePage from "@/components/menupages/ReferencePage";
 interface BodyProp {
 
 }
 Body.defaultProps = {
 
 }
-function Body(props: BodyProp): JSX.Element {
+function Body(props: BodyProp): React.ReactElement {
 	return (
 		<div className="flex justify-center">
 			<div className="flex flex-wrap gap-4">
@@ -32,7 +32,6 @@ function Body(props: BodyProp): JSX.Element {
 							<MenuItem value={"Editor Setup"} />
 						</div>
 					</div>
-
 					<div className="mt-4">
 						<div className="pb-2">
 							<MenuHeader value={"Concepts"} />
@@ -59,13 +58,19 @@ function Body(props: BodyProp): JSX.Element {
 							<MenuItem value={"Input"} />
 						</div>
 						<div className="pl-4 py-2">
-							<MenuItem value={"Drop List"} />
+							<MenuItem value={"DropList"} />
 						</div>
 						<div className="pl-4 py-2">
 							<MenuItem value={"Tab"} />
 						</div>
 						<div className="pl-4 py-2">
-							<MenuItem value={"Radio / Check / Switch"} />
+							<MenuItem value={"Radio"} />
+						</div>
+						<div className="pl-4 py-2">
+							<MenuItem value={"Check"} />
+						</div>
+						<div className="pl-4 py-2">
+							<MenuItem value={"Switch"} />
 						</div>
 						<div className="pl-4 py-2">
 							<MenuItem value={"Table"} />
@@ -79,7 +84,7 @@ function Body(props: BodyProp): JSX.Element {
 
 				{/** Right Content */}
 				<div className="flex min-w-[100vw] xl:min-w-moa-content xl:w-moa-content">
-					<Typography 
+					{/* <Typography 
 						type={TypographyType.body1}
 						value={`
 							MIDAS Information Technology Co., Ltd is a company that develops and distributes science and technology simulation software.
@@ -90,7 +95,8 @@ function Body(props: BodyProp): JSX.Element {
 							Since 2018, we have developed medical solutions that enable brain analysis, dementia diagnosis, and cardiovascular blood flow diagnosis through human simulation technology, and have entered the medical field to help prevent fatal diseases in the future.
 
 							The source that makes Midas IT dynamically alive is all members of MIDAS IT, who always spare no effort for the best. Midas IT members are talented people who strive to fulfill their responsibilities for themselves, us, and the world, and are living a life as engineers who pursue happiness for people and the world. To increase the happiness of the world with Midas technology, Midas IT will continue to leap towards the world with ceaseless passion and challenge.
-							`} />
+							`} /> */}
+					<ReferencePage />
 				</div>
 			</div>
 		</div>

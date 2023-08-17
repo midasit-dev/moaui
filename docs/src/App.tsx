@@ -1,23 +1,30 @@
 import React from 'react';
 import "@/tailwindcss-output.css";
-import Header from "@/structure/Header";
-import ToggleButtons from '@/structure/ToggleButtons';
-import Body from '@/structure/Body';
+
+import { RecoilRoot } from "recoil";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import Docs from "./structure/Docs"; 
+
 
 function App() {
+	const location = useLocation();
+
   return (
-    <div>
-			<div>
-				<Header />
-			</div>
-			<div className='mt-4'>
-				<ToggleButtons />
-			</div>
-			<div className='mt-4'>
-				<Body />
-			</div>
-    </div>
+		<Routes location={location}>
+			<Route path="/" element={<Docs/>} />
+			<Route path="/Installation" element={<Docs/>} />
+		</Routes>
   );
 }
 
-export default App;
+function AppWrapper(){
+	return (
+		<RecoilRoot>
+			<BrowserRouter basename='moaui'>
+				<App />
+			</BrowserRouter>
+		</RecoilRoot>
+	)
+}
+
+export default AppWrapper;

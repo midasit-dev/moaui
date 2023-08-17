@@ -1,6 +1,6 @@
 import { TypographyType, Typography } from "@/components/Typography";
 
-const IconLogo = (): JSX.Element => {
+const IconLogo = (): React.ReactElement => {
 	return (
 		<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1">
 			<path className="fill-moa-light-base" fillOpacity={1} d="M 40 20 C 40 31.046875 31.046875 40 20 40 C 8.953125 40 0 31.046875 0 20 C 0 8.953125 8.953125 0 20 0 C 31.046875 0 40 8.953125 40 20 Z M 40 20 "/>
@@ -9,13 +9,13 @@ const IconLogo = (): JSX.Element => {
 	)
 }
 
-function Header(): JSX.Element {
+function Header(): React.ReactElement {
 	return (
 		<div className="
 			flex justify-center p-4 
 			border-b-[1px] border-b-moa-light-line dark:border-b-moa-dark-line 
-			transition duration-moa-base hover:border-b-moa-light-line-hover dark:hover:border-b-moa-dark-line-hover
-		">
+			transition duration-moa-base hover:border-b-moa-light-line-hover dark:hover:border-b-moa-dark-line-hover"
+		>
 			<div className='flex items-center space-x-3 cursor-default'>
 				<IconLogo />
 				<Typography type={TypographyType.header} value={"moaui"} />

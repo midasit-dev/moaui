@@ -16,7 +16,7 @@ const SunIcon = () => {
 	);
 }
 
-function ToggleButtons(): JSX.Element {
+function ToggleButtons(): React.ReactElement {
 	const [ darkMode, setDarkMode ] = React.useState(false);
 
 	React.useEffect(() => {
