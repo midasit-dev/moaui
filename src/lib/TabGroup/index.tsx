@@ -5,4 +5,4 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props
  * @returns JSX.Element
  */
-export default function MoaTabGroup(props: StyledProps) : JSX.Element { return ( <StyledComponent {...props} /> ) }
+export default function MoaTabGroup(props: StyledProps) : React.ReactElement { return ( <StyledComponent {...props} /> ) }
