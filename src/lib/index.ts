@@ -13,4 +13,8 @@ export { default as DropList } from "./DropList";
 export { default as Switch } from "./Switch";
 export { default as SwitchGroup } from "./SwitchGroup";
 export { default as Seperator } from "./Seperator";
-
+export { default as Table } from "./Table";
+export { default as TableBody } from "./TableBody";
+export { default as TableCell } from "./TableCell";
+export { default as TableHead } from "./TableHead";
+export { default as TableRow } from "./TableRow";

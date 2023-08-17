@@ -20,6 +20,7 @@ class Text {
 
 class Component {
 	readonly gray = "#C4C6C8";
+	readonly gray_01 = "#D1D1D1";
 	readonly gray_02 = "#E6E6E6";
 	readonly gray_light = "#EEEEEE";
 	readonly gray_dark = "#8F8F8F";
