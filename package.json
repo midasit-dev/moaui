@@ -29,8 +29,10 @@
   "types": "dist/index.d.ts",
   "browser": "./browser/specific/main.js",
   "peerDependencies": {
+    "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.3",
+    "@mui/x-data-grid": "^6.11.1",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "react": "^18.2.0",
