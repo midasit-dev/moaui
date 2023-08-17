@@ -1,10 +1,9 @@
-import React from 'react';
-import {TextField} from "@midasit-dev/moaui/dist/index";
+import Button from "@midasit-dev/moaui/dist/Button";
 
-export default function Button(props: any) {
+export default function ButtonCompo(props: any) {
 	return ( 
 		<>
-			<TextField defaultValue={'TextField Demo'} />
+			<Button>Button Test</Button>
 		</>
 	);
 }

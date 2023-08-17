@@ -5,6 +5,7 @@
   "homepage": "https://midasit-dev.github.io/moaui",
   "dependencies": {
     "@craco/craco": "^7.1.0",
+    "@emotion/styled": "^11.11.0",
     "@midasit-dev/moaui": "^0.0.14",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
