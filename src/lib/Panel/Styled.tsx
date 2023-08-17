@@ -33,17 +33,17 @@ export type StyledProps = {
 
 	/**
 	 * `shadow` panel or `strock` panel
-	 * @default 'shadow'
+	 * @defaultValue 'shadow'
 	 */
 	variant: 'shadow' | 'strock';
 	/**
 	 * Set the width of panel
-	 * @default 'fit-content'
+	 * @defaultValue 'fit-content'
 	 */
 	width: string;
 	/**
 	 * Set the height of panel
-	 * @default 'fit-content'
+	 * @defaultValue 'fit-content'
 	 */
 	height: string;
 }

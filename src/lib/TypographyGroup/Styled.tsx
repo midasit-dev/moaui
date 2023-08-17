@@ -7,12 +7,12 @@ import Font from "../Font";
 export type StyledProps = {
 	/**
 	 * text of title
-	 * @default ''
+	 * @defaultValue ''
 	 */
 	titleText: string;
 	/**
 	 * text of body
-	 * @default ''
+	 * @defaultValue ''
 	 */
 	bodyText: string;
 }

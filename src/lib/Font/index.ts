@@ -1,5 +1,5 @@
 import 'pretendard/dist/web/static/pretendard.css';
-import './index.css';
+// import './index.css';
 
 type FontSet = {
 	fontFamily: string;
