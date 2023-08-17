@@ -12,4 +12,5 @@ export { default as CheckGroup } from "./CheckGroup";
 export { default as DropList } from "./DropList";
 export { default as Switch } from "./Switch";
 export { default as SwitchGroup } from "./SwitchGroup";
+export { default as Seperator } from "./Seperator";
 
