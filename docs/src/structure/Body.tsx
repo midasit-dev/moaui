@@ -20,26 +20,25 @@ function Body(props: BodyProp): React.ReactElement {
 						border-r-[1px] border-r-moa-light-line dark:border-r-moa-dark-line 
 						transition duration-moa-base hover:border-r-moa-light-line-hover dark:hover:border-r-moa-dark-line-hover
 					">
-
 					<div>
 						<div className="pb-2">
 							<MenuHeader value={"Getting started"} />
 						</div>
-						<div className="pl-4 py-2">
-							<MenuItem value={"Installation"} />
-						</div>
-						<div className="pl-4 py-2">
-							<MenuItem value={"Editor Setup"} />
-						</div>
+							<div className="pl-4">
+								<MenuItem value={"Installation"} />
+							</div>
+							<div className="pl-4">
+								<MenuItem value={"Editor Setup"} />
+							</div>
 					</div>
 					<div className="mt-4">
 						<div className="pb-2">
 							<MenuHeader value={"Concepts"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Block"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Colors"} />
 						</div>
 					</div>
@@ -48,38 +47,37 @@ function Body(props: BodyProp): React.ReactElement {
 						<div className="pb-2">
 							<MenuHeader value={"Components"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Typography"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Button"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Input"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"DropList"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Tab"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Radio"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Check"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Switch"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Table"} />
 						</div>
-						<div className="pl-4 py-2">
+						<div className="pl-4">
 							<MenuItem value={"Icon"} />
 						</div>
 					</div>
-
 				</div>
 
 				{/** Right Content */}
