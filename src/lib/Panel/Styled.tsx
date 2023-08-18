@@ -4,9 +4,7 @@ import Box from '@mui/material/Box';
 
 class StyleVariant {
 	private static readonly layout = {
-		display: 'flex',
 		padding: "0.3125rem 0.625rem",
-		flexDirection: 'column',
 		alignItems: 'flex-start',
 		gap: '0.625rem',
 	}
