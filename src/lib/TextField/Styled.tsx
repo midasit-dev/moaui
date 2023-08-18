@@ -6,6 +6,11 @@ import Font from '../Font';
 
 export type MoaTextFieldProps = {
 	/**
+	 * This is the placeholder attached to the textfield.
+	 * @defaultValue ""
+	 */
+	placeholder?:string,
+	/**
 	 * This is the title attached to the textfield. 
 	 * @defaultValue ""
 	 */
@@ -19,7 +24,7 @@ export type MoaTextFieldProps = {
 	 * The value to display by default in the textfield.
 	 * @defaultValue ""
 	 */
-	defaultValue:string,
+	defaultValue?:string,
 		/**
 	 * If the value is true, The Textfield border is displayed in red.
 	 * @defaultValue false
@@ -33,7 +38,7 @@ export type MoaTextFieldProps = {
 }
 
 const MoaTextField = styled((props:MoaTextFieldProps) => (
-	<TextField defaultValue={props.defaultValue}
+	<TextField defaultValue={props?.defaultValue}
 		error = {props.error}
 		disabled = {props.disabled}
 		sx={{
@@ -70,7 +75,8 @@ const MoaTextField = styled((props:MoaTextFieldProps) => (
 				fontWeight: 400,
 				lineHeight: "0.875rem",
 			}
-		}} 
+		}}
+		placeholder={props?.placeholder}
 	/>
 ))(({theme}) => ({
 	display:"flex",
