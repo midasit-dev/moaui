@@ -23,12 +23,12 @@
 [![package version](https://img.shields.io/github/watchers/midasit-dev/moaui
 )](https://www.github.com/midasit-dev/moaui)
 
-
-[![npm downloads](https://img.shields.io/npm/dm/%40midasit-dev%2Fmoaui
-)](https://www.npmjs.com/package/@midasit-dev/moaui)
 [![collaborators](https://img.shields.io/npm/collaborators/%40midasit-dev%2Fmoaui
 )](https://www.npmjs.com/package/@midasit-dev/moaui)
-
+[![npm downloads](https://img.shields.io/npm/dw/%40midasit-dev%2Fmoaui
+)](https://www.npmjs.com/package/@midasit-dev/moaui)
+[![npm downloads](https://img.shields.io/npm/dy/%40midasit-dev%2Fmoaui
+)](https://www.npmjs.com/package/@midasit-dev/moaui)
 
 </div>
 
@@ -52,7 +52,7 @@ yarn add @midasit-dev/moaui
 
 ## Getting started with moaui
 
-Here is an example of a basic app using Material UI's `Button` component:
+Here is an example of a basic app using moaui's `Button` component:
 
 ```jsx
 import * as React from 'react';

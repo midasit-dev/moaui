@@ -6,6 +6,11 @@ import Font from '../Font';
 
 export type MoaTextFieldProps = {
 	/**
+	 * This is the placeholder attached to the textfield.
+	 * @defaultValue ""
+	 */
+	placeholder?:string,
+	/**
 	 * This is the title attached to the textfield. 
 	 * @defaultValue ""
 	 */
@@ -19,7 +24,7 @@ export type MoaTextFieldProps = {
 	 * The value to display by default in the textfield.
 	 * @defaultValue ""
 	 */
-	defaultValue:string,
+	defaultValue?:string,
 		/**
 	 * If the value is true, The Textfield border is displayed in red.
 	 * @defaultValue false
@@ -39,24 +44,16 @@ export type MoaTextFieldProps = {
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const MoaTextField = styled((props:MoaTextFieldProps) => {
-	return (
-		<TextField
-			onChange={props?.onChange}
-			defaultValue={props.defaultValue}
-			error = {props?.error}
-			disabled = {props?.disabled}
-			sx={{
-				'& .MuiOutlinedInput-root': {
-					'& fieldset':{
-						border: `1px solid ${Color.component.gray}`,
-					},
-					'&:hover fieldset': {
-						border: `1px solid ${Color.component.gray_02}`,
-					},
-					'&.Mui-focused fieldset':{
-						border: `1px solid ${Color.component.gray_dark}`,
-					}
+const MoaTextField = styled((props:MoaTextFieldProps) => (
+	<TextField
+		onChange={props?.onChange}
+		defaultValue={props?.defaultValue}
+		error = {props.error}
+		disabled = {props.disabled}
+		sx={{
+			'& .MuiOutlinedInput-root': {
+				'& fieldset':{
+					border: `1px solid ${Color.component.gray}`,
 				},
 				'& .MuiInputBase-input':{
 					padding:0
@@ -80,10 +77,33 @@ const MoaTextField = styled((props:MoaTextFieldProps) => {
 					fontWeight: 400,
 					lineHeight: "0.875rem",
 				}
-			}} 
-		/>
-		)
-	})(({theme}) => ({
+			},
+			'& .MuiInputBase-input':{
+				padding:0
+			},
+			borderRadius: "0.25rem",
+			background: Color.primary.white
+		}}
+		InputProps={{ // input component의 스타일 변경
+			sx:{
+				width:"8.125rem",
+				height:"1.75rem",
+				padding: "0.375rem 0.375rem 0.375rem 0.625rem",
+				alignItems: "center",
+				flexShrink: 0,
+				//text
+				color: Color.text.secondary,
+				fontFeatureSettings: Font.fontFeatureSettings,
+				fontFamily: Font.fontFamily,
+				fontSize: "0.75rem",
+				fontStyle: "normal",
+				fontWeight: 400,
+				lineHeight: "0.875rem",
+			}
+		}}
+		placeholder={props?.placeholder}
+	/>
+))(({theme}) => ({
 	display:"flex",
 	fullWidth: true,
 }))
