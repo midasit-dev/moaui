@@ -4,7 +4,7 @@ import { selectedMenu } from '../../recoil/atom';
 import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles";
 import Font from "@midasit-dev/moaui/dist/Font"
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 // import Seperetor from "@midas-ui/dist/";
 interface ItemProp {
 	value: string;
@@ -38,14 +38,16 @@ function Item(props: ItemProp) {
 		color: isSelected ? '#000000' : '#343A40',
 		backgroundColor: isSelected ? '#98ceed' : '#FFFFFF',
 		'&:hover': {
-		  backgroundColor: '#bddff2',
+		  backgroundColor: isSelected ? '#98ceed' : '#bddff2',
 		},
 		width: '80%',
 		padding: '0.2rem',
 		float: 'left',
 		alignItems:"center",
 		...Font.defaultFontSet,
-		textTransform: 'none'
+		textTransform: 'none',
+		transitionDuration: "0.3s",
+		transitionTimingFunction:"ease"
 	}));
 
 	const StyledBox = styled(Box)(({ theme }) => ({
@@ -53,7 +55,7 @@ function Item(props: ItemProp) {
 		width : "100%",
 		height: "1.9rem",
 		paddingLeft: "0.1rem",
-		paddingBottom:"2rem",		
+		paddingBottom:"2rem",
 	}));
 
 	return (
