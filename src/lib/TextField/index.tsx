@@ -11,7 +11,7 @@ MoaTextfield.defaultProps = {
 }
 
 /**
- * @param {MoaTextFieldProps} props - defaultValue, title, titlePosition
+ * @param {MoaTextFieldProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange
  * @returns {React.ReactElement} moaTextField
  */
 
