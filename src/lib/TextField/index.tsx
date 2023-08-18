@@ -3,10 +3,10 @@ import MoaTextField, {type  MoaTextFieldProps} from "./Styled";
 import Box  from "@mui/material/Box";
 
 MoaTextfield.defaultProps = {
-	title :"",
-	titlePosition: "left",
-	defaultValue: "",
-	error: false,
+	title : "",
+	titlePosition : "left",
+	defaultValue : "",
+	error : false,
 	disabled : false
 }
 
