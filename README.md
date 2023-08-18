@@ -52,7 +52,7 @@ yarn add @midasit-dev/moaui
 
 ## Getting started with moaui
 
-Here is an example of a basic app using Material UI's `Button` component:
+Here is an example of a basic app using moaui's `Button` component:
 
 ```jsx
 import * as React from 'react';
