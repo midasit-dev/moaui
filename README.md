@@ -13,6 +13,9 @@
 
 [![package version](https://img.shields.io/github/package-json/v/midasit-dev/moaui
 )](https://www.github.com/midasit-dev/moaui)
+[![package version](https://img.shields.io/github/package-json/v/midasit-dev/moaui/dev
+)](https://www.github.com/midasit-dev/moaui)
+
 [![package version](https://img.shields.io/github/forks/midasit-dev/moaui
 )](https://www.github.com/midasit-dev/moaui)
 [![package version](https://img.shields.io/github/stars/midasit-dev/moaui
@@ -20,8 +23,7 @@
 [![package version](https://img.shields.io/github/watchers/midasit-dev/moaui
 )](https://www.github.com/midasit-dev/moaui)
 
-[![react version](https://img.shields.io/github/package-json/dependency-version/midasit-dev/moaui/react
-)](https://www.github.com/midasit-dev/moaui)
+
 [![npm downloads](https://img.shields.io/npm/dm/%40midasit-dev%2Fmoaui
 )](https://www.npmjs.com/package/@midasit-dev/moaui)
 [![collaborators](https://img.shields.io/npm/collaborators/%40midasit-dev%2Fmoaui
