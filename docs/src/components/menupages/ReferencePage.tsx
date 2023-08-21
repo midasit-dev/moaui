@@ -17,7 +17,7 @@ export default function ReferencePage(props: any) {
 	}
 
 	return (
-		<Box display={"flex"} justifyContent={"center"} width={"100%"} >
+		<Box sx={{ml:2}}display={"flex"} justifyContent={"center"} width={"100%"} >
 			<ReferenceCompo Compo={selectedMenuItem}/>
 		</Box>
 	);

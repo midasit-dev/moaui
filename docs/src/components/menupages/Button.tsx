@@ -1,21 +1,32 @@
+import React from "react";
 import Button from "@midasit-dev/moaui/dist/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import IconButton from "@mui/material/IconButton"
 import CodeComponent from "./CodeBlock";
+import DropList from "@midasit-dev/moaui/dist/DropList";
 
-const Code = `import Button from "@midasit-dev/moaui/dist/Button";\t
-function ButtonCompo(props: any) {
+const ImportCode = `import Button from "@midasit-dev/moaui/dist/Button"`;
+
+export default function ButtonCompo(props: any) {
+	const [DropListValue, setDropListValue] = React.useState("contained");
+	
+	const ButtonCode = `function ButtonCompo(props: any) {
 	return (
-		<Box display={"flex"} width={"100%"} flexDirection={"column"}>ssss
+		<Button variant="${DropListValue}">MoaButton</Button>
 	)
 }
 `;
+	const itemList = new Map();
+	itemList.set("contained", "contained");
+	itemList.set("outlined", "outlined");
+	itemList.set("text", "text");
 
-export default function ButtonCompo(props: any) {
+	function onChangeHandler(event: any) {
+		setDropListValue(event.target.value);
+	}
+
 	return (
 		<Box display={"flex"} width={"100%"} flexDirection={"column"}>
 			<Typography sx={{fontWeight: 'bold'}} variant="h4" gutterBottom>
@@ -33,7 +44,9 @@ export default function ButtonCompo(props: any) {
 			</Typography>
 			<Typography variant="body1" gutterBottom>
 				To use the MoaButton component from the moaui library in your React project, follow these steps:
-			</Typography><br/>
+			</Typography>
+			<CodeComponent language="typescript" children={String(ImportCode).replace(/\n$/, "")}/>
+			<br/>
 			<Typography sx={{fontWeight: 'bold'}} variant="subtitle2" gutterBottom>
 				Installation
 			</Typography>
@@ -48,11 +61,12 @@ export default function ButtonCompo(props: any) {
 			>
 				<Box
 					sx={{
-						border: "1px solid #cce2e8",
+						border: "1px solid #95d6fc",
 						paddingRight: "1rem", paddingLeft:"1rem", paddingTop:"0.5rem", paddingBottom:"0.5rem",
-						backgroundColor: "#e1effc",
+						backgroundColor: "#FFFFFF",
 						mt: 2, mb:2,
-						borderRadius: 5
+						borderRadius: 5,
+						boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)"
 					}}
 					display={"flex"}
 					width={"60%"}
@@ -61,22 +75,17 @@ export default function ButtonCompo(props: any) {
 				>	
 					<Stack direction={"row"}>
 						<Box display={"flex"} justifyContent={"center"} alignItems={"center"} width={"70%"} height="6rem">
-							<Button>MoaButton</Button>
+							<Button variant={DropListValue as "contained" | "outlined" | "text"}>MoaButton</Button>
 						</Box>
 						<Divider variant="middle" orientation="vertical" flexItem/>
 						<Box display={"flex"} justifyContent={"center"} alignItems={"center"} width={"30%"} height="6rem">
-							TEST
+							<DropList itemList={itemList} defaultValue="contained" value={DropListValue} onChange={onChangeHandler}/>
 						</Box>
 					</Stack>
 					<Box>
-						<Box display="flex" justifyContent={"right"} sx={{backgroundColor:"#18244a", width:"100%", height:"1.6rem", borderTopLeftRadius:8, borderTopRightRadius:8}}>
-							<IconButton>
-								<ContentCopyIcon fontSize="small" color="success"/>
-							</IconButton>
-						</Box>
 						<CodeComponent
 							language="typescript"
-							children={String(Code).replace(/\n$/, "")}
+							children={String(ButtonCode).replace(/\n$/, "")}
 						/>
 					</Box>
 				</Box>
