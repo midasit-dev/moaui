@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Color from "../Color";
-import { border } from '@mui/system';
+import Font from "../Font";
 
 export type MoabuttonProps = {
 	children: string,
@@ -82,8 +82,8 @@ const MoaButton = styled((props:MoabuttonProps) => {
 				//text
 				color: props?.variant !== "text" ? Color.text.primary : Color.secondary.main,
 				textAlign: "center",
-				fontFeatureSettings: "'clig' off, 'liga' off",
-				fontFamily: "Pretendard",
+				fontFeatureSettings: Font.fontFeatureSettings,
+				fontFamily: Font.fontFamily,
 				fontSize: "0.75rem",
 				fontStyle: "normal",
 				fontWeight: 500,
