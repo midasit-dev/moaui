@@ -1,30 +1,65 @@
 import React from "react";
 import Droplist from './index';
 import { SelectChangeEvent } from '@mui/material/Select';
-function Demo() {
+import MoaTypography from "../Typography";
+
+function DropListwithitemListAnonymousFunction(){
 	const [value, setValue] = React.useState("");
 
 	function onChangeHandler(event:SelectChangeEvent){
 		setValue(event.target.value);
 	}
-	const itemList = new Map();
-	itemList.set("subheader", "Category");
-	itemList.set("TEST2", 10);
-	itemList.set("TEST1", 20);
-	itemList.set("a", 2);
 
+	const arrSample = [1,2,3,4];
 	return (
-		<React.Fragment>
-			<br/>
-			<Droplist 
-				itemList={itemList} 
-				value={value} 
-				width={"100px"} 
-				onChange={onChangeHandler} 
-				defaultValue=""
-			/>
-		</React.Fragment>
-	);
+		<Droplist
+			itemList={() => {
+				let map = new Map<string, string | number>();
+				arrSample.forEach((value) => { map.set(value.toString(), value); });
+				return map;
+			}}
+			value={value} 
+			width={"100px"} 
+			onChange={onChangeHandler} 
+			defaultValue=""
+		/>
+	)
 }
 
-export default Demo;
+function DropListwithitemListMap(){
+	const [value, setValue] = React.useState("");
+
+	function onChangeHandler(event:SelectChangeEvent){
+		setValue(event.target.value);
+	}
+
+	const itemList = new Map();
+	itemList.set("subheader", "Category");
+	itemList.set("TEST1", 10);
+	itemList.set("TEST2", 20);
+	itemList.set("TEST3", 30);
+
+	return (
+		<Droplist 
+			itemList={itemList}
+			value={value} 
+			width={"100px"} 
+			onChange={onChangeHandler} 
+			defaultValue=""
+		/>
+	)
+}
+
+function DropListDemo(){
+	return (
+		<React.Fragment>
+			<MoaTypography>DropList</MoaTypography><br/>
+			<MoaTypography>itemList Map</MoaTypography>
+			<DropListwithitemListMap/>
+			<MoaTypography>itemList AnonymousFunction</MoaTypography>
+			<DropListwithitemListAnonymousFunction/>
+		</React.Fragment>
+	)
+}
+
+export default DropListDemo;
