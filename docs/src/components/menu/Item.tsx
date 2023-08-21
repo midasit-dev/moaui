@@ -47,10 +47,12 @@ function Item(props: ItemProp) {
 		...Font.defaultFontSet,
 		textTransform: 'none',
 		transitionDuration: "0.3s",
-		transitionTimingFunction:"ease"
+		transitionTimingFunction:"ease",
+		borderRadius: "0.6rem",
 	}));
 
 	const StyledBox = styled(Box)(({ theme }) => ({
+		borderRadius: isSelected ? "0.2rem" : "0rem",
 		borderLeft : isSelected ? `2px solid #30a9f0` : '1px solid #c5d0d1',
 		width : "100%",
 		height: "1.9rem",

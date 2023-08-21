@@ -8,9 +8,9 @@ export default function Docs() {
 			<div>
 				<Header />
 			</div>
-			<div className='mt-4'>
+			{/* <div className='mt-4'>
 				<ToggleButtons />
-			</div>
+			</div> */}
 			<div className='mt-4'>
 				<Body />
 			</div>

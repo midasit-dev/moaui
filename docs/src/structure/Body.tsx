@@ -81,7 +81,7 @@ function Body(props: BodyProp): React.ReactElement {
 				</div>
 
 				{/** Right Content */}
-				<div className="flex min-w-[100vw] xl:min-w-moa-content xl:w-moa-content">
+				<div className="flex min-w-[100vw] xl:min-w-moa-content xl:w-moa-content justify-center">
 					{/* <Typography 
 						type={TypographyType.body1}
 						value={`
