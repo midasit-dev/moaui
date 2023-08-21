@@ -19,6 +19,8 @@ function Demo() {
 			<TextField defaultValue={'TextField right title'} title="right" titlePosition="right"/>
 			<br/><br/>
 			<TextField placeholder={'placeholder'} />
+			<br/><br/>
+			<TextField placeholder={'value'} value="valueTest"/>
 		</React.Fragment>
 	);
 }

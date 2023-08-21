@@ -42,6 +42,11 @@ export type MoaTextFieldProps = {
 	 * @defaultValue undefined
 	 */
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	/**
+	 * The value of the textfield.
+	 * @defaultValue undefined
+	 */
+	value?:string,
 }
 
 const MoaTextField = styled((props:MoaTextFieldProps) => {
@@ -49,8 +54,9 @@ const MoaTextField = styled((props:MoaTextFieldProps) => {
 		<TextField
 			onChange={props?.onChange}
 			defaultValue={props?.defaultValue}
-			error = {props.error}
-			disabled = {props.disabled}
+			error = {props?.error}
+			disabled = {props?.disabled}
+			value = {props?.value}
 			sx={{
 				'& .MuiOutlinedInput-root': {
 					'& fieldset':{
