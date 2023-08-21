@@ -15,9 +15,7 @@ function DropListwithitemListAnonymousFunction(){
 		<Droplist
 			itemList={() => {
 				let map = new Map<string, string | number>();
-				for (const value of arrSample) {
-					map.set(value.toString(), value);
-				}
+				arrSample.forEach((value) => { map.set(value.toString(), value); });
 				return map;
 			}}
 			value={value} 
