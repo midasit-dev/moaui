@@ -1,6 +1,8 @@
 import React from "react";
 import MoaTextField, {type  MoaTextFieldProps} from "./Styled";
-import Box  from "@mui/material/Box";
+import MoaTypography from "../Typography";
+import MoaStack from "../Stack";
+// import Box  from "@mui/material/Box";
 
 MoaTextfield.defaultProps = {
 	title : "",
@@ -36,20 +38,20 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 	return (
 		<React.Fragment>
 			{ title !== "" ?
-				<Box style={boxStyle(titlePosition)} sx={(titlePosition === "label") ? {flexDirection:"column"} : {flexDirection:"row"}}>
+				<MoaStack {...boxStyle(titlePosition)} direction={(titlePosition === "label") ? "column" : "row"}>
 					{
 						titlePosition === "right" ?
 						<React.Fragment>
 							<MoaTextField defaultValue={defaultValue} {...rest} />
-							<div>{title}</div>
+							<MoaTypography>{title}</MoaTypography>
 						</React.Fragment>
 						:
 						<React.Fragment>
-							<div>{title}</div>
+							<MoaTypography>{title}</MoaTypography>
 							<MoaTextField defaultValue={defaultValue} {...rest}/>
 						</React.Fragment>
 					}
-				</Box>
+				</MoaStack>
 				:
 				<MoaTextField defaultValue={defaultValue} {...rest}/>
 			}
