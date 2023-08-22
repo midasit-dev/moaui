@@ -47,10 +47,13 @@ function Body(props: BodyProp): React.ReactElement {
 							<MenuHeader value={"Components"} />
 						</div>
 						<div className="pl-4">
-							<MenuItem value={"Typography"} />
+							<MenuItem value={"Button"} />
 						</div>
 						<div className="pl-4">
-							<MenuItem value={"Button"} />
+							<MenuItem value={"TextField"} />
+						</div>
+						<div className="pl-4">
+							<MenuItem value={"Typography"} />
 						</div>
 						<div className="pl-4">
 							<MenuItem value={"Input"} />
