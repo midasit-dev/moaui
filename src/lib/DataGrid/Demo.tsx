@@ -3,20 +3,33 @@ import MoaDataGrid from ".";
 import MoaPanel from "../Panel";
 
 function DataGridDemo() {
+
+	const singleSelectOptions = [
+		"1", "2"
+	];
+
 	return (
 		<div>
 			<MoaPanel variant="strock">
 				<MoaTypography>DataGrid</MoaTypography>
 				<MoaDataGrid 
 					columns={[
-						{ field: 'id', headerName: 'ID', width: 70 },
-						{ field: 'firstName', headerName: 'First name', width: 130 },
+						{ field: 'id', headerName: 'ID', width: 70, editable: true, },
+						{ field: 'firstName', headerName: 'First name', width: 130, editable: true },
 						{ field: 'lastName', headerName: 'Last name', width: 130 },
 						{
 							field: 'age',
 							headerName: 'Age',
 							type: 'number',
 							width: 90,
+						},
+						{
+							field: "select",
+							headerName: "Select Sample",
+							type: "singleSelect",
+							valueOptions: singleSelectOptions,
+							width: 90,
+							editable: true,
 						},
 						{
 							field: 'fullName',
