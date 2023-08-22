@@ -1,5 +1,4 @@
 import Header from "@/structure/Header";
-import ToggleButtons from '@/structure/ToggleButtons';
 import Body from '@/structure/Body';
 
 export default function Docs() {
@@ -8,9 +7,6 @@ export default function Docs() {
 			<div>
 				<Header />
 			</div>
-			{/* <div className='mt-4'>
-				<ToggleButtons />
-			</div> */}
 			<div className='mt-4'>
 				<Body />
 			</div>

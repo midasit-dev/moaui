@@ -1,6 +1,5 @@
 import MenuHeader from "@/components/menu/Header";
 import MenuItem from "@/components/menu/Item";
-import { Typography, TypographyType } from "@/components/Typography";
 import ReferencePage from "@/components/menupages/ReferencePage";
 interface BodyProp {
 

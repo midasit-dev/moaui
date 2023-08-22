@@ -5,7 +5,6 @@
 	import IconButton from "@mui/material/IconButton"
 	import Box from "@mui/material/Box";
 	import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-	import { styled } from '@mui/system';
 	interface Props {
 		/**
 		 * The code to be displayed

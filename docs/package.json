@@ -6,7 +6,7 @@
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@emotion/styled": "^11.11.0",
-    "@midasit-dev/moaui": "^0.0.20",
+    "@midasit-dev/moaui": "^0.0.21",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
