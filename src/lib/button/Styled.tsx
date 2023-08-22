@@ -179,56 +179,8 @@ const MoaButton = styled((props:MoabuttonProps) => {
 		)
 	}
 
-	return(
+	return (
 		<CustomButtonStyleByVariant {...props} />
-		// <Button
-		// 	variant={props?.variant}
-		// 	disableFocusRipple
-		// 	disableRipple
-		// 	disabled={props?.disabled}
-		// 	disableElevation
-		// 	fullWidth={props?.width === "100%" ? true : false}
-		// 	sx={{
-				// width:`${props?.width}`,
-				// display: "inline-flex",
-				// height: "1.75rem",
-				// padding: "0.625rem 1.25rem",
-				// justifyContent: "center",
-				// alignItems: "center",
-				// gap: "0.25rem",
-				// flexShrink: 0,
-				// borderRadius: "0.25rem",
-		// 		border: props?.variant !== "text" ? `1px solid ${Color.primary.enable_strock}` : "none",
-		// 		background: props?.variant === "contained" ? Color.primary.enable: "none",
-		// 		"&:hover": {
-		// 			background: props?.variant === "contained" ? Color.primary.hover : "none",
-		// 			color: props?.variant !== "text" ? Color.primary.white : Color.primary.hover,
-		// 			border : props?.variant !== "text" ? `1px solid ${Color.primary.hover}` : "none"
-		// 		},
-		// 		":active":{
-		// 			background: props?.variant === "contained" ? Color.primary.focus : "none",
-		// 			color: props?.variant !== "text" ? Color.primary.white : Color.primary.focus,
-		// 			border : props?.variant !== "text" ? `1px solid ${Color.primary.focus}` : "none"
-		// 		},
-		// 		":disabled":{
-		// 			background: props?.variant === "contained" ? Color.primary.enable : "none",
-		// 			color: Color.text.disable,
-		// 			border : props?.variant !== "text" ? `1px solid ${Color.primary.enable_strock}` : "none"
-		// 		},
-		// 		color: props?.variant !== "text" ? Color.text.primary : Color.secondary.main,
-				// //text
-				// textAlign: "center",
-				// fontFeatureSettings: Font.fontFeatureSettings,
-				// fontFamily: Font.fontFamily,
-				// fontSize: "0.75rem",
-				// fontStyle: "normal",
-				// fontWeight: 500,
-				// lineHeight: "0.875rem",
-				// textTransform: "none",
-		// 	}}
-		// 	onClick={props?.onClick}>
-		// 		{props.children}
-		// 	</Button>
 	)
 })
 (({theme}) => ({}))
