@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import { DataGrid, DataGridProps } from "@mui/x-data-grid";
 import Color from '../Color';
 import MoaCheck from '../Check';
+import Font from '../Font';
 
 export interface StyledProps extends DataGridProps {
 	sx?: never,
@@ -11,22 +12,11 @@ type InnerStyledProps = {
 	theme: any;
 };
 
-type Typo = {
-	fontFamily: string,
-	fontSize: string | number,
-}
-
-const typoSet : Typo = {
-	fontFamily: "Pretendard",
-	fontSize: "0.75rem",
-};
-
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {	
 	const { sx, ...rest } = props;
 	
 	return (
 		<DataGrid
-			checkboxSelection
 			density="compact"
 			{...rest}
 			disableColumnFilter
@@ -46,7 +36,8 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 			}}
 			sx={{
 				".MuiDataGrid-columnHeaders": {
-					...typoSet,
+					...Font.defaultFontSet,
+					fontSize: "0.75rem",
 					fontWeight: 500,
 					backgroundColor: Color.component.gray_light,
 				},
@@ -57,7 +48,8 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					justifyContent: "center",
 				},
 				".MuiDataGrid-cellContent": {
-					...typoSet,	
+					...Font.defaultFontSet,
+					fontSize: "0.75rem",
 					fontWeight: 400,
 				},
 				".MuiDataGrid-cell:focus": {
