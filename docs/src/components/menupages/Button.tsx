@@ -12,6 +12,7 @@ import Color from "@midasit-dev/moaui/dist/Color";
 import Font from "@midasit-dev/moaui/dist/Font";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import Switch from '@mui/material/Switch';
 
 const ImportCode = `import Button from "@midasit-dev/moaui/dist/Button"`;
 
@@ -21,11 +22,16 @@ export default function ButtonCompo(props: any) {
 	const [DropListVariant, setDropListVariant] = React.useState("contained");
 	const [DropListWidth, setDropListWidth] = React.useState("auto");
 
+  const [disableChecked, setDisableChecked] = React.useState(false);
   const [inputValue, setInputValue] = React.useState('');
 	
 	const ButtonCode = `function ButtonCompo(props: any) {
+  function onChangeExampleHandler(event: any) {
+    //do something
+  }
+
   return (
-    <Button${DropListVariant !== "" ? ` variant="${DropListVariant}"` : ""}${DropListWidth !== "" ? ` width="${DropListWidth}"` : ""}>
+    <Button onChange={onChangeExampleHandler}${DropListVariant !== "" ? ` variant="${DropListVariant}"` : ""}${DropListWidth !== "" ? ` width="${DropListWidth}"` : ""}${disableChecked !== false ? ` disabled="${disableChecked}"` : ""}>
       MoaButton
     </Button>
   )
@@ -43,6 +49,10 @@ export default function ButtonCompo(props: any) {
   function onChangeWidthHandler(event: any, newValue: string | null) {
     setDropListWidth(newValue as string);
   }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDisableChecked(event.target.checked);
+  };
 
 	return (
     <Box display={"flex"} width={"100%"} flexDirection={"column"}>
@@ -83,7 +93,6 @@ export default function ButtonCompo(props: any) {
             paddingRight: "1rem",
             paddingLeft: "1rem",
             paddingTop: "0.5rem",
-            paddingBottom: "0.5rem",
             backgroundColor: "#FFFFFF",
             mt: 2,
             mb: 2,
@@ -92,7 +101,7 @@ export default function ButtonCompo(props: any) {
           }}
           display={"flex"}
           width={"70%"}
-          height={"21rem"}
+          height={"29rem"}
           justifyContent={"center"}
           flexDirection={"column"}
         >
@@ -102,11 +111,12 @@ export default function ButtonCompo(props: any) {
               justifyContent={"center"}
               alignItems={"center"}
               width={"70%"}
-              height="6rem"
+              height="8rem"
             >
               <Button
                 variant={DropListVariant as "contained" | "outlined" | "text"}
                 width={DropListWidth}
+                disabled={disableChecked}
               >
                 MoaButton
               </Button>
@@ -202,6 +212,27 @@ export default function ButtonCompo(props: any) {
                   </ListItem>
                 )}
               />
+              <Box sx={{mt:1}}>
+                <Typography
+                  sx={{
+                    fontWeight: "bold",
+                    mt: 1,
+                    mb: 0,
+                    fontFamily: Font.fontFamily,
+                  }}
+                  variant="caption"
+                  gutterBottom
+                >
+                  disabled
+                </Typography>
+                <Switch
+                  sx={{ float: "right" }}
+                  checked={disableChecked}
+                  onChange={handleChange}
+                  inputProps={{ 'aria-label': 'controlled' }}
+                  size="small"
+                />
+              </Box>
             </Box>
           </Stack>
           <Box sx={{ mt: 2 }}>
