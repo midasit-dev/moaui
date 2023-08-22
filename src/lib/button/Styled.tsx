@@ -105,7 +105,8 @@ const MoaButton = styled((props:MoabuttonProps) => {
 					{props.children}
 				</Button>
 			)
-		} else if(props?.variant === "outlined") {
+		}
+		if(props?.variant === "outlined") {
 			return (
 				<Button
 					{...commonButtonProps}
@@ -138,7 +139,8 @@ const MoaButton = styled((props:MoabuttonProps) => {
 					{props.children}
 				</Button>
 			)
-		} else if(props?.variant === "text") {
+		} 
+		if(props?.variant === "text") {
 			return (
 				<Button
 					{...commonButtonProps}
