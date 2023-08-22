@@ -43,7 +43,7 @@ function DropListwithitemListMap(){
 		<Droplist 
 			itemList={itemList}
 			value={value} 
-			width={"100px"} 
+			width={"50%"} 
 			onChange={onChangeHandler} 
 			defaultValue=""
 		/>
