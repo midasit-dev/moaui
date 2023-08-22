@@ -65,17 +65,17 @@ const MoaButton = styled((props:MoabuttonProps) => {
 				border: props?.variant !== "text" ? `1px solid ${Color.primary.enable_strock}` : "none",
 				background: props?.variant === "contained" ? Color.primary.enable: "none",
 				"&:hover": {
-					background: props?.variant !== "text" ? Color.primary.hover : "none",
+					background: props?.variant === "contained" ? Color.primary.hover : "none",
 					color: props?.variant !== "text" ? Color.primary.white : Color.primary.hover,
 					border : props?.variant !== "text" ? `1px solid ${Color.primary.hover}` : "none"
 				},
 				":active":{
-					background: props?.variant !== "text" ? Color.primary.focus : "none",
+					background: props?.variant === "contained" ? Color.primary.focus : "none",
 					color: props?.variant !== "text" ? Color.primary.white : Color.primary.focus,
 					border : props?.variant !== "text" ? `1px solid ${Color.primary.focus}` : "none"
 				},
 				":disabled":{
-					background: props?.variant !== "text" ? Color.primary.enable : "none",
+					background: props?.variant === "contained" ? Color.primary.enable : "none",
 					color: Color.text.disable,
 					border : props?.variant !== "text" ? `1px solid ${Color.primary.enable_strock}` : "none"
 				},
