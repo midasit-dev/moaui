@@ -14,11 +14,7 @@ function Body(props: BodyProp): React.ReactElement {
 
 				{/** Left Menu */}
 				<div 
-					className="
-						flex flex-col gap-4 min-w-[100vw] xl:min-w-moa-menu pl-4
-						border-r-[1px] border-r-moa-light-line dark:border-r-moa-dark-line 
-						transition duration-moa-base hover:border-r-moa-light-line-hover dark:hover:border-r-moa-dark-line-hover
-					">
+					className="flex flex-col gap-4 min-w-[100vw] xl:min-w-moa-menu">
 					<div>
 						<div className="pb-2">
 							<MenuHeader value={"Getting started"} />
