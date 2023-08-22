@@ -19,23 +19,30 @@ const ImportCode = `import TextField from "@midasit-dev/moaui/dist/TextField"`;
 const widthList = [{value: "100%", label: "100%"}, {value: "50%", label: "50%"}, {value: "40px", label: "40px"}, {value: "auto", label: "auto"}, {value: "5rem", label: "5rem"}]
 
 export default function TextFieldCompo(props: any){
-	const [titlePosition, setTitlePosition] = React.useState("");
+	const [titlePosition, setTitlePosition] = React.useState<"left" | "right" | "label" | undefined>("left");
 	const [textFieldWidth, setTextFieldWidth] = React.useState("auto");
   const [inputValue, setInputValue] = React.useState('');
   const [disableChecked, setDisableChecked] = React.useState(false);
+  const [errorChecked, setErrorChecked] = React.useState(false);
+  const [title, setTitle] = React.useState('');
+  const [placeholder, setPlaceholder] = React.useState('Text Field');
+  const [defaultValue, setDefaultValue] = React.useState('');
+  const [textFieldValue, setTextFieldValue] = React.useState('');
 
-	const TextFieldCode = `function ButtonCompo(props: any) {
-		function onChangeExampleHandler(event: any) {
-			//do something
-		}
+	const TextFieldCode = `function TextFieldCompo(props: any) {
+    function onChangeExampleHandler(event: any) {
+      //do something
+    }
 	
-		return (
-			<Button onChange={onChangeExampleHandler}${titlePosition !== "" ? ` titlePosition="${titlePosition}"` : ""}}>
-				MoaButton
-			</Button>
-		)
-	}
-	`;
+    return (
+      <TextField onChange={onChangeExampleHandler}${placeholder !== "" ? ` placeholder="${placeholder}"` : ""}
+        ${defaultValue !== "" ? ` defaultValue="${defaultValue}"` : ""}${title !== "" ? ` title="${title}"` : ""}${titlePosition !== undefined ? ` titlePosition="${titlePosition}"` : ""}${textFieldValue !== "" ? ` value="${textFieldValue}"` : ""}
+        ${textFieldWidth !== "" ? ` width="${textFieldWidth}"` : ""}${disableChecked !== false ? ` disabled="${disableChecked}"` : ""}${errorChecked !== false ? ` error="${errorChecked}"` : ""}
+      >
+        MoaTextField
+      </TextField>
+    )
+}`;
 
 	const itemList = new Map();
 	itemList.set("left", "left");
@@ -50,9 +57,30 @@ export default function TextFieldCompo(props: any){
     setTextFieldWidth(newValue as string);
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function onChangeTitleHandler(event: any) {
+    setTitle(event.target.value);
+  }
+
+	function onChangePlaceholderHandler(event: any) {
+		setPlaceholder(event.target.value);
+	}
+
+	function onChangeDefaultValueHandler(event: any) {
+		setDefaultValue(event.target.value);
+	}
+
+	function onChangeTextFieldHandler(event: any) {
+		setTextFieldValue(event.target.value);
+	}
+
+  const handleDisableChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDisableChecked(event.target.checked);
   };
+
+	const handleErrorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorChecked(event.target.checked);
+  };
+	
 	
 	return(
 		<Box display={"flex"} width={"100%"} flexDirection={"column"}>
@@ -63,7 +91,7 @@ export default function TextFieldCompo(props: any){
         Introduction
       </Typography>
       <Typography variant="body1" gutterBottom>
-        The MoaButton component is a part of our React project that utilizes the
+        The MoaTextField component is a part of our React project that utilizes the
         moaui component library.
       </Typography>
       <br />
@@ -71,7 +99,7 @@ export default function TextFieldCompo(props: any){
         Getting Started
       </Typography>
       <Typography variant="body1" gutterBottom>
-        To use the MoaButton component from the moaui library in your React
+        To use the MoaTextField component from the moaui library in your React
         project, follow these steps:
       </Typography>
       <CodeComponent
@@ -102,7 +130,7 @@ export default function TextFieldCompo(props: any){
           }}
           display={"flex"}
           width={"70%"}
-          height={"29rem"}
+          height={"44rem"}
           justifyContent={"center"}
           flexDirection={"column"}
         >
@@ -112,9 +140,19 @@ export default function TextFieldCompo(props: any){
               justifyContent={"center"}
               alignItems={"center"}
               width={"70%"}
-              height="8rem"
+              height="21rem"
             >
-							<TextField/>
+							<TextField
+								width={textFieldWidth}
+								placeholder={placeholder}
+								title={title}
+								titlePosition={titlePosition}
+								disabled={disableChecked}
+								defaultValue={defaultValue}
+								error={errorChecked}
+								onChange={onChangeTextFieldHandler}
+								value={textFieldValue}
+							/>
             </Box>
             <Divider orientation="vertical" flexItem sx={{ mr: 2, ml:2 }} />
             <Box
@@ -122,11 +160,55 @@ export default function TextFieldCompo(props: any){
               justifyContent={"center"}
               alignItems={"left"}
               width={"30%"}
-              height="8rem"
+              height="21rem"
               flexDirection={"column"}
             >
+							<Typography
+                sx={{
+                  fontWeight: "bold",
+                  mt: 1,
+                  mb: 0,
+                  fontFamily: Font.fontFamily,
+                }}
+                variant="caption"
+                gutterBottom
+              >
+                placeholder
+              </Typography>
+							<TextField width="100%" placeholder="placeholder" onChange={onChangePlaceholderHandler} value={placeholder}/>
+							<Typography
+                sx={{
+                  fontWeight: "bold",
+                  mt: 1,
+                  mb: 0,
+                  fontFamily: Font.fontFamily,
+                }}
+                variant="caption"
+                gutterBottom
+              >
+                defaultValue
+              </Typography>
+							<TextField width="100%" placeholder="defaultValue" onChange={onChangeDefaultValueHandler} value={defaultValue}/>
+							<Typography
+                sx={{
+                  fontWeight: "bold",
+                  mt: 1,
+                  mb: 0,
+                  fontFamily: Font.fontFamily,
+                }}
+                variant="caption"
+                gutterBottom
+              >
+                title
+              </Typography>
+							<TextField width="100%" placeholder="title" onChange={onChangeTitleHandler} value={title}/>
               <Typography
-                sx={{ fontWeight: "bold", m: 0, fontFamily: Font.fontFamily }}
+                sx={{
+                  fontWeight: "bold",
+                  mt: 1,
+                  mb: 0,
+                  fontFamily: Font.fontFamily,
+                }}
                 variant="caption"
                 gutterBottom
               >
@@ -191,21 +273,27 @@ export default function TextFieldCompo(props: any){
                   );
                 }}
                 ListboxComponent={List}
-                renderOption={(props, option) => (
-                  <ListItem
-                    {...props}
-                    sx={{
-                      height: "20px",
-                      fontFamily: Font.fontFamily,
-                      fontFeatureSettings: Font.fontFeatureSettings,
-                      fontSize: "0.8rem",
-                      fontStyle: "normal",
-                      fontWeight: 400,
-                    }}
-                  >
-                    {option}
-                  </ListItem>
-                )}
+                renderOption={(props, option) => {
+									return(
+										<Box display={"flex"} justifyContent={"center"}>
+											<ListItem
+												{...props}
+												sx={{
+													display: "flex",
+													justifyContent: "center",
+													height: "20px",
+													fontFamily: Font.fontFamily,
+													fontFeatureSettings: Font.fontFeatureSettings,
+													fontSize: "0.8rem",
+													fontStyle: "normal",
+													fontWeight: 400,
+												}}
+											>
+												{option}
+											</ListItem>
+										</Box>
+									)
+								}}
               />
               <Box sx={{mt:1}}>
                 <Typography
@@ -223,7 +311,28 @@ export default function TextFieldCompo(props: any){
                 <Switch
                   sx={{ float: "right" }}
                   checked={disableChecked}
-                  onChange={handleChange}
+                  onChange={handleDisableChange}
+                  inputProps={{ 'aria-label': 'controlled' }}
+                  size="small"
+                />
+              </Box>
+							<Box sx={{mt:1}}>
+                <Typography
+                  sx={{
+                    fontWeight: "bold",
+                    mt: 1,
+                    mb: 0,
+                    fontFamily: Font.fontFamily,
+                  }}
+                  variant="caption"
+                  gutterBottom
+                >
+                  error
+                </Typography>
+                <Switch
+                  sx={{ float: "right" }}
+                  checked={errorChecked}
+                  onChange={handleErrorChange}
                   inputProps={{ 'aria-label': 'controlled' }}
                   size="small"
                 />
