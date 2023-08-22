@@ -92,7 +92,8 @@ export default function ButtonCompo(props: any) {
             border: "1px solid #95d6fc",
             paddingRight: "1rem",
             paddingLeft: "1rem",
-            paddingTop: "0.5rem",
+            paddingTop: "0rem",
+            paddingBottom: "0rem",
             backgroundColor: "#FFFFFF",
             mt: 2,
             mb: 2,
@@ -127,7 +128,7 @@ export default function ButtonCompo(props: any) {
               justifyContent={"center"}
               alignItems={"left"}
               width={"30%"}
-              height="6rem"
+              height="8rem"
               flexDirection={"column"}
             >
               <Typography
