@@ -12,11 +12,11 @@ export type MoaDropListProps = {
 	/**
 	 * Set the width value of droplist.
 	 * The width value is applied to the droplist and the droplist's input.
-	 * Unit Percent(%) is not recommended because it is not responsive to MenuItem.
 	 * @optional
 	 * @type string
 	 * @example
 	 * width="100px"
+	 * width="100%"
 	 * @defaultValue "auto"
 	 */
 	width? : string
@@ -55,9 +55,19 @@ export type MoaDropListProps = {
 const MoaDropList = styled((props:MoaDropListProps) => {
 	const {itemList, width, value, onChange, defaultValue} = props;
 	const itemMap = typeof itemList === 'function' ? itemList() : itemList;
+
+	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
+	const parentRef = React.useRef<HTMLDivElement | null>(null);
+
+	React.useEffect(() => {
+		if(parentRef.current){
+			setParentWidthInPixels(parentRef.current.offsetWidth);
+		}
+	},[width]);
+
 	return (
 		<React.Fragment>
-			<FormControl sx={{width: width, maxHeightight:"1.75rem"}}>
+			<FormControl ref={parentRef} sx={{width: width, maxHeightight:"1.75rem"}}>
 				<DropList
 					defaultValue={defaultValue}
 					autoWidth
@@ -95,7 +105,7 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 										gap: "0.625rem",
 										alignSelf: "stretch",
 										height: "1.75rem",
-										width: width,
+										width: `${parentWidthInPixels}px`,
 										//font
 										color: Color.text.secondary,
 										fontFeatureSettings: Font.fontFeatureSettings,
@@ -121,7 +131,7 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 									gap: "0.625rem",
 									alignSelf: "stretch",
 									minHeight:"1.75rem",
-									width: width,
+									width: `${parentWidthInPixels}px`,
 									height:"1.75rem",
 									//font
 									color: Color.text.secondary,
