@@ -6,17 +6,25 @@ import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Color from "../Color";
 import Font from "../Font";
+import Box from '@mui/material/Box'
 
 export type MoaDropListProps = {
 	/**
 	 * Set the width value of droplist.
+	 * The width value is applied to the droplist and the droplist's input.
+	 * @optional
+	 * @type string
+	 * @example
+	 * width="100px"
+	 * width="100%"
+	 * @defaultValue "auto"
 	 */
 	width? : string
 	/**
 	 * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
 	 * @defaultValue new Map()
 	 */
-	itemList : Map<string, string | number>
+	itemList : Map<string, string | number> | (() => Map<string, string | number>);
 	/**
    * Callback fired when a menu item is selected.
    *
@@ -46,10 +54,20 @@ export type MoaDropListProps = {
 
 const MoaDropList = styled((props:MoaDropListProps) => {
 	const {itemList, width, value, onChange, defaultValue} = props;
+	const itemMap = typeof itemList === 'function' ? itemList() : itemList;
+
+	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
+	const parentRef = React.useRef<HTMLDivElement | null>(null);
+
+	React.useEffect(() => {
+		if(parentRef.current){
+			setParentWidthInPixels(parentRef.current.offsetWidth);
+		}
+	},[width]);
 
 	return (
 		<React.Fragment>
-			<FormControl sx={{width:`${width}`, maxHeightight:"1.75rem"}}>
+			<FormControl ref={parentRef} sx={{width: width, maxHeightight:"1.75rem"}}>
 				<DropList
 					defaultValue={defaultValue}
 					autoWidth
@@ -75,10 +93,10 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 					}}
 					onChange={onChange}
 				>
-					{Array.from(itemList.keys()).map((key, index) => {
+					{Array.from(itemMap.keys()).map((key, index) => {
 						if(key === "subheader")
 							return (
-								<ListSubheader key={"subheader" + index}
+								<ListSubheader key={"subheader" + itemMap.get(key) + index}
 									sx={{
 										display: "flex",
 										padding: "0.25rem 0.625rem",
@@ -87,7 +105,7 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 										gap: "0.625rem",
 										alignSelf: "stretch",
 										height: "1.75rem",
-										width:`${width}`,
+										width: `${parentWidthInPixels}px`,
 										//font
 										color: Color.text.secondary,
 										fontFeatureSettings: Font.fontFeatureSettings,
@@ -99,12 +117,12 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 										lineHeight: "0.875rem", /* 116.667% */
 									}}
 								>
-									{itemList.get(key)}
+									{itemMap.get(key)}
 								</ListSubheader>
 							)
 
 						return (
-							<MenuItem key={"item"+index} value={itemList.get(key)}
+							<MenuItem key={"item"+ itemMap.get(key) + index} value={itemMap.get(key)}
 								sx={{
 									display: "flex",
 									padding: "0.25rem 0.625rem",
@@ -113,7 +131,7 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 									gap: "0.625rem",
 									alignSelf: "stretch",
 									minHeight:"1.75rem",
-									width:`${width}`,
+									width: `${parentWidthInPixels}px`,
 									height:"1.75rem",
 									//font
 									color: Color.text.secondary,

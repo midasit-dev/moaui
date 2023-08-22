@@ -29,7 +29,8 @@ const MoaIconButton = styled(IconButton)(({theme}) => ({
 	fontSize: "0.75rem",
 	fontStyle: "normal",
 	fontWeight: 500,
-	lineHeight: "0.875rem"
+	lineHeight: "0.875rem",
+	textTransform: "none",
 }))
 
 export default MoaIconButton;
