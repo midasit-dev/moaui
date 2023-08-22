@@ -1,5 +1,6 @@
 import React from "react";
 import TextField from './index';
+import MoaStack from "../Stack";
 
 function Demo() {
 	const [value, setValue] = React.useState('TextField Demo');
@@ -19,6 +20,11 @@ function Demo() {
 			<TextField defaultValue={'TextField right title'} title="right" titlePosition="right"/>
 			<br/><br/>
 			<TextField placeholder={'placeholder'} />
+			<br/><br/>
+			<TextField placeholder={'value'} value="valueTest"/>
+			<MoaStack>
+				<TextField placeholder={'value'} title="label" titlePosition="label" width="100%" value="width Test"/>
+			</MoaStack>
 		</React.Fragment>
 	);
 }

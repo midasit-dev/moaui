@@ -1,25 +1,16 @@
-import MoaButton from "./Styled";
-
-type MoabuttonProps = {
-	children: string,
-	onClick: Function
-}
+import MoaButton, { type MoabuttonProps } from "./Styled";
 
 Moabutton.defaultProps = {
 	children: "Button",
 	onClick: () => {},
+	variant: "contained",
+	disabled: false,
+	width: "auto"
 }
 
-function Moabutton(props: MoabuttonProps) : React.ReactElement {
-	const buttonText:string = props.children;
-	const onClickEvent:Function = props.onClick;
-
-	async function onClickHandler(){
-		await onClickEvent();
-	}
-	
+function Moabutton(props: MoabuttonProps) : React.ReactElement {	
 	return (
-		<MoaButton onClick={onClickHandler}>{buttonText}</MoaButton>
+		<MoaButton {...props} />
 	)
 }
 

@@ -42,6 +42,27 @@ export type MoaTextFieldProps = {
 	 * @defaultValue undefined
 	 */
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	/**
+	 * The value of the textfield.
+	 * @defaultValue undefined
+	 */
+	value?:string,
+
+	/**
+	 * The width of the textfield.
+	 * @defaultValue "auto"
+	 * @optional
+	 * @type string
+	 * @example 
+	 * width="auto"
+	 * width="100%"
+	 * width="10rem"
+	 * width="10vw"
+	 * width="10vh"
+	 * width="10ex"
+	 * width="10px"
+	 */
+	width?: string,
 }
 
 const MoaTextField = styled((props:MoaTextFieldProps) => {
@@ -49,9 +70,11 @@ const MoaTextField = styled((props:MoaTextFieldProps) => {
 		<TextField
 			onChange={props?.onChange}
 			defaultValue={props?.defaultValue}
-			error = {props.error}
-			disabled = {props.disabled}
+			error = {props?.error}
+			disabled = {props?.disabled}
+			value = {props?.value}
 			sx={{
+				width: props?.width || "auto",
 				'& .MuiOutlinedInput-root': {
 					'& fieldset':{
 						border: `1px solid ${Color.component.gray}`,
@@ -71,7 +94,7 @@ const MoaTextField = styled((props:MoaTextFieldProps) => {
 			}}
 			InputProps={{ // input component의 스타일 변경
 				sx:{
-					width:"8.125rem",
+					width: props?.width || "auto",
 					height:"1.75rem",
 					padding: "0.375rem 0.375rem 0.375rem 0.625rem",
 					alignItems: "center",
