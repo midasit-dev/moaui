@@ -49,6 +49,9 @@ function Body(props: BodyProp): React.ReactElement {
 							<MenuItem value={"TextField"} />
 						</div>
 						<div className="pl-4">
+							<MenuItem value={"Check"} />
+						</div>
+						<div className="pl-4">
 							<MenuItem value={"Typography"} />
 						</div>
 						<div className="pl-4">
@@ -62,9 +65,6 @@ function Body(props: BodyProp): React.ReactElement {
 						</div>
 						<div className="pl-4">
 							<MenuItem value={"Radio"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Check"} />
 						</div>
 						<div className="pl-4">
 							<MenuItem value={"Switch"} />
