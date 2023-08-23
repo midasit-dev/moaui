@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { selectedMenu } from '../../recoil/atom';
 import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles";
-import Font from "@midasit-dev/moaui/dist/Font"
+import Font from "@midasit-dev/moaui/Font"
 import Box from "@mui/material/Box";
 // import Seperetor from "@midas-ui/dist/";
 interface ItemProp {
@@ -47,23 +47,28 @@ function Item(props: ItemProp) {
 		...Font.defaultFontSet,
 		textTransform: 'none',
 		transitionDuration: "0.3s",
-		transitionTimingFunction:"ease"
+		transitionTimingFunction:"ease",
+		borderRadius: "0.6rem",
 	}));
 
 	const StyledBox = styled(Box)(({ theme }) => ({
-		borderLeft : isSelected ? `2px solid #30a9f0` : '1px solid #c5d0d1',
+		borderRadius: isSelected ? "0.2rem" : "0rem",
+		borderLeft : isSelected ? `2.5px solid #4587f7` : '1px solid #edeef0',
 		width : "100%",
 		height: "1.9rem",
 		paddingLeft: "0.1rem",
 		paddingBottom:"2rem",
+		marginBottom:"0.2rem",
 	}));
 
 	return (
+		<div className='pl-4'>
 		<StyledBox >
 			<MenuButton onClick={onClickHandler}>
 				{props.value}
 			</MenuButton>
 		</StyledBox>
+		</div>
 	);
 }
 

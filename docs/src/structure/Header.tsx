@@ -1,4 +1,5 @@
 import { TypographyType, Typography } from "@/components/Typography";
+import ToggleButtons from '@/structure/ToggleButtons';
 
 const IconLogo = (): React.ReactElement => {
 	return (
@@ -19,6 +20,9 @@ function Header(): React.ReactElement {
 			<div className='flex items-center space-x-3 cursor-default'>
 				<IconLogo />
 				<Typography type={TypographyType.header} value={"moaui"} />
+			</div>
+			<div className='flex items-center space-x-3 cursor-default'>
+				<ToggleButtons/>
 			</div>
 		</div>
 	);

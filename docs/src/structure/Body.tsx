@@ -1,6 +1,5 @@
 import MenuHeader from "@/components/menu/Header";
 import MenuItem from "@/components/menu/Item";
-import { Typography, TypographyType } from "@/components/Typography";
 import ReferencePage from "@/components/menupages/ReferencePage";
 interface BodyProp {
 
@@ -14,74 +13,35 @@ function Body(props: BodyProp): React.ReactElement {
 			<div className="flex flex-wrap gap-4">
 
 				{/** Left Menu */}
-				<div 
-					className="
-						flex flex-col gap-4 min-w-[100vw] xl:min-w-moa-menu pl-4
-						border-r-[1px] border-r-moa-light-line dark:border-r-moa-dark-line 
-						transition duration-moa-base hover:border-r-moa-light-line-hover dark:hover:border-r-moa-dark-line-hover
-					">
+				<div className="flex flex-col gap-4 min-w-[100vw] xl:min-w-moa-menu">
 					<div>
-						<div className="pb-2">
-							<MenuHeader value={"Getting started"} />
-						</div>
-							<div className="pl-4">
-								<MenuItem value={"Installation"} />
-							</div>
-							<div className="pl-4">
-								<MenuItem value={"Editor Setup"} />
-							</div>
+						<MenuHeader value={"Getting started"} />
+						<MenuItem value={"Installation"} />
+						<MenuItem value={"Editor Setup"} />
 					</div>
 					<div className="mt-4">
-						<div className="pb-2">
-							<MenuHeader value={"Concepts"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Block"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Colors"} />
-						</div>
+						<MenuHeader value={"Concepts"} />
+						<MenuItem value={"Block"} />
+						<MenuItem value={"Colors"} />
 					</div>
-
 					<div className="mt-4">
-						<div className="pb-2">
-							<MenuHeader value={"Components"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Typography"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Button"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Input"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"DropList"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Tab"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Radio"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Check"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Switch"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Table"} />
-						</div>
-						<div className="pl-4">
-							<MenuItem value={"Icon"} />
-						</div>
+						<MenuHeader value={"Components"} />
+						<MenuItem value={"Button"} />
+						<MenuItem value={"TextField"} />
+						<MenuItem value={"Check"} />
+						<MenuItem value={"Typography"} />
+						<MenuItem value={"Input"} />
+						<MenuItem value={"DropList"} />
+						<MenuItem value={"Tab"} />
+						<MenuItem value={"Radio"} />
+						<MenuItem value={"Switch"} />
+						<MenuItem value={"Table"} />
+						<MenuItem value={"Icon"} />
 					</div>
 				</div>
 
 				{/** Right Content */}
-				<div className="flex min-w-[100vw] xl:min-w-moa-content xl:w-moa-content">
+				<div className="flex min-w-[100vw] xl:min-w-moa-content xl:w-moa-content justify-center">
 					{/* <Typography 
 						type={TypographyType.body1}
 						value={`
