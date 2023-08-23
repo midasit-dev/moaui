@@ -5,9 +5,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import CodeComponent from "./CodeBlock";
-import DropList from "@midasit-dev/moaui/dist/DropList";
 import TextField from "@midasit-dev/moaui/dist/TextField";
-import Color from "@midasit-dev/moaui/dist/Color";
 import Font from "@midasit-dev/moaui/dist/Font";
 import Switch from '@mui/material/Switch';
 
