@@ -53,11 +53,12 @@ function Item(props: ItemProp) {
 
 	const StyledBox = styled(Box)(({ theme }) => ({
 		borderRadius: isSelected ? "0.2rem" : "0rem",
-		borderLeft : isSelected ? `2px solid #30a9f0` : '1px solid #c5d0d1',
+		borderLeft : isSelected ? `2.5px solid #4587f7` : '1px solid #edeef0',
 		width : "100%",
 		height: "1.9rem",
 		paddingLeft: "0.1rem",
 		paddingBottom:"2rem",
+		marginBottom:"0.2rem",
 	}));
 
 	return (

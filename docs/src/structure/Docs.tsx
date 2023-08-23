@@ -4,9 +4,7 @@ import Body from '@/structure/Body';
 export default function Docs() {
   return (
     <div>
-			<div>
-				<Header />
-			</div>
+			<Header />
 			<div className='mt-4'>
 				<Body />
 			</div>
