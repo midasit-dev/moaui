@@ -38,7 +38,7 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 	return (
 		<React.Fragment>
 			{ title !== "" ?
-				<MoaStack {...boxStyle(titlePosition)} direction={(titlePosition === "label") ? "column" : "row"}>
+				<MoaStack width={props?.width} {...boxStyle(titlePosition)} direction={(titlePosition === "label") ? "column" : "row"}>
 					{
 						titlePosition === "right" ?
 						<React.Fragment>
