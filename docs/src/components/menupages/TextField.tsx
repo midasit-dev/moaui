@@ -38,9 +38,7 @@ export default function TextFieldCompo(props: any){
       <TextField onChange={onChangeExampleHandler}${placeholder !== "" ? ` placeholder="${placeholder}"` : ""}
         ${defaultValue !== "" ? ` defaultValue="${defaultValue}"` : ""}${title !== "" ? ` title="${title}"` : ""}${titlePosition !== undefined ? ` titlePosition="${titlePosition}"` : ""}${textFieldValue !== "" ? ` value="${textFieldValue}"` : ""}
         ${textFieldWidth !== "" ? ` width="${textFieldWidth}"` : ""}${disableChecked !== false ? ` disabled="${disableChecked}"` : ""}${errorChecked !== false ? ` error="${errorChecked}"` : ""}
-      >
-        MoaTextField
-      </TextField>
+      />
     )
 }`;
 
