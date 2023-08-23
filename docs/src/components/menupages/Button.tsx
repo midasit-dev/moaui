@@ -31,7 +31,7 @@ export default function ButtonCompo(props: any) {
   }
 
   return (
-    <Button onChange={onChangeExampleHandler}${DropListVariant !== "" ? ` variant="${DropListVariant}"` : ""}${DropListWidth !== "" ? ` width="${DropListWidth}"` : ""}${disableChecked !== false ? ` disabled="${disableChecked}"` : ""}>
+    <Button onChange={onChangeExampleHandler}${DropListVariant !== "" ? ` variant="${DropListVariant}"` : ""}${DropListWidth !== "" ? ` width="${DropListWidth}"` : ""}${disableChecked !== false ? ` disabled={${disableChecked}}` : ""}>
       MoaButton
     </Button>
   )

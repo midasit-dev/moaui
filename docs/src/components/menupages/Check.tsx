@@ -26,8 +26,8 @@ export default function ButtonCompo(props: any) {
   }
 
   return (
-    <Check onChange={onChangeExampleHandler}${checkName !== "" ? ` name="${checkName}"` : ""}${defaultChecked !== false ? ` defaultChecked="${defaultChecked}"` : ""}
-    ${checked !== undefined ? ` checked="${checked}"` : ""}${required !== false ? ` required="${required}"` : ""}${indeterminate !== false ? ` indeterminate="${indeterminate}"` : ""}${disableChecked !== false ? ` disabled="${disableChecked}"` : ""}
+    <Check onChange={onChangeExampleHandler}${checkName !== "" ? ` name="${checkName}"` : ""}${defaultChecked !== false ? ` defaultChecked={${defaultChecked}}` : ""}
+    ${checked !== undefined ? ` checked={${checked}}` : ""}${required !== false ? ` required={${required}}` : ""}${indeterminate !== false ? ` indeterminate={${indeterminate}}` : ""}${disableChecked !== false ? ` disabled={${disableChecked}}` : ""}
     ${ariaLabel !== "" ? ` ariaLabel="${ariaLabel}"` : ""}
     />
   )
