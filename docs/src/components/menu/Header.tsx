@@ -6,7 +6,7 @@ Header.defaultProp = {
 }
 function Header(props: HeaderProp) {
 	return (
-		<div className="
+		<div className="pb-2
 			text-moa-menu-header font-moa-primary text-moa-light-base dark:text-moa-dark-base
 		">
 			{props.value}

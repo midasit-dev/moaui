@@ -62,11 +62,13 @@ function Item(props: ItemProp) {
 	}));
 
 	return (
+		<div className='pl-4'>
 		<StyledBox >
 			<MenuButton onClick={onClickHandler}>
 				{props.value}
 			</MenuButton>
 		</StyledBox>
+		</div>
 	);
 }
 
