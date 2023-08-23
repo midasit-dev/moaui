@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { selectedMenu } from '../../recoil/atom';
 import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles";
-import Font from "@midasit-dev/moaui/dist/Font"
+import Font from "@midasit-dev/moaui/Font"
 import Box from "@mui/material/Box";
 // import Seperetor from "@midas-ui/dist/";
 interface ItemProp {

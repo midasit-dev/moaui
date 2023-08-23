@@ -1,20 +1,20 @@
 import React from "react";
-import Button from "@midasit-dev/moaui/dist/Button";
+import Button from "@midasit-dev/moaui/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import CodeComponent from "./CodeBlock";
-import DropList from "@midasit-dev/moaui/dist/DropList";
+import DropList from "@midasit-dev/moaui/DropList";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import Color from "@midasit-dev/moaui/dist/Color";
-import Font from "@midasit-dev/moaui/dist/Font";
+import Color from "@midasit-dev/moaui/Color";
+import Font from "@midasit-dev/moaui/Font";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Switch from '@mui/material/Switch';
 
-const ImportCode = `import Button from "@midasit-dev/moaui/dist/Button"`;
+const ImportCode = `import Button from "@midasit-dev/moaui/Button"`;
 
 const widthList = [{value: "100%", label: "100%"}, {value: "50%", label: "50%"}, {value: "40px", label: "40px"}, {value: "auto", label: "auto"}, {value: "5rem", label: "5rem"}]
 
