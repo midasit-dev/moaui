@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedMenu } from '../../recoil/atom';
 import Button from './Button';
