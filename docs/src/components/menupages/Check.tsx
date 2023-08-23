@@ -48,9 +48,9 @@ export default function ButtonCompo(props: any) {
 		setAriaLabel(event.target.value);
 	}
 
-  const handleDisableChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDisableChecked(event.target.checked);
-  };
+	const handleDisableChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setDisableChecked(event.target.checked);
+	};
 
 	const handleDefaultCheckedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setDefaultChecked(event.target.checked);
