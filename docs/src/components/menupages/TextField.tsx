@@ -167,7 +167,6 @@ export default function TextFieldCompo(props: any){
                 sx={{
                   fontWeight: "bold",
                   mt: 1,
-                  mb: 0,
                   fontFamily: Font.fontFamily,
                 }}
                 variant="caption"
@@ -180,7 +179,6 @@ export default function TextFieldCompo(props: any){
                 sx={{
                   fontWeight: "bold",
                   mt: 1,
-                  mb: 0,
                   fontFamily: Font.fontFamily,
                 }}
                 variant="caption"
@@ -193,7 +191,6 @@ export default function TextFieldCompo(props: any){
                 sx={{
                   fontWeight: "bold",
                   mt: 1,
-                  mb: 0,
                   fontFamily: Font.fontFamily,
                 }}
                 variant="caption"
@@ -206,7 +203,6 @@ export default function TextFieldCompo(props: any){
                 sx={{
                   fontWeight: "bold",
                   mt: 1,
-                  mb: 0,
                   fontFamily: Font.fontFamily,
                 }}
                 variant="caption"
@@ -225,7 +221,6 @@ export default function TextFieldCompo(props: any){
                 sx={{
                   fontWeight: "bold",
                   mt: 1,
-                  mb: 0,
                   fontFamily: Font.fontFamily,
                 }}
                 variant="caption"
@@ -300,7 +295,6 @@ export default function TextFieldCompo(props: any){
                   sx={{
                     fontWeight: "bold",
                     mt: 1,
-                    mb: 0,
                     fontFamily: Font.fontFamily,
                   }}
                   variant="caption"
@@ -321,7 +315,6 @@ export default function TextFieldCompo(props: any){
                   sx={{
                     fontWeight: "bold",
                     mt: 1,
-                    mb: 0,
                     fontFamily: Font.fontFamily,
                   }}
                   variant="caption"

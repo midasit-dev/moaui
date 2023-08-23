@@ -159,7 +159,7 @@ export default function ButtonCompo(props: any) {
               </Typography>
 							<TextField width="100%" placeholder="name" onChange={onChangeNameHandler} value={checkName}/>
 							<Typography
-                sx={{ fontWeight: "bold", m: 0, fontFamily: Font.fontFamily }}
+                sx={{ fontWeight: "bold", mt: 1, fontFamily: Font.fontFamily }}
                 variant="caption"
                 gutterBottom
               >
@@ -171,7 +171,6 @@ export default function ButtonCompo(props: any) {
                   sx={{
                     fontWeight: "bold",
                     mt: 1,
-                    mb: 0,
                     fontFamily: Font.fontFamily,
                   }}
                   variant="caption"
@@ -192,7 +191,6 @@ export default function ButtonCompo(props: any) {
                   sx={{
                     fontWeight: "bold",
                     mt: 1,
-                    mb: 0,
                     fontFamily: Font.fontFamily,
                   }}
                   variant="caption"
@@ -213,7 +211,6 @@ export default function ButtonCompo(props: any) {
                   sx={{
                     fontWeight: "bold",
                     mt: 1,
-                    mb: 0,
                     fontFamily: Font.fontFamily,
                   }}
                   variant="caption"
@@ -234,7 +231,6 @@ export default function ButtonCompo(props: any) {
                   sx={{
                     fontWeight: "bold",
                     mt: 1,
-                    mb: 0,
                     fontFamily: Font.fontFamily,
                   }}
                   variant="caption"
@@ -255,7 +251,6 @@ export default function ButtonCompo(props: any) {
                   sx={{
                     fontWeight: "bold",
                     mt: 1,
-                    mb: 0,
                     fontFamily: Font.fontFamily,
                   }}
                   variant="caption"
