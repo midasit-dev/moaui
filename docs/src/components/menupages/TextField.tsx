@@ -14,7 +14,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import MuiTextField from '@mui/material/TextField';
 
-const ImportCode = `import TextField from "@midasit-dev/moaui/dist/TextField"`;
+const ImportCode = `import TextField from "@midasit-dev/moaui/TextField"`;
 
 const widthList = [{value: "100%", label: "100%"}, {value: "50%", label: "50%"}, {value: "40px", label: "40px"}, {value: "auto", label: "auto"}, {value: "5rem", label: "5rem"}]
 
