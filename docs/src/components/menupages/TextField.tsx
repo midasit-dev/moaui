@@ -130,7 +130,7 @@ export default function TextFieldCompo(props: any){
           }}
           display={"flex"}
           width={"70%"}
-          height={"44rem"}
+          height={"45rem"}
           justifyContent={"center"}
           flexDirection={"column"}
         >
@@ -140,7 +140,7 @@ export default function TextFieldCompo(props: any){
               justifyContent={"center"}
               alignItems={"center"}
               width={"70%"}
-              height="21rem"
+              height="23rem"
             >
 							<TextField
 								width={textFieldWidth}
@@ -160,7 +160,7 @@ export default function TextFieldCompo(props: any){
               justifyContent={"center"}
               alignItems={"left"}
               width={"30%"}
-              height="21rem"
+              height="23rem"
               flexDirection={"column"}
             >
 							<Typography
