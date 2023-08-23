@@ -1,5 +1,7 @@
 import './Font';
 
+export { default as Color } from "./Color";
+export { default as Font } from "./Font";
 export { default as Button } from "./Button";
 export { default as Check } from "./Check";
 export { default as CheckGroup } from "./CheckGroup";

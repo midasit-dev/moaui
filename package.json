@@ -23,7 +23,7 @@
     "bce0404",
     "kh1012"
   ],
-  "version": "0.0.22",
+  "version": "0.0.26",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -55,7 +55,7 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "prepare": "node prepare.js && mkdir dist && tsc"
+    "deploy": "node prepare.js && tsc && cd ./dist && npm publish"
   },
   "eslintConfig": {
     "extends": [
