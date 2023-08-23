@@ -9,7 +9,7 @@ import TextField from "@midasit-dev/moaui/TextField";
 import Font from "@midasit-dev/moaui/Font";
 import Switch from '@mui/material/Switch';
 
-const ImportCode = `import Check from "@midasit-dev/moaui/dist/Check"`;
+const ImportCode = `import Check from "@midasit-dev/moaui/Check"`;
 
 export default function ButtonCompo(props: any) {
 	const [checkName, setCheckName] = React.useState("MoaCheck");
