@@ -1,12 +1,12 @@
 import React from "react";
-import Check from "@midasit-dev/moaui/dist/Check";
+import Check from "@midasit-dev/moaui/Check";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import CodeComponent from "./CodeBlock";
-import TextField from "@midasit-dev/moaui/dist/TextField";
-import Font from "@midasit-dev/moaui/dist/Font";
+import TextField from "@midasit-dev/moaui/TextField";
+import Font from "@midasit-dev/moaui/Font";
 import Switch from '@mui/material/Switch';
 
 const ImportCode = `import Check from "@midasit-dev/moaui/dist/Check"`;
