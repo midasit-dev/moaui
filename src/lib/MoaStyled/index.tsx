@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import { TypographyStyleOptions } from "@mui/material/styles/createTypography";
+import Font from "../Font";
 
 declare module '@mui/material/styles' {
 	interface Theme {
@@ -26,7 +27,7 @@ declare module '@mui/material/styles' {
 
 export const moaFont = createTheme({
 	typography: {
-		fontFamily: 'Pretendard',
+		fontFamily: Font.fontFamily,
 		h1: {
 			fontWeight: 700, /** bold */
 			fontSize: "0.75rem", /** 12px */
