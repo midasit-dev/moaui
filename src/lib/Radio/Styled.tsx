@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import Color from '../Color';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -92,7 +93,8 @@ function RadioButtonIcon(props : RadioButtonIconProps) {
 	)
 }
 
-const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
+const StyledComponent = 
+	styled((props: StyledProps) : React.ReactElement => {
 	return (
 		<FormControlLabel
 			aria-label={`${props?.ariaLabel} FormControlLabel`} 
@@ -137,9 +139,6 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 				margin: 0,
 				".MuiFormControlLabel-label": {
 					marginLeft: "0.25rem", /** 4px */
-					fontSize: "0.75rem",
-					fontWeight: 400,
-					lineHeight: "0.875rem",
 					color: `${Color.text.secondary}!important`,
 				},
 			}}
@@ -147,4 +146,9 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	)
 })(({ theme }) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;
