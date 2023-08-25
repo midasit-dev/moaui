@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import { DataGrid, DataGridProps } from "@mui/x-data-grid";
 import Color from '../Color';
 import MoaCheck from '../Check';
-import Font from '../Font';
 
 export interface StyledProps extends DataGridProps {
 	sx?: never,
@@ -36,8 +36,6 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 			}}
 			sx={{
 				".MuiDataGrid-columnHeaders": {
-					...Font.defaultFontSet,
-					fontSize: "0.75rem",
 					fontWeight: 500,
 					backgroundColor: Color.component.gray_light,
 				},
@@ -46,11 +44,6 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 				},
 				".MuiDataGrid-columnHeaderTitleContainer": {
 					justifyContent: "center",
-				},
-				".MuiDataGrid-cellContent": {
-					...Font.defaultFontSet,
-					fontSize: "0.75rem",
-					fontWeight: 400,
 				},
 				".MuiDataGrid-cell:focus": {
 					outline: `solid ${Color.primary.focus} 1px`,
@@ -66,4 +59,9 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	)
 })((props: InnerStyledProps) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;
