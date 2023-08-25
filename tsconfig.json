@@ -26,6 +26,7 @@
   },
 	"include": [
 		"./src/lib/**/*.tsx", 
-		"./src/lib/**/*.ts"
+		"./src/lib/**/*.ts",
+    "./src/lib/**/*.css"
 	]
 }

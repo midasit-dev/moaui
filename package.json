@@ -23,14 +23,16 @@
     "bce0404",
     "kh1012"
   ],
-  "version": "0.0.10",
+  "version": "0.0.26",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "browser": "./browser/specific/main.js",
   "peerDependencies": {
+    "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.3",
+    "@mui/x-data-grid": "^6.11.1",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "react": "^18.2.0",
@@ -53,7 +55,7 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "prepare": "node prepare.js && mkdir dist && tsc"
+    "deploy": "node prepare.js && tsc && cd ./dist && npm publish"
   },
   "eslintConfig": {
     "extends": [

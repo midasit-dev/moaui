@@ -4,9 +4,7 @@ import Box from '@mui/material/Box';
 
 class StyleVariant {
 	private static readonly layout = {
-		display: 'flex',
 		padding: "0.3125rem 0.625rem",
-		flexDirection: 'column',
 		alignItems: 'flex-start',
 		gap: '0.625rem',
 	}
@@ -33,17 +31,17 @@ export type StyledProps = {
 
 	/**
 	 * `shadow` panel or `strock` panel
-	 * @default 'shadow'
+	 * @defaultValue 'shadow'
 	 */
 	variant: 'shadow' | 'strock';
 	/**
 	 * Set the width of panel
-	 * @default 'fit-content'
+	 * @defaultValue 'fit-content'
 	 */
 	width: string;
 	/**
 	 * Set the height of panel
-	 * @default 'fit-content'
+	 * @defaultValue 'fit-content'
 	 */
 	height: string;
 }
