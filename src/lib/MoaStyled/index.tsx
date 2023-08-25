@@ -34,18 +34,18 @@ export const moaFont = createTheme({
 			lineHeight: "0.875rem", /** 14px */
 		},
 		body1: {
-			fontWeight: 400, /** bold */
+			fontWeight: 400, /** normal */
 			fontSize: "0.75rem", /** 12px */
 			lineHeight: "0.875rem", /** 14px */
 		},
 		body2: {
-			fontWeight: 500, /** bold */
+			fontWeight: 500, /** semi-bold */
 			fontSize: "0.75rem", /** 12px */
 			lineHeight: "0.875rem", /** 14px */
 		},
 		body3: {
-			fontWeight: 400, /** bold */
-			fontSize: "0.688rem", /** 12px */
+			fontWeight: 400, /** normal */
+			fontSize: "0.688rem", /** 11px */
 			lineHeight: "0.875rem", /** 14px */
 		},
 	},
