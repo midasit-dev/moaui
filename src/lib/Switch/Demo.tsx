@@ -60,7 +60,7 @@ export function SwitchCompo(props: any){
 			}}
 			display={"flex"}
 			width={"70%"}
-			height={"45rem"}
+			height={"26rem"}
 			justifyContent={"center"}
 			flexDirection={"column"}
 		>
@@ -70,7 +70,7 @@ export function SwitchCompo(props: any){
 					justifyContent={"center"}
 					alignItems={"center"}
 					width={"70%"}
-					height="23rem"
+					height="8rem"
 				>
 					<Switch	label={label} checked={checked} disabled={disableChecked} onChange={onChangeMoaSwitchHandler}/>
 				</Box>
@@ -80,7 +80,7 @@ export function SwitchCompo(props: any){
 					justifyContent={"center"}
 					alignItems={"left"}
 					width={"30%"}
-					height="23rem"
+					height="8rem"
 					flexDirection={"column"}
 				>
 					<Typography
@@ -105,7 +105,7 @@ export function SwitchCompo(props: any){
 							variant="caption"
 							gutterBottom
 						>
-							check
+							checked
 						</Typography>
 						<MUISwitch
 							sx={{ float: "right" }}
