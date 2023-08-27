@@ -9,10 +9,11 @@ export type StyledProps = {
    * If `true`, the component is checked.
    */
 	checked?: boolean;
-  /**
-   * A text or an element to be used in an enclosing label element.
-   */
-  name?: React.ReactNode;
+	/**
+	 * The label of the component.
+	 * It is displayed right of the component.
+	 */
+  label?: string;
 	/**
    * Callback fired when the state is changed.
    *
@@ -77,7 +78,8 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 				opacity: 1,
 			}}
 			control={
-				<Switch 
+				<Switch
+					name={props?.label}
 					checked={props?.checked} 
 					onChange={props?.onChange}
 					disabled={props?.disabled}
@@ -133,7 +135,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					}}
 				/>
 			}
-			label={props?.name}
+			label={props?.label}
 		/>
 	)
 })((props: InnerStyledProps) => ({}));
