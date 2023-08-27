@@ -15,11 +15,11 @@ export function TypographyCompo(props: any) {
 	const [typographyVariant, setTypographyVariant] = React.useState<"h1" | "body1" | "body2" | "body3" | undefined>("h1");
 
 	const TypographyCode = `function TypographyCompo(props: any) {
-    return (
-      <Typography${typographyVariant !== undefined ? ` variant=${typographyVariant}` : ""}>
-        ${text !== "" ? `${text}` : ""}
-      </Typography>
-    )
+  return (
+    <Typography${typographyVariant !== undefined ? ` variant=${typographyVariant}` : ""}>
+      ${text !== "" ? `${text}` : ""}
+    </Typography>
+  )
 }`;
 
 	const itemList = new Map();
