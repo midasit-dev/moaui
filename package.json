@@ -39,7 +39,9 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "pretendard": "^1.3.8"
+    "@types/react-syntax-highlighter": "^15.5.7",
+    "pretendard": "^1.3.8",
+    "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
