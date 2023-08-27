@@ -52,7 +52,7 @@ export function TypographyCompo(props: any) {
 			}}
 			display={"flex"}
 			width={"70%"}
-			height={"45rem"}
+			height={"22rem"}
 			justifyContent={"center"}
 			flexDirection={"column"}
 		>
@@ -62,7 +62,7 @@ export function TypographyCompo(props: any) {
 					justifyContent={"center"}
 					alignItems={"center"}
 					width={"70%"}
-					height="23rem"
+					height="8rem"
 				>
 					<Typography variant={typographyVariant as "h1" | "body1" | "body2" | "body3" | undefined}>{text}</Typography>
 				</Box>
@@ -72,7 +72,7 @@ export function TypographyCompo(props: any) {
 					justifyContent={"center"}
 					alignItems={"left"}
 					width={"30%"}
-					height="23rem"
+					height="8rem"
 					flexDirection={"column"}
 				>
 					<MUITypography
