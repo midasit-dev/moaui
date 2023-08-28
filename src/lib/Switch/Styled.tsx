@@ -6,14 +6,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 export type StyledProps = {
 	/**
-   * If `true`, the component is checked.
-   */
+	 * If `true`, the component is checked.
+	 */
 	checked?: boolean;
 	/**
 	 * The label of the component.
 	 * It is displayed right of the component.
 	 */
-  label?: string;
+	label?: string;
 	/**
    * Callback fired when the state is changed.
    *
