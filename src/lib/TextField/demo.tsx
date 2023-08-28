@@ -14,16 +14,16 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import MuiTextField from '@mui/material/TextField';
 
-const widthList = [{value: "100%", label: "100%"}, {value: "50%", label: "50%"}, {value: "40px", label: "40px"}, {value: "auto", label: "auto"}, {value: "5rem", label: "5rem"}]
+const widthList = [{ value: "100%", label: "100%" }, { value: "50%", label: "50%" }, { value: "40px", label: "40px" }, { value: "auto", label: "auto" }, { value: "5rem", label: "5rem" }]
 
-export function TextFieldCompo(props: any){
+export function TextFieldCompo(props: any) {
 	const [titlePosition, setTitlePosition] = React.useState<"left" | "right" | "label" | undefined>("left");
 	const [textFieldWidth, setTextFieldWidth] = React.useState("auto");
-  const [inputValue, setInputValue] = React.useState('');
-  const [disableChecked, setDisableChecked] = React.useState(false);
-  const [errorChecked, setErrorChecked] = React.useState(false);
-  const [title, setTitle] = React.useState('');
-  const [placeholder, setPlaceholder] = React.useState('Text Field');
+	const [inputValue, setInputValue] = React.useState('');
+	const [disableChecked, setDisableChecked] = React.useState(false);
+	const [errorChecked, setErrorChecked] = React.useState(false);
+	const [title, setTitle] = React.useState('');
+	const [placeholder, setPlaceholder] = React.useState('Text Field');
 	const [defaultValue, setDefaultValue] = React.useState("");
 	const [textFieldValue, setTextFieldValue] = React.useState("");
 
@@ -53,13 +53,13 @@ export function TextFieldCompo(props: any){
 		setTitlePosition(event.target.value);
 	}
 
-  function onChangeWidthHandler(event: any, newValue: string | null) {
-    setTextFieldWidth(newValue as string);
-  }
+	function onChangeWidthHandler(event: any, newValue: string | null) {
+		setTextFieldWidth(newValue as string);
+	}
 
-  function onChangeTitleHandler(event: any) {
-    setTitle(event.target.value);
-  }
+	function onChangeTitleHandler(event: any) {
+		setTitle(event.target.value);
+	}
 
 	function onChangePlaceholderHandler(event: any) {
 		setPlaceholder(event.target.value);
@@ -75,14 +75,15 @@ export function TextFieldCompo(props: any){
 		setTextFieldValue(event.target.value);
 	}
 
-  const handleDisableChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDisableChecked(event.target.checked);
-  };
+	const handleDisableChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setDisableChecked(event.target.checked);
+	};
 
 	const handleErrorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setErrorChecked(event.target.checked);
-  };
-	
+		setErrorChecked(event.target.checked);
+	};
+
+
 	return (
 		<Box
 			sx={{
@@ -137,7 +138,7 @@ export function TextFieldCompo(props: any){
 						/>
 					}
 				</Box>
-				<Divider orientation="vertical" flexItem sx={{ mr: 2, ml:2 }} />
+				<Divider orientation="vertical" flexItem sx={{ mr: 2, ml: 2 }} />
 				<Box
 					display={"flex"}
 					justifyContent={"center"}
@@ -157,7 +158,7 @@ export function TextFieldCompo(props: any){
 					>
 						placeholder
 					</Typography>
-					<TextField width="100%" placeholder="placeholder" onChange={onChangePlaceholderHandler} value={placeholder}/>
+					<TextField width="100%" placeholder="placeholder" onChange={onChangePlaceholderHandler} value={placeholder} />
 					<Typography
 						sx={{
 							fontWeight: "bold",
@@ -169,7 +170,19 @@ export function TextFieldCompo(props: any){
 					>
 						defaultValue
 					</Typography>
-					<TextField width="100%" placeholder="defaultValue" onChange={onChangeDefaultValueHandler} value={defaultValue}/>
+					<TextField width="100%" placeholder="defaultValue" onChange={onChangeDefaultValueHandler} value={defaultValue} />
+					<Typography
+						sx={{
+							fontWeight: "bold",
+							mt: 1,
+							fontFamily: Font.fontFamily,
+						}}
+						variant="caption"
+						gutterBottom
+					>
+						value
+					</Typography>
+					<TextField width="100%" placeholder="value" onChange={onChangeTextFieldHandler} value={textFieldValue} />
 					<Typography
 						sx={{
 							fontWeight: "bold",
@@ -181,7 +194,7 @@ export function TextFieldCompo(props: any){
 					>
 						title
 					</Typography>
-					<TextField width="100%" placeholder="title" onChange={onChangeTitleHandler} value={title}/>
+					<TextField width="100%" placeholder="title" onChange={onChangeTitleHandler} value={title} />
 					<Typography
 						sx={{
 							fontWeight: "bold",
@@ -252,7 +265,7 @@ export function TextFieldCompo(props: any){
 						}}
 						ListboxComponent={List}
 						renderOption={(props, option) => {
-							return(
+							return (
 								<Box display={"flex"} justifyContent={"center"}>
 									<ListItem
 										{...props}
@@ -273,7 +286,7 @@ export function TextFieldCompo(props: any){
 							)
 						}}
 					/>
-					<Box sx={{mt:1}}>
+					<Box sx={{ mt: 1 }}>
 						<Typography
 							sx={{
 								fontWeight: "bold",
@@ -293,7 +306,7 @@ export function TextFieldCompo(props: any){
 							size="small"
 						/>
 					</Box>
-					<Box sx={{mt:1}}>
+					<Box sx={{ mt: 1 }}>
 						<Typography
 							sx={{
 								fontWeight: "bold",
@@ -325,12 +338,12 @@ export function TextFieldCompo(props: any){
 	)
 }
 
-export default function TextFieldWrapper(props: any){	
-	return(
+export default function TextFieldWrapper(props: any) {
+	return (
 		<Box display={"flex"} width={"100%"} flexDirection={"column"}>
-      <Box justifyContent={"center"} display={"flex"} width={"100%"}>
-        <TextFieldCompo />
-      </Box>
-    </Box>
+			<Box justifyContent={"center"} display={"flex"} width={"100%"}>
+				<TextFieldCompo />
+			</Box>
+		</Box>
 	)
 }
