@@ -11,7 +11,7 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import MUISwitch from "@mui/material/Switch";
 
-export function SwitchCompo(props: any) {
+export function SwitchCompo() {
   const [label, setLabel] = React.useState("MoaSwitch");
   const [disableChecked, setDisableChecked] = React.useState(false);
   const [checked, setChecked] = React.useState(true);
@@ -150,7 +150,7 @@ export function SwitchCompo(props: any) {
   );
 }
 
-export default function SwitchWrapper(props: any) {
+export default function SwitchWrapper() {
   return (
     <Box display={"flex"} width={"100%"} flexDirection={"column"}>
       <Box justifyContent={"center"} display={"flex"} width={"100%"}>
