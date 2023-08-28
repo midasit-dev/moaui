@@ -18,6 +18,7 @@ type FontStyleObject = {
 	 */
 	lineHeight: string;
 }
+
 class FontStyle {
 	static selector(variant: string): FontStyleObject {
 		switch ( variant )
@@ -90,6 +91,7 @@ export type StyledProps = {
 	 */
 	color: 'primary' | 'secondary' | 'third' | 'disable';
 }
+
 const StyledComponent = styled((props: StyledProps) => {
 	return (
 		<Typography 
@@ -105,7 +107,6 @@ const StyledComponent = styled((props: StyledProps) => {
 })(({theme}) => ({
 	display: "flex",
 	fontFeatureSettings: "'clig' off, 'liga' off",
-	
 }));
 
 export default StyledComponent;
