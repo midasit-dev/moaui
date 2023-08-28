@@ -4,31 +4,32 @@ import DropList from "../DropList";
 import TextField from "../TextField";
 import CodeComponent from "../CodeBlock";
 import Font from "../Font";
+import { type StyledProps } from "./Styled";
 // MUI
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import MUITypography from "@mui/material/Typography";
 
+const itemList = new Map();
+itemList.set("h1", "h1");
+itemList.set("body1", "body1");
+itemList.set("body2", "body2");
+itemList.set("body3", "body3");
+
 export function TypographyCompo() {
   const [text, setText] = React.useState("MoaTypography");
-  const [typographyVariant, setTypographyVariant] = React.useState<"h1" | "body1" | "body2" | "body3" | undefined>("h1");
+  const [typographyVariant, setTypographyVariant] = React.useState<StyledProps["variant"]>("h1");
 
   const TypographyCode = `function TypographyCompo(props: any) {
   return (
     <Typography${
-      typographyVariant !== undefined ? ` variant=${typographyVariant}` : ""
+      typographyVariant !== undefined ? ` variant="${typographyVariant}"` : ""
     }>
       ${text !== "" ? `${text}` : ""}
     </Typography>
   )
 }`;
-
-  const itemList = new Map();
-  itemList.set("h1", "h1");
-  itemList.set("body1", "body1");
-  itemList.set("body2", "body2");
-  itemList.set("body3", "body3");
 
   function onChangeTitleHandler(event: any) {
     setText(event.target.value);
@@ -66,12 +67,7 @@ export function TypographyCompo() {
         >
           <Typography
             variant={
-              typographyVariant as
-                | "h1"
-                | "body1"
-                | "body2"
-                | "body3"
-                | undefined
+              typographyVariant as StyledProps["variant"]
             }
           >
             {text}
