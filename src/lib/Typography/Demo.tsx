@@ -26,7 +26,7 @@ export function TypographyCompo() {
     <Typography${
       typographyVariant !== undefined ? ` variant="${typographyVariant}"` : ""
     }>
-      ${text !== "" ? `${text}` : ""}
+		  ${text}
     </Typography>
   )
 }`;
