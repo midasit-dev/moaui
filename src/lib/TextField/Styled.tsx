@@ -102,11 +102,6 @@ const StyledComponent = styled((props:StyledProps) => {
 					//text
 					color: Color.text.secondary,
 					fontFeatureSettings: Font.fontFeatureSettings,
-					fontFamily: Font.fontFamily,
-					fontSize: "0.75rem",
-					fontStyle: "normal",
-					fontWeight: 400,
-					lineHeight: "0.875rem",
 				}
 			}}
 			placeholder={props?.placeholder}

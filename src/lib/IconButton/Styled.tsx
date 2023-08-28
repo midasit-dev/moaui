@@ -30,11 +30,7 @@ const StyledComponent = styled(IconButton)(({theme}) => ({
 	color: Color.text.primary,
 	textAlign: "center",
 	fontFeatureSettings: "'clig' off, 'liga' off",
-	fontFamily: "Pretendard",
-	fontSize: "0.75rem",
-	fontStyle: "normal",
 	fontWeight: 500,
-	lineHeight: "0.875rem",
 	textTransform: "none",
 }))
 

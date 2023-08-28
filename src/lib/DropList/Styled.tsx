@@ -83,12 +83,6 @@ const StyledComponent = styled((props:StyledProps) => {
 							//font
 							color: Color.text.secondary,
 							fontFeatureSettings: Font.fontFeatureSettings,
-							/* body1 */
-							fontFamily: Font.fontFamily,
-							fontSize: "0.75rem",
-							fontStyle: "normal",
-							fontWeight: 400,
-							lineHeight: "0.875rem",
 						},
 						height: "1.75rem",
 					}}
@@ -110,12 +104,6 @@ const StyledComponent = styled((props:StyledProps) => {
 										//font
 										color: Color.text.secondary,
 										fontFeatureSettings: Font.fontFeatureSettings,
-										/* body1 */
-										fontFamily: Font.fontFamily,
-										fontSize: "0.75rem",
-										fontStyle: "normal",
-										fontWeight: 400,
-										lineHeight: "0.875rem", /* 116.667% */
 									}}
 								>
 									{itemMap.get(key)}
@@ -137,12 +125,6 @@ const StyledComponent = styled((props:StyledProps) => {
 									//font
 									color: Color.text.secondary,
 									fontFeatureSettings: Font.fontFeatureSettings,
-									/* body1 */
-									fontFamily: Font.fontFamily,
-									fontSize: "0.75rem",
-									fontStyle: "normal",
-									fontWeight: 400,
-									lineHeight: "0.875rem",
 									'&.Mui-selected':{
 										backgroundColor: `${Color.primary.enable_strock}!important`,
 									},
