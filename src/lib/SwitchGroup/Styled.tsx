@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import FormGroup from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
 import Typography from '../Typography';
@@ -23,4 +24,9 @@ const StyledComponent = styled((props: StyledProps) => {
 
 })(({theme}) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

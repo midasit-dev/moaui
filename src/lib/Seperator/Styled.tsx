@@ -1,8 +1,9 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import Divider from '@mui/material/Divider';
 import Color from '../Color';
 
-export type MoaSeperatorProps = {
+export type StyledProps = {
 	/**
 	 * The component orientation.
 	 * @defaultValue "horizontal"
@@ -17,7 +18,7 @@ export type MoaSeperatorProps = {
 	direction?: "horizontal" | "vertical"
 }
 
-const MoaSeperator= styled((props:MoaSeperatorProps) => {
+const StyledComponent = styled((props:StyledProps) => {
 	const {direction} = props;
 	return(
 		<Divider
@@ -35,4 +36,9 @@ const MoaSeperator= styled((props:MoaSeperatorProps) => {
 
 }))
 
-export default MoaSeperator;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

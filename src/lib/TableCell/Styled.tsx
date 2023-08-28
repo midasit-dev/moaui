@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import TableCell from '@mui/material/TableCell';
 
 export type StyledProps = {
@@ -83,4 +84,9 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	)
 })((props: InnerStyledProps) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

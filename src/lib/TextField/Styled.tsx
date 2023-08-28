@@ -1,10 +1,10 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import TextField from '@mui/material/TextField';
 import Color from '../Color';
 import Font from '../Font';
 
-
-export type MoaTextFieldProps = {
+export type StyledProps = {
 	/**
 	 * This is the placeholder attached to the textfield.
 	 * @defaultValue ""
@@ -65,7 +65,7 @@ export type MoaTextFieldProps = {
 	width?: string,
 }
 
-const MoaTextField = styled((props:MoaTextFieldProps) => {
+const StyledComponent = styled((props:StyledProps) => {
 	return(
 		<TextField
 			onChange={props?.onChange}
@@ -117,4 +117,9 @@ const MoaTextField = styled((props:MoaTextFieldProps) => {
 	fullWidth: true,
 }))
 
-export default MoaTextField;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

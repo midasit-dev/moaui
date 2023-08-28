@@ -1,4 +1,4 @@
-import MoaButton, { type MoabuttonProps } from "./Styled";
+import StyledComponent, { type StyledProps } from "./Styled";
 
 Moabutton.defaultProps = {
 	children: "Button",
@@ -8,9 +8,9 @@ Moabutton.defaultProps = {
 	width: "auto"
 }
 
-function Moabutton(props: MoabuttonProps) : React.ReactElement {	
+function Moabutton(props: StyledProps) : React.ReactElement {	
 	return (
-		<MoaButton {...props} />
+		<StyledComponent {...props} />
 	)
 }
 

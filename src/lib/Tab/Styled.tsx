@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import Tab from '@mui/material/Tab';
 import Color from "../Color";
 import Font from "../Font";
@@ -47,4 +48,9 @@ const StyledComponent = styled((props: StyledProps) => {
 	)
 })(({theme}) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

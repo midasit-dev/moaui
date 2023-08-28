@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import RadioGroup, {RadioGroupProps} from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import MoaTypography from '../Typography';
@@ -55,4 +56,9 @@ const StyledComponent = styled((props: StyledProps) => {
 
 })(({theme}) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

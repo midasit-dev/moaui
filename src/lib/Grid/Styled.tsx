@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import Grid, { GridProps } from '@mui/material/Grid';
 
 export interface StyledProps extends GridProps {
@@ -16,4 +17,9 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	)
 })((props: InnerStyledProps) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

@@ -1,5 +1,5 @@
 import React from "react";
-import MoaTextField, {type  MoaTextFieldProps} from "./Styled";
+import MoaTextField, {type StyledProps} from "./Styled";
 import MoaStack from "../Stack";
 import MoaTypography from "../Typography";
 
@@ -15,10 +15,10 @@ MoaTextfield.defaultProps = {
  * @returns {React.ReactElement} moaTextField
  */
 
-function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
+function MoaTextfield(props: StyledProps) : React.ReactElement {
 	const {title, titlePosition, ...rest} = props;
 
-	const boxStyle = React.useCallback((position: MoaTextFieldProps["titlePosition"]) => {
+	const boxStyle = React.useCallback((position: StyledProps["titlePosition"]) => {
 		if(position === "left")
 			return {
 				display: "inline-flex", alignItems:"center", gap:"0.25rem"

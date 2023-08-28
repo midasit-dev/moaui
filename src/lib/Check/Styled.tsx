@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import MoaStyledComponent from "../MoaStyled";
 import Color from "../Color";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -126,4 +127,9 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
   );
 })((props: InnerStyledProps) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

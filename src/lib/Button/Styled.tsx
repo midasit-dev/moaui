@@ -1,10 +1,11 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from '../MoaStyled';
 import Button from '@mui/material/Button';
 import Color from "../Color";
 import Font from "../Font";
 import React from 'react';
 
-export type MoabuttonProps = {
+export type StyledProps = {
 	children: string,
 	onClick?: () => void,
 	/**
@@ -44,7 +45,7 @@ export type MoabuttonProps = {
 }
 
 
-const MoaButton = styled((props:MoabuttonProps) => {
+const StyledComponent = styled((props:StyledProps) => {
 	const commonButtonProps = {
 		disableFocusRipple:true,
 		disableRipple:true,
@@ -72,7 +73,7 @@ const MoaButton = styled((props:MoabuttonProps) => {
 		textTransform: "none",
 	}
 
-	function CustomButtonStyleByVariant (props:MoabuttonProps) : React.ReactElement {
+	function CustomButtonStyleByVariant (props:StyledProps) : React.ReactElement {
 		if(props?.variant === "contained") {
 			return (
 				<Button
@@ -185,4 +186,10 @@ const MoaButton = styled((props:MoabuttonProps) => {
 })
 (({theme}) => ({}))
 
-export default MoaButton;
+
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;
