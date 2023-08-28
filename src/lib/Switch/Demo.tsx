@@ -50,8 +50,8 @@ export function SwitchCompo(props: any){
 				border: "1px solid #95d6fc",
 				paddingRight: "1rem",
 				paddingLeft: "1rem",
-				paddingTop: "0rem",
-				paddingBottom: "0rem",
+				paddingTop: "1rem",
+				paddingBottom: "1rem",
 				backgroundColor: "#FFFFFF",
 				mt: 2,
 				mb: 2,
@@ -60,7 +60,6 @@ export function SwitchCompo(props: any){
 			}}
 			display={"flex"}
 			width={"70%"}
-			height={"26rem"}
 			justifyContent={"center"}
 			flexDirection={"column"}
 		>
@@ -70,18 +69,14 @@ export function SwitchCompo(props: any){
 					justifyContent={"center"}
 					alignItems={"center"}
 					width={"70%"}
-					height="8rem"
 				>
 					<Switch	label={label} checked={checked} disabled={disableChecked} onChange={onChangeMoaSwitchHandler}/>
 				</Box>
 				<Divider orientation="vertical" flexItem sx={{ mr: 2, ml:2 }} />
-				<Box
-					display={"flex"}
+				<Stack
 					justifyContent={"center"}
 					alignItems={"left"}
 					width={"30%"}
-					height="8rem"
-					flexDirection={"column"}
 				>
 					<Typography
 						sx={{
@@ -135,7 +130,7 @@ export function SwitchCompo(props: any){
 							size="small"
 						/>
 					</Box>
-				</Box>
+				</Stack>
 			</Stack>
 			<Box sx={{ mt: 2 }}>
 				<CodeComponent
