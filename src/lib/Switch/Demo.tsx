@@ -13,9 +13,9 @@ import MUISwitch from '@mui/material/Switch';
 
 export function SwitchCompo(props: any){
 	const [label, setLabel] = React.useState("MoaSwitch");
-  const [disableChecked, setDisableChecked] = React.useState(false);
+	const [disableChecked, setDisableChecked] = React.useState(false);
 	const [checked, setChecked] = React.useState(true);
-
+	
 	const SwitchCode = `function SwitchCompo(props: any) {
   function onChangeExampleHandler(event: any) {
     //do something
@@ -28,18 +28,18 @@ export function SwitchCompo(props: any){
   )
 }`;
 
-  function onChangelabelHandler(event: any) {
+	function onChangelabelHandler(event: any) {
     setLabel(event.target.value);
   }
-
+	
 	function onChangeMoaSwitchHandler(event: any) {
 		setChecked(event.target.checked);
 	}
-
-  const handleDisableChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	
+	const handleDisableChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDisableChecked(event.target.checked);
   };
-
+	
 	const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
@@ -147,12 +147,12 @@ export function SwitchCompo(props: any){
 	)
 }
 
-export default function SwitchWrapper(props: any){	
+export default function SwitchWrapper(props: any){
 	return(
 		<Box display={"flex"} width={"100%"} flexDirection={"column"}>
-      <Box justifyContent={"center"} display={"flex"} width={"100%"}>
-        <SwitchCompo />
-      </Box>
-    </Box>
+			<Box justifyContent={"center"} display={"flex"} width={"100%"}>
+				<SwitchCompo />
+			</Box>
+		</Box>
 	)
 }
