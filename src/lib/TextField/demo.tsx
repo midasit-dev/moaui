@@ -100,7 +100,6 @@ export function TextFieldCompo(props: any) {
 			}}
 			display={"flex"}
 			width={"70%"}
-			height={"47rem"}
 			justifyContent={"center"}
 			flexDirection={"column"}
 		>
@@ -110,7 +109,6 @@ export function TextFieldCompo(props: any) {
 					justifyContent={"center"}
 					alignItems={"center"}
 					width={"70%"}
-					height="25rem"
 				>
 					{
 						(showDefaultValue || !showTextFieldValue) && 
@@ -139,13 +137,11 @@ export function TextFieldCompo(props: any) {
 					}
 				</Box>
 				<Divider orientation="vertical" flexItem sx={{ mr: 2, ml: 2 }} />
-				<Box
-					display={"flex"}
+				<Stack
 					justifyContent={"center"}
 					alignItems={"left"}
 					width={"30%"}
-					height="23rem"
-					flexDirection={"column"}
+					direction="column"
 				>
 					<Typography
 						sx={{
@@ -326,7 +322,7 @@ export function TextFieldCompo(props: any) {
 							size="small"
 						/>
 					</Box>
-				</Box>
+				</Stack>
 			</Stack>
 			<Box sx={{ mt: 2 }}>
 				<CodeComponent
