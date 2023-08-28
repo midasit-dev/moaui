@@ -9,7 +9,7 @@ import TextField from "../TextField";
 import Font from "../Font";
 import Switch from '@mui/material/Switch';
 
-export function CheckCompo(props: any) {
+export function CheckCompo() {
 	const [checkName, setCheckName] = React.useState("MoaCheck");
 	const [ariaLabel, setAriaLabel] = React.useState("MoaCheck-aria-label");
   const [disableChecked, setDisableChecked] = React.useState(false);
@@ -18,15 +18,18 @@ export function CheckCompo(props: any) {
 	const [required, setRequired] = React.useState(false);
 	const [indeterminate, setIndeterminate] = React.useState(false);
 
+	const isControlled = Boolean(checked !== undefined && defaultChecked === false);
+	const isUncontrolled = Boolean(defaultChecked !== false);
+
 	const CheckCode = `function CheckCompo(props: any) {
   function onChangeExampleHandler(event: any) {
     //do something
   }
 
   return (
-    <Check onChange={onChangeExampleHandler}${checkName !== "" ? ` name="${checkName}"` : ""}${defaultChecked !== false ? ` defaultChecked={${defaultChecked}}` : ""}
-    ${checked !== undefined ? ` checked={${checked}}` : ""}${required !== false ? ` required={${required}}` : ""}${indeterminate !== false ? ` indeterminate={${indeterminate}}` : ""}${disableChecked !== false ? ` disabled={${disableChecked}}` : ""}
-    ${ariaLabel !== "" ? ` ariaLabel="${ariaLabel}"` : ""}
+    <Check onChange={onChangeExampleHandler}${isControlled ? ` checked={${checked}}` : ""}${isUncontrolled ? ` defaultChecked={${defaultChecked}}` : ""}
+    ${checkName !== "" ? `name="${checkName}"` : ""}${required !== false ? ` required={${required}}` : ""}${indeterminate !== false ? ` indeterminate={${indeterminate}}` : ""}${disableChecked !== false ? ` disabled={${disableChecked}}` : ""}
+    ${ariaLabel !== "" ? `ariaLabel="${ariaLabel}"` : ""}
     />
   )
 }
@@ -49,14 +52,16 @@ export function CheckCompo(props: any) {
 	};
 
 	const handleDefaultCheckedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setChecked(false);
 		setDefaultChecked(event.target.checked);
 	}
 
 	const handleCheckedChange = (checked: boolean | undefined) => {
 		setChecked(checked || false);
 	}
-
+	
 	const handleCheckedChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setDefaultChecked(false);
 		setChecked(event.target.checked);
 	}
 
@@ -69,182 +74,203 @@ export function CheckCompo(props: any) {
 	}
 
 	return (
-		<Box
-			sx={{
-				border: "1px solid #95d6fc",
-				paddingRight: "1rem",
-				paddingLeft: "1rem",
-				paddingTop: "0rem",
-				paddingBottom: "0rem",
-				backgroundColor: "#FFFFFF",
-				mt: 2,
-				mb: 2,
-				borderRadius: 5,
-				boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
-			}}
-			display={"flex"}
-			width={"70%"}
-			height={"37rem"}
-			justifyContent={"center"}
-			flexDirection={"column"}
-		>
-			<Stack direction={"row"}>
-				<Box
-					display={"flex"}
-					justifyContent={"center"}
-					alignItems={"center"}
-					width={"70%"}
-					height="17rem"
-				>
-					<Check
-						defaultChecked={true}
-						onChange={(event, checked) => handleCheckedChange(checked)}
-						required={required}
-						checked={checked}
-						disabled={disableChecked}
-						name={checkName}
-						ariaLabel={ariaLabel}
-						indeterminate={indeterminate}
-					/>
-				</Box>
-				<Divider orientation="vertical" flexItem sx={{ mr: 2, ml:2 }} />
-				<Box
-					display={"flex"}
-					justifyContent={"center"}
-					alignItems={"left"}
-					width={"30%"}
-					height="17rem"
-					flexDirection={"column"}
-				>
-					<Typography
-						sx={{ fontWeight: "bold", m: 0, fontFamily: Font.fontFamily }}
-						variant="caption"
-						gutterBottom
-					>
-						name
-					</Typography>
-					<TextField width="100%" placeholder="name" onChange={onChangeNameHandler} value={checkName}/>
-					<Typography
-						sx={{ fontWeight: "bold", mt: 1, fontFamily: Font.fontFamily }}
-						variant="caption"
-						gutterBottom
-					>
-						ariaLabel
-					</Typography>
-					<TextField width="100%" placeholder="ariaLabel" onChange={onChangeAriaLabelHandler} value={ariaLabel}/>
-					<Box sx={{mt:1}}>
-						<Typography
-							sx={{
-								fontWeight: "bold",
-								mt: 1,
-								fontFamily: Font.fontFamily,
-							}}
-							variant="caption"
-							gutterBottom
-						>
-							defaultChecked
-						</Typography>
-						<Switch
-							sx={{ float: "right" }}
-							checked={defaultChecked}
-							onChange={handleDefaultCheckedChange}
-							inputProps={{ 'aria-label': 'controlled-defaultChecked' }}
-							size="small"
-						/>
-					</Box>
-					<Box sx={{mt:1}}>
-						<Typography
-							sx={{
-								fontWeight: "bold",
-								mt: 1,
-								fontFamily: Font.fontFamily,
-							}}
-							variant="caption"
-							gutterBottom
-						>
-							checked
-						</Typography>
-						<Switch
-							sx={{ float: "right" }}
-							checked={checked}
-							onChange={handleCheckedChange2}
-							inputProps={{ 'aria-label': 'controlled-defaultChecked' }}
-							size="small"
-						/>
-					</Box>
-					<Box sx={{mt:1}}>
-						<Typography
-							sx={{
-								fontWeight: "bold",
-								mt: 1,
-								fontFamily: Font.fontFamily,
-							}}
-							variant="caption"
-							gutterBottom
-						>
-							required
-						</Typography>
-						<Switch
-							sx={{ float: "right" }}
-							checked={required}
-							onChange={handleRequiredChange}
-							inputProps={{ 'aria-label': 'controlled-required' }}
-							size="small"
-						/>
-					</Box>
-					<Box sx={{mt:1}}>
-						<Typography
-							sx={{
-								fontWeight: "bold",
-								mt: 1,
-								fontFamily: Font.fontFamily,
-							}}
-							variant="caption"
-							gutterBottom
-						>
-							indeterminate
-						</Typography>
-						<Switch
-							sx={{ float: "right" }}
-							checked={indeterminate}
-							onChange={handleIndeterminateChange}
-							inputProps={{ 'aria-label': 'controlled-indeterminate' }}
-							size="small"
-						/>
-					</Box>
-					<Box sx={{mt:1}}>
-						<Typography
-							sx={{
-								fontWeight: "bold",
-								mt: 1,
-								fontFamily: Font.fontFamily,
-							}}
-							variant="caption"
-							gutterBottom
-						>
-							disabled
-						</Typography>
-						<Switch
-							sx={{ float: "right" }}
-							checked={disableChecked}
-							onChange={handleDisableChange}
-							inputProps={{ 'aria-label': 'controlled-disabled' }}
-							size="small"
-						/>
-					</Box>
-				</Box>
-			</Stack>
-			<Box sx={{ mt: 2 }}>
-				<CodeComponent
-					language="typescript"
-					children={String(CheckCode).replace(/\n$/, "")}
-				/>
-			</Box>
-		</Box>
-	)
+    <Box
+      sx={{
+        border: "1px solid #95d6fc",
+        paddingRight: "1rem",
+        paddingLeft: "1rem",
+        paddingTop: "0rem",
+        paddingBottom: "0rem",
+        backgroundColor: "#FFFFFF",
+        mt: 2,
+        mb: 2,
+        borderRadius: 5,
+        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+      }}
+      display={"flex"}
+      width={"70%"}
+      height={"37rem"}
+      justifyContent={"center"}
+      flexDirection={"column"}
+    >
+      <Stack direction={"row"}>
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          width={"70%"}
+          height="17rem"
+        >
+          {isControlled && isUncontrolled === false && (
+            <Check
+              onChange={(event, checked) => handleCheckedChange(checked)}
+              required={required}
+              checked={checked}
+              disabled={disableChecked}
+              name={checkName}
+              ariaLabel={ariaLabel}
+              indeterminate={indeterminate}
+            />
+          )}
+          {isControlled === false && isUncontrolled && (
+            <Check
+              defaultChecked={defaultChecked}
+              required={required}
+              disabled={disableChecked}
+              name={checkName}
+              ariaLabel={ariaLabel}
+              indeterminate={indeterminate}
+            />
+          )}
+        </Box>
+        <Divider orientation="vertical" flexItem sx={{ mr: 2, ml: 2 }} />
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"left"}
+          width={"30%"}
+          height="17rem"
+          flexDirection={"column"}
+        >
+          <Typography
+            sx={{ fontWeight: "bold", m: 0, fontFamily: Font.fontFamily }}
+            variant="caption"
+            gutterBottom
+          >
+            name
+          </Typography>
+          <TextField
+            width="100%"
+            placeholder="name"
+            onChange={onChangeNameHandler}
+            value={checkName}
+          />
+          <Typography
+            sx={{ fontWeight: "bold", mt: 1, fontFamily: Font.fontFamily }}
+            variant="caption"
+            gutterBottom
+          >
+            ariaLabel
+          </Typography>
+          <TextField
+            width="100%"
+            placeholder="ariaLabel"
+            onChange={onChangeAriaLabelHandler}
+            value={ariaLabel}
+          />
+          <Box sx={{ mt: 1 }}>
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                mt: 1,
+                fontFamily: Font.fontFamily,
+              }}
+              variant="caption"
+              gutterBottom
+            >
+              defaultChecked
+            </Typography>
+            <Switch
+              sx={{ float: "right" }}
+              checked={defaultChecked}
+              onChange={handleDefaultCheckedChange}
+              inputProps={{ "aria-label": "controlled-defaultChecked" }}
+              size="small"
+            />
+          </Box>
+          <Box sx={{ mt: 1 }}>
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                mt: 1,
+                fontFamily: Font.fontFamily,
+              }}
+              variant="caption"
+              gutterBottom
+            >
+              checked
+            </Typography>
+            <Switch
+              sx={{ float: "right" }}
+              checked={checked}
+              onChange={handleCheckedChange2}
+              inputProps={{ "aria-label": "controlled-defaultChecked" }}
+              size="small"
+            />
+          </Box>
+          <Box sx={{ mt: 1 }}>
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                mt: 1,
+                fontFamily: Font.fontFamily,
+              }}
+              variant="caption"
+              gutterBottom
+            >
+              required
+            </Typography>
+            <Switch
+              sx={{ float: "right" }}
+              checked={required}
+              onChange={handleRequiredChange}
+              inputProps={{ "aria-label": "controlled-required" }}
+              size="small"
+            />
+          </Box>
+          <Box sx={{ mt: 1 }}>
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                mt: 1,
+                fontFamily: Font.fontFamily,
+              }}
+              variant="caption"
+              gutterBottom
+            >
+              indeterminate
+            </Typography>
+            <Switch
+              sx={{ float: "right" }}
+              checked={indeterminate}
+              onChange={handleIndeterminateChange}
+              inputProps={{ "aria-label": "controlled-indeterminate" }}
+              size="small"
+            />
+          </Box>
+          <Box sx={{ mt: 1 }}>
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                mt: 1,
+                fontFamily: Font.fontFamily,
+              }}
+              variant="caption"
+              gutterBottom
+            >
+              disabled
+            </Typography>
+            <Switch
+              sx={{ float: "right" }}
+              checked={disableChecked}
+              onChange={handleDisableChange}
+              inputProps={{ "aria-label": "controlled-disabled" }}
+              size="small"
+            />
+          </Box>
+        </Box>
+      </Stack>
+      <Box sx={{ mt: 2 }}>
+        <CodeComponent
+          language="typescript"
+          children={String(CheckCode).replace(/\n$/, "")}
+        />
+      </Box>
+    </Box>
+  );
 }
 
-export default function ButtonCompo(props: any) {
+export default function ButtonCompo() {
 	
 	return (
     <Box display={"flex"} width={"100%"} flexDirection={"column"}>
