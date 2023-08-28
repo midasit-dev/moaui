@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import MUITypography from "@mui/material/Typography";
 
-export function TypographyCompo(props: any) {
+export function TypographyCompo() {
   const [text, setText] = React.useState("MoaTypography");
   const [typographyVariant, setTypographyVariant] = React.useState<"h1" | "body1" | "body2" | "body3" | undefined>("h1");
 
