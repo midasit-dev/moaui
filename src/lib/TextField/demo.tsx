@@ -24,17 +24,21 @@ export function TextFieldCompo(props: any){
   const [errorChecked, setErrorChecked] = React.useState(false);
   const [title, setTitle] = React.useState('');
   const [placeholder, setPlaceholder] = React.useState('Text Field');
-  const [defaultValue, setDefaultValue] = React.useState('');
-  const [textFieldValue, setTextFieldValue] = React.useState('');
+	const [defaultValue, setDefaultValue] = React.useState("");
+	const [textFieldValue, setTextFieldValue] = React.useState("");
+
+	const showDefaultValue = Boolean(defaultValue !== "");
+	const showTextFieldValue = Boolean(textFieldValue !== "");
 
 	const TextFieldCode = `function TextFieldCompo(props: any) {
-    function onChangeExampleHandler(event: any) {
-      //do something
-    }
-	
+	${showTextFieldValue ? `const [textFieldValue, setTextFieldValue] = React.useState("${textFieldValue}");
+	function onChangeExampleHandler(event: any) {
+		//do something
+		}
+	` : ""}
     return (
       <TextField onChange={onChangeExampleHandler}${placeholder !== "" ? ` placeholder="${placeholder}"` : ""}
-        ${defaultValue !== "" ? ` defaultValue="${defaultValue}"` : ""}${title !== "" ? ` title="${title}"` : ""}${titlePosition !== undefined ? ` titlePosition="${titlePosition}"` : ""}${textFieldValue !== "" ? ` value="${textFieldValue}"` : ""}
+        ${showDefaultValue ? ` defaultValue="${defaultValue}"` : ""}${title !== "" ? ` title="${title}"` : ""}${titlePosition !== undefined ? ` titlePosition="${titlePosition}"` : ""}${textFieldValue !== "" ? ` value="${textFieldValue}"` : ""}
         ${textFieldWidth !== "" ? ` width="${textFieldWidth}"` : ""}${disableChecked !== false ? ` disabled={${disableChecked}}` : ""}${errorChecked !== false ? ` error={${errorChecked}}` : ""}
       />
     )
@@ -62,10 +66,12 @@ export function TextFieldCompo(props: any){
 	}
 
 	function onChangeDefaultValueHandler(event: any) {
+		setTextFieldValue("");
 		setDefaultValue(event.target.value);
 	}
 
 	function onChangeTextFieldHandler(event: any) {
+		setDefaultValue("");
 		setTextFieldValue(event.target.value);
 	}
 
@@ -93,7 +99,7 @@ export function TextFieldCompo(props: any){
 			}}
 			display={"flex"}
 			width={"70%"}
-			height={"45rem"}
+			height={"47rem"}
 			justifyContent={"center"}
 			flexDirection={"column"}
 		>
@@ -103,19 +109,33 @@ export function TextFieldCompo(props: any){
 					justifyContent={"center"}
 					alignItems={"center"}
 					width={"70%"}
-					height="23rem"
+					height="25rem"
 				>
-					<TextField
-						width={textFieldWidth}
-						placeholder={placeholder}
-						title={title}
-						titlePosition={titlePosition}
-						disabled={disableChecked}
-						defaultValue={defaultValue}
-						error={errorChecked}
-						onChange={onChangeTextFieldHandler}
-						value={textFieldValue}
-					/>
+					{
+						(showDefaultValue || !showTextFieldValue) && 
+							<TextField
+								width={textFieldWidth}
+								placeholder={placeholder}
+								title={title}
+								titlePosition={titlePosition}
+								disabled={disableChecked}
+								defaultValue={defaultValue}
+								error={errorChecked}
+							/>
+					}
+					{
+						showTextFieldValue &&
+						<TextField
+							width={textFieldWidth}
+							placeholder={placeholder}
+							title={title}
+							titlePosition={titlePosition}
+							disabled={disableChecked}
+							error={errorChecked}
+							value={textFieldValue}
+							onChange={onChangeTextFieldHandler}
+						/>
+					}
 				</Box>
 				<Divider orientation="vertical" flexItem sx={{ mr: 2, ml:2 }} />
 				<Box
