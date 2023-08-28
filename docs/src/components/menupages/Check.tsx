@@ -5,7 +5,7 @@ import { CheckCompo } from "@midasit-dev/moaui/Check/Demo";
 
 const ImportCode = `import Check from "@midasit-dev/moaui/Check"`;
 
-export default function ButtonCompo(props: any) {
+export default function CheckComponent(props: any) {
 	return (
     <Box display={"flex"} width={"100%"} flexDirection={"column"}>
       <Typography sx={{ fontWeight: "bold" }} variant="h4" gutterBottom>
