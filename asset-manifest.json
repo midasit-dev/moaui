@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/moaui/static/css/main.346be3c5.css",
-    "main.js": "/moaui/static/js/main.08b1d14c.js",
+    "main.js": "/moaui/static/js/main.611ebf0b.js",
     "static/js/787.0411eb07.chunk.js": "/moaui/static/js/787.0411eb07.chunk.js",
     "static/media/Pretendard-Black.woff": "/moaui/static/media/Pretendard-Black.8bad248bdb96c3377cbc.woff",
     "static/media/Pretendard-ExtraBold.woff": "/moaui/static/media/Pretendard-ExtraBold.88651b953c5d967d1db9.woff",
@@ -23,11 +23,11 @@
     "static/media/Pretendard-Thin.woff2": "/moaui/static/media/Pretendard-Thin.450b58933971c5b135f4.woff2",
     "index.html": "/moaui/index.html",
     "main.346be3c5.css.map": "/moaui/static/css/main.346be3c5.css.map",
-    "main.08b1d14c.js.map": "/moaui/static/js/main.08b1d14c.js.map",
+    "main.611ebf0b.js.map": "/moaui/static/js/main.611ebf0b.js.map",
     "787.0411eb07.chunk.js.map": "/moaui/static/js/787.0411eb07.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.346be3c5.css",
-    "static/js/main.08b1d14c.js"
+    "static/js/main.611ebf0b.js"
   ]
 }
