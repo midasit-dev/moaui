@@ -22,9 +22,9 @@ function ControlledCheckboxGroupDemo() {
 	return (
 		<Fragment>
 			<SwitchGroup text="title">
-				<Switch name="test1" checked={values?.test1} onChange={handleCheckboxChange} />
-				<Switch name="test2" checked={values?.test2} onChange={handleCheckboxChange} />
-				<Switch name="test3" checked={values?.test3} onChange={handleCheckboxChange} />
+				<Switch label="test1" checked={values?.test1} onChange={handleCheckboxChange} />
+				<Switch label="test2" checked={values?.test2} onChange={handleCheckboxChange} />
+				<Switch label="test3" checked={values?.test3} onChange={handleCheckboxChange} />
 			</SwitchGroup>
 			<Typography>
 				{`Checked : ${Object.entries(values).reduce((acc, [key, value]) => acc + (value ? `${key} ` : ""), "")}`}
@@ -38,9 +38,9 @@ function CheckboxGroupDemo() {
 		<Fragment>
 			<Typography variant="h1">Uncontrolled</Typography>
 			<SwitchGroup text="title">
-				<Switch name="test1" />
-				<Switch name="test2" />
-				<Switch name="test3" />
+				<Switch label="test1" />
+				<Switch label="test2" />
+				<Switch label="test3" />
 			</SwitchGroup>
 
 			<Typography variant="h1">Controlled</Typography>
