@@ -1,13 +1,11 @@
 import React from "react";
 import MoaTextField, {type  MoaTextFieldProps} from "./Styled";
-import MoaTypography from "../Typography";
 import MoaStack from "../Stack";
-// import Box  from "@mui/material/Box";
+import MoaTypography from "../Typography";
 
 MoaTextfield.defaultProps = {
 	title : "",
 	titlePosition : "left",
-	defaultValue : "",
 	error : false,
 	disabled : false
 }
@@ -18,7 +16,7 @@ MoaTextfield.defaultProps = {
  */
 
 function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
-	const {defaultValue, title, titlePosition, ...rest} = props;
+	const {title, titlePosition, ...rest} = props;
 
 	const boxStyle = React.useCallback((position: MoaTextFieldProps["titlePosition"]) => {
 		if(position === "left")
@@ -42,18 +40,18 @@ function MoaTextfield(props: MoaTextFieldProps) : React.ReactElement {
 					{
 						titlePosition === "right" ?
 						<React.Fragment>
-							<MoaTextField defaultValue={defaultValue} {...rest} />
+							<MoaTextField {...rest} />
 							<MoaTypography>{title}</MoaTypography>
 						</React.Fragment>
 						:
 						<React.Fragment>
 							<MoaTypography>{title}</MoaTypography>
-							<MoaTextField defaultValue={defaultValue} {...rest}/>
+							<MoaTextField {...rest}/>
 						</React.Fragment>
 					}
 				</MoaStack>
 				:
-				<MoaTextField defaultValue={defaultValue} {...rest}/>
+				<MoaTextField {...rest}/>
 			}
 		</React.Fragment>
 	)

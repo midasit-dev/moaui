@@ -22,7 +22,7 @@ export type MoaTextFieldProps = {
 	titlePosition ?: "left" | "label" | "right",
 	/**
 	 * The value to display by default in the textfield.
-	 * @defaultValue ""
+	 * @defaultValue undefined
 	 */
 	defaultValue?:string,
 		/**
