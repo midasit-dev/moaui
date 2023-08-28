@@ -79,8 +79,8 @@ export function CheckCompo() {
         border: "1px solid #95d6fc",
         paddingRight: "1rem",
         paddingLeft: "1rem",
-        paddingTop: "0rem",
-        paddingBottom: "0rem",
+        paddingTop: "1rem",
+        paddingBottom: "1rem",
         backgroundColor: "#FFFFFF",
         mt: 2,
         mb: 2,
@@ -89,7 +89,6 @@ export function CheckCompo() {
       }}
       display={"flex"}
       width={"70%"}
-      height={"37rem"}
       justifyContent={"center"}
       flexDirection={"column"}
     >
@@ -99,7 +98,6 @@ export function CheckCompo() {
           justifyContent={"center"}
           alignItems={"center"}
           width={"70%"}
-          height="17rem"
         >
           {isControlled && isUncontrolled === false && (
             <Check
@@ -124,13 +122,10 @@ export function CheckCompo() {
           )}
         </Box>
         <Divider orientation="vertical" flexItem sx={{ mr: 2, ml: 2 }} />
-        <Box
-          display={"flex"}
+        <Stack
           justifyContent={"center"}
           alignItems={"left"}
           width={"30%"}
-          height="17rem"
-          flexDirection={"column"}
         >
           <Typography
             sx={{ fontWeight: "bold", m: 0, fontFamily: Font.fontFamily }}
@@ -258,7 +253,7 @@ export function CheckCompo() {
               size="small"
             />
           </Box>
-        </Box>
+        </Stack>
       </Stack>
       <Box sx={{ mt: 2 }}>
         <CodeComponent
