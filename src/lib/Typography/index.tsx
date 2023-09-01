@@ -3,7 +3,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
 MoaTypography.defaultProps = {
 	children: <></>,
 	variant: "body1",
-	color: "primary"
+	color: "primary",
 }
 
 /**
