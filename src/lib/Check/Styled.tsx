@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import MoaStyledComponent from "../MoaStyled";
 import Color from "../Color";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -114,11 +115,6 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
         m: 0,
         gap: "0.25rem",
         ".MuiTypography-root": {
-          fontFamily: "Pretendard",
-          fontSize: "0.75rem",
-          fontStyle: "normal",
-          fontWeight: 400,
-          lineHeight: "0.875rem",
           color: `${Color.text.secondary}!important`,
         },
       }}
@@ -126,4 +122,9 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
   );
 })((props: InnerStyledProps) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

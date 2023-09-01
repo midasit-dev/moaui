@@ -1,4 +1,5 @@
 import Stack, { StackProps } from '@mui/material/Stack';
+import MoaStyledComponent from "../MoaStyled";
 import { styled } from '@mui/material/styles';
 
 export interface StyledProps extends StackProps {
@@ -17,4 +18,9 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	)
 })((props: InnerStyledProps) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

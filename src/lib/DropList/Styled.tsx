@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import MoaStyledComponent from "../MoaStyled";
 import React from "react";
 import DropList, { SelectChangeEvent } from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
@@ -8,7 +9,7 @@ import Color from "../Color";
 import Font from "../Font";
 import Box from '@mui/material/Box'
 
-export type MoaDropListProps = {
+export type StyledProps = {
 	/**
 	 * Set the width value of droplist.
 	 * The width value is applied to the droplist and the droplist's input.
@@ -52,7 +53,7 @@ export type MoaDropListProps = {
 	defaultValue?: string;
 }
 
-const MoaDropList = styled((props:MoaDropListProps) => {
+const StyledComponent = styled((props:StyledProps) => {
 	const {itemList, width, value, onChange, defaultValue} = props;
 	const itemMap = typeof itemList === 'function' ? itemList() : itemList;
 
@@ -82,12 +83,6 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 							//font
 							color: Color.text.secondary,
 							fontFeatureSettings: Font.fontFeatureSettings,
-							/* body1 */
-							fontFamily: Font.fontFamily,
-							fontSize: "0.75rem",
-							fontStyle: "normal",
-							fontWeight: 400,
-							lineHeight: "0.875rem",
 						},
 						height: "1.75rem",
 					}}
@@ -109,12 +104,6 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 										//font
 										color: Color.text.secondary,
 										fontFeatureSettings: Font.fontFeatureSettings,
-										/* body1 */
-										fontFamily: Font.fontFamily,
-										fontSize: "0.75rem",
-										fontStyle: "normal",
-										fontWeight: 400,
-										lineHeight: "0.875rem", /* 116.667% */
 									}}
 								>
 									{itemMap.get(key)}
@@ -136,12 +125,6 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 									//font
 									color: Color.text.secondary,
 									fontFeatureSettings: Font.fontFeatureSettings,
-									/* body1 */
-									fontFamily: Font.fontFamily,
-									fontSize: "0.75rem",
-									fontStyle: "normal",
-									fontWeight: 400,
-									lineHeight: "0.875rem",
 									'&.Mui-selected':{
 										backgroundColor: `${Color.primary.enable_strock}!important`,
 									},
@@ -168,4 +151,9 @@ const MoaDropList = styled((props:MoaDropListProps) => {
 	background: Color.primary.white,
 }))
 
-export default MoaDropList;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;

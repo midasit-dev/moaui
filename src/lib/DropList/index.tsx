@@ -1,5 +1,5 @@
 
-import MoaDropList, { type MoaDropListProps } from "./Styled";
+import MoaDropList, { type StyledProps } from "./Styled";
 
 MoaDroplist.defaultProps = {
 	itemList : new Map(),
@@ -13,7 +13,7 @@ MoaDroplist.defaultProps = {
  * @returns {React.ReactElement} MoaDropList
  */
 
-export default function MoaDroplist(props: MoaDropListProps) : React.ReactElement {
+export default function MoaDroplist(props: StyledProps) : React.ReactElement {
 	return (
 		<MoaDropList {...props} />
 	)

@@ -1,4 +1,5 @@
 import React from 'react';
+import MoaStyledComponent from "../MoaStyled";
 import { Children, useState, cloneElement } from 'react';
 import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
@@ -49,4 +50,9 @@ const StyledComponent = styled((props: StyledProps) => {
 	)
 })(({theme}) => ({}));
 
-export default StyledComponent;
+const ThemedComponent = (props: StyledProps) => (
+	<MoaStyledComponent>
+		<StyledComponent {...props} />
+	</MoaStyledComponent>
+);
+export default ThemedComponent;
