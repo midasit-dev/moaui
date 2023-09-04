@@ -128,6 +128,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 						'& .MuiSwitch-track': {
 							width: '30px',
 							height: '14px',
+							boxSizing: "content-box",
 							borderRadius: 26 / 2,
 							opacity: 1,
 							transition: 'background-color 300ms linear',
