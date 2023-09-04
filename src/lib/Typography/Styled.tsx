@@ -2,6 +2,8 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Color from "../Color";
 import Font from "../Font";
+import { MarginProps, MarginTypes } from '../Style/Margin';
+import { PaddingProps, PaddingTypes } from '../Style/Padding';
 
 /** Font Style */
 type FontStyleObject = {
@@ -74,7 +76,7 @@ class FontColor {
 	}
 }
 
-export type StyledProps = {
+export interface StyledProps extends MarginTypes, PaddingTypes {
 	/**
 	 * Represent a text string in typography component
 	 * @defaultValue ''
@@ -98,6 +100,8 @@ const StyledComponent = styled((props: StyledProps) => {
 			sx={{
 				...FontStyle.selector(props.variant),
 				...Font.defaultFontSet,
+				...MarginProps(props),
+				...PaddingProps(props),
 			}}
 			color={FontColor.selector(props.color)}
 		>

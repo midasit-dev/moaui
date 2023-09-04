@@ -110,6 +110,9 @@ export function TypographyCompo() {
             onChange={onChangePositionHandler}
             width="100%"
           />
+		  <Typography marginTop={"5rem"}>
+			marginTop
+		  </Typography>
         </Stack>
       </Stack>
       <Box sx={{ mt: 2 }}>
