@@ -6,6 +6,7 @@ import Check from './Check';
 import Box from "@mui/material/Box";
 import Installation from './Installation';
 import Switch from './Switch';
+import Typography from './Typography';
 
 export default function ReferencePage(props: any) {
 	const selectedMenuItem:string = useRecoilValue<string>(selectedMenu);
@@ -19,6 +20,7 @@ export default function ReferencePage(props: any) {
 				{props.Compo === "TextField" ? <TextField/> : <></>}
 				{props.Compo === "Check" ? <Check/> : <></>}
 				{props.Compo === "Switch" ? <Switch/> : <></>}
+				{props.Compo === "Typography" ? <Typography/> : <></>}
 			</>
 		)
 	}
