@@ -26,4 +26,3 @@ export { default as TableRow } from "./TableRow";
 export { default as TextField } from "./TextField";
 export { default as Typography } from "./Typography";
 export { default as TypographyGroup } from "./TypographyGroup";
-export { default as Icon } from "./Icon";
