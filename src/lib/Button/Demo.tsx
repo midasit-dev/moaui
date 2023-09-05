@@ -30,7 +30,7 @@ export function ButtonCompo() {
   const [inputValue, setInputValue] = React.useState("");
 
   const ButtonCode = `function ButtonCompo(props: any) {
-  function onClickExampleHandler(event: any) {
+  function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     //do something
   }
 
@@ -45,6 +45,7 @@ export function ButtonCompo() {
   )
 }
 `;
+
   const itemList = new Map();
   itemList.set("contained", "contained");
   itemList.set("outlined", "outlined");
@@ -61,6 +62,11 @@ export function ButtonCompo() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDisableChecked(event.target.checked);
   };
+
+  function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    //do something
+    console.log(event.target);
+  }
 
   return (
     <Box
@@ -92,6 +98,7 @@ export function ButtonCompo() {
             variant={buttonVariant as "contained" | "outlined" | "text"}
             width={buttonWidth}
             disabled={disableChecked}
+            onClick={onClickExampleHandler}
           >
             MoaButton
           </Button>

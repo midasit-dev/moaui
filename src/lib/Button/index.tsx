@@ -2,7 +2,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 Moabutton.defaultProps = {
 	children: "Button",
-	onClick: () => {},
 	variant: "contained",
 	disabled: false,
 	width: "auto"

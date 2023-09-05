@@ -7,7 +7,18 @@ import React from 'react';
 
 export type StyledProps = {
 	children: string,
-	onClick?: () => void,
+	/**
+	 * The callback function that is fired when the button is clicked.
+	 * @param {React.MouseEvent<HTMLButtonElement>} event The event source of the callback.
+	 * You can pull out the new value by accessing `event.target.value` (string).
+	 * @defaultValue undefined
+	 * @optional
+	 * @type React.MouseEventHandler<HTMLButtonElement>
+	 * @example
+	 * onClick={(event) => {}}
+	 * onClick={handleClick}
+	 */
+	onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
 	/**
 	 * The variant to use.
 	 * @default "contained"
