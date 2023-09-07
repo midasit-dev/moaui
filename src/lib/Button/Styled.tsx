@@ -9,8 +9,7 @@ export type StyledProps = {
 	children: string,
 	/**
 	 * The callback function that is fired when the button is clicked.
-	 * @param {React.MouseEvent<HTMLButtonElement>} event The event source of the callback.
-	 * You can pull out the new value by accessing `event.target.value` (string).
+	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event The event source of the callback.
 	 * @defaultValue undefined
 	 * @optional
 	 * @type React.MouseEventHandler<HTMLButtonElement>
@@ -76,7 +75,11 @@ const StyledComponent = styled((props:StyledProps) => {
 		//text
 		textAlign: "center",
 		fontFeatureSettings: Font.fontFeatureSettings,
+		fontFamily: Font.fontFamily,
+		fontSize: "0.75rem",
+		fontStyle: "normal",
 		fontWeight: 500,
+		lineHeight: "0.875rem",
 		textTransform: "none",
 	}
 
