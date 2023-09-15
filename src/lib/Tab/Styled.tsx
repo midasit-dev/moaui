@@ -22,6 +22,14 @@ export type StyledProps = {
 	 * @defaultValue false
 	 */
 	disabled?: boolean;
+
+	/**
+	 * If `true`, the component is selected.
+	 * @defaultValue false
+	 * @optional
+	 * @type boolean
+	 */
+	selected?: boolean;
 }
 const StyledComponent = styled((props: StyledProps) => {
 	return (
@@ -31,8 +39,8 @@ const StyledComponent = styled((props: StyledProps) => {
 			onClick={() => props?.setValue ? props?.setValue(props?.value) : {}}
 			disabled={props?.disabled}
 			sx={{
-				color: Color.text.secondary,
-				fontWeight: 500, /** bold */
+				color: props?.selected ? Color.text.primary : Color.text.secondary,
+				fontWeight: props?.selected ? 700 : 500, /** bold */
 				fontSize: "0.75rem", /** 12px */
 				lineHeight: "0.875rem", /** 14px */
 				...Font.defaultFontSet,

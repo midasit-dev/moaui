@@ -7,6 +7,26 @@ import Color from "../Color";
 
 export type StyledProps = {
 	/**
+	 * The tabs orientation (layout flow direction).
+	 * @default "horizontal"
+	 * @optional
+	 * @type "horizontal" | "vertical"
+	 * @example
+	 * orientation="horizontal"
+	 * orientation="vertical"
+	 */
+	orientation?: "horizontal" | "vertical";
+	/**
+	 * The tabs indicator orientation (layout flow direction).
+	 * @default "right"
+	 * @optional
+	 * @type "right" | "left"
+	 * @example
+	 * indicator="right"
+	 * indicator="left"
+	 */
+	indicator?: "right" | "left";	
+	/**
 	 * The content of the component.
 	 */
 	children?: React.ReactElement<any, string | React.JSXElementConstructor<any>>[];
@@ -31,16 +51,19 @@ const StyledComponent = styled((props: StyledProps) => {
 	const [value, setValue] = useState(props?.value);
 	const cloneArr = Children.map(props.children, (child, idx) => {
 		if (!child) return React.createElement(React.Fragment, { key: idx });
-		return cloneElement(child, { setValue: setValue })
+		return cloneElement(child, { setValue: setValue, selected: value === child.props.value })
 	});
 
 	return (
 		<Tabs
+			orientation={props?.orientation}
 			value={value}
 			onChange={props?.onChange}
 			aria-label={props?.['aria-label']}
 			TabIndicatorProps={{
 				style: {
+					right: props?.indicator === "left" ? 'auto' : 0,
+					left: props?.indicator === "left" ? 0 : 'auto',
 					backgroundColor: Color.secondary.main
 				}
 			}}
