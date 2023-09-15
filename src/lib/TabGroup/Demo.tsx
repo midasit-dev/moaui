@@ -19,6 +19,27 @@ function Demo() {
 				<MoaTab value="two" label="Item Two" />
 				<MoaTab value="three" label="Item Three" disabled />
 			</MoaTabGroup>
+			<MoaTabGroup
+				orientation='vertical'
+				value={value}
+				onChange={handleChange}
+				aria-label="tabs example"
+			>
+				<MoaTab value="one" label="Item One" />
+				<MoaTab value="two" label="Item Two" />
+				<MoaTab value="three" label="Item Three" disabled />
+			</MoaTabGroup>
+			<MoaTabGroup
+				orientation='vertical'
+				indicator='left'
+				value={value}
+				onChange={handleChange}
+				aria-label="tabs example"
+			>
+				<MoaTab value="one" label="Item One" />
+				<MoaTab value="two" label="Item Two" />
+				<MoaTab value="three" label="Item Three" disabled />
+			</MoaTabGroup>
 		</>
 	);
 }
