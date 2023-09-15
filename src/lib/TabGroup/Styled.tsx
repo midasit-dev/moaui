@@ -54,6 +54,13 @@ const StyledComponent = styled((props: StyledProps) => {
 		return cloneElement(child, { setValue: setValue, selected: value === child.props.value })
 	});
 
+	const locateIndicator = React.useCallback((props: StyledProps) => {
+		if (props?.orientation === "vertical"){
+			if (props?.indicator === "left") return { right: 'auto', left: 0 };
+			else return { left: 'auto', right: 0 };
+		} else return { };
+	}, []);
+
 	return (
 		<Tabs
 			orientation={props?.orientation}
@@ -62,8 +69,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			aria-label={props?.['aria-label']}
 			TabIndicatorProps={{
 				style: {
-					right: props?.indicator === "left" ? 'auto' : 0,
-					left: props?.indicator === "left" ? 0 : 'auto',
+					...locateIndicator(props),
 					backgroundColor: Color.secondary.main
 				}
 			}}
