@@ -16,7 +16,8 @@ export type StyledProps = {
 	/**
 	 * Set Tabs Value Control
 	 */
-	setValue?: React.Dispatch<any>;
+	// setValue?: React.Dispatch<any>;
+	onChange?: (event: React.SyntheticEvent, value: any) => void;
 	/**
 	 * If `true`, the component is disabled.
 	 * @defaultValue false
@@ -36,7 +37,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		<Tab 
 			value={props?.value}
 			label={props?.label}
-			onClick={() => props?.setValue ? props?.setValue(props?.value) : {}}
+			onClick={(event) => props?.onChange ? props?.onChange?.(event, props?.value) : {}}
 			disabled={props?.disabled}
 			sx={{
 				color: props?.selected ? Color.text.primary : Color.text.secondary,
