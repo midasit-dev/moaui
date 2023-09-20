@@ -52,17 +52,28 @@ export type StyledProps = {
 	 * width="10px"
 	 */
 	width?: string
+
+	/**
+	 * The color of the button.
+	 * @defaultValue "normal"
+	 * @optional
+	 * @type "normal" | "negative"
+	 * @example
+	 * color="normal"
+	 * color="negative"
+	 */
+	color?: "normal" | "negative"
 }
 
 
 const StyledComponent = styled((props:StyledProps) => {
-	const commonButtonProps = {
+	const commonButtonProps = React.useMemo(() => ({
 		disableFocusRipple:true,
 		disableRipple:true,
 		disableElevation : true,
-	}
+	}), []);
 
-	const commonButtonStyle = {
+	const commonButtonStyle = React.useMemo(() => ({
 		width:`${props?.width}`,
 		display: "inline-flex",
 		height: "1.75rem",
@@ -81,117 +92,98 @@ const StyledComponent = styled((props:StyledProps) => {
 		fontWeight: 500,
 		lineHeight: "0.875rem",
 		textTransform: "none",
-	}
+	}), [props?.width]);
 
-	function CustomButtonStyleByVariant (props:StyledProps) : React.ReactElement {
-		if(props?.variant === "contained") {
-			return (
-				<Button
-					{...commonButtonProps}
-					variant = {props?.variant}
-					disabled = {props?.disabled}
-					fullWidth = {props?.width === "100%" ? true : false}
-					onClick={props?.onClick}
-					sx={{
-						...commonButtonStyle,
-						border: `1px solid ${Color.primary.enable_strock}`,
-						background: Color.primary.enable,
-						color: Color.text.primary,
-						"&:hover": {
-							background: Color.primary.hover,
-							color: Color.primary.white,
-							border : `1px solid ${Color.primary.hover}`
-						},
-						":active":{
-							background: Color.primary.focus,
-							color: Color.primary.white,
-							border : `1px solid ${Color.primary.focus}`
-						},
-						":disabled":{
-							background: Color.primary.enable,
-							color: Color.text.disable,
-							border : `1px solid ${Color.primary.enable_strock}`
-						},
-					}}>
-					{props.children}
-				</Button>
-			)
+	const CustomButtonStyleByVariant = React.useCallback(({ variant, color }: { variant:StyledProps["variant"], color: StyledProps["color"] }) => {
+		const borderConfig = variant !== "text" ? `1px solid` : "none";
+		const primaryColorConfig = color === "negative" ? "primaryNegative" : "primary";
+		const textColorConfig = color === "negative" ? "textNegative" : "text";
+		
+		if(variant === "contained") {
+			return ({
+				border: `${borderConfig} ${Color[primaryColorConfig].enable_strock}`,
+				background: Color[primaryColorConfig].enable,
+				color: Color[textColorConfig].primary,
+				"&:hover": {
+					background: Color[primaryColorConfig].hover,
+					color: Color[primaryColorConfig].white,
+					border : `${borderConfig} ${Color[primaryColorConfig].hover}`
+				},
+				":active":{
+					background: Color[primaryColorConfig].focus,
+					color: Color[primaryColorConfig].white,
+					border : `${borderConfig} ${Color[primaryColorConfig].focus}`
+				},
+				":disabled":{
+					background: Color[primaryColorConfig].enable,
+					color: Color[textColorConfig].disable,
+					border : `${borderConfig} ${Color[primaryColorConfig].enable}`
+				},
+			})
 		}
-		if(props?.variant === "outlined") {
-			return (
-				<Button
-					{...commonButtonProps}
-					variant = {props?.variant}
-					disabled = {props?.disabled}
-					fullWidth = {props?.width === "100%" ? true : false}
-					onClick={props?.onClick}
-					sx={{
-						...commonButtonStyle,
-						border: `1px solid ${Color.primary.enable_strock}`,
-						background: "none",
-						color: Color.text.primary,
-						"&:hover": {
-							background: "none",
-							color: Color.text.primary,
-							border : `1px solid ${Color.primary.hover}`
-						},
-						":active":{
-							background: "none",
-							color: Color.text.primary,
-							border : `1px solid ${Color.primary.focus}`
-						},
-						":disabled":{
-							background: "none",
-							color: Color.text.disable,
-							border : `1px solid ${Color.primary.enable_strock}`
-						},
-					}}
-				>
-					{props.children}
-				</Button>
-			)
+		if(variant === "outlined") {
+			return ({
+				border: `${borderConfig} ${Color[primaryColorConfig].enable_strock}`,
+				background: "none",
+				color: Color[textColorConfig].primary,
+				"&:hover": {
+					background: "none",
+					color: Color[textColorConfig].primary,
+					border : `${borderConfig} ${Color[primaryColorConfig].hover}`
+				},
+				":active":{
+					background: "none",
+					color: Color[textColorConfig].primary,
+					border : `${borderConfig} ${Color[primaryColorConfig].focus}`
+				},
+				":disabled":{
+					background: "none",
+					color: Color[textColorConfig].disable,
+					border : `${borderConfig} ${Color[primaryColorConfig].enable}`
+				},
+			})
 		} 
-		if(props?.variant === "text") {
-			return (
-				<Button
-					{...commonButtonProps}
-					variant = {props?.variant}
-					disabled = {props?.disabled}
-					fullWidth = {props?.width === "100%" ? true : false}
-					onClick={props?.onClick}
-					sx={{
-						...commonButtonStyle,
-						border: "none",
-						background: "none",
-						color: Color.secondary.main,
-						"&:hover": {
-							background: "none",
-							color: Color.primary.hover,
-							border : "none"
-						},
-						":active":{
-							background: "none",
-							color: Color.primary.focus,
-							border : "none"
-						},
-						":disabled":{
-							background: "none",
-							color: Color.text.disable,
-							border : "none"
-						},
-					}}
-				>
-					{props.children}
-				</Button>
-			)
+		if(variant === "text") {
+			return ({
+				border: "none",
+				background: "none",
+				color: Color.secondary.main,
+				"&:hover": {
+					background: "none",
+					color: Color[primaryColorConfig].hover,
+					border : `${borderConfig} ${Color[primaryColorConfig].hover}`
+				},
+				":active":{
+					background: "none",
+					color: Color[primaryColorConfig].focus,
+					border : `${borderConfig} ${Color[primaryColorConfig].focus}`
+				},
+				":disabled":{
+					background: "none",
+					color: Color[textColorConfig].disable,
+					border : `${borderConfig} ${Color[primaryColorConfig].enable_strock}`
+				},
+			})
 		}
 		return (
 			<></>
 		)
-	}
+	}, []);
 
 	return (
-		<CustomButtonStyleByVariant {...props} />
+		<Button
+			{...commonButtonProps}
+			variant={props?.variant}
+			disabled={props?.disabled}
+			fullWidth={props?.width === "100%" ? true : false}
+			onClick={props?.onClick}
+			sx={{
+				...commonButtonStyle,
+				...CustomButtonStyleByVariant({ variant: props?.variant, color: props?.color })
+			}}
+		>
+			{props?.children}
+		</Button>
 	)
 })
 (({theme}) => ({}))
