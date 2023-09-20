@@ -1,26 +1,14 @@
 import React from "react";
-import MoaIconButton from "./Styled";
-
-type MoaIconbuttonProps = {
-	children: React.ReactNode,
-	onClick: Function
-}
+import MoaIconButton, { StyledProps } from "./Styled";
 
 MoaIconbutton.defaultProps = {
-	children: "Iconbutton",
+	children: <div />,
 	onClick: () => {},
 }
 
-function MoaIconbutton(props: MoaIconbuttonProps) : React.ReactElement {
-	const buttonText:React.ReactNode = props.children;
-	const onClickEvent:Function = props.onClick;
-
-	async function onClickHandler(){
-		await onClickEvent();
-	}
-	
+function MoaIconbutton(props: StyledProps) : React.ReactElement {
 	return (
-		<MoaIconButton onClick={onClickHandler}>{buttonText}</MoaIconButton>
+		<MoaIconButton {...props}>{props?.children}</MoaIconButton>
 	)
 }
 
