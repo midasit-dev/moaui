@@ -8,7 +8,7 @@ MoaIconbutton.defaultProps = {
 
 function MoaIconbutton(props: StyledProps) : React.ReactElement {
 	return (
-		<MoaIconButton {...props}>{props?.children}</MoaIconButton>
+		<MoaIconButton {...props} />
 	)
 }
 

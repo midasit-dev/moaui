@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { useCallback } from 'react';
+import { useCallback, cloneElement } from 'react';
 import MoaStyledComponent from "../MoaStyled";
 import IconButton, { type IconButtonProps } from '@mui/material/IconButton';
 import Color from '../Color';
@@ -49,6 +49,22 @@ export type StyledProps = {
 	width?: string
 
 	/**
+	 * The height of the button.
+	 * @defaultValue "auto"
+	 * @optional
+	 * @type string
+	 * @example
+	 * height="auto"
+	 * height="100%"
+	 * height="10rem"
+	 * height="10vw"
+	 * height="10vh"
+	 * height="10ex"
+	 * height="10px"
+	 */
+	height?: string
+
+	/**
 	 * The callback function that is fired when the button is clicked.
 	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event The event source of the callback.
 	 * @defaultValue undefined
@@ -63,8 +79,7 @@ export type StyledProps = {
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { sx, color, ...rest } = props;
-
+	const { sx, children, color, ...rest } = props;
 	const CustomBackgroundColor = useCallback(({color} : { color: StyledProps["color"] }) => {
 		const primaryColorConfig = color === "negative" ? "primaryNegative" : "primary";
 		const textColorConfig = color === "negative" ? "textNegative" : "text";
@@ -96,7 +111,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			disableRipple
 			sx={{
 				width: props?.width || "auto",
-				height: "1.75rem",
+				height: props?.height || "1.75rem",
 				padding: "0.625rem",
 				justifyContent: "center",
 				alignItems: "center",
@@ -105,7 +120,9 @@ const StyledComponent = styled((props: StyledProps) => {
 				borderRadius: "0.25rem",
 				...CustomBackgroundColor({color})
 			}}
-		 />
+		 >
+			{children && cloneElement(children as React.ReactElement, {width: "16px", height: "16px"})}
+		 </IconButton>
 	);
 })(({theme}) => ({}))
 
