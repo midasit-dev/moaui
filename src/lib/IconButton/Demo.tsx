@@ -24,14 +24,14 @@ const widthList = [
 	{ value: "5rem", label: "5rem" },
 ];
 
-export function ButtonCompo() {
+export function IconButtonCompo() {
 	const [buttonWidth, setButtonWidth] = React.useState("auto");
 	const [buttonColor, setButtonColor] = React.useState("normal");
 
 	const [disableChecked, setDisableChecked] = React.useState(false);
 	const [inputValue, setInputValue] = React.useState("");
 
-	const ButtonCode = `function ButtonCompo(props: any) {
+	const ButtonCode = `function IconButtonCompo(props: any) {
   function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     //do something
   }
@@ -229,7 +229,7 @@ export default function ButtonWrapper() {
 	return (
 		<Box display={"flex"} width={"100%"} flexDirection={"column"}>
 			<Box justifyContent={"center"} display={"flex"} width={"100%"}>
-				<ButtonCompo />
+				<IconButtonCompo />
 			</Box>
 		</Box>
 	);
