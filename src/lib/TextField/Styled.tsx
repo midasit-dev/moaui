@@ -52,24 +52,16 @@ export type StyledProps = {
 	 */
 	disabled?: boolean
 	/**
-	 * The callback function that is fired when the textfield's value changes.
-	 * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
-	 * You can pull out the new value by accessing `event.target.value` (string).
-	 * @defaultValue undefined
-	 */
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	/**
 	 * The value of the textfield.
 	 * @defaultValue undefined
-	 */
+	*/
 	value?:string,
-
 	/**
 	 * If `true`, the input will take up the full width of its container.
 	 * @defaultValue false
 	 * @optional
 	 * @type boolean
-	 */
+	*/
 	fullWidth?: boolean,
 
 	/**
@@ -85,16 +77,34 @@ export type StyledProps = {
 	 * width="10vh"
 	 * width="10ex"
 	 * width="10px"
-	 */
+	*/
 	width?: string,
+
+	//Events
+	/**
+	 * The callback function that is fired when the textfield's value changes.
+	 * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+	 * You can pull out the new value by accessing `event.target.value` (string).
+	 * @defaultValue undefined
+	 */
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	
+	/**
+	 * The callback function that is fired when user releases a key on the keyboard in textfield.
+	 * @param {React.KeyboardEvent<HTMLInputElement>} event The event source of the callback.
+	 * You can pull out the new value by accessing `event.target.value` (string).
+	 * @defaultValue undefined
+	 */
+	onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const StyledComponent = styled((props:StyledProps) => {
 	return(
 		<TextField
+			onChange={props?.onChange}
+			onKeyUp={props?.onKeyUp}
 			id={props?.id}
 			type={props?.type}
-			onChange={props?.onChange}
 			defaultValue={props?.defaultValue}
 			error = {props?.error}
 			disabled = {props?.disabled}
