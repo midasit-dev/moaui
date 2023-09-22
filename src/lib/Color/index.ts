@@ -7,6 +7,15 @@ class Primary {
 	readonly enable_strock = "#C4C6C8";
 }
 
+class PrimaryNegative {
+	readonly main = "#1E2429";
+	readonly hover = "#5F666B";
+	readonly focus = "#1E2429";
+	readonly white = "#FFFFFF";
+	readonly enable = "#343A3F";
+	readonly enable_strock = "#1E2429";
+}
+
 class Secondary {
 	readonly main = "#4B9AF4";
 }
@@ -16,6 +25,13 @@ class Text {
 	readonly secondary = "#4B5563";
 	readonly third = "#79828E";
 	readonly disable = "#BDC2C8";
+}
+
+class TextNegative {
+	readonly primary = "#BDC2C8";
+	readonly secondary = "#5F666B";
+	readonly third = "#5F666B";
+	readonly disable = "#4B5563";
 }
 
 class Component {
@@ -28,8 +44,10 @@ class Component {
 
 class Color {
 	static readonly primary = new Primary();
+	static readonly primaryNegative = new PrimaryNegative();
 	static readonly secondary = new Secondary();
 	static readonly text = new Text();
+	static readonly textNegative = new TextNegative();
 	static readonly component = new Component();
 }
 

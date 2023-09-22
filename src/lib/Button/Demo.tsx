@@ -14,6 +14,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Switch from "@mui/material/Switch";
 
+import { StyledProps } from "./Styled";
+
 const widthList = [
   { value: "100%", label: "100%" },
   { value: "50%", label: "50%" },
@@ -25,6 +27,7 @@ const widthList = [
 export function ButtonCompo() {
   const [buttonVariant, setButtonVariant] = React.useState("contained");
   const [buttonWidth, setButtonWidth] = React.useState("auto");
+  const [buttonColor, setButtonColor] = React.useState("normal");
 
   const [disableChecked, setDisableChecked] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
@@ -39,6 +42,7 @@ export function ButtonCompo() {
       buttonVariant !== "" ? ` variant="${buttonVariant}"` : ""
     }${buttonWidth !== "" ? ` width="${buttonWidth}"` : ""}${
     disableChecked !== false ? ` disabled={${disableChecked}}` : ""
+  	}${buttonColor !== "normal" ? ` color="${buttonColor}"` : ""
   }>
       MoaButton
     </Button>
@@ -46,13 +50,23 @@ export function ButtonCompo() {
 }
 `;
 
-  const itemList = new Map();
-  itemList.set("contained", "contained");
-  itemList.set("outlined", "outlined");
-  itemList.set("text", "text");
+  const variantList = new Map([
+	["contained", "contained"],
+	["outlined", "outlined"],
+	["text", "text"],
+  ]);
+
+  const colorList = new Map([
+	["normal", "normal"],
+	["negative", "negative"],
+  ])
 
   function onChangeVariantHandler(event: any) {
     setButtonVariant(event.target.value);
+  }
+
+  function onChangeColorHandler(event: any) {
+    setButtonColor(event.target.value);
   }
 
   function onChangeWidthHandler(event: any, newValue: string | null) {
@@ -95,7 +109,8 @@ export function ButtonCompo() {
           width={"70%"}
         >
           <Button
-            variant={buttonVariant as "contained" | "outlined" | "text"}
+            variant={buttonVariant as StyledProps["variant"]}
+			color={buttonColor as StyledProps["color"]}
             width={buttonWidth}
             disabled={disableChecked}
             onClick={onClickExampleHandler}
@@ -117,10 +132,24 @@ export function ButtonCompo() {
             variant
           </Typography>
           <DropList
-            itemList={itemList}
+            itemList={variantList}
             defaultValue="contained"
             value={buttonVariant}
             onChange={onChangeVariantHandler}
+            width="100%"
+          />
+          <Typography
+            sx={{ fontWeight: "bold", m: 0, fontFamily: Font.fontFamily }}
+            variant="caption"
+            gutterBottom
+          >
+            color
+          </Typography>
+          <DropList
+            itemList={colorList}
+            defaultValue="contained"
+            value={buttonColor}
+            onChange={onChangeColorHandler}
             width="100%"
           />
           <Typography

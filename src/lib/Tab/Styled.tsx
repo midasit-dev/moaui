@@ -16,23 +16,32 @@ export type StyledProps = {
 	/**
 	 * Set Tabs Value Control
 	 */
-	setValue?: React.Dispatch<any>;
+	// setValue?: React.Dispatch<any>;
+	onChange?: (event: React.SyntheticEvent, value: any) => void;
 	/**
 	 * If `true`, the component is disabled.
 	 * @defaultValue false
 	 */
 	disabled?: boolean;
+
+	/**
+	 * If `true`, the component is selected.
+	 * @defaultValue false
+	 * @optional
+	 * @type boolean
+	 */
+	selected?: boolean;
 }
 const StyledComponent = styled((props: StyledProps) => {
 	return (
 		<Tab 
 			value={props?.value}
 			label={props?.label}
-			onClick={() => props?.setValue ? props?.setValue(props?.value) : {}}
+			onClick={(event) => props?.onChange ? props?.onChange?.(event, props?.value) : {}}
 			disabled={props?.disabled}
 			sx={{
-				color: Color.text.secondary,
-				fontWeight: 500, /** bold */
+				color: props?.selected ? Color.text.primary : Color.text.secondary,
+				fontWeight: props?.selected ? 700 : 500, /** bold */
 				fontSize: "0.75rem", /** 12px */
 				lineHeight: "0.875rem", /** 14px */
 				...Font.defaultFontSet,

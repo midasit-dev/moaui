@@ -24,7 +24,6 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 			slots={{
 				baseCheckbox: MoaCheck
 			}}
-			showColumnVerticalBorder
 			slotProps={{
 				row: {
 					rowHeight: 32,
@@ -34,6 +33,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					height: 32,
 				},
 			}}
+			rowHeight={32}
 			sx={{
 				".MuiDataGrid-columnHeaders": {
 					fontWeight: 500,
