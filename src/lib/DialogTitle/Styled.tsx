@@ -1,21 +1,13 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "./../MoaStyled";
-import Dialog, {DialogProps} from "@mui/material/Dialog";
+import DialogTitle, {DialogTitleProps} from "@mui/material/DialogTitle";
 
-export interface StyledProps extends DialogProps {
+export interface StyledProps extends DialogTitleProps {
 	/**
 	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
 	 * @defaultValue undefined
 	 */
 	sx?: never;
-
-	/**
-	 * If the value is `true`, the background of backdrop is blurred.
-	 * @defaultValue false
-	 * @optional
-	 * @type boolean
-	 */
-	disableBackdropBlur?: boolean;
 };
 
 type InnerStyledProps = {
@@ -23,11 +15,9 @@ type InnerStyledProps = {
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
-	const {sx, disableBackdropBlur, ...rest} = props;
+	const {sx, ...rest} = props;
 	return (
-		<Dialog {...rest} sx={{
-			backdropFilter: disableBackdropBlur ? "none" : "blur(5px)",
-		}} />
+		<DialogTitle {...rest} />
 	)
 })((props: InnerStyledProps) => ({}));
 
