@@ -90,19 +90,19 @@ export type StyledProps = {
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	
 	/**
-	 * The callback function that is fired when user releases a key on the keyboard in textfield.
+	 * The callback function that is fired when user presses a key on the keyboard in textfield.
 	 * @param {React.KeyboardEvent<HTMLInputElement>} event The event source of the callback.
 	 * You can pull out the new value by accessing `event.target.value` (string).
 	 * @defaultValue undefined
 	 */
-	onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const StyledComponent = styled((props:StyledProps) => {
 	return(
 		<TextField
 			onChange={props?.onChange}
-			onKeyUp={props?.onKeyUp}
+			onKeyDown={props?.onKeyDown}
 			id={props?.id}
 			type={props?.type}
 			defaultValue={props?.defaultValue}

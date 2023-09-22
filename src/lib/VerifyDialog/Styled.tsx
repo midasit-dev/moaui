@@ -53,7 +53,7 @@ const StyledComponent = () => {
 						placeholder="Enter MAPI-Key here"
 						error={error}
 						onChange={(e) => setMapiKey(e.target.value)}
-						onKeyUp={(e) => {
+						onKeyDown={(e) => {
 							if (e.key === 'Enter') handleOk();
 						}}
 					/>
