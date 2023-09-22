@@ -6,6 +6,14 @@ import Font from '../Font';
 
 export type StyledProps = {
 	/**
+	 * The id of the input element. Use this prop to make label and helperText accessible for screen readers.
+	 * @defaultValue undefined
+	 * @optional
+	 * @type string
+	 */
+	id?: string,
+
+	/**
 	 * This is the placeholder attached to the textfield.
 	 * @defaultValue ""
 	 */
@@ -20,6 +28,14 @@ export type StyledProps = {
 	 * @defaultValue "left"
 	 */
 	titlePosition ?: "left" | "label" | "right",
+	/**
+	 * Type of the `input` element. It should be a valid HTML5 input type.
+	 * @defaultValue "text"
+	 * @optional
+	 * @type string
+	 * @example
+	 */
+	type?: typeof HTMLInputElement.prototype.type,
 	/**
 	 * The value to display by default in the textfield.
 	 * @defaultValue undefined
@@ -49,6 +65,14 @@ export type StyledProps = {
 	value?:string,
 
 	/**
+	 * If `true`, the input will take up the full width of its container.
+	 * @defaultValue false
+	 * @optional
+	 * @type boolean
+	 */
+	fullWidth?: boolean,
+
+	/**
 	 * The width of the textfield.
 	 * @defaultValue "auto"
 	 * @optional
@@ -68,13 +92,15 @@ export type StyledProps = {
 const StyledComponent = styled((props:StyledProps) => {
 	return(
 		<TextField
+			id={props?.id}
+			type={props?.type}
 			onChange={props?.onChange}
 			defaultValue={props?.defaultValue}
 			error = {props?.error}
 			disabled = {props?.disabled}
 			value = {props?.value}
 			sx={{
-				width: props?.width || "auto",
+				width: props?.fullWidth ? "100%" : (props?.width || "auto"),
 				'& .MuiOutlinedInput-root': {
 					'& fieldset':{
 						border: `1px solid ${Color.component.gray}`,
@@ -94,7 +120,7 @@ const StyledComponent = styled((props:StyledProps) => {
 			}}
 			InputProps={{ // input component의 스타일 변경
 				sx:{
-					width: props?.width || "auto",
+					width: props?.fullWidth ? "100%" : (props?.width || "auto"),
 					height:"1.75rem",
 					padding: "0.375rem 0.375rem 0.375rem 0.625rem",
 					alignItems: "center",
