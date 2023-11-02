@@ -27,3 +27,6 @@ export { default as TextField } from "./TextField";
 export { default as Typography } from "./Typography";
 export { default as TypographyGroup } from "./TypographyGroup";
 export { default as Icon } from "./Icon";
+
+export { default as VerifyDialog } from "./VerifyDialog";
+export { default as VerifyUtil } from "./VerifyUtil";
