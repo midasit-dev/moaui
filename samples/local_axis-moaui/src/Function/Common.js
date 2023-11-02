@@ -1,3 +1,5 @@
+import { VerifyUtil } from "@midasit-dev/moaui";
+
 export { midasAPI, NEParser, stringTolist, listTochartData, chartScale };
 
 function getParam() {
@@ -15,8 +17,8 @@ function getParam() {
 
 async function midasAPI(method, subURL, body) {
 	const param = getParam();
-	const baseURL = param.get("baseURL") || "https://api-beta.midasit.com:443/civil";
-	const mapiKey = param.get("mapiKey");
+	const baseURL = await VerifyUtil.getBaseUrlAsync();
+	const mapiKey = VerifyUtil.getMapiKey();
 
 	let res;
 	if (method === "POST" || method === "PUT") {
