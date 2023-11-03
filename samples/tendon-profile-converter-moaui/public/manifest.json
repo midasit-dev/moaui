@@ -12,6 +12,6 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "width": "750",
-  "height": "470"
+  "width": "600",
+  "height": "500"
 }
