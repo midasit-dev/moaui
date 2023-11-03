@@ -244,7 +244,7 @@ function Main() {
 					</MoaStack>
 				</MoaGrid>
 			</MoaGrid>
-			<MoaPanel width="600px" height="350px">
+			<MoaPanel width="100%" height="350px">
 				<MoaStack spacing={1} paddingBottom={1}>
 					<div className="userWrap">
 						<div className="chartStyle">

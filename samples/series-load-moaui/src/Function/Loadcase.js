@@ -154,30 +154,30 @@ async function ShowLoads(lcName, nbCases) {
   let viewName;
   let viewBody = {
     "Argument": {
-        "UFIG_LIST": [
-            {
-                "RUN_ANALYSIS": false,
-                "IS_PRE_MODE": true,
-                "HIDDEN": true,
-                "VIEW_HORIZONTAL": 30,
-                "VIEW_VERTICAL": 45,
-                "LOADCASE_TYPE": "ST",
-                "LOADCASE_NAME": "KL-510TRK_#1",
-                "LOAD_DISP_OPT": {
-                    "LOAD_VALUE_LABEL": true,
-                    "LOAD_VALUE_EXP": false,
-                    "LOAD_VALUE_DECIMAL_PT": 3,
-                    "LOAD_DISP_OPT_LIST": [
-                        "BMLD"
-                    ]
-                }
-            }
-        ]
+        "SET_MODE": "pre",
+        "SET_HIDDEN": true,
+        "ANGLE": {
+          "HORIZONTAL": 30,
+          "VERITCAL": 45
+        },
+        "DISPLAY": {
+          "LOAD": {
+            "CASE_SELECTION": {
+              "TYPE": "ST",
+              "NAME": "",
+            },
+            "LOAD_VALUE": {
+              "FORMAT": "fixed",
+              "PLACE": 3
+            },
+            "BEAM_LOAD": true
+          }
+        }
     }
 }
   for (let i = 0; i < nbCases; i++) {
     viewName = lcName + "_#" + (i+1);
-    viewBody.Argument.UFIG_LIST[0].LOADCASE_NAME = viewName
+    viewBody.Argument["DISPLAY"]["LOAD"]["CASE_SELECTION"]["NAME"] = viewName
     await Common.midasAPI("POST","/view/capture/",viewBody);
   }
 }
