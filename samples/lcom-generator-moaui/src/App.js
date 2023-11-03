@@ -457,7 +457,7 @@ function Main() {
 			{openFormDlg === true ? (
 				<FormDialog />
 			) : (
-				<MoaStack width="100%" maxWidth="844px">
+				<MoaStack width="100%" maxWidth="844px" sx={{mb:"1rem"}}>
 					<GridListComponents
 						dataRequested={requestData}
 						setDataRequested={setRequestData}
