@@ -200,9 +200,9 @@ function App() {
 
   //Main UI
   return (
-	<div className="App">
+	<div className="App" >
 		{showDialog && <MKeyDialog />}
-		<div className="MainApp">
+		<div className="MainApp" style={{marginTop:"0.2rem"}}>
 			<MoaPanel height={657}>
 				<MoaStack direction="row" justifyContent="space-between" alignItems="center" marginY={1}>
 					<MoaStack direction="row" spacing={2}>
