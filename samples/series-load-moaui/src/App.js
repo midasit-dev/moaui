@@ -672,6 +672,7 @@ function App() {
 											enqueueMessage(enqueueSnackbar, "No elements are selected", "error");
 											return;
 										}
+										enqueueMessage(enqueueSnackbar, `Getting Selected Elements is successfully (Count: ${arrElem.length})`, "success");
 										setElemInputList(arrElem.toString());
 										await ApplySeriesLoads();
 										// ImportModalOpen();
