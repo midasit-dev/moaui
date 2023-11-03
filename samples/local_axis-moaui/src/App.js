@@ -58,11 +58,11 @@ function Main() {
 	const [nodeVertix, setNodeVertix] = React.useState();
 
 	//Button Actions for Node import
-	async function showNode() {
-		if (node === undefined) {
+	async function showNode(_node) {
+		if (_node === undefined) {
 			enqueueMessage(enqueueSnackbar, "Input the node data", "error");
 		} else {
-			let nodeParsing = Common.NEParser(node);
+			let nodeParsing = Common.NEParser(_node);
 			let nodelist = Common.stringTolist(nodeParsing);
 			if (isNaN(nodelist[0]) || nodelist[0] === 0) {
 				enqueueMessage(enqueueSnackbar, "Input the proper data", "error");
@@ -85,7 +85,7 @@ function Main() {
 							data: nodeCoor[0],
 						},
 					]);
-					closeNodeDialog();
+					// closeNodeDialog();
 					let chartMaxMin = Common.chartScale(nodeCoor[0]);
 					setChartScale(chartMaxMin);
 					setNodeVertix(() => {
@@ -235,7 +235,18 @@ function Main() {
 						<MoaButton variant="contained" width="100%" onClick={openHelpDialog}>
 							SPLINE
 						</MoaButton>
-						<MoaButton variant="contained" width="100%" onClick={openNodeDialog}>
+						<MoaButton variant="contained" width="100%" onClick={async () => {
+							const data = await Common.midasAPI("GET", "/view/select");
+							const arrNode = data["SELECT"]["NODE_LIST"];
+							if (arrNode.length === 0) {
+								enqueueMessage(enqueueSnackbar, "No Nodes are selected", "error");
+							}
+							enqueueMessage(enqueueSnackbar, `Getting Selected Nodes is successfully (Count: ${arrNode.length})`, "success");
+							const strNodes = arrNode.toString();
+							setNode(strNodes);
+							await showNode(strNodes);
+							// openNodeDialog();
+						}}>
 							IMPORT NODE
 						</MoaButton>
 						<MoaButton variant="contained" width="100%" onClick={LocalAxis}>
@@ -256,7 +267,7 @@ function Main() {
 					</div>
 				</MoaStack>
 			</MoaPanel>
-			{Modals.NodeImportDialog(nodeDialogState, closeNodeDialog, setNode, showNode)}
+			{/* {Modals.NodeImportDialog(nodeDialogState, closeNodeDialog, setNode, showNode)} */}
 			{Modals.HelpDialog(helpDialogState, closeHelpDialog)}
 		</MoaPanel>
 	);
