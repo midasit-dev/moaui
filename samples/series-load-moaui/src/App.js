@@ -665,7 +665,17 @@ function App() {
 								{Buttons.WideButton(
 									"contained",
 									"APPLY SERIES LOADS",
-									ImportModalOpen
+									async () => {
+										const data = await Common.midasAPI("GET", "/view/select");
+										const arrElem = data["SELECT"]["ELEM_LIST"];
+										if (arrElem.length === 0) {
+											enqueueMessage(enqueueSnackbar, "No elements are selected", "error");
+											return;
+										}
+										setElemInputList(arrElem.toString());
+										await ApplySeriesLoads();
+										// ImportModalOpen();
+									}
 								)}
 							</MoaStack>
 						</MoaStack>
@@ -674,13 +684,13 @@ function App() {
 			</MoaPanel>
 			}
 			{Modals.HelpModal(openHelpModal, modalHelpClose)}
-			{Modals.ElemImportModal(
+			{/* {Modals.ElemImportModal(
 				openModal,
 				ImportModalClose,
 				elemInputList,
 				setElemInputList,
 				ApplySeriesLoads
-			)}
+			)} */}
 		</div>
 	);
 }
