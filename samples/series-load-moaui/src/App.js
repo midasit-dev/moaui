@@ -24,6 +24,7 @@ import MoaTypography from "@midasit-dev/moaui/Typography";
 import MoaButton from "@midasit-dev/moaui/Button";
 import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { VerifyUtil } from '@midasit-dev/moaui';
+import { KeyboardReturnOutlined } from "@mui/icons-material";
 
 //window settings
 const width = 720;
@@ -278,7 +279,6 @@ function App() {
 	const [openModal, setOpenModal] = React.useState(false);
 	const ImportModalOpen = () => setOpenModal(true);
 	const ImportModalClose = () => setOpenModal(false);
-	const [elemInputList, setElemInputList] = React.useState();
 
 	//Show the Load Length
 	React.useEffect(() => {
@@ -311,13 +311,13 @@ function App() {
 	}
 
 	// Assign Series Loads
-	async function ApplySeriesLoads(_elemInputList) {
+	async function ApplySeriesLoads(elemKeys) {
 		//Input Element Check
-		if (_elemInputList === undefined) {
+		if (elemKeys === undefined) {
 			enqueueMessage(enqueueSnackbar, "Input the element data", "error");
 			return;
 		} else {
-			let elemParsing = Common.NEParser(_elemInputList);
+			let elemParsing = Common.NEParser(elemKeys);
 			let elemlist = Common.stringTolist(elemParsing);
 			if (isNaN(elemlist[0]) || elemlist[0] === 0) {
 				enqueueMessage(enqueueSnackbar, "Input the proper data", "error");
@@ -414,7 +414,7 @@ function App() {
 			orgPtStrPt,
 			strPtDist1,
 			strPtDist2,
-			_elemInputList,
+			elemKeys,
 			axeLoadChk,
 			dstLoadChk,
 			impLoadChk,
@@ -673,9 +673,7 @@ function App() {
 											return;
 										}
 										enqueueMessage(enqueueSnackbar, `Getting Selected Elements is successfully (Count: ${arrElem.length})`, "success");
-										setElemInputList(arrElem.toString());
-										console.log(elemInputList)
-										await ApplySeriesLoads(elemInputList);
+										await ApplySeriesLoads(arrElem.toString());
 										// ImportModalOpen();
 									}
 								)}
@@ -689,8 +687,8 @@ function App() {
 			{/* {Modals.ElemImportModal(
 				openModal,
 				ImportModalClose,
-				elemInputList,
-				setElemInputList,
+				elemKeys,
+				setElemKeys,
 				ApplySeriesLoads
 			)} */}
 		</div>
