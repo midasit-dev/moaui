@@ -311,13 +311,13 @@ function App() {
 	}
 
 	// Assign Series Loads
-	async function ApplySeriesLoads() {
+	async function ApplySeriesLoads(_elemInputList) {
 		//Input Element Check
-		if (elemInputList === undefined) {
+		if (_elemInputList === undefined) {
 			enqueueMessage(enqueueSnackbar, "Input the element data", "error");
 			return;
 		} else {
-			let elemParsing = Common.NEParser(elemInputList);
+			let elemParsing = Common.NEParser(_elemInputList);
 			let elemlist = Common.stringTolist(elemParsing);
 			if (isNaN(elemlist[0]) || elemlist[0] === 0) {
 				enqueueMessage(enqueueSnackbar, "Input the proper data", "error");
@@ -414,7 +414,7 @@ function App() {
 			orgPtStrPt,
 			strPtDist1,
 			strPtDist2,
-			elemInputList,
+			_elemInputList,
 			axeLoadChk,
 			dstLoadChk,
 			impLoadChk,
@@ -674,7 +674,8 @@ function App() {
 										}
 										enqueueMessage(enqueueSnackbar, `Getting Selected Elements is successfully (Count: ${arrElem.length})`, "success");
 										setElemInputList(arrElem.toString());
-										await ApplySeriesLoads();
+										console.log(elemInputList)
+										await ApplySeriesLoads(elemInputList);
 										// ImportModalOpen();
 									}
 								)}
