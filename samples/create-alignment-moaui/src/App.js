@@ -150,10 +150,10 @@ function App() {
     let dbSkew = layoutData[4];
     let dbGrup = layoutData[5];
 
-    let resNode = await midasAPI("POST", "/db/node", dbNode);
-    let resElem = await midasAPI("POST", "/db/elem", dbElem);
-    let resSkew = await midasAPI("POST", "/db/skew", dbSkew);
-    let resGrup = await midasAPI("POST", "/db/grup", dbGrup);
+    let resNode = await midasAPI("PUT", "/db/node", dbNode);
+    let resElem = await midasAPI("PUT", "/db/elem", dbElem);
+    let resSkew = await midasAPI("PUT", "/db/skew", dbSkew);
+    let resGrup = await midasAPI("PUT", "/db/grup", dbGrup);
 
     let rtNode, rtElem, rtSkew, rtGrup;
     let resAPI = [resNode, resElem, resSkew, resGrup];
