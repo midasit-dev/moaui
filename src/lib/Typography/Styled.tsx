@@ -81,7 +81,7 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Represent a text string in typography component
 	 * @defaultValue ''
 	 */
-	children: string;
+	children?: React.ReactNode;
 	/**
 	 * Set the typography type
 	 * @defaultValue 'body1'
