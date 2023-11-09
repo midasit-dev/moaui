@@ -279,6 +279,7 @@ function App() {
 	const [openModal, setOpenModal] = React.useState(false);
 	const ImportModalOpen = () => setOpenModal(true);
 	const ImportModalClose = () => setOpenModal(false);
+	// const [elemKeys, setElemKeys] = React.useState("");
 
 	//Show the Load Length
 	React.useEffect(() => {
@@ -333,7 +334,7 @@ function App() {
 					return;
 				}
 				setElemLen(elemTotalLength);
-				ImportModalClose();
+				// ImportModalClose();
 			}
 		}
 
@@ -673,6 +674,7 @@ function App() {
 											return;
 										}
 										enqueueMessage(enqueueSnackbar, `Getting Selected Elements is successfully (Count: ${arrElem.length})`, "success");
+										arrElem.sort((n1, n2) => { return n1 - n2 });
 										await ApplySeriesLoads(arrElem.toString());
 										// ImportModalOpen();
 									}

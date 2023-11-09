@@ -29,6 +29,12 @@ async function midasAPI(method, subURL, body) {
 
 //Pasring Node Number
 function NEParser(NEString) {
+	console.log(NEString);
+	if (!NEString.includes("to") && 
+			!NEString.includes("by")) {
+		return NEString;
+	}
+
   let origin = (NEString||"").split(" ");
   let result = "";
   for (let i = 0; i < origin.length;i++) {
