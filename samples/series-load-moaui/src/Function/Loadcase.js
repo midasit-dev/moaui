@@ -156,10 +156,10 @@ async function ShowLoads(lcName, nbCases) {
     "Argument": {
         "SET_MODE": "pre",
         "SET_HIDDEN": true,
-        "ANGLE": {
-          "HORIZONTAL": 30,
-          "VERITCAL": 45
-        },
+				"ANGLE": {
+					"HORIZONTAL":30,
+					"VERTICAL":15
+				},
         "DISPLAY": {
           "LOAD": {
             "CASE_SELECTION": {
