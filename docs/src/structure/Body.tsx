@@ -18,6 +18,7 @@ function Body(props: BodyProp): React.ReactElement {
 						<MenuHeader value={"Getting started"} />
 						<MenuItem value={"Installation"} />
 						<MenuItem value={"Editor Setup"} />
+						<MenuItem value={"Playground"} />
 					</div>
 					<div className="mt-4">
 						<MenuHeader value={"Concepts"} />
