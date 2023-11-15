@@ -1,16 +1,18 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Moabutton.defaultProps = {
-	children: "Button",
+Button.defaultProps = {
 	variant: "contained",
 	disabled: false,
-	width: "auto"
+} as StyledProps;
+
+/**
+ * MoaUI Styled Button (Single)
+ * 
+ * @param props 
+ * @returns React.ReactElement
+ */
+function Button(props: StyledProps) {	
+	return <StyledComponent {...props} />
 }
 
-function Moabutton(props: StyledProps) : React.ReactElement {	
-	return (
-		<StyledComponent {...props} />
-	)
-}
-
-export default Moabutton;
+export default Button;

@@ -1,11 +1,17 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from '../MoaStyled';
-import Button from '@mui/material/Button';
+import MuiButton from '@mui/material/Button';
 import Color from "../Color";
 import Font from "../Font";
 import React from 'react';
 
 export type StyledProps = {
+	/**
+	 * The content of the button.
+	 * @defaultValue "Button"
+	 * @optional
+	 * @type string
+	 */
 	children: string,
 	/**
 	 * The callback function that is fired when the button is clicked.
@@ -171,7 +177,7 @@ const StyledComponent = styled((props:StyledProps) => {
 	}, []);
 
 	return (
-		<Button
+		<MuiButton
 			{...commonButtonProps}
 			variant={props?.variant}
 			disabled={props?.disabled}
@@ -183,7 +189,7 @@ const StyledComponent = styled((props:StyledProps) => {
 			}}
 		>
 			{props?.children}
-		</Button>
+		</MuiButton>
 	)
 })
 (({theme}) => ({}))
