@@ -6,4 +6,4 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props 
  * @returns React.ReactElement
  */
-export default function MoaCheckGroup(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function CheckGroup(props: StyledProps) { return (<StyledComponent {...props} />) };
