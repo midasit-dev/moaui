@@ -1,10 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Component from ".";
+import Docs from "./Docs.mdx";
 
 const meta = {
   title: 'Components/Button',
   component: Component,
-  parameters: { layout: 'centered', },
+  parameters: { 
+		layout: 'centered', 
+		docs: { page: Docs },
+	},
   tags: ['autodocs'],
   argTypes: {
 		onClick: { control: 'none' },

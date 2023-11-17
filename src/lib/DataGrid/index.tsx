@@ -1,6 +1,6 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MoaDataGrid.defaultProps = {
+DataGrid.defaultProps = {
 } as StyledProps;
 
 /**
@@ -9,4 +9,4 @@ MoaDataGrid.defaultProps = {
  * @param {StyledProps} props 
  * @returns React.ReactElement
  */
-export default function MoaDataGrid(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function DataGrid(props: StyledProps) { return (<StyledComponent {...props} />) };

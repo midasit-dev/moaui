@@ -1,15 +1,15 @@
 import React from "react";
-import MoaIconButton, { StyledProps } from "./Styled";
+import StyledComponent, { StyledProps } from "./Styled";
 
-MoaIconbutton.defaultProps = {
+IconButton.defaultProps = {
 	children: <div />,
 	onClick: () => {},
 }
 
-function MoaIconbutton(props: StyledProps) : React.ReactElement {
+function IconButton(props: StyledProps) : React.ReactElement {
 	return (
-		<MoaIconButton {...props} />
+		<StyledComponent {...props} />
 	)
 }
 
-export default MoaIconbutton;
+export default IconButton;

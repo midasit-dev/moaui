@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import CheckGroup from ".";
 import Check from "./../Check"
-import { Fragment, useState } from 'react';
+import Docs from "./Docs.mdx";
 
 const meta = {
   title: 'Components/CheckGroup',
   component: CheckGroup,
-  parameters: { layout: 'centered', },
-  tags: ['autodocs'],
-  argTypes: {
+  parameters: { 
+		layout: 'centered', 
+		docs: { page: Docs, },
 	},
+  tags: ['autodocs'],
 } satisfies Meta<typeof CheckGroup>;
 
 export default meta;

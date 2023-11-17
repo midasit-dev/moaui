@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import * as MuiIcon from '@mui/icons-material';
-import { type iconNameType } from './iconDict';
+import { type iconNameType, IconNameTypes } from './iconDict';
 
 export type StyledProps = {
 	/**
@@ -18,6 +18,12 @@ export type StyledProps = {
 
 const StyledComponent = styled((props:StyledProps) => {
 	const { iconName } = props;
+
+	if (iconName === undefined || 
+			iconName === null ||
+			iconName === "" ) { return (<>Icon Name is undefined or null.</>) }
+	
+	if (!IconNameTypes.includes(iconName)) { return (<>Icon Name is not valid.</>) }
 
 	const iconStyle = {
 		fontSize: '16px',   // Set icon size to 16px

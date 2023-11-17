@@ -1,19 +1,19 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MoaPanel.defaultProps = {
+Panel.defaultProps = {
 	children: <></>,
 	variant: 'shadow',
 	width: 'fit-content',
 	height: 'fit-content',
-}
+} as StyledProps;
 
 /**
- * Panel
+ * Moa UI Styled Panel
  * @param props
  * @returns JSX.Element
  */
-function MoaPanel(props: StyledProps) : JSX.Element {
+function Panel(props: StyledProps) : JSX.Element {
 	return ( <StyledComponent {...props} /> )
 }
 
-export default MoaPanel;
+export default Panel;

@@ -1,11 +1,19 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MUIIcon.defaultProps = {
+Icon.defaultProps = {
 	iconName: "Add",
-}
+} as StyledProps;
 
-export default function MUIIcon(props: StyledProps) : React.ReactElement {	
+/**
+ * MoaUI Styled Icon (Single)
+ * 
+ * @param props 
+ * @returns React.ReactElement
+ */
+function Icon(props: StyledProps) : React.ReactElement {
 	return (
 		<StyledComponent {...props} />
 	)
 }
+
+export default Icon;

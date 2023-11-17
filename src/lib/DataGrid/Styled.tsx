@@ -5,6 +5,9 @@ import Color from '../Color';
 import MoaCheck from '../Check';
 
 export interface StyledProps extends DataGridProps {
+	/**
+	 * not used
+	 */
 	sx?: never,
 };
 
