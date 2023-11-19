@@ -25,3 +25,8 @@ yarn-error.log*
 
 #sample build
 samples/build
+
+#storybook build
+storybook-static
+build-storybook.log
+chromatic.log
