@@ -15,13 +15,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/midasit-dev/moaui.git"
+    "url": "git+https://github.com/midasit-dev/moaui.git"
   },
   "homepage": "https://midasit-dev.github.io/moaui",
   "contributors": [
-    "lhy0118",
-    "bce0404",
-    "kh1012"
+    {
+      "name": "lhy0118"
+    },
+    {
+      "name": "bce0404"
+    },
+    {
+      "name": "kh1012"
+    }
   ],
   "version": "0.0.39",
   "private": false,
@@ -63,6 +69,7 @@
     "@types/enzyme": "^3.10.13",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.39",
+    "chromatic": "^9.1.0",
     "eslint-plugin-storybook": "^0.6.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -76,7 +83,8 @@
     "test": "react-scripts test",
     "deploy": "node prepare.js && tsc && cd ./dist && npm publish",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_8c568868a09ebc7"
   },
   "eslintConfig": {
     "extends": [
@@ -96,5 +104,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/midasit-dev/moaui/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "@midasit-dev/moaui@0.0.39"
 }
