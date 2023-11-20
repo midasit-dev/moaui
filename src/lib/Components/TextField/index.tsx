@@ -36,7 +36,7 @@ function Textfield(props: StyledProps) : React.ReactElement {
 			return {
 				display: "inline-flex",  alignItems:"center", gap:"0.25rem"
 			}
-	}, [titlePosition])
+	}, [])
 
 	return (
 		<React.Fragment>
