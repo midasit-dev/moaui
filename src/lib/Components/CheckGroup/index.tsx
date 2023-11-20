@@ -1,7 +1,7 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
- * Wrapper for MoaUI Styled Check Group.
+ * moaui Styled Check Group.
  * 
  * @param props 
  * @returns React.ReactElement

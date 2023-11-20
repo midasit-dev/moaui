@@ -128,4 +128,5 @@ const ThemedComponent = (props: StyledProps) => (
 		<StyledComponent {...props} />
 	</MoaStyledComponent>
 );
+
 export default ThemedComponent;

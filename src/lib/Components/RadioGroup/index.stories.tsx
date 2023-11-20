@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import RadioGroup from ".";
-import { Radio } from "../..";
+import { Radio } from "../../";
 import Docs from "./Docs.mdx";
 
 const meta = {

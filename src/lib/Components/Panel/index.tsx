@@ -9,7 +9,8 @@ Panel.defaultProps = {
 } as StyledProps;
 
 /**
- * Moa UI Styled Panel
+ * moaui Styled Panel
+ * 
  * @param props
  * @returns JSX.Element
  */

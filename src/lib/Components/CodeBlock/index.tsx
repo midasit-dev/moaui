@@ -25,16 +25,18 @@ interface CodeComponentProps {
 	title?:string;
 }
 
-CodeComponent.defaultProps = {
+CodeBlock.defaultProps = {
 	children: "",
 	language: "javascript",
 	title: "",
 }
 /**
+ * A code block with syntax highlighting
+ * 
  * @param props  - The props of the component (children, language, title)
  * @returns A code block with syntax highlighting
  */
-function CodeComponent(props: CodeComponentProps){
+function CodeBlock(props: CodeComponentProps){
 	const [copySuccess, setCopySuccess] = React.useState(false);
 
 	React.useEffect(() => {
@@ -95,5 +97,5 @@ function CodeComponent(props: CodeComponentProps){
 		</>
 	);
 }
-export default CodeComponent;
 
+export default CodeBlock;

@@ -3,17 +3,20 @@ import { Meta, Title, Subtitle, Description, Primary, Controls, Stories } from '
 <Meta isTemplate />
 
 <Title />
-
 <Description />
+Verify Util Functions
 <br />
 
 ## Import
 
-`import { VerifyDialog } from '@midasit-dev/moaui'`
-<br />
+```ts
+import { VerifyUtil } from '@midasit-dev/moaui'
+```
 
+<br />
 ## Functions
 
+<br />
 ### isExistQueryStrings 
 Check MAPI-Key in query string
 ```ts
@@ -24,6 +27,7 @@ function isExistQueryStrings(query: string): boolean
 const bExist = isExistQueryStrings('https://midasit.com?mapiKey=1234');
 ```
 
+<br />
 ### getProductionUrl 
 Get production url
 ```ts
@@ -34,6 +38,7 @@ function getProductionUrl(): string
 const url = getProductionUrl();
 ```
 
+<br />
 ### getVerifyInfoAsync 
 Get verify info
 ```ts
@@ -44,6 +49,7 @@ async function getVerifyInfoAsync(mapiKey: string): Promise<any>
 const verifyInfo = await getVerifyInfoAsync('1234');
 ```
 
+<br />
 ### getBaseUrlAsync 
 Get base url
 ```ts
@@ -54,6 +60,7 @@ async function getBaseUrlAsync(): Promise<string>
 const baseUrl = await getBaseUrlAsync();
 ```
 
+<br />
 ### getMapiKey 
 Get MAPI-Key (in query string)
 ```ts

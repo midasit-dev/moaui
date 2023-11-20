@@ -4,7 +4,7 @@ DataGrid.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled DataGrid
+ * moaui Styled DataGrid
  * 
  * @param {StyledProps} props 
  * @returns React.ReactElement

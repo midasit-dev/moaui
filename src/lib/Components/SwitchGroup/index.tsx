@@ -1,7 +1,7 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
- * MoaUI Styled Switch (Group)
+ * moaui Styled Switch (Group)
  * 
  * @param props 
  * @returns React.ReactElement

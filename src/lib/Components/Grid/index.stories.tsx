@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Docs from "./Docs.mdx";
+
 import Grid from ".";
-import Typography from "../Typography";
+import { Typography } from "../../";
+
+import Docs from "./Docs.mdx";
 
 const meta = {
   title: 'Components/Grid',

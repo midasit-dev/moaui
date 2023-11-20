@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react"
 import SwitchGroup from ".";
-import Switch from "../Switch";
-import Typography from "../Typography";
+import { Switch, Typography } from "../../";
 
 function ControlledCheckboxGroupDemo() {
 	const [values, setValues] = useState({

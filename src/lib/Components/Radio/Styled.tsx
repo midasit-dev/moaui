@@ -1,6 +1,8 @@
 import { styled } from '@mui/material/styles';
+
 import MoaStyledComponent from "../../Style/MoaStyled";
-import Color from '../../Style/Color';
+import { Color } from '../../';
+
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Circle from '@mui/icons-material/Circle';

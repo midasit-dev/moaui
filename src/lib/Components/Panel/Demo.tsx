@@ -1,4 +1,4 @@
-import Panel from './index';
+import Panel from '.';
 import TypographyGroupDemo from '../TypographyGroup/Demo';
 
 function Demo() {

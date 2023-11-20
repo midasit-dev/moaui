@@ -1,5 +1,8 @@
 import React from "react";
-import Button from "./index";
+
+import Button from ".";
+import { Color, Font } from "../../";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -8,8 +11,6 @@ import CodeComponent from "../CodeBlock";
 import DropList from "../DropList";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import Color from "../../Style/Color";
-import Font from "../../Style/Font";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Switch from "@mui/material/Switch";

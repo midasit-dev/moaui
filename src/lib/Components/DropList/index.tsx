@@ -8,7 +8,7 @@ DropList.defaultProps = {
 } as StyledProps;
 
 /**
- * Drop List Component
+ * moaui Styled Drop List Component
  * @param {MoaDropListProps} props - defaultValue, value, itemList, onChange, width
  * @returns {React.ReactElement} MoaDropList
  */

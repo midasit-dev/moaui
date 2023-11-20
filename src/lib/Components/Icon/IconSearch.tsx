@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import { TextField } from '../..';
-import { Button } from '../..';
+import { TextField, Button } from '../../';
 import { IconNameTypes } from './iconDict';
 
 function Item(props: any) {

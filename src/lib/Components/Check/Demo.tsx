@@ -1,12 +1,12 @@
 import React from "react";
+
 import Check from ".";
+import { Font, TextField, CodeBlock } from "../../";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import CodeComponent from "../CodeBlock";
-import TextField from "../TextField";
-import Font from "../../Style/Font";
 import Switch from '@mui/material/Switch';
 
 export function CheckCompo() {
@@ -256,7 +256,7 @@ export function CheckCompo() {
         </Stack>
       </Stack>
       <Box sx={{ mt: 2 }}>
-        <CodeComponent
+        <CodeBlock
           language="typescript"
           children={String(CheckCode).replace(/\n$/, "")}
         />

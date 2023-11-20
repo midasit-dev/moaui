@@ -1,6 +1,5 @@
-import MoaTypography from "../Typography";
-import MoaDataGrid from ".";
-import MoaPanel from "../Panel";
+import DataGrid from ".";
+import { Panel, Typography } from "../../";
 
 function DataGridDemo() {
 
@@ -10,9 +9,9 @@ function DataGridDemo() {
 
 	return (
 		<div>
-			<MoaPanel variant="strock">
-				<MoaTypography>DataGrid</MoaTypography>
-				<MoaDataGrid 
+			<Panel variant="strock">
+				<Typography>DataGrid</Typography>
+				<DataGrid 
 					columns={[
 						{ field: 'id', headerName: 'ID', width: 70, editable: true, },
 						{ field: 'firstName', headerName: 'First name', width: 130, editable: true },
@@ -57,7 +56,7 @@ function DataGridDemo() {
 					hideFooterPagination
 					hideFooterSelectedRowCount
 				/>
-			</MoaPanel>
+			</Panel>
 
 		</div>
 	)

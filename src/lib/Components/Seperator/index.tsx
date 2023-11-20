@@ -6,6 +6,8 @@ Seperator.defaultProps = {
 } as StyledProps;
 
 /**
+ * moaui Styled Seperator
+ * 
  * @param {MoaSeperatorProps} props - direction
  * @returns {React.ReactElement} MoaSeperator
  */

@@ -2,10 +2,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 RadioGroup.defaultProps = {
 	ariaLabel: "Radio Group",
-};
+} as StyledProps;
 
 /**
- * Wrapper for MoaUI Styled Radio Button.
+ * moaui Styled Radio Button Group
  * 
  * @param props 
  * @returns React.ReactElement

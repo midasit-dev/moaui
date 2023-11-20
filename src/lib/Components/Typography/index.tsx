@@ -7,7 +7,7 @@ Typography.defaultProps = {
 } as StyledProps;
 
 /**
- * Typography
+ * moaui Styled Typography
  * @param props
  * @returns TypographyComponent
  */

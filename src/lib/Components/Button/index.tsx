@@ -6,7 +6,7 @@ Button.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Button (Single)
+ * moaui Styled Button
  * 
  * @param props 
  * @returns React.ReactElement

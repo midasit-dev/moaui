@@ -41,7 +41,6 @@ export const Label: Story = {
 
 export const Right: Story = {
 	args: {
-		width: '100px',
 		placeholder: "placeholder",
 		title: "title",
 		titlePosition: "right",

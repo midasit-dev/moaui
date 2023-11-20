@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
-import Color from '../../Style/Color';
+import { Color } from '../../';
 import Box from '@mui/material/Box';
 
 class StyleVariant {

@@ -1,37 +1,32 @@
-import MoaTable from ".";
-import MoaTableHead from "../TableHead";
-import MoaTableBody from "../TableBody";
-import MoaTableRow from "../TableRow";
-import MoaTableCell from "../TableCell";
-import MoaTypography from "../Typography";
-import MoaPanel from "../Panel";
+import Table from ".";
+import { TableHead, TableBody, TableRow, TableCell, Typography, Panel } from "../../";
 
 function TableDemo() {
 	return (
-		<MoaPanel>
-			<MoaTable>
-				<MoaTableHead>
-					<MoaTableRow>
-						<MoaTableCell>
-							<MoaTypography>head 1</MoaTypography>
-						</MoaTableCell>
-						<MoaTableCell>
-							<MoaTypography>head 2</MoaTypography>
-						</MoaTableCell>
-					</MoaTableRow>
-				</MoaTableHead>
-				<MoaTableBody>
-					<MoaTableRow>
-						<MoaTableCell>
-							<MoaTypography>body 1</MoaTypography>
-						</MoaTableCell>
-						<MoaTableCell>
-							<MoaTypography>body 2</MoaTypography>
-						</MoaTableCell>
-					</MoaTableRow>
-				</MoaTableBody>
-			</MoaTable>
-		</MoaPanel>
+		<Panel>
+			<Table>
+				<TableHead>
+					<TableRow>
+						<TableCell>
+							<Typography>head 1</Typography>
+						</TableCell>
+						<TableCell>
+							<Typography>head 2</Typography>
+						</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					<TableRow>
+						<TableCell>
+							<Typography>body 1</Typography>
+						</TableCell>
+						<TableCell>
+							<Typography>body 2</Typography>
+						</TableCell>
+					</TableRow>
+				</TableBody>
+			</Table>
+		</Panel>
 	)
 }
 

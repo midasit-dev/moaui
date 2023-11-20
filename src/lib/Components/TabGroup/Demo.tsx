@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import MoaTabGroup from '.';
-import MoaTab from '../Tab';
+
+import TabGroup from '.';
+import { Tab } from "../../";
 
 function Demo() {
   const [value, setValue] = useState('two');
@@ -10,36 +11,36 @@ function Demo() {
 
 	return (
 		<>
-			<MoaTabGroup
+			<TabGroup
 				value={value}
 				onChange={handleChange}
 				aria-label="tabs example"
 			>
-				<MoaTab value="one" label="Item One" />
-				<MoaTab value="two" label="Item Two" />
-				<MoaTab value="three" label="Item Three" disabled />
-			</MoaTabGroup>
-			<MoaTabGroup
+				<Tab value="one" label="Item One" />
+				<Tab value="two" label="Item Two" />
+				<Tab value="three" label="Item Three" disabled />
+			</TabGroup>
+			<TabGroup
 				orientation='vertical'
 				value={value}
 				onChange={handleChange}
 				aria-label="tabs example"
 			>
-				<MoaTab value="one" label="Item One" />
-				<MoaTab value="two" label="Item Two" />
-				<MoaTab value="three" label="Item Three" disabled />
-			</MoaTabGroup>
-			<MoaTabGroup
+				<Tab value="one" label="Item One" />
+				<Tab value="two" label="Item Two" />
+				<Tab value="three" label="Item Three" disabled />
+			</TabGroup>
+			<TabGroup
 				orientation='vertical'
 				indicator='left'
 				value={value}
 				onChange={handleChange}
 				aria-label="tabs example"
 			>
-				<MoaTab value="one" label="Item One" />
-				<MoaTab value="two" label="Item Two" />
-				<MoaTab value="three" label="Item Three" disabled />
-			</MoaTabGroup>
+				<Tab value="one" label="Item One" />
+				<Tab value="two" label="Item Two" />
+				<Tab value="three" label="Item Three" disabled />
+			</TabGroup>
 		</>
 	);
 }

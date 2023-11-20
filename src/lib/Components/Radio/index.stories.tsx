@@ -17,7 +17,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		checked: false,
 		onChange: () => {},
 		value: 0,
 		name: "Radio",

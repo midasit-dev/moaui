@@ -1,8 +1,10 @@
 import { styled } from '@mui/material/styles';
+
 import MoaStyledComponent from "../../Style/MoaStyled";
+import { Typography } from '../../';
+
 import RadioGroup, {RadioGroupProps} from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
-import MoaTypography from '../Typography';
 
 export interface StyledProps extends RadioGroupProps {
 	/**
@@ -49,7 +51,7 @@ const StyledComponent = styled((props: StyledProps) => {
 	
 	return (
 		<FormControl aria-label={`${text} ${ariaLabel}`}>
-			{text && <div style={{padding: '0.25rem'}}><MoaTypography>{text}</MoaTypography></div>}
+			{text && <div style={{padding: '0.25rem'}}><Typography>{text}</Typography></div>}
 			<RadioGroup {...rest} style={{paddingLeft: text ? '0.5rem' : '0rem'}} />
 		</FormControl>
 	)

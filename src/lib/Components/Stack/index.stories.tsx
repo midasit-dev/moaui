@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Stack from ".";
-import { Typography } from "../..";
+import { Typography } from "../../";
 import Docs from "./Docs.mdx";
 
 const meta = {

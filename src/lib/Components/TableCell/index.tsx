@@ -8,7 +8,7 @@ TableCell.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Table Cell
+ * moaui Styled Table Cell
  * 
  * @param {StyledProps} props 
  * @returns React.ReactElement

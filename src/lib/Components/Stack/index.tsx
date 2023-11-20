@@ -4,7 +4,7 @@ Stack.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Stack (wrapper)
+ * moaui Styled Stack (wrapper)
  * 
  * @param props 
  * @returns React.ReactElement

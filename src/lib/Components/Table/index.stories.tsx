@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Table from ".";
-import { TableHead, TableBody, TableRow, TableCell, Typography, Panel } from "../..";
+import { TableHead, TableBody, TableRow, TableCell, Typography } from "../..";
 import Docs from "./Docs.mdx";
 
 const meta = {

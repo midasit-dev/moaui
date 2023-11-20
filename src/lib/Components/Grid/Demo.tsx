@@ -1,20 +1,21 @@
 import { Fragment } from 'react';
-import MoaGrid from '.';
-import MoaTypography from '../Typography';
+
+import Grid from '.';
+import { Typography } from '../../';
 
 function Demo() {
 	return (
 		<Fragment>
-			<MoaTypography variant="h1">Grid Demo</MoaTypography>
-			<MoaTypography></MoaTypography>
-			<MoaGrid container>
-				<MoaGrid item xs={6}>
-					<MoaTypography>Grid item 1</MoaTypography>
-				</MoaGrid>
-				<MoaGrid item xs={6}>
-					<MoaTypography>Grid item 2</MoaTypography>
-				</MoaGrid>
-			</MoaGrid>
+			<Typography variant="h1">Grid Demo</Typography>
+			<Typography></Typography>
+			<Grid container>
+				<Grid item xs={6}>
+					<Typography>Grid item 1</Typography>
+				</Grid>
+				<Grid item xs={6}>
+					<Typography>Grid item 2</Typography>
+				</Grid>
+			</Grid>
 		</Fragment>
 	)
 }

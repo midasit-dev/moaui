@@ -34,6 +34,7 @@ export { default as TextField } from "./Components/TextField";
 export { default as Typography } from "./Components/Typography";
 export { default as TypographyGroup } from "./Components/TypographyGroup";
 export { default as Icon } from "./Components/Icon";
+export { default as CodeBlock } from "./Components/CodeBlock";
 
 /**
  * authentication

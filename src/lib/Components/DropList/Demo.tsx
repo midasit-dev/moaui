@@ -1,7 +1,9 @@
 import React from "react";
-import Droplist from './index';
+
+import Droplist from '.';
+import { Typography } from '../../';
+
 import { SelectChangeEvent } from '@mui/material/Select';
-import MoaTypography from "../Typography";
 import Box from '@mui/material/Box';
 
 function DropListwithitemListAnonymousFunction(){
@@ -54,10 +56,10 @@ function DropListwithitemListMap(){
 function DropListDemo(){
 	return (
 		<Box display={"flex"} justifyContent={"center"} flexDirection={"column"} alignItems={"center"}>
-			<MoaTypography>DropList</MoaTypography><br/>
-			<MoaTypography>itemList Map</MoaTypography>
+			<Typography>DropList</Typography><br/>
+			<Typography>itemList Map</Typography>
 			<DropListwithitemListMap/>
-			<MoaTypography>itemList AnonymousFunction</MoaTypography>
+			<Typography>itemList AnonymousFunction</Typography>
 			<DropListwithitemListAnonymousFunction/>
 		</Box>
 	)

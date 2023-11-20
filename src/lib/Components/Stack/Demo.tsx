@@ -1,15 +1,15 @@
 import { Fragment } from 'react';
-import MoaStack from '.';
-import MoaTypography from '../Typography';
+import Stack from '.';
+import { Typography } from '../../';
 
 function RowDemo() {
 	return (
 		<Fragment>
-			<MoaTypography variant="h1">Row Demo</MoaTypography>
-			<MoaStack direction="row" spacing={2}>
-				<MoaTypography>Row 1</MoaTypography>
-				<MoaTypography>Row 2</MoaTypography>
-			</MoaStack>
+			<Typography variant="h1">Row Demo</Typography>
+			<Stack direction="row" spacing={2}>
+				<Typography>Row 1</Typography>
+				<Typography>Row 2</Typography>
+			</Stack>
 		</Fragment>
 	)
 }
@@ -17,11 +17,11 @@ function RowDemo() {
 function ColumnDemo() {
 	return (
 		<Fragment>
-			<MoaTypography variant="h1">Column Demo</MoaTypography>
-			<MoaStack direction="column" spacing={2}>
-				<MoaTypography>Column 1</MoaTypography>
-				<MoaTypography>Column 2</MoaTypography>
-			</MoaStack>
+			<Typography variant="h1">Column Demo</Typography>
+			<Stack direction="column" spacing={2}>
+				<Typography>Column 1</Typography>
+				<Typography>Column 2</Typography>
+			</Stack>
 		</Fragment>
 	)
 }

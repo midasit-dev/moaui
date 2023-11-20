@@ -1,9 +1,9 @@
-import MoaTab from '.';
+import Tab from '.';
 
 function Demo() {
 	return (
 		<>
-			<MoaTab value="one" label='Single Tab' />
+			<Tab value="one" label='Single Tab' />
 		</>
 	);
 }

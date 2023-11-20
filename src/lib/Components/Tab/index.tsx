@@ -2,7 +2,7 @@ import React from "react";
 import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
- * MoaUI Styled Tab (Single)
+ * moaui Styled Tab
  * 
  * @param props
  * @returns React.Element

@@ -4,7 +4,7 @@ Grid.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Grid (wrapper)
+ * moaui Styled Grid (wrapper)
  * 
  * @param props 
  * @returns React.ReactElement

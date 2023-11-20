@@ -1,10 +1,8 @@
 import React from "react";
-import Switch from "./index";
-import DropList from "../DropList";
-import TextField from "../TextField";
-import CodeComponent from "../CodeBlock";
-import Font from "../../Style/Font";
-// MUI
+
+import Switch from ".";
+import { TextField, CodeBlock, Font } from "../../";
+
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
@@ -141,7 +139,7 @@ export function SwitchCompo() {
         </Stack>
       </Stack>
       <Box sx={{ mt: 2 }}>
-        <CodeComponent
+        <CodeBlock
           language="typescript"
           children={String(SwitchCode).replace(/\n$/, "")}
         />

@@ -6,7 +6,7 @@ Check.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Check (Single)
+ * moaui Styled Check (Single)
  * 
  * @param props 
  * @returns React.ReactElement

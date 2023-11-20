@@ -5,7 +5,7 @@ Icon.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Icon (Single)
+ * moaui Styled Icon (Single)
  * 
  * @param props 
  * @returns React.ReactElement

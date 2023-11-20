@@ -1,14 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Component from "."
+import CodeBlobk from ".";
+import Docs from "./Docs.mdx";
 
 const meta = {
   title: 'Components/CodeBlock',
-  component: Component,
-  parameters: { layout: 'centered', },
+  component: CodeBlobk,
+  parameters: { 
+		layout: 'centered',
+		docs: { page: Docs, },
+	},
   tags: ['autodocs'],
   argTypes: {
 	},
-} satisfies Meta<typeof Component>;
+} satisfies Meta<typeof CodeBlobk>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -24,9 +28,9 @@ for (let i = 0; i < 5; i++) {
 	},
 	render: ({ children, language, title }) => {
 		return (
-			<Component language={language} title={title}>
+			<CodeBlobk language={language} title={title}>
 				{children}
-			</Component>
+			</CodeBlobk>
 		)
 	}
 }

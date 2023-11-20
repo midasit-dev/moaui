@@ -1,8 +1,10 @@
 import { styled } from '@mui/material/styles';
+
 import MoaStyledComponent from "../../Style/MoaStyled";
+import { Typography } from '../../';
+
 import FormGroup from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
-import Typography from '../Typography';
 
 export type StyledProps = {
 	children?: React.ReactElement[],

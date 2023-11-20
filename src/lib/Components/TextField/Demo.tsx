@@ -1,12 +1,12 @@
 import React from "react";
+
 import TextField from ".";
+import { CodeBlock, Color, Font }from "../../";
+
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import CodeComponent from "../CodeBlock";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
-import Color from "../../Style/Color";
-import Font from "../../Style/Font";
 import Switch from '@mui/material/Switch';
 import DropList from "../DropList";
 import Autocomplete from '@mui/material/Autocomplete';
@@ -325,7 +325,7 @@ export function TextFieldCompo(props: any) {
 				</Stack>
 			</Stack>
 			<Box sx={{ mt: 2 }}>
-				<CodeComponent
+				<CodeBlock
 					language="typescript"
 					children={String(TextFieldCode).replace(/\n$/, "")}
 				/>

@@ -14,6 +14,8 @@ Textfield.defaultProps = {
 } as StyledProps;
 
 /**
+ * moaui Styled TextField
+ * 
  * @param {MoaTextFieldProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange
  * @returns {React.ReactElement} moaTextField
  */

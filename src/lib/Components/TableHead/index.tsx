@@ -4,7 +4,7 @@ TableHead.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Table Head
+ * moaui Styled Table Head
  * 
  * @param {StyledProps} props 
  * @returns React.ReactElement

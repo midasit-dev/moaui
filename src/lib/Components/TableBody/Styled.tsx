@@ -1,5 +1,6 @@
-import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
+
+import { styled } from '@mui/material/styles';
 import TableBody from '@mui/material/TableBody';
 
 export type StyledProps = {

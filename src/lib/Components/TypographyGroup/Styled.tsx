@@ -1,8 +1,9 @@
 import { styled } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Color from "../../Style/Color";
-import Font from "../../Style/Font";
+
+import { Color, Font } from "../../";
 
 export type StyledProps = {
 	/**

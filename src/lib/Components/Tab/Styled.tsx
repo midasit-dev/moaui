@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
+import { Color, Font } from "../../";
+
 import Tab from '@mui/material/Tab';
-import Color from "../../Style/Color";
-import Font from "../../Style/Font";
 
 export type StyledProps = {
 	/**

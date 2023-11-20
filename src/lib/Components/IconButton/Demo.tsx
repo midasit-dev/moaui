@@ -1,5 +1,8 @@
 import React from "react";
-import MoaIconButton from "./index";
+
+import IconButton from ".";
+import { Color, Font } from "../../";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -8,8 +11,6 @@ import CodeComponent from "../CodeBlock";
 import DropList from "../DropList";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import Color from "../../Style/Color";
-import Font from "../../Style/Font";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Switch from "@mui/material/Switch";
@@ -94,7 +95,7 @@ export function IconButtonCompo() {
 					alignItems={"center"}
 					width={"70%"}
 				>
-					<MoaIconButton
+					<IconButton
 						color={buttonColor as StyledProps["color"]}
 						width={buttonWidth}
 						disabled={disableChecked}
@@ -103,7 +104,7 @@ export function IconButtonCompo() {
 						<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M5.4 7.8H6.6V9H5.4V7.8ZM5.4 3H6.6V6.6H5.4V3ZM5.994 0C2.682 0 0 2.688 0 6C0 9.312 2.682 12 5.994 12C9.312 12 12 9.312 12 6C12 2.688 9.312 0 5.994 0ZM6 10.8C3.348 10.8 1.2 8.652 1.2 6C1.2 3.348 3.348 1.2 6 1.2C8.652 1.2 10.8 3.348 10.8 6C10.8 8.652 8.652 10.8 6 10.8Z" fill="#8F8F8F" />
 						</svg>
-					</MoaIconButton>
+					</IconButton>
 				</Box>
 				<Divider orientation="vertical" flexItem sx={{ mr: 2, ml: 2 }} />
 				<Stack

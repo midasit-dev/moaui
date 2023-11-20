@@ -1,11 +1,10 @@
 import React from "react";
-import Typography from "./index";
-import DropList from "../DropList";
-import TextField from "../TextField";
-import CodeComponent from "../CodeBlock";
-import Font from "../../Style/Font";
+
 import { type StyledProps } from "./Styled";
-// MUI
+
+import Typography from ".";
+import { DropList, TextField, CodeBlock, Font} from "../../";
+
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
@@ -113,7 +112,7 @@ export function TypographyCompo() {
         </Stack>
       </Stack>
       <Box sx={{ mt: 2 }}>
-        <CodeComponent
+        <CodeBlock
           language="typescript"
           children={String(TypographyCode).replace(/\n$/, "")}
         />

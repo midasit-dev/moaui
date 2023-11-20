@@ -6,7 +6,7 @@ TypographyGroup.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Typography Group
+ * moaui Styled Typography Group
  * 
  * @param props
  * @returns JSX.Element

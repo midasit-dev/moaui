@@ -1,7 +1,4 @@
-import TableBody from ".";
-import Table from "../Table";
-import TableCell from "../TableCell";
-import TableRow from "../TableRow";
+import { Table, TableBody, TableCell, TableRow } from "../../";
 
 function TableBodyDemo() {
 	return (

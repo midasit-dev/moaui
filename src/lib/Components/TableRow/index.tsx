@@ -6,7 +6,7 @@ TableRow.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Table Row
+ * moaui Styled Table Row
  * 
  * @param {StyledProps} props 
  * @returns React.ReactElement

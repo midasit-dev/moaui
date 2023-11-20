@@ -4,7 +4,7 @@ TableBody.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Table Body
+ * maoui Styled Table Body
  * 
  * @param {StyledProps} props 
  * @returns React.ReactElement

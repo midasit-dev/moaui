@@ -1,8 +1,10 @@
-import MoaStyledComponent from "../../Style/MoaStyled";
 import { Children, useState, cloneElement, createElement, useEffect, useCallback, Fragment } from 'react';
+
 import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
-import Color from "../../Style/Color";
+
+import MoaStyledComponent from "../../Style/MoaStyled";
+import { Color } from "../../";
 
 export type StyledProps = {
 	/**

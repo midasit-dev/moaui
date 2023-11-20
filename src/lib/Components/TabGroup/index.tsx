@@ -1,7 +1,7 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
- * MoaUI Styled TabGroup (Group)
+ * moaui Styled TabGroup
  * 
  * @param props
  * @returns JSX.Element

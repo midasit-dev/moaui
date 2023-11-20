@@ -7,7 +7,7 @@ Radio.defaultProps = {
 } as StyledProps;
 
 /**
- * MoaUI Styled Radio Button(Single)
+ * moaui Styled Radio Button
  * 
  * @param props 
  * @returns React.ReactElement
