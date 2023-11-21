@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 
+import { themes } from '@storybook/theming';
+
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -11,6 +13,7 @@ const preview: Preview = {
     },
 		docs: {
 			toc: {
+				theme: themes.light,
 				contentsSelector: '.sbdocs-content',
         headingSelector: 'h1, h2, h3',
         ignoreSelector: '#primary',
