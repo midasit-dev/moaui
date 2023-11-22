@@ -32,11 +32,16 @@ export default function Playground(): React.ReactElement {
       <Box sx={{width:"100%"}}>
         {Sizewidth !== "" && Sizeheight !== "" ?
           <Box>
-            <IconButton sx={{padding:"0.2rem", m:0, ...fontStyle}} onClick={onClickBack}><ArrowBackIcon/>Back</IconButton>
+            
             <Stack direction={"row"}>
+              <Stack>
+              <Box>
+                <IconButton sx={{float:"left", padding:"0.2rem", m:0, ...fontStyle}} onClick={onClickBack}><ArrowBackIcon/>Back</IconButton>
+              </Box>
               <Box sx={{height:"100%", width:"100%",mr:"1rem"}}>
                 <DraggableComponents />
               </Box>
+              </Stack>
               <Box>
                 <DropTarget />
               </Box>
