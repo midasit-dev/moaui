@@ -1,0 +1,44 @@
+{
+  "name": "root",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@midasit-dev/moaui": "^0.0.39",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.8",
+    "@mui/x-data-grid": "^6.11.2",
+    "env-cmd": "^10.1.0",
+    "lodash": "^4.17.21",
+    "notistack": "^2.0.8",
+    "pretendard": "^1.3.8",
+    "rc-scrollbars": "^1.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "env-cmd -f ./src/.env.production react-scripts build",
+    "build-demo": "env-cmd -f ./src/.env.demo.production react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
