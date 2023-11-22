@@ -1,3 +1,5 @@
+/// <amd-module name="@midasit-dev/moaui"/>
+
 import './Style/Font';
 
 /**

@@ -1,10 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Component from ".";
+import Button from "../";
 import Docs from "./Docs.mdx";
+
+//for Live Code Editor
+import { createLiveEditStory } from 'storybook-addon-code-editor';
+import * as Moaui from '../../../';
+import EditableCode from './index.source.tsx?raw';
 
 const meta = {
   title: 'Components/Button',
-  component: Component,
+  component: Button,
   parameters: { 
 		layout: 'centered', 
 		docs: { page: Docs },
@@ -14,10 +19,24 @@ const meta = {
 		onClick: { control: 'none' },
     color: { control: 'text' },
 	},
-} satisfies Meta<typeof Component>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+//for Live Code Editor
+export const LiveCode = createLiveEditStory({
+	availableImports: { "@midasit-dev/moaui": Moaui },
+	code: EditableCode,
+	modifyEditor(monaco, editor) {
+    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+      noSemanticValidation: false,
+    });
+    monaco.editor.setTheme('vs-dark');
+    editor.focus();
+  },
+})
+LiveCode.parameters.viewMode = 'story';
 
 export const Contained: Story = {
   args: {

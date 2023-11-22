@@ -23,6 +23,10 @@
 		"outDir": "./dist",
 		"importHelpers": true,
 		"noEmitHelpers": true,
+		"baseUrl": ".",
+		"paths": {
+      "@midasit-dev/moaui": ["./src/lib/"]
+    },
   },
 	"include": [
 		"./src/lib/**/*.tsx", 

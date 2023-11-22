@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.0.39",
+  "version": "0.0.52",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -77,16 +77,19 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "storybook": "^7.5.3",
+    "storybook-addon-code-editor": "^2.2.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "deploy": "node prepare.js && tsc && cd ./dist && npm publish",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_8c568868a09ebc7"
+    "npm-prepare": "node prepare.js && tsc -p tsconfig.npm.json",
+    "npm-publish": "npm run npm-prepare && cd ./dist && npm publish",
+    "storybook-prepare": "tsc -p tsconfig.storybook.json",
+    "storybook-dev": "npm run storybook-prepare && storybook dev -p 6006",
+    "storybook-build": "npm run storybook-prepare && build-storybook",
+    "storybook-publish": "npm run storybook-prepare && npx chromatic --project-token=chpt_8c568868a09ebc7"
   },
   "eslintConfig": {
     "extends": [
