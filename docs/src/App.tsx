@@ -3,7 +3,7 @@ import "@/tailwindcss-output.css";
 
 import { RecoilRoot } from "recoil";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import Docs from "./structure/Docs"; 
+import Docs from "./structure/Docs";
 
 function App() {
 	const location = useLocation();

@@ -110,7 +110,7 @@ export function ButtonCompo() {
         >
           <Button
             variant={buttonVariant as StyledProps["variant"]}
-			color={buttonColor as StyledProps["color"]}
+			      color={buttonColor as StyledProps["color"]}
             width={buttonWidth}
             disabled={disableChecked}
             onClick={onClickExampleHandler}
