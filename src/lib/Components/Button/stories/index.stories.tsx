@@ -7,6 +7,9 @@ import { createLiveEditStory } from 'storybook-addon-code-editor';
 import * as Moaui from '../../../';
 import EditableCode from './index.source.tsx?raw';
 
+import ContainedButton from "./contained.source";
+import ContainedButtonCode from "./contained.source.tsx?raw";
+
 const meta = {
   title: 'Components/Button',
   component: Button,
@@ -38,6 +41,19 @@ export const LiveCode = createLiveEditStory({
 })
 LiveCode.parameters.viewMode = 'story';
 
+export const LiveCodeContained = createLiveEditStory({
+	availableImports: { "@midasit-dev/moaui": Moaui },
+	code: ContainedButtonCode,
+	modifyEditor(monaco, editor) {
+    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+      noSemanticValidation: false,
+    });
+    monaco.editor.setTheme('vs-dark');
+    editor.focus();
+  },
+})
+LiveCodeContained.parameters.viewMode = 'story';
+
 export const Contained: Story = {
   args: {
 		children: "Button",
@@ -47,7 +63,9 @@ export const Contained: Story = {
 		width: "auto",
 		color: "normal",
   },
+	// render: ContainedButton
 };
+Contained.storyName = 'ContainedTest';
 
 export const Outlined: Story = {
   args: {
