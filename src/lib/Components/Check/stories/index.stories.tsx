@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Component from ".";
+import Check from "../";
 import Docs from "./Docs.mdx";
 
 const meta = {
   title: 'Components/Check',
-  component: Component,
+  component: Check,
   parameters: { 
 		layout: 'centered', 
 		docs: { page: Docs },
@@ -12,7 +12,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
 	},
-} satisfies Meta<typeof Component>;
+} satisfies Meta<typeof Check>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
