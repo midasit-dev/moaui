@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TypographyGroup from ".";
+import TypographyGroup from "..";
 import Docs from "./Docs.mdx";
 
 const meta = {

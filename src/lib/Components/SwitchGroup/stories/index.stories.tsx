@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SwitchGroup from ".";
-import { Switch } from "../../";
+import SwitchGroup from "..";
+import { Switch } from "../../..";
 
 import Docs from "./Docs.mdx";
 

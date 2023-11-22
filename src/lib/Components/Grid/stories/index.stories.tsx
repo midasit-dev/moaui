@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Grid from ".";
-import { Typography } from "../../";
+import Grid from "..";
+import { Typography } from "../../..";
 
 import Docs from "./Docs.mdx";
 

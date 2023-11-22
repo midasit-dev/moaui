@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import VerifyDialog from ".";
-import Docs from "./Docs.mdx";
+import VerifyDialog from "..";
+import Docs from "../stories/Docs.mdx";
 
 const meta = {
   title: 'Authentication/VerifyUtil',

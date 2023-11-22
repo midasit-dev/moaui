@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import VerifyDialog from ".";
+import VerifyDialog from "..";
 import Docs from "./Docs.mdx";
 
 const meta = {

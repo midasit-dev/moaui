@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Font from ".";
-import Docs from "./Docs.mdx";
+import Font from "..";
+import Docs from "../stories/Docs.mdx";
 
 const meta = {
   title: 'Style/Font',

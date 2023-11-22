@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CodeBlobk from ".";
+import CodeBlobk from "..";
 import Docs from "./Docs.mdx";
 
 const meta = {

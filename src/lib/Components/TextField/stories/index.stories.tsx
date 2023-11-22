@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Textfield from ".";
+import Textfield from "..";
 import Docs from "./Docs.mdx";
 
 const meta = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Sample from "./Sample";
+import Sample from "../Sample";
 
 const meta = {
   title: 'Style/Color',

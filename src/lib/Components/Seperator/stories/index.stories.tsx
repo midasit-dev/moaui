@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Seperator from ".";
-import { Panel, Typography } from '../..';
+import Seperator from "..";
+import { Panel, Typography } from '../../..';
 import Docs from "./Docs.mdx";
 
 const meta = {

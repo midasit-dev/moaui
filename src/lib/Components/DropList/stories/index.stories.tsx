@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Docs from "./Docs.mdx";
-import Component from ".";
+import Component from "..";
 
 const meta = {
   title: 'Components/DropList',

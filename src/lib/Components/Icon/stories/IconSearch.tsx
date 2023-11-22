@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { TextField, Button } from '../../';
-import { IconNameTypes } from './iconDict';
+import { TextField, Button } from '../../..';
+import { IconNameTypes } from '../iconDict';
 
 function Item(props: any) {
 	const [isCopied, setIsCopied] = React.useState(false);
