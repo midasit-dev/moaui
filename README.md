@@ -1,4 +1,5 @@
 <!-- markdownlint-disable-next-line -->
+<br />
 <p align="center">
   <a href="https://moa.midasit.com/" rel="noopener" target="_blank"><img width="150" src="midas_ci.svg" alt="moaui logo"></a>
 </p>
