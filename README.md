@@ -1,6 +1,7 @@
 <!-- markdownlint-disable-next-line -->
+<br />
 <p align="center">
-  <a href="https://moa.midasit.com/" rel="noopener" target="_blank"><img width="150" src="logo_circle.svg" alt="moaui logo"></a>
+  <a href="https://moa.midasit.com/" rel="noopener" target="_blank"><img width="150" src="midas_ci.svg" alt="moaui logo"></a>
 </p>
 
 <h1 align="center">moaui</h1>

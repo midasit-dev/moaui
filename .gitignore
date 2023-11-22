@@ -24,7 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 #sample build
-samples/build
+samples/**/build
 
 #storybook build
 storybook-static
