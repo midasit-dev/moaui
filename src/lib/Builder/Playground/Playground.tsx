@@ -32,7 +32,6 @@ export default function Playground(): React.ReactElement {
       <Box sx={{width:"100%"}}>
         {Sizewidth !== "" && Sizeheight !== "" ?
           <Box>
-            
             <Stack direction={"row"}>
               <Stack>
               <Box>

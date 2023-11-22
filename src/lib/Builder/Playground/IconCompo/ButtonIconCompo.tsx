@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../ItemTypes';
-import { ReactComponent as ButtonIcon } from "../../../svg/Button.svg";
+import { ReactComponent as ButtonIcon } from "../svg/Button.svg";
 
 export default function ButtonIconCompo(): React.ReactElement {
 	const [{ isDragging }, drag] = useDrag({

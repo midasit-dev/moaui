@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../ItemTypes';
-import { ReactComponent as TextFieldIcon } from "../../../svg/TextField.svg";
+import { ReactComponent as TextFieldIcon } from "../svg/TextField.svg";
 
 export default function TextFieldIconCompo(): React.ReactElement {
 	const [{ isDragging }, drag] = useDrag({
