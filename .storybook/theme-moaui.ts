@@ -9,7 +9,7 @@ export default create({
 
   brandTitle: 'moaui',
   brandUrl: 'https://github.com/midasit-dev/moaui',
-  brandImage: 'https://raw.githubusercontent.com/midasit-dev/moaui/dev/midas_ci_350x150.svg',
+  brandImage: 'https://raw.githubusercontent.com/midasit-dev/moaui/dev/midas_ci_mono_350_150.svg',
   brandTarget: '_self',
 
   // //
