@@ -88,7 +88,7 @@
     "npm-publish": "npm run npm-prepare && cd ./dist && npm publish",
     "storybook-prepare": "tsc -p tsconfig.storybook.json",
     "storybook-dev": "npm run storybook-prepare && storybook dev -p 6006",
-    "storybook-build": "npm run storybook-prepare && build-storybook",
+    "storybook-build": "npm run storybook-prepare && storybook build",
     "storybook-publish": "npm run storybook-prepare && npx chromatic --project-token=chpt_8c568868a09ebc7"
   },
   "eslintConfig": {
