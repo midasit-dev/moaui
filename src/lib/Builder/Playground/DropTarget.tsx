@@ -3,15 +3,14 @@ import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import MoaButton from "./MoaCompo/MoaButton";
 import MoaTextField from "./MoaCompo/MoaTexField";
-import { TemplateWidth, TemplateHeight } from './recoil/PlaygroundAtom';
-import { useRecoilValue } from 'recoil';
-import { Typography, Box, Stack } from '@mui/material';
+import { TemplateWidth, TemplateHeight, CodeString } from './recoil/PlaygroundAtom';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { Typography, Box } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Grid from '@mui/material/Grid';
-// import { IconButton } from '../../index';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CodeComponent from "../../Components/CodeBlock";
+import TotalCodeString from './ComponentString/TotalString';
 
 const fontStyle = {
   fontFamily: "Prentendard",
@@ -37,16 +36,42 @@ function DraggedComponent(props: any) : any {
   }
 }
 
+function makeCodeString(droppedItems: any){
+  let ComponentType: string[] = [];
+  for(let i=0; i<droppedItems.length; i++){
+    if(droppedItems[i]["props"]["itemType"]["type"] === ItemTypes.BUTTON){
+      ComponentType.push(ItemTypes.BUTTON);
+    } else if(droppedItems[i]["props"]["itemType"]["type"] === ItemTypes.TEXTFIELD){
+      ComponentType.push(ItemTypes.TEXTFIELD);
+    }
+  }
+  return ComponentType;
+}
+
 const DropTarget = (props:any) => {
   const isopenCode = props.openCode;
   const Sizewidth = useRecoilValue(TemplateWidth);
   const Sizeheight = useRecoilValue(TemplateHeight);
+  const [codestring, setCodestring] = useRecoilState(CodeString);
   const [code, setCode] = useState("");
-  const [dropped, setDropped] = useState<React.ReactNode[] | [null]>([]);
-  const [dropped1, setDropped1] = useState<React.ReactNode[] | [null]>([]);
-  const [dropped2, setDropped2] = useState<React.ReactNode[] | [null]>([]);
-  const [dropped3, setDropped3] = useState<React.ReactNode[] | [null]>([]);
-  
+  const [dropped, setDropped] = useState<React.ReactNode[] | any>([]);
+  const [dropped1, setDropped1] = useState<React.ReactNode[] | any>([]);
+  const [dropped2, setDropped2] = useState<React.ReactNode[] | any>([]);
+  const [dropped3, setDropped3] = useState<React.ReactNode[] | any>([]);
+
+  React.useEffect(() => {
+    function setComponentsCode(){
+      const Codetype = [...codestring];
+      const ComponentTypes = makeCodeString(dropped);
+      Codetype[0] = ComponentTypes;
+      console.log(Codetype);
+      setCodestring(Codetype);
+    }
+    if(dropped.length !== 0){
+      setComponentsCode();
+    }
+  }, [dropped]);
+
   const [{ canDrop: canDrop0, isOver: isOver0 }, drop0] = useDrop({
     accept: [ItemTypes.BUTTON, ItemTypes.TEXTFIELD],
     drop: (item, monitor) => {
@@ -234,18 +259,12 @@ const DropTarget = (props:any) => {
               </Grid>
             </Grid>
           </Box>
-          <Box display="flex" justifyContent={"right"} sx={{mt:"1rem"}}>
-            
-          </Box>
         </div>
         )
         :
-        <div>
-          <CodeComponent
-            language="typescript"
-            children={String(code).replace(/\n$/, "")}
-          />
-        </div>
+        <Box sx={{width:"800px", minHeight:"500px"}}>
+          <TotalCodeString />
+        </Box>
       }
     </React.Fragment>
   );

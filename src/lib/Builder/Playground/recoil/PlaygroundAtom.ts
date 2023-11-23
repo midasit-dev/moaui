@@ -9,3 +9,8 @@ export const TemplateHeight = atom<string>({
 	key: 'TemplateHeight',
 	default: "",
 });
+
+export const CodeString = atom<any>({
+	key: 'CodeString',
+	default: [[],[],[],[]],
+});

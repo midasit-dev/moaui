@@ -6,6 +6,8 @@ import IconButton from "@mui/material/IconButton"
 import Box from "@mui/material/Box";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button } from "@mui/material";
+import prettier from "prettier/standalone";
+import parser from "prettier/parser-babel";
 	
 interface CodeComponentProps {	
 	/**
@@ -63,7 +65,7 @@ function CodeBlock(props: CodeComponentProps){
 				sx={{
 					backgroundColor: "#18244a",
 					width: "100%",
-					height: "1.6rem",
+					height: "2rem",
 					borderTopLeftRadius: 8,
 					borderTopRightRadius: 8,
 				}}
@@ -89,10 +91,22 @@ function CodeBlock(props: CodeComponentProps){
 					padding: "1.7em",
 					fontSize: "3px",
 					margin: 0,
+					minHeight: "100px",
 				}}
 				{...props}
 			>
-				{props.children}
+				{prettier.format(props.children, {
+						parser: "babel",
+						plugins: [parser],
+						useTabs: true,
+						semi: true,
+						singleQuote: true,
+						trailingComma: "all",
+						jsxSingleQuote: true,
+						jsxBracketSameLine: true,
+						printWidth: 120,
+					})
+				}
 			</SyntaxHighlighter>
 		</>
 	);
