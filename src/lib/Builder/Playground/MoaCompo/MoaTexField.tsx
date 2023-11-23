@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from '@midasit-dev/moaui';
+import { TextField } from '../../../index';
 
 export default function MoaTextFieldCompo(): React.ReactElement {
 

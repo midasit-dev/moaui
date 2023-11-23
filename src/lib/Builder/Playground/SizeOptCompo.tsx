@@ -1,11 +1,10 @@
 import React from 'react';
-import { DropList } from '@midasit-dev/moaui';
+import { DropList } from '../../index';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { TemplateWidth, TemplateHeight } from './PlaygroundAtom';
+import { TemplateWidth, TemplateHeight } from './recoil/PlaygroundAtom';
 import { useRecoilState } from 'recoil';
 import Box from '@mui/material/Box';
 import { Typography, Stack } from '@mui/material';
-import MoaDroplist from '@midasit-dev/moaui/DropList';
 import CloseIcon from '@mui/icons-material/Close';
 const Size = ["600","800"];
 
@@ -44,7 +43,7 @@ export default function SizeOptCompo(): React.ReactElement {
 				<Typography sx={{mt:"1.6rem"}}>&nbsp;&nbsp;<CloseIcon/>&nbsp;&nbsp;</Typography>
 				<Stack>
 					<Typography>Height</Typography>
-					<MoaDroplist
+					<DropList
 						itemList={() => {
 							let map = new Map<string, string | number>();
 							Size.forEach((value) => { map.set(value.toString(), value); });

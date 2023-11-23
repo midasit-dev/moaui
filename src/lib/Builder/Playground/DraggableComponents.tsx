@@ -5,12 +5,12 @@ import ButtonIcon from "./IconCompo/ButtonIconCompo";
 import TextFieldIcon from "./IconCompo/TextFieldIconCompo";
 
 const DraggableComponent: React.FC = () => {
-  // const [{ isDragging }, drag] = useDrag({
-  //   type: ItemTypes.BUTTON,
-  //   collect: (monitor) => ({
-  //     isDragging: monitor.isDragging(),
-  //   }),
-  // });
+  const [{ isDragging }, drag] = useDrag({
+    type: ItemTypes.BUTTON,
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
 
   return (
     <div

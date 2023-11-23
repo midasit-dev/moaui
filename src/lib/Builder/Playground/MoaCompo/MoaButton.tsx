@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from '@midasit-dev/moaui';
+import { Button } from '../../../index';
 
 export default function MoaButtonCompo(): React.ReactElement {
 
