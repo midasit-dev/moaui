@@ -1,29 +1,35 @@
 import React from 'react';
-import { Title, Description, Controls, Canvas, ArgTypes, Primary } from '@storybook/blocks';
+import { Title, Description, Controls, Canvas, ArgTypes, Stories } from '@storybook/blocks';
 
 const DocsTemplate = () => {
 	return (
 		<>
-			<Title />
-			<Description />
-			Default docs template.
+			<blockquote><p>default docs template.</p></blockquote>
 			<br />
 
+			<Title />
+			<Description />
+
 			<h2>🔫 Preview</h2>
-			Displaying the rendered component with the trying props.
+			<p>Displaying the rendered component with the trying props.</p>
 			<Canvas sourceState="shown" withToolbar />
 
 			<h2>⚽ Try</h2>
-			Try to change the props of the component.
+			<p>Try to change the props of the component.</p>
 			<Controls 
 				exclude={[
-					'onClick'
+					'onClick',
+					'onChange',
 				]}
 			/>
 
 			<h2>📝 Props</h2>
-			The component has the following props.
+			<p>The component has the following props.</p>
 			<ArgTypes />
+
+			<h2>📚 Stories</h2>
+			<p>Experience a variety of components in advance.</p>
+			<Stories />
 		</>
 	)
 }
