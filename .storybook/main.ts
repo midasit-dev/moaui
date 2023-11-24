@@ -4,11 +4,11 @@ import { getCodeEditorStaticDirs } from "storybook-addon-code-editor/getStaticDi
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
+		"storybook-addon-code-editor",
+		"@storybook/addon-essentials",
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
-		"storybook-addon-code-editor",
   ],
   framework: {
     name: "@storybook/react-webpack5",
@@ -16,10 +16,10 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
-		defaultName: "Overview",
+		defaultName: "Explore",
   },
 	staticDirs: [
 		...getCodeEditorStaticDirs(),
-	]
+	],
 };
 export default config;

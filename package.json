@@ -88,12 +88,14 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "npm-prepare": "node prepare.js && tsc -p tsconfig.npm.json",
-    "npm-publish": "npm run npm-prepare && cd ./dist && npm publish",
-    "storybook-prepare": "tsc -p tsconfig.storybook.json",
-    "storybook-dev": "npm run storybook-prepare && storybook dev -p 6006",
-    "storybook-build": "npm run storybook-prepare && build-storybook",
-    "storybook-publish": "npm run storybook-prepare && npx chromatic --project-token=chpt_8c568868a09ebc7"
+		
+    "prepare-npmjs": "node prepare.js && tsc -p tsconfig.npm.json",
+    "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish",
+
+    "prepare-storybook": "tsc -p tsconfig.storybook.json",
+    "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
+    "build-storybook": "npm run prepare-storybook && storybook build",
+    "chromatic": "npm run prepare-storybook && npx chromatic --project-token=chpt_8c568868a09ebc7"
   },
   "eslintConfig": {
     "extends": [
@@ -118,5 +120,5 @@
     "url": "https://github.com/midasit-dev/moaui/issues"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "@midasit-dev/moaui@0.0.39"
+  "_id": "@midasit-dev/moaui@0.0.52"
 }

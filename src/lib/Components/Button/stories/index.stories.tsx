@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Button from "../";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
 
-//for Live Code Editor
 import { createLiveEditStory } from 'storybook-addon-code-editor';
 import * as Moaui from '../../../';
-import EditableCode from './index.source.tsx?raw';
+import CodeComposite from './Composite.source.tsx?raw';
 
 import ContainedButton from "./contained.source";
 import ContainedButtonCode from "./contained.source.tsx?raw";
@@ -15,22 +14,17 @@ const meta = {
   component: Button,
   parameters: { 
 		layout: 'centered', 
-		docs: { page: Docs },
+		docs: { page: Explore },
 	},
   tags: ['autodocs'],
-  argTypes: {
-		onClick: { control: 'none' },
-    color: { control: 'text' },
-	},
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-//for Live Code Editor
-export const LiveCode = createLiveEditStory({
+export const Sandbox = createLiveEditStory({
 	availableImports: { "@midasit-dev/moaui": Moaui },
-	code: EditableCode,
+	code: CodeComposite,
 	modifyEditor(monaco, editor) {
     monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
       noSemanticValidation: false,
@@ -39,7 +33,7 @@ export const LiveCode = createLiveEditStory({
     editor.focus();
   },
 })
-LiveCode.parameters.viewMode = 'story';
+Sandbox.parameters.viewMode = 'story';
 
 export const LiveCodeContained = createLiveEditStory({
 	availableImports: { "@midasit-dev/moaui": Moaui },
@@ -54,7 +48,7 @@ export const LiveCodeContained = createLiveEditStory({
 })
 LiveCodeContained.parameters.viewMode = 'story';
 
-export const Contained: Story = {
+export const Sample: Story = {
   args: {
 		children: "Button",
 		onClick: () => {},
@@ -62,29 +56,7 @@ export const Contained: Story = {
 		disabled: false,
 		width: "auto",
 		color: "normal",
-  },
+  }
 	// render: ContainedButton
 };
 Contained.storyName = 'ContainedTest';
-
-export const Outlined: Story = {
-  args: {
-		children: "Button",
-		onClick: () => {},
-		variant: "outlined",
-		disabled: false,
-		width: "auto",
-		color: "normal",
-  },
-};
-
-export const Text: Story = {
-  args: {
-		children: "Button",
-		onClick: () => {},
-		variant: "text",
-		disabled: false,
-		width: "auto",
-		color: "normal",
-  },
-};

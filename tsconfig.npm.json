@@ -5,6 +5,9 @@
     "src/**/*.stories.*",
     "src/**/*.source.*",
     "src/**/tests",
-    "src/**/*.test.*"
+    "src/**/*.test.*",
+		"src/lib/Common/*",
+		"src/lib/Builder/*",
+		"src/lib/Templates/*",
   ]
 }
