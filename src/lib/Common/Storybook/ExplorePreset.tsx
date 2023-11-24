@@ -1,20 +1,27 @@
 import { Title, Description, Controls, Canvas, ArgTypes, Source } from '@storybook/blocks';
 import { StoryAnnotations } from '@storybook/types';
 
+type RegionType = 'Title' | 'Description' | 'Source' | 'Canvas' | 'Controls' | 'ArgTypes';
 interface PresetProps {
-	availableImport?: string;
-	primaryStory?: StoryAnnotations<any, any>;
+	availableImport?: string | undefined;
+	primaryStory?: StoryAnnotations<any, any> | undefined;
+	hideRegions?: RegionType[] | undefined;
 }
 
 export const Preset = (props: PresetProps) => {
+	const isHideRegion = (region: RegionType) => {
+		if (props.hideRegions === undefined) return false;
+		return props.hideRegions.includes(region);
+	}
+
 	return (
 		<>
-			<Title />
-			<Description />
-			<SourceRegion {...props} />
-			<CanvasRegion {...props} />
-			<ControlsRegion {...props} />
-			<ArgTypesRegion {...props} />
+			{isHideRegion('Title') ? <></> : <Title />}
+			{isHideRegion('Description') ? <></> : <Description />}
+			{isHideRegion('Source') ? <></> : <SourceRegion {...props} />}
+			{isHideRegion('Canvas') ? <></> : <CanvasRegion {...props} />}
+			{isHideRegion('Controls') ? <></> : <ControlsRegion {...props} />}
+			{isHideRegion('ArgTypes') ? <></> : <ArgTypesRegion {...props} />}
 		</>
 	)
 }
