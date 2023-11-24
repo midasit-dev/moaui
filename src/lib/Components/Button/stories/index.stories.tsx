@@ -2,10 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Button from "../";
 import Explore from "./Explore.mdx";
 
-//for Live Code Editor
 import { createLiveEditStory } from 'storybook-addon-code-editor';
 import * as Moaui from '../../../';
-import EditableCode from './index.source.tsx?raw';
+import CodeComposite from './Composite.source.tsx?raw';
 
 const meta = {
   title: 'Components/Button',
@@ -20,10 +19,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-//for Live Code Editor
 export const Sandbox = createLiveEditStory({
 	availableImports: { "@midasit-dev/moaui": Moaui },
-	code: EditableCode,
+	code: CodeComposite,
 	modifyEditor(monaco, editor) {
     monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
       noSemanticValidation: false,

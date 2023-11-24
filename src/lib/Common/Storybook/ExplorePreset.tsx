@@ -3,7 +3,7 @@ import { StoryAnnotations } from '@storybook/types';
 
 interface PresetProps {
 	availableImport?: string;
-	story?: StoryAnnotations<any, any>;
+	primaryStory?: StoryAnnotations<any, any>;
 }
 
 export const Preset = (props: PresetProps) => {
@@ -36,7 +36,10 @@ const SourceRegion = (props: PresetProps) => {
 	)
 }
 const CanvasRegion = (props: PresetProps) => {
-	const Component = () => props.story !== undefined ? <Canvas of={props.story} sourceState="shown" withToolbar /> : <Canvas sourceState="shown" withToolbar />;
+	const Component = () => 
+		props.primaryStory !== undefined ? 
+			<Canvas of={props.primaryStory} sourceState="shown" withToolbar /> : 
+			<Canvas sourceState="shown" withToolbar />;
 	return (
 		<>
 			<h2>🔫 Preview</h2>
@@ -46,7 +49,19 @@ const CanvasRegion = (props: PresetProps) => {
 	)
 }
 const ControlsRegion = (props: PresetProps) => {
-	const Component = () => props.story ? <Controls of={props.story} exclude={[ 'onClick', 'onChange', ]} /> : <Controls exclude={[ 'onClick', 'onChange', ]} />;
+	const Component = () => 
+		props.primaryStory ? 
+			<Controls of={props.primaryStory} 
+				exclude={[ 
+					'onClick', 
+					'onChange', 
+				]} 
+			/> : 
+			<Controls 
+				exclude={[ 
+					'onClick', 'onChange', 
+				]}
+			/>;
 	return (
 		<>
 			<h2>⚽ Try</h2>
@@ -56,7 +71,10 @@ const ControlsRegion = (props: PresetProps) => {
 	)
 }
 const ArgTypesRegion = (props: PresetProps) => {
-	const Component = () => props.story ? <ArgTypes of={props.story} /> : <ArgTypes />;
+	const Component = () => 
+		props.primaryStory ? 
+			<ArgTypes of={props.primaryStory} /> : 
+			<ArgTypes />;
 	return (
 		<>
 			<h2>📝 Props</h2>
