@@ -1,0 +1,7 @@
+<Button
+  color="normal"
+  onClick={() => {}}
+  width="auto"
+>
+  moaButton
+</Button>

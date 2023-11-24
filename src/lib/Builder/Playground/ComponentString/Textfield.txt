@@ -1,0 +1,8 @@
+<Textfield
+  defaultValue=""
+  onChange={() => {}}
+  placeholder="moaTextfield"
+  value="moaTextfield"
+  title="title"
+  width="100px"
+/>

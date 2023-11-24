@@ -13,6 +13,8 @@ import {
 	WidthCode } 
 from "../Code";
 
+import ContainedButtonCode from "./contained.source.tsx?raw";
+
 const meta = {
   title: "Components/Button",
   component: Button,
@@ -33,6 +35,19 @@ export const Text = LiveEditStory(TextCode);
 export const Normal = LiveEditStory(NormalCode);
 export const Negative = LiveEditStory(NegativeCode);
 export const Width = LiveEditStory(WidthCode);
+
+export const LiveCodeContained = createLiveEditStory({
+	availableImports: { "@midasit-dev/moaui": Moaui },
+	code: ContainedButtonCode,
+	modifyEditor(monaco, editor) {
+    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+      noSemanticValidation: false,
+    });
+    monaco.editor.setTheme('vs-dark');
+    editor.focus();
+  },
+})
+LiveCodeContained.parameters.viewMode = 'story';
 
 export const Sample: Story = {
   args: {
