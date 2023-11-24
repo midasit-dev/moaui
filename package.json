@@ -88,10 +88,8 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-		
     "prepare-npmjs": "node prepare.js && tsc -p tsconfig.npm.json",
     "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish",
-
     "prepare-storybook": "tsc -p tsconfig.storybook.json",
     "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
     "build-storybook": "npm run prepare-storybook && storybook build",
