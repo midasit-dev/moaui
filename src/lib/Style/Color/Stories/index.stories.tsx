@@ -1,10 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Sample from "../Sample";
+import Explore from "./Explore.mdx";
 
 const meta = {
   title: 'Style/Color',
 	component: Sample,
-  parameters: { layout: 'centered', },
+  parameters: { 
+		layout: 'centered',
+		docs: { page: Explore },
+	},
   tags: ['autodocs'],
 } satisfies Meta<typeof Sample>;
 

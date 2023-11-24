@@ -33,7 +33,7 @@ const SourceRegion = (props: PresetProps) => {
 	return (
 		<>
 			<h2>💎 Import</h2>
-			Import the component to your project.
+			<p>Import the component to your project.</p>
 			<Source
 				code={props.availableImport}
 				language="tsx"
@@ -50,7 +50,7 @@ const CanvasRegion = (props: PresetProps) => {
 	return (
 		<>
 			<h2>🔫 Preview</h2>
-			Displaying the rendered component with the trying props.
+			<p>Displaying the rendered component with the trying props.</p>
 			<Component />
 		</>
 	)
@@ -72,7 +72,7 @@ const ControlsRegion = (props: PresetProps) => {
 	return (
 		<>
 			<h2>⚽ Try</h2>
-			Try to change the props of the component.
+			<p>Try to change the props of the component.</p>
 			<Component />
 		</>
 	)
@@ -85,7 +85,7 @@ const ArgTypesRegion = (props: PresetProps) => {
 	return (
 		<>
 			<h2>📝 Props</h2>
-			The component has the following props.
+			<p>The component has the following props.</p>
 			<Component />
 		</>
 	)

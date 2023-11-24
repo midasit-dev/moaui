@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CheckGroup from "../";
-import { Check } from "../../../";
+import CheckGroup from "..";
+import { Check } from "../../..";
 import Docs from "./Docs.mdx";
 
 const meta = {
