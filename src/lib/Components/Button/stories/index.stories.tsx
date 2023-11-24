@@ -6,7 +6,6 @@ import { createLiveEditStory } from 'storybook-addon-code-editor';
 import * as Moaui from '../../../';
 import CodeComposite from './Composite.source.tsx?raw';
 
-import ContainedButton from "./contained.source";
 import ContainedButtonCode from "./contained.source.tsx?raw";
 
 const meta = {
@@ -57,6 +56,4 @@ export const Sample: Story = {
 		width: "auto",
 		color: "normal",
   }
-	// render: ContainedButton
 };
-Contained.storyName = 'ContainedTest';
