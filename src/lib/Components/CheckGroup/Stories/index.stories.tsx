@@ -1,14 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import CheckGroup from "..";
 import { Check } from "../../..";
-import Docs from "./Docs.mdx";
+import Exlpore from "./Explore.mdx";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { TextCode } from '../Code';
 
 const meta = {
   title: 'Components/CheckGroup',
   component: CheckGroup,
   parameters: { 
 		layout: 'centered', 
-		docs: { page: Docs, },
+		docs: { page: Exlpore, },
 	},
   tags: ['autodocs'],
 } satisfies Meta<typeof CheckGroup>;
@@ -16,7 +19,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Group: Story = {
+export const Text = LiveEditStory(TextCode);
+
+export const Sample: Story = {
 	args: {
 		text: "Check Group"
 	},
