@@ -1,6 +1,6 @@
 import { CodeBlock } from "@midasit-dev/moaui";/**${comma}*/
 
-const CompCodeBlockTypescript = () => {
+const ComponentsCodeBlockTypescript = () => {
 	const code = `const txt = {
 	"name":"John", 
 	"age":30, 
@@ -18,4 +18,4 @@ document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;`;
 	);
 }/**${comma}*/
 
-export default CompCodeBlockTypescript;
+export default ComponentsCodeBlockTypescript;

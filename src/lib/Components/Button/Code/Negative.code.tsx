@@ -1,6 +1,6 @@
 import { Button } from "@midasit-dev/moaui";/**${comma}*/
 
-const CompButtonNegative = () => {
+const ComponentsButtonNegative = () => {
 	return (
 		<Button
 			variant="contained"
@@ -11,4 +11,4 @@ const CompButtonNegative = () => {
 	)
 }/**${comma}*/
 
-export default CompButtonNegative;
+export default ComponentsButtonNegative;

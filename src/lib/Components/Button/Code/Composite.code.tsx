@@ -1,6 +1,6 @@
 import { Button, Stack } from "@midasit-dev/moaui";/**${comma}*/
 
-const CompButtonComposite = () => {
+const ComponentsButtonComposite = () => {
 	const ButtonNormal = () => <Button>Normal</Button>;
 	const ButtonNegative = () => {
 		return (
@@ -24,4 +24,4 @@ const CompButtonComposite = () => {
 	);
 }/**${comma}*/
 
-export default CompButtonComposite;
+export default ComponentsButtonComposite;

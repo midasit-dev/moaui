@@ -1,6 +1,6 @@
 import { Check } from "@midasit-dev/moaui";/**${comma}*/
 
-const CompCheckNotRequired = () => {
+const ComponentsCheckNotRequired = () => {
 	return (
 		<Check 
 			name="NotRequired Check"
@@ -9,4 +9,4 @@ const CompCheckNotRequired = () => {
 	);
 }/**${comma}*/
 
-export default CompCheckNotRequired;
+export default ComponentsCheckNotRequired;

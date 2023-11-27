@@ -1,6 +1,6 @@
 import { Button } from "@midasit-dev/moaui";/**${comma}*/
 
-const CompButtonWidth = () => {
+const ComponentsButtonWidth = () => {
 	return (
 		<Button
 			variant="contained"
@@ -11,4 +11,4 @@ const CompButtonWidth = () => {
 	)
 }/**${comma}*/
 
-export default CompButtonWidth;
+export default ComponentsButtonWidth;

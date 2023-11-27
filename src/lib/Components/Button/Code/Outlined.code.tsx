@@ -1,6 +1,6 @@
 import { Button } from "@midasit-dev/moaui";/**${comma}*/
 
-const CompButtonOutlined = () => {
+const ComponentsButtonOutlined = () => {
 	return (
 		<Button
 			variant="outlined"
@@ -10,4 +10,4 @@ const CompButtonOutlined = () => {
 	)
 }/**${comma}*/
 
-export default CompButtonOutlined;
+export default ComponentsButtonOutlined;
