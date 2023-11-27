@@ -1,6 +1,6 @@
-import { CheckGroup, Check } from "@midasit-dev/moaui";
+import { CheckGroup, Check } from "@midasit-dev/moaui";/**${comma}*/
 
-const App = () => {
+const CompCheckGroupText = () => {
 	return (
 		<CheckGroup text={"Group Check"}>
 			<Check name='Check 1' />
@@ -10,6 +10,6 @@ const App = () => {
 			<Check name='Check 5' />
 		</CheckGroup>
 	);
-}
+}/**${comma}*/
 
-export default App;
+export default CompCheckGroupText;

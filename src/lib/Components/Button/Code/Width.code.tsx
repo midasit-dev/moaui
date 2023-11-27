@@ -1,6 +1,6 @@
-import { Button } from "@midasit-dev/moaui";
+import { Button } from "@midasit-dev/moaui";/**${comma}*/
 
-const App = () => {
+const CompButtonWidth = () => {
 	return (
 		<Button
 			variant="contained"
@@ -9,6 +9,6 @@ const App = () => {
 			OK
 		</Button>
 	)
-}
+}/**${comma}*/
 
-export default App;
+export default CompButtonWidth;

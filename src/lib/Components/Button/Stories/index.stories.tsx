@@ -10,10 +10,9 @@ import {
 	TextCode, 
 	NormalCode, 
 	NegativeCode, 
-	WidthCode } 
-from "../Code";
-
-import ContainedButtonCode from "./contained.source.tsx?raw";
+	WidthCode 
+} from "../Code";
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: "Components/Button",
@@ -28,26 +27,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Composite = LiveEditStory(CompositeCode);
-export const Contained = LiveEditStory(ContainedCode);
-export const Outlined = LiveEditStory(OutlinedCode);
-export const Text = LiveEditStory(TextCode);
-export const Normal = LiveEditStory(NormalCode);
-export const Negative = LiveEditStory(NegativeCode);
-export const Width = LiveEditStory(WidthCode);
-
-export const LiveCodeContained = createLiveEditStory({
-	availableImports: { "@midasit-dev/moaui": Moaui },
-	code: ContainedButtonCode,
-	modifyEditor(monaco, editor) {
-    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
-      noSemanticValidation: false,
-    });
-    monaco.editor.setTheme('vs-dark');
-    editor.focus();
-  },
-})
-LiveCodeContained.parameters.viewMode = 'story';
+export const Composite = LiveEditStory(cleanMask(CompositeCode));
+export const Contained = LiveEditStory(cleanMask(ContainedCode));
+export const Outlined = LiveEditStory(cleanMask(OutlinedCode));
+export const Text = LiveEditStory(cleanMask(TextCode));
+export const Normal = LiveEditStory(cleanMask(NormalCode));
+export const Negative = LiveEditStory(cleanMask(NegativeCode));
+export const Width = LiveEditStory(cleanMask(WidthCode));
 
 export const Sample: Story = {
   args: {

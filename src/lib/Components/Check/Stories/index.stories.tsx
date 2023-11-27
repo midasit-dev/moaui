@@ -7,6 +7,7 @@ import {
 	NotRequiredCode,
 	RequiredCode,
 } from '../Code';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/Check',
@@ -21,8 +22,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const NotRequired = LiveEditStory(NotRequiredCode);
-export const Required = LiveEditStory(RequiredCode);
+export const NotRequired = LiveEditStory(cleanMask(NotRequiredCode));
+export const Required = LiveEditStory(cleanMask(RequiredCode));
 
 export const Sample: Story = {
   args: {

@@ -1,12 +1,12 @@
-import { Check } from "@midasit-dev/moaui";
+import { Check } from "@midasit-dev/moaui";/**${comma}*/
 
-const App = () => {
+const CompCheckNotRequired = () => {
 	return (
 		<Check 
 			name="NotRequired Check"
 			disabled={false}
 		/>
 	);
-}
+}/**${comma}*/
 
-export default App;
+export default CompCheckNotRequired;

@@ -5,6 +5,7 @@ import Exlpore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { TextCode } from '../Code';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/CheckGroup',
@@ -19,7 +20,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Text = LiveEditStory(TextCode);
+export const Text = LiveEditStory(cleanMask(TextCode));
 
 export const Sample: Story = {
 	args: {

@@ -7,6 +7,7 @@ import {
 	JavascriptCode,
 	TypescriptCode,
 } from '../Code';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/CodeBlock',
@@ -23,8 +24,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Javascript = LiveEditStory(JavascriptCode);
-export const Typescript = LiveEditStory(TypescriptCode);
+export const Javascript = LiveEditStory(cleanMask(JavascriptCode));
+export const Typescript = LiveEditStory(cleanMask(TypescriptCode));
 
 export const Sample: Story = {
 	args: {

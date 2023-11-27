@@ -1,15 +1,21 @@
-import { CheckGroup, Check } from "@midasit-dev/moaui";
+import { CodeBlock } from "@midasit-dev/moaui";/**${comma}*/
 
-const App = () => {
+const CompCodeBlockTypescript = () => {
+	const code = `const txt = {
+	"name":"John", 
+	"age":30, 
+	"city":"New York"
+};
+const obj = JSON.parse(txt.toString());
+document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;`;
 	return (
-		<CheckGroup text={"Group Check"}>
-			<Check name='Check 1' />
-			<Check name='Check 2' />
-			<Check name='Check 3' />
-			<Check name='Check 4' />
-			<Check name='Check 5' />
-		</CheckGroup>
+		<CodeBlock 
+			language="typescript"
+			title="javascript Code Block"
+		>
+			{code}
+		</CodeBlock>
 	);
-}
+}/**${comma}*/
 
-export default App;
+export default CompCodeBlockTypescript;

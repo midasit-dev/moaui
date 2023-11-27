@@ -1,6 +1,6 @@
-import { Button } from "@midasit-dev/moaui";
+import { Button } from "@midasit-dev/moaui";/**${comma}*/
 
-const App = () => {
+const CompButtonText = () => {
 	return (
 		<Button
 			variant="text"
@@ -8,6 +8,6 @@ const App = () => {
 			Text Button
 		</Button>
 	)
-}
+}/**${comma}*/
 
-export default App;
+export default CompButtonText;
