@@ -1,14 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import RadioGroup from "..";
 import { Radio } from "../../..";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { UnControlledCode, ControlledCode } from '../Code';
 
 const meta = {
   title: 'Components/RadioGroup',
   component: RadioGroup,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs },
+		docs: { page: Explore },
 		layout: 'centered',
 	},
 } satisfies Meta<typeof RadioGroup>;
@@ -16,10 +20,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const UnControlled = LiveEditStory(cleanMask(UnControlledCode));
+export const Controlled = LiveEditStory(cleanMask(ControlledCode));
+
+export const Sample: Story = {
 	args: {
 		onChange: () => {},
-		value: 0,
+		value: "Value 1",
 		name: "RadioGroup",
 		text: "Header Text",
 	},

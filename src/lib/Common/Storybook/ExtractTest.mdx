@@ -1,24 +1,53 @@
 import { Meta, Source } from '@storybook/blocks';
-import { CodeBlock } from "../../";
 import { extract } from "./CodeExtractor";
+import TestSource from "./ExtractTestSource";
 import { PaginationCode } from "../../Components/DataGrid/Code";
 import { DropdownCode } from "../../Components/DropList/Code";
 import { ItemsCode } from "../../Components/Grid/Code";
+import { AddCode } from "../../Components/Icon/Code";
+import * as IconButtonCode from "../../Components/IconButton/Code";
+import { ShadowCode } from "../../Components/Panel/Code";
+import { NameCode } from "../../Components/Radio/Code";
+import { UnControlledCode, ControlledCode } from "../../Components/RadioGroup/Code";
+import { HorizontalCode, VerticalCode } from "../../Components/Seperator/Code";
+import * as StackCode from "../../Components/Stack/Code";
+import * as SwitchCode from "../../Components/Switch/Code";
+import * as SwitchGroupCode from "../../Components/SwitchGroup/Code";
+import * as TabCode from "../../Components/Tab/Code";
+import * as TabGroupCode from "../../Components/TabGroup/Code";
 
 <Meta title="ExtractTest" />
 
 # DataGrid
-<Source code={extract(PaginationCode).importCodes[0]} language="ts" dark />
-<Source code={extract(PaginationCode).functionalComponentName} language="ts" dark />
-<Source code={extract(PaginationCode).functionalComponentCode} language="ts" dark />
-
+<TestSource code={PaginationCode} />
 # DropList
-<Source code={extract(DropdownCode).importCodes[0]} language="ts" dark />
-<Source code={extract(DropdownCode).importCodes[1]} language="ts" dark />
-<Source code={extract(DropdownCode).functionalComponentName} language="ts" dark />
-<Source code={extract(DropdownCode).functionalComponentCode} language="ts" dark />
-
+<TestSource code={DropdownCode} />
 # Grid
-<Source code={extract(ItemsCode).importCodes[0]} language="ts" dark />
-<Source code={extract(ItemsCode).functionalComponentName} language="ts" dark />
-<Source code={extract(ItemsCode).functionalComponentCode} language="ts" dark />
+<TestSource code={ItemsCode} />
+# Icon
+<TestSource code={AddCode} />
+# IconButton
+<TestSource code={IconButtonCode.AddCode} />
+# Panel
+<TestSource code={ShadowCode} />
+# Radio
+<TestSource code={NameCode} />
+# Radio Group
+<TestSource code={UnControlledCode} />
+<TestSource code={ControlledCode} />
+# Seperator
+<TestSource code={HorizontalCode} />
+<TestSource code={VerticalCode} />
+# Stack
+<TestSource code={StackCode.RowCode} />
+<TestSource code={StackCode.ColumnCode} />
+# Switch
+<TestSource code={SwitchCode.LabelCode} />
+# SwitchGroup
+<TestSource code={SwitchGroupCode.ControlledCode} />
+<TestSource code={SwitchGroupCode.UnControlledCode} />
+# Tab
+<TestSource code={TabCode.LabelCode} />
+# TabGroup
+<TestSource code={TabCode.HorizontalCode} />
+<TestSource code={TabCode.VerticalCode} />

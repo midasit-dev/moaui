@@ -1,6 +1,10 @@
 import React from "react";
 import StyledComponent, { type StyledProps } from "./Styled";
 
+Tab.defaultProps = {
+	label: "Tab Label Text",
+} as StyledProps;
+
 /**
  * moaui Styled Tab
  * 

@@ -1,0 +1,1 @@
+export { default as LabelCode } from "./Label.code.tsx?raw";
