@@ -5,13 +5,27 @@ import { ItemTypes } from './ItemTypes';
 import MoaButton from "../../Components/Button";
 import MoaTextField from "../../Components/TextField";
 import { TemplateWidth, TemplateHeight, CodeString } from './recoil/PlaygroundAtom';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { Typography, Box } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Grid from '@mui/material/Grid';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import TotalCodeString from './ComponentString/TotalString';
+
+const DropAcceptList = [
+  ItemTypes.BUTTON,
+  ItemTypes.TEXTFIELD,
+  ItemTypes.CHECKBOX,
+  ItemTypes.RADIO,
+  ItemTypes.SWITCH,
+  ItemTypes.SEPERATOR,
+  ItemTypes.TYPOGRAPHY,
+  ItemTypes.DROPLIST,
+  ItemTypes.TAB,
+  ItemTypes.TABLE,
+  ItemTypes.BOX
+];
 
 const fontStyle = {
   fontFamily: "Prentendard",
@@ -66,13 +80,36 @@ function getComponentType(droppedItems: any){
 
 const DropTarget = (props:any) => {
   const isopenCode = props.openCode;
-  const Sizewidth = useRecoilValue(TemplateWidth);
-  const Sizeheight = useRecoilValue(TemplateHeight);
+  const [sizewidth, setSizewidth] = useRecoilState(TemplateWidth);
+  const [sizeheight, setSizeHeight] = useRecoilState(TemplateHeight);
   const [codestring, setCodestring] = useRecoilState(CodeString);
   const [dropped, setDropped] = useState<React.ReactNode[] | any>([]);
   const [dropped1, setDropped1] = useState<React.ReactNode[] | any>([]);
   const [dropped2, setDropped2] = useState<React.ReactNode[] | any>([]);
   const [dropped3, setDropped3] = useState<React.ReactNode[] | any>([]);
+
+  const [rowCount, setRowCount] = useState<Number>(0);
+  const [columnCount, setColumnCount] = useState<Number>(0);
+
+  React.useEffect(() => {
+    if(sizewidth === "400"){
+      setColumnCount(1);
+    } else if(sizewidth === "600"){
+      setColumnCount(2);
+    } else if(sizewidth === "800"){
+      setColumnCount(3);
+    }
+  }, [sizewidth]);
+
+  React.useEffect(() => {
+    if(sizeheight === "400"){
+      setRowCount(10);
+    } else if(sizeheight === "600"){
+      setRowCount(15);
+    } else if(sizeheight === "800"){
+      setRowCount(20);
+    }
+  }, [sizeheight]);
 
   React.useEffect(() => {
     function setComponentsCode(){
@@ -92,7 +129,7 @@ const DropTarget = (props:any) => {
   }, [dropped]);
 
   const [{ canDrop: canDrop0, isOver: isOver0 }, drop0] = useDrop({
-    accept: [ItemTypes.BUTTON, ItemTypes.TEXTFIELD],
+    accept: [...DropAcceptList],
     drop: (item, monitor) => {
       if (monitor.isOver()) {
         const Compo = [...dropped];
@@ -182,6 +219,8 @@ const DropTarget = (props:any) => {
   }
   
   function onClickBack(){
+    setSizeHeight("");
+    setSizewidth("");
   }
 
   return (
@@ -191,10 +230,10 @@ const DropTarget = (props:any) => {
         <div>
           <Box display="flex" justifyContent={"space-between"} alignItems={"center"} sx={{mb:"0.5rem"}}>
             <IconButton sx={{float:"left", padding:"0.2rem", m:0, ...fontStyle}} onClick={onClickBack}><ArrowBackIcon/>Back</IconButton>
-            <Typography variant='subtitle2'>{Sizewidth} X {Sizeheight}</Typography>
+            <Typography variant='subtitle2'>{sizewidth} X {sizeheight}</Typography>
             <IconButton sx={{padding:"0.2rem", m:0, ...fontStyle}} onClick={onClickClear}><RefreshIcon/>Clear</IconButton>
           </Box>
-          <Box sx={{width: `${Sizewidth}px`,height: `${Sizeheight}px`, border: '1px solid #000', p:"0.5rem"}}>
+          <Box sx={{width: `${sizewidth}px`,height: `${sizeheight}px`, border: '1px solid #000', p:"0.5rem"}}>
             <Grid container spacing={0} style={{height:"100%"}}>
               <Grid item xs={6} style={{height:"50%"}}>
                 <div

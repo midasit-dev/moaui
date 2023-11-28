@@ -1,8 +1,14 @@
 import React from 'react';
-import { useDrag } from 'react-dnd';
-import { ItemTypes } from './ItemTypes';
 import ButtonIcon from "./IconCompo/ButtonIconCompo";
 import TextFieldIcon from "./IconCompo/TextFieldIconCompo";
+import CheckBoxIcon from "./IconCompo/CheckBoxIconCompo";
+import DropListIcon from "./IconCompo/DropListIconCompo";
+import RadioIcon from "./IconCompo/RadioIconCompo";
+import Seperator from "./IconCompo/SeperatorIconCompo";
+import Switch from "./IconCompo/SwitchIconCompo";
+import Tab from "./IconCompo/TabIconCompo";
+import Table from "./IconCompo/TableIconCompo";
+import Typography from "./IconCompo/TypographyIconCompo";
 
 const DraggableComponent: React.FC = () => {
   return (
@@ -16,6 +22,14 @@ const DraggableComponent: React.FC = () => {
       }}
     >
       <ButtonIcon />
+      <CheckBoxIcon />
+      <DropListIcon />
+      <RadioIcon />
+      <Seperator />
+      <Switch />
+      <Tab />
+      <Table />
+      <Typography />
       {/* <TextFieldIcon/> */}
     </div>
   );

@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil';
 import Box from '@mui/material/Box';
 import { Typography, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-const Size = ["600","800"];
+const Size = ["400", "600", "800"];
 
 export default function SizeOptCompo(): React.ReactElement {
 	const [width, setWidth] = useRecoilState(TemplateWidth);
