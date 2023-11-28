@@ -36,7 +36,7 @@ function DraggedComponent(props: any) : any {
   }
 }
 
-function makeCodeString(droppedItems: any){
+function getComponentType(droppedItems: any){
   let ComponentType: string[] = [];
   for(let i=0; i<droppedItems.length; i++){
     if(droppedItems[i]["props"]["itemType"]["type"] === ItemTypes.BUTTON){
@@ -62,13 +62,17 @@ const DropTarget = (props:any) => {
   React.useEffect(() => {
     function setComponentsCode(){
       const Codetype = [...codestring];
-      const ComponentTypes = makeCodeString(dropped);
+      const ComponentTypes = getComponentType(dropped);
       Codetype[0] = ComponentTypes;
       console.log(Codetype);
       setCodestring(Codetype);
     }
     if(dropped.length !== 0){
       setComponentsCode();
+    } else {
+      const Codetype = [...codestring];
+      Codetype[0] = [];
+      setCodestring(Codetype);
     }
   }, [dropped]);
 
