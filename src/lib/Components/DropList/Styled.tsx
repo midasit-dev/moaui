@@ -45,7 +45,7 @@ export type StyledProps = {
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
 	 * @defaultValue ""
    */
-	value : string;
+	value: any;
 	/**
    * The default value. Use when the component is not controlled.
 	 * @defaultValue ""

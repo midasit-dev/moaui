@@ -1,16 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import Grid from "..";
-import { Typography } from "../../..";
+import { Typography, Panel } from "../../..";
+import Explore from "./Explore.mdx";
 
-import Docs from "./Docs.mdx";
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { ItemsCode } from '../Code';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/Grid',
   component: Grid,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs, },
+		docs: { page: Explore, },
 		layout: 'centered',
 	},
 } satisfies Meta<typeof Grid>;
@@ -18,17 +20,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-	render: () => {
+export const Items = LiveEditStory(cleanMask(ItemsCode));
+
+export const Sample: Story = {
+	args: {
+		xs: 6
+	},
+	render: (xs) => {
 		return (
-			<Grid container>
-				<Grid item xs={6}>
-					<Typography>Grid item 1</Typography>
+			<Panel width="200px">
+				<Typography variant="h1" marginBottom="10px">Grid Demo</Typography>
+				<Grid container>
+					<Grid item xs={6}>
+						<Typography>Grid item 1</Typography>
+					</Grid>
+					<Grid item xs={6}>
+						<Typography>Grid item 2</Typography>
+					</Grid>
 				</Grid>
-				<Grid item xs={6}>
-					<Typography>Grid item 2</Typography>
-				</Grid>
-			</Grid>
+			</Panel>
 		)
 	}
 };

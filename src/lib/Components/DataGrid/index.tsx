@@ -1,6 +1,8 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 DataGrid.defaultProps = {
+	rows: [],
+	columns: [],
 } as StyledProps;
 
 /**

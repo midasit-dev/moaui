@@ -1,21 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Docs from './Docs.mdx';
-import Component from "..";
+import Explore from './Explore.mdx';
+import DataGrid from "..";
+import { Panel } from "../../../";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { PaginationCode, } from '../Code';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/DataGrid',
-  component: Component,
+  component: DataGrid,
   parameters: { 
 		layout: 'centered', 
-		docs: { page: Docs },
+		docs: { page: Explore },
 	},
   tags: ['autodocs'],
-} satisfies Meta<typeof Component>;
+} satisfies Meta<typeof DataGrid>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Pagination = LiveEditStory(cleanMask(PaginationCode));
+
+export const Sample: Story = {
   args: {
 		columns: [
 			{ field: 'id', headerName: 'ID', width: 70, editable: true, },
@@ -28,4 +35,23 @@ export const Default: Story = {
 			{ id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
 		],
   },
+	render: ({ columns, rows }) => {
+		return (
+			<Panel width='100%' height='200px'>
+				<DataGrid 
+					rows={rows}
+					columns={columns}
+					initialState={{
+						pagination: {
+							paginationModel: {
+								pageSize: 5,
+							},
+						},
+					}}
+					pageSizeOptions={[5]}
+					checkboxSelection
+				/>
+			</Panel>
+		)
+	}
 };

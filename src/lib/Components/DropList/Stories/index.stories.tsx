@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Docs from "./Docs.mdx";
-import Component from "..";
+import Explore from "./Explore.mdx";
+import DropList from "..";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { DropdownCode } from '../Code';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/DropList',
-  component: Component,
+  component: DropList,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs, },
+		docs: { page: Explore, },
 		layout: 'centered',
 	},
 	argTypes: {
@@ -16,21 +20,27 @@ const meta = {
 		width: { control: 'text' },
 		defaultValue: { control: 'text' },
 	}
-} satisfies Meta<typeof Component>;
+} satisfies Meta<typeof DropList>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Dropdown = LiveEditStory(cleanMask(DropdownCode));
+
+export const Sample: Story = {
   args: {
 		itemList: () => { return new Map<string, number>([ ['1', 1], ['2', 2], ['3', 3], ['4', 4] ]); },
 		value: '1',
 		width: "100px",
 		defaultValue: ""
   },
-	render: ({ itemList, width, value, defaultValue }) => {
+	render: ({ itemList, width, defaultValue }) => {
 		return (
-			<Component itemList={itemList} width={width} defaultValue={defaultValue} />
+			<DropList 
+				itemList={itemList} 
+				width={width} 
+				defaultValue={defaultValue}
+			/>
 		)
 	}
 };

@@ -1,7 +1,12 @@
 import { CodeBlock } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsCodeBlockTypescript = () => {
-	const code = `const txt = {
+	const code = `interface TextType {
+	name: string;
+	age: number;
+	city: string;
+}
+const txt: TextType = {
 	"name":"John", 
 	"age":30, 
 	"city":"New York"

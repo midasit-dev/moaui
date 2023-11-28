@@ -1,0 +1,1 @@
+export { default as PaginationCode } from "./Pagination.code.tsx?raw";

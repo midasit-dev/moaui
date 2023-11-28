@@ -29,12 +29,11 @@ export type StyledProps = {
 	 * Panel inner contents
 	 */
 	children: React.ReactNode;
-
 	/**
 	 * `shadow` panel or `strock` panel
 	 * @defaultValue 'shadow'
 	 */
-	variant: 'shadow' | 'strock';
+	variant: 'box' | 'shadow' | 'strock';
 	/**
 	 * Set the width of panel
 	 * @defaultValue 'fit-content'
