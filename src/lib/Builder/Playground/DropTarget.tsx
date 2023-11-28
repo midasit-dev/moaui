@@ -243,7 +243,7 @@ const DropTarget = (props:any) => {
                   style={{
                     width: `100%`,
                     height: `100%`,
-                    border: isActive0 ? '1px dashed gray' : '0',
+                    border: dropped.length === 0 ? (isActive0 ? '1px dashed gray' : '1px solid gray') : "0",
                     backgroundColor: isActive0 ? '#EEE' : 'transparent',
                   }}
                 >
