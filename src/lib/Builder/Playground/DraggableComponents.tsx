@@ -15,9 +15,10 @@ const DraggableComponent: React.FC = () => {
     <div
       style={{
         width: '100%',
+        height: '100%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         flexDirection: 'column',
       }}
     >
