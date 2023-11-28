@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
-import MoaButton from "./MoaCompo/MoaButton";
-import MoaTextField from "./MoaCompo/MoaTexField";
+// import MoaButton from "./MoaCompo/MoaButton";
+import MoaButton from "../../Components/Button";
+import MoaTextField from "../../Components/TextField";
 import { TemplateWidth, TemplateHeight, CodeString } from './recoil/PlaygroundAtom';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { Typography, Box } from '@mui/material';
@@ -26,12 +27,27 @@ function DraggedComponent(props: any) : any {
 
   if(itemType.type === ItemTypes.BUTTON){
     return(
-      <MoaButton />
+      <MoaButton
+        variant={"contained"}
+        color={"normal"}
+        width={"100%"}
+        disabled={false}
+      >
+        MoaButton
+      </MoaButton>
     )
   }
   else if(itemType.type === ItemTypes.TEXTFIELD){
     return (
-      <MoaTextField />
+      <MoaTextField
+        width={"auto"}
+        placeholder={"Moa TextField"}
+        title={"Title"}
+        titlePosition={"left"}
+        disabled={false}
+        defaultValue={""}
+        error={false}
+      />
     )
   }
 }
@@ -53,7 +69,6 @@ const DropTarget = (props:any) => {
   const Sizewidth = useRecoilValue(TemplateWidth);
   const Sizeheight = useRecoilValue(TemplateHeight);
   const [codestring, setCodestring] = useRecoilState(CodeString);
-  const [code, setCode] = useState("");
   const [dropped, setDropped] = useState<React.ReactNode[] | any>([]);
   const [dropped1, setDropped1] = useState<React.ReactNode[] | any>([]);
   const [dropped2, setDropped2] = useState<React.ReactNode[] | any>([]);
@@ -194,7 +209,6 @@ const DropTarget = (props:any) => {
                   }}
                 >
                   {isActive0 ? '' : (dropped.length === 0 ? '여기로 아이템을 드래그하세요' : "")}
-                  <div>0,0</div>
                   <Box display="flex" justifyContent={"center"} alignItems={"center"} >
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>{dropped[0]}</div>
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center", marginLeft:"2rem"}}>{dropped[1]}</div>
@@ -214,7 +228,6 @@ const DropTarget = (props:any) => {
                   }}
                 >
                   {isActive1 ? '' : (dropped1.length === 0 ? '여기로 아이템을 드래그하세요' : "")}
-                  <div>0,1</div>
                   <Box display="flex" justifyContent={"center"} alignItems={"center"} >
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>{dropped1[0]}</div>
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center", marginLeft:"2rem"}}>{dropped1[1]}</div>
@@ -234,7 +247,6 @@ const DropTarget = (props:any) => {
                   }}
                 >
                   {isActive2 ? '' : (dropped2.length === 0 ? '여기로 아이템을 드래그하세요' : "")}
-                  <div>1,0</div>
                   <Box display="flex" justifyContent={"center"} alignItems={"center"} >
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>{dropped2[0]}</div>
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center", marginLeft:"2rem"}}>{dropped2[1]}</div>
@@ -254,7 +266,6 @@ const DropTarget = (props:any) => {
                   }}
                 >
                   {isActive3 ? '' : (dropped3.length === 0 ? '여기로 아이템을 드래그하세요' : "")}
-                  <div>1,1</div>
                   <Box display="flex" justifyContent={"center"} alignItems={"center"} >
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>{dropped3[0]}</div>
                     <div style={{display:"flex", justifyContent:"center", alignItems:"center", marginLeft:"2rem"}}>{dropped3[1]}</div>

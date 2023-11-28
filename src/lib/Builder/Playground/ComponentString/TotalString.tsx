@@ -2,11 +2,28 @@ import React from "react";
 import { TemplateWidth, TemplateHeight, CodeString } from '../recoil/PlaygroundAtom';
 import { useRecoilValue } from 'recoil';
 import CodeComponent from "../../../Components/CodeBlock";
-import ButtonCode from "./Button.txt?raw";
-import TextfieldCode from "./Textfield.txt?raw";
+import ButtonCode from "../../../Components/Button/Code/Contained.code.tsx?raw";
+// import TextfieldCode from "./Textfield.txt?raw";
 import { ItemTypes } from '../../Playground/ItemTypes';
-import { Source } from "@storybook/blocks";
+import CodeExtractor from "../../../Common/Storybook/CodeExtractor";
 
+function extractComponentCode(str:string){
+	const code = CodeExtractor.extract(str);
+	console.log(code);
+	return code.functionalComponentCode;
+}
+
+function extractComponentName(str:string){
+	const code = CodeExtractor.extract(str);
+	console.log(code);
+	return `<${code.functionalComponentName} />`;
+}
+
+function extractComponentImport(str:string){
+	const code = CodeExtractor.extract(str);
+	console.log(code);
+	return code.importCodes;
+}
 
 export default function TotalCodeString(){
   const Sizewidth = useRecoilValue(TemplateWidth);
@@ -31,33 +48,33 @@ export default function TotalCodeString(){
 		})
 	}, [Codestring]);
 
-
 	const totalCode = `import React from "react";
 import Box from "@mui/material/Box";
-${ isButtonExist ? `import { Button } from "@midasit-dev/moaui";` : ""}
-${ isTextfieldExist ? `import { Textfield } from '@midasit-dev/moaui';` : ""}
+${ isButtonExist ? extractComponentImport(ButtonCode) : ""}
 
 function Components(props: any) {
   function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     // do something
   }
 
+	${ isButtonExist ? extractComponentCode(ButtonCode) : ""}
+
   return (
     <Box sx={{width: "${Sizewidth}px", height:"${Sizeheight}px", p:"0.5rem"}}>
 			<Grid container spacing={0} style={{height:"100%"}}>
 			${Codestring.map((value:any, index:any) => {
-				if (value.length !== 0) {
-					return value.map((value: any, index: any) => {
-						console.log(value);
-						if(value === ItemTypes.BUTTON){
-							return ButtonCode;
-						}else if(value === ItemTypes.TEXTFIELD){
-							return TextfieldCode;
-						}
-						return "";
-					});
-				}
-				return ""; // Add a return statement here
+				return (`<Grid item xs={6} style={{height:"50%"}}>
+					${value.map((value: any, index: any) => {
+							if (value === ItemTypes.BUTTON){
+								return extractComponentName(ButtonCode);
+							}
+							// else if (value === ItemTypes.TEXTFIELD){
+							// 	return extractComponentName(TextfieldCode);
+							// }
+							return "";
+						})
+					}
+				</Grid>`)
 			})}
 			</Grid>
     </Box>
@@ -67,6 +84,7 @@ function Components(props: any) {
 	function remove3Comma(str:string){
 		let result = str.replace(/,{3}/g, "");
 		let result2 = result.replace(/>,/g, ">");
+		console.log(result2);
 		return result2;
 	}
 
@@ -76,10 +94,5 @@ function Components(props: any) {
 			title='Plugin React UI Code'
 			children={String(remove3Comma(totalCode)).replace(/\n$/, "")}
 		/>
-		// <Source 
-		// 	language="typescript"
-		// 	code={String(remove3Comma(totalCode)).replace(/\n$/, "")}
-		// 	dark
-		// />
 	);
 }
