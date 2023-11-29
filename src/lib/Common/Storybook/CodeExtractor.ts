@@ -15,7 +15,7 @@ const getCode = (arrCode: string[], regex: RegExp): string => {
 		}
 	}
 	
-	if (Code === '') console.error('Code is not exist');
+	if (Code === '') console.error(arrCode, regex, 'Code is not exist');
 	return Code;
 }
 
