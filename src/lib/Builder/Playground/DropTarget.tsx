@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 // import MoaButton from "./MoaCompo/MoaButton";
@@ -88,44 +88,33 @@ const DropTarget = (props:any) => {
   const [dropped2, setDropped2] = useState<React.ReactNode[] | any>([]);
   const [dropped3, setDropped3] = useState<React.ReactNode[] | any>([]);
 
-  const [rowCount, setRowCount] = useState<Number>(0);
-  const [columnCount, setColumnCount] = useState<Number>(0);
+  const [rowCount, setRowCount] = useState<number>(0);
+  const [columnCount, setColumnCount] = useState<number>(0);
 
-  React.useEffect(() => {
-    if(sizewidth === "400"){
-      setColumnCount(1);
-    } else if(sizewidth === "600"){
-      setColumnCount(2);
-    } else if(sizewidth === "800"){
-      setColumnCount(3);
-    }
+  useEffect(() => {
+    const columnCountMap: { [key: string]: number } = {
+      "400": 1,
+      "600": 2,
+      "800": 3,
+    };
+
+    setColumnCount(columnCountMap[sizewidth] || 0);
   }, [sizewidth]);
 
-  React.useEffect(() => {
-    if(sizeheight === "400"){
-      setRowCount(10);
-    } else if(sizeheight === "600"){
-      setRowCount(15);
-    } else if(sizeheight === "800"){
-      setRowCount(20);
-    }
+  useEffect(() => {
+    const sizeToRowCountMap: { [key: string]: number } = {
+      "400": 10,
+      "600": 15,
+      "800": 20,
+    };
+
+    setRowCount(sizeToRowCountMap[sizeheight] || 0);
   }, [sizeheight]);
 
-  React.useEffect(() => {
-    function setComponentsCode(){
-      const Codetype = [...codestring];
-      const ComponentTypes = getComponentType(dropped);
-      Codetype[0] = ComponentTypes;
-      console.log(Codetype);
-      setCodestring(Codetype);
-    }
-    if(dropped.length !== 0){
-      setComponentsCode();
-    } else {
-      const Codetype = [...codestring];
-      Codetype[0] = [];
-      setCodestring(Codetype);
-    }
+  useEffect(() => {
+    const Codetype = [...codestring];
+    Codetype[0] = dropped.length !== 0 ? getComponentType(dropped) : [];
+    setCodestring(Codetype);
   }, [dropped]);
 
   const [{ canDrop: canDrop0, isOver: isOver0 }, drop0] = useDrop({
@@ -223,6 +212,7 @@ const DropTarget = (props:any) => {
     setSizewidth("");
   }
 
+
   return (
     <React.Fragment>
       {
@@ -235,7 +225,7 @@ const DropTarget = (props:any) => {
           </Box>
           <Box sx={{width: `${sizewidth}px`,height: `${sizeheight}px`, border: '1px solid #000', p:"0.5rem"}}>
             <Grid container spacing={0} style={{height:"100%"}}>
-              <Grid item xs={6} style={{height:"50%"}}>
+              <Grid item xs={12 / columnCount} style={{height: `${Math.floor(100 / rowCount)}%`}}>
                 <div
                   key="0"
                   id='drop0-0'
@@ -254,7 +244,7 @@ const DropTarget = (props:any) => {
                   </Box>
                 </div>
               </Grid>
-              <Grid item xs={6} style={{height:"50%"}}>
+              <Grid item xs={12 / columnCount} style={{height: `${Math.floor(100 / rowCount)}%`}}>
                 <div
                   key="1"
                   id='drop0-1'
@@ -273,7 +263,7 @@ const DropTarget = (props:any) => {
                   </Box>
                 </div>
               </Grid>
-              <Grid item xs={6} style={{height:"50%"}}>
+              <Grid item xs={12 / columnCount} style={{height: `${Math.floor(100 / rowCount)}%`}}>
                 <div
                   key="2"
                   id='drop1-0'
@@ -292,7 +282,7 @@ const DropTarget = (props:any) => {
                   </Box>
                 </div>
               </Grid>
-              <Grid item xs={6} style={{height:"50%"}}>
+              <Grid item xs={12 / columnCount} style={{height: `${Math.floor(100 / rowCount)}%`}}>
                 <div
                   key="3"
                   id='drop1-1'
