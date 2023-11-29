@@ -1,6 +1,7 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
 Stack.defaultProps = {
+	direction: "column",
 } as StyledProps;
 
 /**

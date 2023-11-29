@@ -1,14 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Table from "..";
 import { TableHead, TableBody, TableRow, TableCell, Typography } from "../../..";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { BundleCode, HeaderCode, BodyCode, CellCode, RowCode } from '../Code';
 
 const meta = {
   title: 'Components/Table',
   component: Table,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs },
+		docs: { page: Explore },
 		layout: 'centered',
 	},
 } satisfies Meta<typeof Table>;
@@ -16,7 +20,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Bundle = LiveEditStory(cleanMask(BundleCode));
+export const Header = LiveEditStory(cleanMask(HeaderCode));
+export const Body = LiveEditStory(cleanMask(BodyCode));
+export const Cell = LiveEditStory(cleanMask(CellCode));
+export const Row = LiveEditStory(cleanMask(RowCode));
+
+export const Sample: Story = {
 	args: {
 		padding: 'normal'
 	},
@@ -47,70 +57,3 @@ export const Default: Story = {
 		)
 	}
 };
-
-export const Head: Story = {
-	args: { padding: 'normal' },
-	render: ({padding}) => {
-		return (
-			<Table padding={padding}>
-				<TableHead>
-					<TableRow>
-						<TableCell>
-							TableHead
-						</TableCell>
-					</TableRow>
-				</TableHead>
-			</Table>
-		)
-	}
-}
-
-export const Body: Story = {
-	args: { padding: 'checkbox' },
-	render: ({padding}) => {
-		return (
-			<Table padding={padding}>
-				<TableBody>
-					<TableRow>
-						<TableCell>Body</TableCell>
-					</TableRow>
-				</TableBody>
-			</Table>
-		)
-	}
-}
-
-export const Cell: Story = {
-	args: { padding: 'normal' },
-	render: ({padding}) => {
-		return (
-			<Table padding={padding}>
-				<TableBody>
-					<TableRow>
-						<TableCell>Cell</TableCell>
-					</TableRow>
-				</TableBody>
-			</Table>
-		)
-	}
-}
-
-export const Row: Story = {
-	args: { padding: 'normal' },
-	render: ({padding}) => {
-		return (
-			<Table padding={padding}>
-				<TableHead>
-					<TableRow>
-						<Typography>Header Row</Typography>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					<TableRow>
-						<Typography>Body Row</Typography>
-					</TableRow>
-				</TableBody>
-			</Table>
-		)
-	}
-}

@@ -2,8 +2,10 @@ import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import Divider from '@mui/material/Divider';
 import Color from '../../Style/Color';
+import { MarginTypes } from '../../Style/Margin';
+import { Typography } from '../../';
 
-export type StyledProps = {
+export interface StyledProps extends MarginTypes {
 	/**
 	 * The component orientation.
 	 * @defaultValue "horizontal"
@@ -20,20 +22,56 @@ export type StyledProps = {
 
 const StyledComponent = styled((props:StyledProps) => {
 	const {direction} = props;
-	return(
-		<Divider
-			orientation={direction}
-			flexItem={direction === "vertical" ? true : false}
-			sx={{
-				width: "inherit",
-				margin: "0.125rem 0rem",
-				borderWidth: "0.0625rem",
-				borderColor: Color.component.gray_02,
-			}}
-		/>
-	)
-})(({theme}) => ({
 
+	if (direction === "horizontal") {
+		return (
+			<Divider
+				orientation={direction}
+				sx={{
+					width: "inherit",
+
+					//magin
+					margin: props.margin || "0.125rem 0",
+					marginTop: props.marginTop,
+					marginBottom: props.marginBottom,
+					marginLeft: props.marginLeft,
+					marginRight: props.marginRight,
+					marginX: props.marginX,
+					marginY: props.marginY,
+
+					//border
+					borderWidth: "0.0625rem",
+					borderColor: Color.component.gray_02,
+				}}
+			/>
+		)
+	}
+
+	if (direction === "vertical") {
+		return (
+			<Divider
+				orientation={direction}
+				flexItem
+				sx={{
+					//margin
+					margin: props.margin || "0 0.125rem",
+					marginTop: props.marginTop,
+					marginBottom: props.marginBottom,
+					marginLeft: props.marginLeft,
+					marginRight: props.marginRight,
+					marginX: props.marginX,
+					marginY: props.marginY,
+					
+					//border
+					borderWidth: "0.0625rem",
+					borderColor: Color.component.gray_02,
+				}}
+			/>
+		)
+	}
+
+	return <Typography>direction is not available</Typography>;
+})(({theme}) => ({
 }))
 
 const ThemedComponent = (props: StyledProps) => (

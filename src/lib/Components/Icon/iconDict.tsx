@@ -1,3 +1,15 @@
+import { Typography } from "../../";
+
+export const IconNameTypesSample = () => {
+	return (
+		<>
+			{IconNameTypes.map((iconName, index) => {
+				return <Typography key={index}>{iconName}</Typography>;
+			})}
+		</>
+	)
+}
+
 export const IconNameTypes: readonly string[] = [
 	"Abc",
 	"AbcOutlined",

@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Radio from "..";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { NameCode } from '../Code';
 
 const meta = {
   title: 'Components/Radio',
   component: Radio,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs },
+		docs: { page: Explore },
 		layout: 'centered',
 	},
 } satisfies Meta<typeof Radio>;
@@ -15,7 +19,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Name = LiveEditStory(cleanMask(NameCode));
+
+export const Sample: Story = {
 	args: {
 		onChange: () => {},
 		value: 0,

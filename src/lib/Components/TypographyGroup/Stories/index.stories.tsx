@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TypographyGroup from "..";
-import Docs from "./Docs.mdx";
+import Explore from "./Exlpore.mdx";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { TextCode } from '../Code';
 
 const meta = {
   title: 'Components/TypographyGroup',
   component: TypographyGroup,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs },
+		docs: { page: Explore },
 		layout: 'centered',
 	},
 } satisfies Meta<typeof TypographyGroup>;
@@ -15,7 +19,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Text = LiveEditStory(cleanMask(TextCode));
+
+export const Sample: Story = {
 	args: {
 		titleText: "title",
 		bodyText: "body",

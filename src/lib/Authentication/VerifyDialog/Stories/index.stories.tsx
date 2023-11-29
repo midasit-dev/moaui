@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import VerifyDialog from "..";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
+
+import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { DefaultCode } from "../Code";
 
 const meta = {
   title: 'Authentication/VerifyDialog',
   component: VerifyDialog,
   parameters: { 
 		layout: 'centered', 
-		docs: { page: Docs },
+		docs: { page: Explore },
 	},
   tags: ['autodocs'],
   argTypes: {
@@ -17,7 +21,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default = LiveEditStory(cleanMask(DefaultCode));
+
+export const Sample: Story = {
   args: {
 		preventRedirect: true
 	},

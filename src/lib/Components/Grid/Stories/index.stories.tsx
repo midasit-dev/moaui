@@ -4,7 +4,7 @@ import { Typography, Panel } from "../../..";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { ItemsCode } from '../Code';
+import { ItemsCode, RowCode, ColumnCode } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
@@ -21,6 +21,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Items = LiveEditStory(cleanMask(ItemsCode));
+export const Row = LiveEditStory(cleanMask(RowCode));
+export const Column = LiveEditStory(cleanMask(ColumnCode));
 
 export const Sample: Story = {
 	args: {

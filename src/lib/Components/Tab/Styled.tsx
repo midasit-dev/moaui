@@ -12,7 +12,7 @@ export type StyledProps = {
 	/**
 	 * The label element.
 	 */
-	label?: React.ReactNode;
+	label?: string;
 	/**
 	 * Set Tabs Value Control
 	 */

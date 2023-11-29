@@ -3,6 +3,15 @@ import MoaStyledComponent from "../../Style/MoaStyled";
 import { styled } from '@mui/material/styles';
 
 export interface StyledProps extends StackProps {
+	/**
+	 * Defines the `flex-direction` style property.
+	 * It is applied for all screen sizes.
+	 * @default 'column'
+	 */
+	direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+	/**
+	 * Not Used
+	 */
 	sx?: never;
 };
 
@@ -14,7 +23,10 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	const { sx, ...rest } = props;
 
 	return (
-		<Stack {...rest} />
+		<Stack 
+			direction={props.direction} 
+			{...rest} 
+		/>
 	)
 })((props: InnerStyledProps) => ({}));
 

@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Switch from "..";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { LabelCode } from '../Code';
 
 const meta = {
   title: 'Components/Switch',
   component: Switch,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs },
+		docs: { page: Explore },
 		layout: 'centered',
 	},
 } satisfies Meta<typeof Switch>;
@@ -15,9 +19,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Label = LiveEditStory(cleanMask(LabelCode));
+
+export const Sample: Story = {
 	args: {
-		label: "Switch",
+		label: "Switch Label",
 		onChange: () => {},
 		disabled: false
 	}
