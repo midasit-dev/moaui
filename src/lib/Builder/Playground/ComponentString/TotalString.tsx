@@ -88,14 +88,13 @@ function Components(props: any) {
 	function remove3Comma(str:string){
 		let result = str.replace(/,{3}/g, "");
 		let result2 = result.replace(/>,/g, ">");
-		console.log(result2);
 		return result2;
 	}
 
 	return (
 		<CodeComponent
 			language="typescript"
-			title='Plugin React UI Code'
+			title='Plugin UI React Code'
 			children={String(remove3Comma(totalCode)).replace(/\n$/, "")}
 		/>
 	);
