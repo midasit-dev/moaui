@@ -66,6 +66,7 @@ function Components(props: any) {
 			<Grid container spacing={0} style={{height:"100%"}}>
 			${Codestring.map((value:any, index:any) => {
 				return (`<Grid item xs={${ 12 / Columncount }} style={{height:"${Math.floor(100 / Rowcount)}%"}}>
+					<Box display="flex" justifyContent={"center"} alignItems={"center"}>
 					${value.map((value: any, index: any) => {
 							if (value === ItemTypes.BUTTON){
 								return extractComponentName(ButtonCode);
@@ -76,6 +77,7 @@ function Components(props: any) {
 							return "";
 						})
 					}
+					</Box>
 				</Grid>`)
 			})}
 			</Grid>
