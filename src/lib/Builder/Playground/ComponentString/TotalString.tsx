@@ -1,5 +1,5 @@
 import React from "react";
-import { TemplateWidth, TemplateHeight, CodeString } from '../recoil/PlaygroundAtom';
+import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount } from '../recoil/PlaygroundAtom';
 import { useRecoilValue } from 'recoil';
 import CodeComponent from "../../../Components/CodeBlock";
 import ButtonCode from "../../../Components/Button/Code/Contained.code.tsx?raw";
@@ -29,6 +29,8 @@ export default function TotalCodeString(){
   const Sizewidth = useRecoilValue(TemplateWidth);
   const Sizeheight = useRecoilValue(TemplateHeight);
   const Codestring = useRecoilValue(CodeString);
+	const Rowcount = useRecoilValue(RowCount);
+	const Columncount = useRecoilValue(ColumnCount);
 	const [isButtonExist, setIsButtonExist] = React.useState(false);
 	const [isTextfieldExist, setIsTextfieldExist] = React.useState(false);
 
@@ -63,7 +65,7 @@ function Components(props: any) {
     <Box sx={{width: "${Sizewidth}px", height:"${Sizeheight}px", p:"0.5rem"}}>
 			<Grid container spacing={0} style={{height:"100%"}}>
 			${Codestring.map((value:any, index:any) => {
-				return (`<Grid item xs={6} style={{height:"50%"}}>
+				return (`<Grid item xs={${ 12 / Columncount }} style={{height:"${Math.floor(100 / Rowcount)}%"}}>
 					${value.map((value: any, index: any) => {
 							if (value === ItemTypes.BUTTON){
 								return extractComponentName(ButtonCode);
