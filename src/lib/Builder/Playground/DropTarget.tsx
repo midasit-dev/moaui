@@ -119,6 +119,9 @@ const DropArea = ({ index, dropped, setDropped, columnCount, rowCount } : any) =
       <div
         ref={drop}
         style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           width: '100%',
           height: '100%',
           border: dropped.length === 0 ?
@@ -201,7 +204,7 @@ const DropTarget = (props:any) => {
         </div>
         )
         :
-        <Box sx={{width:"800px", minHeight:"500px"}}>
+        <Box sx={{width:"800px", minHeight:"500px", maxHeight:"800px"}}>
           <TotalCodeString />
         </Box>
       }
