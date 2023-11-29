@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import VerifyDialog from "..";
-import Docs from "./Docs.mdx";
+import Explore from "./Exlpore.mdx";
 
 const meta = {
   title: 'Authentication/VerifyUtil',
   parameters: { 
-		docs: { page: Docs },
+		docs: { page: Explore },
 	},
   tags: ['autodocs'],
 } satisfies Meta<typeof VerifyDialog>;
@@ -13,7 +13,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Sample: Story = {
 	render: () => {
 		return <></>
 	}

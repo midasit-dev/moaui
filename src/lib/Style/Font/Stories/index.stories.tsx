@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Font from "..";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
 
 const meta = {
   title: 'Style/Font',
 	parameters: {
-		docs: { page: Docs }
+		docs: { page: Explore }
 	},
   tags: ['autodocs'],
 } satisfies Meta<typeof Font>;

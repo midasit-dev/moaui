@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Textfield from "..";
-import Docs from "./Docs.mdx";
+import Explore from "./Explore.mdx";
+
+import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { LeftCode, RightCode, LabelCode, ErrorCode } from '../Code';
 
 const meta = {
   title: 'Components/Textfield',
   component: Textfield,
 	tags: ['autodocs'],
   parameters: { 
-		docs: { page: Docs },
+		docs: { page: Explore },
 		layout: 'centered',
 	},
 } satisfies Meta<typeof Textfield>;
@@ -15,7 +19,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Left: Story = {
+export const Left = LiveEditStory(cleanMask(LeftCode));
+export const Right = LiveEditStory(cleanMask(RightCode));
+export const Label = LiveEditStory(cleanMask(LabelCode));
+export const Error = LiveEditStory(cleanMask(ErrorCode));
+
+export const Sample: Story = {
 	args: {
 		width: "100px",
 		placeholder: "placeholder",
@@ -24,39 +33,5 @@ export const Left: Story = {
 		disabled: false,
 		defaultValue: "",
 		error: false,
-	}
-};
-
-export const Label: Story = {
-	args: {
-		width: "100px",
-		placeholder: "placeholder",
-		title: "title",
-		titlePosition: "label",
-		disabled: false,
-		defaultValue: "",
-		error: false,
-	}
-};
-
-export const Right: Story = {
-	args: {
-		placeholder: "placeholder",
-		title: "title",
-		titlePosition: "right",
-		disabled: false,
-		defaultValue: "",
-		error: false,
-	}
-};
-
-export const Error: Story = {
-	args: {
-		placeholder: "placeholder",
-		title: "title",
-		titlePosition: "left",
-		disabled: false,
-		defaultValue: "",
-		error: true,
 	}
 };
