@@ -90,7 +90,7 @@
     "test": "react-scripts test",
     "prepare-npmjs": "node prepare.js && tsc -p tsconfig.npm.json",
     "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish",
-		"update-extract-code": "cd src/lib/Common/Storybook/ExtractedCodeMDX/ && node update.js && cd ../../../../../",
+		"update-extract-code": "cd src/lib/Common/Storybook/ExtractedCodeMDX/ && node update.js",
     "prepare-storybook": "npm run update-extract-code && tsc -p tsconfig.storybook.json",
     "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
     "build-storybook": "npm run prepare-storybook && storybook build",
