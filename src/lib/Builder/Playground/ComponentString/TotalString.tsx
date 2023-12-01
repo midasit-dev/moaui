@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import CodeComponent from "../../../Components/CodeBlock";
 import ButtonCode from "../../../Components/Button/Code/Contained.code.tsx?raw";
 // import TextfieldCode from "./Textfield.txt?raw";
-import { ItemTypes } from '../../Playground/ItemTypes';
+import { ItemTypes } from '../Components/ItemTypes';
 import CodeExtractor from "../../../Common/Storybook/CodeExtractor";
 
 function extractComponentCode(str:string){
@@ -38,10 +38,8 @@ export default function TotalCodeString(){
 		Codestring.map((value:any, index:any) => {
 			if(value.length !== 0){
 				value.map((value:any, index:any) => {
-					if(value === ItemTypes.BUTTON){
+					if(value === ItemTypes.ComponentsButtonContained){
 						setIsButtonExist(true);
-					}else if(value === ItemTypes.TEXTFIELD){
-						setIsTextfieldExist(true);
 					}
 					return null;
 				})
@@ -68,7 +66,7 @@ function Components(props: any) {
 				return (`<Grid item xs={${ 12 / Columncount }} style={{height:"${Math.floor(100 / Rowcount)}%"}}>
 					<Box display="flex" justifyContent={"center"} alignItems={"center"}>
 					${value.map((value: any, index: any) => {
-							if (value === ItemTypes.BUTTON){
+							if (value === ItemTypes.ComponentsButtonContained){
 								return extractComponentName(ButtonCode);
 							}
 							// else if (value === ItemTypes.TEXTFIELD){

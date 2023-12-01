@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import DraggableComponents from './DraggableComponents';
+import DraggableComponents from './Components/DraggableComponent';
 import DropTarget from './DropTarget';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -10,6 +10,7 @@ import SizeOptCompo from './SizeOptCompo';
 import { TemplateWidth, TemplateHeight, RowCount, ColumnCount } from './recoil/PlaygroundAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import Button from "@mui/material/Button";
+import PlaygroundV2 from "./PlaygroundPageV2.jsx";
 
 export default function Playground(): React.ReactElement {
   const Sizewidth = useRecoilValue(TemplateWidth);
@@ -17,6 +18,7 @@ export default function Playground(): React.ReactElement {
   const [openCode, setOpenCode] = React.useState(false);
   const [rowCount, setRowCount] = useRecoilState(RowCount);
   const [columnCount, setColumnCount] = useRecoilState(ColumnCount);
+  const [version, setVersion] = React.useState(2);
 
   React.useEffect(() => {
     const columnCountMap: { [key: string]: number } = {
@@ -42,6 +44,14 @@ export default function Playground(): React.ReactElement {
     setOpenCode(!openCode);
   }
 
+  function onClickVersionButton(){
+    if(version === 1){
+      setVersion(2);
+    }else{
+      setVersion(1);
+    }
+  }
+
   return (
     <DndProvider backend={HTML5Backend}>
       <Box sx={{width:"100%"}}>
@@ -49,13 +59,18 @@ export default function Playground(): React.ReactElement {
           <Box>
             <Stack direction={"row"}>
               <Stack>
-              <Box display="flex" flexDirection={"row"} justifyContent={"space-between"}sx={{paddingLeft:"0.7rem", paddingRight:"0.7rem"}}>
+              <Box display="flex" flexDirection={"row"} justifyContent={"space-between"} sx={{paddingLeft:"0.7rem", paddingRight:"0.7rem"}}>
+                <Button onClick={onClickVersionButton} sx={{ minWidth:"0rem"}} disabled={version === 1 ? true : false}>
+                  V1
+                </Button>
+                <Button onClick={onClickVersionButton} sx={{p:"0rem", minWidth:"0rem"}} disabled={version === 2 ? true : false}>
+                  V2
+                </Button>
+              </Box>
+              <Box display="flex" flexDirection={"row"} justifyContent={"space-between"} sx={{paddingLeft:"0.7rem", paddingRight:"0.7rem"}}>
                 <Button onClick={onClickCodeButton} sx={{ minWidth:"0rem"}} disabled={openCode === false ? true : false}>
                   UI
                 </Button>
-                <Box display="flex" justifyContent="center" alignItems="center">
-                  / 
-                </Box>
                 <Button onClick={onClickCodeButton} sx={{p:"0rem", minWidth:"0rem"}} disabled={openCode === true ? true : false}>
                   Code
                 </Button>
@@ -65,7 +80,11 @@ export default function Playground(): React.ReactElement {
               </Box>
               </Stack>
               <Box sx={{ml:"1rem"}}>
-                <DropTarget openCode={openCode} columnCount={columnCount} rowCount={rowCount}/>
+                {version === 1 ?
+                  <DropTarget openCode={openCode} columnCount={columnCount} rowCount={rowCount}/>
+                :
+                  <PlaygroundV2 columnCount={columnCount} rowCount={rowCount}/>
+                }
               </Box>
             </Stack>
           </Box>

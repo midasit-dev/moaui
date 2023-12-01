@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
-import { ItemTypes } from './ItemTypes';
+import { ItemTypes } from './Components/ItemTypes';
 // import MoaButton from "./MoaCompo/MoaButton";
 import MoaButton from "../../Components/Button";
 import MoaTextField from "../../Components/TextField";
