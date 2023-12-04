@@ -1,6 +1,6 @@
 import { CheckGroup, Check } from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsCheckGroupText = () => {
+const ComponentsCheckGroupControlled = () => {
 	return (
 		<CheckGroup text={"Group Check"}>
 			<Check name='Check 1' />
@@ -12,4 +12,4 @@ const ComponentsCheckGroupText = () => {
 	);
 }/**${comma}*/
 
-export default ComponentsCheckGroupText;
+export default ComponentsCheckGroupControlled;
