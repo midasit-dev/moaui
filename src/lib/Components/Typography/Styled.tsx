@@ -96,20 +96,29 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * @defaultValue 'primary'
 	 */
 	color?: 'primary' | 'secondary' | 'third' | 'disable';
+	/**
+	 * Set the text align
+	 * 
+	 * @default left
+	 */
+	textAlign: "center" | "left";
 }
 
 const StyledComponent = styled((props: StyledProps) => {
+	const { children, variant, color, textAlign } = props;
+
 	return (
 		<Typography 
 			sx={{
-				...FontStyle.selector(props.variant),
+				...FontStyle.selector(variant),
 				...Font.defaultFontSet,
 				...MarginProps(props),
 				...PaddingProps(props),
+				textAlign: textAlign,
 			}}
-			color={FontColor.selector(props.color)}
+			color={FontColor.selector(color)}
 		>
-			{props.children}
+			{children}
 		</Typography>
 	)
 })(({theme}) => ({

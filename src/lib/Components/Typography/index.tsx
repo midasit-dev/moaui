@@ -4,6 +4,7 @@ Typography.defaultProps = {
 	children: "",
 	variant: "body1",
 	color: "primary",
+	textAlign: "left",
 } as StyledProps;
 
 /**

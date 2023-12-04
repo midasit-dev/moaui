@@ -38,12 +38,12 @@ export type StyledProps = {
 	 * Set the width of panel
 	 * @defaultValue 'fit-content'
 	 */
-	width: string;
+	width: number | string;
 	/**
 	 * Set the height of panel
 	 * @defaultValue 'fit-content'
 	 */
-	height: string;
+	height: number | string;
 	/**
 	 * Set the flexItem of panel
 	 * @defaultValue false
