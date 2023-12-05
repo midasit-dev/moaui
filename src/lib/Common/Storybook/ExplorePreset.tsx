@@ -62,6 +62,7 @@ const ControlsRegion = (props: PresetProps) => {
 				exclude={[ 
 					'onClick', 
 					'onChange', 
+					'children',
 				]} 
 			/> : 
 			<Controls 
