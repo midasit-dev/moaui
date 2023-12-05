@@ -15,6 +15,8 @@ const ComponentsScrollbarsList = () => {
           {props.values.map((value: any, index: any) => {
             return (
               <ListItem
+								marginLeft={-1.7}
+								disableGutters
                 secondaryAction={<Check checked={props.values[index].checked} />}
                 onClick={() => handleListItemClick(index)}
               >
