@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 import GridLayout from 'react-grid-layout';
-import { TemplateWidth, TemplateHeight, CodeString } from './recoil/PlaygroundAtom';
+import { TemplateWidth, TemplateHeight, LayoutsInfo } from './recoil/PlaygroundAtom';
 import { useRecoilState } from 'recoil';
 import Box from "@mui/material/Box";
 import IconButton from '@mui/material/IconButton';
@@ -18,6 +18,7 @@ import { Required } from '@src/lib/Components/Check/Code';
 // import { Required } from '../../Components/Check/Code';
 import { ComponentsCheckRequired } from './Components';
 import DraggedComponent from '@src/lib/Builder/Playground/Components/DraggedComponent';
+import TotalCodeStringV2 from './ComponentString/TotalStringV2';
 
 const fontStyle = {
   fontFamily: "Prentendard",
@@ -43,23 +44,36 @@ const DropAcceptList = [
 ];
 
 const DropTargetV2 = (props) => {
+  const isopenCode = props.openCode;
   const rowCount = props.rowCount;
   const columnCount = props.columnCount;
   const [sizewidth, setSizewidth] = useRecoilState(TemplateWidth);
   const [sizeheight, setSizeHeight] = useRecoilState(TemplateHeight);
-  const [codestring, setCodestring] = useRecoilState(CodeString);
-  const [layouts, setLayouts] = React.useState([{i: 'a', x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ComponentsButtonContained}]); 
+  const [layoutsInfo, setLayoutsInfo] = useRecoilState(LayoutsInfo);
+  const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ComponentsButtonContained}]); 
   const [newLayouts, setNewLayouts] = React.useState([]);
 
   const [dropped, setDropped] = React.useState([]);
 
   React.useEffect(() => {
-    if(rowCount !== 0 && columnCount !== 0){
-      const arrCount = rowCount * columnCount;
-      setDropped(Array(arrCount).fill([]));
-      setCodestring(Array(rowCount * columnCount).fill([]));
+    function setRecoilLayoutsInfo(layouts){
+      const layoutsInfo = layouts.map((item) => {
+        const { i, x, y, w, h, type } = item;
+        return { i, x, y, w, h, type };
+      });
+      console.log("layoutsInfo", layoutsInfo);
+      setLayoutsInfo(layoutsInfo);
     }
-  }, [rowCount, columnCount]);
+    setRecoilLayoutsInfo(layouts);
+  }, [layouts]);
+
+  // React.useEffect(() => {
+  //   if(rowCount !== 0 && columnCount !== 0){
+  //     const arrCount = rowCount * columnCount;
+  //     setDropped(Array(arrCount).fill([]));
+  //     setCodestring(Array(rowCount * columnCount).fill([]));
+  //   }
+  // }, [rowCount, columnCount]);
 
   // 레이아웃 배열은 각 아이템의 위치 및 크기 정보를 가집니다
   // const layout = [
@@ -135,73 +149,83 @@ const DropTargetV2 = (props) => {
 
   return (
     <>
-      <Box
-        display="flex"
-        justifyContent={"space-between"}
-        alignItems={"center"}
-        sx={{ mb: "0.5rem" }}
-      >
-        <IconButton
-          sx={{ float: "left", padding: "0.2rem", m: 0, ...fontStyle }}
-          onClick={onClickBack}
-        >
-          <ArrowBackIcon />
-          Back
-        </IconButton>
-        <Typography variant="subtitle2">
-          {sizewidth} X {sizeheight}
-        </Typography>
-        <IconButton
-          sx={{ padding: "0.2rem", m: 0, ...fontStyle }}
-          onClick={onClickClear}
-        >
-          <RefreshIcon />
-          Clear
-        </IconButton>
-      </Box>
-      <Box
-        sx={{
-          width: `${sizewidth}px`,
-          height: `${sizeheight}px`,
-          border: "1px solid #bebebe",
-          p: "0.5rem",
-          overflowY: "auto",
-          overflowX: "hidden",
-        }}
-      >
-        {/* Grid Layout Components */}
-        <GridLayout
-          className="layout"
-          layout={layouts}
-          cols={12}
-          rowHeight={30}
-          width={Number(sizewidth)}
-          isDroppable={true}
-          onDrop={onDrop}
-          onLayoutChange={onLayoutChange}
-          measureBeforeMount={true}
-          verticalCompact={false}
-          compactType={null}
-          onBreakpointChange={onBreakpointChange}
-          containerPadding={[5, 5]}
-
-        >
-          {layouts.map((item) => {
-            return (
-              <div
-                key={item.i}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+     {
+        isopenCode === false ? (
+          <>
+            <Box
+              display="flex"
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              sx={{ mb: "0.5rem" }}
+            >
+              <IconButton
+                sx={{ float: "left", padding: "0.2rem", m: 0, ...fontStyle }}
+                onClick={onClickBack}
               >
-                <DraggedComponent item={item} />
-              </div>
-            );
-          })}
-        </GridLayout>
-      </Box>
+                <ArrowBackIcon />
+                Back
+              </IconButton>
+              <Typography variant="subtitle2">
+                {sizewidth} X {sizeheight}
+              </Typography>
+              <IconButton
+                sx={{ padding: "0.2rem", m: 0, ...fontStyle }}
+                onClick={onClickClear}
+              >
+                <RefreshIcon />
+                Clear
+              </IconButton>
+            </Box>
+            <Box
+              sx={{
+                width: `${sizewidth}px`,
+                height: `${sizeheight}px`,
+                border: "1px solid #bebebe",
+                p: "0.5rem",
+                overflowY: "auto",
+                overflowX: "hidden",
+              }}
+            >
+              {/* Grid Layout Components */}
+              <GridLayout
+                className="layout"
+                layout={layouts}
+                cols={12}
+                rowHeight={30}
+                width={Number(sizewidth)}
+                isDroppable={true}
+                onDrop={onDrop}
+                onLayoutChange={onLayoutChange}
+                measureBeforeMount={true}
+                compactType={null}
+                onBreakpointChange={onBreakpointChange}
+                containerPadding={[5, 5]}
+              >
+                {layouts.map((item) => {
+                  return (
+                    <div
+                      key={item.i}
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <DraggedComponent item={item} />
+                    </div>
+                  );
+                })}
+              </GridLayout>
+            </Box>
+          </>
+        )
+        :
+        (
+          <Box sx={{width:"800px", minHeight:"500px", maxHeight:"800px"}}>
+            <TotalCodeStringV2 />
+          </Box>
+        )
+      }
     </>
   );
 }

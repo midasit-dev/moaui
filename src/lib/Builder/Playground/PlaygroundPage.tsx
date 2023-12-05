@@ -83,7 +83,7 @@ export default function Playground(): React.ReactElement {
                 {version === 1 ?
                   <DropTarget openCode={openCode} columnCount={columnCount} rowCount={rowCount}/>
                 :
-                  <PlaygroundV2 columnCount={columnCount} rowCount={rowCount}/>
+                  <PlaygroundV2 openCode={openCode} columnCount={columnCount} rowCount={rowCount}/>
                 }
               </Box>
             </Stack>

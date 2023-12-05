@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { ItemTypes } from '../Components/ItemTypes';
 
 export const TemplateWidth = atom<string>({
 	key: 'TemplateWidth',
@@ -20,7 +21,14 @@ export const ColumnCount = atom<number>({
 	default: 0,
 });
 
+// version 1
 export const CodeString = atom<any>({
 	key: 'CodeString',
+	default: [],
+});
+
+// version 2
+export const LayoutsInfo = atom<any>({
+	key: 'LayoutsInfo',
 	default: [],
 });

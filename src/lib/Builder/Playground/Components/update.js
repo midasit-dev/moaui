@@ -33,10 +33,15 @@ const rootPath = "../../..";
 const filteredFilePaths = getAllFilePaths(rootPath);
 const arrInfos = generateFileInformations(filteredFilePaths);
 
-//DraggedComponent.tsx 변경
+//index.tsx 변경
+const importCodes = [];
+for (const info of arrInfos) importCodes.push(`export { default as ${info.title} } from '${info.path}';`);
+writeFileSync('./index.ts', `${importCodes.join('\n')}`);
+
+//index.tsx 변경
 const importRawCodes = [];
-for (const info of arrInfos) importRawCodes.push(`export { default as ${info.title} } from '${info.path}';`);
-writeFileSync('./index.ts', `${importRawCodes.join('\n')}`);
+for (const info of arrInfos) importRawCodes.push(`export { default as ${info.title} } from '${info.path}.tsx?raw';`);
+writeFileSync('./DraggedComponentRawCode.ts', `${importRawCodes.join('\n')}`);
 
 //ItemTypes.ts 변경
 const TypeStrings = [];
