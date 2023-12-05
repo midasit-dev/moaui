@@ -3,8 +3,10 @@ import { useCallback, cloneElement } from 'react';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import IconButton, { type IconButtonProps } from '@mui/material/IconButton';
 import Color from '../../Style/Color';
+import { MarginTypes, MarginProps } from '../../Style/Margin';
+import { PaddingTypes, PaddingProps } from '../../Style/Padding';
 
-export type StyledProps = {
+export interface StyledProps extends MarginTypes, PaddingTypes {
 	/**
 	 * If the value is true, The state of the button is disabled.
 	 * @defaultValue false
@@ -75,34 +77,56 @@ export type StyledProps = {
 	 */
 	onClick?: IconButtonProps["onClick"],
 	
+	/**
+	 * If transparent is `true`, border, background is transparent.
+	 * 
+	 * @default false
+	 */
+	transparent?: boolean;
+
+	/**
+	 * If border is `true`, `primary` color applied.
+	 * 
+	 * @default false
+	 */
+	border?: boolean;
+
 	sx?: never,
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { sx, children, color, ...rest } = props;
-	const CustomBackgroundColor = useCallback(({color} : { color: StyledProps["color"] }) => {
-		const primaryColorConfig = color === "negative" ? "primaryNegative" : "primary";
-		const textColorConfig = color === "negative" ? "textNegative" : "text";
-		const transparency = 192..toString(16);
+	const { sx, children, color, transparent, border, ...rest } = props;
+	const CustomBackgroundColor = useCallback(({color, transparent, border} : { 
+			color: StyledProps["color"];
+			transparent: StyledProps["transparent"];
+			border: StyledProps["border"];
+		}) => {
+			const primaryColorConfig = color === "negative" ? "primaryNegative" : "primary";
+			const textColorConfig = color === "negative" ? "textNegative" : "text";
+			const transparency = (192).toString(16);
 
-		return ({
-			border: `1px solid ${Color[primaryColorConfig].enable_strock}`,
-			background: Color[primaryColorConfig].enable,
-			color: Color[textColorConfig].primary,
-			"&:hover": {
-				background: Color[primaryColorConfig].hover,
-				color: Color[primaryColorConfig].white
-			},
-			":active":{
-				background: Color[primaryColorConfig].focus,
-				color: Color[primaryColorConfig].white
-			},
-			":disabled": {
-				background: `${Color[primaryColorConfig].enable}${transparency}`,
-				color: `${Color[textColorConfig].disable}${transparency}`,
-				border: `1px solid ${Color[primaryColorConfig].enable_strock}${transparency}`,
-			},
-		});
+			let borderStyle = `1px solid ${Color[primaryColorConfig].enable_strock}`;
+			if (transparent) borderStyle = 'none';
+			if (border) borderStyle = `1px solid ${Color.primaryNegative.enable_strock}`;
+
+			return {
+				border: borderStyle,
+				background: transparent ? 'transparent' : Color[primaryColorConfig].enable,
+				color: Color[textColorConfig].primary,
+				"&:hover": {
+					background: Color[primaryColorConfig].hover,
+					color: Color[primaryColorConfig].white,
+				},
+				":active": {
+					background: Color[primaryColorConfig].focus,
+					color: Color[primaryColorConfig].white,
+				},
+				":disabled": {
+					background: `${Color[primaryColorConfig].enable}${transparency}`,
+					color: `${Color[textColorConfig].disable}${transparency}`,
+					border: `1px solid ${Color[primaryColorConfig].enable_strock}${transparency}`,
+				},
+			};
 	}, []);
 
 	return (
@@ -112,13 +136,14 @@ const StyledComponent = styled((props: StyledProps) => {
 			sx={{
 				width: props?.width || "auto",
 				height: props?.height || "1.75rem",
-				padding: "0.625rem",
+				...MarginProps(props),
+        ...PaddingProps(props),
 				justifyContent: "center",
 				alignItems: "center",
 				gap: "0.25rem",
 				flexShrink: 0,
 				borderRadius: "0.25rem",
-				...CustomBackgroundColor({color})
+				...CustomBackgroundColor({color, transparent, border}),
 			}}
 		 >
 			{children && cloneElement(children as React.ReactElement, {width: "16px", height: "16px"})}

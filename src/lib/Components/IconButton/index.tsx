@@ -4,6 +4,9 @@ import StyledComponent, { StyledProps } from "./Styled";
 IconButton.defaultProps = {
 	children: <div />,
 	onClick: () => {},
+	border: false,
+	transparent: false,
+	padding: '0.625rem',
 } as StyledProps;
 
 /**
