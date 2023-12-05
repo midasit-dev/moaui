@@ -93,9 +93,9 @@
     "test": "react-scripts test",
     "prepare-npmjs": "node prepare.js && tsc -p tsconfig.npm.json",
     "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish",
-    "prepare-extract-code": "cd src/lib/Common/Storybook/ExtractedCodeMDX/ && node prepare.js && cd ../../../../../",
+	"update-extract-code": "cd src/lib/Common/Storybook/ExtractedCodeMDX/ && node update.js && cd ../../../../../",
     "update-playground": "cd src/lib/Builder/Playground/Components && node update.js",
-    "prepare-storybook": "npm run prepare-extract-code && npm run update-playground && tsc -p tsconfig.storybook.json",
+    "prepare-storybook": "npm run update-extract-code && npm run update-playground && tsc -p tsconfig.storybook.json",
     "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
     "build-storybook": "npm run prepare-storybook && storybook build",
     "chromatic": "npm run prepare-storybook && npx chromatic --project-token=chpt_8c568868a09ebc7"

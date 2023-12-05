@@ -4,7 +4,7 @@ import { Check } from "../../..";
 import Exlpore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { TextCode } from '../Code';
+import { ControlledCode, UnControlledCode } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
@@ -20,7 +20,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Text = LiveEditStory(cleanMask(TextCode));
+export const Controlled = LiveEditStory(cleanMask(ControlledCode));
+export const UnControlled = LiveEditStory(cleanMask(UnControlledCode));
 
 export const Sample: Story = {
 	args: {

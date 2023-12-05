@@ -13,7 +13,7 @@ export type PaddingTypes = {
 	 * <MoaTypography padding={0} />
 	 * ```
 	 */
-	padding?: CSS.PropertiesFallback<number | string>;
+	padding?: string | number;
 
 	/**
 	 * Set the paddingX
@@ -23,7 +23,7 @@ export type PaddingTypes = {
 	 * <MoaTypography paddingX={0} />
 	 * ```
 	 */
-	paddingX?: CSS.StandardLonghandProperties['paddingLeft'] & CSS.StandardLonghandProperties['paddingRight'];
+	paddingX?: CSS.StandardLonghandProperties['paddingLeft'] & CSS.StandardLonghandProperties['paddingRight'] | number;
 
 	/**
 	 * Set the paddingY
@@ -33,7 +33,7 @@ export type PaddingTypes = {
 	 * <MoaTypography paddingY={0} />
 	 * ```
 	 */
-	paddingY?: CSS.StandardLonghandProperties['paddingTop'] & CSS.StandardLonghandProperties['paddingBottom'];
+	paddingY?: CSS.StandardLonghandProperties['paddingTop'] & CSS.StandardLonghandProperties['paddingBottom'] | number;
 
 	/**
 	 * Set the paddingTop
@@ -43,7 +43,7 @@ export type PaddingTypes = {
 	 * <MoaTypography paddingTop={0} />
 	 * ```
 	 */
-	paddingTop?: CSS.StandardLonghandProperties['paddingTop'];
+	paddingTop?: CSS.StandardLonghandProperties['paddingTop'] | number;
 
 	/**
 	 * Set the paddingBottom
@@ -53,7 +53,7 @@ export type PaddingTypes = {
 	 * <MoaTypography paddingBottom={0} />
 	 * ```
 	 */
-	paddingBottom?: CSS.StandardLonghandProperties['paddingBottom'];
+	paddingBottom?: CSS.StandardLonghandProperties['paddingBottom'] | number;
 
 	/**
 	 * Set the paddingLeft
@@ -63,7 +63,7 @@ export type PaddingTypes = {
 	 * <MoaTypography paddingLeft={0} />
 	 * ```
 	 */
-	paddingLeft?: CSS.StandardLonghandProperties['paddingLeft'];
+	paddingLeft?: CSS.StandardLonghandProperties['paddingLeft'] | number;
 
 	/**
 	 * Set the paddingRight
@@ -73,15 +73,17 @@ export type PaddingTypes = {
 	 * <MoaTypography paddingRight={0} />
 	 * ```
 	 */
-	paddingRight?: CSS.StandardLonghandProperties['paddingRight'];
+	paddingRight?: CSS.StandardLonghandProperties['paddingRight'] | number;
 }
 
-export const PaddingProps = (props: any) => ({
-	padding: props?.padding || 0,
-	paddingX: props?.paddingX || 0,
-	paddingY: props?.paddingY || 0,
-	paddingTop: props?.paddingTop || 0,
-	paddingBottom: props?.paddingBottom || 0,
-	paddingLeft: props?.paddingLeft || 0,
-	paddingRight: props?.paddingRight || 0,
-});
+export const PaddingProps = (props: any) => {
+	let paddingObject: any = {};
+	if (props && props.padding) paddingObject.padding = props.padding;
+	if (props && props.paddingX) paddingObject.paddingX = props.paddingX;
+	if (props && props.paddingY) paddingObject.paddingY = props.paddingY;
+	if (props && props.paddingTop) paddingObject.paddingTop = props.paddingTop;
+	if (props && props.paddingBottom) paddingObject.paddingBottom = props.paddingBottom;
+	if (props && props.paddingLeft) paddingObject.paddingLeft = props.paddingLeft;
+	if (props && props.paddingRight) paddingObject.paddingRight = props.paddingRight;
+	return paddingObject;
+}
