@@ -46,8 +46,8 @@ export const extract = (code: string): ExtractedCode => {
 		if (importCode !== '') importCodes.push(importCode);
 	}
 
-	const componentCode = getCode(arrCode, /const\s+(Components|Authentication|Style).*\s?=\s?\(\)\s?=>\s?{/ig);
-	const componentName = getComponentName(componentCode, /const\s+(Components|Authentication|Style).*\s?=\s?\(\)\s?=>\s?{/ig);
+	const componentCode = getCode(arrCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
+	const componentName = getComponentName(componentCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
 
 	return {
 		importCodes: importCodes,
