@@ -1,0 +1,120 @@
+import { Meta, Source } from '@storybook/blocks';
+
+<Meta title="Getting Started (ko)"/>
+
+# Getting Started
+User Interface를 더욱 쉽게 만들 수 있는 <b>moaui</b>를 소개 합니다.<br />
+<a href="https://mui.com/material-ui/">material-ui</a> 라는 라이브러리를 기반으로, <br />
+<b>moaui</b>는 <b>material-ui</b>의 기능을 확장하여, 더욱 쉽게 사용할 수 있도록 제작 하였습니다. <br />
+지금은 조금 더 편리한 수준에 머물러 있지만, <br/>
+기능 확장을 통해 다양한 기능을 제공할 예정 입니다. <br />
+편리함을 만들 수 있는 다양한 아이디어를 기다립니다.
+
+<p>개발자가 아닌 분들도 쉽게 사용할 수 있도록, 여러 절차를 추가적으로 개발하고 있습니다.<br />
+Plug-in Item에 대한 UI에 대한 기획과 Python 코드는 작성된 상태라 가정하고 절차를 소개 합니다.</p>
+
+<br />
+## 작성 절차
+- <b>⚙️ 환경 설정</b> 작성된 UI를 테스트 하고 Python 코드 작성을 위한 환경을 설정 합니다.
+- <b>🎨 UI 작성</b> UI 도구를 사용하여 작성하고 개발환경에서 테스트를 해봅니다.
+- <b>🐍 Python 입히기</b> 작성한 Python 코드를 UI와 연결하여 테스트 해봅니다.
+- <b>📦 빌드하기</b>
+- <b>🚀 배포하기</b>
+
+<br />
+## ⚙️ 환경 설정
+Plug-in Item을 작성하기 위해서는 다음과 같은 환경이 필요 합니다.
+
+<br />
+### 언어 설치
+최신 Node.js와 Python을 설치 합니다.
+- [Node.js 설치](https://nodejs.org/en) LTS 버젼 설치를 권장 합니다.
+- [Python 설치](https://www.python.org/downloads) 최신 버젼 설치를 권장 합니다.
+
+### 도구 설치
+범용적인 Visual Studio Code를 설치 합니다.
+- [VSCode 설치](https://code.visualstudio.com/download) 최신 버젼 설치를 권장 합니다.
+
+### 환경 설치
+**react** + **moaui** + **python**을 사용할 수 있는 환경을 설치 합니다.
+
+<p>이전 단계에서 **Visual Studio Code**가 설치가 완료 되었다면, 실행 합니다.<br />
+실행 후, 폴더 열기 기능을 통해 작업하고자 하는 폴더를 선택 합니다.</p>
+![open folder](https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/img/npx_open_folder.png)
+<p>폴더를 열었다면, 아래 그림처럼 터미널을 열고 명령어를 입력 합니다.</p>
+![npx execution](https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/img/npx_terminal_typing.png)
+<Source
+	code={`npx create-react-app my-test --template @midasit-dev/cra-template-moaui`}
+	language="bash"
+	dark
+/>
+
+> 여기서 'my-test'는 폴더 이름입니다.
+
+![complete](https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/img/npx_template_complete.png)
+<p>위와 같은 화면이 나오면 성공적으로 환경설정이 완료 된 것 입니다!</p>
+
+<p>이제 디렉토리를 이동해서 테스트를 해보겠습니다.<br />
+아래 명령어를 입력하여 디렉토리를 이동합니다.</p>
+<Source
+	code={`cd my-test`}
+	language="bash"
+	dark
+/>
+<p>디렉토리를 이동했다면, 아래 명령어를 입력하여 테스트를 해봅니다.</p>
+<Source
+	code={`npm start`}
+	language="bash"
+	dark
+/>
+
+<p>정상적으로 잘 실행되었다면, 아래와 같은 화면이 나옵니다.</p>
+![complete](https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/img/cra-template-moaui.png)
+
+<br />
+## 🎨 UI 작성
+moaui는 Plug-in Item의 UI를 더욱 쉽게 작성할 수 있도록 2가지 방법을 제시 합니다.
+- Playground
+- Templates
+
+<br />
+### Playground
+Playground는 <b>moaui</b>의 기능을 단순한 Drag & Drop으로 손쉽게 사용할 수 있도록 제작된 도구 입니다.<br />
+Playground를 사용하면 단순한 동작으로 UI를 작성하고 코드를 얻을 수 있습니다!
+
+...TODO 샘플링 이미지 추가
+
+<br />
+### Templates
+Templates는 개별 Component를 조합할 수도 있고 미리 정의된 Template을 새로 조합하여 사용할수도 있습니다.<br />
+이미 제작된 UI 레이아웃을 테스트 해보고 추가/삭제 해가면서 나만의 UI를 만들어 보세요.
+
+아래 예제는 기존에 제작된 **Tendon Profile Converter**를 사용하는 예제 입니다.<br />
+이 예제를 통해 UI를 작성하고 테스트 해보세요.
+
+...TODO 샘플링 이미지 추가
+
+<br />
+## 🐍 Python 테스트
+여기까지 잘 따라 오셨다면,<br />
+이전 단계에서 이미 Python에 대한 작업 환경을 모두 구성 하였습니다!
+
+Visual Studio Code를 열고 Python 코드를 작성하세요.<br />
+아래 Sample을 입력해서 테스트 하셔도 됩니다.
+<Source 
+	code={`def plus(a, b):\n\treturn a + b\n`}
+	language="python"
+	dark
+/>
+
+...TODO 샘플링 이미지 추가
+
+<br />
+## 📦 빌드하기
+
+...TODO 샘플링 이미지 추가
+
+<br />
+## 🚀 배포하기
+
+...TODO 샘플링 이미지 추가
