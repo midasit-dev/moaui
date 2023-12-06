@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
+import { CodeBlock } from "../..";
 
 <Meta title="Getting Started (ko)"/>
 
@@ -43,11 +44,12 @@ Plug-in Item을 작성하기 위해서는 다음과 같은 환경이 필요 합�
 ![open folder](https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/img/npx_open_folder.png)
 <p>폴더를 열었다면, 아래 그림처럼 터미널을 열고 명령어를 입력 합니다.</p>
 ![npx execution](https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/img/npx_terminal_typing.png)
-<Source
-	code={`npx create-react-app my-test --template @midasit-dev/cra-template-moaui`}
+<CodeBlock
+	title="React moaui template install"
 	language="bash"
-	dark
-/>
+>
+	{`npx create-react-app my-test --template @midasit-dev/cra-template-moaui`}
+</CodeBlock>
 
 > 여기서 'my-test'는 폴더 이름입니다.
 
@@ -56,17 +58,19 @@ Plug-in Item을 작성하기 위해서는 다음과 같은 환경이 필요 합�
 
 <p>이제 디렉토리를 이동해서 테스트를 해보겠습니다.<br />
 아래 명령어를 입력하여 디렉토리를 이동합니다.</p>
-<Source
-	code={`cd my-test`}
+<CodeBlock
+	title="Chagne Directory"
 	language="bash"
-	dark
-/>
+>
+	{`cd my-test`}
+</CodeBlock>
 <p>디렉토리를 이동했다면, 아래 명령어를 입력하여 테스트를 해봅니다.</p>
-<Source
-	code={`npm start`}
+<CodeBlock
+	title="Do Testing"
 	language="bash"
-	dark
-/>
+>
+	{`npm start`}
+</CodeBlock>
 
 <p>정상적으로 잘 실행되었다면, 아래와 같은 화면이 나옵니다.</p>
 ![complete](https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/img/cra-template-moaui.png)
@@ -101,11 +105,12 @@ Templates는 개별 Component를 조합할 수도 있고 미리 정의된 Templa
 
 Visual Studio Code를 열고 Python 코드를 작성하세요.<br />
 아래 Sample을 입력해서 테스트 하셔도 됩니다.
-<Source 
-	code={`def plus(a, b):\n\treturn a + b\n`}
+<CodeBlock
+	title="Definition python function"
 	language="python"
-	dark
-/>
+>
+	{`def plus(a, b):\n\treturn a + b`}
+</CodeBlock>
 
 ...TODO 샘플링 이미지 추가
 

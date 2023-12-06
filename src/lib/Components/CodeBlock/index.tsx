@@ -1,13 +1,14 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from "@mui/material/IconButton"
 import Box from "@mui/material/Box";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { Button } from "@mui/material";
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import SpellcheckOutlinedIcon from '@mui/icons-material/SpellcheckOutlined';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import prettier from "prettier/standalone";
-import parser from "prettier/parser-babel";
+import { Typography, Color } from "../..";
+// import parser from "prettier/parser-babel";
 	
 interface CodeComponentProps {	
 	/**
@@ -25,12 +26,26 @@ interface CodeComponentProps {
 	 * @default ""
 	 */
 	title?:string;
+	/**
+	 * Whether to hide the title
+	 * 
+	 * @default false
+	 */
+	hideTitle?: boolean;
+	/**
+	 * The border radius of the code block
+	 * 
+	 * @default 8
+	 */
+	borderRadius?: number;
 }
 
 CodeBlock.defaultProps = {
 	children: "",
 	language: "javascript",
 	title: "",
+	hideTitle: false,
+	borderRadius: 8,
 }
 /**
  * A code block with syntax highlighting
@@ -48,6 +63,31 @@ function CodeBlock(props: CodeComponentProps){
 		return () => clearTimeout(timer);
 	}, [copySuccess]);
 
+  const [formattedCode, setFormattedCode] = React.useState<string | string[]>(props.children);
+
+  React.useEffect(() => {
+    const formatCode = async () => {
+      try {
+        const result = await prettier.format(props.children, {
+          parser: "babel",
+          // plugins: [parser],
+          useTabs: true,
+          semi: true,
+          singleQuote: true,
+          trailingComma: "all",
+          jsxSingleQuote: true,
+          jsxBracketSameLine: true,
+          printWidth: 120,
+        });
+        setFormattedCode(result);
+      } catch (error) {
+        console.error("Error formatting code:", error);
+      }
+    };
+
+    formatCode();
+  }, [props.children]);
+
 	async function copyToClipboard() {
 		try {
 			await navigator.clipboard.writeText(props.children);
@@ -56,28 +96,28 @@ function CodeBlock(props: CodeComponentProps){
 			console.error('Async: Could not copy text: ', err);
 		}
 	}
-	
+
 	return (
 		<>
 			<Box
 				display="flex"
 				justifyContent={"space-between"}
+				alignItems='center'
 				sx={{
-					backgroundColor: "#18244a",
+					backgroundColor: Color.primaryNegative.enable,
 					width: "100%",
 					height: "2rem",
-					borderTopLeftRadius: 8,
-					borderTopRightRadius: 8,
+					borderTopLeftRadius: props.borderRadius,
+					borderTopRightRadius: props.borderRadius,
 				}}
 			>
-				<Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button>
-				<IconButton onClick={copyToClipboard} sx={{backgroundColor:"transparent", "&:hover":{backgroundColor:"#88898a"}, width:"30px", height:"100%", mr:0.5}}>
+				{/* <Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button> */}
+				<Typography color={Color.primaryNegative.white} variant="h1" paddingLeft='1.4rem'>{props.title}</Typography>
+				<IconButton onClick={copyToClipboard} sx={{backgroundColor:"transparent", width:"30px", height:"100%", mr: '0.6rem'}}>
 					{copySuccess ? (
-						<CheckCircleOutlineIcon
-							style={{ color: "white", fontSize: "20" }}
-						/>
+						<SpellcheckOutlinedIcon style={{ color: "gray", fontSize: "20" }}/>
 					) : (
-						<ContentCopyIcon style={{ color: "white", fontSize: "18" }} />
+						<CodeRoundedIcon style={{ color: "white", fontSize: "20" }} />
 					)}
 				</IconButton>
 			</Box>
@@ -86,27 +126,16 @@ function CodeBlock(props: CodeComponentProps){
 				style={vscDarkPlus}
 				wrapLines={true}
 				customStyle={{
-					borderBottomRightRadius: 8,
-					borderBottomLeftRadius: 8,
-					padding: "1.7em",
+					borderBottomRightRadius: props.borderRadius,
+					borderBottomLeftRadius: props.borderRadius,
+					padding: '1rem 1rem 1rem 0',
 					fontSize: "3px",
 					margin: 0,
-					minHeight: "100px",
+					// minHeight: "100px",
 				}}
 				{...props}
 			>
-				{prettier.format(props.children, {
-						parser: "babel",
-						plugins: [parser],
-						useTabs: true,
-						semi: true,
-						singleQuote: true,
-						trailingComma: "all",
-						jsxSingleQuote: true,
-						jsxBracketSameLine: true,
-						printWidth: 120,
-					})
-				}
+				{formattedCode}
 			</SyntaxHighlighter>
 		</>
 	);

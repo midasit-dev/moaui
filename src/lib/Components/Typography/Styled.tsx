@@ -75,7 +75,7 @@ class FontColor {
 			case 'secondary':	return Color.text.secondary;
 			case 'third':		 	return Color.text.third;
 			case 'disable':		return Color.text.disable;
-			default: return Color.text.primary;
+			default: return color;
 		}
 	}
 }
@@ -95,7 +95,7 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Set the text color
 	 * @defaultValue 'primary'
 	 */
-	color?: 'primary' | 'secondary' | 'third' | 'disable';
+	color?: 'primary' | 'secondary' | 'third' | 'disable' | string;
 	/**
 	 * Set the text align
 	 * 
