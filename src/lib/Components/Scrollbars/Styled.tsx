@@ -40,10 +40,16 @@ export interface StyledProps {
 	 * @default primary
 	 */
 	titleColor?: 'primary' | 'secondary' | 'third' | 'disable';
+	/**
+	 * Set the text align
+	 * 
+	 * @default left
+	 */
+	titleAlign: "center" | "left";
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { outline, width, height, title, titleVariant, titleColor, ...rest } = props;
+	const { outline, width, height, title, titleVariant, titleColor, titleAlign, ...rest } = props;
 
 	return (
 		<Panel 
@@ -55,6 +61,7 @@ const StyledComponent = styled((props: StyledProps) => {
 					<Typography 
 						variant={titleVariant}
 						color={titleColor}
+						textAlign={titleAlign}
 					>
 						{title}
 					</Typography>

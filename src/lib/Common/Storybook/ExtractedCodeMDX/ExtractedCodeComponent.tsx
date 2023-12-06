@@ -82,8 +82,12 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/Typography/Code/Body3.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Typography/Code/H1.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TypographyGroup/Code/Text.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/PluginItems/TendonProfileConverter/Code/BottomButtons.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/PluginItems/TendonProfileConverter/Code/Composite.code.tsx?raw"));
-			rawCodes.push(await import("../../../Templates/PluginItems/TendonProfileConverter/Code/TopButton.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/PluginItems/TendonProfileConverter/Code/HelpIconButton.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/PluginItems/TendonProfileConverter/Code/List.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/PluginItems/TendonProfileConverter/Code/SelectButton.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/PluginItems/TendonProfileConverter/Code/UpdateButton.code.tsx?raw"));
 			setCodes(rawCodes);
 		}
 

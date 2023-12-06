@@ -3,6 +3,7 @@ import StyledComponent, {type StyledProps} from "./Styled";
 
 Scrollbars.defaultProps = {
 	outline: 'box',
+	titleAlign: 'left',
 } as StyledProps;
 
 /**

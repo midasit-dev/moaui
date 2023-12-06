@@ -85,7 +85,7 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Represent a text string in typography component
 	 * @defaultValue ''
 	 */
-	children?: string | string[];
+	children?: string | string[] | JSX.Element;
 	/**
 	 * Set the typography type
 	 * @defaultValue 'body1'

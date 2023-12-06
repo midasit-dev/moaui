@@ -2,10 +2,12 @@ import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import { Color } from '../../';
 import Box from '@mui/material/Box';
+import { MarginTypes, MarginProps } from '../../Style/Margin';
+import { PaddingTypes, PaddingProps } from '../../Style/Padding';
 
 class StyleVariant {
 	private static readonly layout = {
-		padding: "0.3125rem 0.625rem",
+		padding: "0.625rem 0.625rem",
 		alignItems: 'flex-start',
 		gap: '0.625rem',
 	}
@@ -24,7 +26,7 @@ class StyleVariant {
 	}
 }
 
-export type StyledProps = {
+export interface StyledProps extends MarginTypes, PaddingTypes {
 	/**
 	 * Panel inner contents
 	 */
@@ -50,6 +52,7 @@ export type StyledProps = {
 	 */
 	flexItem?: boolean;
 }
+
 const StyledComponent = styled((props: StyledProps) => {
 	let _sx = {};
 	if (props.variant === 'shadow') _sx = StyleVariant.shadow;
@@ -60,6 +63,8 @@ const StyledComponent = styled((props: StyledProps) => {
 			width: props.width,
 			height: props.height,
 			display: props.flexItem ? 'flex' : 'block',
+			...MarginProps(props),
+			...PaddingProps(props),
 		}}>
 			{props.children}
 		</Box>
