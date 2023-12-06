@@ -2,7 +2,7 @@ import { Stack, IconButton, Icon, Button, Typography } from "@midasit-dev/moaui"
 
 const TemplatesPluginItemsTPCBottomButtons = () => {
   return (
-    <Stack direction="row" spacing={2} alignItems='center'>
+    <Stack width="321px" direction="row" spacing={2} alignItems='center'>
 			<IconButton transparent>
 				<Icon iconName="Help" />
 			</IconButton>

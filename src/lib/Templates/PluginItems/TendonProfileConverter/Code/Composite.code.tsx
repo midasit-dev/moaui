@@ -32,7 +32,7 @@ const TemplatesPluginItemsTPCComposite = () => {
 	}
 
 	//[Component] Update Button
-	const ComponentUpdateButton = () => <Button color="negative" width="100%">Update Tendon Profile List</Button>;
+	const ComponentUpdateButton = () => <Button color="negative" width="321px">Update Tendon Profile List</Button>;
 
 	//[Component] List
 	const ComponentList = () => {
@@ -180,6 +180,7 @@ const TemplatesPluginItemsTPCComposite = () => {
 
     return (
       <Stack
+				width="321px"
         direction="row"
         spacing={2}
         alignItems="center"

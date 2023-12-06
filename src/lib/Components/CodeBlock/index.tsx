@@ -5,7 +5,6 @@ import IconButton from "@mui/material/IconButton"
 import Box from "@mui/material/Box";
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SpellcheckOutlinedIcon from '@mui/icons-material/SpellcheckOutlined';
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import prettier from "prettier/standalone";
 import { Typography, Color } from "../..";
 // import parser from "prettier/parser-babel";

@@ -100,7 +100,7 @@
     "prepare-storybook": "npm run update-extract-code && npm run update-playground && tsc -p tsconfig.storybook.json",
     "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
     "build-storybook": "npm run prepare-storybook && storybook build",
-    "chromatic": "npm run prepare-storybook && npx chromatic --project-token=chpt_8c568868a09ebc7"
+    "chromatic": "npm run prepare-storybook && npx chromatic --project-token=chpt_8c568868a09ebc7 --force-rebuild"
   },
   "eslintConfig": {
     "extends": [

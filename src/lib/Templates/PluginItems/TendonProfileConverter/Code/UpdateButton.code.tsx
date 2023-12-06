@@ -4,7 +4,7 @@ const TemplatesPluginItemsTPCUpdateButton = () => {
   return (
     <Button
 			color="negative"
-			width='300px'
+			width='321px'
 		>
 			Update Tendon Profile List
 		</Button>
