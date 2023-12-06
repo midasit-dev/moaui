@@ -35,6 +35,8 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Javascript.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Typescript.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/DataGrid/Code/Pagination.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Dialog/Code/HelpButton.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Dialog/Code/HelpIconButton.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/DropList/Code/Dropdown.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Grid/Code/Column.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Grid/Code/Items.code.tsx?raw"));
