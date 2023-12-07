@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.0.68",
+  "version": "0.0.69",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -53,8 +53,8 @@
     "rc-scrollbars": "^1.1.6",
     "react-grid-layout": "^1.4.4",
     "react-syntax-highlighter": "^15.5.0",
-		"@nivo/core": "^0.84.0",
-		"@nivo/line": "^0.84.0"
+    "@nivo/core": "^0.84.0",
+    "@nivo/line": "^0.84.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
