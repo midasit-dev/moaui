@@ -18,7 +18,7 @@ import { Required } from '@src/lib/Components/Check/Code';
 // import { Required } from '../../Components/Check/Code';
 import { ComponentsCheckRequired } from './Components';
 import DraggedComponent from '@src/lib/Builder/Playground/Components/DraggedComponent';
-import TotalCodeStringV2 from './ComponentString/TotalStringV2';
+import TotalCodeStringV2 from './Components/TotalStringV2';
 
 const fontStyle = {
   fontFamily: "Prentendard",
@@ -50,7 +50,7 @@ const DropTargetV2 = (props) => {
   const [sizewidth, setSizewidth] = useRecoilState(TemplateWidth);
   const [sizeheight, setSizeHeight] = useRecoilState(TemplateHeight);
   const [layoutsInfo, setLayoutsInfo] = useRecoilState(LayoutsInfo);
-  const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ComponentsButtonContained}]); 
+  const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ButtonContained}]); 
   const [newLayouts, setNewLayouts] = React.useState([]);
 
   const [dropped, setDropped] = React.useState([]);

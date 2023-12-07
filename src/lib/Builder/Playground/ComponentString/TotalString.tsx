@@ -38,7 +38,7 @@ export default function TotalCodeString(){
 		Codestring.map((value:any, index:any) => {
 			if(value.length !== 0){
 				value.map((value:any, index:any) => {
-					if(value === ItemTypes.ComponentsButtonContained){
+					if(value === ItemTypes.ButtonContained){
 						setIsButtonExist(true);
 					}
 					return null;
@@ -66,7 +66,7 @@ function Components(props: any) {
 				return (`<Grid item xs={${ 12 / Columncount }} style={{height:"${Math.floor(100 / Rowcount)}%"}}>
 					<Box display="flex" justifyContent={"center"} alignItems={"center"}>
 					${value.map((value: any, index: any) => {
-							if (value === ItemTypes.ComponentsButtonContained){
+							if (value === ItemTypes.ButtonContained){
 								return extractComponentName(ButtonCode);
 							}
 							// else if (value === ItemTypes.TEXTFIELD){

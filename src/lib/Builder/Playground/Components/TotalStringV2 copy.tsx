@@ -2,12 +2,12 @@ import React from "react";
 import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount, LayoutsInfo } from '../recoil/PlaygroundAtom';
 import { useRecoilValue } from 'recoil';
 import CodeComponent from "../../../Components/CodeBlock";
-import DraggedComponent from "../Components/DraggedComponent";
+import DraggedComponent from "./DraggedComponent";
 import ButtonCode from "../../../Components/Button/Code/Contained.code.tsx?raw";
 // import TextfieldCode from "./Textfield.txt?raw";
-import { ItemTypes } from '../Components/ItemTypes';
+import { ItemTypes } from './ItemTypes';
 import CodeExtractor from "../../../Common/Storybook/CodeExtractor";
-import * as All from "../Components/DraggedComponentRawCode";
+import * as All from "./DraggedComponentRawCode";
 
 function extractComponentCode(str:string){
 	const code = CodeExtractor.extract(str);
@@ -30,39 +30,36 @@ function extractComponentImport(str:string){
 export default function TotalCodeString(){
   const Sizewidth = useRecoilValue(TemplateWidth);
   const Sizeheight = useRecoilValue(TemplateHeight);
-  const Codestring = useRecoilValue(CodeString);
+	const Codestring = useRecoilValue(CodeString);
 	const Rowcount = useRecoilValue(RowCount);
 	const Columncount = useRecoilValue(ColumnCount);
 	const Layoutsinfo = useRecoilValue(LayoutsInfo);
 	const [isButtonExist, setIsButtonExist] = React.useState(false);
-	const [isTextfieldExist, setIsTextfieldExist] = React.useState(false);
 
-	const Code = All.ComponentsButtonContained;
-	console.log("Code: ", Code);
 	React.useEffect(() => {
-		Codestring.map((value:any, index:any) => {
-			if(value.length !== 0){
-				value.map((value:any, index:any) => {
-					if(value === ItemTypes.ComponentsButtonContained){
-						setIsButtonExist(true);
-					}
-					return null;
-				})
+		Layoutsinfo.map((value: any) => {
+			switch(value.type){
+				case ItemTypes.ButtonContained:
+					setIsButtonExist(true);
+					break;
+				default:
+					break;
 			}
-			return null; // Add a return statement here
-		})
-	}, [Codestring]);
+		});
+	}, [Layoutsinfo]);
+
 
 	const totalCode = `import React from "react";
 import Box from "@mui/material/Box";
-${ isButtonExist ? extractComponentImport(All.ComponentsButtonContained) : ""}
+import Grid from "@mui/material/Grid";
+${ isButtonExist ? extractComponentImport(All.ButtonContained) : ""}
 
 function Components(props: any) {
   function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     // do something
   }
 
-	${ isButtonExist ? extractComponentCode(All.ComponentsButtonContained) : ""}
+	${ isButtonExist ? extractComponentCode(All.ButtonContained) : ""}
 
   return (
     <Box sx={{width: "${Sizewidth}px", height:"${Sizeheight}px", p:"0.5rem"}}>
@@ -79,7 +76,7 @@ function Components(props: any) {
 							position: 'absolute' // 위치를 절대값으로 지정합니다.
 						}}
 					>
-						${item.type === ItemTypes.ComponentsButtonContained ? `${extractComponentName(All.ComponentsButtonContained)}` : ""}
+						${item.type === ItemTypes.ButtonContained ? `${extractComponentName(All.ButtonContained)}` : ""}
 					</div>
 				</Grid>`)
 			})}
