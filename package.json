@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.0.67",
+  "version": "0.0.68",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -52,15 +52,15 @@
     "prettier": "^3.1.0",
     "rc-scrollbars": "^1.1.6",
     "react-grid-layout": "^1.4.4",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "^15.5.0",
+		"@nivo/core": "^0.84.0",
+		"@nivo/line": "^0.84.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.23.5",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@nivo/core": "^0.84.0",
-    "@nivo/line": "^0.84.0",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
