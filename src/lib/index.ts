@@ -42,6 +42,7 @@ export { default as List } from "./Components/List";
 export { default as ListItem } from "./Components/ListItem";
 export { default as ListItemButton } from "./Components/ListItemButton";
 export { default as Dialog } from "./Components/Dialog";
+export { default as ChartLine } from "./Components/ChartLine";
 
 /**
  * authentication
