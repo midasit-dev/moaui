@@ -2,6 +2,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 Icon.defaultProps = {
 	iconName: "Add",
+	opacity: 1,
 } as StyledProps;
 
 /**

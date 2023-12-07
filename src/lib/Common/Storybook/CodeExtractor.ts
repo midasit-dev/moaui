@@ -33,9 +33,22 @@ const getComponentName = (componentCode: string, regex: RegExp) => {
 }
 
 interface ExtractedCode {
+	/**
+	 * import 구문들 (react || @midasit-dev/moaui)
+	 */
 	importCodes: string[];
+	/**
+	 * 함수형 컴포넌트 이름 (Code로부터 유추)
+	 */
 	functionalComponentName: string;
+	/**
+	 * 함수형 컴포넌트 코드
+	 */
 	functionalComponentCode: string;
+	/**
+	 * 함수형 컴포넌트 Do 코드 (Example)
+	 */
+	functionalComponentDoCode: string;
 }
 export const extract = (code: string): ExtractedCode => {
 	const arrCode = splitByMask(code);
@@ -48,11 +61,13 @@ export const extract = (code: string): ExtractedCode => {
 
 	const componentCode = getCode(arrCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
 	const componentName = getComponentName(componentCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
+	const componentDoCode = getCode(arrCode, /const\s+(DoComponents|DoAuthentication|DoStyle|DoTemplates).*\s?=\s?\(\)\s?=>\s?{/ig);
 
 	return {
 		importCodes: importCodes,
 		functionalComponentName: componentName,
 		functionalComponentCode: componentCode,
+		functionalComponentDoCode: componentDoCode,
 	}
 }
 

@@ -1,5 +1,5 @@
 import { useState } from "react";/**${comma}*/
-import { TabGroup, Tab, Panel } from "@midasit-dev/moaui";/**${comma}*/
+import { TabGroup, Tab } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsTabGroupHorizontal = () => {
 	const [value, setValue] = useState('one');
