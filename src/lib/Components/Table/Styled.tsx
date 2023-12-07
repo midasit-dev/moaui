@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import { Color } from "../../";
 
-import Table from '@mui/material/Table';
+import Table, { type TableProps } from '@mui/material/Table';
 
 export type StyledProps = {
 	/**
@@ -34,7 +34,7 @@ export type StyledProps = {
 	 * @defaultValue undefined
 	 */
 	sx?: never,
-};
+} & TableProps;
 
 type InnerStyledProps = {
 	theme: any;
