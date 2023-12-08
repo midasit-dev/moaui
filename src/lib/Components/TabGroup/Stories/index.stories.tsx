@@ -8,8 +8,8 @@ import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 import { 
 	HorizontalCode, 
 	VerticalCode, 
-	WithDataGridStatefulCode,
-	WithTableStatefulCode,
+	WithDataGridCode,
+	WithTableCode,
 } from '../Code';
 
 const meta = {
@@ -27,8 +27,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Horizontal = LiveEditStory(cleanMask(HorizontalCode));
 export const Vertical = LiveEditStory(cleanMask(VerticalCode));
-export const WithDataGridStateful = LiveEditStory(cleanMask(WithDataGridStatefulCode));
-export const WithTableStateful = LiveEditStory(cleanMask(WithTableStatefulCode));
+export const WithDataGrid = LiveEditStory(cleanMask(WithDataGridCode));
+export const WithTable = LiveEditStory(cleanMask(WithTableCode));
 
 export const Sample: Story = {
 	args: {

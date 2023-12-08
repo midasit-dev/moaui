@@ -9,7 +9,7 @@ import {
 	ControlledCode, 
 	UnControlledCode, 
 	DynamicCode,
-	TypographyRadioStatefulCode,
+	TypographyRadioCode,
 } from '../Code';
 
 const meta = {
@@ -28,7 +28,7 @@ type Story = StoryObj<typeof meta>;
 export const Controlled = LiveEditStory(cleanMask(ControlledCode));
 export const UnControlled = LiveEditStory(cleanMask(UnControlledCode));
 export const Dynamic = LiveEditStory(cleanMask(DynamicCode));
-export const TypographyRadioStateful = LiveEditStory(cleanMask(TypographyRadioStatefulCode));
+export const TypographyRadio = LiveEditStory(cleanMask(TypographyRadioCode));
 
 export const Sample: Story = {
 	args: {
