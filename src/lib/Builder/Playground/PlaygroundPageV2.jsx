@@ -51,9 +51,7 @@ const DropTargetV2 = (props) => {
   const [sizeheight, setSizeHeight] = useRecoilState(TemplateHeight);
   const [layoutsInfo, setLayoutsInfo] = useRecoilState(LayoutsInfo);
   const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ButtonContained}]); 
-  const [newLayouts, setNewLayouts] = React.useState([]);
 
-  const [dropped, setDropped] = React.useState([]);
 
   React.useEffect(() => {
     function setRecoilLayoutsInfo(layouts){
@@ -67,23 +65,8 @@ const DropTargetV2 = (props) => {
     setRecoilLayoutsInfo(layouts);
   }, [layouts]);
 
-  // React.useEffect(() => {
-  //   if(rowCount !== 0 && columnCount !== 0){
-  //     const arrCount = rowCount * columnCount;
-  //     setDropped(Array(arrCount).fill([]));
-  //     setCodestring(Array(rowCount * columnCount).fill([]));
-  //   }
-  // }, [rowCount, columnCount]);
-
-  // 레이아웃 배열은 각 아이템의 위치 및 크기 정보를 가집니다
-  // const layout = [
-  //   {i: 'a', x: 0, y: 0, w: 1, h: 2},
-  //   {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2},
-  //   {i: 'c', x: 4, y: 0, w: 1, h: 2}
-  // ];
-
   function onClickClear(){
-    setDropped(Array(rowCount * columnCount).fill([]));
+    setLayouts([{i: new Date().getTime().toString(), x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ButtonContained}]);
   };
   
   function onClickBack(){
