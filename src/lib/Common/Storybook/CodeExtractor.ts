@@ -1,8 +1,8 @@
-const mask = '/**${comma}*/';
-const maskRegex = /\/\*\*\$\{comma\}\*\//gi;
+const codeBlockSeperatorRegex = /\/\*\*\$\{comma\}\*\//gi; // 원래 형태: /**${comma}*/ 코드를 의미 단위로 분리하기 위함
+const propsSeperatorRegex = /\/\*\*\$\{props-seperator\}\*\//gi; // 원래 형태: /**${props-seperator}*/
 
 const splitByMask = (code: string): string[] => {
-	return code.split(maskRegex);
+	return code.split(codeBlockSeperatorRegex);
 }
 
 const getCode = (arrCode: string[], regex: RegExp): string => {
@@ -32,10 +32,54 @@ const getComponentName = (componentCode: string, regex: RegExp) => {
 	return componentName;
 }
 
+const transformReadyToUse = (componentString: string): string => {
+  // 컴포넌트 이름을 추출하기 위한 정규식
+  const componentNameRegex = /const (\w+) = \(\{/;
+
+  // 속성들을 추출하기 위한 정규식 (분석을 위한 lazy quantifier사용)
+  const propsRegex = /(\w+)\s*=\s*((?:(?!,\s*\/\*\*\${props-seperator}\*\/)[\s\S])*)(?=\s*,\s*\/\*\*\${props-seperator}\*\/)/ig;
+
+  const matchesComponentName = componentNameRegex.exec(componentString);
+  const componentName = matchesComponentName ? matchesComponentName[1] : '';
+
+  // 속성들을 저장할 객체 생성
+  const props: { [key: string]: any } = {};
+
+  // 속성을 객체로 저장
+  let match;
+  while ((match = propsRegex.exec(componentString))) {
+		console.log(match);
+    const [fullMatch, propName, propValue] = match;
+    props[propName] = propValue;
+  }
+
+	console.log('props', props);
+
+  // JSX 문자열을 조합
+  const propsString = Object.entries(props)
+    .map(([key, value]) => `${key}={${value}}`)
+    .join('\n\t');
+
+  return `<${componentName} \n\t${propsString}\n/>`;
+};
+
 interface ExtractedCode {
+	/**
+	 * import 구문들 (react || @midasit-dev/moaui)
+	 */
 	importCodes: string[];
+	/**
+	 * 함수형 컴포넌트 이름 (Code로부터 유추)
+	 */
 	functionalComponentName: string;
+	/**
+	 * 함수형 컴포넌트 코드 (정의를 위한 코드)
+	 */
 	functionalComponentCode: string;
+	/**
+	 * 사용을 위한 함수형 컴포넌트 코드 (사용을 위한 코드)
+	 */
+	functionalComponentCodeWithProps: string;
 }
 export const extract = (code: string): ExtractedCode => {
 	const arrCode = splitByMask(code);
@@ -48,16 +92,18 @@ export const extract = (code: string): ExtractedCode => {
 
 	const componentCode = getCode(arrCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
 	const componentName = getComponentName(componentCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
-
+	const componentCodeWithProps = (transformReadyToUse(componentCode)).replace(propsSeperatorRegex, '');
+	
 	return {
 		importCodes: importCodes,
 		functionalComponentName: componentName.replace(/Components/gi, ''),
 		functionalComponentCode: componentCode.replace(/Components/gi, '')
+		functionalComponentCodeWithProps: componentCodeWithProps,
 	}
 }
 
 export const cleanMask = (code: string) => {
-	return code.replace(maskRegex, '');
+	return code.replace(codeBlockSeperatorRegex, '').replace(propsSeperatorRegex, '');
 }
 
 const Extractor = {

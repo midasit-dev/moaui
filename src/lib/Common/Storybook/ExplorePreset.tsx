@@ -6,6 +6,14 @@ interface PresetProps {
 	availableImport?: string | undefined;
 	primaryStory?: StoryAnnotations<any, any> | undefined;
 	hideRegions?: RegionType[] | undefined;
+	/**
+	 * Specify the initial state of the source panel
+	 * hidden: the source panel is hidden by default
+	 * shown: the source panel is shown by default
+	 * none: the source panel is not available and the button to show it is hidden
+	 * @default 'hidden'
+	 */
+	canvasSourceState?: 'hidden' | 'shown' | 'none';
 }
 
 export const Preset = (props: PresetProps) => {
@@ -32,6 +40,7 @@ const SourceRegion = (props: PresetProps) => {
 	if (props.availableImport === undefined) return <></>;
 	return (
 		<>
+			<br />
 			<h2>💎 Import</h2>
 			<p>Import the component to your project.</p>
 			<Source
@@ -45,8 +54,8 @@ const SourceRegion = (props: PresetProps) => {
 const CanvasRegion = (props: PresetProps) => {
 	const Component = () => 
 		props.primaryStory !== undefined ? 
-			<Canvas of={props.primaryStory} sourceState="shown" withToolbar /> : 
-			<Canvas sourceState="shown" withToolbar />;
+			<Canvas of={props.primaryStory} sourceState={props.canvasSourceState || "shown"} withToolbar /> : 
+			<Canvas sourceState={"shown"} withToolbar />;
 	return (
 		<>
 			<h2>🔫 Preview</h2>

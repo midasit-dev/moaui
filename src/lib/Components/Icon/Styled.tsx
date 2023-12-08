@@ -14,6 +14,14 @@ export type StyledProps = {
 	 * iconName="CheckCircle"
 	 */
 	iconName: iconNameType;
+	/**
+	 * The opacity of the icon.
+	 * @type number
+	 * @defaultValue 1
+	 * @example
+	 * opacity={0.5}
+	 */
+	opacity?: number;
 }
 
 const StyledComponent = styled((props:StyledProps) => {
@@ -27,6 +35,7 @@ const StyledComponent = styled((props:StyledProps) => {
 
 	const iconStyle = {
 		fontSize: '16px',   // Set icon size to 16px
+		opacity: props.opacity,
 	};
 
 	const Icon = MuiIcon[iconName as keyof typeof MuiIcon] as React.ElementType;

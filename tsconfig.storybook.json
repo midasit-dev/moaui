@@ -15,6 +15,7 @@
     "src/**/*.source.*",
     "src/**/tests",
     "src/**/*.test.*",
+    "src/**/*.code.*",
 		"src/lib/Common/*",
 		"src/lib/Builder/*",
 		"src/lib/Templates/*"

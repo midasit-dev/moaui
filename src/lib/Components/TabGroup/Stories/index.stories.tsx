@@ -5,7 +5,12 @@ import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { HorizontalCode, VerticalCode } from '../Code';
+import { 
+	HorizontalCode, 
+	VerticalCode, 
+	WithDataGridStatefulCode,
+	WithTableStatefulCode,
+} from '../Code';
 
 const meta = {
   title: 'Components/TabGroup',
@@ -22,6 +27,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Horizontal = LiveEditStory(cleanMask(HorizontalCode));
 export const Vertical = LiveEditStory(cleanMask(VerticalCode));
+export const WithDataGridStateful = LiveEditStory(cleanMask(WithDataGridStatefulCode));
+export const WithTableStateful = LiveEditStory(cleanMask(WithTableStatefulCode));
 
 export const Sample: Story = {
 	args: {

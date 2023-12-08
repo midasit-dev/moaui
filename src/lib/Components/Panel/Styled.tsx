@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import { Color } from '../../';
-import Box from '@mui/material/Box';
+import Box, { type BoxProps } from '@mui/material/Box';
 import { MarginTypes, MarginProps } from '../../Style/Margin';
 import { PaddingTypes, PaddingProps } from '../../Style/Padding';
 
@@ -26,7 +26,7 @@ class StyleVariant {
 	}
 }
 
-export interface StyledProps extends MarginTypes, PaddingTypes {
+export type StyledProps = {
 	/**
 	 * Panel inner contents
 	 */
@@ -51,21 +51,24 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * @defaultValue false
 	 */
 	flexItem?: boolean;
-}
+} & MarginTypes & PaddingTypes & BoxProps;
 
 const StyledComponent = styled((props: StyledProps) => {
 	let _sx = {};
 	if (props.variant === 'shadow') _sx = StyleVariant.shadow;
 	if (props.variant === 'strock') _sx = StyleVariant.strock;
 	return (
-		<Box sx={{
-			..._sx, 
-			width: props.width,
-			height: props.height,
-			display: props.flexItem ? 'flex' : 'block',
-			...MarginProps(props),
-			...PaddingProps(props),
-		}}>
+		<Box 
+			sx={{
+				..._sx, 
+				width: props.width,
+				height: props.height,
+				display: props.flexItem ? 'flex' : 'block',
+				...MarginProps(props),
+				...PaddingProps(props),
+			}}
+			justifyContent='center'
+		>
 			{props.children}
 		</Box>
 	)
