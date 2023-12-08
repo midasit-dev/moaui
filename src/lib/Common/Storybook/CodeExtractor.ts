@@ -97,7 +97,7 @@ export const extract = (code: string): ExtractedCode => {
 	return {
 		importCodes: importCodes,
 		functionalComponentName: componentName.replace(/Components/gi, ''),
-		functionalComponentCode: componentCode.replace(/Components/gi, '')
+		functionalComponentCode: componentCode.replace(/Components/gi, ''),
 		functionalComponentCodeWithProps: componentCodeWithProps,
 	}
 }

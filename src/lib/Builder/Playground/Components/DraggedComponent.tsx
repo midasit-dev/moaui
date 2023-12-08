@@ -13,6 +13,9 @@ function DraggedComponent(props: any){
 		case ItemTypes.ButtonOutlined: return <All.ButtonOutlined />;
 		case ItemTypes.ButtonText: return <All.ButtonText />;
 		case ItemTypes.ButtonWidth: return <All.ButtonWidth />;
+		case ItemTypes.ChartLineAxisLegend: return <All.ChartLineAxisLegend />;
+		case ItemTypes.ChartLineAxisPointSize: return <All.ChartLineAxisPointSize />;
+		case ItemTypes.ChartLineAxisTopRight: return <All.ChartLineAxisTopRight />;
 		case ItemTypes.CheckNotRequired: return <All.CheckNotRequired />;
 		case ItemTypes.CheckRequired: return <All.CheckRequired />;
 		case ItemTypes.CheckGroupControlled: return <All.CheckGroupControlled />;
@@ -32,12 +35,15 @@ function DraggedComponent(props: any){
 		case ItemTypes.IconButtonClose: return <All.IconButtonClose />;
 		case ItemTypes.ListControlled: return <All.ListControlled />;
 		case ItemTypes.ListDynamic: return <All.ListDynamic />;
+		case ItemTypes.ListTypographyRadio: return <All.ListTypographyRadio />;
 		case ItemTypes.ListUnControlled: return <All.ListUnControlled />;
 		case ItemTypes.ListItemDefault: return <All.ListItemDefault />;
 		case ItemTypes.ListItemButtonDefault: return <All.ListItemButtonDefault />;
 		case ItemTypes.PanelBox: return <All.PanelBox />;
 		case ItemTypes.PanelShadow: return <All.PanelShadow />;
 		case ItemTypes.PanelStrock: return <All.PanelStrock />;
+		case ItemTypes.PanelTypographyDropList: return <All.PanelTypographyDropList />;
+		case ItemTypes.PanelTypographyTextField: return <All.PanelTypographyTextField />;
 		case ItemTypes.RadioName: return <All.RadioName />;
 		case ItemTypes.RadioGroupControlled: return <All.RadioGroupControlled />;
 		case ItemTypes.RadioGroupUnControlled: return <All.RadioGroupUnControlled />;
@@ -53,6 +59,8 @@ function DraggedComponent(props: any){
 		case ItemTypes.TabLabel: return <All.TabLabel />;
 		case ItemTypes.TabGroupHorizontal: return <All.TabGroupHorizontal />;
 		case ItemTypes.TabGroupVertical: return <All.TabGroupVertical />;
+		case ItemTypes.TabGroupWithDataGrid: return <All.TabGroupWithDataGrid />;
+		case ItemTypes.TabGroupWithTable: return <All.TabGroupWithTable />;
 		case ItemTypes.TableBody: return <All.TableBody />;
 		case ItemTypes.TableBundle: return <All.TableBundle />;
 		case ItemTypes.TableCell: return <All.TableCell />;

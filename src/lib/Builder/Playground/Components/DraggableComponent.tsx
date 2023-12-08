@@ -58,6 +58,15 @@ export const ButtonText =
 export const ButtonWidth = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ButtonWidth}>ButtonWidth</CustomDraggableComponent>;
 
+export const ChartLineAxisLegend = 
+	() => <CustomDraggableComponent itemType={ItemTypes.ChartLineAxisLegend}>ChartLineAxisLegend</CustomDraggableComponent>;
+
+export const ChartLineAxisPointSize = 
+	() => <CustomDraggableComponent itemType={ItemTypes.ChartLineAxisPointSize}>ChartLineAxisPointSize</CustomDraggableComponent>;
+
+export const ChartLineAxisTopRight = 
+	() => <CustomDraggableComponent itemType={ItemTypes.ChartLineAxisTopRight}>ChartLineAxisTopRight</CustomDraggableComponent>;
+
 export const CheckNotRequired = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CheckNotRequired}>CheckNotRequired</CustomDraggableComponent>;
 
@@ -115,6 +124,9 @@ export const ListControlled =
 export const ListDynamic = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ListDynamic}>ListDynamic</CustomDraggableComponent>;
 
+export const ListTypographyRadio = 
+	() => <CustomDraggableComponent itemType={ItemTypes.ListTypographyRadio}>ListTypographyRadio</CustomDraggableComponent>;
+
 export const ListUnControlled = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ListUnControlled}>ListUnControlled</CustomDraggableComponent>;
 
@@ -132,6 +144,12 @@ export const PanelShadow =
 
 export const PanelStrock = 
 	() => <CustomDraggableComponent itemType={ItemTypes.PanelStrock}>PanelStrock</CustomDraggableComponent>;
+
+export const PanelTypographyDropList = 
+	() => <CustomDraggableComponent itemType={ItemTypes.PanelTypographyDropList}>PanelTypographyDropList</CustomDraggableComponent>;
+
+export const PanelTypographyTextField = 
+	() => <CustomDraggableComponent itemType={ItemTypes.PanelTypographyTextField}>PanelTypographyTextField</CustomDraggableComponent>;
 
 export const RadioName = 
 	() => <CustomDraggableComponent itemType={ItemTypes.RadioName}>RadioName</CustomDraggableComponent>;
@@ -177,6 +195,12 @@ export const TabGroupHorizontal =
 
 export const TabGroupVertical = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TabGroupVertical}>TabGroupVertical</CustomDraggableComponent>;
+
+export const TabGroupWithDataGrid = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TabGroupWithDataGrid}>TabGroupWithDataGrid</CustomDraggableComponent>;
+
+export const TabGroupWithTable = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TabGroupWithTable}>TabGroupWithTable</CustomDraggableComponent>;
 
 export const TableBody = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TableBody}>TableBody</CustomDraggableComponent>;
@@ -258,6 +282,9 @@ const DraggableComponent: React.FC = () => {
 			<ButtonOutlined />
 			<ButtonText />
 			<ButtonWidth />
+			<ChartLineAxisLegend />
+			<ChartLineAxisPointSize />
+			<ChartLineAxisTopRight />
 			<CheckNotRequired />
 			<CheckRequired />
 			<CheckGroupControlled />
@@ -277,12 +304,15 @@ const DraggableComponent: React.FC = () => {
 			<IconButtonClose />
 			<ListControlled />
 			<ListDynamic />
+			<ListTypographyRadio />
 			<ListUnControlled />
 			<ListItemDefault />
 			<ListItemButtonDefault />
 			<PanelBox />
 			<PanelShadow />
 			<PanelStrock />
+			<PanelTypographyDropList />
+			<PanelTypographyTextField />
 			<RadioName />
 			<RadioGroupControlled />
 			<RadioGroupUnControlled />
@@ -298,6 +328,8 @@ const DraggableComponent: React.FC = () => {
 			<TabLabel />
 			<TabGroupHorizontal />
 			<TabGroupVertical />
+			<TabGroupWithDataGrid />
+			<TabGroupWithTable />
 			<TableBody />
 			<TableBundle />
 			<TableCell />

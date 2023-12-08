@@ -39,6 +39,9 @@ export default function TotalCodeString(){
 	const [buttonoutlined, setButtonOutlined] = React.useState(false);
 	const [buttontext, setButtonText] = React.useState(false);
 	const [buttonwidth, setButtonWidth] = React.useState(false);
+	const [chartlineaxislegend, setChartLineAxisLegend] = React.useState(false);
+	const [chartlineaxispointsize, setChartLineAxisPointSize] = React.useState(false);
+	const [chartlineaxistopright, setChartLineAxisTopRight] = React.useState(false);
 	const [checknotrequired, setCheckNotRequired] = React.useState(false);
 	const [checkrequired, setCheckRequired] = React.useState(false);
 	const [checkgroupcontrolled, setCheckGroupControlled] = React.useState(false);
@@ -58,12 +61,15 @@ export default function TotalCodeString(){
 	const [iconbuttonclose, setIconButtonClose] = React.useState(false);
 	const [listcontrolled, setListControlled] = React.useState(false);
 	const [listdynamic, setListDynamic] = React.useState(false);
+	const [listtypographyradio, setListTypographyRadio] = React.useState(false);
 	const [listuncontrolled, setListUnControlled] = React.useState(false);
 	const [listitemdefault, setListItemDefault] = React.useState(false);
 	const [listitembuttondefault, setListItemButtonDefault] = React.useState(false);
 	const [panelbox, setPanelBox] = React.useState(false);
 	const [panelshadow, setPanelShadow] = React.useState(false);
 	const [panelstrock, setPanelStrock] = React.useState(false);
+	const [paneltypographydroplist, setPanelTypographyDropList] = React.useState(false);
+	const [paneltypographytextfield, setPanelTypographyTextField] = React.useState(false);
 	const [radioname, setRadioName] = React.useState(false);
 	const [radiogroupcontrolled, setRadioGroupControlled] = React.useState(false);
 	const [radiogroupuncontrolled, setRadioGroupUnControlled] = React.useState(false);
@@ -79,6 +85,8 @@ export default function TotalCodeString(){
 	const [tablabel, setTabLabel] = React.useState(false);
 	const [tabgrouphorizontal, setTabGroupHorizontal] = React.useState(false);
 	const [tabgroupvertical, setTabGroupVertical] = React.useState(false);
+	const [tabgroupwithdatagrid, setTabGroupWithDataGrid] = React.useState(false);
+	const [tabgroupwithtable, setTabGroupWithTable] = React.useState(false);
 	const [tablebody, setTableBody] = React.useState(false);
 	const [tablebundle, setTableBundle] = React.useState(false);
 	const [tablecell, setTableCell] = React.useState(false);
@@ -126,6 +134,15 @@ export default function TotalCodeString(){
 				break;
 				case ItemTypes.ButtonWidth: 
 					setButtonWidth(true);
+				break;
+				case ItemTypes.ChartLineAxisLegend: 
+					setChartLineAxisLegend(true);
+				break;
+				case ItemTypes.ChartLineAxisPointSize: 
+					setChartLineAxisPointSize(true);
+				break;
+				case ItemTypes.ChartLineAxisTopRight: 
+					setChartLineAxisTopRight(true);
 				break;
 				case ItemTypes.CheckNotRequired: 
 					setCheckNotRequired(true);
@@ -184,6 +201,9 @@ export default function TotalCodeString(){
 				case ItemTypes.ListDynamic: 
 					setListDynamic(true);
 				break;
+				case ItemTypes.ListTypographyRadio: 
+					setListTypographyRadio(true);
+				break;
 				case ItemTypes.ListUnControlled: 
 					setListUnControlled(true);
 				break;
@@ -201,6 +221,12 @@ export default function TotalCodeString(){
 				break;
 				case ItemTypes.PanelStrock: 
 					setPanelStrock(true);
+				break;
+				case ItemTypes.PanelTypographyDropList: 
+					setPanelTypographyDropList(true);
+				break;
+				case ItemTypes.PanelTypographyTextField: 
+					setPanelTypographyTextField(true);
 				break;
 				case ItemTypes.RadioName: 
 					setRadioName(true);
@@ -246,6 +272,12 @@ export default function TotalCodeString(){
 				break;
 				case ItemTypes.TabGroupVertical: 
 					setTabGroupVertical(true);
+				break;
+				case ItemTypes.TabGroupWithDataGrid: 
+					setTabGroupWithDataGrid(true);
+				break;
+				case ItemTypes.TabGroupWithTable: 
+					setTabGroupWithTable(true);
 				break;
 				case ItemTypes.TableBody: 
 					setTableBody(true);
@@ -353,6 +385,9 @@ function Components(props: any) {
 	${buttonoutlined ? extractComponentCode(All.ButtonOutlined) : ""}
 	${buttontext ? extractComponentCode(All.ButtonText) : ""}
 	${buttonwidth ? extractComponentCode(All.ButtonWidth) : ""}
+	${chartlineaxislegend ? extractComponentCode(All.ChartLineAxisLegend) : ""}
+	${chartlineaxispointsize ? extractComponentCode(All.ChartLineAxisPointSize) : ""}
+	${chartlineaxistopright ? extractComponentCode(All.ChartLineAxisTopRight) : ""}
 	${checknotrequired ? extractComponentCode(All.CheckNotRequired) : ""}
 	${checkrequired ? extractComponentCode(All.CheckRequired) : ""}
 	${checkgroupcontrolled ? extractComponentCode(All.CheckGroupControlled) : ""}
@@ -372,12 +407,15 @@ function Components(props: any) {
 	${iconbuttonclose ? extractComponentCode(All.IconButtonClose) : ""}
 	${listcontrolled ? extractComponentCode(All.ListControlled) : ""}
 	${listdynamic ? extractComponentCode(All.ListDynamic) : ""}
+	${listtypographyradio ? extractComponentCode(All.ListTypographyRadio) : ""}
 	${listuncontrolled ? extractComponentCode(All.ListUnControlled) : ""}
 	${listitemdefault ? extractComponentCode(All.ListItemDefault) : ""}
 	${listitembuttondefault ? extractComponentCode(All.ListItemButtonDefault) : ""}
 	${panelbox ? extractComponentCode(All.PanelBox) : ""}
 	${panelshadow ? extractComponentCode(All.PanelShadow) : ""}
 	${panelstrock ? extractComponentCode(All.PanelStrock) : ""}
+	${paneltypographydroplist ? extractComponentCode(All.PanelTypographyDropList) : ""}
+	${paneltypographytextfield ? extractComponentCode(All.PanelTypographyTextField) : ""}
 	${radioname ? extractComponentCode(All.RadioName) : ""}
 	${radiogroupcontrolled ? extractComponentCode(All.RadioGroupControlled) : ""}
 	${radiogroupuncontrolled ? extractComponentCode(All.RadioGroupUnControlled) : ""}
@@ -393,6 +431,8 @@ function Components(props: any) {
 	${tablabel ? extractComponentCode(All.TabLabel) : ""}
 	${tabgrouphorizontal ? extractComponentCode(All.TabGroupHorizontal) : ""}
 	${tabgroupvertical ? extractComponentCode(All.TabGroupVertical) : ""}
+	${tabgroupwithdatagrid ? extractComponentCode(All.TabGroupWithDataGrid) : ""}
+	${tabgroupwithtable ? extractComponentCode(All.TabGroupWithTable) : ""}
 	${tablebody ? extractComponentCode(All.TableBody) : ""}
 	${tablebundle ? extractComponentCode(All.TableBundle) : ""}
 	${tablecell ? extractComponentCode(All.TableCell) : ""}
@@ -439,6 +479,9 @@ function Components(props: any) {
 						${item.type === ItemTypes.ButtonOutlined ? `${extractComponentName(All.ButtonOutlined)}` : ""}
 						${item.type === ItemTypes.ButtonText ? `${extractComponentName(All.ButtonText)}` : ""}
 						${item.type === ItemTypes.ButtonWidth ? `${extractComponentName(All.ButtonWidth)}` : ""}
+						${item.type === ItemTypes.ChartLineAxisLegend ? `${extractComponentName(All.ChartLineAxisLegend)}` : ""}
+						${item.type === ItemTypes.ChartLineAxisPointSize ? `${extractComponentName(All.ChartLineAxisPointSize)}` : ""}
+						${item.type === ItemTypes.ChartLineAxisTopRight ? `${extractComponentName(All.ChartLineAxisTopRight)}` : ""}
 						${item.type === ItemTypes.CheckNotRequired ? `${extractComponentName(All.CheckNotRequired)}` : ""}
 						${item.type === ItemTypes.CheckRequired ? `${extractComponentName(All.CheckRequired)}` : ""}
 						${item.type === ItemTypes.CheckGroupControlled ? `${extractComponentName(All.CheckGroupControlled)}` : ""}
@@ -458,12 +501,15 @@ function Components(props: any) {
 						${item.type === ItemTypes.IconButtonClose ? `${extractComponentName(All.IconButtonClose)}` : ""}
 						${item.type === ItemTypes.ListControlled ? `${extractComponentName(All.ListControlled)}` : ""}
 						${item.type === ItemTypes.ListDynamic ? `${extractComponentName(All.ListDynamic)}` : ""}
+						${item.type === ItemTypes.ListTypographyRadio ? `${extractComponentName(All.ListTypographyRadio)}` : ""}
 						${item.type === ItemTypes.ListUnControlled ? `${extractComponentName(All.ListUnControlled)}` : ""}
 						${item.type === ItemTypes.ListItemDefault ? `${extractComponentName(All.ListItemDefault)}` : ""}
 						${item.type === ItemTypes.ListItemButtonDefault ? `${extractComponentName(All.ListItemButtonDefault)}` : ""}
 						${item.type === ItemTypes.PanelBox ? `${extractComponentName(All.PanelBox)}` : ""}
 						${item.type === ItemTypes.PanelShadow ? `${extractComponentName(All.PanelShadow)}` : ""}
 						${item.type === ItemTypes.PanelStrock ? `${extractComponentName(All.PanelStrock)}` : ""}
+						${item.type === ItemTypes.PanelTypographyDropList ? `${extractComponentName(All.PanelTypographyDropList)}` : ""}
+						${item.type === ItemTypes.PanelTypographyTextField ? `${extractComponentName(All.PanelTypographyTextField)}` : ""}
 						${item.type === ItemTypes.RadioName ? `${extractComponentName(All.RadioName)}` : ""}
 						${item.type === ItemTypes.RadioGroupControlled ? `${extractComponentName(All.RadioGroupControlled)}` : ""}
 						${item.type === ItemTypes.RadioGroupUnControlled ? `${extractComponentName(All.RadioGroupUnControlled)}` : ""}
@@ -479,6 +525,8 @@ function Components(props: any) {
 						${item.type === ItemTypes.TabLabel ? `${extractComponentName(All.TabLabel)}` : ""}
 						${item.type === ItemTypes.TabGroupHorizontal ? `${extractComponentName(All.TabGroupHorizontal)}` : ""}
 						${item.type === ItemTypes.TabGroupVertical ? `${extractComponentName(All.TabGroupVertical)}` : ""}
+						${item.type === ItemTypes.TabGroupWithDataGrid ? `${extractComponentName(All.TabGroupWithDataGrid)}` : ""}
+						${item.type === ItemTypes.TabGroupWithTable ? `${extractComponentName(All.TabGroupWithTable)}` : ""}
 						${item.type === ItemTypes.TableBody ? `${extractComponentName(All.TableBody)}` : ""}
 						${item.type === ItemTypes.TableBundle ? `${extractComponentName(All.TableBundle)}` : ""}
 						${item.type === ItemTypes.TableCell ? `${extractComponentName(All.TableCell)}` : ""}
