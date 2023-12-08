@@ -46,6 +46,13 @@ writeFileSync('./DraggedComponentRawCode.ts', `${importRawCodes.join('\n')}`);
 //TotalStringV2.tsx 변경
 const totalSringV2 = [];
 for (const info of arrInfos) totalSringV2.push(`\t\t\t\t\t\t\${item.type === ItemTypes.${info.title} ? \`\${extractComponentName(All.${info.title})}\` : ""}`);
+const useStates = [];
+for (const info of arrInfos) useStates.push(`\tconst [${info.title.toLowerCase()}, set${info.title}] = React.useState(false);`);
+const useEffects = [];
+for (const info of arrInfos) useEffects.push(`\t\t\t\tcase ItemTypes.${info.title}: \n\t\t\t\t\tset${info.title}(true);\n\t\t\t\tbreak;`)
+const ComponentCode = [];
+for (const info of arrInfos) ComponentCode.push(`\t\${${info.title.toLowerCase()} ? extractComponentCode(All.${info.title}) : ""}`);
+
 writeFileSync('./TotalStringV2.tsx', `import React from "react";
 import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount, LayoutsInfo } from '../recoil/PlaygroundAtom';
 import { useRecoilValue } from 'recoil';
@@ -79,14 +86,12 @@ export default function TotalCodeString(){
 	const Rowcount = useRecoilValue(RowCount);
 	const Columncount = useRecoilValue(ColumnCount);
 	const Layoutsinfo = useRecoilValue(LayoutsInfo);
-	const [isButtonExist, setIsButtonExist] = React.useState(false);
+${useStates.join('\n')}
 
 	React.useEffect(() => {
 		Layoutsinfo.map((value: any) => {
 			switch(value.type){
-				case ItemTypes.ButtonContained:
-					setIsButtonExist(true);
-					break;
+${useEffects.join('\n')}
 				default:
 					break;
 			}
@@ -97,24 +102,47 @@ export default function TotalCodeString(){
 	const totalCode = \`import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-\${ isButtonExist ? extractComponentImport(All.ButtonContained) : ""}
+\${ buttoncomposite || buttoncontained || buttonnegative || buttonnormal || buttonoutlined || buttontext || buttonwidth ? extractComponentImport(All.ButtonContained) : ""}
+\${ checknotrequired || checkrequired || checkgroupcontrolled || checkgroupuncontrolled ? extractComponentImport(All.CheckNotRequired) : ""}
+\${ datagridpagination ? extractComponentImport(All.DataGridPagination) : ""}
+\${ dialoghelpbutton || dialoghelpiconbutton ? extractComponentImport(All.DialogHelpButton) : ""}
+\${ droplistdropdown ? extractComponentImport(All.DropListDropdown) : ""}
+\${ gridcolumn || griditems || gridrow ? extractComponentImport(All.GridColumn) : ""}
+\${ iconadd || iconclose ? extractComponentImport(All.IconAdd) : ""}
+\${ iconbuttonadd || iconbuttonclose ? extractComponentImport(All.IconButtonAdd) : ""}
+\${ listcontrolled || listdynamic || listuncontrolled ? extractComponentImport(All.ListControlled) : ""}
+\${ listitemdefault ? extractComponentImport(All.ListItemDefault) : ""}
+\${ listitembuttondefault ? extractComponentImport(All.ListItemButtonDefault) : ""}
+\${ panelbox || panelshadow || panelstrock ? extractComponentImport(All.PanelBox) : ""}
+\${ radioname ? extractComponentImport(All.RadioName) : ""}
+\${ radiogroupcontrolled || radiogroupuncontrolled ? extractComponentImport(All.RadioGroupControlled) : ""}
+\${ scrollbarscheckgroup || scrollbarslist ? extractComponentImport(All.ScrollbarsCheckGroup) : ""}
+\${ seperatorhorizontal || seperatorvertical ? extractComponentImport(All.SeperatorHorizontal) : ""}
+\${ stackcolumn || stackrow ? extractComponentImport(All.StackColumn) : ""}
+\${ switchlabel ? extractComponentImport(All.SwitchLabel) : ""}
+\${ switchgroupcontrolled || switchgroupuncontrolled ? extractComponentImport(All.SwitchGroupControlled) : ""}
+\${ tablabel || switchgroupuncontrolled ? extractComponentImport(All.TabLabel) : ""}
+\${ tabgrouphorizontal || tabgroupvertical ? extractComponentImport(All.TabGroupHorizontal) : ""}
+\${ tablebody || tablebundle ? extractComponentImport(All.TableBody) : ""}
 
 function Components(props: any) {
   function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     // do something
   }
 
-	\${ isButtonExist ? extractComponentCode(All.ButtonContained) : ""}
+${ComponentCode.join('\n')}
 
   return (
-    <Box sx={{width: "\${Sizewidth}px", height:"\${Sizeheight}px", p:"0.5rem"}}>
-			<Grid container spacing={0} style={{height:"100%"}}>
+    <Box sx={{width: "\${Sizewidth}px", height:"\${Sizeheight}px", p:"0.5rem", border: '1px solid #bebebe'}}>
+			<Grid container spacing={0} style={{height:"100%", position: 'relative'}}>
 			\${Layoutsinfo.map((item:any, index:any) => {
-				console.log("item: ",item);
-				return (\`<Grid item xs={\${item.w}} key={\${item.i}}>
+				return (\`
 					<div
 						style={{
-							border: '1px solid #ccc',
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							width: '\${item.w * Number(Sizewidth) / 12}px', // w값을 colWidth 배수로 계산해 width로 사용합니다.
 							height: '\${item.h * 30}px', // rowHeight의 배수로 높이를 설정합니다.
 							top: '\${item.y * 30}px', // y값을 rowHeight 배수로 계산해 top으로 사용합니다.
 							left: '\${item.x * Number(Sizewidth) / 12}px', // x값을 colWidth 배수로 계산해 left로 사용합니다.
@@ -122,8 +150,8 @@ function Components(props: any) {
 						}}
 					>
 ${totalSringV2.join('\n')}
-					</div>
-				</Grid>\`)
+					</div>\`
+				)
 			})}
 			</Grid>
     </Box>
@@ -229,10 +257,9 @@ const DraggableComponent: React.FC = () => {
 		<div
 			style={{
 				width: '100%',
-				height: '100%',
 				display: 'flex',
 				alignItems: 'center',
-				justifyContent: 'space-around',
+				justifyContent: 'center',
 				flexDirection: 'column',
 			}}
 		>

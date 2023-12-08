@@ -75,7 +75,7 @@ export default function Playground(): React.ReactElement {
                   Code
                 </Button>
               </Box>
-              <Box sx={{height:"100%", width:"100%",mr:"1rem"}}>
+              <Box sx={{height:`${Sizeheight}px`, overflowY:'scroll', width:"100%",mr:"1rem"}}>
                 <DraggableComponents />
               </Box>
               </Stack>

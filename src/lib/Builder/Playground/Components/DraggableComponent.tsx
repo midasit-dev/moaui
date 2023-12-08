@@ -79,6 +79,12 @@ export const CodeBlockTypescript =
 export const DataGridPagination = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DataGridPagination}>DataGridPagination</CustomDraggableComponent>;
 
+export const DialogHelpButton = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DialogHelpButton}>DialogHelpButton</CustomDraggableComponent>;
+
+export const DialogHelpIconButton = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DialogHelpIconButton}>DialogHelpIconButton</CustomDraggableComponent>;
+
 export const DropListDropdown = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>DropListDropdown</CustomDraggableComponent>;
 
@@ -214,16 +220,33 @@ export const TypographyH1 =
 export const TypographyGroupText = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TypographyGroupText}>TypographyGroupText</CustomDraggableComponent>;
 
+export const TendonProfileConverterBottomButtons = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterBottomButtons}>TendonProfileConverterBottomButtons</CustomDraggableComponent>;
+
+export const TendonProfileConverterComposite = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterComposite}>TendonProfileConverterComposite</CustomDraggableComponent>;
+
+export const TendonProfileConverterHelpIconButton = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterHelpIconButton}>TendonProfileConverterHelpIconButton</CustomDraggableComponent>;
+
+export const TendonProfileConverterList = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterList}>TendonProfileConverterList</CustomDraggableComponent>;
+
+export const TendonProfileConverterSelectButton = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterSelectButton}>TendonProfileConverterSelectButton</CustomDraggableComponent>;
+
+export const TendonProfileConverterUpdateButton = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterUpdateButton}>TendonProfileConverterUpdateButton</CustomDraggableComponent>;
+
 
 const DraggableComponent: React.FC = () => {
 	return (
 		<div
 			style={{
 				width: '100%',
-				height: '100%',
 				display: 'flex',
 				alignItems: 'center',
-				justifyContent: 'space-around',
+				justifyContent: 'center',
 				flexDirection: 'column',
 			}}
 		>
@@ -242,6 +265,8 @@ const DraggableComponent: React.FC = () => {
 			<CodeBlockJavascript />
 			<CodeBlockTypescript />
 			<DataGridPagination />
+			<DialogHelpButton />
+			<DialogHelpIconButton />
 			<DropListDropdown />
 			<GridColumn />
 			<GridItems />
@@ -287,6 +312,12 @@ const DraggableComponent: React.FC = () => {
 			<TypographyBody3 />
 			<TypographyH1 />
 			<TypographyGroupText />
+			<TendonProfileConverterBottomButtons />
+			<TendonProfileConverterComposite />
+			<TendonProfileConverterHelpIconButton />
+			<TendonProfileConverterList />
+			<TendonProfileConverterSelectButton />
+			<TendonProfileConverterUpdateButton />
 		</div>
 	);
 };

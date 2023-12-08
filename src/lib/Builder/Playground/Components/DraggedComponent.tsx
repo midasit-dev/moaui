@@ -20,6 +20,8 @@ function DraggedComponent(props: any){
 		case ItemTypes.CodeBlockJavascript: return <All.CodeBlockJavascript />;
 		case ItemTypes.CodeBlockTypescript: return <All.CodeBlockTypescript />;
 		case ItemTypes.DataGridPagination: return <All.DataGridPagination />;
+		case ItemTypes.DialogHelpButton: return <All.DialogHelpButton />;
+		case ItemTypes.DialogHelpIconButton: return <All.DialogHelpIconButton />;
 		case ItemTypes.DropListDropdown: return <All.DropListDropdown />;
 		case ItemTypes.GridColumn: return <All.GridColumn />;
 		case ItemTypes.GridItems: return <All.GridItems />;
@@ -65,6 +67,12 @@ function DraggedComponent(props: any){
 		case ItemTypes.TypographyBody3: return <All.TypographyBody3 />;
 		case ItemTypes.TypographyH1: return <All.TypographyH1 />;
 		case ItemTypes.TypographyGroupText: return <All.TypographyGroupText />;
+		case ItemTypes.TendonProfileConverterBottomButtons: return <All.TendonProfileConverterBottomButtons />;
+		case ItemTypes.TendonProfileConverterComposite: return <All.TendonProfileConverterComposite />;
+		case ItemTypes.TendonProfileConverterHelpIconButton: return <All.TendonProfileConverterHelpIconButton />;
+		case ItemTypes.TendonProfileConverterList: return <All.TendonProfileConverterList />;
+		case ItemTypes.TendonProfileConverterSelectButton: return <All.TendonProfileConverterSelectButton />;
+		case ItemTypes.TendonProfileConverterUpdateButton: return <All.TendonProfileConverterUpdateButton />;
 		default: return <>Invalid</>;
 	}
 }

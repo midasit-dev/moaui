@@ -13,6 +13,8 @@ export { default as CheckGroupUnControlled } from '../../../Components/CheckGrou
 export { default as CodeBlockJavascript } from '../../../Components/CodeBlock/Code/Javascript.code.tsx?raw';
 export { default as CodeBlockTypescript } from '../../../Components/CodeBlock/Code/Typescript.code.tsx?raw';
 export { default as DataGridPagination } from '../../../Components/DataGrid/Code/Pagination.code.tsx?raw';
+export { default as DialogHelpButton } from '../../../Components/Dialog/Code/HelpButton.code.tsx?raw';
+export { default as DialogHelpIconButton } from '../../../Components/Dialog/Code/HelpIconButton.code.tsx?raw';
 export { default as DropListDropdown } from '../../../Components/DropList/Code/Dropdown.code.tsx?raw';
 export { default as GridColumn } from '../../../Components/Grid/Code/Column.code.tsx?raw';
 export { default as GridItems } from '../../../Components/Grid/Code/Items.code.tsx?raw';
@@ -58,3 +60,9 @@ export { default as TypographyBody2 } from '../../../Components/Typography/Code/
 export { default as TypographyBody3 } from '../../../Components/Typography/Code/Body3.code.tsx?raw';
 export { default as TypographyH1 } from '../../../Components/Typography/Code/H1.code.tsx?raw';
 export { default as TypographyGroupText } from '../../../Components/TypographyGroup/Code/Text.code.tsx?raw';
+export { default as TendonProfileConverterBottomButtons } from '../../../Templates/PluginItems/TendonProfileConverter/Code/BottomButtons.code.tsx?raw';
+export { default as TendonProfileConverterComposite } from '../../../Templates/PluginItems/TendonProfileConverter/Code/Composite.code.tsx?raw';
+export { default as TendonProfileConverterHelpIconButton } from '../../../Templates/PluginItems/TendonProfileConverter/Code/HelpIconButton.code.tsx?raw';
+export { default as TendonProfileConverterList } from '../../../Templates/PluginItems/TendonProfileConverter/Code/List.code.tsx?raw';
+export { default as TendonProfileConverterSelectButton } from '../../../Templates/PluginItems/TendonProfileConverter/Code/SelectButton.code.tsx?raw';
+export { default as TendonProfileConverterUpdateButton } from '../../../Templates/PluginItems/TendonProfileConverter/Code/UpdateButton.code.tsx?raw';

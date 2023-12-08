@@ -7,7 +7,7 @@ import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SpellcheckOutlinedIcon from '@mui/icons-material/SpellcheckOutlined';
 import prettier from "prettier/standalone";
 import { Typography, Color } from "../..";
-// import parser from "prettier/parser-babel";
+import parser from "prettier/parser-babel";
 	
 interface CodeComponentProps {	
 	/**
@@ -69,7 +69,7 @@ function CodeBlock(props: CodeComponentProps){
       try {
         const result = await prettier.format(props.children, {
           parser: "babel",
-          // plugins: [parser],
+          plugins: [parser],
           useTabs: true,
           semi: true,
           singleQuote: true,
