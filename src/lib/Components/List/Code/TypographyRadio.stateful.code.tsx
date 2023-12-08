@@ -56,18 +56,31 @@ const ComponentsListTypographyRadio = ({
   ); 
 }/**${comma}*/
 
-const DoComponentsListTypographyRadio = () => {
-	const [value, setValue] = React.useState({
-		selected: '',
-		items: [ 'List Item 1', 'List Item 2', 'List Item 3', 'List Item 4', 'List Item 5', 'List Item 6', 'List Item 7', 'List Item 8', 'List Item 9', 'List Item 10', 'List Item 11', 'List Item 12' ]
-	});
+const useComponentsListTypographyRadio = () => {
+  const [state, setState] = React.useState({
+    selected: '',
+    items: [
+      'List Item 1', 'List Item 2', 'List Item 3', 'List Item 4', 'List Item 5',
+      'List Item 6', 'List Item 7', 'List Item 8', 'List Item 9', 'List Item 10',
+      'List Item 11', 'List Item 12'
+    ]
+  });
 
-	return (
-		<ComponentsListTypographyRadio 
-			listItemValues={value}
-			listItemOnClick={(item: string) => setValue({...value, selected: item})}
-		/>
-	);
-}/**${comma}*/
+  return {
+    values: state,
+    setSelection: (selectedItem: string) => setState({...state, selected: selectedItem})
+  }
+};
 
-export default DoComponentsListTypographyRadio; 
+const UseComponentsListTypographyRadio = () => {
+  const { values, setSelection } = useComponentsListTypographyRadio();
+
+  return (
+    <ComponentsListTypographyRadio
+      listItemValues={values}
+      listItemOnClick={(item: string) => setSelection(item)}
+    />
+  );
+};/**${comma}*/
+
+export default UseComponentsListTypographyRadio;

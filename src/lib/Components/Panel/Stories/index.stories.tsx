@@ -8,8 +8,8 @@ import {
 	BoxCode, 
 	ShadowCode, 
 	StrockCode,
-	TypographyTextFieldCode,
-	TypographyDropListCode,
+	TypographyTextFieldStatefulCode,
+	TypographyDropListStatefulCode,
 } from "../Code";
 
 const meta = {
@@ -28,8 +28,8 @@ type Story = StoryObj<typeof meta>;
 export const Box = LiveEditStory(cleanMask(BoxCode));
 export const Shadow = LiveEditStory(cleanMask(ShadowCode));
 export const Strock = LiveEditStory(cleanMask(StrockCode));
-export const TypographyTextField = LiveEditStory(cleanMask(TypographyTextFieldCode));
-export const TypographyDropList = LiveEditStory(cleanMask(TypographyDropListCode));
+export const TypographyTextFieldStateful = LiveEditStory(cleanMask(TypographyTextFieldStatefulCode));
+export const TypographyDropListStateful = LiveEditStory(cleanMask(TypographyDropListStatefulCode));
 
 export const Sample: Story = {
 	args: {
