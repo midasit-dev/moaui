@@ -7,7 +7,6 @@ import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SpellcheckOutlinedIcon from '@mui/icons-material/SpellcheckOutlined';
 import prettier from "prettier/standalone";
 import { Typography, Color } from "../..";
-import parser from "prettier/parser-babel";
 	
 interface CodeComponentProps {	
 	/**
@@ -62,14 +61,14 @@ function CodeBlock(props: CodeComponentProps){
 		return () => clearTimeout(timer);
 	}, [copySuccess]);
 
-  const [formattedCode, setFormattedCode] = React.useState<string | string[]>(props.children);
+  const [formattedCode, setFormattedCode] = React.useState<any>(props.children);
 
   React.useEffect(() => {
     const formatCode = async () => {
       try {
         const result = await prettier.format(props.children, {
-          parser: "babel",
-          plugins: [parser],
+          parser: "php",
+          plugins: [],
           useTabs: true,
           semi: true,
           singleQuote: true,
@@ -134,7 +133,7 @@ function CodeBlock(props: CodeComponentProps){
 				}}
 				{...props}
 			>
-				{formattedCode}
+				{formattedCode.replace(/\n\s*\n/g, '\n')}
 			</SyntaxHighlighter>
 		</>
 	);
