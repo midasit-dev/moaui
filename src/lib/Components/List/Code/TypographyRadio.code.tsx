@@ -56,7 +56,7 @@ const ComponentsListTypographyRadio = ({
   ); 
 }/**${comma}*/
 
-const useComponentsListTypographyRadio = () => {
+const _Use_ComponentsListTypographyRadio = () => {
   const [state, setState] = React.useState({
     selected: '',
     items: [
@@ -70,17 +70,20 @@ const useComponentsListTypographyRadio = () => {
     values: state,
     setSelection: (selectedItem: string) => setState({...state, selected: selectedItem})
   }
-};
-
-const UseComponentsListTypographyRadio = () => {
-  const { values, setSelection } = useComponentsListTypographyRadio();
-
-  return (
-    <ComponentsListTypographyRadio
-      listItemValues={values}
-      listItemOnClick={(item: string) => setSelection(item)}
-    />
-  );
 };/**${comma}*/
 
-export default UseComponentsListTypographyRadio;
+const _Render_ComponentsListTypographyRadio = () => {
+	const { 
+		values: values_ComponentsListTypographyRadio, 
+		setSelection: setSelection_ComponentsListTypographyRadio
+	} = _Use_ComponentsListTypographyRadio();
+
+	return (
+		<ComponentsListTypographyRadio
+			listItemValues={values_ComponentsListTypographyRadio}
+			listItemOnClick={(item: string) => setSelection_ComponentsListTypographyRadio(item)}
+		/>
+	);
+};/**${comma}*/
+
+export default _Render_ComponentsListTypographyRadio;
