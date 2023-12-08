@@ -109,16 +109,29 @@ const TemplatesPluginItemsTPCComposite = () => {
 
 	//[Component] Select Button
 	const ComponentSelectButton = () => {
-		return (
-			<Button
-				variant='text'
-				color="negative"
-				width='300px'
-				onClick={() => setValues(values.map((value: any) => { return { ...value, checked: !value.checked } }))}
-			>
-				{isSelectedEmpty() ? "Select All" : "Deselect All"}
-			</Button>
-		);
+		if (isSelectedEmpty() === true) {
+			return (
+				<Button
+					variant='text'
+					color="negative"
+					width='300px'
+					onClick={() => setValues(values.map((value: any) => { return { ...value, checked: true } }))}
+				>
+					{"Select All"}
+				</Button>
+			);
+		} else {
+			return (
+				<Button
+					variant='text'
+					color="negative"
+					width='300px'
+					onClick={() => setValues(values.map((value: any) => { return { ...value, checked: false } }))}
+				>
+					{"Deselect All"}
+				</Button>
+			);
+		}
 	}
 
 	//[Component] Bottom Buttons
