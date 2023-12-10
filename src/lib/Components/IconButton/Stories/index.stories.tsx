@@ -5,7 +5,7 @@ import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { AddCode, CloseCode } from '../Code';
+import { AddCode, CloseCode, WithNameCode } from '../Code';
 
 const meta = {
   title: 'Components/IconButton',
@@ -22,6 +22,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Add = LiveEditStory(cleanMask(AddCode));
 export const Close = LiveEditStory(cleanMask(CloseCode));
+export const WithName = LiveEditStory(cleanMask(WithNameCode));
 
 export const Sample: Story = {
 	args: {
