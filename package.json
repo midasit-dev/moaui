@@ -99,8 +99,9 @@
     "prepare-npmjs": "node prepare.js && tsc -p tsconfig.npm.json",
     "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish",
     "update-extract-code": "cd src/lib/Common/Storybook/ExtractedCodeMDX/ && node update.js",
+		"update-testing-exports": "cd src/lib && node testingCompsUpdate.js",
     "update-playground": "cd src/lib/Builder/Playground/Components && node update.js",
-    "prepare-storybook": "npm run update-extract-code && npm run update-playground && tsc -p tsconfig.storybook.json",
+    "prepare-storybook": "npm run update-extract-code && npm run update-testing-exports && npm run update-playground && tsc -p tsconfig.storybook.json",
     "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
     "build-storybook": "npm run prepare-storybook && storybook build",
     "chromatic": "npm run prepare-storybook && npx chromatic --project-token=chpt_8c568868a09ebc7 --force-rebuild"
