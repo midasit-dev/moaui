@@ -46,12 +46,6 @@ writeFileSync('./DraggedComponentRawCode.ts', `${importRawCodes.join('\n')}`);
 //TotalStringV2.tsx 변경
 const totalSringV2 = [];
 for (const info of arrInfos) totalSringV2.push(`\t\t\t\t\t\t\${item.type === ItemTypes.${info.title} ? \`\${extractComponentName(All.${info.title})}\` : ""}`);
-const useStates = [];
-for (const info of arrInfos) useStates.push(`\tconst [${info.title.toLowerCase()}, set${info.title}] = React.useState(false);`);
-const useEffects = [];
-for (const info of arrInfos) useEffects.push(`\t\t\t\tcase ItemTypes.${info.title}: \n\t\t\t\t\tset${info.title}(true);\n\t\t\t\tbreak;`)
-const ComponentCode = [];
-for (const info of arrInfos) ComponentCode.push(`\t\${${info.title.toLowerCase()} ? extractComponentCode(All.${info.title}) : ""}`);
 
 writeFileSync('./TotalStringV2.tsx', `import React from "react";
 import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount, LayoutsInfo } from '../recoil/PlaygroundAtom';
@@ -80,57 +74,235 @@ function extractComponentImport(str:string){
 }
 
 export default function TotalCodeString(){
-  const Sizewidth = useRecoilValue(TemplateWidth);
-  const Sizeheight = useRecoilValue(TemplateHeight);
+	const Sizewidth = useRecoilValue(TemplateWidth);
+	const Sizeheight = useRecoilValue(TemplateHeight);
 	const Codestring = useRecoilValue(CodeString);
 	const Rowcount = useRecoilValue(RowCount);
 	const Columncount = useRecoilValue(ColumnCount);
 	const Layoutsinfo = useRecoilValue(LayoutsInfo);
-${useStates.join('\n')}
-
-	React.useEffect(() => {
-		Layoutsinfo.map((value: any) => {
-			switch(value.type){
-${useEffects.join('\n')}
-				default:
-					break;
-			}
-		});
-	}, [Layoutsinfo]);
-
 
 	const totalCode = \`import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-\${ buttoncomposite || buttoncontained || buttonnegative || buttonnormal || buttonoutlined || buttontext || buttonwidth ? extractComponentImport(All.ButtonContained) : ""}
-\${ checknotrequired || checkrequired || checkgroupcontrolled || checkgroupuncontrolled ? extractComponentImport(All.CheckNotRequired) : ""}
-\${ datagridpagination ? extractComponentImport(All.DataGridPagination) : ""}
-\${ dialoghelpbutton || dialoghelpiconbutton ? extractComponentImport(All.DialogHelpButton) : ""}
-\${ droplistdropdown ? extractComponentImport(All.DropListDropdown) : ""}
-\${ gridcolumn || griditems || gridrow ? extractComponentImport(All.GridColumn) : ""}
-\${ iconadd || iconclose ? extractComponentImport(All.IconAdd) : ""}
-\${ iconbuttonadd || iconbuttonclose ? extractComponentImport(All.IconButtonAdd) : ""}
-\${ listcontrolled || listdynamic || listuncontrolled ? extractComponentImport(All.ListControlled) : ""}
-\${ listitemdefault ? extractComponentImport(All.ListItemDefault) : ""}
-\${ listitembuttondefault ? extractComponentImport(All.ListItemButtonDefault) : ""}
-\${ panelbox || panelshadow || panelstrock ? extractComponentImport(All.PanelBox) : ""}
-\${ radioname ? extractComponentImport(All.RadioName) : ""}
-\${ radiogroupcontrolled || radiogroupuncontrolled ? extractComponentImport(All.RadioGroupControlled) : ""}
-\${ scrollbarscheckgroup || scrollbarslist ? extractComponentImport(All.ScrollbarsCheckGroup) : ""}
-\${ seperatorhorizontal || seperatorvertical ? extractComponentImport(All.SeperatorHorizontal) : ""}
-\${ stackcolumn || stackrow ? extractComponentImport(All.StackColumn) : ""}
-\${ switchlabel ? extractComponentImport(All.SwitchLabel) : ""}
-\${ switchgroupcontrolled || switchgroupuncontrolled ? extractComponentImport(All.SwitchGroupControlled) : ""}
-\${ tablabel || switchgroupuncontrolled ? extractComponentImport(All.TabLabel) : ""}
-\${ tabgrouphorizontal || tabgroupvertical ? extractComponentImport(All.TabGroupHorizontal) : ""}
-\${ tablebody || tablebundle ? extractComponentImport(All.TableBody) : ""}
+\${ Layoutsinfo.map((value: any) => {
+	let extractCode : any = "";
+	if(value.type === ItemTypes.ButtonContained || value.type === ItemTypes.ButtonComposite || value.type === ItemTypes.ButtonNegative || value.type === ItemTypes.ButtonNormal || value.type === ItemTypes.ButtonOutlined || value.type === ItemTypes.ButtonText || value.type === ItemTypes.ButtonWidth)
+		extractCode += extractComponentImport(All.ButtonContained);
+	else if(value.type === ItemTypes.CheckNotRequired || value.type === ItemTypes.CheckRequired || value.type === ItemTypes.CheckGroupControlled || value.type === ItemTypes.CheckGroupUnControlled)
+		extractCode += extractComponentImport(All.CheckNotRequired);
+	else if(value.type === ItemTypes.DataGridPagination)
+		extractCode += extractComponentImport(All.DataGridPagination);
+	else if(value.type === ItemTypes.DialogHelpButton || value.type === ItemTypes.DialogHelpIconButton)
+		extractCode += extractComponentImport(All.DialogHelpButton);
+	else if(value.type === ItemTypes.DropListDropdown)
+		extractCode += extractComponentImport(All.DropListDropdown);
+	else if(value.type === ItemTypes.GridColumn || value.type === ItemTypes.GridItems || value.type === ItemTypes.GridRow)
+		extractCode += extractComponentImport(All.GridColumn);
+	else if(value.type === ItemTypes.IconAdd || value.type === ItemTypes.IconClose)
+		extractCode += extractComponentImport(All.IconAdd);
+	else if(value.type === ItemTypes.IconButtonAdd || value.type === ItemTypes.IconButtonClose)
+		extractCode += extractComponentImport(All.IconButtonAdd);
+	else if(value.type === ItemTypes.ListControlled || value.type === ItemTypes.ListDynamic || value.type === ItemTypes.ListUnControlled)
+		extractCode += extractComponentImport(All.ListControlled);
+	else if(value.type === ItemTypes.ListItemDefault)
+		extractCode += extractComponentImport(All.ListItemDefault);
+	else if(value.type === ItemTypes.ListItemButtonDefault)
+		extractCode += extractComponentImport(All.ListItemButtonDefault);
+	else if(value.type === ItemTypes.PanelBox || value.type === ItemTypes.PanelShadow || value.type === ItemTypes.PanelStrock)
+		extractCode += extractComponentImport(All.PanelBox);
+	else if(value.type === ItemTypes.RadioName)
+		extractCode += extractComponentImport(All.RadioName);
+	else if(value.type === ItemTypes.RadioGroupControlled || value.type === ItemTypes.RadioGroupUnControlled)
+		extractCode += extractComponentImport(All.RadioGroupControlled);
+	else if(value.type === ItemTypes.ScrollbarsCheckGroup || value.type === ItemTypes.ScrollbarsList)
+		extractCode += extractComponentImport(All.ScrollbarsCheckGroup);
+	else if(value.type === ItemTypes.SeperatorHorizontal || value.type === ItemTypes.SeperatorVertical)
+		extractCode += extractComponentImport(All.SeperatorHorizontal);
+	else if(value.type === ItemTypes.StackColumn || value.type === ItemTypes.StackRow)
+		extractCode += extractComponentImport(All.StackColumn);
+	else if(value.type === ItemTypes.SwitchLabel)
+		extractCode += extractComponentImport(All.SwitchLabel);
+	else if(value.type === ItemTypes.SwitchGroupControlled || value.type === ItemTypes.SwitchGroupUnControlled)
+		extractCode += extractComponentImport(All.SwitchGroupControlled);
+	else if(value.type === ItemTypes.TabLabel)
+		extractCode += extractComponentImport(All.TabLabel);
+	else if(value.type === ItemTypes.TabGroupHorizontal || value.type === ItemTypes.TabGroupVertical)
+		extractCode += extractComponentImport(All.TabGroupHorizontal);
+	else if(value.type === ItemTypes.TableBody || value.type === ItemTypes.TableBundle)
+		extractCode += extractComponentImport(All.TableBody);
+	else if(value.type === ItemTypes.TableCell || value.type === ItemTypes.TableHeader || value.type === ItemTypes.TableRow)
+		extractCode += extractComponentImport(All.TableCell);
+	else if(value.type === ItemTypes.TextFieldError || value.type === ItemTypes.TextFieldLabel || value.type === ItemTypes.TextFieldLeft || value.type === ItemTypes.TextFieldRight)
+		extractCode += extractComponentImport(All.TextFieldError);
+	else if(value.type === ItemTypes.TypographyBody1 || value.type === ItemTypes.TypographyBody2 || value.type === ItemTypes.TypographyBody3 || value.type === ItemTypes.TypographyH1 || value.type === ItemTypes.TypographyGroupText)
+		extractCode += extractComponentImport(All.TypographyBody1);
+	else if(value.type === ItemTypes.TendonProfileConverterBottomButtons || value.type === ItemTypes.TendonProfileConverterComposite || value.type === ItemTypes.TendonProfileConverterHelpIconButton || value.type === ItemTypes.TendonProfileConverterList || value.type === ItemTypes.TendonProfileConverterSelectButton || value.type === ItemTypes.TendonProfileConverterUpdateButton)
+		extractCode += extractComponentImport(All.TendonProfileConverterBottomButtons);
+
+	return extractCode;
+})}
 
 function Components(props: any) {
   function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     // do something
   }
 
-${ComponentCode.join('\n')}
+\${ Layoutsinfo.map((value: any) => {
+	let extractCode : any = "";
+	if(value.type === ItemTypes.VerifyDialogDefault)
+		extractCode += extractComponentCode(All.VerifyDialogDefault);
+	else if(value.type === ItemTypes.ButtonComposite)
+		extractCode += extractComponentCode(All.ButtonComposite);
+	else if(value.type === ItemTypes.ButtonContained)
+		extractCode += extractComponentCode(All.ButtonContained);
+	else if(value.type === ItemTypes.ButtonNegative)
+		extractCode += extractComponentCode(All.ButtonNegative);
+	else if(value.type === ItemTypes.ButtonNormal)
+		extractCode += extractComponentCode(All.ButtonNormal);
+	else if(value.type === ItemTypes.ButtonOutlined)
+		extractCode += extractComponentCode(All.ButtonOutlined);
+	else if(value.type === ItemTypes.ButtonText)
+		extractCode += extractComponentCode(All.ButtonText);
+	else if(value.type === ItemTypes.ButtonWidth)
+		extractCode += extractComponentCode(All.ButtonWidth);
+	else if(value.type === ItemTypes.ChartLineAxisLegend)
+		extractCode += extractComponentCode(All.ChartLineAxisLegend);
+	else if(value.type === ItemTypes.ChartLineAxisPointSize)
+		extractCode += extractComponentCode(All.ChartLineAxisPointSize);
+	else if(value.type === ItemTypes.ChartLineAxisTopRight)
+		extractCode += extractComponentCode(All.ChartLineAxisTopRight);
+	else if(value.type === ItemTypes.CheckNotRequired)
+		extractCode += extractComponentCode(All.CheckNotRequired);
+	else if(value.type === ItemTypes.CheckRequired)
+		extractCode += extractComponentCode(All.CheckRequired);
+	else if(value.type === ItemTypes.CheckGroupControlled)
+		extractCode += extractComponentCode(All.CheckGroupControlled);
+	else if(value.type === ItemTypes.CheckGroupUnControlled)
+		extractCode += extractComponentCode(All.CheckGroupUnControlled);
+	else if(value.type === ItemTypes.CodeBlockJavascript)
+		extractCode += extractComponentCode(All.CodeBlockJavascript);
+	else if(value.type === ItemTypes.CodeBlockTypescript)
+		extractCode += extractComponentCode(All.CodeBlockTypescript);
+	else if(value.type === ItemTypes.DataGridPagination)
+		extractCode += extractComponentCode(All.DataGridPagination);
+	else if(value.type === ItemTypes.DialogHelpButton)
+		extractCode += extractComponentCode(All.DialogHelpButton);
+	else if(value.type === ItemTypes.DialogHelpIconButton)
+		extractCode += extractComponentCode(All.DialogHelpIconButton);
+	else if(value.type === ItemTypes.DropListDropdown)
+		extractCode += extractComponentCode(All.DropListDropdown);
+	else if(value.type === ItemTypes.GridColumn)
+		extractCode += extractComponentCode(All.GridColumn);
+	else if(value.type === ItemTypes.GridItems)
+		extractCode += extractComponentCode(All.GridItems);
+	else if(value.type === ItemTypes.GridRow)
+		extractCode += extractComponentCode(All.GridRow);
+	else if(value.type === ItemTypes.IconAdd)
+		extractCode += extractComponentCode(All.IconAdd);
+	else if(value.type === ItemTypes.IconClose)
+		extractCode += extractComponentCode(All.IconClose);
+	else if(value.type === ItemTypes.IconButtonAdd)
+		extractCode += extractComponentCode(All.IconButtonAdd);
+	else if(value.type === ItemTypes.IconButtonClose)
+		extractCode += extractComponentCode(All.IconButtonClose);
+	else if(value.type === ItemTypes.ListControlled)
+		extractCode += extractComponentCode(All.ListControlled);
+	else if(value.type === ItemTypes.ListDynamic)
+		extractCode += extractComponentCode(All.ListDynamic);
+	else if(value.type === ItemTypes.ListTypographyRadio)
+		extractCode += extractComponentCode(All.ListTypographyRadio);
+	else if(value.type === ItemTypes.ListUnControlled)
+		extractCode += extractComponentCode(All.ListUnControlled);
+	else if(value.type === ItemTypes.ListItemDefault)
+		extractCode += extractComponentCode(All.ListItemDefault);
+	else if(value.type === ItemTypes.ListItemButtonDefault)
+		extractCode += extractComponentCode(All.ListItemButtonDefault);
+	else if(value.type === ItemTypes.PanelBox)
+		extractCode += extractComponentCode(All.PanelBox);
+	else if(value.type === ItemTypes.PanelShadow)
+		extractCode += extractComponentCode(All.PanelShadow);
+	else if(value.type === ItemTypes.PanelStrock)
+		extractCode += extractComponentCode(All.PanelStrock);
+	else if(value.type === ItemTypes.PanelTypographyDropList)
+		extractCode += extractComponentCode(All.PanelTypographyDropList);
+	else if(value.type === ItemTypes.PanelTypographyTextField)
+		extractCode += extractComponentCode(All.PanelTypographyTextField);
+	else if(value.type === ItemTypes.RadioName)
+		extractCode += extractComponentCode(All.RadioName);
+	else if(value.type === ItemTypes.RadioGroupControlled)
+		extractCode += extractComponentCode(All.RadioGroupControlled);
+	else if(value.type === ItemTypes.RadioGroupUnControlled)
+		extractCode += extractComponentCode(All.RadioGroupUnControlled);
+	else if(value.type === ItemTypes.ScrollbarsCheckGroup)
+		extractCode += extractComponentCode(All.ScrollbarsCheckGroup);
+	else if(value.type === ItemTypes.ScrollbarsList)
+		extractCode += extractComponentCode(All.ScrollbarsList);
+	else if(value.type === ItemTypes.SeperatorHorizontal)
+		extractCode += extractComponentCode(All.SeperatorHorizontal);
+	else if(value.type === ItemTypes.SeperatorVertical)
+		extractCode += extractComponentCode(All.SeperatorVertical);
+	else if(value.type === ItemTypes.StackColumn)
+		extractCode += extractComponentCode(All.StackColumn);
+	else if(value.type === ItemTypes.StackRow)
+		extractCode += extractComponentCode(All.StackRow);
+	else if(value.type === ItemTypes.SwitchLabel)
+		extractCode += extractComponentCode(All.SwitchLabel);
+	else if(value.type === ItemTypes.SwitchGroupControlled)
+		extractCode += extractComponentCode(All.SwitchGroupControlled);
+	else if(value.type === ItemTypes.SwitchGroupUnControlled)
+		extractCode += extractComponentCode(All.SwitchGroupUnControlled);
+	else if(value.type === ItemTypes.TabLabel)
+		extractCode += extractComponentCode(All.TabLabel);
+	else if(value.type === ItemTypes.TabGroupHorizontal)
+		extractCode += extractComponentCode(All.TabGroupHorizontal);
+	else if(value.type === ItemTypes.TabGroupVertical)
+		extractCode += extractComponentCode(All.TabGroupVertical);
+	else if(value.type === ItemTypes.TabGroupWithDataGrid)
+		extractCode += extractComponentCode(All.TabGroupWithDataGrid);
+	else if(value.type === ItemTypes.TabGroupWithTable)
+		extractCode += extractComponentCode(All.TabGroupWithTable);
+	else if(value.type === ItemTypes.TableBody)
+		extractCode += extractComponentCode(All.TableBody);
+	else if(value.type === ItemTypes.TableBundle)
+		extractCode += extractComponentCode(All.TableBundle);
+	else if(value.type === ItemTypes.TableCell)
+		extractCode += extractComponentCode(All.TableCell);
+	else if(value.type === ItemTypes.TableHeader)
+		extractCode += extractComponentCode(All.TableHeader);
+	else if(value.type === ItemTypes.TableRow)
+		extractCode += extractComponentCode(All.TableRow);
+	else if(value.type === ItemTypes.TextFieldError)
+		extractCode += extractComponentCode(All.TextFieldError);
+	else if(value.type === ItemTypes.TextFieldLabel)
+		extractCode += extractComponentCode(All.TextFieldLabel);
+	else if(value.type === ItemTypes.TextFieldLeft)
+		extractCode += extractComponentCode(All.TextFieldLeft);
+	else if(value.type === ItemTypes.TextFieldRight)
+		extractCode += extractComponentCode(All.TextFieldRight);
+	else if(value.type === ItemTypes.TypographyBody1)
+		extractCode += extractComponentCode(All.TypographyBody1);
+	else if(value.type === ItemTypes.TypographyBody2)
+		extractCode += extractComponentCode(All.TypographyBody2);
+	else if(value.type === ItemTypes.TypographyBody3)
+		extractCode += extractComponentCode(All.TypographyBody3);
+	else if(value.type === ItemTypes.TypographyH1)
+		extractCode += extractComponentCode(All.TypographyH1);
+	else if(value.type === ItemTypes.TypographyGroupText)
+		extractCode += extractComponentCode(All.TypographyGroupText);
+	else if(value.type === ItemTypes.TendonProfileConverterBottomButtons)
+		extractCode += extractComponentCode(All.TendonProfileConverterBottomButtons);
+	else if(value.type === ItemTypes.TendonProfileConverterComposite)
+		extractCode += extractComponentCode(All.TendonProfileConverterComposite);
+	else if(value.type === ItemTypes.TendonProfileConverterHelpIconButton)
+		extractCode += extractComponentCode(All.TendonProfileConverterHelpIconButton);
+	else if(value.type === ItemTypes.TendonProfileConverterList)
+		extractCode += extractComponentCode(All.TendonProfileConverterList);
+	else if(value.type === ItemTypes.TendonProfileConverterSelectButton)
+		extractCode += extractComponentCode(All.TendonProfileConverterSelectButton);
+	else if(value.type === ItemTypes.TendonProfileConverterUpdateButton)
+		extractCode += extractComponentCode(All.TendonProfileConverterUpdateButton);
+	return extractCode;
+})}
 
   return (
     <Box sx={{width: "\${Sizewidth}px", height:"\${Sizeheight}px", p:"0.5rem", border: '1px solid #bebebe'}}>

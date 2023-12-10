@@ -59,7 +59,6 @@ const DropTargetV2 = (props) => {
         const { i, x, y, w, h, type } = item;
         return { i, x, y, w, h, type };
       });
-      console.log("layoutsInfo", layoutsInfo);
       setLayoutsInfo(layoutsInfo);
     }
     setRecoilLayoutsInfo(layouts);

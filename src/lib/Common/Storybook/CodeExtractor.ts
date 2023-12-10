@@ -53,8 +53,6 @@ const transformReadyToUse = (componentString: string): string => {
     props[propName] = propValue;
   }
 
-	console.log('props', props);
-
   // JSX 문자열을 조합
   const propsString = Object.entries(props)
     .map(([key, value]) => `${key}={${value}}`)
