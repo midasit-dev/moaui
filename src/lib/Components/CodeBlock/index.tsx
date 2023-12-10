@@ -29,21 +29,21 @@ interface CodeComponentProps {
 	 * 
 	 * @default false
 	 */
-	hideTitle?: boolean;
+	hidetitle?: string;
 	/**
 	 * The border radius of the code block
 	 * 
 	 * @default 8
 	 */
-	borderRadius?: number;
+	borderradius?: number;
 }
 
 CodeBlock.defaultProps = {
 	children: "",
 	language: "javascript",
 	title: "",
-	hideTitle: false,
-	borderRadius: 8,
+	hidetitle: "false",
+	borderradius: 8,
 }
 /**
  * A code block with syntax highlighting
@@ -67,7 +67,7 @@ function CodeBlock(props: CodeComponentProps){
     const formatCode = async () => {
       try {
         const result = await prettier.format(props.children, {
-          parser: "php",
+          parser: "",
           plugins: [],
           useTabs: true,
           semi: true,
