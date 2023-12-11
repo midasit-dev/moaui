@@ -56,7 +56,7 @@ export type StyledProps = {
 	 */
 	axisTopDecimals?: number;
 	/**
-	 * set a top axis legend
+	 * set a top axis legend (write a axis label!)
 	 */
 	axisTopLegend?: string;
 	/**
@@ -78,9 +78,9 @@ export type StyledProps = {
 	 */
 	axisRightDecimals?: number;
 	/**
-	 * set a right axis legend
+	 * set a right axis legend (write a axis label!)
 	 */
-	axisRightLegend?: string;
+	axisRightLegend?: string; 
 	/**
 	 * set a bottom axis
 	 * 
@@ -100,7 +100,7 @@ export type StyledProps = {
 	 */
 	axisBottomDecimals?: number;
 	/**
-	 * set a bottom axis legend
+	 * set a bottom axis legend (write a axis label!)
 	 */
 	axisBottomLegend?: string;
 	/**
@@ -122,7 +122,7 @@ export type StyledProps = {
 	 */
 	axisLeftDecimals?: number;
 	/**
-	 * set a left axis legend
+	 * set a left axis legend (write a axis label!)
 	 */
 	axisLeftLegend?: string;
 	/**
