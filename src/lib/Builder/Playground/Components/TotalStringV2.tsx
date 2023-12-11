@@ -1,10 +1,7 @@
 import React from "react";
-import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount, LayoutsInfo } from '../recoil/PlaygroundAtom';
+import { TemplateWidth, TemplateHeight, LayoutsInfo } from '../recoil/PlaygroundAtom';
 import { useRecoilValue } from 'recoil';
 import CodeComponent from "../../../Components/CodeBlock";
-import DraggedComponent from "./DraggedComponent";
-import ButtonCode from "../../../Components/Button/Code/Contained.code.tsx?raw";
-// import TextfieldCode from "./Textfield.txt?raw";
 import { ItemTypes } from './ItemTypes';
 import CodeExtractor from "../../../Common/Storybook/CodeExtractor";
 import * as All from "./DraggedComponentRawCode";
@@ -27,9 +24,6 @@ function extractComponentImport(str:string){
 export default function TotalCodeString(){
 	const Sizewidth = useRecoilValue(TemplateWidth);
 	const Sizeheight = useRecoilValue(TemplateHeight);
-	const Codestring = useRecoilValue(CodeString);
-	const Rowcount = useRecoilValue(RowCount);
-	const Columncount = useRecoilValue(ColumnCount);
 	const Layoutsinfo = useRecoilValue(LayoutsInfo);
 
 	function makeImportlist() : string {
@@ -37,7 +31,7 @@ export default function TotalCodeString(){
 			let extractCode : string = "";
 			if(value.type === ItemTypes.ButtonContained || value.type === ItemTypes.ButtonComposite || value.type === ItemTypes.ButtonNegative || value.type === ItemTypes.ButtonNormal || value.type === ItemTypes.ButtonOutlined || value.type === ItemTypes.ButtonText || value.type === ItemTypes.ButtonWidth)
 				extractCode += extractComponentImport(All.ButtonContained);
-			else if(value.type === ItemTypes.CheckNotRequired || value.type === ItemTypes.CheckRequired || value.type === ItemTypes.CheckGroupControlled || value.type === ItemTypes.CheckGroupUnControlled)
+			else if(value.type === ItemTypes.CheckNotRequired || value.type === ItemTypes.CheckRequired || value.type === ItemTypes.CheckGroupStateful || value.type === ItemTypes.CheckGroupUnControlled)
 				extractCode += extractComponentImport(All.CheckNotRequired);
 			else if(value.type === ItemTypes.DataGridPagination)
 				extractCode += extractComponentImport(All.DataGridPagination);
@@ -139,8 +133,8 @@ ${ Layoutsinfo.map((value: any) => {
 		extractCode += extractComponentCode(All.CheckNotRequired);
 	else if(value.type === ItemTypes.CheckRequired)
 		extractCode += extractComponentCode(All.CheckRequired);
-	else if(value.type === ItemTypes.CheckGroupControlled)
-		extractCode += extractComponentCode(All.CheckGroupControlled);
+	else if(value.type === ItemTypes.CheckGroupStateful)
+		extractCode += extractComponentCode(All.CheckGroupStateful);
 	else if(value.type === ItemTypes.CheckGroupUnControlled)
 		extractCode += extractComponentCode(All.CheckGroupUnControlled);
 	else if(value.type === ItemTypes.CodeBlockJavascript)
@@ -298,7 +292,7 @@ ${ Layoutsinfo.map((value: any) => {
 						${item.type === ItemTypes.ChartLineAxisTopRight ? `${extractComponentName(All.ChartLineAxisTopRight)}` : ""}
 						${item.type === ItemTypes.CheckNotRequired ? `${extractComponentName(All.CheckNotRequired)}` : ""}
 						${item.type === ItemTypes.CheckRequired ? `${extractComponentName(All.CheckRequired)}` : ""}
-						${item.type === ItemTypes.CheckGroupControlled ? `${extractComponentName(All.CheckGroupControlled)}` : ""}
+						${item.type === ItemTypes.CheckGroupStateful ? `${extractComponentName(All.CheckGroupStateful)}` : ""}
 						${item.type === ItemTypes.CheckGroupUnControlled ? `${extractComponentName(All.CheckGroupUnControlled)}` : ""}
 						${item.type === ItemTypes.CodeBlockJavascript ? `${extractComponentName(All.CodeBlockJavascript)}` : ""}
 						${item.type === ItemTypes.CodeBlockTypescript ? `${extractComponentName(All.CodeBlockTypescript)}` : ""}
@@ -310,7 +304,10 @@ ${ Layoutsinfo.map((value: any) => {
 						${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}
 						${item.type === ItemTypes.GridRow ? `${extractComponentName(All.GridRow)}` : ""}
 						${item.type === ItemTypes.GuideBoxBasic300x300 ? `${extractComponentName(All.GuideBoxBasic300x300)}` : ""}
-						${item.type === ItemTypes.GuideBoxLayoutSample1 ? `${extractComponentName(All.GuideBoxLayoutSample1)}` : ""}
+						${item.type === ItemTypes.GuideBoxLayout1 ? `${extractComponentName(All.GuideBoxLayout1)}` : ""}
+						${item.type === ItemTypes.GuideBoxLayout2 ? `${extractComponentName(All.GuideBoxLayout2)}` : ""}
+						${item.type === ItemTypes.GuideBoxLayout3 ? `${extractComponentName(All.GuideBoxLayout3)}` : ""}
+						${item.type === ItemTypes.GuideBoxLayout4 ? `${extractComponentName(All.GuideBoxLayout4)}` : ""}
 						${item.type === ItemTypes.GuideBoxRowDirection ? `${extractComponentName(All.GuideBoxRowDirection)}` : ""}
 						${item.type === ItemTypes.IconAdd ? `${extractComponentName(All.IconAdd)}` : ""}
 						${item.type === ItemTypes.IconClose ? `${extractComponentName(All.IconClose)}` : ""}
@@ -350,6 +347,7 @@ ${ Layoutsinfo.map((value: any) => {
 						${item.type === ItemTypes.TableCell ? `${extractComponentName(All.TableCell)}` : ""}
 						${item.type === ItemTypes.TableHeader ? `${extractComponentName(All.TableHeader)}` : ""}
 						${item.type === ItemTypes.TableRow ? `${extractComponentName(All.TableRow)}` : ""}
+						${item.type === ItemTypes.TableWithTitle ? `${extractComponentName(All.TableWithTitle)}` : ""}
 						${item.type === ItemTypes.TextFieldError ? `${extractComponentName(All.TextFieldError)}` : ""}
 						${item.type === ItemTypes.TextFieldLabel ? `${extractComponentName(All.TextFieldLabel)}` : ""}
 						${item.type === ItemTypes.TextFieldLeft ? `${extractComponentName(All.TextFieldLeft)}` : ""}

@@ -54,9 +54,6 @@ writeFileSync('./TotalStringV2.tsx', `import React from "react";
 import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount, LayoutsInfo } from '../recoil/PlaygroundAtom';
 import { useRecoilValue } from 'recoil';
 import CodeComponent from "../../../Components/CodeBlock";
-import DraggedComponent from "./DraggedComponent";
-import ButtonCode from "../../../Components/Button/Code/Contained.code.tsx?raw";
-// import TextfieldCode from "./Textfield.txt?raw";
 import { ItemTypes } from './ItemTypes';
 import CodeExtractor from "../../../Common/Storybook/CodeExtractor";
 import * as All from "./DraggedComponentRawCode";
@@ -79,9 +76,6 @@ function extractComponentImport(str:string){
 export default function TotalCodeString(){
 	const Sizewidth = useRecoilValue(TemplateWidth);
 	const Sizeheight = useRecoilValue(TemplateHeight);
-	const Codestring = useRecoilValue(CodeString);
-	const Rowcount = useRecoilValue(RowCount);
-	const Columncount = useRecoilValue(ColumnCount);
 	const Layoutsinfo = useRecoilValue(LayoutsInfo);
 
 	function makeImportlist() : string {
@@ -89,7 +83,7 @@ export default function TotalCodeString(){
 			let extractCode : string = "";
 			if(value.type === ItemTypes.ButtonContained || value.type === ItemTypes.ButtonComposite || value.type === ItemTypes.ButtonNegative || value.type === ItemTypes.ButtonNormal || value.type === ItemTypes.ButtonOutlined || value.type === ItemTypes.ButtonText || value.type === ItemTypes.ButtonWidth)
 				extractCode += extractComponentImport(All.ButtonContained);
-			else if(value.type === ItemTypes.CheckNotRequired || value.type === ItemTypes.CheckRequired || value.type === ItemTypes.CheckGroupControlled || value.type === ItemTypes.CheckGroupUnControlled)
+			else if(value.type === ItemTypes.CheckNotRequired || value.type === ItemTypes.CheckRequired || value.type === ItemTypes.CheckGroupStateful || value.type === ItemTypes.CheckGroupUnControlled)
 				extractCode += extractComponentImport(All.CheckNotRequired);
 			else if(value.type === ItemTypes.DataGridPagination)
 				extractCode += extractComponentImport(All.DataGridPagination);
@@ -191,8 +185,8 @@ function Components(props: any) {
 		extractCode += extractComponentCode(All.CheckNotRequired);
 	else if(value.type === ItemTypes.CheckRequired)
 		extractCode += extractComponentCode(All.CheckRequired);
-	else if(value.type === ItemTypes.CheckGroupControlled)
-		extractCode += extractComponentCode(All.CheckGroupControlled);
+	else if(value.type === ItemTypes.CheckGroupStateful)
+		extractCode += extractComponentCode(All.CheckGroupStateful);
 	else if(value.type === ItemTypes.CheckGroupUnControlled)
 		extractCode += extractComponentCode(All.CheckGroupUnControlled);
 	else if(value.type === ItemTypes.CodeBlockJavascript)

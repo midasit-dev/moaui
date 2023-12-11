@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckGroup, Check, Typography } from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsCheckGroupUnControlled = () => {
+const ComponentsCheckGroupControlled = () => {
 	const [values, setValues] = React.useState({
 		"test1" : true,
 		"test2" : false,
@@ -27,4 +27,4 @@ const ComponentsCheckGroupUnControlled = () => {
   );
 }/**${comma}*/
 
-export default ComponentsCheckGroupUnControlled;
+export default ComponentsCheckGroupControlled;

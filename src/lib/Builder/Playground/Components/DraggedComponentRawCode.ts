@@ -11,7 +11,7 @@ export { default as ChartLineAxisPointSize } from '../../../Components/ChartLine
 export { default as ChartLineAxisTopRight } from '../../../Components/ChartLine/Code/AxisTopRight.code.tsx?raw';
 export { default as CheckNotRequired } from '../../../Components/Check/Code/NotRequired.code.tsx?raw';
 export { default as CheckRequired } from '../../../Components/Check/Code/Required.code.tsx?raw';
-export { default as CheckGroupControlled } from '../../../Components/CheckGroup/Code/Controlled.code.tsx?raw';
+export { default as CheckGroupStateful } from '../../../Components/CheckGroup/Code/Stateful.code.tsx?raw';
 export { default as CheckGroupUnControlled } from '../../../Components/CheckGroup/Code/UnControlled.code.tsx?raw';
 export { default as CodeBlockJavascript } from '../../../Components/CodeBlock/Code/Javascript.code.tsx?raw';
 export { default as CodeBlockTypescript } from '../../../Components/CodeBlock/Code/Typescript.code.tsx?raw';
@@ -23,7 +23,10 @@ export { default as GridColumn } from '../../../Components/Grid/Code/Column.code
 export { default as GridItems } from '../../../Components/Grid/Code/Items.code.tsx?raw';
 export { default as GridRow } from '../../../Components/Grid/Code/Row.code.tsx?raw';
 export { default as GuideBoxBasic300x300 } from '../../../Components/GuideBox/Code/Basic300x300.code.tsx?raw';
-export { default as GuideBoxLayoutSample1 } from '../../../Components/GuideBox/Code/LayoutSample1.code.tsx?raw';
+export { default as GuideBoxLayout1 } from '../../../Components/GuideBox/Code/Layout1.code.tsx?raw';
+export { default as GuideBoxLayout2 } from '../../../Components/GuideBox/Code/Layout2.code.tsx?raw';
+export { default as GuideBoxLayout3 } from '../../../Components/GuideBox/Code/Layout3.code.tsx?raw';
+export { default as GuideBoxLayout4 } from '../../../Components/GuideBox/Code/Layout4.code.tsx?raw';
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code.tsx?raw';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code.tsx?raw';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code.tsx?raw';
@@ -63,6 +66,7 @@ export { default as TableBundle } from '../../../Components/Table/Code/Bundle.co
 export { default as TableCell } from '../../../Components/Table/Code/Cell.code.tsx?raw';
 export { default as TableHeader } from '../../../Components/Table/Code/Header.code.tsx?raw';
 export { default as TableRow } from '../../../Components/Table/Code/Row.code.tsx?raw';
+export { default as TableWithTitle } from '../../../Components/Table/Code/WithTitle.code.tsx?raw';
 export { default as TextFieldError } from '../../../Components/TextField/Code/Error.code.tsx?raw';
 export { default as TextFieldLabel } from '../../../Components/TextField/Code/Label.code.tsx?raw';
 export { default as TextFieldLeft } from '../../../Components/TextField/Code/Left.code.tsx?raw';
@@ -72,9 +76,9 @@ export { default as TypographyBody2 } from '../../../Components/Typography/Code/
 export { default as TypographyBody3 } from '../../../Components/Typography/Code/Body3.code.tsx?raw';
 export { default as TypographyH1 } from '../../../Components/Typography/Code/H1.code.tsx?raw';
 export { default as TypographyGroupText } from '../../../Components/TypographyGroup/Code/Text.code.tsx?raw';
-export { default as TendonProfileConverterBottomButtons } from '../../../Templates/PluginItems/TendonProfileConverter/Code/BottomButtons.code.tsx?raw';
-export { default as TendonProfileConverterComposite } from '../../../Templates/PluginItems/TendonProfileConverter/Code/Composite.code.tsx?raw';
-export { default as TendonProfileConverterHelpIconButton } from '../../../Templates/PluginItems/TendonProfileConverter/Code/HelpIconButton.code.tsx?raw';
-export { default as TendonProfileConverterList } from '../../../Templates/PluginItems/TendonProfileConverter/Code/List.code.tsx?raw';
-export { default as TendonProfileConverterSelectButton } from '../../../Templates/PluginItems/TendonProfileConverter/Code/SelectButton.code.tsx?raw';
-export { default as TendonProfileConverterUpdateButton } from '../../../Templates/PluginItems/TendonProfileConverter/Code/UpdateButton.code.tsx?raw';
+export { default as TendonProfileConverterBottomButtons } from '../../../Templates/TendonProfileConverter/Code/BottomButtons.code.tsx?raw';
+export { default as TendonProfileConverterComposite } from '../../../Templates/TendonProfileConverter/Code/Composite.code.tsx?raw';
+export { default as TendonProfileConverterHelpIconButton } from '../../../Templates/TendonProfileConverter/Code/HelpIconButton.code.tsx?raw';
+export { default as TendonProfileConverterList } from '../../../Templates/TendonProfileConverter/Code/List.code.tsx?raw';
+export { default as TendonProfileConverterSelectButton } from '../../../Templates/TendonProfileConverter/Code/SelectButton.code.tsx?raw';
+export { default as TendonProfileConverterUpdateButton } from '../../../Templates/TendonProfileConverter/Code/UpdateButton.code.tsx?raw';

@@ -185,7 +185,7 @@ const CheckGroupCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
-				<CustomDraggableComponent itemType={ItemTypes.CheckGroupControlled}>Controlled</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.CheckGroupStateful}>Stateful</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CheckGroupUnControlled}>UnControlled</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -317,7 +317,10 @@ const GuideBoxCategory: React.FC<{}> = () => (
 				width: '188px',
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxBasic300x300}>Basic300x300</CustomDraggableComponent>
-				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayoutSample1}>LayoutSample1</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout1}>Layout1</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout2}>Layout2</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout3}>Layout3</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout4}>Layout4</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxRowDirection}>RowDirection</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -677,6 +680,7 @@ const TableCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.TableCell}>Cell</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TableHeader}>Header</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TableRow}>Row</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TableWithTitle}>WithTitle</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -762,7 +766,7 @@ const TendonProfileConverterCategory: React.FC<{}> = () => (
 				alignItems: 'center',
 				margin: '15 0 10 0',
 			}}>
-				<h4>PLUGINITEMS</h4>
+				<h4>TEMPLATES</h4>
 			</div>
 			<div style={{ 
 				width: 200, 
@@ -836,8 +840,8 @@ export const CheckNotRequired =
 export const CheckRequired = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CheckRequired}>CheckRequired</CustomDraggableComponent>;
 
-export const CheckGroupControlled = 
-	() => <CustomDraggableComponent itemType={ItemTypes.CheckGroupControlled}>CheckGroupControlled</CustomDraggableComponent>;
+export const CheckGroupStateful = 
+	() => <CustomDraggableComponent itemType={ItemTypes.CheckGroupStateful}>CheckGroupStateful</CustomDraggableComponent>;
 
 export const CheckGroupUnControlled = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CheckGroupUnControlled}>CheckGroupUnControlled</CustomDraggableComponent>;
@@ -872,8 +876,17 @@ export const GridRow =
 export const GuideBoxBasic300x300 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxBasic300x300}>GuideBoxBasic300x300</CustomDraggableComponent>;
 
-export const GuideBoxLayoutSample1 = 
-	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayoutSample1}>GuideBoxLayoutSample1</CustomDraggableComponent>;
+export const GuideBoxLayout1 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout1}>GuideBoxLayout1</CustomDraggableComponent>;
+
+export const GuideBoxLayout2 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout2}>GuideBoxLayout2</CustomDraggableComponent>;
+
+export const GuideBoxLayout3 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout3}>GuideBoxLayout3</CustomDraggableComponent>;
+
+export const GuideBoxLayout4 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout4}>GuideBoxLayout4</CustomDraggableComponent>;
 
 export const GuideBoxRowDirection = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxRowDirection}>GuideBoxRowDirection</CustomDraggableComponent>;
@@ -991,6 +1004,9 @@ export const TableHeader =
 
 export const TableRow = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TableRow}>TableRow</CustomDraggableComponent>;
+
+export const TableWithTitle = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TableWithTitle}>TableWithTitle</CustomDraggableComponent>;
 
 export const TextFieldError = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldError}>TextFieldError</CustomDraggableComponent>;

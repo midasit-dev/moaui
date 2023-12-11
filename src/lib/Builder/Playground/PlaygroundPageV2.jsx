@@ -200,6 +200,30 @@ const DropTargetV2 = (props) => {
         type: componentType
       };
     }
+    else if(componentType === ItemTypes.CheckRequired){
+      newItem = {
+        i: newItemId,
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 4,
+        h: 1,
+        maxH: 1,
+        minW: 3,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.CheckGroupStateful){
+      newItem = {
+        i: newItemId,
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 4,
+        h: 1,
+        maxH: 1,
+        minW: 3,
+        type: componentType
+      };
+    }
     else {
       newItem = {
         i: newItemId, // 혹은 다른 고유한 ID 생성 로직

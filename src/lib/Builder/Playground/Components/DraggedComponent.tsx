@@ -18,7 +18,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.ChartLineAxisTopRight: return <All.ChartLineAxisTopRight />;
 		case ItemTypes.CheckNotRequired: return <All.CheckNotRequired />;
 		case ItemTypes.CheckRequired: return <All.CheckRequired />;
-		case ItemTypes.CheckGroupControlled: return <All.CheckGroupControlled />;
+		case ItemTypes.CheckGroupStateful: return <All.CheckGroupStateful />;
 		case ItemTypes.CheckGroupUnControlled: return <All.CheckGroupUnControlled />;
 		case ItemTypes.CodeBlockJavascript: return <All.CodeBlockJavascript />;
 		case ItemTypes.CodeBlockTypescript: return <All.CodeBlockTypescript />;
@@ -30,7 +30,10 @@ function DraggedComponent(props: any){
 		case ItemTypes.GridItems: return <All.GridItems />;
 		case ItemTypes.GridRow: return <All.GridRow />;
 		case ItemTypes.GuideBoxBasic300x300: return <All.GuideBoxBasic300x300 />;
-		case ItemTypes.GuideBoxLayoutSample1: return <All.GuideBoxLayoutSample1 />;
+		case ItemTypes.GuideBoxLayout1: return <All.GuideBoxLayout1 />;
+		case ItemTypes.GuideBoxLayout2: return <All.GuideBoxLayout2 />;
+		case ItemTypes.GuideBoxLayout3: return <All.GuideBoxLayout3 />;
+		case ItemTypes.GuideBoxLayout4: return <All.GuideBoxLayout4 />;
 		case ItemTypes.GuideBoxRowDirection: return <All.GuideBoxRowDirection />;
 		case ItemTypes.IconAdd: return <All.IconAdd />;
 		case ItemTypes.IconClose: return <All.IconClose />;
@@ -70,6 +73,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.TableCell: return <All.TableCell />;
 		case ItemTypes.TableHeader: return <All.TableHeader />;
 		case ItemTypes.TableRow: return <All.TableRow />;
+		case ItemTypes.TableWithTitle: return <All.TableWithTitle />;
 		case ItemTypes.TextFieldError: return <All.TextFieldError />;
 		case ItemTypes.TextFieldLabel: return <All.TextFieldLabel />;
 		case ItemTypes.TextFieldLeft: return <All.TextFieldLeft />;
