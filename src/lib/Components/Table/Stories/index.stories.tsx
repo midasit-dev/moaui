@@ -5,7 +5,7 @@ import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { BundleCode, HeaderCode, BodyCode, CellCode, RowCode } from '../Code';
+import { BundleCode, HeaderCode, BodyCode, CellCode, RowCode, WithTitleCode } from '../Code';
 
 const meta = {
   title: 'Components/Table',
@@ -25,6 +25,7 @@ export const Header = LiveEditStory(cleanMask(HeaderCode));
 export const Body = LiveEditStory(cleanMask(BodyCode));
 export const Cell = LiveEditStory(cleanMask(CellCode));
 export const Row = LiveEditStory(cleanMask(RowCode));
+export const WithTitle = LiveEditStory(cleanMask(WithTitleCode));
 
 export const Sample: Story = {
 	args: {

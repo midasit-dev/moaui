@@ -4,9 +4,9 @@ GuideBox.defaultProps = {
 	show: false,
 	width: 'inherit',
 	height: 'auto',
-	itemSpacing: 2,
+	itemSpacing: 1,
 	itemDirection: 'column',
-	fill: '0'
+	fill: '1'
 } as StyledProps;
 
 /**

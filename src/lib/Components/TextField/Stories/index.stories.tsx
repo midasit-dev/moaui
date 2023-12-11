@@ -7,7 +7,7 @@ import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 import { LeftCode, RightCode, LabelCode, ErrorCode } from '../Code';
 
 const meta = {
-  title: 'Components/Textfield',
+  title: 'Components/TextField',
   component: Textfield,
 	tags: ['autodocs'],
   parameters: { 

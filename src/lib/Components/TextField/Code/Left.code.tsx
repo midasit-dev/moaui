@@ -1,17 +1,27 @@
-import { TextField } from "@midasit-dev/moaui"; /**${comma}*/
+import { TextField } from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsTextFieldLeft = () => {
+const ComponentsTextFieldLeft = ({
+	width = '100px',/**${props-seperator}*/
+	placeholder = 'placeholder',/**${props-seperator}*/
+	title = 'title',/**${props-seperator}*/
+	titlePosition = 'left',/**${props-seperator}*/
+	disabled = false,/**${props-seperator}*/
+	defaultValue = '',/**${props-seperator}*/
+	error = false,/**${props-seperator}*/
+	spacing = 2,/**${props-seperator}*/
+}: any) => {
   return (
 		<TextField 
-			width="100px"
-			placeholder="placeholder"
-			title="title"
-			titlePosition="left"
-			disabled={false}
-			defaultValue=""
-			error={false}
+			width={width}
+			placeholder={placeholder}
+			title={title}
+			titlePosition={titlePosition}
+			disabled={disabled}
+			defaultValue={defaultValue}
+			error={error}
+			spacing={spacing}
 		/>
   );
-}; /**${comma}*/
+};/**${comma}*/
 
 export default ComponentsTextFieldLeft;

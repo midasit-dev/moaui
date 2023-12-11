@@ -1,6 +1,6 @@
 import { Button } from "@midasit-dev/moaui"; /**${comma}*/
 
-const TemplatesPluginItemsTPCUpdateButton = () => {
+const TemplatesTendonProfileConverterUpdateButton = () => {
   return (
     <Button
 			color="negative"
@@ -11,4 +11,4 @@ const TemplatesPluginItemsTPCUpdateButton = () => {
   );
 }; /**${comma}*/
 
-export default TemplatesPluginItemsTPCUpdateButton;
+export default TemplatesTendonProfileConverterUpdateButton;

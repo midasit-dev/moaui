@@ -4,8 +4,12 @@ import { Check } from "../../..";
 import Exlpore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { ControlledCode, UnControlledCode } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { 
+	ControlledCode, 
+	UnControlledCode,
+	StatefulCode,
+} from '../Code';
 
 const meta = {
   title: 'Components/CheckGroup',
@@ -22,6 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Controlled = LiveEditStory(cleanMask(ControlledCode));
 export const UnControlled = LiveEditStory(cleanMask(UnControlledCode));
+export const Stateful = LiveEditStory(cleanMask(StatefulCode));
 
 export const Sample: Story = {
 	args: {

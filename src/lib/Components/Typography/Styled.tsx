@@ -102,6 +102,10 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * @default left
 	 */
 	textAlign: "center" | "left";
+	/**
+	 * Set the flexItem
+	 */
+	flexItem?: boolean;
 }
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -115,6 +119,8 @@ const StyledComponent = styled((props: StyledProps) => {
 				...MarginProps(props),
 				...PaddingProps(props),
 				textAlign: textAlign,
+				alignItems: textAlign,
+				display: props.flexItem ? 'flex' : 'block',
 			}}
 			color={FontColor.selector(color)}
 		>

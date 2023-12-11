@@ -1,7 +1,7 @@
 import React from 'react'; /**${comma}*/
 import { Dialog, IconButton, Icon, Typography, Button, Stack } from "@midasit-dev/moaui"; /**${comma}*/
 
-const TemplatesPluginItemsTPCHelpIconButton = () => {
+const TemplatesTendonProfileConverterHelpIconButton = () => {
 	const [open, setOpen] = React.useState(false);
 
 	const HelpDialog = (props: any) => {
@@ -63,4 +63,4 @@ const TemplatesPluginItemsTPCHelpIconButton = () => {
   );
 }; /**${comma}*/
 
-export default TemplatesPluginItemsTPCHelpIconButton;
+export default TemplatesTendonProfileConverterHelpIconButton;

@@ -41,13 +41,13 @@ const ComponentsGuideBoxLayoutSample1 = () => {
 				<GuideBox tag="Chart1" show={visiable} fill='2' itemSpacing={1}>
 					<GuideBox tag="Temperature Gradient" show={visiable} width={300} {...title_h} fill='3'>
 					</GuideBox>
-					<GuideBox tag="ChartLine" show={visiable} width={302} height={352} fill='3'>
+					<GuideBox tag="ChartLine" show={visiable} height={352} fill='3'>
 					</GuideBox>
 				</GuideBox>
 				<GuideBox tag="Chart2" show={visiable} fill='2' itemSpacing={1}>
 					<GuideBox tag="Self-Equilibrating Stresses" show={visiable} width={300} {...title_h} fill='3'>
 					</GuideBox>
-					<GuideBox tag="ChartLine" show={visiable} width={302} height={352} fill='3'>
+					<GuideBox tag="ChartLine" show={visiable} height={352} fill='3'>
 					</GuideBox>
 				</GuideBox>
 			</GuideBox>
@@ -58,7 +58,7 @@ const ComponentsGuideBoxLayoutSample1 = () => {
 				</GuideBox>
 				<GuideBox tag="Space" show={visiable} width={250} fill='2'>
 				</GuideBox>
-				<GuideBox tag="Right Buttons" show={visiable} width={500} fill='2' itemSpacing={1} itemDirection='row' itemHorizontalAlign='right'>
+				<GuideBox tag="Right Buttons" show={visiable} width={496} fill='2' itemSpacing={1} itemDirection='row' itemHorizontalAlign='right'>
 					<GuideBox tag="Typography" show={visiable} width={350} fill='4' />
 					<GuideBox tag="Import Section Button" show={visiable} width={80} height={30} fill='4' />
 				</GuideBox>

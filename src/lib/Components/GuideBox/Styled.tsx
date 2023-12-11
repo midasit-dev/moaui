@@ -10,19 +10,29 @@ import { Typography, Stack, Color, Seperator, Button } from "../..";
 
 export type StyledProps = {
 	/**
+	 * children of guide box
+	 */
+	children?: React.ReactNode;
+	/**
 	 * tag of guide box
 	 */
 	tag?: string;
-  /**
-   * height of block
-   *
-   * @default 100%
-   */
-  height?: number | string;
 	/**
 	 * show guide box backgroundColor
 	 */
 	show?: boolean;
+	/**
+	 * width of block
+	 *
+	 * @default inherit
+	 */
+	width?: number | string;
+  /**
+   * height of block
+   *
+   * @default auto
+   */
+  height?: number | string;
   /**
    * background color of guide box
    *
@@ -46,14 +56,12 @@ export type StyledProps = {
   /**
    * guide box item align horizontal option
    */
-  itemHorizontalAlign?: 'left' | 'center' | 'right';
+  itemHorizontalAlign?: 'left' | 'center' | 'right' | 'space-between';
 	/**
 	 * guide box item align veritcal option
 	 */
 	itemVerticalAlign?: 'top' | 'center' | 'bottom';
-} & BoxProps &
-  MarginTypes &
-  PaddingTypes;
+} & MarginTypes & PaddingTypes;
 
 const CustomTooptip = styled(({ className, ...props }: TooltipProps) => (
 	<Tooltip {...props} classes={{ popper: className }} />
@@ -150,10 +158,10 @@ const getHorizontalAlign = (props: StyledProps): string => {
 	if (props.itemHorizontalAlign) {
 		if (props.itemHorizontalAlign === 'left') {
 			return 'flex-start';
-		} else if (props.itemHorizontalAlign === 'center') {
-			return 'center';
 		} else if (props.itemHorizontalAlign === 'right') {
 			return 'flex-end';
+		} else {
+			return props.itemHorizontalAlign;
 		}
 	}
 
@@ -168,10 +176,10 @@ const getVerticalAlign = (props: StyledProps): string => {
 	if (props.itemVerticalAlign) {
 		if (props.itemVerticalAlign === 'top') {
 			return 'flex-start';
-		} else if (props.itemVerticalAlign === 'center') {
-			return 'center';
 		} else if (props.itemVerticalAlign === 'bottom') {
 			return 'flex-end';
+		} else {
+			return props.itemVerticalAlign;
 		}
 	}
 
@@ -211,14 +219,14 @@ const GuideBox = (props: StyledProps) => {
 	const [open, setOpen] = React.useState(false);
 	const handleTooltipToggle = (e: any) => {
 		if (!props.show) return;
+		e.preventDefault();
 		setOpen(!open);
 		e.stopPropagation();
-		e.preventDefault();
 	}
 	const handleTooltipClose = (e: any) => {
+		e.preventDefault();
 		setOpen(false);
 		e.stopPropagation();
-		e.preventDefault();
 	}
 
 	return (
@@ -268,27 +276,64 @@ const GuideBox = (props: StyledProps) => {
       TransitionComponent={Zoom}
       open={open}
     >
-      <Box
-        ref={boxRef}
-        {...props}
-        sx={{
-          ...MarginProps(props),
-          ...PaddingProps(props),
-          backgroundColor: getBackgroundColor(props),
-        }}
-        display={"flex"}
-        overflow={"hidden"}
-        justifyContent={getHorizontalAlign(props)}
-        alignItems={getVerticalAlign(props)}
-        onClick={handleTooltipToggle}
-      >
-        <Stack
-          direction={props.itemDirection || "column"}
-          spacing={props.itemSpacing ? props.itemSpacing : props.padding}
-        >
-          {props.children}
-        </Stack>
-      </Box>
+			{/** (1)  space-between 일 경우 or (2) 일반적인 케이스 일 경우 */}
+			{props.itemHorizontalAlign === 'space-between' ?
+				<Box
+					ref={boxRef}
+					{...props}
+					sx={{
+						...MarginProps(props),
+						...PaddingProps(props),
+						backgroundColor: getBackgroundColor(props),
+						opacity: open ? 0.5 : 1,
+					}}
+					overflow={"hidden"}
+					onContextMenu={handleTooltipToggle}
+				>
+					<Stack
+						direction={props.itemDirection || "column"}
+						spacing={props.itemSpacing}
+						display={"flex"}
+						justifyContent={getHorizontalAlign(props)}
+						alignItems={getVerticalAlign(props)}
+					>
+						{
+							props.children && 
+								React.Children.map(props.children, (child, index) => (
+									<React.Fragment key={index}>{child}</React.Fragment>
+								))
+						}
+					</Stack>
+				</Box>			
+			:
+				<Box
+					ref={boxRef}
+					{...props}
+					sx={{
+						...MarginProps(props),
+						...PaddingProps(props),
+						backgroundColor: getBackgroundColor(props),
+						opacity: open ? 0.5 : 1,
+					}}
+					overflow={"hidden"}
+					onContextMenu={handleTooltipToggle}
+					display={"flex"}
+					justifyContent={getHorizontalAlign(props)}
+					alignItems={getVerticalAlign(props)}
+				>
+					<Stack
+						direction={props.itemDirection || "column"}
+						spacing={props.itemSpacing}
+					>
+						{
+							props.children && 
+								React.Children.map(props.children, (child, index) => (
+									<React.Fragment key={index}>{child}</React.Fragment>
+								))
+						}
+					</Stack>
+				</Box>
+			}
     </CustomTooptip>
   );
 }

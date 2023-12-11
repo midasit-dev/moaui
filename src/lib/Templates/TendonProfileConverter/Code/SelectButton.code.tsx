@@ -1,6 +1,6 @@
 import { Button } from "@midasit-dev/moaui"; /**${comma}*/
 
-const TemplatesPluginItemsTPCSelectButton = () => {
+const TemplatesTendonProfileConverterSelectButton = () => {
   return (
     <Button
 			variant='text'
@@ -12,4 +12,4 @@ const TemplatesPluginItemsTPCSelectButton = () => {
   );
 }; /**${comma}*/
 
-export default TemplatesPluginItemsTPCSelectButton;
+export default TemplatesTendonProfileConverterSelectButton;

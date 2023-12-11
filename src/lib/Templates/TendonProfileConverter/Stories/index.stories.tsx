@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 
-import LiveEditStory from "../../../../Common/Storybook/LiveEditStory";
-import { cleanMask } from "../../../../Common/Storybook/CodeExtractor";
+import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
+import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 import { 
 	CompositeCode, 
 	UpdateButtonCode,
@@ -12,7 +12,7 @@ import {
 } from "../Code";
 
 const meta = {
-  title: "Templates/PluginItems/TendonProfileConverter",
+  title: "Templates/TendonProfileConverter",
   parameters: {
     layout: "centered",
   },
