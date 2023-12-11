@@ -85,8 +85,123 @@ const DropTargetV2 = (props) => {
     // 예: 새 아이템을 레이아웃에 추가합니다.
     const componentType = _event.dataTransfer.getData("type");
     const newItemId = new Date().getTime().toString();
-    // if(componentType === ItemTypes.BUTTON){
-      const newItem = {
+    let newItem = {};
+    if(componentType === ItemTypes.ButtonContained){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 3, // 여기서는 가로 2개 단위로 가정
+        h: 1, // 여기서는 세로 1개 단위로 가정
+        maxH: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ButtonNegative){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 4, // 여기서는 가로 2개 단위로 가정
+        h: 1, // 여기서는 세로 1개 단위로 가정
+        maxH: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ButtonNormal){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 4, // 여기서는 가로 2개 단위로 가정
+        h: 1, // 여기서는 세로 1개 단위로 가정
+        maxH: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ButtonOutlined){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 3, // 여기서는 가로 2개 단위로 가정
+        h: 1, // 여기서는 세로 1개 단위로 가정
+        maxH: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ButtonText){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 3, // 여기서는 가로 2개 단위로 가정
+        h: 1, // 여기서는 세로 1개 단위로 가정
+        maxH: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ButtonWidth){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 3, // 여기서는 가로 2개 단위로 가정
+        h: 1, // 여기서는 세로 1개 단위로 가정
+        maxH: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ChartLineAxisLegend){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 5, // 여기서는 가로 2개 단위로 가정
+        h: 10, // 여기서는 세로 1개 단위로 가정
+        minH: 10,
+        minW: 5,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ChartLineAxisPointSize){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 5, // 여기서는 가로 2개 단위로 가정
+        h: 10, // 여기서는 세로 1개 단위로 가정
+        minH: 10,
+        minW: 5,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.ChartLineAxisTopRight){
+      newItem = {
+        i: newItemId, // 혹은 다른 고유한 ID 생성 로직
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 8, // 여기서는 가로 2개 단위로 가정
+        h: 10, // 여기서는 세로 1개 단위로 가정
+        minH: 10,
+        minW: 8,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.CheckNotRequired){
+      newItem = {
+        i: newItemId,
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 4,
+        h: 1,
+        maxH: 1,
+        minW: 3,
+        type: componentType
+      };
+    }
+    else {
+      newItem = {
         i: newItemId, // 혹은 다른 고유한 ID 생성 로직
         x: layoutItem.x,
         y: layoutItem.y,
@@ -95,7 +210,7 @@ const DropTargetV2 = (props) => {
         type: componentType
         // 필요한 경우 추가적인 속성 설정
       };
-    // }
+    }
     // 레이아웃 상태 업데이트
     setLayouts(currentLayout => [...currentLayout, newItem]);
   };
