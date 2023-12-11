@@ -22,7 +22,10 @@ const generateFileInformations = (paths) => {
 	for (const path of paths) {
 		const exec = /(.*)\/(.*)\/(.*)\/Code\/(.*)\.code\.(tsx|jsx|ts|js)/ig.exec(path);
 		json.push({
-			title: `${exec[3]}${exec[4]}`,
+			Category : `${exec[2]}`, // Components
+			ComponentType: `${exec[3]}`, //Button
+			Variant: `${exec[4]}`, //Contained
+			ComponentVariant: `${exec[3]}${exec[4]}`, //ButtonContained
 			path: path.replace(/\.(tsx|jsx|ts|js)/g, ''),
 		})
 	}
@@ -35,17 +38,17 @@ const arrInfos = generateFileInformations(filteredFilePaths);
 
 //index.tsx 변경
 const importCodes = [];
-for (const info of arrInfos) importCodes.push(`export { default as ${info.title} } from '${info.path}';`);
+for (const info of arrInfos) importCodes.push(`export { default as ${info.ComponentVariant} } from '${info.path}';`);
 writeFileSync('./index.ts', `${importCodes.join('\n')}`);
 
 //DraggedComponentRawCode.tsx 변경
 const importRawCodes = [];
-for (const info of arrInfos) importRawCodes.push(`export { default as ${info.title} } from '${info.path}.tsx?raw';`);
+for (const info of arrInfos) importRawCodes.push(`export { default as ${info.ComponentVariant} } from '${info.path}.tsx?raw';`);
 writeFileSync('./DraggedComponentRawCode.ts', `${importRawCodes.join('\n')}`);
 
 //TotalStringV2.tsx 변경
 const totalSringV2 = [];
-for (const info of arrInfos) totalSringV2.push(`\t\t\t\t\t\t\${item.type === ItemTypes.${info.title} ? \`\${extractComponentName(All.${info.title})}\` : ""}`);
+for (const info of arrInfos) totalSringV2.push(`\t\t\t\t\t\t\${item.type === ItemTypes.${info.ComponentVariant} ? \`\${extractComponentName(All.${info.ComponentVariant})}\` : ""}`);
 
 writeFileSync('./TotalStringV2.tsx', `import React from "react";
 import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount, LayoutsInfo } from '../recoil/PlaygroundAtom';
@@ -361,7 +364,7 @@ ${totalSringV2.join('\n')}
 
 //ItemTypes.ts 변경
 const TypeStrings = [];
-for (const info of arrInfos) TypeStrings.push(`\t${info.title}: '${info.title}',`);
+for (const info of arrInfos) TypeStrings.push(`\t${info.ComponentVariant}: '${info.ComponentVariant}',`);
 writeFileSync('./ItemTypes.ts', `export const ItemTypes = {
   BOX: 'box',
   BUTTON: 'button',
@@ -381,7 +384,7 @@ ${TypeStrings.join('\n')}
 //DraggedComponent.tsx 변경
 const caseReturns = [];
 const prefixAlias = 'All';
-for (const info of arrInfos) caseReturns.push(`\t\tcase ItemTypes.${info.title}: return <${prefixAlias}.${info.title} />;`);
+for (const info of arrInfos) caseReturns.push(`\t\tcase ItemTypes.${info.ComponentVariant}: return <${prefixAlias}.${info.ComponentVariant} />;`);
 writeFileSync('./DraggedComponent.tsx', `import * as ${prefixAlias} from ".";
 import { ItemTypes } from './ItemTypes';
 
@@ -397,10 +400,82 @@ ${caseReturns.join('\n')}
 export default DraggedComponent;
 `);
 
+//ComponentsCategory Group 생성하기
+
+const ComponentsCategory = [];
+const ComponentsType = [];
+for(const info of arrInfos) {
+	ComponentsCategory.push(info.Category);
+	ComponentsType.push(info.ComponentType);
+}
+let uniqueComponentsCategory = Array.from(new Set(ComponentsCategory));
+const uniqueComponentsType = Array.from(new Set(ComponentsType));
+
+const ComponentsGroupString = (filteredArrInfo, DraggbleComps) => {
+const String = `const ${filteredArrInfo[0].ComponentType}Category: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	${ uniqueComponentsCategory.includes(filteredArrInfo[0].Category) ?
+		`\t<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
+			<div style={{ 
+				width: 200, 
+				height: 30, 
+				display: 'flex', 
+				justifyContent: 'center', 
+				alignItems: 'center',
+				margin: '15 0 10 0',
+			}}>
+				<h4>${filteredArrInfo[0].Category.toUpperCase()}</h4>
+			</div>
+			<div style={{ 
+				width: 200, 
+				height: 10,
+				borderTop: '1px solid #bdbebd',
+				background: 'linear-gradient(#e9e9e9, #fff)',
+			}} />
+		</GuideBox>`
+		:
+		''
+	}
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>${filteredArrInfo[0].ComponentType}</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginLeft: '12px', 
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+${DraggbleComps.join('\n')}
+			</div>
+		</GuideBox>
+	</GuideBox>
+);\n`
+
+	return String.replace(/\n\s*\n/g, '\n');
+}
+
+const ComponentsGroup = [];
+for(const type of uniqueComponentsType){
+	const filteredArrInfo = arrInfos.filter(info => info.ComponentType === type);
+	const DraggbleComps = [];
+	for(const info of filteredArrInfo){
+		DraggbleComps.push(`\t\t\t\t<CustomDraggableComponent itemType={ItemTypes.${info.ComponentVariant}}>${info.Variant}</CustomDraggableComponent>`);
+	}
+	ComponentsGroup.push(ComponentsGroupString(filteredArrInfo, DraggbleComps));
+	if(uniqueComponentsCategory.includes(filteredArrInfo[0].Category))
+		uniqueComponentsCategory = uniqueComponentsCategory.filter(category => category !== filteredArrInfo[0].Category);
+}
+
 //DraggableComponent.tsx 변경
 writeFileSync('./DraggableComponent.tsx', `import React from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../Components/ItemTypes';
+import { GuideBox } from '../../..';
 
 const CustomStyled = (isDragging: boolean) => {
 	return {
@@ -409,7 +484,10 @@ const CustomStyled = (isDragging: boolean) => {
 		opacity: isDragging ? 0.5 : 1,
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center',
+		justifyContent: 'left',
+		padding: '10px 0px',
+		borderBottom: '1px solid #e9e9e9',
+		color: '#000000',
 	}
 }
 
@@ -434,8 +512,10 @@ const CustomDraggableComponent = (props: any) => {
 	)
 }
 
-${arrInfos.map(info => `export const ${info.title} = 
-	() => <CustomDraggableComponent itemType={ItemTypes.${info.title}}>${info.title}</CustomDraggableComponent>;
+${ComponentsGroup.join('\n')}
+
+${arrInfos.map(info => `export const ${info.ComponentVariant} = 
+	() => <CustomDraggableComponent itemType={ItemTypes.${info.ComponentVariant}}>${info.ComponentVariant}</CustomDraggableComponent>;
 `).join('\n')}
 
 const DraggableComponent: React.FC = () => {
@@ -449,7 +529,7 @@ const DraggableComponent: React.FC = () => {
 				flexDirection: 'column',
 			}}
 		>
-${arrInfos.map(info => `\t\t\t<${info.title} />`).join('\n')}
+${uniqueComponentsType.map(info => `\t\t\t<${info}Category />`).join('\n')}
 		</div>
 	);
 };

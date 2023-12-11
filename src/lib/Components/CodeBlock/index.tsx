@@ -35,7 +35,7 @@ interface CodeComponentProps {
 	 * 
 	 * @default 8
 	 */
-	borderradius?: number;
+	borderRadius?: number;
 }
 
 CodeBlock.defaultProps = {
@@ -43,7 +43,7 @@ CodeBlock.defaultProps = {
 	language: "javascript",
 	title: "",
 	hidetitle: "false",
-	borderradius: 8,
+	borderRadius: 8,
 }
 /**
  * A code block with syntax highlighting
