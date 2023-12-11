@@ -70,7 +70,7 @@ function extractComponentName(str:string){
 
 function extractComponentImport(str:string){
 	const code = CodeExtractor.extract(str);
-	return code.importCodes;
+	return code.importCodes[0];
 }
 
 export default function TotalCodeString(){
@@ -81,66 +81,79 @@ export default function TotalCodeString(){
 	const Columncount = useRecoilValue(ColumnCount);
 	const Layoutsinfo = useRecoilValue(LayoutsInfo);
 
+	function makeImportlist() : string {
+		let importlist : string[] = Layoutsinfo.map((value: any) => {
+			let extractCode : string = "";
+			if(value.type === ItemTypes.ButtonContained || value.type === ItemTypes.ButtonComposite || value.type === ItemTypes.ButtonNegative || value.type === ItemTypes.ButtonNormal || value.type === ItemTypes.ButtonOutlined || value.type === ItemTypes.ButtonText || value.type === ItemTypes.ButtonWidth)
+				extractCode += extractComponentImport(All.ButtonContained);
+			else if(value.type === ItemTypes.CheckNotRequired || value.type === ItemTypes.CheckRequired || value.type === ItemTypes.CheckGroupControlled || value.type === ItemTypes.CheckGroupUnControlled)
+				extractCode += extractComponentImport(All.CheckNotRequired);
+			else if(value.type === ItemTypes.DataGridPagination)
+				extractCode += extractComponentImport(All.DataGridPagination);
+			else if(value.type === ItemTypes.DialogHelpButton || value.type === ItemTypes.DialogHelpIconButton)
+				extractCode += extractComponentImport(All.DialogHelpButton);
+			else if(value.type === ItemTypes.DropListDropdown)
+				extractCode += extractComponentImport(All.DropListDropdown);
+			else if(value.type === ItemTypes.GridColumn || value.type === ItemTypes.GridItems || value.type === ItemTypes.GridRow)
+				extractCode += extractComponentImport(All.GridColumn);
+			else if(value.type === ItemTypes.IconAdd || value.type === ItemTypes.IconClose)
+				extractCode += extractComponentImport(All.IconAdd);
+			else if(value.type === ItemTypes.IconButtonAdd || value.type === ItemTypes.IconButtonClose)
+				extractCode += extractComponentImport(All.IconButtonAdd);
+			else if(value.type === ItemTypes.ListControlled || value.type === ItemTypes.ListDynamic || value.type === ItemTypes.ListUnControlled)
+				extractCode += extractComponentImport(All.ListControlled);
+			else if(value.type === ItemTypes.ListItemDefault)
+				extractCode += extractComponentImport(All.ListItemDefault);
+			else if(value.type === ItemTypes.ListItemButtonDefault)
+				extractCode += extractComponentImport(All.ListItemButtonDefault);
+			else if(value.type === ItemTypes.PanelBox || value.type === ItemTypes.PanelShadow || value.type === ItemTypes.PanelStrock)
+				extractCode += extractComponentImport(All.PanelBox);
+			else if(value.type === ItemTypes.RadioName)
+				extractCode += extractComponentImport(All.RadioName);
+			else if(value.type === ItemTypes.RadioGroupControlled || value.type === ItemTypes.RadioGroupUnControlled)
+				extractCode += extractComponentImport(All.RadioGroupControlled);
+			else if(value.type === ItemTypes.ScrollbarsCheckGroup || value.type === ItemTypes.ScrollbarsList)
+				extractCode += extractComponentImport(All.ScrollbarsCheckGroup);
+			else if(value.type === ItemTypes.SeperatorHorizontal || value.type === ItemTypes.SeperatorVertical)
+				extractCode += extractComponentImport(All.SeperatorHorizontal);
+			else if(value.type === ItemTypes.StackColumn || value.type === ItemTypes.StackRow)
+				extractCode += extractComponentImport(All.StackColumn);
+			else if(value.type === ItemTypes.SwitchLabel)
+				extractCode += extractComponentImport(All.SwitchLabel);
+			else if(value.type === ItemTypes.SwitchGroupControlled || value.type === ItemTypes.SwitchGroupUnControlled)
+				extractCode += extractComponentImport(All.SwitchGroupControlled);
+			else if(value.type === ItemTypes.TabLabel)
+				extractCode += extractComponentImport(All.TabLabel);
+			else if(value.type === ItemTypes.TabGroupHorizontal || value.type === ItemTypes.TabGroupVertical)
+				extractCode += extractComponentImport(All.TabGroupHorizontal);
+			else if(value.type === ItemTypes.TableBody || value.type === ItemTypes.TableBundle)
+				extractCode += extractComponentImport(All.TableBody);
+			else if(value.type === ItemTypes.TableCell || value.type === ItemTypes.TableHeader || value.type === ItemTypes.TableRow)
+				extractCode += extractComponentImport(All.TableCell);
+			else if(value.type === ItemTypes.TextFieldError || value.type === ItemTypes.TextFieldLabel || value.type === ItemTypes.TextFieldLeft || value.type === ItemTypes.TextFieldRight)
+				extractCode += extractComponentImport(All.TextFieldError);
+			else if(value.type === ItemTypes.TypographyBody1 || value.type === ItemTypes.TypographyBody2 || value.type === ItemTypes.TypographyBody3 || value.type === ItemTypes.TypographyH1 || value.type === ItemTypes.TypographyGroupText)
+				extractCode += extractComponentImport(All.TypographyBody1);
+			else if(value.type === ItemTypes.TendonProfileConverterBottomButtons || value.type === ItemTypes.TendonProfileConverterComposite || value.type === ItemTypes.TendonProfileConverterHelpIconButton || value.type === ItemTypes.TendonProfileConverterList || value.type === ItemTypes.TendonProfileConverterSelectButton || value.type === ItemTypes.TendonProfileConverterUpdateButton)
+				extractCode += extractComponentImport(All.TendonProfileConverterBottomButtons);
+
+			extractCode = extractCode.replace(/import { /ig, "");
+			extractCode = extractCode.replace(/ } from "@midasit-dev\/moaui";/ig, "");
+			return extractCode;
+		});
+		console.log("Import List : ", importlist); // ex) ["button", "button"]
+		// remove duplicate elements
+		const uniqueImportList: string[] = Array.from(new Set(importlist));
+		console.log("uniqueImportList : ", uniqueImportList); // ex) ["button"]
+		const importString = \`import { \${uniqueImportList.join(", ")} } from "@midasit-dev/moaui";\`;
+		console.log("importString : ", importString); // ex) import { button } from "@midasit-dev/moaui";
+		return importString;
+	}
+
 	const totalCode = \`import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-\${ Layoutsinfo.map((value: any) => {
-	let extractCode : any = "";
-	if(value.type === ItemTypes.ButtonContained || value.type === ItemTypes.ButtonComposite || value.type === ItemTypes.ButtonNegative || value.type === ItemTypes.ButtonNormal || value.type === ItemTypes.ButtonOutlined || value.type === ItemTypes.ButtonText || value.type === ItemTypes.ButtonWidth)
-		extractCode += extractComponentImport(All.ButtonContained);
-	else if(value.type === ItemTypes.CheckNotRequired || value.type === ItemTypes.CheckRequired || value.type === ItemTypes.CheckGroupControlled || value.type === ItemTypes.CheckGroupUnControlled)
-		extractCode += extractComponentImport(All.CheckNotRequired);
-	else if(value.type === ItemTypes.DataGridPagination)
-		extractCode += extractComponentImport(All.DataGridPagination);
-	else if(value.type === ItemTypes.DialogHelpButton || value.type === ItemTypes.DialogHelpIconButton)
-		extractCode += extractComponentImport(All.DialogHelpButton);
-	else if(value.type === ItemTypes.DropListDropdown)
-		extractCode += extractComponentImport(All.DropListDropdown);
-	else if(value.type === ItemTypes.GridColumn || value.type === ItemTypes.GridItems || value.type === ItemTypes.GridRow)
-		extractCode += extractComponentImport(All.GridColumn);
-	else if(value.type === ItemTypes.IconAdd || value.type === ItemTypes.IconClose)
-		extractCode += extractComponentImport(All.IconAdd);
-	else if(value.type === ItemTypes.IconButtonAdd || value.type === ItemTypes.IconButtonClose)
-		extractCode += extractComponentImport(All.IconButtonAdd);
-	else if(value.type === ItemTypes.ListControlled || value.type === ItemTypes.ListDynamic || value.type === ItemTypes.ListUnControlled)
-		extractCode += extractComponentImport(All.ListControlled);
-	else if(value.type === ItemTypes.ListItemDefault)
-		extractCode += extractComponentImport(All.ListItemDefault);
-	else if(value.type === ItemTypes.ListItemButtonDefault)
-		extractCode += extractComponentImport(All.ListItemButtonDefault);
-	else if(value.type === ItemTypes.PanelBox || value.type === ItemTypes.PanelShadow || value.type === ItemTypes.PanelStrock)
-		extractCode += extractComponentImport(All.PanelBox);
-	else if(value.type === ItemTypes.RadioName)
-		extractCode += extractComponentImport(All.RadioName);
-	else if(value.type === ItemTypes.RadioGroupControlled || value.type === ItemTypes.RadioGroupUnControlled)
-		extractCode += extractComponentImport(All.RadioGroupControlled);
-	else if(value.type === ItemTypes.ScrollbarsCheckGroup || value.type === ItemTypes.ScrollbarsList)
-		extractCode += extractComponentImport(All.ScrollbarsCheckGroup);
-	else if(value.type === ItemTypes.SeperatorHorizontal || value.type === ItemTypes.SeperatorVertical)
-		extractCode += extractComponentImport(All.SeperatorHorizontal);
-	else if(value.type === ItemTypes.StackColumn || value.type === ItemTypes.StackRow)
-		extractCode += extractComponentImport(All.StackColumn);
-	else if(value.type === ItemTypes.SwitchLabel)
-		extractCode += extractComponentImport(All.SwitchLabel);
-	else if(value.type === ItemTypes.SwitchGroupControlled || value.type === ItemTypes.SwitchGroupUnControlled)
-		extractCode += extractComponentImport(All.SwitchGroupControlled);
-	else if(value.type === ItemTypes.TabLabel)
-		extractCode += extractComponentImport(All.TabLabel);
-	else if(value.type === ItemTypes.TabGroupHorizontal || value.type === ItemTypes.TabGroupVertical)
-		extractCode += extractComponentImport(All.TabGroupHorizontal);
-	else if(value.type === ItemTypes.TableBody || value.type === ItemTypes.TableBundle)
-		extractCode += extractComponentImport(All.TableBody);
-	else if(value.type === ItemTypes.TableCell || value.type === ItemTypes.TableHeader || value.type === ItemTypes.TableRow)
-		extractCode += extractComponentImport(All.TableCell);
-	else if(value.type === ItemTypes.TextFieldError || value.type === ItemTypes.TextFieldLabel || value.type === ItemTypes.TextFieldLeft || value.type === ItemTypes.TextFieldRight)
-		extractCode += extractComponentImport(All.TextFieldError);
-	else if(value.type === ItemTypes.TypographyBody1 || value.type === ItemTypes.TypographyBody2 || value.type === ItemTypes.TypographyBody3 || value.type === ItemTypes.TypographyH1 || value.type === ItemTypes.TypographyGroupText)
-		extractCode += extractComponentImport(All.TypographyBody1);
-	else if(value.type === ItemTypes.TendonProfileConverterBottomButtons || value.type === ItemTypes.TendonProfileConverterComposite || value.type === ItemTypes.TendonProfileConverterHelpIconButton || value.type === ItemTypes.TendonProfileConverterList || value.type === ItemTypes.TendonProfileConverterSelectButton || value.type === ItemTypes.TendonProfileConverterUpdateButton)
-		extractCode += extractComponentImport(All.TendonProfileConverterBottomButtons);
-
-	return extractCode;
-})}
+\${ makeImportlist() }
 
 function Components(props: any) {
   function onClickExampleHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
