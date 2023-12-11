@@ -5,20 +5,24 @@ export function isExistQueryStrings(query: string): boolean {
 }
 
 export function getProductionUrl() {
+	const param = new URLSearchParams(window.location.search);
+	const redirectToUrl = param.get('redirectTo') || "";
+	if (redirectToUrl !== "") { return redirectToUrl; }
+
 	const origin = window.location.origin;
 	if (!origin.includes('localhost') 	&&
-			!origin.includes('rpm.kr-dv-')	&&
-			!origin.includes('rpm.kr-st-')	&&
-			!origin.includes('moa.midasit.com')) {
+			!origin.includes('-dv')	&&
+			!origin.includes('-st')	&&
+			!origin.includes('moa-engineers.midasit.com')) {
 				console.error(`Invalid origin (current origin is ${origin === "" ? "undefined" : origin})`);
 				return '';
 		}
 
 	if (origin.includes('localhost')) {
-		return `http://localhost:7112/engineers`;
+		return `http://localhost:7112`;
 	}
 
-	return `${window.location.origin}/engineers`;
+	return `${window.location.origin}`;
 }
 
 export async function getVerifyInfoAsync(mapiKey: string): Promise<any> {

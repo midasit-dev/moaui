@@ -40,6 +40,12 @@ export type StyledProps = {
    * If not empty, text will appears after button.ssssss
    */
   name?: string;
+
+	/**
+	 * The placement of the name.
+	 */
+	namePlacement?: 'start' | 'end' | 'top' | 'bottom';
+
   /**
    * Defines a string value that labels the current element.
    * @defaultValue "Checkbox"
@@ -66,6 +72,7 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
   return (
     <FormControlLabel
       label={props?.name}
+			labelPlacement={props?.namePlacement}
       required={props?.required}
       onChange={props?.onChange}
       disabled={props?.disabled}

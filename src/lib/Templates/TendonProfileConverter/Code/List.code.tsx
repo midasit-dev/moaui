@@ -1,7 +1,7 @@
 import React from 'react'; /**${comma}*/
 import { Scrollbars, List, ListItem, ListItemButton, Panel, Check, Typography, Stack } from "@midasit-dev/moaui"; /**${comma}*/
 
-const TemplatesPluginItemsTPCList = () => {
+const TemplatesTendonProfileConverterList = () => {
 	//Dynamic Component
 	const DynamicComponent = () => {
 		//Define a State
@@ -93,4 +93,4 @@ const TemplatesPluginItemsTPCList = () => {
   ); 
 }; /**${comma}*/
 
-export default TemplatesPluginItemsTPCList; /**${comma}*/
+export default TemplatesTendonProfileConverterList; /**${comma}*/

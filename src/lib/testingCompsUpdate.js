@@ -40,6 +40,6 @@ for (const info of arrInfos)
 const ExtractedCodeComponentCode = `/**
 * Testing Components
 */
-${importRawCodes.join('\n')};`
+${importRawCodes.join('\n')}`
 
 writeFileSync('./testingCompsExports.tsx', ExtractedCodeComponentCode);

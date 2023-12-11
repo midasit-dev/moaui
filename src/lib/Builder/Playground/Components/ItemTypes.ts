@@ -79,4 +79,10 @@ export const ItemTypes = {
 	TendonProfileConverterList: 'TendonProfileConverterList',
 	TendonProfileConverterSelectButton: 'TendonProfileConverterSelectButton',
 	TendonProfileConverterUpdateButton: 'TendonProfileConverterUpdateButton',
+	TemplatesTendonProfileConverterBottomButtons: 'TemplatesTendonProfileConverterBottomButtons',
+	TemplatesTendonProfileConverterComposite: 'TemplatesTendonProfileConverterComposite',
+	TemplatesTendonProfileConverterHelpIconButton: 'TemplatesTendonProfileConverterHelpIconButton',
+	TemplatesTendonProfileConverterList: 'TemplatesTendonProfileConverterList',
+	TemplatesTendonProfileConverterSelectButton: 'TemplatesTendonProfileConverterSelectButton',
+	TemplatesTendonProfileConverterUpdateButton: 'TemplatesTendonProfileConverterUpdateButton',
 };

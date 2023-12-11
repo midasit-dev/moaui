@@ -71,7 +71,11 @@ export type StyledProps = {
 	 * width="10ex"
 	 * width="10px"
 	 */
-	width?: string,
+	width?: number | string,
+	/**
+	 * The spacing title and textfield.
+	 */
+	spacing?: number,
 }
 
 const StyledComponent = styled((props:StyledProps) => {

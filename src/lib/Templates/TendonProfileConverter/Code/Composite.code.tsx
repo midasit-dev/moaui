@@ -1,7 +1,7 @@
 import React from 'react'; /**${comma}*/
 import { Dialog, Button, Scrollbars, List, ListItem, ListItemButton, Panel, Check, Typography, Stack, IconButton, Icon } from "@midasit-dev/moaui"; /**${comma}*/
 
-const TemplatesPluginItemsTPCComposite = () => {
+const TemplatesTendonProfileConverterComposite = () => {
 	//Define a Data State of list
 	const [values, setValues] = React.useState([
 		{ name: 'A1L', checked: false },
@@ -223,4 +223,4 @@ const TemplatesPluginItemsTPCComposite = () => {
   );
 }; /**${comma}*/
 
-export default TemplatesPluginItemsTPCComposite;
+export default TemplatesTendonProfileConverterComposite;

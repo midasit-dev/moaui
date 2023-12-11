@@ -1,6 +1,6 @@
 import { Stack, IconButton, Icon, Button, Typography } from "@midasit-dev/moaui"; /**${comma}*/
 
-const TemplatesPluginItemsTPCBottomButtons = () => {
+const TemplatesTendonProfileConverterBottomButtons = () => {
   return (
     <Stack width="321px" direction="row" spacing={2} alignItems='center'>
 			<IconButton transparent>
@@ -13,4 +13,4 @@ const TemplatesPluginItemsTPCBottomButtons = () => {
   );
 }; /**${comma}*/
 
-export default TemplatesPluginItemsTPCBottomButtons;
+export default TemplatesTendonProfileConverterBottomButtons;

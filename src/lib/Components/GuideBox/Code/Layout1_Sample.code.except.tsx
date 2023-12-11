@@ -10,8 +10,8 @@ import {
 	ComponentsIconButtonWithName,
 } from "@midasit-dev/moaui";
 
-const ComponentsGuideBoxRowDirection = () => {
-	const visiable = true;
+const ComponentsGuideBoxLayoutSample2 = () => {
+	const visiable = false;
 	const title_h = { height: 40 };
 	const typography_wh = { width: 120, height: 30 };
 	const dropList_wh = { width: 130, height: 30 };
@@ -121,4 +121,4 @@ const ComponentsGuideBoxRowDirection = () => {
 	);
 };
 
-export default ComponentsGuideBoxRowDirection;
+export default ComponentsGuideBoxLayoutSample2;

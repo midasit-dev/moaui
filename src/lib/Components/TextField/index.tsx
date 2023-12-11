@@ -1,7 +1,7 @@
 import React from "react";
 import StyledComponent, {type StyledProps} from "./Styled";
 import MoaStack from "../Stack";
-import MoaTypography from "../Typography";
+import { Typography, Stack } from "../..";
 import * as mui from "@mui/material";
 
 Textfield.defaultProps = {
@@ -10,7 +10,8 @@ Textfield.defaultProps = {
 	title : "",
 	titlePosition : "left",
 	error : false,
-	disabled : false
+	disabled : false,
+	spacing: 1,
 } as StyledProps;
 
 /**
@@ -24,18 +25,19 @@ function Textfield(props: StyledProps) : React.ReactElement {
 	const {title, titlePosition, ...rest} = props;
 
 	const boxStyle = React.useCallback((position: StyledProps["titlePosition"]) => {
-		if(position === "left")
-			return {
-				display: "inline-flex", alignItems:"center", gap:"0.25rem"
-			}
-		if(position === "label")
-			return {
-				display: "inline-flex",  alignItems:"flex-start", justifyContent:"center"
-			}
-		if(position === "right")
-			return {
-				display: "inline-flex",  alignItems:"center", gap:"0.25rem"
-			}
+		// if(position === "left")
+		// 	return {
+		// 		display: "inline-flex", alignItems:"center"
+		// 	}
+		// if(position === "label")
+		// 	return {
+		// 		display: "inline-flex",  alignItems:"flex-start", justifyContent:"center"
+		// 	}
+		// if(position === "right")
+		// 	return {
+		// 		display: "inline-flex",  alignItems:"center"
+		// 	}
+		return {}
 	}, [])
 
 	return (
@@ -45,23 +47,19 @@ function Textfield(props: StyledProps) : React.ReactElement {
 					width={props?.width} 
 					{...boxStyle(titlePosition)} 
 					direction={(titlePosition === "label") ? "column" : "row"}
+					spacing={props.spacing}
 				>
 					{
 						titlePosition === "right" ?
-						<React.Fragment>
+						<>
 							<StyledComponent {...rest} />
-							<mui.Typography sx={{
-								display: 'flex'
-							}}>
-								Test
-							</mui.Typography>
-							{/* <MoaTypography>{title}</MoaTypography> */}
-						</React.Fragment>
+							<Typography>{`${title}`}</Typography>
+						</>
 						:
-						<React.Fragment>
-							<MoaTypography>{title}</MoaTypography>
+						<>
+							<Typography>{`${title}`}</Typography>
 							<StyledComponent {...rest}/>
-						</React.Fragment>
+						</>
 					}
 				</MoaStack>
 				:
