@@ -51,7 +51,7 @@ const totalSringV2 = [];
 for (const info of arrInfos) totalSringV2.push(`\t\t\t\t\t\t\${item.type === ItemTypes.${info.ComponentVariant} ? \`\${extractComponentName(All.${info.ComponentVariant})}\` : ""}`);
 
 writeFileSync('./TotalStringV2.tsx', `import React from "react";
-import { TemplateWidth, TemplateHeight, CodeString, RowCount, ColumnCount, LayoutsInfo } from '../recoil/PlaygroundAtom';
+import { TemplateWidth, TemplateHeight, LayoutsInfo } from '../recoil/PlaygroundAtom';
 import { useRecoilValue } from 'recoil';
 import CodeComponent from "../../../Components/CodeBlock";
 import { ItemTypes } from './ItemTypes';
