@@ -431,6 +431,7 @@ const String = `const ${filteredArrInfo[0].ComponentType}Category: React.FC<{}> 
 				height: 10,
 				borderTop: '1px solid #bdbebd',
 				background: 'linear-gradient(#e9e9e9, #fff)',
+				marginBottom: '5px'
 			}} />
 		</GuideBox>`
 		:
@@ -446,7 +447,6 @@ const String = `const ${filteredArrInfo[0].ComponentType}Category: React.FC<{}> 
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -485,9 +485,10 @@ const CustomStyled = (isDragging: boolean) => {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'left',
-		padding: '10px 0px',
+		padding: '10px 0px 10px 10px',
 		borderBottom: '1px solid #e9e9e9',
-		color: '#000000',
+		color: isDragging ? '#000080' : '#000000',
+		background: isDragging ? '#e9e9e9' : '#ffffff',
 	}
 }
 

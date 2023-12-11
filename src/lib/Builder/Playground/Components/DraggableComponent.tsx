@@ -11,9 +11,10 @@ const CustomStyled = (isDragging: boolean) => {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'left',
-		padding: '10px 0px',
+		padding: '10px 0px 10px 10px',
 		borderBottom: '1px solid #e9e9e9',
-		color: '#000000',
+		color: isDragging ? '#000080' : '#000000',
+		background: isDragging ? '#e9e9e9' : '#ffffff',
 	}
 }
 
@@ -56,6 +57,7 @@ const VerifyDialogCategory: React.FC<{}> = () => (
 				height: 10,
 				borderTop: '1px solid #bdbebd',
 				background: 'linear-gradient(#e9e9e9, #fff)',
+				marginBottom: '5px'
 			}} />
 		</GuideBox>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -68,7 +70,6 @@ const VerifyDialogCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -96,6 +97,7 @@ const ButtonCategory: React.FC<{}> = () => (
 				height: 10,
 				borderTop: '1px solid #bdbebd',
 				background: 'linear-gradient(#e9e9e9, #fff)',
+				marginBottom: '5px'
 			}} />
 		</GuideBox>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -108,7 +110,6 @@ const ButtonCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -136,7 +137,6 @@ const ChartLineCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -160,7 +160,6 @@ const CheckCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -183,7 +182,6 @@ const CheckGroupCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -206,7 +204,6 @@ const CodeBlockCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -229,7 +226,6 @@ const DataGridCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -251,7 +247,6 @@ const DialogCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -274,7 +269,6 @@ const DropListCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -296,7 +290,6 @@ const GridCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -320,7 +313,6 @@ const GuideBoxCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -344,7 +336,6 @@ const IconCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -367,7 +358,6 @@ const IconButtonCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -391,7 +381,6 @@ const ListCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -416,7 +405,6 @@ const ListItemCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -438,7 +426,6 @@ const ListItemButtonCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -460,7 +447,6 @@ const PanelCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -486,7 +472,6 @@ const RadioCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -508,7 +493,6 @@ const RadioGroupCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -531,7 +515,6 @@ const ScrollbarsCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -554,7 +537,6 @@ const SeperatorCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -577,7 +559,6 @@ const StackCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -600,7 +581,6 @@ const SwitchCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -622,7 +602,6 @@ const SwitchGroupCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -645,7 +624,6 @@ const TabCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -667,7 +645,6 @@ const TabGroupCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -692,7 +669,6 @@ const TableCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -718,7 +694,6 @@ const TextFieldCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -743,7 +718,6 @@ const TypographyCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -768,7 +742,6 @@ const TypographyGroupCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
@@ -796,6 +769,7 @@ const TendonProfileConverterCategory: React.FC<{}> = () => (
 				height: 10,
 				borderTop: '1px solid #bdbebd',
 				background: 'linear-gradient(#e9e9e9, #fff)',
+				marginBottom: '5px'
 			}} />
 		</GuideBox>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -808,7 +782,6 @@ const TendonProfileConverterCategory: React.FC<{}> = () => (
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
 			<div style={{
-				marginLeft: '12px', 
 				marginBottom: '30px',
 				width: '188px',
 			}}>
