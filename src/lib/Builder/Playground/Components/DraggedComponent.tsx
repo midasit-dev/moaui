@@ -29,10 +29,14 @@ function DraggedComponent(props: any){
 		case ItemTypes.GridColumn: return <All.GridColumn />;
 		case ItemTypes.GridItems: return <All.GridItems />;
 		case ItemTypes.GridRow: return <All.GridRow />;
+		case ItemTypes.GuideBoxBasic300x300: return <All.GuideBoxBasic300x300 />;
+		case ItemTypes.GuideBoxLayoutSample1: return <All.GuideBoxLayoutSample1 />;
+		case ItemTypes.GuideBoxRowDirection: return <All.GuideBoxRowDirection />;
 		case ItemTypes.IconAdd: return <All.IconAdd />;
 		case ItemTypes.IconClose: return <All.IconClose />;
 		case ItemTypes.IconButtonAdd: return <All.IconButtonAdd />;
 		case ItemTypes.IconButtonClose: return <All.IconButtonClose />;
+		case ItemTypes.IconButtonWithName: return <All.IconButtonWithName />;
 		case ItemTypes.ListControlled: return <All.ListControlled />;
 		case ItemTypes.ListDynamic: return <All.ListDynamic />;
 		case ItemTypes.ListTypographyRadio: return <All.ListTypographyRadio />;

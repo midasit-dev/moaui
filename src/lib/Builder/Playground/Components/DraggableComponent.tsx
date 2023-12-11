@@ -106,6 +106,15 @@ export const GridItems =
 export const GridRow = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GridRow}>GridRow</CustomDraggableComponent>;
 
+export const GuideBoxBasic300x300 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxBasic300x300}>GuideBoxBasic300x300</CustomDraggableComponent>;
+
+export const GuideBoxLayoutSample1 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayoutSample1}>GuideBoxLayoutSample1</CustomDraggableComponent>;
+
+export const GuideBoxRowDirection = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxRowDirection}>GuideBoxRowDirection</CustomDraggableComponent>;
+
 export const IconAdd = 
 	() => <CustomDraggableComponent itemType={ItemTypes.IconAdd}>IconAdd</CustomDraggableComponent>;
 
@@ -117,6 +126,9 @@ export const IconButtonAdd =
 
 export const IconButtonClose = 
 	() => <CustomDraggableComponent itemType={ItemTypes.IconButtonClose}>IconButtonClose</CustomDraggableComponent>;
+
+export const IconButtonWithName = 
+	() => <CustomDraggableComponent itemType={ItemTypes.IconButtonWithName}>IconButtonWithName</CustomDraggableComponent>;
 
 export const ListControlled = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ListControlled}>ListControlled</CustomDraggableComponent>;
@@ -298,10 +310,14 @@ const DraggableComponent: React.FC = () => {
 			<GridColumn />
 			<GridItems />
 			<GridRow />
+			<GuideBoxBasic300x300 />
+			<GuideBoxLayoutSample1 />
+			<GuideBoxRowDirection />
 			<IconAdd />
 			<IconClose />
 			<IconButtonAdd />
 			<IconButtonClose />
+			<IconButtonWithName />
 			<ListControlled />
 			<ListDynamic />
 			<ListTypographyRadio />

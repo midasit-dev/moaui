@@ -22,10 +22,14 @@ export { default as DropListDropdown } from '../../../Components/DropList/Code/D
 export { default as GridColumn } from '../../../Components/Grid/Code/Column.code';
 export { default as GridItems } from '../../../Components/Grid/Code/Items.code';
 export { default as GridRow } from '../../../Components/Grid/Code/Row.code';
+export { default as GuideBoxBasic300x300 } from '../../../Components/GuideBox/Code/Basic300x300.code';
+export { default as GuideBoxLayoutSample1 } from '../../../Components/GuideBox/Code/LayoutSample1.code';
+export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code';
 export { default as IconButtonAdd } from '../../../Components/IconButton/Code/Add.code';
 export { default as IconButtonClose } from '../../../Components/IconButton/Code/Close.code';
+export { default as IconButtonWithName } from '../../../Components/IconButton/Code/WithName.code';
 export { default as ListControlled } from '../../../Components/List/Code/Controlled.code';
 export { default as ListDynamic } from '../../../Components/List/Code/Dynamic.code';
 export { default as ListTypographyRadio } from '../../../Components/List/Code/TypographyRadio.code';
