@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SpellcheckOutlinedIcon from '@mui/icons-material/SpellcheckOutlined';
 import prettier from "prettier/standalone";
+import parserBabel from 'prettier/parser-babel';
+// import parserBabel from "prettier/plugins/babel";
 import { Typography, Color } from "../..";
 	
 interface CodeComponentProps {	
@@ -67,15 +69,15 @@ function CodeBlock(props: CodeComponentProps){
     const formatCode = async () => {
       try {
         const result = await prettier.format(props.children, {
-          parser: "",
-          plugins: [],
-          useTabs: true,
-          semi: true,
-          singleQuote: true,
-          trailingComma: "all",
-          jsxSingleQuote: true,
-          jsxBracketSameLine: true,
-          printWidth: 120,
+					parser: "babel",
+					plugins: [parserBabel],
+					useTabs: true,
+					semi: true,
+					singleQuote: true,
+					trailingComma: "all",
+					jsxSingleQuote: true,
+					jsxBracketSameLine: true,
+					printWidth: 120,
         });
         setFormattedCode(result);
       } catch (error) {
@@ -133,7 +135,7 @@ function CodeBlock(props: CodeComponentProps){
 				}}
 				{...props}
 			>
-				{formattedCode.replace(/\n\s*\n/g, '\n')}
+				{formattedCode}
 			</SyntaxHighlighter>
 		</>
 	);

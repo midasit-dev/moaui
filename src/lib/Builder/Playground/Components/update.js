@@ -144,12 +144,12 @@ export default function TotalCodeString(){
 			extractCode = extractCode.replace(/ } from "@midasit-dev\\/moaui";/ig, "");
 			return extractCode;
 		});
-		console.log("Import List : ", importlist); // ex) ["button", "button"]
+		//console.log("Import List : ", importlist); // ex) ["button", "button"]
 		// remove duplicate elements
 		const uniqueImportList: string[] = Array.from(new Set(importlist));
-		console.log("uniqueImportList : ", uniqueImportList); // ex) ["button"]
+		//console.log("uniqueImportList : ", uniqueImportList); // ex) ["button"]
 		const importString = \`import { \${uniqueImportList.join(", ")} } from "@midasit-dev/moaui";\`;
-		console.log("importString : ", importString); // ex) import { button } from "@midasit-dev/moaui";
+		//console.log("importString : ", importString); // ex) import { button } from "@midasit-dev/moaui";
 		return importString;
 	}
 
@@ -350,6 +350,7 @@ ${totalSringV2.join('\n')}
 		let result = str.replace(/,{3}/g, "");
 		let result2 = result.replace(/>,/g, ">");
 		result2 = result2.replace(/,import/ig, "\\nimport");
+		result2 = result2.replace(/},/ig, "}");
 		return result2;
 	}
 
