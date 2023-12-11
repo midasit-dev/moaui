@@ -60,18 +60,18 @@ export default function Playground(): React.ReactElement {
             <Stack direction={"row"}>
               <Stack>
               <Box display="flex" flexDirection={"row"} justifyContent={"space-between"} sx={{paddingLeft:"0.7rem", paddingRight:"0.7rem"}}>
-                <Button onClick={onClickVersionButton} sx={{ minWidth:"0rem"}} disabled={version === 1 ? true : false}>
+                <Button onClick={onClickVersionButton} sx={{ minWidth:"0rem", color:'#333333', '&.Mui-disabled': {color: '#00498c'}, '&:hover':{color:'#000080', backgroundColor:"#bfbfbf"}}} disabled={version === 1 ? true : false}>
                   V1
                 </Button>
-                <Button onClick={onClickVersionButton} sx={{p:"0rem", minWidth:"0rem"}} disabled={version === 2 ? true : false}>
+                <Button onClick={onClickVersionButton} sx={{p:"0rem", minWidth:"0rem", color:'#333333', '&.Mui-disabled': {color: '#00498c'}, '&:hover':{color:'#000080', backgroundColor:"#bfbfbf"}}} disabled={version === 2 ? true : false}>
                   V2
                 </Button>
               </Box>
               <Box display="flex" flexDirection={"row"} justifyContent={"space-between"} sx={{paddingLeft:"0.7rem", paddingRight:"0.7rem"}}>
-                <Button onClick={onClickCodeButton} sx={{ minWidth:"0rem"}} disabled={openCode === false ? true : false}>
+                <Button onClick={onClickCodeButton} sx={{ minWidth:"0rem", color:'#333333', '&.Mui-disabled': {color: '#00498c'}, '&:hover':{color:'#000080', backgroundColor:"#bfbfbf"} }} disabled={openCode === false ? true : false}>
                   UI
                 </Button>
-                <Button onClick={onClickCodeButton} sx={{p:"0rem", minWidth:"0rem"}} disabled={openCode === true ? true : false}>
+                <Button onClick={onClickCodeButton} sx={{p:"0rem", minWidth:"0rem", color:'#333333', '&.Mui-disabled': {color: '#00498c'}, '&:hover':{color:'#000080', backgroundColor:"#bfbfbf"} }} disabled={openCode === true ? true : false}>
                   Code
                 </Button>
               </Box>
