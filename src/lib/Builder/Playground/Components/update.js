@@ -367,17 +367,6 @@ ${totalSringV2.join('\n')}
 const TypeStrings = [];
 for (const info of arrInfos) TypeStrings.push(`\t${info.ComponentVariant}: '${info.ComponentVariant}',`);
 writeFileSync('./ItemTypes.ts', `export const ItemTypes = {
-  BOX: 'box',
-  BUTTON: 'button',
-  TEXTFIELD: 'textfield',
-  CHECKBOX: 'checkbox',
-  DROPLIST: 'droplist',
-  RADIO: 'radio',
-  SEPERATOR: 'seperator',
-  SWITCH: 'switch',
-  TAB: 'tab',
-  TABLE: 'table',
-  TYPOGRAPHY: 'typography',
 ${TypeStrings.join('\n')}
 };
 `)
