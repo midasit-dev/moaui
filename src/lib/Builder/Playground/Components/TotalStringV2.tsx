@@ -6,7 +6,7 @@ import DraggedComponent from "./DraggedComponent";
 import ButtonCode from "../../../Components/Button/Code/Contained.code.tsx?raw";
 // import TextfieldCode from "./Textfield.txt?raw";
 import { ItemTypes } from './ItemTypes';
-import CodeExtractor, { extract } from "../../../Common/Storybook/CodeExtractor";
+import CodeExtractor from "../../../Common/Storybook/CodeExtractor";
 import * as All from "./DraggedComponentRawCode";
 
 function extractComponentCode(str:string){
@@ -25,328 +25,12 @@ function extractComponentImport(str:string){
 }
 
 export default function TotalCodeString(){
-  const Sizewidth = useRecoilValue(TemplateWidth);
-  const Sizeheight = useRecoilValue(TemplateHeight);
+	const Sizewidth = useRecoilValue(TemplateWidth);
+	const Sizeheight = useRecoilValue(TemplateHeight);
 	const Codestring = useRecoilValue(CodeString);
 	const Rowcount = useRecoilValue(RowCount);
 	const Columncount = useRecoilValue(ColumnCount);
 	const Layoutsinfo = useRecoilValue(LayoutsInfo);
-	const [test , setTest ] = React.useState(true);
-	const [verifydialogdefault, setVerifyDialogDefault] = React.useState(false);
-	const [buttoncomposite, setButtonComposite] = React.useState(false);
-	const [buttoncontained, setButtonContained] = React.useState(false);
-	const [buttonnegative, setButtonNegative] = React.useState(false);
-	const [buttonnormal, setButtonNormal] = React.useState(false);
-	const [buttonoutlined, setButtonOutlined] = React.useState(false);
-	const [buttontext, setButtonText] = React.useState(false);
-	const [buttonwidth, setButtonWidth] = React.useState(false);
-	const [chartlineaxislegend, setChartLineAxisLegend] = React.useState(false);
-	const [chartlineaxispointsize, setChartLineAxisPointSize] = React.useState(false);
-	const [chartlineaxistopright, setChartLineAxisTopRight] = React.useState(false);
-	const [checknotrequired, setCheckNotRequired] = React.useState(false);
-	const [checkrequired, setCheckRequired] = React.useState(false);
-	const [checkgroupcontrolled, setCheckGroupControlled] = React.useState(false);
-	const [checkgroupuncontrolled, setCheckGroupUnControlled] = React.useState(false);
-	const [codeblockjavascript, setCodeBlockJavascript] = React.useState(false);
-	const [codeblocktypescript, setCodeBlockTypescript] = React.useState(false);
-	const [datagridpagination, setDataGridPagination] = React.useState(false);
-	const [dialoghelpbutton, setDialogHelpButton] = React.useState(false);
-	const [dialoghelpiconbutton, setDialogHelpIconButton] = React.useState(false);
-	const [droplistdropdown, setDropListDropdown] = React.useState(false);
-	const [gridcolumn, setGridColumn] = React.useState(false);
-	const [griditems, setGridItems] = React.useState(false);
-	const [gridrow, setGridRow] = React.useState(false);
-	const [iconadd, setIconAdd] = React.useState(false);
-	const [iconclose, setIconClose] = React.useState(false);
-	const [iconbuttonadd, setIconButtonAdd] = React.useState(false);
-	const [iconbuttonclose, setIconButtonClose] = React.useState(false);
-	const [listcontrolled, setListControlled] = React.useState(false);
-	const [listdynamic, setListDynamic] = React.useState(false);
-	const [listtypographyradio, setListTypographyRadio] = React.useState(false);
-	const [listuncontrolled, setListUnControlled] = React.useState(false);
-	const [listitemdefault, setListItemDefault] = React.useState(false);
-	const [listitembuttondefault, setListItemButtonDefault] = React.useState(false);
-	const [panelbox, setPanelBox] = React.useState(false);
-	const [panelshadow, setPanelShadow] = React.useState(false);
-	const [panelstrock, setPanelStrock] = React.useState(false);
-	const [paneltypographydroplist, setPanelTypographyDropList] = React.useState(false);
-	const [paneltypographytextfield, setPanelTypographyTextField] = React.useState(false);
-	const [radioname, setRadioName] = React.useState(false);
-	const [radiogroupcontrolled, setRadioGroupControlled] = React.useState(false);
-	const [radiogroupuncontrolled, setRadioGroupUnControlled] = React.useState(false);
-	const [scrollbarscheckgroup, setScrollbarsCheckGroup] = React.useState(false);
-	const [scrollbarslist, setScrollbarsList] = React.useState(false);
-	const [seperatorhorizontal, setSeperatorHorizontal] = React.useState(false);
-	const [seperatorvertical, setSeperatorVertical] = React.useState(false);
-	const [stackcolumn, setStackColumn] = React.useState(false);
-	const [stackrow, setStackRow] = React.useState(false);
-	const [switchlabel, setSwitchLabel] = React.useState(false);
-	const [switchgroupcontrolled, setSwitchGroupControlled] = React.useState(false);
-	const [switchgroupuncontrolled, setSwitchGroupUnControlled] = React.useState(false);
-	const [tablabel, setTabLabel] = React.useState(false);
-	const [tabgrouphorizontal, setTabGroupHorizontal] = React.useState(false);
-	const [tabgroupvertical, setTabGroupVertical] = React.useState(false);
-	const [tabgroupwithdatagrid, setTabGroupWithDataGrid] = React.useState(false);
-	const [tabgroupwithtable, setTabGroupWithTable] = React.useState(false);
-	const [tablebody, setTableBody] = React.useState(false);
-	const [tablebundle, setTableBundle] = React.useState(false);
-	const [tablecell, setTableCell] = React.useState(false);
-	const [tableheader, setTableHeader] = React.useState(false);
-	const [tablerow, setTableRow] = React.useState(false);
-	const [textfielderror, setTextFieldError] = React.useState(false);
-	const [textfieldlabel, setTextFieldLabel] = React.useState(false);
-	const [textfieldleft, setTextFieldLeft] = React.useState(false);
-	const [textfieldright, setTextFieldRight] = React.useState(false);
-	const [typographybody1, setTypographyBody1] = React.useState(false);
-	const [typographybody2, setTypographyBody2] = React.useState(false);
-	const [typographybody3, setTypographyBody3] = React.useState(false);
-	const [typographyh1, setTypographyH1] = React.useState(false);
-	const [typographygrouptext, setTypographyGroupText] = React.useState(false);
-	const [tendonprofileconverterbottombuttons, setTendonProfileConverterBottomButtons] = React.useState(false);
-	const [tendonprofileconvertercomposite, setTendonProfileConverterComposite] = React.useState(false);
-	const [tendonprofileconverterhelpiconbutton, setTendonProfileConverterHelpIconButton] = React.useState(false);
-	const [tendonprofileconverterlist, setTendonProfileConverterList] = React.useState(false);
-	const [tendonprofileconverterselectbutton, setTendonProfileConverterSelectButton] = React.useState(false);
-	const [tendonprofileconverterupdatebutton, setTendonProfileConverterUpdateButton] = React.useState(false);
-	const [reactCode, setReactCode] = React.useState("");
-
-	React.useEffect(() => {
-		Layoutsinfo.map((value: any) => {
-			switch(value.type){
-				case ItemTypes.VerifyDialogDefault: 
-					setVerifyDialogDefault(true);
-				break;
-				case ItemTypes.ButtonComposite: 
-					setButtonComposite(true);
-				break;
-				case ItemTypes.ButtonContained: 
-					setButtonContained(true);
-				break;
-				case ItemTypes.ButtonNegative: 
-					setButtonNegative(true);
-				break;
-				case ItemTypes.ButtonNormal: 
-					setButtonNormal(true);
-				break;
-				case ItemTypes.ButtonOutlined: 
-					setButtonOutlined(true);
-				break;
-				case ItemTypes.ButtonText: 
-					setButtonText(true);
-				break;
-				case ItemTypes.ButtonWidth: 
-					setButtonWidth(true);
-				break;
-				case ItemTypes.ChartLineAxisLegend: 
-					setChartLineAxisLegend(true);
-				break;
-				case ItemTypes.ChartLineAxisPointSize: 
-					setChartLineAxisPointSize(true);
-				break;
-				case ItemTypes.ChartLineAxisTopRight: 
-					setChartLineAxisTopRight(true);
-				break;
-				case ItemTypes.CheckNotRequired: 
-					setCheckNotRequired(true);
-				break;
-				case ItemTypes.CheckRequired: 
-					setCheckRequired(true);
-				break;
-				case ItemTypes.CheckGroupControlled: 
-					setCheckGroupControlled(true);
-				break;
-				case ItemTypes.CheckGroupUnControlled: 
-					setCheckGroupUnControlled(true);
-				break;
-				case ItemTypes.CodeBlockJavascript: 
-					setCodeBlockJavascript(true);
-				break;
-				case ItemTypes.CodeBlockTypescript: 
-					setCodeBlockTypescript(true);
-				break;
-				case ItemTypes.DataGridPagination: 
-					setDataGridPagination(true);
-				break;
-				case ItemTypes.DialogHelpButton: 
-					setDialogHelpButton(true);
-				break;
-				case ItemTypes.DialogHelpIconButton: 
-					setDialogHelpIconButton(true);
-				break;
-				case ItemTypes.DropListDropdown: 
-					setDropListDropdown(true);
-				break;
-				case ItemTypes.GridColumn: 
-					setGridColumn(true);
-				break;
-				case ItemTypes.GridItems: 
-					setGridItems(true);
-				break;
-				case ItemTypes.GridRow: 
-					setGridRow(true);
-				break;
-				case ItemTypes.IconAdd: 
-					setIconAdd(true);
-				break;
-				case ItemTypes.IconClose: 
-					setIconClose(true);
-				break;
-				case ItemTypes.IconButtonAdd: 
-					setIconButtonAdd(true);
-				break;
-				case ItemTypes.IconButtonClose: 
-					setIconButtonClose(true);
-				break;
-				case ItemTypes.ListControlled: 
-					setListControlled(true);
-				break;
-				case ItemTypes.ListDynamic: 
-					setListDynamic(true);
-				break;
-				case ItemTypes.ListTypographyRadio: 
-					setListTypographyRadio(true);
-				break;
-				case ItemTypes.ListUnControlled: 
-					setListUnControlled(true);
-				break;
-				case ItemTypes.ListItemDefault: 
-					setListItemDefault(true);
-				break;
-				case ItemTypes.ListItemButtonDefault: 
-					setListItemButtonDefault(true);
-				break;
-				case ItemTypes.PanelBox: 
-					setPanelBox(true);
-				break;
-				case ItemTypes.PanelShadow: 
-					setPanelShadow(true);
-				break;
-				case ItemTypes.PanelStrock: 
-					setPanelStrock(true);
-				break;
-				case ItemTypes.PanelTypographyDropList: 
-					setPanelTypographyDropList(true);
-				break;
-				case ItemTypes.PanelTypographyTextField: 
-					setPanelTypographyTextField(true);
-				break;
-				case ItemTypes.RadioName: 
-					setRadioName(true);
-				break;
-				case ItemTypes.RadioGroupControlled: 
-					setRadioGroupControlled(true);
-				break;
-				case ItemTypes.RadioGroupUnControlled: 
-					setRadioGroupUnControlled(true);
-				break;
-				case ItemTypes.ScrollbarsCheckGroup: 
-					setScrollbarsCheckGroup(true);
-				break;
-				case ItemTypes.ScrollbarsList: 
-					setScrollbarsList(true);
-				break;
-				case ItemTypes.SeperatorHorizontal: 
-					setSeperatorHorizontal(true);
-				break;
-				case ItemTypes.SeperatorVertical: 
-					setSeperatorVertical(true);
-				break;
-				case ItemTypes.StackColumn: 
-					setStackColumn(true);
-				break;
-				case ItemTypes.StackRow: 
-					setStackRow(true);
-				break;
-				case ItemTypes.SwitchLabel: 
-					setSwitchLabel(true);
-				break;
-				case ItemTypes.SwitchGroupControlled: 
-					setSwitchGroupControlled(true);
-				break;
-				case ItemTypes.SwitchGroupUnControlled: 
-					setSwitchGroupUnControlled(true);
-				break;
-				case ItemTypes.TabLabel: 
-					setTabLabel(true);
-				break;
-				case ItemTypes.TabGroupHorizontal: 
-					setTabGroupHorizontal(true);
-				break;
-				case ItemTypes.TabGroupVertical: 
-					setTabGroupVertical(true);
-				break;
-				case ItemTypes.TabGroupWithDataGrid: 
-					setTabGroupWithDataGrid(true);
-				break;
-				case ItemTypes.TabGroupWithTable: 
-					setTabGroupWithTable(true);
-				break;
-				case ItemTypes.TableBody: 
-					setTableBody(true);
-				break;
-				case ItemTypes.TableBundle: 
-					setTableBundle(true);
-				break;
-				case ItemTypes.TableCell: 
-					setTableCell(true);
-				break;
-				case ItemTypes.TableHeader: 
-					setTableHeader(true);
-				break;
-				case ItemTypes.TableRow: 
-					setTableRow(true);
-				break;
-				case ItemTypes.TextFieldError: 
-					setTextFieldError(true);
-				break;
-				case ItemTypes.TextFieldLabel: 
-					setTextFieldLabel(true);
-				break;
-				case ItemTypes.TextFieldLeft: 
-					setTextFieldLeft(true);
-				break;
-				case ItemTypes.TextFieldRight: 
-					setTextFieldRight(true);
-				break;
-				case ItemTypes.TypographyBody1: 
-					setTypographyBody1(true);
-				break;
-				case ItemTypes.TypographyBody2: 
-					setTypographyBody2(true);
-				break;
-				case ItemTypes.TypographyBody3: 
-					setTypographyBody3(true);
-				break;
-				case ItemTypes.TypographyH1: 
-					setTypographyH1(true);
-				break;
-				case ItemTypes.TypographyGroupText: 
-					setTypographyGroupText(true);
-				break;
-				case ItemTypes.TendonProfileConverterBottomButtons: 
-					setTendonProfileConverterBottomButtons(true);
-				break;
-				case ItemTypes.TendonProfileConverterComposite: 
-					setTendonProfileConverterComposite(true);
-				break;
-				case ItemTypes.TendonProfileConverterHelpIconButton: 
-					setTendonProfileConverterHelpIconButton(true);
-				break;
-				case ItemTypes.TendonProfileConverterList: 
-					setTendonProfileConverterList(true);
-				break;
-				case ItemTypes.TendonProfileConverterSelectButton: 
-					setTendonProfileConverterSelectButton(true);
-				break;
-				case ItemTypes.TendonProfileConverterUpdateButton: 
-					setTendonProfileConverterUpdateButton(true);
-				break;
-				default:
-					break;
-			}
-		});
-	}, [Layoutsinfo]);
-
 
 	function makeImportlist() : string {
 		let importlist : string[] = Layoutsinfo.map((value: any) => {
@@ -427,162 +111,162 @@ function Components(props: any) {
     // do something
   }
 
-  ${ Layoutsinfo.map((value: any) => {
-		let extractCode : any = "";
-		if(value.type === ItemTypes.VerifyDialogDefault)
-			extractCode += extractComponentCode(All.VerifyDialogDefault);
-		else if(value.type === ItemTypes.ButtonComposite)
-			extractCode += extractComponentCode(All.ButtonComposite);
-		else if(value.type === ItemTypes.ButtonContained)
-			extractCode += extractComponentCode(All.ButtonContained);
-		else if(value.type === ItemTypes.ButtonNegative)
-			extractCode += extractComponentCode(All.ButtonNegative);
-		else if(value.type === ItemTypes.ButtonNormal)
-			extractCode += extractComponentCode(All.ButtonNormal);
-		else if(value.type === ItemTypes.ButtonOutlined)
-			extractCode += extractComponentCode(All.ButtonOutlined);
-		else if(value.type === ItemTypes.ButtonText)
-			extractCode += extractComponentCode(All.ButtonText);
-		else if(value.type === ItemTypes.ButtonWidth)
-			extractCode += extractComponentCode(All.ButtonWidth);
-		else if(value.type === ItemTypes.ChartLineAxisLegend)
-			extractCode += extractComponentCode(All.ChartLineAxisLegend);
-		else if(value.type === ItemTypes.ChartLineAxisPointSize)
-			extractCode += extractComponentCode(All.ChartLineAxisPointSize);
-		else if(value.type === ItemTypes.ChartLineAxisTopRight)
-			extractCode += extractComponentCode(All.ChartLineAxisTopRight);
-		else if(value.type === ItemTypes.CheckNotRequired)
-			extractCode += extractComponentCode(All.CheckNotRequired);
-		else if(value.type === ItemTypes.CheckRequired)
-			extractCode += extractComponentCode(All.CheckRequired);
-		else if(value.type === ItemTypes.CheckGroupControlled)
-			extractCode += extractComponentCode(All.CheckGroupControlled);
-		else if(value.type === ItemTypes.CheckGroupUnControlled)
-			extractCode += extractComponentCode(All.CheckGroupUnControlled);
-		else if(value.type === ItemTypes.CodeBlockJavascript)
-			extractCode += extractComponentCode(All.CodeBlockJavascript);
-		else if(value.type === ItemTypes.CodeBlockTypescript)
-			extractCode += extractComponentCode(All.CodeBlockTypescript);
-		else if(value.type === ItemTypes.DataGridPagination)
-			extractCode += extractComponentCode(All.DataGridPagination);
-		else if(value.type === ItemTypes.DialogHelpButton)
-			extractCode += extractComponentCode(All.DialogHelpButton);
-		else if(value.type === ItemTypes.DialogHelpIconButton)
-			extractCode += extractComponentCode(All.DialogHelpIconButton);
-		else if(value.type === ItemTypes.DropListDropdown)
-			extractCode += extractComponentCode(All.DropListDropdown);
-		else if(value.type === ItemTypes.GridColumn)
-			extractCode += extractComponentCode(All.GridColumn);
-		else if(value.type === ItemTypes.GridItems)
-			extractCode += extractComponentCode(All.GridItems);
-		else if(value.type === ItemTypes.GridRow)
-			extractCode += extractComponentCode(All.GridRow);
-		else if(value.type === ItemTypes.IconAdd)
-			extractCode += extractComponentCode(All.IconAdd);
-		else if(value.type === ItemTypes.IconClose)
-			extractCode += extractComponentCode(All.IconClose);
-		else if(value.type === ItemTypes.IconButtonAdd)
-			extractCode += extractComponentCode(All.IconButtonAdd);
-		else if(value.type === ItemTypes.IconButtonClose)
-			extractCode += extractComponentCode(All.IconButtonClose);
-		else if(value.type === ItemTypes.ListControlled)
-			extractCode += extractComponentCode(All.ListControlled);
-		else if(value.type === ItemTypes.ListDynamic)
-			extractCode += extractComponentCode(All.ListDynamic);
-		else if(value.type === ItemTypes.ListTypographyRadio)
-			extractCode += extractComponentCode(All.ListTypographyRadio);
-		else if(value.type === ItemTypes.ListUnControlled)
-			extractCode += extractComponentCode(All.ListUnControlled);
-		else if(value.type === ItemTypes.ListItemDefault)
-			extractCode += extractComponentCode(All.ListItemDefault);
-		else if(value.type === ItemTypes.ListItemButtonDefault)
-			extractCode += extractComponentCode(All.ListItemButtonDefault);
-		else if(value.type === ItemTypes.PanelBox)
-			extractCode += extractComponentCode(All.PanelBox);
-		else if(value.type === ItemTypes.PanelShadow)
-			extractCode += extractComponentCode(All.PanelShadow);
-		else if(value.type === ItemTypes.PanelStrock)
-			extractCode += extractComponentCode(All.PanelStrock);
-		else if(value.type === ItemTypes.PanelTypographyDropList)
-			extractCode += extractComponentCode(All.PanelTypographyDropList);
-		else if(value.type === ItemTypes.PanelTypographyTextField)
-			extractCode += extractComponentCode(All.PanelTypographyTextField);
-		else if(value.type === ItemTypes.RadioName)
-			extractCode += extractComponentCode(All.RadioName);
-		else if(value.type === ItemTypes.RadioGroupControlled)
-			extractCode += extractComponentCode(All.RadioGroupControlled);
-		else if(value.type === ItemTypes.RadioGroupUnControlled)
-			extractCode += extractComponentCode(All.RadioGroupUnControlled);
-		else if(value.type === ItemTypes.ScrollbarsCheckGroup)
-			extractCode += extractComponentCode(All.ScrollbarsCheckGroup);
-		else if(value.type === ItemTypes.ScrollbarsList)
-			extractCode += extractComponentCode(All.ScrollbarsList);
-		else if(value.type === ItemTypes.SeperatorHorizontal)
-			extractCode += extractComponentCode(All.SeperatorHorizontal);
-		else if(value.type === ItemTypes.SeperatorVertical)
-			extractCode += extractComponentCode(All.SeperatorVertical);
-		else if(value.type === ItemTypes.StackColumn)
-			extractCode += extractComponentCode(All.StackColumn);
-		else if(value.type === ItemTypes.StackRow)
-			extractCode += extractComponentCode(All.StackRow);
-		else if(value.type === ItemTypes.SwitchLabel)
-			extractCode += extractComponentCode(All.SwitchLabel);
-		else if(value.type === ItemTypes.SwitchGroupControlled)
-			extractCode += extractComponentCode(All.SwitchGroupControlled);
-		else if(value.type === ItemTypes.SwitchGroupUnControlled)
-			extractCode += extractComponentCode(All.SwitchGroupUnControlled);
-		else if(value.type === ItemTypes.TabLabel)
-			extractCode += extractComponentCode(All.TabLabel);
-		else if(value.type === ItemTypes.TabGroupHorizontal)
-			extractCode += extractComponentCode(All.TabGroupHorizontal);
-		else if(value.type === ItemTypes.TabGroupVertical)
-			extractCode += extractComponentCode(All.TabGroupVertical);
-		else if(value.type === ItemTypes.TabGroupWithDataGrid)
-			extractCode += extractComponentCode(All.TabGroupWithDataGrid);
-		else if(value.type === ItemTypes.TabGroupWithTable)
-			extractCode += extractComponentCode(All.TabGroupWithTable);
-		else if(value.type === ItemTypes.TableBody)
-			extractCode += extractComponentCode(All.TableBody);
-		else if(value.type === ItemTypes.TableBundle)
-			extractCode += extractComponentCode(All.TableBundle);
-		else if(value.type === ItemTypes.TableCell)
-			extractCode += extractComponentCode(All.TableCell);
-		else if(value.type === ItemTypes.TableHeader)
-			extractCode += extractComponentCode(All.TableHeader);
-		else if(value.type === ItemTypes.TableRow)
-			extractCode += extractComponentCode(All.TableRow);
-		else if(value.type === ItemTypes.TextFieldError)
-			extractCode += extractComponentCode(All.TextFieldError);
-		else if(value.type === ItemTypes.TextFieldLabel)
-			extractCode += extractComponentCode(All.TextFieldLabel);
-		else if(value.type === ItemTypes.TextFieldLeft)
-			extractCode += extractComponentCode(All.TextFieldLeft);
-		else if(value.type === ItemTypes.TextFieldRight)
-			extractCode += extractComponentCode(All.TextFieldRight);
-		else if(value.type === ItemTypes.TypographyBody1)
-			extractCode += extractComponentCode(All.TypographyBody1);
-		else if(value.type === ItemTypes.TypographyBody2)
-			extractCode += extractComponentCode(All.TypographyBody2);
-		else if(value.type === ItemTypes.TypographyBody3)
-			extractCode += extractComponentCode(All.TypographyBody3);
-		else if(value.type === ItemTypes.TypographyH1)
-			extractCode += extractComponentCode(All.TypographyH1);
-		else if(value.type === ItemTypes.TypographyGroupText)
-			extractCode += extractComponentCode(All.TypographyGroupText);
-		else if(value.type === ItemTypes.TendonProfileConverterBottomButtons)
-			extractCode += extractComponentCode(All.TendonProfileConverterBottomButtons);
-		else if(value.type === ItemTypes.TendonProfileConverterComposite)
-			extractCode += extractComponentCode(All.TendonProfileConverterComposite);
-		else if(value.type === ItemTypes.TendonProfileConverterHelpIconButton)
-			extractCode += extractComponentCode(All.TendonProfileConverterHelpIconButton);
-		else if(value.type === ItemTypes.TendonProfileConverterList)
-			extractCode += extractComponentCode(All.TendonProfileConverterList);
-		else if(value.type === ItemTypes.TendonProfileConverterSelectButton)
-			extractCode += extractComponentCode(All.TendonProfileConverterSelectButton);
-		else if(value.type === ItemTypes.TendonProfileConverterUpdateButton)
-			extractCode += extractComponentCode(All.TendonProfileConverterUpdateButton);
-		return extractCode;
-  })}
+${ Layoutsinfo.map((value: any) => {
+	let extractCode : any = "";
+	if(value.type === ItemTypes.VerifyDialogDefault)
+		extractCode += extractComponentCode(All.VerifyDialogDefault);
+	else if(value.type === ItemTypes.ButtonComposite)
+		extractCode += extractComponentCode(All.ButtonComposite);
+	else if(value.type === ItemTypes.ButtonContained)
+		extractCode += extractComponentCode(All.ButtonContained);
+	else if(value.type === ItemTypes.ButtonNegative)
+		extractCode += extractComponentCode(All.ButtonNegative);
+	else if(value.type === ItemTypes.ButtonNormal)
+		extractCode += extractComponentCode(All.ButtonNormal);
+	else if(value.type === ItemTypes.ButtonOutlined)
+		extractCode += extractComponentCode(All.ButtonOutlined);
+	else if(value.type === ItemTypes.ButtonText)
+		extractCode += extractComponentCode(All.ButtonText);
+	else if(value.type === ItemTypes.ButtonWidth)
+		extractCode += extractComponentCode(All.ButtonWidth);
+	else if(value.type === ItemTypes.ChartLineAxisLegend)
+		extractCode += extractComponentCode(All.ChartLineAxisLegend);
+	else if(value.type === ItemTypes.ChartLineAxisPointSize)
+		extractCode += extractComponentCode(All.ChartLineAxisPointSize);
+	else if(value.type === ItemTypes.ChartLineAxisTopRight)
+		extractCode += extractComponentCode(All.ChartLineAxisTopRight);
+	else if(value.type === ItemTypes.CheckNotRequired)
+		extractCode += extractComponentCode(All.CheckNotRequired);
+	else if(value.type === ItemTypes.CheckRequired)
+		extractCode += extractComponentCode(All.CheckRequired);
+	else if(value.type === ItemTypes.CheckGroupControlled)
+		extractCode += extractComponentCode(All.CheckGroupControlled);
+	else if(value.type === ItemTypes.CheckGroupUnControlled)
+		extractCode += extractComponentCode(All.CheckGroupUnControlled);
+	else if(value.type === ItemTypes.CodeBlockJavascript)
+		extractCode += extractComponentCode(All.CodeBlockJavascript);
+	else if(value.type === ItemTypes.CodeBlockTypescript)
+		extractCode += extractComponentCode(All.CodeBlockTypescript);
+	else if(value.type === ItemTypes.DataGridPagination)
+		extractCode += extractComponentCode(All.DataGridPagination);
+	else if(value.type === ItemTypes.DialogHelpButton)
+		extractCode += extractComponentCode(All.DialogHelpButton);
+	else if(value.type === ItemTypes.DialogHelpIconButton)
+		extractCode += extractComponentCode(All.DialogHelpIconButton);
+	else if(value.type === ItemTypes.DropListDropdown)
+		extractCode += extractComponentCode(All.DropListDropdown);
+	else if(value.type === ItemTypes.GridColumn)
+		extractCode += extractComponentCode(All.GridColumn);
+	else if(value.type === ItemTypes.GridItems)
+		extractCode += extractComponentCode(All.GridItems);
+	else if(value.type === ItemTypes.GridRow)
+		extractCode += extractComponentCode(All.GridRow);
+	else if(value.type === ItemTypes.IconAdd)
+		extractCode += extractComponentCode(All.IconAdd);
+	else if(value.type === ItemTypes.IconClose)
+		extractCode += extractComponentCode(All.IconClose);
+	else if(value.type === ItemTypes.IconButtonAdd)
+		extractCode += extractComponentCode(All.IconButtonAdd);
+	else if(value.type === ItemTypes.IconButtonClose)
+		extractCode += extractComponentCode(All.IconButtonClose);
+	else if(value.type === ItemTypes.ListControlled)
+		extractCode += extractComponentCode(All.ListControlled);
+	else if(value.type === ItemTypes.ListDynamic)
+		extractCode += extractComponentCode(All.ListDynamic);
+	else if(value.type === ItemTypes.ListTypographyRadio)
+		extractCode += extractComponentCode(All.ListTypographyRadio);
+	else if(value.type === ItemTypes.ListUnControlled)
+		extractCode += extractComponentCode(All.ListUnControlled);
+	else if(value.type === ItemTypes.ListItemDefault)
+		extractCode += extractComponentCode(All.ListItemDefault);
+	else if(value.type === ItemTypes.ListItemButtonDefault)
+		extractCode += extractComponentCode(All.ListItemButtonDefault);
+	else if(value.type === ItemTypes.PanelBox)
+		extractCode += extractComponentCode(All.PanelBox);
+	else if(value.type === ItemTypes.PanelShadow)
+		extractCode += extractComponentCode(All.PanelShadow);
+	else if(value.type === ItemTypes.PanelStrock)
+		extractCode += extractComponentCode(All.PanelStrock);
+	else if(value.type === ItemTypes.PanelTypographyDropList)
+		extractCode += extractComponentCode(All.PanelTypographyDropList);
+	else if(value.type === ItemTypes.PanelTypographyTextField)
+		extractCode += extractComponentCode(All.PanelTypographyTextField);
+	else if(value.type === ItemTypes.RadioName)
+		extractCode += extractComponentCode(All.RadioName);
+	else if(value.type === ItemTypes.RadioGroupControlled)
+		extractCode += extractComponentCode(All.RadioGroupControlled);
+	else if(value.type === ItemTypes.RadioGroupUnControlled)
+		extractCode += extractComponentCode(All.RadioGroupUnControlled);
+	else if(value.type === ItemTypes.ScrollbarsCheckGroup)
+		extractCode += extractComponentCode(All.ScrollbarsCheckGroup);
+	else if(value.type === ItemTypes.ScrollbarsList)
+		extractCode += extractComponentCode(All.ScrollbarsList);
+	else if(value.type === ItemTypes.SeperatorHorizontal)
+		extractCode += extractComponentCode(All.SeperatorHorizontal);
+	else if(value.type === ItemTypes.SeperatorVertical)
+		extractCode += extractComponentCode(All.SeperatorVertical);
+	else if(value.type === ItemTypes.StackColumn)
+		extractCode += extractComponentCode(All.StackColumn);
+	else if(value.type === ItemTypes.StackRow)
+		extractCode += extractComponentCode(All.StackRow);
+	else if(value.type === ItemTypes.SwitchLabel)
+		extractCode += extractComponentCode(All.SwitchLabel);
+	else if(value.type === ItemTypes.SwitchGroupControlled)
+		extractCode += extractComponentCode(All.SwitchGroupControlled);
+	else if(value.type === ItemTypes.SwitchGroupUnControlled)
+		extractCode += extractComponentCode(All.SwitchGroupUnControlled);
+	else if(value.type === ItemTypes.TabLabel)
+		extractCode += extractComponentCode(All.TabLabel);
+	else if(value.type === ItemTypes.TabGroupHorizontal)
+		extractCode += extractComponentCode(All.TabGroupHorizontal);
+	else if(value.type === ItemTypes.TabGroupVertical)
+		extractCode += extractComponentCode(All.TabGroupVertical);
+	else if(value.type === ItemTypes.TabGroupWithDataGrid)
+		extractCode += extractComponentCode(All.TabGroupWithDataGrid);
+	else if(value.type === ItemTypes.TabGroupWithTable)
+		extractCode += extractComponentCode(All.TabGroupWithTable);
+	else if(value.type === ItemTypes.TableBody)
+		extractCode += extractComponentCode(All.TableBody);
+	else if(value.type === ItemTypes.TableBundle)
+		extractCode += extractComponentCode(All.TableBundle);
+	else if(value.type === ItemTypes.TableCell)
+		extractCode += extractComponentCode(All.TableCell);
+	else if(value.type === ItemTypes.TableHeader)
+		extractCode += extractComponentCode(All.TableHeader);
+	else if(value.type === ItemTypes.TableRow)
+		extractCode += extractComponentCode(All.TableRow);
+	else if(value.type === ItemTypes.TextFieldError)
+		extractCode += extractComponentCode(All.TextFieldError);
+	else if(value.type === ItemTypes.TextFieldLabel)
+		extractCode += extractComponentCode(All.TextFieldLabel);
+	else if(value.type === ItemTypes.TextFieldLeft)
+		extractCode += extractComponentCode(All.TextFieldLeft);
+	else if(value.type === ItemTypes.TextFieldRight)
+		extractCode += extractComponentCode(All.TextFieldRight);
+	else if(value.type === ItemTypes.TypographyBody1)
+		extractCode += extractComponentCode(All.TypographyBody1);
+	else if(value.type === ItemTypes.TypographyBody2)
+		extractCode += extractComponentCode(All.TypographyBody2);
+	else if(value.type === ItemTypes.TypographyBody3)
+		extractCode += extractComponentCode(All.TypographyBody3);
+	else if(value.type === ItemTypes.TypographyH1)
+		extractCode += extractComponentCode(All.TypographyH1);
+	else if(value.type === ItemTypes.TypographyGroupText)
+		extractCode += extractComponentCode(All.TypographyGroupText);
+	else if(value.type === ItemTypes.TendonProfileConverterBottomButtons)
+		extractCode += extractComponentCode(All.TendonProfileConverterBottomButtons);
+	else if(value.type === ItemTypes.TendonProfileConverterComposite)
+		extractCode += extractComponentCode(All.TendonProfileConverterComposite);
+	else if(value.type === ItemTypes.TendonProfileConverterHelpIconButton)
+		extractCode += extractComponentCode(All.TendonProfileConverterHelpIconButton);
+	else if(value.type === ItemTypes.TendonProfileConverterList)
+		extractCode += extractComponentCode(All.TendonProfileConverterList);
+	else if(value.type === ItemTypes.TendonProfileConverterSelectButton)
+		extractCode += extractComponentCode(All.TendonProfileConverterSelectButton);
+	else if(value.type === ItemTypes.TendonProfileConverterUpdateButton)
+		extractCode += extractComponentCode(All.TendonProfileConverterUpdateButton);
+	return extractCode;
+})}
 
   return (
     <Box sx={{width: "${Sizewidth}px", height:"${Sizeheight}px", p:"0.5rem", border: '1px solid #bebebe'}}>
@@ -625,10 +309,14 @@ function Components(props: any) {
 						${item.type === ItemTypes.GridColumn ? `${extractComponentName(All.GridColumn)}` : ""}
 						${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}
 						${item.type === ItemTypes.GridRow ? `${extractComponentName(All.GridRow)}` : ""}
+						${item.type === ItemTypes.GuideBoxBasic300x300 ? `${extractComponentName(All.GuideBoxBasic300x300)}` : ""}
+						${item.type === ItemTypes.GuideBoxLayoutSample1 ? `${extractComponentName(All.GuideBoxLayoutSample1)}` : ""}
+						${item.type === ItemTypes.GuideBoxRowDirection ? `${extractComponentName(All.GuideBoxRowDirection)}` : ""}
 						${item.type === ItemTypes.IconAdd ? `${extractComponentName(All.IconAdd)}` : ""}
 						${item.type === ItemTypes.IconClose ? `${extractComponentName(All.IconClose)}` : ""}
 						${item.type === ItemTypes.IconButtonAdd ? `${extractComponentName(All.IconButtonAdd)}` : ""}
 						${item.type === ItemTypes.IconButtonClose ? `${extractComponentName(All.IconButtonClose)}` : ""}
+						${item.type === ItemTypes.IconButtonWithName ? `${extractComponentName(All.IconButtonWithName)}` : ""}
 						${item.type === ItemTypes.ListControlled ? `${extractComponentName(All.ListControlled)}` : ""}
 						${item.type === ItemTypes.ListDynamic ? `${extractComponentName(All.ListDynamic)}` : ""}
 						${item.type === ItemTypes.ListTypographyRadio ? `${extractComponentName(All.ListTypographyRadio)}` : ""}

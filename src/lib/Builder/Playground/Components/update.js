@@ -138,7 +138,7 @@ export default function TotalCodeString(){
 				extractCode += extractComponentImport(All.TendonProfileConverterBottomButtons);
 
 			extractCode = extractCode.replace(/import { /ig, "");
-			extractCode = extractCode.replace(/ } from "@midasit-dev\/moaui";/ig, "");
+			extractCode = extractCode.replace(/ } from "@midasit-dev\\/moaui";/ig, "");
 			return extractCode;
 		});
 		console.log("Import List : ", importlist); // ex) ["button", "button"]
@@ -346,7 +346,7 @@ ${totalSringV2.join('\n')}
 	function remove3Comma(str:string){
 		let result = str.replace(/,{3}/g, "");
 		let result2 = result.replace(/>,/g, ">");
-		result2 = result2.replace(/,import/ig, "\nimport");
+		result2 = result2.replace(/,import/ig, "\\nimport");
 		return result2;
 	}
 
