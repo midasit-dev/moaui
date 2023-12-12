@@ -26,6 +26,7 @@ export { default as ComponentsGridColumn } from "./Components/Grid/Code/Column.c
 export { default as ComponentsGridItems } from "./Components/Grid/Code/Items.code";
 export { default as ComponentsGridRow } from "./Components/Grid/Code/Row.code";
 export { default as ComponentsGuideBoxBasic300x300 } from "./Components/GuideBox/Code/Basic300x300.code";
+export { default as ComponentsGuideBoxEmpty } from "./Components/GuideBox/Code/Empty.code";
 export { default as ComponentsGuideBoxLayout1 } from "./Components/GuideBox/Code/Layout1.code";
 export { default as ComponentsGuideBoxLayout2 } from "./Components/GuideBox/Code/Layout2.code";
 export { default as ComponentsGuideBoxLayout3 } from "./Components/GuideBox/Code/Layout3.code";

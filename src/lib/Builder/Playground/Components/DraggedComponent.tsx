@@ -30,6 +30,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.GridItems: return <All.GridItems />;
 		case ItemTypes.GridRow: return <All.GridRow />;
 		case ItemTypes.GuideBoxBasic300x300: return <All.GuideBoxBasic300x300 />;
+		case ItemTypes.GuideBoxEmpty: return <All.GuideBoxEmpty />;
 		case ItemTypes.GuideBoxLayout1: return <All.GuideBoxLayout1 />;
 		case ItemTypes.GuideBoxLayout2: return <All.GuideBoxLayout2 />;
 		case ItemTypes.GuideBoxLayout3: return <All.GuideBoxLayout3 />;
