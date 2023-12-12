@@ -9,14 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from "@mui/material/Typography";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import MoaButton from "../../Components/Button";
-import MoaTextField from "../../Components/TextField";
-import MoaCheckBox from "../../Components/Check";
 import { ItemTypes } from './Components/ItemTypes';
-import { useDrop } from 'react-dnd';
-import { Required } from '@src/lib/Components/Check/Code';
-// import { Required } from '../../Components/Check/Code';
-import { ComponentsCheckRequired } from './Components';
 import DraggedComponent from '@src/lib/Builder/Playground/Components/DraggedComponent';
 import TotalCodeStringV2 from './Components/TotalStringV2';
 
@@ -29,24 +22,8 @@ const fontStyle = {
   color:"#000",
 }
 
-const DropAcceptList = [
-  ItemTypes.BUTTON,
-  ItemTypes.TEXTFIELD,
-  ItemTypes.CHECKBOX,
-  ItemTypes.RADIO,
-  ItemTypes.SWITCH,
-  ItemTypes.SEPERATOR,
-  ItemTypes.TYPOGRAPHY,
-  ItemTypes.DROPLIST,
-  ItemTypes.TAB,
-  ItemTypes.TABLE,
-  ItemTypes.BOX
-];
-
 const DropTargetV2 = (props) => {
   const isopenCode = props.openCode;
-  const rowCount = props.rowCount;
-  const columnCount = props.columnCount;
   const [sizewidth, setSizewidth] = useRecoilState(TemplateWidth);
   const [sizeheight, setSizeHeight] = useRecoilState(TemplateHeight);
   const [layoutsInfo, setLayoutsInfo] = useRecoilState(LayoutsInfo);
@@ -217,10 +194,20 @@ const DropTargetV2 = (props) => {
         i: newItemId,
         x: layoutItem.x,
         y: layoutItem.y,
-        w: 4,
-        h: 1,
-        maxH: 1,
-        minW: 3,
+        w: 3,
+        h: 3,
+        minW: 2,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.CheckGroupUnControlled){
+      newItem = {
+        i: newItemId,
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 3,
+        h: 4,
+        minW: 2,
         type: componentType
       };
     }
