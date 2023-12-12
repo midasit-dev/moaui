@@ -136,76 +136,41 @@ const getItemDirection = (props: StyledProps): {
 }
 
 const getItemHorizontalAlign = (props: StyledProps) => {
-	let condition = false;
-	let value = 'left';
-
 	if (props.itemCenter) {
-		condition = true;
-		value = 'center';
+		return { condition: true, value: 'center' };
 	} else if (props.center) {
-		condition = true;
-		value = 'center';
-	}
-
-	if (props.horLeft) {
-		condition = true;
-		value = 'flex-start';
+		return { condition: true, value: 'center' };
+	} else if (props.horLeft) {
+		return { condition: true, value: 'flex-start' };
 	} else if (props.horCenter) {
-		condition = true;
-		value = 'center';
+		return { condition: true, value: 'center' };
 	} else if (props.horRight) {
-		condition = true;
-		value = 'flex-end';
+		return { condition: true, value: 'flex-end' };
 	} else if (props.horspaceBetween) {
-		condition = true;
-		value = 'space-between';
+		return { condition: true, value: 'space-between' };
 	} else if (props.itemHorizontalAlign) {
-		condition = true;
-		value = props.itemHorizontalAlign;
+		return { condition: true, value: props.itemHorizontalAlign };
 	} else {
-		condition = false;
-		value = 'flex-start';
+		return { condition: false, value: 'flex-start' };
 	}
-
-	return {
-		condition: condition,
-		value: value,
-	};
 }
 
 const getItemVerticalAlign = (props: StyledProps) => {
-	let condition = false;
-	let value = 'top';
-
 	if (props.itemCenter) {
-		condition = true;
-		value = 'center';
+		return { condition: true, value: 'center' };
 	} else if (props.center) {
-		condition = true;
-		value = 'center';
-	}
-
-	if (props.verTop) {
-		condition = true;
-		value = 'top';
+		return { condition: true, value: 'center' };
+	} else if (props.verTop) {
+		return { condition: true, value: 'flex-start' };
 	} else if (props.verCenter) {
-		condition = true;
-		value = 'center';
+		return { condition: true, value: 'center' };
 	} else if (props.verBottom) {
-		condition = true;
-		value = 'bottom';
+		return { condition: true, value: 'flex-end' };
 	} else if (props.itemVerticalAlign) {
-		condition = true;
-		value = props.itemVerticalAlign;
+		return { condition: true, value: props.itemVerticalAlign };
 	} else {
-		condition = false;
-		value = 'top';
+		return { condition: false, value: 'flex-start' };
 	}
-
-	return {
-		condition: condition,
-		value: value,
-	};
 }
 
 const CustomTooptip = styled(({ className, ...props }: TooltipProps) => (
