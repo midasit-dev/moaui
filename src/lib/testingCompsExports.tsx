@@ -70,6 +70,7 @@ export { default as ComponentsTableCell } from "./Components/Table/Code/Cell.cod
 export { default as ComponentsTableHeader } from "./Components/Table/Code/Header.code";
 export { default as ComponentsTableRow } from "./Components/Table/Code/Row.code";
 export { default as ComponentsTableWithTitle } from "./Components/Table/Code/WithTitle.code";
+export { default as ComponentsTextFieldBasic } from "./Components/TextField/Code/Basic.code";
 export { default as ComponentsTextFieldError } from "./Components/TextField/Code/Error.code";
 export { default as ComponentsTextFieldLabel } from "./Components/TextField/Code/Label.code";
 export { default as ComponentsTextFieldLeft } from "./Components/TextField/Code/Left.code";

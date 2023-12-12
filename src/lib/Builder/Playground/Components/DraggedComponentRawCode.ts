@@ -67,6 +67,7 @@ export { default as TableCell } from '../../../Components/Table/Code/Cell.code.t
 export { default as TableHeader } from '../../../Components/Table/Code/Header.code.tsx?raw';
 export { default as TableRow } from '../../../Components/Table/Code/Row.code.tsx?raw';
 export { default as TableWithTitle } from '../../../Components/Table/Code/WithTitle.code.tsx?raw';
+export { default as TextFieldBasic } from '../../../Components/TextField/Code/Basic.code.tsx?raw';
 export { default as TextFieldError } from '../../../Components/TextField/Code/Error.code.tsx?raw';
 export { default as TextFieldLabel } from '../../../Components/TextField/Code/Label.code.tsx?raw';
 export { default as TextFieldLeft } from '../../../Components/TextField/Code/Left.code.tsx?raw';

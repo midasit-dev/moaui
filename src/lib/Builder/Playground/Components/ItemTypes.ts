@@ -68,6 +68,7 @@ export const ItemTypes = {
 	TableHeader: 'TableHeader',
 	TableRow: 'TableRow',
 	TableWithTitle: 'TableWithTitle',
+	TextFieldBasic: 'TextFieldBasic',
 	TextFieldError: 'TextFieldError',
 	TextFieldLabel: 'TextFieldLabel',
 	TextFieldLeft: 'TextFieldLeft',

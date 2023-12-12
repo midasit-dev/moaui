@@ -74,6 +74,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.TableHeader: return <All.TableHeader />;
 		case ItemTypes.TableRow: return <All.TableRow />;
 		case ItemTypes.TableWithTitle: return <All.TableWithTitle />;
+		case ItemTypes.TextFieldBasic: return <All.TextFieldBasic />;
 		case ItemTypes.TextFieldError: return <All.TextFieldError />;
 		case ItemTypes.TextFieldLabel: return <All.TextFieldLabel />;
 		case ItemTypes.TextFieldLeft: return <All.TextFieldLeft />;

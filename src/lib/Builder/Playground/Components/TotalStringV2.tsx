@@ -75,7 +75,7 @@ export default function TotalCodeString(){
 				extractCode += extractComponentImport(All.TableBody);
 			else if(value.type === ItemTypes.TableCell || value.type === ItemTypes.TableHeader || value.type === ItemTypes.TableRow)
 				extractCode += extractComponentImport(All.TableCell);
-			else if(value.type === ItemTypes.TextFieldError || value.type === ItemTypes.TextFieldLabel || value.type === ItemTypes.TextFieldLeft || value.type === ItemTypes.TextFieldRight)
+			else if(value.type === ItemTypes.TextFieldBasic || value.type === ItemTypes.TextFieldError || value.type === ItemTypes.TextFieldLabel || value.type === ItemTypes.TextFieldLeft || value.type === ItemTypes.TextFieldRight)
 				extractCode += extractComponentImport(All.TextFieldError);
 			else if(value.type === ItemTypes.TypographyBody1 || value.type === ItemTypes.TypographyBody2 || value.type === ItemTypes.TypographyBody3 || value.type === ItemTypes.TypographyH1 || value.type === ItemTypes.TypographyGroupText)
 				extractCode += extractComponentImport(All.TypographyBody1);
@@ -220,6 +220,8 @@ export default function TotalCodeString(){
 				extractCode += extractComponentCode(All.TableHeader);
 			else if(value.type === ItemTypes.TableRow)
 				extractCode += extractComponentCode(All.TableRow);
+			else if(value.type === ItemTypes.TextFieldBasic)
+				extractCode += extractComponentCode(All.TextFieldBasic);
 			else if(value.type === ItemTypes.TextFieldError)
 				extractCode += extractComponentCode(All.TextFieldError);
 			else if(value.type === ItemTypes.TextFieldLabel)
@@ -341,6 +343,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TableHeader ? `${extractComponentName(All.TableHeader)}` : ""}
 					${item.type === ItemTypes.TableRow ? `${extractComponentName(All.TableRow)}` : ""}
 					${item.type === ItemTypes.TableWithTitle ? `${extractComponentName(All.TableWithTitle)}` : ""}
+					${item.type === ItemTypes.TextFieldBasic ? `${extractComponentName(All.TextFieldBasic)}` : ""}
 					${item.type === ItemTypes.TextFieldError ? `${extractComponentName(All.TextFieldError)}` : ""}
 					${item.type === ItemTypes.TextFieldLabel ? `${extractComponentName(All.TextFieldLabel)}` : ""}
 					${item.type === ItemTypes.TextFieldLeft ? `${extractComponentName(All.TextFieldLeft)}` : ""}

@@ -701,6 +701,7 @@ const TextFieldCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldBasic}>Basic</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldError}>Error</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldLabel}>Label</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldLeft}>Left</CustomDraggableComponent>
@@ -1029,6 +1030,9 @@ export const TableRow =
 
 export const TableWithTitle = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TableWithTitle}>TableWithTitle</CustomDraggableComponent>;
+
+export const TextFieldBasic = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldBasic}>TextFieldBasic</CustomDraggableComponent>;
 
 export const TextFieldError = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldError}>TextFieldError</CustomDraggableComponent>;
