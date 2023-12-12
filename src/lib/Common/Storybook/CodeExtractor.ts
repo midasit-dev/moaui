@@ -84,7 +84,8 @@ export const extract = (code: string): ExtractedCode => {
 
 	let importCodes = [];
 	for (const code of arrCode) {
-		const importCode = getCode([code], /import\s+{.*}\s+from\s+['|"](.*)['|"]/ig);
+		let importCode = getCode([code], /import\s+{.*}\s+from\s+['|"](.*)['|"]/ig);
+		importCode = importCode.replace(/\r\nimport/ig, "import"); // import 구문이 2개 이상일 경우, 앞에 \r\n이 붙어있어서 제거
 		if (importCode !== '') importCodes.push(importCode);
 	}
 
