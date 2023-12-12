@@ -83,6 +83,8 @@ function DraggedComponent(props: any){
 		case ItemTypes.TypographyBody3: return <All.TypographyBody3 />;
 		case ItemTypes.TypographyH1: return <All.TypographyH1 />;
 		case ItemTypes.TypographyGroupText: return <All.TypographyGroupText />;
+		case ItemTypes.DualComponentsTypographyDropListSpaceBetween: return <All.DualComponentsTypographyDropListSpaceBetween />;
+		case ItemTypes.DualComponentsTypographyTextFieldSpaceBetween: return <All.DualComponentsTypographyTextFieldSpaceBetween />;
 		case ItemTypes.TendonProfileConverterBottomButtons: return <All.TendonProfileConverterBottomButtons />;
 		case ItemTypes.TendonProfileConverterComposite: return <All.TendonProfileConverterComposite />;
 		case ItemTypes.TendonProfileConverterHelpIconButton: return <All.TendonProfileConverterHelpIconButton />;

@@ -1,29 +1,61 @@
 import React from 'react'; /**${comma}*/
-import { Scrollbars, List, ListItem, ListItemButton, Panel, Check, Typography, Stack } from "@midasit-dev/moaui"; /**${comma}*/
+import { GuideBox, Scrollbars, List, ListItem, ListItemButton, Panel, Check, Typography, Stack, Button } from "@midasit-dev/moaui"; /**${comma}*/
 
 const TemplatesTendonProfileConverterList = () => {
+	//Define a State
+	const [values, setValues] = React.useState([
+		{ name: 'A1L', checked: false },
+		{ name: 'A1R', checked: false },
+		{ name: 'A2L', checked: false },
+		{ name: 'A2R', checked: false },
+		{ name: 'A3L', checked: false },
+		{ name: 'A3R', checked: false },
+		{ name: 'A4L', checked: false },
+		{ name: 'A4R', checked: false },
+		{ name: 'B1L', checked: false },
+		{ name: 'B1R', checked: false },
+		{ name: 'B2L', checked: false },
+		{ name: 'B2R', checked: false },
+		{ name: 'B3L', checked: false },
+		{ name: 'B3R', checked: false },
+		{ name: 'B4L', checked: false },
+		{ name: 'B4R', checked: false },
+	]);
+
+	//if Values is Empty
+	function isSelectedEmpty() {
+		return values.filter((value: any) => value.checked).length === 0;
+	}
+
+	//Select & Deselect All Component
+	const ComponentSelectButton = () => {
+		if (isSelectedEmpty() === true) {
+			return (
+				<Button
+					variant='text'
+					color="negative"
+					width='300px'
+					onClick={() => setValues(values.map((value: any) => { return { ...value, checked: true } }))}
+				>
+					{"Select All"}
+				</Button>
+			);
+		} else {
+			return (
+				<Button
+					variant='text'
+					color="negative"
+					width='300px'
+					onClick={() => setValues(values.map((value: any) => { return { ...value, checked: false } }))}
+				>
+					{"Deselect All"}
+				</Button>
+			);
+		}
+	}
+
 	//Dynamic Component
 	const DynamicComponent = () => {
-		//Define a State
-		const [values, setValues] = React.useState([
-			{ name: 'A1L', checked: false },
-			{ name: 'A1R', checked: false },
-			{ name: 'A2L', checked: false },
-			{ name: 'A2R', checked: false },
-			{ name: 'A3L', checked: false },
-			{ name: 'A3R', checked: false },
-			{ name: 'A4L', checked: false },
-			{ name: 'A4R', checked: false },
-			{ name: 'B1L', checked: false },
-			{ name: 'B1R', checked: false },
-			{ name: 'B2L', checked: false },
-			{ name: 'B2R', checked: false },
-			{ name: 'B3L', checked: false },
-			{ name: 'B3R', checked: false },
-			{ name: 'B4L', checked: false },
-			{ name: 'B4R', checked: false },
-		]);
-
 		//If Values is Empty
 		const EmptyContent = () => {
 			return (
@@ -66,7 +98,7 @@ const TemplatesTendonProfileConverterList = () => {
 			newValues[index].checked = !(newValues[index].checked);
 			setValues(newValues);
 		}
-	
+
 		return (
       <List dense={true} disablePadding={true}>
 				{values.length === 0 && <EmptyContent />}
@@ -77,19 +109,21 @@ const TemplatesTendonProfileConverterList = () => {
 
 	//Main Component
   return (
-    <>
+    <GuideBox itemSpacing={2}>
       <Scrollbars
         outline="strock"
         width={300}
-        height={300}
+				height={300}
         title="Convertable Tendon Profile List"
         titleVariant="body2"
         titleColor="disable"
 				titleAlign="center"
       >
         <DynamicComponent />
-      </Scrollbars>
-    </>
+			</Scrollbars>
+			<ComponentSelectButton />
+			<div style={{ height: 3 }} />
+    </GuideBox>
   ); 
 }; /**${comma}*/
 

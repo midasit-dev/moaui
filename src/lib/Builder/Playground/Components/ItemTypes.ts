@@ -77,6 +77,8 @@ export const ItemTypes = {
 	TypographyBody3: 'TypographyBody3',
 	TypographyH1: 'TypographyH1',
 	TypographyGroupText: 'TypographyGroupText',
+	DualComponentsTypographyDropListSpaceBetween: 'DualComponentsTypographyDropListSpaceBetween',
+	DualComponentsTypographyTextFieldSpaceBetween: 'DualComponentsTypographyTextFieldSpaceBetween',
 	TendonProfileConverterBottomButtons: 'TendonProfileConverterBottomButtons',
 	TendonProfileConverterComposite: 'TendonProfileConverterComposite',
 	TendonProfileConverterHelpIconButton: 'TendonProfileConverterHelpIconButton',

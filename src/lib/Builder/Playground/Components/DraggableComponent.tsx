@@ -755,7 +755,7 @@ const TypographyGroupCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
-const TendonProfileConverterCategory: React.FC<{}> = () => (
+const DualComponentsCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
 			<div style={{ 
@@ -776,6 +776,28 @@ const TendonProfileConverterCategory: React.FC<{}> = () => (
 				marginBottom: '5px'
 			}} />
 		</GuideBox>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>DualComponents</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.DualComponentsTypographyDropListSpaceBetween}>TypographyDropListSpaceBetween</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.DualComponentsTypographyTextFieldSpaceBetween}>TypographyTextFieldSpaceBetween</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
+const TendonProfileConverterCategory: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -1035,6 +1057,12 @@ export const TypographyH1 =
 export const TypographyGroupText = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TypographyGroupText}>TypographyGroupText</CustomDraggableComponent>;
 
+export const DualComponentsTypographyDropListSpaceBetween = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DualComponentsTypographyDropListSpaceBetween}>DualComponentsTypographyDropListSpaceBetween</CustomDraggableComponent>;
+
+export const DualComponentsTypographyTextFieldSpaceBetween = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DualComponentsTypographyTextFieldSpaceBetween}>DualComponentsTypographyTextFieldSpaceBetween</CustomDraggableComponent>;
+
 export const TendonProfileConverterBottomButtons = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterBottomButtons}>TendonProfileConverterBottomButtons</CustomDraggableComponent>;
 
@@ -1095,6 +1123,7 @@ const DraggableComponent: React.FC = () => {
 			<TextFieldCategory />
 			<TypographyCategory />
 			<TypographyGroupCategory />
+			<DualComponentsCategory />
 			<TendonProfileConverterCategory />
 		</div>
 	);

@@ -1,15 +1,13 @@
-import { Stack, IconButton, Icon, Button, Typography } from "@midasit-dev/moaui"; /**${comma}*/
+import { GuideBox, Button, Typography, TemplatesTendonProfileConverterHelpIconButton } from "@midasit-dev/moaui";/**${comma}*/
 
 const TemplatesTendonProfileConverterBottomButtons = () => {
   return (
-    <Stack width="321px" direction="row" spacing={2} alignItems='center'>
-			<IconButton transparent>
-				<Icon iconName="Help" />
-			</IconButton>
-      <Typography>Convert to</Typography>
+		<GuideBox width={300} row itemSpacing={2.5}>
+			<TemplatesTendonProfileConverterHelpIconButton />
+      <Typography flexItem textAlign="center">Convert to</Typography>
       <Button>New</Button>
       <Button color="negative">Modify</Button>
-    </Stack>
+    </GuideBox>
   );
 }; /**${comma}*/
 

@@ -350,6 +350,8 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TypographyBody3 ? `${extractComponentName(All.TypographyBody3)}` : ""}
 					${item.type === ItemTypes.TypographyH1 ? `${extractComponentName(All.TypographyH1)}` : ""}
 					${item.type === ItemTypes.TypographyGroupText ? `${extractComponentName(All.TypographyGroupText)}` : ""}
+					${item.type === ItemTypes.DualComponentsTypographyDropListSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyDropListSpaceBetween)}` : ""}
+					${item.type === ItemTypes.DualComponentsTypographyTextFieldSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyTextFieldSpaceBetween)}` : ""}
 					${item.type === ItemTypes.TendonProfileConverterBottomButtons ? `${extractComponentName(All.TendonProfileConverterBottomButtons)}` : ""}
 					${item.type === ItemTypes.TendonProfileConverterComposite ? `${extractComponentName(All.TendonProfileConverterComposite)}` : ""}
 					${item.type === ItemTypes.TendonProfileConverterHelpIconButton ? `${extractComponentName(All.TendonProfileConverterHelpIconButton)}` : ""}

@@ -76,6 +76,8 @@ export { default as TypographyBody2 } from '../../../Components/Typography/Code/
 export { default as TypographyBody3 } from '../../../Components/Typography/Code/Body3.code';
 export { default as TypographyH1 } from '../../../Components/Typography/Code/H1.code';
 export { default as TypographyGroupText } from '../../../Components/TypographyGroup/Code/Text.code';
+export { default as DualComponentsTypographyDropListSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyDropListSpaceBetween.code';
+export { default as DualComponentsTypographyTextFieldSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code';
 export { default as TendonProfileConverterBottomButtons } from '../../../Templates/TendonProfileConverter/Code/BottomButtons.code';
 export { default as TendonProfileConverterComposite } from '../../../Templates/TendonProfileConverter/Code/Composite.code';
 export { default as TendonProfileConverterHelpIconButton } from '../../../Templates/TendonProfileConverter/Code/HelpIconButton.code';

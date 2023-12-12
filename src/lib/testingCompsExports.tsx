@@ -30,7 +30,6 @@ export { default as ComponentsGuideBoxLayout1 } from "./Components/GuideBox/Code
 export { default as ComponentsGuideBoxLayout2 } from "./Components/GuideBox/Code/Layout2.code";
 export { default as ComponentsGuideBoxLayout3 } from "./Components/GuideBox/Code/Layout3.code";
 export { default as ComponentsGuideBoxLayout4 } from "./Components/GuideBox/Code/Layout4.code";
-export { default as ComponentsGuideBoxLayout5 } from "./Components/GuideBox/Code/Layout5.code";
 export { default as ComponentsGuideBoxRowDirection } from "./Components/GuideBox/Code/RowDirection.code";
 export { default as ComponentsIconAdd } from "./Components/Icon/Code/Add.code";
 export { default as ComponentsIconClose } from "./Components/Icon/Code/Close.code";

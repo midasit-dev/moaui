@@ -1,14 +1,25 @@
-import { GuideBox } from "@midasit-dev/moaui";/**${comma}*/
+import { 
+	GuideBox,
+	// ↓↓↓ Import Templates ↓↓↓
+
+ } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsGuideBoxLayout3 = () => {
-	const depth1 = { show: true, fill: '1', padding: 1 }
-	const depth2 = { show: true, fill: '2', padding: 1, width: 300 }
+	const visible = true;
 	return (
-		<GuideBox tag="Tendon Profile Converter" {...depth1} itemSpacing={1}>
-			<GuideBox tag="Update Button" 	{...depth2} height={ 20}></GuideBox>
-			<GuideBox tag="List" 						{...depth2} height={300}></GuideBox>
-			<GuideBox tag="Select Button" 	{...depth2} height={ 20}></GuideBox>
-			<GuideBox tag="Bottom Buttons" 	{...depth2} height={ 20}></GuideBox>
+		<GuideBox tag="Tendon Profile Converter" show={visible} fill='1' padding={1} itemSpacing={1}>
+			<GuideBox tag="Update Button" show={visible} fill='2' padding={0} width={300} height={30}>
+				{/** ↓↓↓ Update Button ↓↓↓ */}
+
+			</GuideBox>
+			<GuideBox tag="List" show={visible} fill='2' padding={0} width={300} height={422}>
+				{/** ↓↓↓ List ↓↓↓ */}
+
+			</GuideBox>
+			<GuideBox tag="Bottom Buttons" 	show={visible} fill='2' padding={0} width={300} height={30}>
+				{/** ↓↓↓ Bottom Buttons ↓↓↓ */}
+
+			</GuideBox>
 		</GuideBox>
 	);
 };/**${comma}*/

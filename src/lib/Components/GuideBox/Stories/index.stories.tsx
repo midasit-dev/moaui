@@ -16,8 +16,6 @@ import {
 	Layout3_SampleCode,
 	Layout4Code,
 	Layout4_SampleCode,
-	Layout5Code,
-	Layout5_SampleCode,
 } from "../Code";
 
 const meta = {
@@ -43,8 +41,6 @@ export const Layout3 = LiveEditStory(cleanMask(Layout3Code));
 export const Layout3_Sample = LiveEditStory(cleanMask(Layout3_SampleCode));
 export const Layout4 = LiveEditStory(cleanMask(Layout4Code));
 export const Layout4_Sample = LiveEditStory(cleanMask(Layout4_SampleCode));
-export const Layout5 = LiveEditStory(cleanMask(Layout5Code));
-export const Layout5_Sample = LiveEditStory(cleanMask(Layout5_SampleCode));
 
 export const Sample: Story = {
   args: {
