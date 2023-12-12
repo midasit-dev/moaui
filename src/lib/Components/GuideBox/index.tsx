@@ -5,7 +5,6 @@ GuideBox.defaultProps = {
 	width: 'inherit',
 	height: 'auto',
 	itemSpacing: 1,
-	itemDirection: 'column',
 	fill: '1'
 } as StyledProps;
 

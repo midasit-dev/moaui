@@ -1,4 +1,4 @@
-import { GuideBox, Button, Panel } from "@midasit-dev/moaui";
+import { GuideBox, Button, Panel } from "@midasit-dev/moaui";/**${comma}*/
 import { 
 	ComponentsTabGroupWithTable, 
 	ComponentsDialogHelpIconButton, 
@@ -8,9 +8,9 @@ import {
 	ComponentsTypographyBody1,
 	ComponentsDropListDropdown,
 	ComponentsIconButtonWithName,
-} from "@midasit-dev/moaui";
+} from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsGuideBoxLayoutSample2 = () => {
+const ComponentsGuideBoxLayout1Sample = () => {
 	const visiable = false;
 	const title_h = { height: 40 };
 	const typography_wh = { width: 120, height: 30 };
@@ -119,6 +119,6 @@ const ComponentsGuideBoxLayoutSample2 = () => {
 			</GuideBox>
 		</GuideBox>
 	);
-};
+};/**${comma}*/
 
-export default ComponentsGuideBoxLayoutSample2;
+export default ComponentsGuideBoxLayout1Sample;

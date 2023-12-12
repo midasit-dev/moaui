@@ -49,6 +49,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout2.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout3.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout4.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout5.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/RowDirection.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Icon/Code/Add.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Icon/Code/Close.code.tsx?raw"));
@@ -98,6 +99,8 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/Typography/Code/Body3.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Typography/Code/H1.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TypographyGroup/Code/Text.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/DualComponents/Code/TypographyDropListSpaceBetween.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/TendonProfileConverter/Code/BottomButtons.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/TendonProfileConverter/Code/Composite.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/TendonProfileConverter/Code/HelpIconButton.code.tsx?raw"));

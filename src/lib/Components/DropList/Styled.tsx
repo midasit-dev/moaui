@@ -20,7 +20,7 @@ export type StyledProps = {
 	 * width="100%"
 	 * @defaultValue "auto"
 	 */
-	width? : string
+	width? : string | number;
 	/**
 	 * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
 	 * @defaultValue new Map()
@@ -50,7 +50,7 @@ export type StyledProps = {
    * The default value. Use when the component is not controlled.
 	 * @defaultValue ""
    */
-	defaultValue?: string;
+	defaultValue?: any;
 }
 
 const StyledComponent = styled((props:StyledProps) => {

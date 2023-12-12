@@ -1,4 +1,4 @@
-import { GuideBox } from "@midasit-dev/moaui";
+import { GuideBox } from "@midasit-dev/moaui";/**${comma}*/
 
 import {
 	TemplatesTendonProfileConverterUpdateButton,
@@ -7,9 +7,9 @@ import {
 	TemplatesTendonProfileConverterHelpIconButton,
 	Typography, 
 	Button,
-} from "@midasit-dev/moaui";
+} from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsGuideBoxLayoutSample5 = () => {
+const ComponentsGuideBoxLayout4Sample = () => {
 	const visible = false;
 	return (
 		<GuideBox tag="Tendon Profile Converter" show={visible} fill='1' padding={1} itemSpacing={1}>
@@ -30,6 +30,6 @@ const ComponentsGuideBoxLayoutSample5 = () => {
 			</GuideBox>
 		</GuideBox>
 	);
-};
+};/**${comma}*/
 
-export default ComponentsGuideBoxLayoutSample5;
+export default ComponentsGuideBoxLayout4Sample;

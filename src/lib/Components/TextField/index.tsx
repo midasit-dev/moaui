@@ -44,7 +44,7 @@ function Textfield(props: StyledProps) : React.ReactElement {
 		<React.Fragment>
 			{ title !== "" ?
 				<MoaStack 
-					width={props?.width} 
+					width={props?.width}
 					{...boxStyle(titlePosition)} 
 					direction={(titlePosition === "label") ? "column" : "row"}
 					spacing={props.spacing}
@@ -53,11 +53,11 @@ function Textfield(props: StyledProps) : React.ReactElement {
 						titlePosition === "right" ?
 						<>
 							<StyledComponent {...rest} />
-							<Typography>{`${title}`}</Typography>
+							<Typography flexItem textAlign="center">{`${title}`}</Typography>
 						</>
 						:
 						<>
-							<Typography>{`${title}`}</Typography>
+							<Typography flexItem textAlign="center">{`${title}`}</Typography>
 							<StyledComponent {...rest}/>
 						</>
 					}

@@ -73,6 +73,10 @@ export type StyledProps = {
 	 */
 	width?: number | string,
 	/**
+	 * The height of the textfield.
+	 */
+	height?: string | number;
+	/**
 	 * The spacing title and textfield.
 	 */
 	spacing?: number,
@@ -90,6 +94,7 @@ const StyledComponent = styled((props:StyledProps) => {
 			value = {props?.value}
 			sx={{
 				width: props?.width || "auto",
+				height: props?.height || "auto",
 				'& .MuiOutlinedInput-root': {
 					'& fieldset':{
 						border: `1px solid ${Color.component.gray}`,

@@ -30,6 +30,7 @@ export { default as ComponentsGuideBoxLayout1 } from "./Components/GuideBox/Code
 export { default as ComponentsGuideBoxLayout2 } from "./Components/GuideBox/Code/Layout2.code";
 export { default as ComponentsGuideBoxLayout3 } from "./Components/GuideBox/Code/Layout3.code";
 export { default as ComponentsGuideBoxLayout4 } from "./Components/GuideBox/Code/Layout4.code";
+export { default as ComponentsGuideBoxLayout5 } from "./Components/GuideBox/Code/Layout5.code";
 export { default as ComponentsGuideBoxRowDirection } from "./Components/GuideBox/Code/RowDirection.code";
 export { default as ComponentsIconAdd } from "./Components/Icon/Code/Add.code";
 export { default as ComponentsIconClose } from "./Components/Icon/Code/Close.code";
@@ -79,6 +80,8 @@ export { default as ComponentsTypographyBody2 } from "./Components/Typography/Co
 export { default as ComponentsTypographyBody3 } from "./Components/Typography/Code/Body3.code";
 export { default as ComponentsTypographyH1 } from "./Components/Typography/Code/H1.code";
 export { default as ComponentsTypographyGroupText } from "./Components/TypographyGroup/Code/Text.code";
+export { default as TemplatesDualComponentsTypographyDropListSpaceBetween } from "./Templates/DualComponents/Code/TypographyDropListSpaceBetween.code";
+export { default as TemplatesDualComponentsTypographyTextFieldSpaceBetween } from "./Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code";
 export { default as TemplatesTendonProfileConverterBottomButtons } from "./Templates/TendonProfileConverter/Code/BottomButtons.code";
 export { default as TemplatesTendonProfileConverterComposite } from "./Templates/TendonProfileConverter/Code/Composite.code";
 export { default as TemplatesTendonProfileConverterHelpIconButton } from "./Templates/TendonProfileConverter/Code/HelpIconButton.code";

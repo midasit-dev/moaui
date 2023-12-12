@@ -106,6 +106,14 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Set the flexItem
 	 */
 	flexItem?: boolean;
+	/**
+	 * Set the width
+	 */
+	width?: string | number;
+	/**
+	 * Set the height
+	 */
+	height?: string | number;
 }
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -121,6 +129,8 @@ const StyledComponent = styled((props: StyledProps) => {
 				textAlign: textAlign,
 				alignItems: textAlign,
 				display: props.flexItem ? 'flex' : 'block',
+				width: props.width || 'auto',
+				height: props.height || 'auto',
 			}}
 			color={FontColor.selector(color)}
 		>

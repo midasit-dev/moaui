@@ -1,4 +1,4 @@
-import { GuideBox } from "@midasit-dev/moaui";
+import { GuideBox } from "@midasit-dev/moaui";/**${comma}*/
 
 import { 
 	ComponentsTypographyH1,
@@ -9,9 +9,9 @@ import {
 	ComponentsTableWithTitle,
 	Check,
 	Panel,
-} from "@midasit-dev/moaui";
+} from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsGuideBoxLayoutSample4 = () => {
+const ComponentsGuideBoxLayout2Sample = () => {
 	const visible = false;
 
 	return (
@@ -96,6 +96,6 @@ const ComponentsGuideBoxLayoutSample4 = () => {
 			</GuideBox>
 		</GuideBox>
 	);
-};
+};/**${comma}*/
 
-export default ComponentsGuideBoxLayoutSample4;
+export default ComponentsGuideBoxLayout2Sample;

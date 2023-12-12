@@ -1,6 +1,6 @@
 import { GuideBox } from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsGuideBoxLayoutSample1 = () => {
+const ComponentsGuideBoxLayout1 = () => {
 	const visiable = true;
 	const title_h = { height: 40 };
 	const typography_wh = { width: 120, height: 30 };
@@ -67,4 +67,4 @@ const ComponentsGuideBoxLayoutSample1 = () => {
 	);
 };/**${comma}*/
 
-export default ComponentsGuideBoxLayoutSample1;
+export default ComponentsGuideBoxLayout1;

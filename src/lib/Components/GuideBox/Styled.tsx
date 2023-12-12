@@ -39,29 +39,174 @@ export type StyledProps = {
    * @default rgba(240, 240, 240, 0.5)
    */
   fill?: '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | string;
+
 	/**
 	 * guide box item direction
 	 * 
 	 * @default column
 	 */
-	itemDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+	itemDirection?: 'column' |'row' | 'row-reverse' | 'column-reverse';
+	/**
+	 * guide box item direction 'column' (super option)
+	 */
+	column?: boolean;
+	/**
+	 * guide box item direction 'row' (super option)
+	 */
+	row?: boolean;
+
   /**
    * guide box item spacing, if not set, use padding value
    */
   itemSpacing?: number;
+
 	/**
 	 * guide box item center force option
 	 */
 	itemCenter?: boolean;
+	/**
+	 * guide box item center force option (super option)
+	 */
+	center?: boolean;
+
   /**
    * guide box item align horizontal option
    */
   itemHorizontalAlign?: 'left' | 'center' | 'right' | 'space-between';
 	/**
+	 * guide box item align horizontal option 'left' (super option)
+	 */
+	horLeft?: boolean;
+	/**
+	 * guide box item align horizontal option 'center' (super option)
+	 */
+	horCenter?: boolean;
+	/**
+	 * guide box item align horizontal option 'right' (super option)
+	 */
+	horRight?: boolean;
+	/**
+	 * guide box item align horizontal option 'space-between' (super option)
+	 */
+	horspaceBetween?: boolean;
+
+	/**
 	 * guide box item align veritcal option
 	 */
 	itemVerticalAlign?: 'top' | 'center' | 'bottom';
+	/**
+	 * guide box item align veritcal option 'top' (super option)
+	 */
+	verTop?: boolean;
+	/**
+	 * guide box item align veritcal option 'center' (super option)
+	 */
+	verCenter?: boolean;
+	/**
+	 * guide box item align veritcal option 'bottom' (super option)
+	 */
+	verBottom?: boolean;
 } & MarginTypes & PaddingTypes;
+
+const getItemDirection = (props: StyledProps): {
+	condition: boolean;
+	value: 'column' |'row' | 'row-reverse' | 'column-reverse';
+} => {
+	let condition = false;
+	let value = 'column';
+
+	if (props.column) {
+		condition = true;
+		value = 'column';
+	} else if (props.row) {
+		condition = true;
+		value = 'row';
+	} else if (props.itemDirection) {
+		condition = true;
+		value = props.itemDirection;
+	} else {
+		condition = false;
+		value = 'column';
+	}
+
+	return {
+		condition: condition,
+		value: value as 'column' |'row' | 'row-reverse' | 'column-reverse',
+	};
+}
+
+const getItemHorizontalAlign = (props: StyledProps) => {
+	let condition = false;
+	let value = 'left';
+
+	if (props.itemCenter) {
+		condition = true;
+		value = 'center';
+	} else if (props.center) {
+		condition = true;
+		value = 'center';
+	}
+
+	if (props.horLeft) {
+		condition = true;
+		value = 'flex-start';
+	} else if (props.horCenter) {
+		condition = true;
+		value = 'center';
+	} else if (props.horRight) {
+		condition = true;
+		value = 'flex-end';
+	} else if (props.horspaceBetween) {
+		condition = true;
+		value = 'space-between';
+	} else if (props.itemHorizontalAlign) {
+		condition = true;
+		value = props.itemHorizontalAlign;
+	} else {
+		condition = false;
+		value = 'flex-start';
+	}
+
+	return {
+		condition: condition,
+		value: value,
+	};
+}
+
+const getItemVerticalAlign = (props: StyledProps) => {
+	let condition = false;
+	let value = 'top';
+
+	if (props.itemCenter) {
+		condition = true;
+		value = 'center';
+	} else if (props.center) {
+		condition = true;
+		value = 'center';
+	}
+
+	if (props.verTop) {
+		condition = true;
+		value = 'top';
+	} else if (props.verCenter) {
+		condition = true;
+		value = 'center';
+	} else if (props.verBottom) {
+		condition = true;
+		value = 'bottom';
+	} else if (props.itemVerticalAlign) {
+		condition = true;
+		value = props.itemVerticalAlign;
+	} else {
+		condition = false;
+		value = 'top';
+	}
+
+	return {
+		condition: condition,
+		value: value,
+	};
+}
 
 const CustomTooptip = styled(({ className, ...props }: TooltipProps) => (
 	<Tooltip {...props} classes={{ popper: className }} />
@@ -104,18 +249,18 @@ const ToolTipProperties = (props: StyledProps, dimensions: { width: number, heig
 		},
 		{
 			key: 'itemDirection',
-			condition: (props.itemDirection !== undefined),
-			value: `${props.itemDirection}`,
+			condition: getItemDirection(props).condition,
+			value: getItemDirection(props).value,
 		},
 		{
 			key: 'itemHorizontalAlign',
-			condition: (props.itemHorizontalAlign !== undefined),
-			value: `${props.itemHorizontalAlign}`,
+			condition: getItemHorizontalAlign(props).condition,
+			value: getItemHorizontalAlign(props).value,
 		},
 		{
 			key: 'itemVerticalAlign',
-			condition: (props.itemVerticalAlign !== undefined),
-			value: `${props.itemVerticalAlign}`,
+			condition: getItemVerticalAlign(props).condition,
+			value: getItemVerticalAlign(props).value,
 		},
   ];
 }
@@ -150,43 +295,32 @@ const getBackgroundColor = (props: StyledProps): string => {
 	}
 }
 
-const getHorizontalAlign = (props: StyledProps): string => {
-	if (props.itemCenter) {
-		return 'center';
-	}
-
-	if (props.itemHorizontalAlign) {
-		if (props.itemHorizontalAlign === 'left') {
-			return 'flex-start';
-		} else if (props.itemHorizontalAlign === 'right') {
-			return 'flex-end';
-		} else {
-			return props.itemHorizontalAlign;
-		}
-	}
-
-	return 'flex-start';
-}
-
-const getVerticalAlign = (props: StyledProps): string => {
-	if (props.itemCenter) {
-		return 'center';
-	}
-
-	if (props.itemVerticalAlign) {
-		if (props.itemVerticalAlign === 'top') {
-			return 'flex-start';
-		} else if (props.itemVerticalAlign === 'bottom') {
-			return 'flex-end';
-		} else {
-			return props.itemVerticalAlign;
-		}
-	}
-
-	return 'flex-start';
-}
-
 const GuideBox = (props: StyledProps) => {
+	const { 
+		children, 
+		tag, 
+		show, 
+		width, 
+		height, 
+		fill, 
+		itemDirection, 
+		column, 
+		row, 
+		itemSpacing, 
+		itemCenter, 
+		center, 
+		itemHorizontalAlign, 
+		horLeft, 
+		horCenter, 
+		horRight, 
+		horspaceBetween, 
+		itemVerticalAlign, 
+		verTop, 
+		verCenter, 
+		verBottom, 
+		...rest 
+	} = props;
+
 	/**
 	 * 가로 세로 사이즈 가상 DOM으로 붙어 얻어오기
 	 */
@@ -218,7 +352,7 @@ const GuideBox = (props: StyledProps) => {
 	 */
 	const [open, setOpen] = React.useState(false);
 	const handleTooltipToggle = (e: any) => {
-		if (!props.show) return;
+		if (!show) return;
 		e.preventDefault();
 		setOpen(!open);
 		e.stopPropagation();
@@ -277,10 +411,12 @@ const GuideBox = (props: StyledProps) => {
       open={open}
     >
 			{/** (1)  space-between 일 경우 or (2) 일반적인 케이스 일 경우 */}
-			{props.itemHorizontalAlign === 'space-between' ?
+			{getItemHorizontalAlign(props).value === 'space-between' ?
 				<Box
 					ref={boxRef}
-					{...props}
+					width={width}
+					height={height}
+					{...rest}
 					sx={{
 						...MarginProps(props),
 						...PaddingProps(props),
@@ -291,11 +427,11 @@ const GuideBox = (props: StyledProps) => {
 					onContextMenu={handleTooltipToggle}
 				>
 					<Stack
-						direction={props.itemDirection || "column"}
-						spacing={props.itemSpacing}
+						direction={getItemDirection(props).value}
+						spacing={itemSpacing}
 						display={"flex"}
-						justifyContent={getHorizontalAlign(props)}
-						alignItems={getVerticalAlign(props)}
+						justifyContent={getItemHorizontalAlign(props).value}
+						alignItems={getItemVerticalAlign(props).value}
 					>
 						{
 							props.children && 
@@ -308,7 +444,9 @@ const GuideBox = (props: StyledProps) => {
 			:
 				<Box
 					ref={boxRef}
-					{...props}
+					{...rest}
+					width={width}
+					height={height}
 					sx={{
 						...MarginProps(props),
 						...PaddingProps(props),
@@ -318,15 +456,15 @@ const GuideBox = (props: StyledProps) => {
 					overflow={"hidden"}
 					onContextMenu={handleTooltipToggle}
 					display={"flex"}
-					justifyContent={getHorizontalAlign(props)}
-					alignItems={getVerticalAlign(props)}
+					justifyContent={getItemHorizontalAlign(props).value}
+					alignItems={getItemHorizontalAlign(props).value}
 				>
 					<Stack
-						direction={props.itemDirection || "column"}
-						spacing={props.itemSpacing}
+						direction={getItemDirection(props).value}
+						spacing={itemSpacing}
 					>
 						{
-							props.children && 
+							children && 
 								React.Children.map(props.children, (child, index) => (
 									<React.Fragment key={index}>{child}</React.Fragment>
 								))
