@@ -18,7 +18,9 @@ function extractComponentName(str:string){
 
 function extractComponentImport(str:string){
 	const code = CodeExtractor.extract(str);
-	return code.importCodes[0];
+	// "react"가 포함되어 있으면 제거
+	let filteredImportCodes = code.importCodes.filter(info => info.includes("react") !== true);
+	return filteredImportCodes[0];
 }
 
 export default function TotalCodeString(){
