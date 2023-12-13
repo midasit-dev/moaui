@@ -15,7 +15,8 @@ const getCode = (arrCode: string[], regex: RegExp): string => {
 		}
 	}
 	
-	if (Code === '') console.error(arrCode, regex, 'Code is not exist');
+	// if (Code === '')
+	// 	console.error(arrCode, regex, 'Code is not exist');
 	return Code;
 }
 
@@ -25,7 +26,7 @@ const getComponentName = (componentCode: string, regex: RegExp) => {
 	const componentNameMatch = componentNameRegex.exec(componentCode);
 	let componentName = '';
 	if (!componentNameMatch) {
-		console.error('componentName is not exist');
+		// console.error('componentName is not exist');
 		return componentName;
 	}
 	componentName = componentNameMatch[1].trim();

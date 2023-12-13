@@ -28,7 +28,7 @@ const TemplatesTendonProfileConverterList = () => {
 	}
 
 	//Select & Deselect All Component
-	const ComponentSelectButton = () => {
+	const SelectButton = () => {
 		if (isSelectedEmpty() === true) {
 			return (
 				<Button
@@ -121,7 +121,7 @@ const TemplatesTendonProfileConverterList = () => {
       >
         <DynamicComponent />
 			</Scrollbars>
-			<ComponentSelectButton />
+			<SelectButton />
 			<div style={{ height: 3 }} />
     </GuideBox>
   ); 

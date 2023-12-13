@@ -96,12 +96,17 @@ export default function TotalCodeString(){
 			extractCode = extractCode.replace(/ } from "@midasit-dev\/moaui";/ig, "");
 			return extractCode;
 		});
+		console.log("Import List : ", importlist); // ex) ["button", "button"]
 		importlist.splice(0,1);
-		//console.log("Import List : ", importlist); // ex) ["button", "button"]
 		// remove duplicate elements
-		const uniqueImportList: string[] = Array.from(new Set(importlist));
-		console.log("uniqueImportList : ", uniqueImportList); // ex) ["button"]
-		const importString = `import { ${uniqueImportList.join(", ")} } from "@midasit-dev/moaui";`;
+		let firstSetImportList: string[] = Array.from(new Set(importlist));
+		console.log("firstSetImportList : ", firstSetImportList.join(", ")); // ex) ["button"]
+		let firstSetImportListText = firstSetImportList.join(", ");
+		firstSetImportListText = firstSetImportListText.replace(/ ,/ig, ",");
+		const splitRemakeImportList = firstSetImportListText.split(", ");
+		console.log("splitRemakeImportList: ",splitRemakeImportList);
+		const SetImportList: string[] = Array.from(new Set(splitRemakeImportList));
+		const importString = `import { ${SetImportList.join(", ")} } from "@midasit-dev/moaui";`;
 		//console.log("importString : ", importString); // ex) import { button } from "@midasit-dev/moaui";
 		return importString;
 	}
@@ -310,7 +315,6 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}
 					${item.type === ItemTypes.GridRow ? `${extractComponentName(All.GridRow)}` : ""}
 					${item.type === ItemTypes.GuideBoxBasic300x300 ? `${extractComponentName(All.GuideBoxBasic300x300)}` : ""}
-					${item.type === ItemTypes.GuideBoxEmpty ? `${extractComponentName(All.GuideBoxEmpty)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout1 ? `${extractComponentName(All.GuideBoxLayout1)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout2 ? `${extractComponentName(All.GuideBoxLayout2)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout3 ? `${extractComponentName(All.GuideBoxLayout3)}` : ""}
@@ -399,7 +403,9 @@ ${ makeComponentlist() }
 			</Grid>
     </Box>
   )
-}`;
+}
+
+export default Components;`;
 
 	function remove3Comma(str:string){
 		let result = str.replace(/,{3}/g, "");
