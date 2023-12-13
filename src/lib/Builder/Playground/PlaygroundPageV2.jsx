@@ -27,7 +27,7 @@ const DropTargetV2 = (props) => {
   const [sizewidth, setSizewidth] = useRecoilState(TemplateWidth);
   const [sizeheight, setSizeHeight] = useRecoilState(TemplateHeight);
   const [layoutsInfo, setLayoutsInfo] = useRecoilState(LayoutsInfo);
-  const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 20, w: 1, h: 1, minW: 1, maxH: 1, type: ItemTypes.GuideBoxEmpty}]); 
+  const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 30, w: 1, h: 1, minW: 1, maxH: 1, type: ItemTypes.GuideBoxEmpty}]); 
 
 
   React.useEffect(() => {
@@ -42,7 +42,7 @@ const DropTargetV2 = (props) => {
   }, [layouts]);
 
   function onClickClear(){
-    setLayouts([{i: new Date().getTime().toString(), x: 0, y: 20, w: 3, h: 1, minW: 1, maxH: 1, type: ItemTypes.GuideBoxEmpty}]);
+    setLayouts([{i: new Date().getTime().toString(), x: 0, y: 30, w: 3, h: 1, minW: 1, maxH: 1, type: ItemTypes.GuideBoxEmpty}]);
   };
   
   function onClickBack(){
@@ -218,6 +218,8 @@ const DropTargetV2 = (props) => {
         y: layoutItem.y,
         w: 7,
         h: 1,
+        minW: 7,
+        maxH: 1,
         type: componentType
       };
     }
@@ -228,6 +230,8 @@ const DropTargetV2 = (props) => {
         y: layoutItem.y,
         w: 7,
         h: 1,
+        minW: 7,
+        maxH: 1,
         type: componentType
       };
     }
@@ -237,7 +241,9 @@ const DropTargetV2 = (props) => {
         x: layoutItem.x,
         y: layoutItem.y,
         w: 7,
-        h: 12,
+        h: 15,
+        minH: 15,
+        minW: 7,
         type: componentType
       };
     }
