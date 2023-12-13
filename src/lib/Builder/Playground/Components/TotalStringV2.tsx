@@ -79,8 +79,18 @@ export default function TotalCodeString(){
 				extractCode = extractComponentImport(All.TextFieldError);
 			else if(value.type === ItemTypes.TypographyBody1 || value.type === ItemTypes.TypographyBody2 || value.type === ItemTypes.TypographyBody3 || value.type === ItemTypes.TypographyH1 || value.type === ItemTypes.TypographyGroupText)
 				extractCode = extractComponentImport(All.TypographyBody1);
-			else if(value.type === ItemTypes.TendonProfileConverterBottomButtons || value.type === ItemTypes.TendonProfileConverterComposite || value.type === ItemTypes.TendonProfileConverterHelpIconButton || value.type === ItemTypes.TendonProfileConverterList || value.type === ItemTypes.TendonProfileConverterSelectButton || value.type === ItemTypes.TendonProfileConverterUpdateButton)
+			else if(value.type === ItemTypes.TendonProfileConverterBottomButtons)
 				extractCode = extractComponentImport(All.TendonProfileConverterBottomButtons);
+			else if(value.type === ItemTypes.TendonProfileConverterComposite)
+				extractCode = extractComponentImport(All.TendonProfileConverterComposite);
+			else if(value.type === ItemTypes.TendonProfileConverterHelpIconButton)
+				extractCode = extractComponentImport(All.TendonProfileConverterHelpIconButton);
+			else if(value.type === ItemTypes.TendonProfileConverterList)
+				extractCode = extractComponentImport(All.TendonProfileConverterList);
+			else if(value.type === ItemTypes.TendonProfileConverterSelectButton)
+				extractCode = extractComponentImport(All.TendonProfileConverterSelectButton);
+			else if(value.type === ItemTypes.TendonProfileConverterUpdateButton)
+				extractCode = extractComponentImport(All.TendonProfileConverterUpdateButton);
 			
 			extractCode = extractCode.replace(/import { /ig, "");
 			extractCode = extractCode.replace(/ } from "@midasit-dev\/moaui";/ig, "");

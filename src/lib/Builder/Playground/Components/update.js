@@ -130,14 +130,25 @@ export default function TotalCodeString(){
 			else if(value.type === ItemTypes.TextFieldBasic || value.type === ItemTypes.TextFieldError || value.type === ItemTypes.TextFieldLabel || value.type === ItemTypes.TextFieldLeft || value.type === ItemTypes.TextFieldRight)
 				extractCode += extractComponentImport(All.TextFieldError);
 			else if(value.type === ItemTypes.TypographyBody1 || value.type === ItemTypes.TypographyBody2 || value.type === ItemTypes.TypographyBody3 || value.type === ItemTypes.TypographyH1 || value.type === ItemTypes.TypographyGroupText)
-				extractCode += extractComponentImport(All.TypographyBody1);
-			else if(value.type === ItemTypes.TendonProfileConverterBottomButtons || value.type === ItemTypes.TendonProfileConverterComposite || value.type === ItemTypes.TendonProfileConverterHelpIconButton || value.type === ItemTypes.TendonProfileConverterList || value.type === ItemTypes.TendonProfileConverterSelectButton || value.type === ItemTypes.TendonProfileConverterUpdateButton)
-				extractCode += extractComponentImport(All.TendonProfileConverterBottomButtons);
-
+				extractCode = extractComponentImport(All.TypographyBody1);
+			else if(value.type === ItemTypes.TendonProfileConverterBottomButtons)
+				extractCode = extractComponentImport(All.TendonProfileConverterBottomButtons);
+			else if(value.type === ItemTypes.TendonProfileConverterComposite)
+				extractCode = extractComponentImport(All.TendonProfileConverterComposite);
+			else if(value.type === ItemTypes.TendonProfileConverterHelpIconButton)
+				extractCode = extractComponentImport(All.TendonProfileConverterHelpIconButton);
+			else if(value.type === ItemTypes.TendonProfileConverterList)
+				extractCode = extractComponentImport(All.TendonProfileConverterList);
+			else if(value.type === ItemTypes.TendonProfileConverterSelectButton)
+				extractCode = extractComponentImport(All.TendonProfileConverterSelectButton);
+			else if(value.type === ItemTypes.TendonProfileConverterUpdateButton)
+				extractCode = extractComponentImport(All.TendonProfileConverterUpdateButton);
+			
 			extractCode = extractCode.replace(/import { /ig, "");
-			extractCode = extractCode.replace(/ } from "@midasit-dev\\/moaui";/ig, "");
+			extractCode = extractCode.replace(/ } from "@midasit-dev\/moaui";/ig, "");
 			return extractCode;
 		});
+		importlist.splice(0,1);
 		//console.log("Import List : ", importlist); // ex) ["button", "button"]
 		// remove duplicate elements
 		const uniqueImportList: string[] = Array.from(new Set(importlist));
