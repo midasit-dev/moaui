@@ -237,7 +237,7 @@ const DropTargetV2 = (props) => {
         x: layoutItem.x,
         y: layoutItem.y,
         w: 7,
-        h: 11,
+        h: 12,
         type: componentType
       };
     }
@@ -338,6 +338,7 @@ const DropTargetV2 = (props) => {
                 compactType={null}
                 onBreakpointChange={onBreakpointChange}
                 containerPadding={[5, 5]}
+                margin={[0, 0]}
               >
                 {layouts.map((item) => {
                   return (
