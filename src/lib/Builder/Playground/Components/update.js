@@ -167,161 +167,162 @@ export default function TotalCodeString(){
 	}
 
 	function makeCompoCodeList(){
-		const compoCodeList = Layoutsinfo.map((value: any) => {
+		const uniqueLayoutTypes = Array.from(new Set(Layoutsinfo.map((value: any) => value.type)));
+		const compoCodeList = uniqueLayoutTypes.map((value: any) => {
 			let extractCode : any = "";
-			if(value.type === ItemTypes.VerifyDialogDefault)
+			if(value === ItemTypes.VerifyDialogDefault)
 				extractCode = extractComponentCode(All.VerifyDialogDefault);
-			else if(value.type === ItemTypes.ButtonComposite)
+			else if(value === ItemTypes.ButtonComposite)
 				extractCode = extractComponentCode(All.ButtonComposite);
-			else if(value.type === ItemTypes.ButtonContained)
+			else if(value === ItemTypes.ButtonContained)
 				extractCode = extractComponentCode(All.ButtonContained);
-			else if(value.type === ItemTypes.ButtonNegative)
+			else if(value === ItemTypes.ButtonNegative)
 				extractCode = extractComponentCode(All.ButtonNegative);
-			else if(value.type === ItemTypes.ButtonNormal)
+			else if(value === ItemTypes.ButtonNormal)
 				extractCode = extractComponentCode(All.ButtonNormal);
-			else if(value.type === ItemTypes.ButtonOutlined)
+			else if(value === ItemTypes.ButtonOutlined)
 				extractCode = extractComponentCode(All.ButtonOutlined);
-			else if(value.type === ItemTypes.ButtonText)
+			else if(value === ItemTypes.ButtonText)
 				extractCode = extractComponentCode(All.ButtonText);
-			else if(value.type === ItemTypes.ButtonWidth)
+			else if(value === ItemTypes.ButtonWidth)
 				extractCode = extractComponentCode(All.ButtonWidth);
-			else if(value.type === ItemTypes.ChartLineAxisLegend)
+			else if(value === ItemTypes.ChartLineAxisLegend)
 				extractCode = extractComponentCode(All.ChartLineAxisLegend);
-			else if(value.type === ItemTypes.ChartLineAxisPointSize)
+			else if(value === ItemTypes.ChartLineAxisPointSize)
 				extractCode = extractComponentCode(All.ChartLineAxisPointSize);
-			else if(value.type === ItemTypes.ChartLineAxisTopRight)
+			else if(value === ItemTypes.ChartLineAxisTopRight)
 				extractCode = extractComponentCode(All.ChartLineAxisTopRight);
-			else if(value.type === ItemTypes.CheckNotRequired)
+			else if(value === ItemTypes.CheckNotRequired)
 				extractCode = extractComponentCode(All.CheckNotRequired);
-			else if(value.type === ItemTypes.CheckRequired)
+			else if(value === ItemTypes.CheckRequired)
 				extractCode = extractComponentCode(All.CheckRequired);
-			else if(value.type === ItemTypes.CheckGroupStateful)
+			else if(value === ItemTypes.CheckGroupStateful)
 				extractCode = extractComponentCode(All.CheckGroupStateful);
-			else if(value.type === ItemTypes.CheckGroupUnControlled)
+			else if(value === ItemTypes.CheckGroupUnControlled)
 				extractCode = extractComponentCode(All.CheckGroupUnControlled);
-			else if(value.type === ItemTypes.CodeBlockJavascript)
+			else if(value === ItemTypes.CodeBlockJavascript)
 				extractCode = extractComponentCode(All.CodeBlockJavascript);
-			else if(value.type === ItemTypes.CodeBlockTypescript)
+			else if(value === ItemTypes.CodeBlockTypescript)
 				extractCode = extractComponentCode(All.CodeBlockTypescript);
-			else if(value.type === ItemTypes.DataGridPagination)
+			else if(value === ItemTypes.DataGridPagination)
 				extractCode = extractComponentCode(All.DataGridPagination);
-			else if(value.type === ItemTypes.DialogHelpButton)
+			else if(value === ItemTypes.DialogHelpButton)
 				extractCode = extractComponentCode(All.DialogHelpButton);
-			else if(value.type === ItemTypes.DialogHelpIconButton)
+			else if(value === ItemTypes.DialogHelpIconButton)
 				extractCode = extractComponentCode(All.DialogHelpIconButton);
-			else if(value.type === ItemTypes.DropListDropdown)
+			else if(value === ItemTypes.DropListDropdown)
 				extractCode = extractComponentCode(All.DropListDropdown);
-			else if(value.type === ItemTypes.GridColumn)
+			else if(value === ItemTypes.GridColumn)
 				extractCode = extractComponentCode(All.GridColumn);
-			else if(value.type === ItemTypes.GridItems)
+			else if(value === ItemTypes.GridItems)
 				extractCode = extractComponentCode(All.GridItems);
-			else if(value.type === ItemTypes.GridRow)
+			else if(value === ItemTypes.GridRow)
 				extractCode = extractComponentCode(All.GridRow);
-			else if(value.type === ItemTypes.IconAdd)
+			else if(value === ItemTypes.IconAdd)
 				extractCode = extractComponentCode(All.IconAdd);
-			else if(value.type === ItemTypes.IconClose)
+			else if(value === ItemTypes.IconClose)
 				extractCode = extractComponentCode(All.IconClose);
-			else if(value.type === ItemTypes.IconButtonAdd)
+			else if(value === ItemTypes.IconButtonAdd)
 				extractCode = extractComponentCode(All.IconButtonAdd);
-			else if(value.type === ItemTypes.IconButtonClose)
+			else if(value === ItemTypes.IconButtonClose)
 				extractCode = extractComponentCode(All.IconButtonClose);
-			else if(value.type === ItemTypes.ListControlled)
+			else if(value === ItemTypes.ListControlled)
 				extractCode = extractComponentCode(All.ListControlled);
-			else if(value.type === ItemTypes.ListDynamic)
+			else if(value === ItemTypes.ListDynamic)
 				extractCode = extractComponentCode(All.ListDynamic);
-			else if(value.type === ItemTypes.ListTypographyRadio)
+			else if(value === ItemTypes.ListTypographyRadio)
 				extractCode = extractComponentCode(All.ListTypographyRadio);
-			else if(value.type === ItemTypes.ListUnControlled)
+			else if(value === ItemTypes.ListUnControlled)
 				extractCode = extractComponentCode(All.ListUnControlled);
-			else if(value.type === ItemTypes.ListItemDefault)
+			else if(value === ItemTypes.ListItemDefault)
 				extractCode = extractComponentCode(All.ListItemDefault);
-			else if(value.type === ItemTypes.ListItemButtonDefault)
+			else if(value === ItemTypes.ListItemButtonDefault)
 				extractCode = extractComponentCode(All.ListItemButtonDefault);
-			else if(value.type === ItemTypes.PanelBox)
+			else if(value === ItemTypes.PanelBox)
 				extractCode = extractComponentCode(All.PanelBox);
-			else if(value.type === ItemTypes.PanelShadow)
+			else if(value === ItemTypes.PanelShadow)
 				extractCode = extractComponentCode(All.PanelShadow);
-			else if(value.type === ItemTypes.PanelStrock)
+			else if(value === ItemTypes.PanelStrock)
 				extractCode = extractComponentCode(All.PanelStrock);
-			else if(value.type === ItemTypes.PanelTypographyDropList)
+			else if(value === ItemTypes.PanelTypographyDropList)
 				extractCode = extractComponentCode(All.PanelTypographyDropList);
-			else if(value.type === ItemTypes.PanelTypographyTextField)
+			else if(value === ItemTypes.PanelTypographyTextField)
 				extractCode = extractComponentCode(All.PanelTypographyTextField);
-			else if(value.type === ItemTypes.RadioName)
+			else if(value === ItemTypes.RadioName)
 				extractCode = extractComponentCode(All.RadioName);
-			else if(value.type === ItemTypes.RadioGroupControlled)
+			else if(value === ItemTypes.RadioGroupControlled)
 				extractCode = extractComponentCode(All.RadioGroupControlled);
-			else if(value.type === ItemTypes.RadioGroupUnControlled)
+			else if(value === ItemTypes.RadioGroupUnControlled)
 				extractCode = extractComponentCode(All.RadioGroupUnControlled);
-			else if(value.type === ItemTypes.ScrollbarsCheckGroup)
+			else if(value === ItemTypes.ScrollbarsCheckGroup)
 				extractCode = extractComponentCode(All.ScrollbarsCheckGroup);
-			else if(value.type === ItemTypes.ScrollbarsList)
+			else if(value === ItemTypes.ScrollbarsList)
 				extractCode = extractComponentCode(All.ScrollbarsList);
-			else if(value.type === ItemTypes.SeperatorHorizontal)
+			else if(value === ItemTypes.SeperatorHorizontal)
 				extractCode = extractComponentCode(All.SeperatorHorizontal);
-			else if(value.type === ItemTypes.SeperatorVertical)
+			else if(value === ItemTypes.SeperatorVertical)
 				extractCode = extractComponentCode(All.SeperatorVertical);
-			else if(value.type === ItemTypes.StackColumn)
+			else if(value === ItemTypes.StackColumn)
 				extractCode = extractComponentCode(All.StackColumn);
-			else if(value.type === ItemTypes.StackRow)
+			else if(value === ItemTypes.StackRow)
 				extractCode = extractComponentCode(All.StackRow);
-			else if(value.type === ItemTypes.SwitchLabel)
+			else if(value === ItemTypes.SwitchLabel)
 				extractCode = extractComponentCode(All.SwitchLabel);
-			else if(value.type === ItemTypes.SwitchGroupControlled)
+			else if(value === ItemTypes.SwitchGroupControlled)
 				extractCode = extractComponentCode(All.SwitchGroupControlled);
-			else if(value.type === ItemTypes.SwitchGroupUnControlled)
+			else if(value === ItemTypes.SwitchGroupUnControlled)
 				extractCode = extractComponentCode(All.SwitchGroupUnControlled);
-			else if(value.type === ItemTypes.TabLabel)
+			else if(value === ItemTypes.TabLabel)
 				extractCode = extractComponentCode(All.TabLabel);
-			else if(value.type === ItemTypes.TabGroupHorizontal)
+			else if(value === ItemTypes.TabGroupHorizontal)
 				extractCode = extractComponentCode(All.TabGroupHorizontal);
-			else if(value.type === ItemTypes.TabGroupVertical)
+			else if(value === ItemTypes.TabGroupVertical)
 				extractCode = extractComponentCode(All.TabGroupVertical);
-			else if(value.type === ItemTypes.TabGroupWithDataGrid)
+			else if(value === ItemTypes.TabGroupWithDataGrid)
 				extractCode = extractComponentCode(All.TabGroupWithDataGrid);
-			else if(value.type === ItemTypes.TabGroupWithTable)
+			else if(value === ItemTypes.TabGroupWithTable)
 				extractCode = extractComponentCode(All.TabGroupWithTable);
-			else if(value.type === ItemTypes.TableBody)
+			else if(value === ItemTypes.TableBody)
 				extractCode = extractComponentCode(All.TableBody);
-			else if(value.type === ItemTypes.TableBundle)
+			else if(value === ItemTypes.TableBundle)
 				extractCode = extractComponentCode(All.TableBundle);
-			else if(value.type === ItemTypes.TableCell)
+			else if(value === ItemTypes.TableCell)
 				extractCode = extractComponentCode(All.TableCell);
-			else if(value.type === ItemTypes.TableHeader)
+			else if(value === ItemTypes.TableHeader)
 				extractCode = extractComponentCode(All.TableHeader);
-			else if(value.type === ItemTypes.TableRow)
+			else if(value === ItemTypes.TableRow)
 				extractCode = extractComponentCode(All.TableRow);
-			else if(value.type === ItemTypes.TextFieldBasic)
+			else if(value === ItemTypes.TextFieldBasic)
 				extractCode = extractComponentCode(All.TextFieldBasic);
-			else if(value.type === ItemTypes.TextFieldError)
+			else if(value === ItemTypes.TextFieldError)
 				extractCode = extractComponentCode(All.TextFieldError);
-			else if(value.type === ItemTypes.TextFieldLabel)
+			else if(value === ItemTypes.TextFieldLabel)
 				extractCode = extractComponentCode(All.TextFieldLabel);
-			else if(value.type === ItemTypes.TextFieldLeft)
+			else if(value === ItemTypes.TextFieldLeft)
 				extractCode = extractComponentCode(All.TextFieldLeft);
-			else if(value.type === ItemTypes.TextFieldRight)
+			else if(value === ItemTypes.TextFieldRight)
 				extractCode = extractComponentCode(All.TextFieldRight);
-			else if(value.type === ItemTypes.TypographyBody1)
+			else if(value === ItemTypes.TypographyBody1)
 				extractCode = extractComponentCode(All.TypographyBody1);
-			else if(value.type === ItemTypes.TypographyBody2)
+			else if(value === ItemTypes.TypographyBody2)
 				extractCode = extractComponentCode(All.TypographyBody2);
-			else if(value.type === ItemTypes.TypographyBody3)
+			else if(value === ItemTypes.TypographyBody3)
 				extractCode = extractComponentCode(All.TypographyBody3);
-			else if(value.type === ItemTypes.TypographyH1)
+			else if(value === ItemTypes.TypographyH1)
 				extractCode = extractComponentCode(All.TypographyH1);
-			else if(value.type === ItemTypes.TypographyGroupText)
+			else if(value === ItemTypes.TypographyGroupText)
 				extractCode = extractComponentCode(All.TypographyGroupText);
-			else if(value.type === ItemTypes.TendonProfileConverterBottomButtons)
+			else if(value === ItemTypes.TendonProfileConverterBottomButtons)
 				extractCode = extractComponentCode(All.TendonProfileConverterBottomButtons);
-			else if(value.type === ItemTypes.TendonProfileConverterComposite)
+			else if(value === ItemTypes.TendonProfileConverterComposite)
 				extractCode = extractComponentCode(All.TendonProfileConverterComposite);
-			else if(value.type === ItemTypes.TendonProfileConverterHelpIconButton)
+			else if(value === ItemTypes.TendonProfileConverterHelpIconButton)
 				extractCode = extractComponentCode(All.TendonProfileConverterHelpIconButton);
-			else if(value.type === ItemTypes.TendonProfileConverterList)
+			else if(value === ItemTypes.TendonProfileConverterList)
 				extractCode = extractComponentCode(All.TendonProfileConverterList);
-			else if(value.type === ItemTypes.TendonProfileConverterSelectButton)
+			else if(value === ItemTypes.TendonProfileConverterSelectButton)
 				extractCode = extractComponentCode(All.TendonProfileConverterSelectButton);
-			else if(value.type === ItemTypes.TendonProfileConverterUpdateButton)
+			else if(value === ItemTypes.TendonProfileConverterUpdateButton)
 				extractCode = extractComponentCode(All.TendonProfileConverterUpdateButton);
 		
 			return extractCode;
