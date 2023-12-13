@@ -151,15 +151,15 @@ export default function TotalCodeString(){
 			extractCode = extractCode.replace(/ } from "@midasit-dev\\/moaui";/ig, "");
 			return extractCode;
 		});
-		console.log("Import List : ", importlist); // ex) ["button", "button"]
 		importlist.splice(0,1);
+		// console.log("Import List : ", importlist); // ex) ["button", "button"]
 		// remove duplicate elements
 		let firstSetImportList: string[] = Array.from(new Set(importlist));
-		console.log("firstSetImportList : ", firstSetImportList.join(", ")); // ex) ["button"]
+		// console.log("firstSetImportList : ", firstSetImportList.join(", ")); // ex) ["button"]
 		let firstSetImportListText = firstSetImportList.join(", ");
 		firstSetImportListText = firstSetImportListText.replace(/ ,/ig, ",");
 		const splitRemakeImportList = firstSetImportListText.split(", ");
-		console.log("splitRemakeImportList: ",splitRemakeImportList);
+		// console.log("splitRemakeImportList: ",splitRemakeImportList);
 		const SetImportList: string[] = Array.from(new Set(splitRemakeImportList));
 		const importString = \`import { \${SetImportList.join(", ")} } from "@midasit-dev/moaui";\`;
 		//console.log("importString : ", importString); // ex) import { button } from "@midasit-dev/moaui";
