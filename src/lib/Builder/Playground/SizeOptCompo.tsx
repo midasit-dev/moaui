@@ -20,11 +20,6 @@ export default function SizeOptCompo(): React.ReactElement {
 		setHeight(event.target.value);
 	}
 
-	React.useEffect(() => {
-		setWidth(Size[1]);
-		setHeight(Size[2]);
-	}, []);
-
 	return (
 		<Box sx={{width:"100%", height:"100%"}} display={"flex"} justifyContent={"center"} alignItems={"center"}>
 			<Stack>
