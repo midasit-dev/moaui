@@ -90,7 +90,7 @@ function CodeBlock(props: CodeComponentProps){
 
 	async function copyToClipboard() {
 		try {
-			await navigator.clipboard.writeText(props.children);
+			await navigator.clipboard.writeText(formattedCode);
 			setCopySuccess(true);
 		} catch (err) {
 			console.error('Async: Could not copy text: ', err);
