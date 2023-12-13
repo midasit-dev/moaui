@@ -33,11 +33,11 @@ interface CodeComponentProps {
 	 */
 	hidetitle?: string;
 	/**
-	 * The border radius of the code block
+	 * The radius of the code block
 	 * 
 	 * @default 8
 	 */
-	borderRadius?: number;
+	radius?: number;
 }
 
 CodeBlock.defaultProps = {
@@ -45,7 +45,7 @@ CodeBlock.defaultProps = {
 	language: "javascript",
 	title: "",
 	hidetitle: "false",
-	borderRadius: 8,
+	radius: 8,
 }
 /**
  * A code block with syntax highlighting
@@ -107,8 +107,8 @@ function CodeBlock(props: CodeComponentProps){
 					backgroundColor: Color.primaryNegative.enable,
 					width: "100%",
 					height: "2rem",
-					borderTopLeftRadius: props.borderRadius,
-					borderTopRightRadius: props.borderRadius,
+					borderTopLeftRadius: props.radius,
+					borderTopRightRadius: props.radius,
 				}}
 			>
 				{/* <Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button> */}
@@ -126,8 +126,8 @@ function CodeBlock(props: CodeComponentProps){
 				style={vscDarkPlus}
 				wrapLines={true}
 				customStyle={{
-					borderBottomRightRadius: props.borderRadius,
-					borderBottomLeftRadius: props.borderRadius,
+					borderBottomRightRadius: props.radius,
+					borderBottomLeftRadius: props.radius,
 					padding: '1rem 1rem 1rem 0',
 					fontSize: "3px",
 					margin: 0,
