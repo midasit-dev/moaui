@@ -22,7 +22,7 @@ export default function SizeOptCompo(): React.ReactElement {
 
 	React.useEffect(() => {
 		setWidth(Size[1]);
-		setHeight(Size[1]);
+		setHeight(Size[2]);
 	}, []);
 
 	return (

@@ -5,7 +5,8 @@ import { Button } from "../../..";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { 
+import {
+	EmptyCode,
 	Basic300x300Code,
 	RowDirectionCode,
 	Layout1Code,
@@ -31,6 +32,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const Empty = LiveEditStory(cleanMask(EmptyCode));
 export const Basic300x300 = LiveEditStory(cleanMask(Basic300x300Code));
 export const RowDirection = LiveEditStory(cleanMask(RowDirectionCode));
 export const Layout1 = LiveEditStory(cleanMask(Layout1Code));

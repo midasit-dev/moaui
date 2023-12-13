@@ -27,7 +27,7 @@ const DropTargetV2 = (props) => {
   const [sizewidth, setSizewidth] = useRecoilState(TemplateWidth);
   const [sizeheight, setSizeHeight] = useRecoilState(TemplateHeight);
   const [layoutsInfo, setLayoutsInfo] = useRecoilState(LayoutsInfo);
-  const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ButtonContained}]); 
+  const [layouts, setLayouts] = React.useState([{i: new Date().getTime().toString(), x: 0, y: 20, w: 1, h: 1, minW: 1, maxH: 1, type: ItemTypes.GuideBoxEmpty}]); 
 
 
   React.useEffect(() => {
@@ -42,7 +42,7 @@ const DropTargetV2 = (props) => {
   }, [layouts]);
 
   function onClickClear(){
-    setLayouts([{i: new Date().getTime().toString(), x: 0, y: 0, w: 3, h: 1, minW: 2, maxH: 1, type: ItemTypes.ButtonContained}]);
+    setLayouts([{i: new Date().getTime().toString(), x: 0, y: 20, w: 3, h: 1, minW: 1, maxH: 1, type: ItemTypes.GuideBoxEmpty}]);
   };
   
   function onClickBack(){
@@ -208,6 +208,36 @@ const DropTargetV2 = (props) => {
         w: 3,
         h: 4,
         minW: 2,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.TendonProfileConverterBottomButtons){
+      newItem = {
+        i: newItemId,
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 7,
+        h: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.TendonProfileConverterUpdateButton){
+      newItem = {
+        i: newItemId,
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 7,
+        h: 1,
+        type: componentType
+      };
+    }
+    else if(componentType === ItemTypes.TendonProfileConverterList){
+      newItem = {
+        i: newItemId,
+        x: layoutItem.x,
+        y: layoutItem.y,
+        w: 7,
+        h: 11,
         type: componentType
       };
     }

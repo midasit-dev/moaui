@@ -317,6 +317,7 @@ const GuideBoxCategory: React.FC<{}> = () => (
 				width: '188px',
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxBasic300x300}>Basic300x300</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxEmpty}>Empty</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout1}>Layout1</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout2}>Layout2</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout3}>Layout3</CustomDraggableComponent>
@@ -701,6 +702,7 @@ const TextFieldCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldBasic}>Basic</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldError}>Error</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldLabel}>Label</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldLeft}>Left</CustomDraggableComponent>
@@ -898,6 +900,9 @@ export const GridRow =
 export const GuideBoxBasic300x300 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxBasic300x300}>GuideBoxBasic300x300</CustomDraggableComponent>;
 
+export const GuideBoxEmpty = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxEmpty}>GuideBoxEmpty</CustomDraggableComponent>;
+
 export const GuideBoxLayout1 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout1}>GuideBoxLayout1</CustomDraggableComponent>;
 
@@ -1029,6 +1034,9 @@ export const TableRow =
 
 export const TableWithTitle = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TableWithTitle}>TableWithTitle</CustomDraggableComponent>;
+
+export const TextFieldBasic = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldBasic}>TextFieldBasic</CustomDraggableComponent>;
 
 export const TextFieldError = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldError}>TextFieldError</CustomDraggableComponent>;

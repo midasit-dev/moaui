@@ -2,7 +2,7 @@ import { Button, GuideBox } from "@midasit-dev/moaui"; /**${comma}*/
 
 const TemplatesTendonProfileConverterUpdateButton = () => {
   return (
-		<GuideBox>
+		<GuideBox center>
 			<Button
 				color="negative"
 				width="300px"

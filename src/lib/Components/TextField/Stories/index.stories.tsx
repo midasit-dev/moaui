@@ -4,7 +4,7 @@ import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { LeftCode, RightCode, LabelCode, ErrorCode } from '../Code';
+import { LeftCode, RightCode, LabelCode, ErrorCode, BasicCode } from '../Code';
 
 const meta = {
   title: 'Components/TextField',
@@ -19,6 +19,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const Basic = LiveEditStory(cleanMask(BasicCode));
 export const Left = LiveEditStory(cleanMask(LeftCode));
 export const Right = LiveEditStory(cleanMask(RightCode));
 export const Label = LiveEditStory(cleanMask(LabelCode));

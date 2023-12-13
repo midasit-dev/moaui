@@ -1,8 +1,8 @@
-import { GuideBox, Button, Typography, TemplatesTendonProfileConverterHelpIconButton } from "@midasit-dev/moaui";/**${comma}*/
+import { GuideBox, Stack, Button, Typography, TemplatesTendonProfileConverterHelpIconButton } from "@midasit-dev/moaui";/**${comma}*/
 
 const TemplatesTendonProfileConverterBottomButtons = () => {
   return (
-		<GuideBox width={300} row itemSpacing={2.5}>
+		<GuideBox row itemSpacing={2.53} center>
 			<TemplatesTendonProfileConverterHelpIconButton />
       <Typography flexItem textAlign="center">Convert to</Typography>
       <Button>New</Button>

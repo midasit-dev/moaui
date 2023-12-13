@@ -15,7 +15,8 @@ const getCode = (arrCode: string[], regex: RegExp): string => {
 		}
 	}
 	
-	if (Code === '') console.error(arrCode, regex, 'Code is not exist');
+	// if (Code === '')
+	// 	console.error(arrCode, regex, 'Code is not exist');
 	return Code;
 }
 
@@ -25,7 +26,7 @@ const getComponentName = (componentCode: string, regex: RegExp) => {
 	const componentNameMatch = componentNameRegex.exec(componentCode);
 	let componentName = '';
 	if (!componentNameMatch) {
-		console.error('componentName is not exist');
+		// console.error('componentName is not exist');
 		return componentName;
 	}
 	componentName = componentNameMatch[1].trim();
@@ -84,7 +85,8 @@ export const extract = (code: string): ExtractedCode => {
 
 	let importCodes = [];
 	for (const code of arrCode) {
-		const importCode = getCode([code], /import\s+{.*}\s+from\s+['|"](.*)['|"]/ig);
+		let importCode = getCode([code], /import\s+{.*}\s+from\s+['|"](.*)['|"]/ig);
+		importCode = importCode.replace(/\r\nimport/ig, "import"); // import 구문이 2개 이상일 경우, 앞에 \r\n이 붙어있어서 제거
 		if (importCode !== '') importCodes.push(importCode);
 	}
 
