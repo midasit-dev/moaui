@@ -29,6 +29,7 @@ export const ItemTypes = {
 	GuideBoxLayout2: 'GuideBoxLayout2',
 	GuideBoxLayout3: 'GuideBoxLayout3',
 	GuideBoxLayout4: 'GuideBoxLayout4',
+	GuideBoxLayout5: 'GuideBoxLayout5',
 	GuideBoxRowDirection: 'GuideBoxRowDirection',
 	IconAdd: 'IconAdd',
 	IconClose: 'IconClose',

@@ -88,7 +88,7 @@ export type StyledProps = {
 	/**
 	 * guide box item align horizontal option 'space-between' (super option)
 	 */
-	horspaceBetween?: boolean;
+	horSpaceBetween?: boolean;
 
 	/**
 	 * guide box item align veritcal option
@@ -146,7 +146,7 @@ const getItemHorizontalAlign = (props: StyledProps) => {
 		return { condition: true, value: 'center' };
 	} else if (props.horRight) {
 		return { condition: true, value: 'flex-end' };
-	} else if (props.horspaceBetween) {
+	} else if (props.horSpaceBetween) {
 		return { condition: true, value: 'space-between' };
 	} else if (props.itemHorizontalAlign) {
 		return { condition: true, value: props.itemHorizontalAlign };
@@ -278,7 +278,7 @@ const GuideBox = (props: StyledProps) => {
 		horLeft, 
 		horCenter, 
 		horRight, 
-		horspaceBetween, 
+		horSpaceBetween, 
 		itemVerticalAlign, 
 		verTop, 
 		verCenter, 
@@ -375,9 +375,8 @@ const GuideBox = (props: StyledProps) => {
       TransitionComponent={Zoom}
       open={open}
     >
-			{/** (1)  space-between 일 경우 or (2) 일반적인 케이스 일 경우 */}
-			{getItemHorizontalAlign(props).value === 'space-between' ?
-				<Box
+			<Box>
+				<Stack
 					ref={boxRef}
 					width={width}
 					height={height}
@@ -390,53 +389,20 @@ const GuideBox = (props: StyledProps) => {
 					}}
 					overflow={"hidden"}
 					onContextMenu={handleTooltipToggle}
-				>
-					<Stack
-						direction={getItemDirection(props).value}
-						spacing={itemSpacing}
-						display={"flex"}
-						justifyContent={getItemHorizontalAlign(props).value}
-						alignItems={getItemVerticalAlign(props).value}
-					>
-						{
-							props.children && 
-								React.Children.map(props.children, (child, index) => (
-									<React.Fragment key={index}>{child}</React.Fragment>
-								))
-						}
-					</Stack>
-				</Box>			
-			:
-				<Box
-					ref={boxRef}
-					{...rest}
-					width={width}
-					height={height}
-					sx={{
-						...MarginProps(props),
-						...PaddingProps(props),
-						backgroundColor: getBackgroundColor(props),
-						opacity: open ? 0.5 : 1,
-					}}
-					overflow={"hidden"}
-					onContextMenu={handleTooltipToggle}
+					direction={getItemDirection(props).value}
+					spacing={itemSpacing}
 					display={"flex"}
 					justifyContent={getItemHorizontalAlign(props).value}
-					alignItems={getItemHorizontalAlign(props).value}
+					alignItems={getItemVerticalAlign(props).value}
 				>
-					<Stack
-						direction={getItemDirection(props).value}
-						spacing={itemSpacing}
-					>
-						{
-							children && 
-								React.Children.map(props.children, (child, index) => (
-									<React.Fragment key={index}>{child}</React.Fragment>
-								))
-						}
-					</Stack>
-				</Box>
-			}
+					{
+						props.children && 
+							React.Children.map(props.children, (child, index) => (
+								<React.Fragment key={index}>{child}</React.Fragment>
+							))
+					}
+				</Stack>
+			</Box>
     </CustomTooptip>
   );
 }

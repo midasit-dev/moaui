@@ -28,6 +28,7 @@ export { default as GuideBoxLayout1 } from '../../../Components/GuideBox/Code/La
 export { default as GuideBoxLayout2 } from '../../../Components/GuideBox/Code/Layout2.code';
 export { default as GuideBoxLayout3 } from '../../../Components/GuideBox/Code/Layout3.code';
 export { default as GuideBoxLayout4 } from '../../../Components/GuideBox/Code/Layout4.code';
+export { default as GuideBoxLayout5 } from '../../../Components/GuideBox/Code/Layout5.code';
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code';
