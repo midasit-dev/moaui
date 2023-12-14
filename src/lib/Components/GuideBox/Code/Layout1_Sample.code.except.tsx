@@ -1,125 +1,96 @@
-import { GuideBox, Button, Panel } from "@midasit-dev/moaui";
+import React from 'react';
+
 import { 
-	ComponentsTabGroupWithTable, 
-	ComponentsDialogHelpIconButton, 
-	ComponentsChartLineAxisPointSize, 
-	ComponentsChartLineAxisTopRight,
+	GuideBox, 
 	ComponentsTypographyH1,
-	ComponentsTypographyBody1,
-	ComponentsDropListDropdown,
+	Panel,
+	Button,
+
+	TemplatesDualComponentsTypographyDropListSpaceBetween,
 	ComponentsIconButtonWithName,
+	ComponentsTabGroupWithTable,
+	ComponentsChartLineAxisPointSize,
+	ComponentsChartLineAxisTopRight,
+	ComponentsDialogHelpIconButton,
+	ComponentsTypographyBody1,
 } from "@midasit-dev/moaui";
 
-const ComponentsGuideBoxLayout1Sample = () => {
-	const visiable = true;
-	const title_wh = { width: "100%", height: 40 };
-	const typography_wh = { width: "40%", height: 30 };
-	const dropList_wh = { width: "45%", height: 30 };
-	const button_wh = { width: "15%", height: 30 };
+const ComponentsGuideBoxLayout1 = () => {
+	const visible = true;
 
 	return (
-		<GuideBox tag="Temperature Gradient Self-Equilibrating Stresses Calculator" show={visiable} width={1000} height={620} itemSpacing={1} itemHorizontalAlign="center" >
-			<GuideBox show={visiable} fill='1' padding={1} itemDirection='row' itemSpacing={1} width={"97%"} height={"80%"}>
-				<Panel variant="shadow" width={"33%"} height={"96%"}>
-					<GuideBox tag="Tree" show={visiable} fill='2' itemSpacing={1} width={"100%"} height={"100%"} center>
-						<GuideBox tag="Girder Properties" show={visiable} {...title_wh} fill='3' itemHorizontalAlign='center'>
+		<GuideBox show={visible} padding={1}>
+			{/** Top Panels */}
+			<GuideBox show={visible} width={1050} padding={1} row spacing={2} center>
+
+				<Panel variant='shadow' height={486}>
+					<GuideBox show={visible} fill='2'>
+						<GuideBox show={visible} width='100%' height={60} fill='3' center>
 							<ComponentsTypographyH1 />
 						</GuideBox>
-						<GuideBox tag="Girder Type" show={visiable} fill='3' itemDirection="row" itemSpacing={1} width={"96%"}>
-							<GuideBox tag="Typography" show={visiable} {...typography_wh} fill='4' itemCenter>
-								<ComponentsTypographyBody1 />
+						<GuideBox show={visible} width='100%' fill='3' spacing={1}>
+							<GuideBox show={visible} width='100%' spacing={1} row>
+								<TemplatesDualComponentsTypographyDropListSpaceBetween width='100%' />
+								<GuideBox show={visible} width={43} height={30} />
 							</GuideBox>
-							<GuideBox tag="DropList" show={visiable} {...dropList_wh} fill='4' itemCenter>
-								<ComponentsDropListDropdown />
+							<GuideBox show={visible} width='100%' spacing={1} row>
+								<TemplatesDualComponentsTypographyDropListSpaceBetween width='100%' />
+								<GuideBox show={visible} width={43} height={30} />
 							</GuideBox>
-							<GuideBox tag="Button" show={visiable} {...button_wh} fill='4' />
-						</GuideBox>
-						<GuideBox tag="Zone" show={visiable} fill='3' itemDirection='row' itemSpacing={1} width={"96%"}>
-							<GuideBox tag="Typography" show={visiable} {...typography_wh} fill='4' itemCenter>
-								<ComponentsTypographyBody1 />
+							<GuideBox show={visible} width='100%' spacing={1} row>
+								<TemplatesDualComponentsTypographyDropListSpaceBetween width='100%' />
+								<GuideBox show={visible} width={43} height={30} />
 							</GuideBox>
-							<GuideBox tag="DropList" show={visiable} {...dropList_wh} fill='4' itemCenter>
-								<ComponentsDropListDropdown />
+							<GuideBox show={visible} width='100%' spacing={1} row>
+								<TemplatesDualComponentsTypographyDropListSpaceBetween width='100%' />
+								<ComponentsIconButtonWithName iconName='Refresh' />
 							</GuideBox>
-							<GuideBox tag="Button" show={visiable} {...button_wh} fill='4' />
-						</GuideBox>
-						<GuideBox tag="Surface" show={visiable} fill='3' itemDirection='row' itemSpacing={1} width={"96%"}>
-							<GuideBox tag="Typography" show={visiable} {...typography_wh} fill='4' itemCenter>
-								<ComponentsTypographyBody1 />
-							</GuideBox>
-							<GuideBox tag="DropList" show={visiable} {...dropList_wh} fill='4' itemCenter>
-								<ComponentsDropListDropdown />
-							</GuideBox>
-							<GuideBox tag="Button" show={visiable} {...button_wh} fill='4' />
-						</GuideBox>
-						<GuideBox tag="Girder Material" show={visiable} fill='3' itemDirection='row' itemSpacing={1} width={"96%"}>
-							<GuideBox tag="Typography" show={visiable} {...typography_wh} fill='4' itemCenter>
-								<ComponentsTypographyBody1 />
-							</GuideBox>
-							<GuideBox tag="DropList" show={visiable} {...dropList_wh} fill='4' itemCenter>
-								<ComponentsDropListDropdown />
-							</GuideBox>
-							<GuideBox tag="Button" show={visiable} {...button_wh} fill='4' itemCenter>
-								<ComponentsIconButtonWithName iconName="Refresh" />
+							<GuideBox show={visible} width='100%' spacing={1} row>
+								<TemplatesDualComponentsTypographyDropListSpaceBetween width='100%' />
+								<ComponentsIconButtonWithName iconName='Help' />
 							</GuideBox>
 						</GuideBox>
-						<GuideBox tag="Apply T3" show={visiable} fill='3' itemDirection='row' itemSpacing={1} width={"96%"}>
-							<GuideBox tag="Typography" show={visiable} {...typography_wh} fill='4' itemCenter>
-								<ComponentsTypographyBody1 />
-							</GuideBox>
-							<GuideBox tag="DropList" show={visiable} {...dropList_wh} fill='4' itemCenter>
-								<ComponentsDropListDropdown />
-							</GuideBox>
-							<GuideBox tag="Button" show={visiable} {...button_wh} fill='4' itemCenter>
-								<ComponentsDialogHelpIconButton />
-							</GuideBox>
-						</GuideBox>
-						<GuideBox tag="Tables" show={visiable} width={"96%"}  fill='3'>
+						<GuideBox show={visible} width='100%' fill='3'>
 							<ComponentsTabGroupWithTable />
 						</GuideBox>
 					</GuideBox>
 				</Panel>
-				<Panel variant="shadow" width={"42%"} height={"96%"}>
-					<GuideBox tag="Chart1" show={visiable} fill='2' itemSpacing={1} width={"100%"} height={"100%"} center>
-						<GuideBox tag="Temperature Gradient" show={visiable} {...title_wh} fill='3' itemHorizontalAlign='center' itemVerticalAlign="center">
-							<ComponentsTypographyH1 />
-						</GuideBox>
-						<GuideBox tag="ChartLine" show={visiable} width={"96%"} height={"100%"} fill='3'>
-							<ComponentsChartLineAxisTopRight />
-						</GuideBox>
+				<Panel variant='shadow' height={486}>
+					<GuideBox show={visible} fill='2' spacing={2}>
+							<GuideBox show={visible} width='100%' height={60} fill='3' center>
+								<ComponentsTypographyH1 />
+							</GuideBox>
+							<GuideBox show={visible} width='100%' fill='3' center>
+								<ComponentsChartLineAxisTopRight />
+							</GuideBox>
 					</GuideBox>
 				</Panel>
-				<Panel variant="shadow" width={"20%"} height={"96%"}>
-					<GuideBox tag="Chart2" show={visiable} fill='2' itemSpacing={1} width={"100%"} height={"100%"} center>
-						<GuideBox tag="Self-Equilibrating Stresses" show={visiable} {...title_wh} fill='3' itemHorizontalAlign='center' itemVerticalAlign="center" center>
+				<Panel variant='shadow' height={486}>
+					<GuideBox show={visible} fill='2' spacing={2}>
+						<GuideBox show={visible} width='100%' height={60} fill='3' center>
 							<ComponentsTypographyH1 />
 						</GuideBox>
-						<GuideBox tag="ChartLine" show={visiable} width={"96%"} height={"100%"} fill='3'>
+						<GuideBox show={visible} width='100%' fill='3' center>
 							<ComponentsChartLineAxisPointSize />
 						</GuideBox>
 					</GuideBox>
 				</Panel>
+
 			</GuideBox>
-			<GuideBox tag="Bottom" show={visiable} fill='1' itemSpacing={1} itemDirection='row' padding={1} width={"97%"} height={"5%"} horSpaceBetween>
-				<GuideBox tag="Left Buttons" show={visiable} width={"30%"} height={30} fill='2' itemDirection='row' itemSpacing={1}>
-					<GuideBox tag="Help" show={visiable} {...button_wh} fill='4' >
-						<ComponentsDialogHelpIconButton />
-					</GuideBox>
-					<GuideBox tag="Import Section Button" show={visiable} width={"85%"} height={30} fill='4'>
-						<Button>Import Section</Button>
-					</GuideBox>
+
+			{/** Bottom Buttons */}
+			<GuideBox show={visible} width={1050} row padding={1} fill='2' center>
+				<GuideBox show={visible} width="30%" height={30} fill='3' row spacing={2} verCenter>
+					<ComponentsDialogHelpIconButton />
+					<Button>Import Section</Button>
 				</GuideBox>
-				<GuideBox tag="Right Buttons" show={visiable} width={"70%"} fill='2' itemSpacing={1} itemDirection='row' itemHorizontalAlign='right'>
-					<GuideBox tag="Typography" show={visiable} width={"85%"} height={30} fill='4' itemHorizontalAlign='left' itemVerticalAlign='center'>
-						<ComponentsTypographyBody1 />
-					</GuideBox>
-					<GuideBox tag="Import Section Button" show={visiable} width={"15%"} height={30} fill='4' itemHorizontalAlign="right" itemVerticalAlign="center">
-						<Button color="negative">Add</Button>
-					</GuideBox>
+				<GuideBox show={visible} width="69%" height={30} fill='4' row spacing={0} horSpaceBetween verCenter>
+					<ComponentsTypographyBody1 />
+					<Button color="negative">Add</Button>
 				</GuideBox>
 			</GuideBox>
 		</GuideBox>
 	);
 };
 
-export default ComponentsGuideBoxLayout1Sample;
+export default ComponentsGuideBoxLayout1;

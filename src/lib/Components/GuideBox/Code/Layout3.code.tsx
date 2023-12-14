@@ -7,7 +7,7 @@ import {
 const ComponentsGuideBoxLayout3 = () => {
 	const visible = true;
 	return (
-		<GuideBox tag="Tendon Profile Converter" show={visible} fill='1' width={300} padding={1} itemSpacing={1}>
+		<GuideBox tag="Tendon Profile Converter" show={visible} fill='1' width={300} padding={1} spacing={1}>
 			<GuideBox tag="Update Button" show={visible} fill='2' padding={0} width={"100%"} height={30}>
 				{/** ↓↓↓ Update Button ↓↓↓ */}
 

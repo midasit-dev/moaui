@@ -109,7 +109,7 @@ const TemplatesTendonProfileConverterList = () => {
 
 	//Main Component
   return (
-    <GuideBox itemSpacing={2} center>
+    <GuideBox spacing={2} center>
       <Scrollbars
         outline="strock"
         width={300}

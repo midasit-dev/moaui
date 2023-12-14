@@ -16,7 +16,7 @@ const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
 	value = undefined,/**${props-seperator}*/
 	onChange = undefined,/**${props-seperator}*/
 	show = false,/**${props-seperator}*/
-}) => {
+}: any) => {
 	const [valueLocal, setValueLocal] = React.useState(defaultValue);
 	let onChangeLocal = (e: any) => {
 		setValueLocal(e.target.value);
@@ -24,7 +24,7 @@ const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
 
 	const itemsMap = new Map<string, number>(items as [string, number][]);
 	return (
-		<GuideBox show={show} width={width} height={height} itemDirection='row' itemHorizontalAlign='space-between'>
+		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
 			<Typography flexItem textAlign='center' height={height}>{title}</Typography>
 			<DropList 
 				itemList={itemsMap} 

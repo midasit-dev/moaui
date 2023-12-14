@@ -53,15 +53,15 @@ export const Sample: Story = {
 		show: true,
 		fill: '2',
 		padding: 2,
-		itemDirection: 'row',
+		row: true,
   },
-	render: ({ show, fill, padding, itemDirection }) => {
+	render: ({ show, fill, padding, row }) => {
 		return (
 			<GuideBox 
 				show={show} 
 				fill={fill} 
 				padding={padding}
-				itemDirection={itemDirection}
+				row={row}
 			>
 				<Button>Button 1</Button>
 				<Button color="negative">Button 2</Button>

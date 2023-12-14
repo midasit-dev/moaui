@@ -24,7 +24,7 @@ const ComponentsGuideBoxLayout5 = () => {
       show={visible}
       fill="1"
       padding={1}
-      itemSpacing={1}
+      spacing={1}
       width={430}
       height={430}
       center

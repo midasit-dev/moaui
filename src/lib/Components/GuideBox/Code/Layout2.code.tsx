@@ -4,10 +4,11 @@ const ComponentsGuideBoxLayout2 = () => {
 	const visible = true;
 
 	return (
-		<GuideBox tag="ContentOutline" show={visible} padding={1} itemSpacing={1} fill='1' width={720} center>
-			<GuideBox tag="Content" show={visible} itemDirection='row' itemSpacing={1} fill='2' width={"100%"}>
+		<GuideBox tag="ContentOutline" show={visible} spacing={1} width={600} fill='1' center padding={1}>
+			<GuideBox tag="Content" show={visible} row fill='2' width={"100%"} center>
 				{/* Content Left */}
-				<GuideBox tag="Content Left" show={visible} padding={1} itemSpacing={1} fill='3' width={"46%"}>
+				<GuideBox tag="Content Left" show={visible} padding={1} spacing={1} fill='3' width={"50%"}>
+				
 					<GuideBox tag="Group Pile Option" show={visible} fill='4' width={"100%"} height={40}>
 
 					</GuideBox>
@@ -38,7 +39,7 @@ const ComponentsGuideBoxLayout2 = () => {
 				</GuideBox>
 
 				{/* Content Right */}
-				<GuideBox tag="Content Right" show={visible} fill='3' itemSpacing={1} padding={1} width={"46%"}>
+				<GuideBox tag="Content Right" show={visible} fill='3' spacing={1} padding={1} width={"50%"}>
 					<GuideBox tag="Group Pile & Cap Option" show={visible} fill='4' width={"100%"} height={192}>
 
 					</GuideBox>
@@ -58,10 +59,10 @@ const ComponentsGuideBoxLayout2 = () => {
 			</GuideBox>
 
 			{/* Footer */}
-			<GuideBox tag="Footer" show={visible} itemDirection='row' fill='2' width={"100%"} horSpaceBetween center>
-				<GuideBox tag="Footer Left" show={visible} fill='3' width={"47%"} height={30} >
+			<GuideBox tag="Footer" show={visible} row fill='2' width={"100%"} horSpaceBetween center spacing={2}>
+				<GuideBox tag="Footer Left" show={visible} fill='3' width={"50%"} height={30} >
 				</GuideBox>
-				<GuideBox tag="Footer Right" show={visible} fill='3' width={"47%"} height={30} itemDirection='row' itemSpacing={0}>
+				<GuideBox tag="Footer Right" show={visible} fill='3' width={"50%"} height={30} row spacing={0}>
 				</GuideBox>
 			</GuideBox>
 		</GuideBox>
