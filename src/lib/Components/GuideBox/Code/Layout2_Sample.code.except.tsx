@@ -1,14 +1,14 @@
 import { GuideBox } from "@midasit-dev/moaui";/**${comma}*/
 
 import { 
-	ComponentsTypographyH1,
-	ComponentsTypographyBody1,
-	ComponentsDropListDropdown,
-	TextField,
 	Button,
-	ComponentsTableWithTitle,
 	Check,
 	Panel,
+	Typography,
+
+	ComponentsTableWithTitle,
+	TemplatesDualComponentsTypographyDropListSpaceBetween,
+	TemplatesDualComponentsTypographyTextFieldSpaceBetween,
 } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsGuideBoxLayout2Sample = () => {
@@ -19,65 +19,33 @@ const ComponentsGuideBoxLayout2Sample = () => {
 			<GuideBox tag="Content" show={visible} row padding={1} spacing={1} fill='2'>
 				{/* Content Left */}
 				<GuideBox tag="Content Left" show={visible} padding={1} spacing={1.5} fill='3'>
-					<GuideBox tag="Group Pile Option" show={visible} fill='4' width={300} height={40} center>
-						<ComponentsTypographyH1 />
+					<GuideBox tag="Title" show={visible} width={300} height={30} center>
+						<Typography variant="h1">Title</Typography>
 					</GuideBox>
-					<GuideBox tag="Structure Group" show={visible} fill='4' width={300} row verCenter horSpaceBetween spacing={0}>
-						<ComponentsTypographyBody1 />
-						<ComponentsDropListDropdown />
-					</GuideBox>
-					<GuideBox tag="Boundary Group" show={visible} fill='4' width={300} row verCenter horSpaceBetween spacing={0}>
-						<ComponentsTypographyBody1 />
-						<ComponentsDropListDropdown />
-					</GuideBox>
-					<GuideBox tag="Pile Material" show={visible} fill='4' width={300} row verCenter horSpaceBetween spacing={0}>
-						<ComponentsTypographyBody1 />
-						<ComponentsDropListDropdown />
-					</GuideBox>
-					<GuideBox tag="Pile Section" show={visible} fill='4' width={300} row verCenter horSpaceBetween spacing={0}>
-						<ComponentsTypographyBody1 />
-						<ComponentsDropListDropdown />
-					</GuideBox>
-					<GuideBox tag="Pile Cap Material" show={visible} fill='4' width={300} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<ComponentsDropListDropdown />
-					</GuideBox>
-					<GuideBox tag="Pile Cap Section" show={visible} fill='4' width={300} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<ComponentsDropListDropdown />
-					</GuideBox>
-					<GuideBox tag="Pile Start Node No." show={visible} fill='4' width={300} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<TextField title="" width={100} placeholder="typing ..."/>
-					</GuideBox>
-					<GuideBox tag="Pile Cap Start Node No." show={visible} fill='4' width={300} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<TextField title="" width={100} placeholder="typing ..."/>
+					<GuideBox tag="DropList & TextField" show={visible} spacing={2}>
+						<TemplatesDualComponentsTypographyDropListSpaceBetween />
+						<TemplatesDualComponentsTypographyDropListSpaceBetween />
+						<TemplatesDualComponentsTypographyDropListSpaceBetween />
+						<TemplatesDualComponentsTypographyDropListSpaceBetween />
+						<TemplatesDualComponentsTypographyDropListSpaceBetween />
+						<TemplatesDualComponentsTypographyDropListSpaceBetween />
+						<TemplatesDualComponentsTypographyTextFieldSpaceBetween />
+						<TemplatesDualComponentsTypographyTextFieldSpaceBetween />
 					</GuideBox>
 				</GuideBox>
 
 				{/* Content Right */}
 				<GuideBox tag="Content Right" show={visible} fill='3' spacing={1} padding={1}>
 					<Panel variant="shadow">
-						<GuideBox tag="Group Pile & Cap Option" show={visible} fill='4' width={300} center>
-								<ComponentsTableWithTitle />
+						<GuideBox tag="Title" show={visible} fill='4' width={300} center>
+							<ComponentsTableWithTitle title="Title" />
 						</GuideBox>
 					</Panel>
-					<GuideBox tag="Length Unit" show={visible} fill='4' width={320} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<ComponentsDropListDropdown />
-					</GuideBox>
-					<GuideBox tag="Pile Diameter" show={visible} fill='4' width={320} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<TextField title="" width={100} placeholder="typing ..."/>
-					</GuideBox>
-					<GuideBox tag="Pile Length" show={visible} fill='4' width={320} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<TextField title="" width={100} placeholder="typing ..."/>
-					</GuideBox>
-					<GuideBox tag="Pile Cap Height" show={visible} fill='4' width={320} row verCenter horSpaceBetween>
-						<ComponentsTypographyBody1 />
-						<TextField title="" width={100} placeholder="typing ..."/>
+					<GuideBox tag="DropList & TextField" show={visible} fill='4' width={320} horSpaceBetween spacing={1}>
+						<TemplatesDualComponentsTypographyDropListSpaceBetween 	width={320} />
+						<TemplatesDualComponentsTypographyTextFieldSpaceBetween width={320} />
+						<TemplatesDualComponentsTypographyTextFieldSpaceBetween width={320} />
+						<TemplatesDualComponentsTypographyTextFieldSpaceBetween width={320} />
 					</GuideBox>
 				</GuideBox>
 			</GuideBox>

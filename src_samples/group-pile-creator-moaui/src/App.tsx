@@ -63,7 +63,7 @@ const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
 
 	const itemsMap = new Map<string, number>(items as [string, number][]);
 	return (
-		<GuideBox show={show} width={width} height={height} itemDirection='row' itemHorizontalAlign='space-between'>
+		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
 			<Typography flexItem textAlign='center' height={height}>{title}</Typography>
 			<DropList 
 				itemList={itemsMap} 
@@ -95,7 +95,7 @@ const TemplatesDualComponentsTypographyTextFieldSpaceBetween = ({
 	}
 
 	return (
-		<GuideBox show={show} width={width} height={height} itemDirection='row' itemHorizontalAlign='space-between'>
+		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
 			<Typography flexItem textAlign='center' height={height}>{title}</Typography>
 			<TextField
 				width={textFieldWidth}
@@ -115,14 +115,14 @@ const ComponentsGuideBoxLayout2Sample = () => {
 	const visible = true;
 
 	return (
-		<GuideBox tag="Group Pile Creator" show={visible} padding={1} itemSpacing={1} fill='1'>
-			<GuideBox tag="Content" show={visible} itemDirection='row' padding={1} itemSpacing={1} fill='2'>
+		<GuideBox tag="Group Pile Creator" show={visible} padding={1} spacing={1} fill='1'>
+			<GuideBox tag="Content" show={visible} row padding={1} spacing={1} fill='2'>
 				{/* Content Left */}
-				<GuideBox tag="Content Left" show={visible} padding={1} itemSpacing={1.5} fill='3'>
+				<GuideBox tag="Content Left" show={visible} padding={1} spacing={1.5} fill='3'>
 					<GuideBox tag="Title" show={visible} width={300} height={30} center>
 						<Typography variant="h1">Title</Typography>
 					</GuideBox>
-					<GuideBox tag="DropList & TextField" show={visible}>
+					<GuideBox tag="DropList & TextField" show={visible} spacing={2}>
 						<TemplatesDualComponentsTypographyDropListSpaceBetween />
 						<TemplatesDualComponentsTypographyDropListSpaceBetween />
 						<TemplatesDualComponentsTypographyDropListSpaceBetween />
@@ -135,13 +135,13 @@ const ComponentsGuideBoxLayout2Sample = () => {
 				</GuideBox>
 
 				{/* Content Right */}
-				<GuideBox tag="Content Right" show={visible} fill='3' itemSpacing={1} padding={1}>
+				<GuideBox tag="Content Right" show={visible} fill='3' spacing={1} padding={1}>
 					<Panel variant="shadow">
-						<GuideBox tag="Title" show={visible} fill='4' width={300} itemCenter>
+						<GuideBox tag="Title" show={visible} fill='4' width={300} center>
 							<ComponentsTableWithTitle title="Title" />
 						</GuideBox>
 					</Panel>
-					<GuideBox tag="DropList & TextField" show={visible} fill='4' width={320} horSpaceBetween>
+					<GuideBox tag="DropList & TextField" show={visible} fill='4' width={320} horSpaceBetween spacing={1}>
 						<TemplatesDualComponentsTypographyDropListSpaceBetween 	width={320} />
 						<TemplatesDualComponentsTypographyTextFieldSpaceBetween width={320} />
 						<TemplatesDualComponentsTypographyTextFieldSpaceBetween width={320} />
@@ -151,13 +151,13 @@ const ComponentsGuideBoxLayout2Sample = () => {
 			</GuideBox>
 
 			{/* Footer */}
-			<GuideBox tag="Footer" show={visible} itemDirection='row' padding={1} itemSpacing={0} fill='2'>
+			<GuideBox tag="Footer" show={visible} row padding={1} spacing={0} fill='2'>
 				<GuideBox tag="Footer Left" show={visible} fill='3' width={304} height={30} padding={1}>
-					<GuideBox tag="Refresh" show={visible} fill='4' width={100} height={30} itemVerticalAlign='center'>
+					<GuideBox tag="Refresh" show={visible} fill='4' width={100} height={30} verCenter>
 						<Button>Refresh</Button>
 					</GuideBox>
 				</GuideBox>
-				<GuideBox tag="Footer Right" show={visible} fill='4' width={324} height={30} padding={1} itemDirection='row' itemHorizontalAlign='space-between' itemVerticalAlign='center'>
+				<GuideBox tag="Footer Right" show={visible} fill='4' width={324} height={30} padding={1} row horSpaceBetween verCenter>
 					<Check name='Text' namePlacement='start'/>
 					<Button color='negative'>Create</Button>
 				</GuideBox>
