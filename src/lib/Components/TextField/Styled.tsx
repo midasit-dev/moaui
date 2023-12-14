@@ -80,6 +80,10 @@ export type StyledProps = {
 	 * The spacing title and textfield.
 	 */
 	spacing?: number,
+	/**
+	 * The alignment of the textfield.
+	 */
+	textAlign?: "left" | "center" | "right",
 }
 
 const StyledComponent = styled((props:StyledProps) => {
@@ -122,6 +126,11 @@ const StyledComponent = styled((props:StyledProps) => {
 					//text
 					color: Color.text.secondary,
 					fontFeatureSettings: Font.fontFeatureSettings,
+				},
+				inputProps:{
+					style:{
+						textAlign: props?.textAlign,
+					}
 				}
 			}}
 			placeholder={props?.placeholder}

@@ -12,6 +12,7 @@ Textfield.defaultProps = {
 	error : false,
 	disabled : false,
 	spacing: 1,
+	textAlign: "left",
 } as StyledProps;
 
 /**
