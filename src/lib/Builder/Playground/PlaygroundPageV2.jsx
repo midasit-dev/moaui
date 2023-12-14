@@ -262,6 +262,23 @@ const DropTargetV2 = (props) => {
     setLayouts(currentLayout => [...currentLayout, newItem]);
   };
 
+  React.useEffect(() => {
+    if(isopenCode === true){
+      const preLayouts = [...layouts];
+      if(preLayouts.length > 0 && preLayouts[0].type === ItemTypes.GuideBoxEmpty){
+        preLayouts.splice(0,1);
+        setLayouts([...preLayouts]);
+      }
+    }
+    else{
+      const preLayouts = [...layouts];
+      if(preLayouts.length === 0){
+        preLayouts.push({i: new Date().getTime().toString(), x: 0, y: 30, w: 1, h: 1, minW: 1, maxH: 1, type: ItemTypes.GuideBoxEmpty});
+        setLayouts([...preLayouts]);
+      }
+    }
+  }, [isopenCode]);
+
   // onLayoutChange 이벤트 핸들러
   const onLayoutChange = (currentLayout) => {
     setLayouts(prevLayouts => {
