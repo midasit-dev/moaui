@@ -6,7 +6,9 @@ import pyscript_foundations_modeling as fm
 civil = MidasAPI(Product.CIVIL, "KR")
 
 # Get selected node list from Civil 
-select_node = civil.view_select_get().get("NODE_LIST")
+select_node = civil.view_select_get().get("SELECT").get("NODE_LIST")
+
+print(select_node)
 
 if len(select_node) == 0:
     print("Error: Please select a node")

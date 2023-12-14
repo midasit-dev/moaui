@@ -112,7 +112,7 @@ const TemplatesDualComponentsTypographyTextFieldSpaceBetween = ({
 };
 
 const ComponentsGuideBoxLayout2Sample = () => {
-	const visible = false;
+	const visible = true;
 
 	return (
 		<GuideBox tag="Group Pile Creator" show={visible} padding={1} itemSpacing={1} fill='1'>

@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.0.86",
+  "version": "0.0.87",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

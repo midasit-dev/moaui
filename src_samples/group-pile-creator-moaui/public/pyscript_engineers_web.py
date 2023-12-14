@@ -1,4 +1,4 @@
-g_MAPI_key = ""
+g_MAPI_key = "eyJ1ciI6ImtoMTAxMiIsInBnIjoiY2l2aWwiLCJjbiI6IjMwOGsyUzlnU0EifQ.f15c9e5430644521834272a499488e337463817306683fe54e4e2f2f3bc1b447"
 g_base_uri = "moa-engineers.midasit.com"
 g_base_port = "443"
 
@@ -7,6 +7,8 @@ g_base_port = "443"
 # JSON = globalThis.JSON
 from js import fetch, JSON, XMLHttpRequest
 import json
+
+import numpy as np
 
 class requests_json:
     @staticmethod
