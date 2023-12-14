@@ -395,8 +395,8 @@ const GuideBox = (props: StyledProps) => {
 					direction={getItemDirection(props).value}
 					spacing={itemSpacing}
 					display={"flex"}
-					justifyContent={getItemHorizontalAlign(props).value}
-					alignItems={getItemVerticalAlign(props).value}
+					justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
+					alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
 				>
 					{
 						props.children && 
