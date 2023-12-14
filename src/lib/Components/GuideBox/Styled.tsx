@@ -375,12 +375,15 @@ const GuideBox = (props: StyledProps) => {
       TransitionComponent={Zoom}
       open={open}
     >
-			<Box>
+			<Box
+				ref={boxRef}
+				width={width}
+				height={height}
+				{...rest}
+			>
 				<Stack
-					ref={boxRef}
-					width={width}
-					height={height}
-					{...rest}
+					width={"100%"}
+					height={"100%"}
 					sx={{
 						...MarginProps(props),
 						...PaddingProps(props),
