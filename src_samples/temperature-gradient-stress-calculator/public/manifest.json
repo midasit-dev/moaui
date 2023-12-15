@@ -1,6 +1,6 @@
 {
-  "short_name": "Plug-in Item Title",
-  "name": "Plug-in for MIDAS/Civil",
+  "short_name": "Temp Gradient Calculator",
+  "name": "Temperature Gradient self-Equilibrating Stresses Calculator - AASHTO LRFD",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,6 +12,6 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "width": "1070",
-  "height": "570"
+  "width": "1250",
+  "height": "620"
 }

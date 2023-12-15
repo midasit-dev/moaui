@@ -2,9 +2,7 @@ import React from 'react';
 
 import { 
 	GuideBox, 
-	ComponentsTypographyH1,
 	Panel,
-	Button,
 	Typography,
 	DropList,
 	Check,
@@ -12,11 +10,14 @@ import {
 	TabGroup, Tab, Table, TableHead, TableRow, TableCell, TableBody,
 
 	ComponentsIconButtonWithName,
-	ComponentsChartLineAxisPointSize,
-	ComponentsChartLineAxisTopRight,
 	ComponentsDialogHelpIconButton,
 	ComponentsTypographyBody1,
 } from "@midasit-dev/moaui";
+
+import ImportSection from './Components/ImportSection';
+import AddButton from './Components/AddButton';
+import SelfEqStressesCharts from './Components/SelfEqStressesCharts';
+import TemperatureGradientChart from './Components/TemperatureGradientChart';
 
 const ComponentsTabGroupWithTable = ({
 	tab1Label = 'Tab 1',
@@ -128,11 +129,157 @@ const ComponentsGuideBoxLayout1 = () => {
 		checkPyScriptReady(() => {});
 	}, []);
 
+	//Import Section Select Value
+	const [importSectionValue, setImportSectionValue] = React.useState({
+    selected: '',
+		temp: '',
+    items: [
+			"List Item 1",
+			"List Item 2",
+			"List Item 3",
+			"List Item 4",
+			"List Item 5",
+			"List Item 6",
+			"List Item 7",
+			"List Item 8",
+			"List Item 9",
+			"List Item 10",
+			"List Item 11",
+			"List Item 12",
+		],
+  });
+
+	//Select Load Case (Add Button)
+	const [addValue, setAddValue] = React.useState({
+    selected: '',
+		temp: '',
+    items: [
+			"Static Load Case 1",
+			"Static Load Case 2",
+			"Static Load Case 3",
+			"Static Load Case 4",
+			"Static Load Case 5",
+			"Static Load Case 6",
+			"Static Load Case 7",
+			"Static Load Case 8",
+			"Static Load Case 9",
+		],
+  });
+
+	//Self Equilibrating Stresses Chart Values
+	const [leftSelfEqStressesChartValue, setLeftSelfEqStressesChartValue] = React.useState([
+		{
+			'id': 'AASHTO_HeatingG',
+			'color': '#f47560',
+			'data': [
+					{ "x": -5.9701, "y": 0.0 },
+					{ "x": -4.2611, "y": -30.0 },
+					{ "x": -0.2734, "y": -100.0 },
+					{ "x": 0.4872, "y": -230.0 },
+					{ "x": 0.6042, "y": -250.0 },
+					{ "x": 0.8090, "y": -285.0 },
+					{ "x": 0.8968, "y": -300.0 },
+					{ "x": 1.4234, "y": -390.0 },
+					{ "x": 1.4819, "y": -400.0 },
+					{ "x": 1.4723, "y": -410.0 },
+					{ "x": 1.2408, "y": -650.0 },
+					{ "x": 1.2023, "y": -690.0 },
+					{ "x": 0.3537, "y": -1570.0 },
+					{ "x": 0.0162, "y": -1920.0 },
+					{ "x": -0.0899, "y": -2030.0 },
+					{ "x": -0.1525, "y": -2095.0 },
+					{ "x": -0.1574, "y": -2100.0 },
+					{ "x": -0.1767, "y": -2120.0 },
+					{ "x": -0.1863, "y": -2130.0 },
+					{ "x": -1.4015, "y": -2330.0 }
+			],
+		},
+		{
+			'id': 'Girder',
+			'color': '#333333',
+			'data': [
+				{ 'x': 0.0, 'y': 0.0 },
+				{ 'x': 0.0, 'y': -2330.0 },
+			],
+		},
+	]);
+
+	const [rightSelfEqStressesChartValue, setRightSelfEqStressesChartValue] = React.useState([
+		{
+			'id': 'Cooling',
+			'color': '#f47560',
+			'data': [
+					{ "x": -5.9701, "y": 0.0 },
+					{ "x": -4.2611, "y": -30.0 },
+					{ "x": -0.2734, "y": -100.0 },
+					{ "x": 0.4872, "y": -230.0 },
+					{ "x": 0.6042, "y": -250.0 },
+					{ "x": 0.8090, "y": -285.0 },
+					{ "x": 0.8968, "y": -300.0 },
+					{ "x": 1.4234, "y": -390.0 },
+					{ "x": 1.4819, "y": -400.0 },
+					{ "x": 1.4723, "y": -410.0 },
+					{ "x": 1.2408, "y": -650.0 },
+					{ "x": 1.2023, "y": -690.0 },
+					{ "x": 0.3537, "y": -1570.0 },
+					{ "x": 0.0162, "y": -1920.0 },
+					{ "x": -0.0899, "y": -2030.0 },
+					{ "x": -0.1525, "y": -2095.0 },
+					{ "x": -0.1574, "y": -2100.0 },
+					{ "x": -0.1767, "y": -2120.0 },
+					{ "x": -0.1863, "y": -2130.0 },
+					{ "x": -1.4015, "y": -2330.0 }
+			],
+		},
+		{
+			'id': 'Girder',
+			'color': '#333333',
+			'data': [
+				{ 'x': 0.0, 'y': 0.0 },
+				{ 'x': 0.0, 'y': -2330.0 },
+			],
+		},
+	]);
+
+	//Temperature Gradient Chart Values
+	const [temperatureGradientChartValue, setTemperatureGradientChartValue] = React.useState([
+		{
+			'id': 'TempHeating',
+			'color': '#f47560',
+			'data': [
+				{ 'x': 23.0, 'y': 0.0 },
+				{ 'x': 6.0, 'y': -100.0 },
+				{ 'x': 0.0, 'y': -400.0 },
+				{ 'x': 0.0, 'y': -2130.0 },
+				{ 'x': 3.0, 'y': -2330.0 },
+			],
+		},
+		{
+			'id': 'TempCooling',
+			'color': '#1f78b4',
+			'data': [
+				{ 'x': -4.6, 'y': 0.0 },
+				{ 'x': -1.2, 'y': -100.0 },
+				{ 'x': 0.0, 'y': -400.0 },
+				{ 'x': 0.0, 'y': -2130.0 },
+				{ 'x': -3.0, 'y': -2330.0 },
+			],
+		},
+		{
+			'id': 'Girder',
+			'color': '#333333',
+			'data': [
+				{ 'x': 0.0, 'y': 0.0 },
+				{ 'x': 0.0, 'y': -2330.0 },
+			],
+		},
+	]);	
+
 	return (
     <GuideBox show={visible} padding={1}>
       {/** Top Panels */}
-      <GuideBox show={visible} width={1050} padding={1} row spacing={2} center>
-        <Panel variant="shadow" height={486}>
+      <GuideBox show={visible} width={1300} padding={1} row spacing={2} center>
+        <Panel variant="shadow" height={520}>
           <GuideBox show={visible} fill="2">
             <GuideBox
               show={visible}
@@ -201,7 +348,7 @@ const ComponentsGuideBoxLayout1 = () => {
                 <ComponentsIconButtonWithName iconName="Help" />
               </GuideBox>
             </GuideBox>
-            <GuideBox show={visible} width="100%" fill="3">
+            <GuideBox show={visible} width="100%" fill="3" marginTop={2}>
               <ComponentsTabGroupWithTable
                 tab1Label="Material"
                 tab1TableHeadRow={["Component", "Property", "Symbol", "Value"]}
@@ -216,30 +363,35 @@ const ComponentsGuideBoxLayout1 = () => {
             </GuideBox>
           </GuideBox>
         </Panel>
-        <Panel variant="shadow" height={486}>
+        <Panel variant="shadow" height={520}>
           <GuideBox show={visible} fill="2" spacing={2}>
             <GuideBox show={visible} width="100%" height={60} fill="3" center>
-              <ComponentsTypographyH1 />
+              <Typography variant='h1'>Temperature Gradient</Typography>
             </GuideBox>
             <GuideBox show={visible} width="100%" fill="3" center>
-              <ComponentsChartLineAxisTopRight />
+              <TemperatureGradientChart
+								value={temperatureGradientChartValue}
+							/>
             </GuideBox>
           </GuideBox>
         </Panel>
-        <Panel variant="shadow" height={486}>
+        <Panel variant="shadow" height={520}>
           <GuideBox show={visible} fill="2" spacing={2}>
             <GuideBox show={visible} width="100%" height={60} fill="3" center>
-              <ComponentsTypographyH1 />
+              <Typography variant='h1'>Self Equilibrating Stresses</Typography>
             </GuideBox>
-            <GuideBox show={visible} width="100%" fill="3" center>
-              <ComponentsChartLineAxisPointSize />
+            <GuideBox show={visible} width="100%" fill="3" center row>
+              <SelfEqStressesCharts 
+								leftValue={leftSelfEqStressesChartValue}
+								rightValue={rightSelfEqStressesChartValue}
+							/>
             </GuideBox>
           </GuideBox>
         </Panel>
       </GuideBox>
 
       {/** Bottom Buttons */}
-      <GuideBox show={visible} width={1050} row padding={1} fill="2" center>
+      <GuideBox show={visible} width={1300} row padding={1} fill="2" center>
         <GuideBox
           show={visible}
           width="30%"
@@ -250,7 +402,10 @@ const ComponentsGuideBoxLayout1 = () => {
           verCenter
         >
           <ComponentsDialogHelpIconButton />
-          <Button>Import Section</Button>
+          <ImportSection 
+						value={importSectionValue}
+						setValue={setImportSectionValue}
+					/>
         </GuideBox>
         <GuideBox
           show={visible}
@@ -258,12 +413,12 @@ const ComponentsGuideBoxLayout1 = () => {
           height={30}
           fill="4"
           row
-          spacing={0}
-          horSpaceBetween
+          spacing={3}
+          horRight
           verCenter
         >
-          <ComponentsTypographyBody1 />
-          <Button
+          <Typography>The above Temperature Gradient Loads in MIDAS Civil Load Cases</Typography>
+          {/* <Button
             color="negative"
             onClick={() => {
               console.log("main_func start");
@@ -272,7 +427,11 @@ const ComponentsGuideBoxLayout1 = () => {
             }}
           >
             Add
-          </Button>
+          </Button> */}
+					<AddButton 
+						value={addValue}
+						setValue={setAddValue}
+					/>
         </GuideBox>
       </GuideBox>
     </GuideBox>
