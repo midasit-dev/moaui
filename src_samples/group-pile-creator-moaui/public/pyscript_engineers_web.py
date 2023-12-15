@@ -1,7 +1,25 @@
-g_MAPI_key = "eyJ1ciI6ImtoMTAxMiIsInBnIjoiY2l2aWwiLCJjbiI6IjMwOGsyUzlnU0EifQ.f15c9e5430644521834272a499488e337463817306683fe54e4e2f2f3bc1b447"
+# default Setting
+g_MAPI_key = ""
 g_base_uri = "moa-engineers.midasit.com"
 g_base_port = "443"
 
+# from web FE, Set & Get
+def set_g_values(g_values):
+	_g_values = json.loads(g_values)
+	global g_MAPI_key
+	global g_base_uri
+	global g_base_port
+	g_MAPI_key = _g_values['g_mapi_key']
+	g_base_uri = _g_values['g_base_uri']
+	g_base_port = _g_values['g_base_port']
+  
+def get_g_values():
+  return json.dumps({
+		'g_mapi_key': g_MAPI_key,
+		'g_base_uri': g_base_uri,
+		'g_base_port': g_base_port
+	})
+  
 # from javascript import globalThis
 # fetch = globalThis.fetch
 # JSON = globalThis.JSON
@@ -21,6 +39,7 @@ class requests_json:
         return json.loads(xhr.responseText)
 
     def get(url, headers):
+        print('url', url)
         xhr = XMLHttpRequest.new()
         xhr.open("GET", url, False)
         for key, value in headers.items():
@@ -110,6 +129,9 @@ class MidasAPI:
         return requests_json.post(url, headers=self.headers, jsonObj={'Assign': item})
     
     def db_read(self, item_name):
+        print("URL:", self.base_url)
+        print("MAPI:",g_MAPI_key)
+        print("Headers:", self.headers)
         url = f'{self.base_url}/db/{item_name}'
         responseJson = requests_json.get(url, headers=self.headers)
         # check response.json()[item_name] is Exist
