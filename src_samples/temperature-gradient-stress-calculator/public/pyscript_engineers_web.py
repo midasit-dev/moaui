@@ -39,7 +39,6 @@ class requests_json:
         return json.loads(xhr.responseText)
 
     def get(url, headers):
-        print('url', url)
         xhr = XMLHttpRequest.new()
         xhr.open("GET", url, False)
         for key, value in headers.items():
@@ -129,9 +128,6 @@ class MidasAPI:
         return requests_json.post(url, headers=self.headers, jsonObj={'Assign': item})
     
     def db_read(self, item_name):
-        print("URL:", self.base_url)
-        print("MAPI:",g_MAPI_key)
-        print("Headers:", self.headers)
         url = f'{self.base_url}/db/{item_name}'
         responseJson = requests_json.get(url, headers=self.headers)
         # check response.json()[item_name] is Exist

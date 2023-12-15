@@ -1,24 +1,8 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
-import { GuideBox, VerifyUtil, Icon, Typography, Button, TextField } from "../../";
+import { GuideBox, Typography, Button, TextField, VerifyUtil, Icon } from "@midasit-dev/moaui";
 
-export interface StyledProps {
-	/**
-	 * prevent redirecting
-	 * @default false
-	 */
-	preventRedirect: boolean;
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
-   */
-  onClose?: any;
-}
-
-const StyledComponent = styled((props: StyledProps) => {
+const TDialog = (props: any) => {
 	const [baseUrl, setBaseUrl] = React.useState("");
 	const [mapiKey, setMapiKey] = React.useState("");
 
@@ -42,11 +26,7 @@ const StyledComponent = styled((props: StyledProps) => {
 	const handleMapiKeyChange = (e: any) => setMapiKey(e.target.value);
 
 	return (
-    <Dialog 
-			open={open} 
-			sx={{ backdropFilter: "blur(5px)" }}
-			onClose={props.onClose}
-		>
+    <Dialog open={open} sx={{ backdropFilter: "blur(5px)" }}>
       <GuideBox width={350} fill="1" padding={4}>
         <GuideBox width={350} fill="1" spacing={3}>
           <GuideBox width="100%" fill="2" spacing={1} center>
@@ -100,7 +80,7 @@ const StyledComponent = styled((props: StyledProps) => {
         </GuideBox>
       </GuideBox>
     </Dialog>
-	);
-})(({theme}) => ({}));
+  );
+}
 
-export default StyledComponent;
+export default TDialog;
