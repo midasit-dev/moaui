@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta } from "@storybook/react";
 import Dialog from "..";
 
@@ -6,7 +7,8 @@ import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 import { 
 	HelpCode,
 	HelpButtonCode, 
-	HelpIconButtonCode
+	HelpIconButtonCode,
+	DialogButtonCode,
 } from "../Code";
 
 const meta = {
@@ -22,3 +24,4 @@ export default meta;
 export const Help = LiveEditStory(cleanMask(HelpCode));
 export const HelpButton = LiveEditStory(cleanMask(HelpButtonCode));
 export const HelpIconButton = LiveEditStory(cleanMask(HelpIconButtonCode));
+export const DialogButton = LiveEditStory(cleanMask(DialogButtonCode));

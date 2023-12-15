@@ -45,7 +45,7 @@ const HelpIcon = () => {
   );
 }
 
-const HelpDialog = ({open, setOpen, props}: {open: boolean; setOpen: (open: boolean) => void; props?: HelpProps}) => {
+const HelpDialog = ({open, setOpen, props}: {open: boolean; setOpen?: (open: boolean) => void; props?: HelpProps}) => {
 	return (
 		<Dialog open={open}>
 			<Stack direction="column" justifyContent="center" spacing={1}>
@@ -65,7 +65,7 @@ const HelpDialog = ({open, setOpen, props}: {open: boolean; setOpen: (open: bool
 							Help : {props?.titleText ? props?.titleText : 'Define title text'}
 						</Typography>
 					</Stack>
-					<IconButton transparent onClick={() => setOpen(false)}>
+					<IconButton transparent onClick={() => setOpen?.(false)}>
 						<Icon iconName="Close" />
 					</IconButton>
 				</Stack>
