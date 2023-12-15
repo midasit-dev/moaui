@@ -1,0 +1,17 @@
+{
+  "short_name": "Plug-in Item Title",
+  "name": "Plug-in for MIDAS/Civil",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "width": "1070",
+  "height": "570"
+}
