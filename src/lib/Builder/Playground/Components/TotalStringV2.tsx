@@ -309,6 +309,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.CodeBlockJavascript ? `${extractComponentName(All.CodeBlockJavascript)}` : ""}
 					${item.type === ItemTypes.CodeBlockTypescript ? `${extractComponentName(All.CodeBlockTypescript)}` : ""}
 					${item.type === ItemTypes.DataGridPagination ? `${extractComponentName(All.DataGridPagination)}` : ""}
+					${item.type === ItemTypes.DialogDialogButton ? `${extractComponentName(All.DialogDialogButton)}` : ""}
 					${item.type === ItemTypes.DialogHelpButton ? `${extractComponentName(All.DialogHelpButton)}` : ""}
 					${item.type === ItemTypes.DialogHelpIconButton ? `${extractComponentName(All.DialogHelpIconButton)}` : ""}
 					${item.type === ItemTypes.DropListDropdown ? `${extractComponentName(All.DropListDropdown)}` : ""}

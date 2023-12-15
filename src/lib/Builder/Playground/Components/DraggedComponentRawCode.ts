@@ -16,6 +16,7 @@ export { default as CheckGroupUnControlled } from '../../../Components/CheckGrou
 export { default as CodeBlockJavascript } from '../../../Components/CodeBlock/Code/Javascript.code.tsx?raw';
 export { default as CodeBlockTypescript } from '../../../Components/CodeBlock/Code/Typescript.code.tsx?raw';
 export { default as DataGridPagination } from '../../../Components/DataGrid/Code/Pagination.code.tsx?raw';
+export { default as DialogDialogButton } from '../../../Components/Dialog/Code/DialogButton.code.tsx?raw';
 export { default as DialogHelpButton } from '../../../Components/Dialog/Code/HelpButton.code.tsx?raw';
 export { default as DialogHelpIconButton } from '../../../Components/Dialog/Code/HelpIconButton.code.tsx?raw';
 export { default as DropListDropdown } from '../../../Components/DropList/Code/Dropdown.code.tsx?raw';

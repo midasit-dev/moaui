@@ -250,6 +250,7 @@ const DialogCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.DialogDialogButton}>DialogButton</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DialogHelpButton}>HelpButton</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DialogHelpIconButton}>HelpIconButton</CustomDraggableComponent>
 			</div>
@@ -879,6 +880,9 @@ export const CodeBlockTypescript =
 
 export const DataGridPagination = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DataGridPagination}>DataGridPagination</CustomDraggableComponent>;
+
+export const DialogDialogButton = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DialogDialogButton}>DialogDialogButton</CustomDraggableComponent>;
 
 export const DialogHelpButton = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DialogHelpButton}>DialogHelpButton</CustomDraggableComponent>;

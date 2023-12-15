@@ -23,6 +23,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.CodeBlockJavascript: return <All.CodeBlockJavascript />;
 		case ItemTypes.CodeBlockTypescript: return <All.CodeBlockTypescript />;
 		case ItemTypes.DataGridPagination: return <All.DataGridPagination />;
+		case ItemTypes.DialogDialogButton: return <All.DialogDialogButton />;
 		case ItemTypes.DialogHelpButton: return <All.DialogHelpButton />;
 		case ItemTypes.DialogHelpIconButton: return <All.DialogHelpIconButton />;
 		case ItemTypes.DropListDropdown: return <All.DropListDropdown />;

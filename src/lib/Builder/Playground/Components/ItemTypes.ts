@@ -17,6 +17,7 @@ export const ItemTypes = {
 	CodeBlockJavascript: 'CodeBlockJavascript',
 	CodeBlockTypescript: 'CodeBlockTypescript',
 	DataGridPagination: 'DataGridPagination',
+	DialogDialogButton: 'DialogDialogButton',
 	DialogHelpButton: 'DialogHelpButton',
 	DialogHelpIconButton: 'DialogHelpIconButton',
 	DropListDropdown: 'DropListDropdown',

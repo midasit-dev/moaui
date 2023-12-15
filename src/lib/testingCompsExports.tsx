@@ -19,6 +19,7 @@ export { default as ComponentsCheckGroupUnControlled } from "./Components/CheckG
 export { default as ComponentsCodeBlockJavascript } from "./Components/CodeBlock/Code/Javascript.code";
 export { default as ComponentsCodeBlockTypescript } from "./Components/CodeBlock/Code/Typescript.code";
 export { default as ComponentsDataGridPagination } from "./Components/DataGrid/Code/Pagination.code";
+export { default as ComponentsDialogDialogButton } from "./Components/Dialog/Code/DialogButton.code";
 export { default as ComponentsDialogHelpButton } from "./Components/Dialog/Code/HelpButton.code";
 export { default as ComponentsDialogHelpIconButton } from "./Components/Dialog/Code/HelpIconButton.code";
 export { default as ComponentsDropListDropdown } from "./Components/DropList/Code/Dropdown.code";
