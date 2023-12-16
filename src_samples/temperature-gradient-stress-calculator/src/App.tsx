@@ -18,6 +18,7 @@ import ImportSection from './Components/ImportSection';
 import AddButton from './Components/AddButton';
 import SelfEqStressesCharts from './Components/SelfEqStressesCharts';
 import TemperatureGradientChart from './Components/TemperatureGradientChart';
+import PythonSample1 from './PythonSample1';
 
 const ComponentsTabGroupWithTable = ({
 	tab1Label = 'Tab 1',
@@ -434,6 +435,7 @@ const ComponentsGuideBoxLayout1 = () => {
 					/>
         </GuideBox>
       </GuideBox>
+			<PythonSample1 />
     </GuideBox>
   );
 };

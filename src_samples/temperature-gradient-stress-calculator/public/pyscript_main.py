@@ -14,6 +14,56 @@ import data_check as dc
 # import table_print as result
 import pprint as pprint
 
+######################################
+# python - javascript 간 Sample Code #
+######################################
+
+# js에서 set("from js string")을 실행하면 value에 "from js string"이 대입되고 출력 할 수 있습니다.
+def set(v):
+	# "from js string"을 value에 대입 합니다. 이 때, value는 string이 됩니다.
+	value = v
+	# value를 다시 return 할 수도 있습니다.
+	return value
+
+# js에서 get을 호출하면 "from python string"을 받을 수 있습니다.
+def get():
+	return "from python string"
+
+# jsonString = '\"jsString\": \{
+# 	\"key1\": 1,
+#		\"key2\": \"value\"
+# \}'
+# 위와 같은 형태의 문자열을 매개변수로 받습니다.
+def setJsonString(jsonString):
+	# jsonString을 parsing하여 dictionary형태로 변환 합니다.
+	_dict = json.loads(jsonString)
+	# dict에서 key1과 key2의 value를 찾아 대입 합니다.
+	value1 = _dict["key1"]
+	value2 = _dict["key2"]
+	# 출력 해봅니다.
+	print("key1: ", value1, " key2: ", value2)
+	# 다시 dictionary를 업데이트해서 return 합니다.
+	return json.dumps({
+		"description": "from python",
+		"key1": value1,
+		"key2": value2
+	})
+
+def getJsonString():
+	# dictionary를 선언 합니다.
+	_dict = {
+		"key1": 1,
+		"key2": "value"
+	}
+	# dictionary를 json 형태의 string으로 변환 합니다.
+	jsonString = json.dumps(_dict)
+	# json 형태의 string을 return 합니다.
+	return jsonString
+
+######################################
+######################################
+######################################
+
 def getDB(item_name):
 	civil = MidasAPI(Product.CIVIL, "KR")
 	return json.dumps(civil.db_read(item_name))
