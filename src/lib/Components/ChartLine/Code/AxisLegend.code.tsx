@@ -49,9 +49,13 @@ const ComponentsChartLineAxisPointSize = () => {
 			axisRightTickRotation={-30}
 			axisRightDecimals={2}
 			axisRightLegend="(mm)"
-			width={250}
+			width={200}
 			height={400}
 			pointSize={0}
+			marginTop={60}
+			marginRight={70}
+			marginLeft={1}
+			marginBottom={1}
 		/>
 	);
 }

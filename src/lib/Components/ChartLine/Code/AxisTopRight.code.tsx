@@ -43,7 +43,11 @@ const ComponentsChartLineAxisTopRight = () => {
 			axisRightTickValues={5}
 			axisRightDecimals={2}
 			axisRightTickRotation={-30}
-			width={400}
+			width={300}
+			marginTop={60}
+			marginRight={70}
+			marginLeft={1}
+			marginBottom={1}
 		/>
 	);
 }/**${comma}*/

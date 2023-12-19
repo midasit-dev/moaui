@@ -3,7 +3,11 @@ import { styled } from "@mui/material/styles";
 import MoaStyledComponent from "../../Style/MoaStyled";
 import { MarginTypes, MarginProps } from "../../Style/Margin";
 import { PaddingTypes, PaddingProps } from "../../Style/Padding";
-import { Stack } from "../..";
+import { Stack, Color } from "../..";
+
+//for Progress
+import Box from '@mui/material/Box';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
 export type StyledProps = {
 	/**
@@ -90,6 +94,11 @@ export type StyledProps = {
 	 * guide box item align veritcal option 'bottom' (super option)
 	 */
 	verBottom?: boolean;
+
+	/**
+	 * guide box loading option
+	 */
+	loading?: boolean;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -169,6 +178,27 @@ const getBackgroundColor = (props: StyledProps): string => {
 	}
 }
 
+const ProgressBar = () => {
+	const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+		height: 5,
+		borderRadius: 3,
+		[`&.${linearProgressClasses.colorPrimary}`]: {
+			backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+		},
+		[`& .${linearProgressClasses.bar}`]: {
+			borderRadius: 5,
+			backgroundColor: theme.palette.mode === 'light' ? Color.primary.main : Color.primaryNegative.main,
+		},
+		opacity: 0.7,
+	}));
+
+  return (
+		<Box sx={{ width: '100%' }}>
+			<BorderLinearProgress />
+		</Box>
+  );
+}
+
 const GuideBox = (props: StyledProps) => {
 	const { 
 		children, 
@@ -192,34 +222,39 @@ const GuideBox = (props: StyledProps) => {
 		verBottom,
 		padding, paddingX, paddingY, paddingTop, paddingBottom, paddingLeft, paddingRight,
 		margin, marginX, marginY, marginTop, marginBottom, marginLeft, marginRight, 
+		loading,
 		...rest 
 	} = props;
 
 	return (
-		<Stack
-			width={width}
-			height={height}
-			{...rest}
-			sx={{
-				...MarginProps(props),
-				...PaddingProps(props),
-				backgroundColor: getBackgroundColor(props),
-			}}
-			overflow={"hidden"}
-			direction={getItemDirection(props).value}
-			spacing={spacing}
-			display={"flex"}
-			justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
-		alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
-		>
-			{props.children}
-			{/* {
-				props.children && 
-					React.Children.map(props.children, (child, index) => (
-						<React.Fragment key={index}>{child}</React.Fragment>
-					))
-			} */}
-		</Stack>
+		<>
+			{loading && <ProgressBar />}
+			<Stack
+				width={width}
+				height={height}
+				{...rest}
+				sx={{
+					...MarginProps(props),
+					...PaddingProps(props),
+					backgroundColor: getBackgroundColor(props),
+					opacity: loading ? 0.5 : 1,
+				}}
+				overflow={"hidden"}
+				direction={getItemDirection(props).value}
+				spacing={spacing}
+				display={"flex"}
+				justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
+				alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
+			>
+				{props.children}
+				{/* {
+					props.children && 
+						React.Children.map(props.children, (child, index) => (
+							<React.Fragment key={index}>{child}</React.Fragment>
+						))
+				} */}
+			</Stack>
+		</>
   );
 }
 

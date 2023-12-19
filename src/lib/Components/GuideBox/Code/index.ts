@@ -13,3 +13,4 @@ export { default as Layout4Code } from './Layout4.code.tsx?raw';
 export { default as Layout4_SampleCode } from './Layout4_Sample.code.except.tsx?raw';
 export { default as Layout5Code } from './Layout5.code.tsx?raw';
 export { default as Layout5_SampleCode } from './Layout5_Sample.code.except.tsx?raw';
+export { default as LoadingCode } from './loading.code.tsx?raw';

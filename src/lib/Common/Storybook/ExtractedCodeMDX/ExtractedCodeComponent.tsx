@@ -52,6 +52,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout3.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout4.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout5.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/GuideBox/Code/loading.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/RowDirection.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Icon/Code/Add.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Icon/Code/Close.code.tsx?raw"));

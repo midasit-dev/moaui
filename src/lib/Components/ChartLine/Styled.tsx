@@ -131,6 +131,31 @@ export type StyledProps = {
 	 * @default 2
 	 */
 	pointSize?: number;
+
+	/**
+	 * set a marginTop
+	 * 
+	 * @default 50
+	 */
+	marginTop?: number;
+	/**
+	 * set a marginRight
+	 * 
+	 * @default 110
+	 */
+	marginRight?: number;
+	/**
+	 * set a marginBottom
+	 * 
+	 * @default 50
+	 */
+	marginBottom?: number;
+	/**
+	 * set a marginLeft
+	 * 
+	 * @default 60
+	 */
+	marginLeft?: number;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -165,7 +190,14 @@ const StyledComponent = styled((props: StyledProps) => {
 			<ResponsiveLine
 				data={props.data}
 				colors={props.data.map((item) => item.color)}
-				margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+				margin={
+					{
+						top: props.marginTop || 50,
+						right: props.marginRight || 110,
+						bottom: props.marginBottom || 50,
+						left: props.marginLeft || 60,
+					}
+				}
         xScale={{ 
 					type: 'linear', 
 					stacked: false, //같은 좌표 2개 있어도 되는 조건
