@@ -30,6 +30,7 @@ export { default as GuideBoxLayout2 } from '../../../Components/GuideBox/Code/La
 export { default as GuideBoxLayout3 } from '../../../Components/GuideBox/Code/Layout3.code.tsx?raw';
 export { default as GuideBoxLayout4 } from '../../../Components/GuideBox/Code/Layout4.code.tsx?raw';
 export { default as GuideBoxLayout5 } from '../../../Components/GuideBox/Code/Layout5.code.tsx?raw';
+export { default as GuideBoxloading } from '../../../Components/GuideBox/Code/loading.code.tsx?raw';
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code.tsx?raw';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code.tsx?raw';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code.tsx?raw';
