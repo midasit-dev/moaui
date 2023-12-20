@@ -21,6 +21,7 @@ const App = () => {
 		const asyncFunction = async () => {
 			const rawCodes: string[] = [];
 			rawCodes.push(await import("../../../Authentication/VerifyDialog/Code/Default.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Alert/Code/Error.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Composite.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Contained.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Negative.code.tsx?raw"));

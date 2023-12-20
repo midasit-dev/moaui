@@ -6,6 +6,7 @@ function DraggedComponent(props: any){
 
 	switch (item.type) {
 		case ItemTypes.VerifyDialogDefault: return <All.VerifyDialogDefault />;
+		case ItemTypes.AlertError: return <All.AlertError />;
 		case ItemTypes.ButtonComposite: return <All.ButtonComposite />;
 		case ItemTypes.ButtonContained: return <All.ButtonContained />;
 		case ItemTypes.ButtonNegative: return <All.ButtonNegative />;

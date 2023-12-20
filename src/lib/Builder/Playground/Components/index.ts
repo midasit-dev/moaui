@@ -1,4 +1,5 @@
 export { default as VerifyDialogDefault } from '../../../Authentication/VerifyDialog/Code/Default.code';
+export { default as AlertError } from '../../../Components/Alert/Code/Error.code';
 export { default as ButtonComposite } from '../../../Components/Button/Code/Composite.code';
 export { default as ButtonContained } from '../../../Components/Button/Code/Contained.code';
 export { default as ButtonNegative } from '../../../Components/Button/Code/Negative.code';

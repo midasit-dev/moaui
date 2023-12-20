@@ -1,5 +1,6 @@
 export const ItemTypes = {
 	VerifyDialogDefault: 'VerifyDialogDefault',
+	AlertError: 'AlertError',
 	ButtonComposite: 'ButtonComposite',
 	ButtonContained: 'ButtonContained',
 	ButtonNegative: 'ButtonNegative',

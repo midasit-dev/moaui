@@ -2,6 +2,7 @@
 * Testing Components
 */
 export { default as AuthenticationVerifyDialogDefault } from "./Authentication/VerifyDialog/Code/Default.code";
+export { default as ComponentsAlertError } from "./Components/Alert/Code/Error.code";
 export { default as ComponentsButtonComposite } from "./Components/Button/Code/Composite.code";
 export { default as ComponentsButtonContained } from "./Components/Button/Code/Contained.code";
 export { default as ComponentsButtonNegative } from "./Components/Button/Code/Negative.code";

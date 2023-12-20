@@ -79,7 +79,7 @@ const VerifyDialogCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
-const ButtonCategory: React.FC<{}> = () => (
+const AlertCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
 			<div style={{ 
@@ -100,6 +100,27 @@ const ButtonCategory: React.FC<{}> = () => (
 				marginBottom: '5px'
 			}} />
 		</GuideBox>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>Alert</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.AlertError}>Error</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
+const ButtonCategory: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -833,6 +854,9 @@ const TendonProfileConverterCategory: React.FC<{}> = () => (
 export const VerifyDialogDefault = 
 	() => <CustomDraggableComponent itemType={ItemTypes.VerifyDialogDefault}>VerifyDialogDefault</CustomDraggableComponent>;
 
+export const AlertError = 
+	() => <CustomDraggableComponent itemType={ItemTypes.AlertError}>AlertError</CustomDraggableComponent>;
+
 export const ButtonComposite = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ButtonComposite}>ButtonComposite</CustomDraggableComponent>;
 
@@ -1122,6 +1146,7 @@ const DraggableComponent: React.FC = () => {
 			}}
 		>
 			<VerifyDialogCategory />
+			<AlertCategory />
 			<ButtonCategory />
 			<ChartLineCategory />
 			<CheckCategory />
