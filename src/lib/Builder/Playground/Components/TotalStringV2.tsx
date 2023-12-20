@@ -322,7 +322,8 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.GuideBoxLayout3 ? `${extractComponentName(All.GuideBoxLayout3)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout4 ? `${extractComponentName(All.GuideBoxLayout4)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout5 ? `${extractComponentName(All.GuideBoxLayout5)}` : ""}
-					${item.type === ItemTypes.GuideBoxloading ? `${extractComponentName(All.GuideBoxloading)}` : ""}
+					${item.type === ItemTypes.GuideBoxOpacity ? `${extractComponentName(All.GuideBoxOpacity)}` : ""}
+					${item.type === ItemTypes.GuideBoxPulse ? `${extractComponentName(All.GuideBoxPulse)}` : ""}
 					${item.type === ItemTypes.GuideBoxRowDirection ? `${extractComponentName(All.GuideBoxRowDirection)}` : ""}
 					${item.type === ItemTypes.IconAdd ? `${extractComponentName(All.IconAdd)}` : ""}
 					${item.type === ItemTypes.IconClose ? `${extractComponentName(All.IconClose)}` : ""}
@@ -337,6 +338,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.ListItemButtonDefault ? `${extractComponentName(All.ListItemButtonDefault)}` : ""}
 					${item.type === ItemTypes.PanelBox ? `${extractComponentName(All.PanelBox)}` : ""}
 					${item.type === ItemTypes.PanelShadow ? `${extractComponentName(All.PanelShadow)}` : ""}
+					${item.type === ItemTypes.PanelShadow2 ? `${extractComponentName(All.PanelShadow2)}` : ""}
 					${item.type === ItemTypes.PanelStrock ? `${extractComponentName(All.PanelStrock)}` : ""}
 					${item.type === ItemTypes.PanelTypographyDropList ? `${extractComponentName(All.PanelTypographyDropList)}` : ""}
 					${item.type === ItemTypes.PanelTypographyTextField ? `${extractComponentName(All.PanelTypographyTextField)}` : ""}

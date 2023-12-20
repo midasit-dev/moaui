@@ -52,7 +52,8 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout3.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout4.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/Layout5.code.tsx?raw"));
-			rawCodes.push(await import("../../../Components/GuideBox/Code/loading.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/GuideBox/Code/Opacity.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/GuideBox/Code/Pulse.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/GuideBox/Code/RowDirection.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Icon/Code/Add.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Icon/Code/Close.code.tsx?raw"));
@@ -67,6 +68,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/ListItemButton/Code/Default.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Box.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Shadow.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Panel/Code/Shadow2.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Strock.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/TypographyDropList.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/TypographyTextField.code.tsx?raw"));

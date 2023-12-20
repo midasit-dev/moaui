@@ -1,8 +1,8 @@
 import { GuideBox, Button } from "@midasit-dev/moaui";/**${comma}*/
 
-const ComponentsGuideBoxRowDirection = () => {
+const ComponentsGuideBoxOpacity = () => {
 	return (
-		<GuideBox show fill='2' padding={1} loading>
+		<GuideBox show fill='2' padding={1} pulse>
 			<GuideBox show padding={1} fill='3' row>
 				{/** Type your components ... */}
 				<Button>Button 1</Button>
@@ -14,4 +14,4 @@ const ComponentsGuideBoxRowDirection = () => {
 	);
 };/**${comma}*/
 
-export default ComponentsGuideBoxRowDirection;
+export default ComponentsGuideBoxOpacity;

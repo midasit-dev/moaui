@@ -324,7 +324,8 @@ const GuideBoxCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout3}>Layout3</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout4}>Layout4</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout5}>Layout5</CustomDraggableComponent>
-				<CustomDraggableComponent itemType={ItemTypes.GuideBoxloading}>loading</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxOpacity}>Opacity</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxPulse}>Pulse</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxRowDirection}>RowDirection</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -459,6 +460,7 @@ const PanelCategory: React.FC<{}> = () => (
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.PanelBox}>Box</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelShadow}>Shadow</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.PanelShadow2}>Shadow2</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelStrock}>Strock</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelTypographyDropList}>TypographyDropList</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelTypographyTextField}>TypographyTextField</CustomDraggableComponent>
@@ -924,8 +926,11 @@ export const GuideBoxLayout4 =
 export const GuideBoxLayout5 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout5}>GuideBoxLayout5</CustomDraggableComponent>;
 
-export const GuideBoxloading = 
-	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxloading}>GuideBoxloading</CustomDraggableComponent>;
+export const GuideBoxOpacity = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxOpacity}>GuideBoxOpacity</CustomDraggableComponent>;
+
+export const GuideBoxPulse = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxPulse}>GuideBoxPulse</CustomDraggableComponent>;
 
 export const GuideBoxRowDirection = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxRowDirection}>GuideBoxRowDirection</CustomDraggableComponent>;
@@ -968,6 +973,9 @@ export const PanelBox =
 
 export const PanelShadow = 
 	() => <CustomDraggableComponent itemType={ItemTypes.PanelShadow}>PanelShadow</CustomDraggableComponent>;
+
+export const PanelShadow2 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.PanelShadow2}>PanelShadow2</CustomDraggableComponent>;
 
 export const PanelStrock = 
 	() => <CustomDraggableComponent itemType={ItemTypes.PanelStrock}>PanelStrock</CustomDraggableComponent>;

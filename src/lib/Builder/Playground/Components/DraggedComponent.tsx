@@ -37,7 +37,8 @@ function DraggedComponent(props: any){
 		case ItemTypes.GuideBoxLayout3: return <All.GuideBoxLayout3 />;
 		case ItemTypes.GuideBoxLayout4: return <All.GuideBoxLayout4 />;
 		case ItemTypes.GuideBoxLayout5: return <All.GuideBoxLayout5 />;
-		case ItemTypes.GuideBoxloading: return <All.GuideBoxloading />;
+		case ItemTypes.GuideBoxOpacity: return <All.GuideBoxOpacity />;
+		case ItemTypes.GuideBoxPulse: return <All.GuideBoxPulse />;
 		case ItemTypes.GuideBoxRowDirection: return <All.GuideBoxRowDirection />;
 		case ItemTypes.IconAdd: return <All.IconAdd />;
 		case ItemTypes.IconClose: return <All.IconClose />;
@@ -52,6 +53,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.ListItemButtonDefault: return <All.ListItemButtonDefault />;
 		case ItemTypes.PanelBox: return <All.PanelBox />;
 		case ItemTypes.PanelShadow: return <All.PanelShadow />;
+		case ItemTypes.PanelShadow2: return <All.PanelShadow2 />;
 		case ItemTypes.PanelStrock: return <All.PanelStrock />;
 		case ItemTypes.PanelTypographyDropList: return <All.PanelTypographyDropList />;
 		case ItemTypes.PanelTypographyTextField: return <All.PanelTypographyTextField />;

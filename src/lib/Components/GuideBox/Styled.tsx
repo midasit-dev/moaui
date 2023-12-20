@@ -1,13 +1,9 @@
 import React from 'react';
-import { styled } from "@mui/material/styles";
+import { styled, keyframes } from "@mui/material/styles";
 import MoaStyledComponent from "../../Style/MoaStyled";
 import { MarginTypes, MarginProps } from "../../Style/Margin";
 import { PaddingTypes, PaddingProps } from "../../Style/Padding";
-import { Stack, Color } from "../..";
-
-//for Progress
-import Box from '@mui/material/Box';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { Stack } from "../..";
 
 export type StyledProps = {
 	/**
@@ -96,9 +92,18 @@ export type StyledProps = {
 	verBottom?: boolean;
 
 	/**
-	 * guide box loading option
+	 * guide box opacity option
 	 */
-	loading?: boolean;
+	opacity?: number;
+
+	/**
+	 * animation duration (seconds)
+	 */
+	duration?: number;
+	/**
+	 * animation style (pulse)
+	 */
+	pulse?: boolean;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -178,26 +183,17 @@ const getBackgroundColor = (props: StyledProps): string => {
 	}
 }
 
-const ProgressBar = () => {
-	const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-		height: 5,
-		borderRadius: 3,
-		[`&.${linearProgressClasses.colorPrimary}`]: {
-			backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-		},
-		[`& .${linearProgressClasses.bar}`]: {
-			borderRadius: 5,
-			backgroundColor: theme.palette.mode === 'light' ? Color.primary.main : Color.primaryNegative.main,
-		},
-		opacity: 0.7,
-	}));
-
-  return (
-		<Box sx={{ width: '100%' }}>
-			<BorderLinearProgress />
-		</Box>
-  );
-}
+// keyframes 정의
+const kf_pulse = keyframes`
+  0%, 100% {
+    transform: scale(0.99);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+`;
 
 const GuideBox = (props: StyledProps) => {
 	const { 
@@ -222,39 +218,33 @@ const GuideBox = (props: StyledProps) => {
 		verBottom,
 		padding, paddingX, paddingY, paddingTop, paddingBottom, paddingLeft, paddingRight,
 		margin, marginX, marginY, marginTop, marginBottom, marginLeft, marginRight, 
-		loading,
+		opacity,
+		duration,
+		pulse,
 		...rest 
 	} = props;
 
 	return (
-		<>
-			{loading && <ProgressBar />}
-			<Stack
-				width={width}
-				height={height}
-				{...rest}
-				sx={{
-					...MarginProps(props),
-					...PaddingProps(props),
-					backgroundColor: getBackgroundColor(props),
-					opacity: loading ? 0.5 : 1,
-				}}
-				overflow={"hidden"}
-				direction={getItemDirection(props).value}
-				spacing={spacing}
-				display={"flex"}
-				justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
-				alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
-			>
-				{props.children}
-				{/* {
-					props.children && 
-						React.Children.map(props.children, (child, index) => (
-							<React.Fragment key={index}>{child}</React.Fragment>
-						))
-				} */}
-			</Stack>
-		</>
+		<Stack
+			width={width}
+			height={height}
+			{...rest}
+			sx={{
+				...MarginProps(props),
+				...PaddingProps(props),
+				backgroundColor: getBackgroundColor(props),
+				opacity: opacity,
+				animation: pulse ? `${kf_pulse} ${duration}s infinite` : 'none',
+			}}
+			overflow={"hidden"}
+			direction={getItemDirection(props).value}
+			spacing={spacing}
+			display={"flex"}
+			justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
+			alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
+		>
+			{props.children}
+		</Stack>
   );
 }
 

@@ -18,6 +18,17 @@ class StyleVariant {
 		background: Color.primary.white,
 		boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.14)',
 	}
+
+	static readonly shadow2 = {
+		...this.layout,
+		borderRadius: '0.25rem',
+		boxSizing: 'border-box',
+		backgroundColor: 'var(--color-bg, #ffffff)',
+		display: 'flex',
+		marginTop: '-40px',
+		boxShadow: 'var(--elevation-200-canvas, 0px 0px .5px rgba(0, 0, 0, .18), 0px 3px 8px rgba(0, 0, 0, .1), 0px 1px 3px rgba(0, 0, 0, .1))',
+	}
+
 	static readonly strock = {
 		...this.layout,
 		borderRadius: '0.25rem',
@@ -35,7 +46,7 @@ export type StyledProps = {
 	 * `shadow` panel or `strock` panel
 	 * @defaultValue 'shadow'
 	 */
-	variant: 'box' | 'shadow' | 'strock';
+	variant: 'box' | 'shadow' | 'shadow2' | 'strock';
 	/**
 	 * Set the width of panel
 	 * @defaultValue 'fit-content'
@@ -56,6 +67,7 @@ export type StyledProps = {
 const StyledComponent = styled((props: StyledProps) => {
 	let _sx = {};
 	if (props.variant === 'shadow') _sx = StyleVariant.shadow;
+	if (props.variant === 'shadow2') _sx = StyleVariant.shadow2;
 	if (props.variant === 'strock') _sx = StyleVariant.strock;
 	return (
 		<Box 

@@ -4,7 +4,9 @@ GuideBox.defaultProps = {
 	show: false,
 	width: 'inherit',
 	height: 'auto',
-	fill: '1'
+	fill: '1',
+	opacity: 1,
+	duration: 1,
 } as StyledProps;
 
 /**

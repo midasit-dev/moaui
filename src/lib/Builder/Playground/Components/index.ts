@@ -30,7 +30,8 @@ export { default as GuideBoxLayout2 } from '../../../Components/GuideBox/Code/La
 export { default as GuideBoxLayout3 } from '../../../Components/GuideBox/Code/Layout3.code';
 export { default as GuideBoxLayout4 } from '../../../Components/GuideBox/Code/Layout4.code';
 export { default as GuideBoxLayout5 } from '../../../Components/GuideBox/Code/Layout5.code';
-export { default as GuideBoxloading } from '../../../Components/GuideBox/Code/loading.code';
+export { default as GuideBoxOpacity } from '../../../Components/GuideBox/Code/Opacity.code';
+export { default as GuideBoxPulse } from '../../../Components/GuideBox/Code/Pulse.code';
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code';
@@ -45,6 +46,7 @@ export { default as ListItemDefault } from '../../../Components/ListItem/Code/De
 export { default as ListItemButtonDefault } from '../../../Components/ListItemButton/Code/Default.code';
 export { default as PanelBox } from '../../../Components/Panel/Code/Box.code';
 export { default as PanelShadow } from '../../../Components/Panel/Code/Shadow.code';
+export { default as PanelShadow2 } from '../../../Components/Panel/Code/Shadow2.code';
 export { default as PanelStrock } from '../../../Components/Panel/Code/Strock.code';
 export { default as PanelTypographyDropList } from '../../../Components/Panel/Code/TypographyDropList.code';
 export { default as PanelTypographyTextField } from '../../../Components/Panel/Code/TypographyTextField.code';

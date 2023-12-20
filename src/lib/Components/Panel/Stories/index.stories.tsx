@@ -7,6 +7,7 @@ import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 import { 
 	BoxCode, 
 	ShadowCode, 
+	Shadow2Code,
 	StrockCode,
 	TypographyTextFieldCode,
 	TypographyDropListCode,
@@ -27,6 +28,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Box = LiveEditStory(cleanMask(BoxCode));
 export const Shadow = LiveEditStory(cleanMask(ShadowCode));
+export const Shadow2 = LiveEditStory(cleanMask(Shadow2Code));
 export const Strock = LiveEditStory(cleanMask(StrockCode));
 export const TypographyTextField = LiveEditStory(cleanMask(TypographyTextFieldCode));
 export const TypographyDropList = LiveEditStory(cleanMask(TypographyDropListCode));
