@@ -1,443 +1,269 @@
+/**
+ *	                        __                                                   
+ *	  ___ ___       __     /\_\     ___                 __      _____    _____   
+ *	/' __` __`\   /'__`\   \/\ \  /' _ `\             /'__`\   /\ '__`\ /\ '__`\ 
+ *	/\ \/\ \/\ \ /\ \L\.\_  \ \ \ /\ \/\ \           /\ \L\.\_ \ \ \L\ \\ \ \L\ \
+ *	\ \_\ \_\ \_\\ \__/.\_\  \ \_\\ \_\ \_\          \ \__/.\_\ \ \ ,__/ \ \ ,__/
+ *	 \/_/\/_/\/_/ \/__/\/_/   \/_/ \/_/\/_/  _______  \/__/\/_/  \ \ \/   \ \ \/ 
+ *	                                        /\______\             \ \_\    \ \_\ 
+ *	                                        \/______/              \/_/     \/_/ 
+ */
+
 import React from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
+//@midasit-dev/moaui
+import { GuideBox, Panel, Typography, ComponentsIconButtonWithName } from "@midasit-dev/moaui";
+
+//Components
+import CompApplyT3 from './Components/ApplyT3';
+import CompAddButton from './Components/AddButton';
+import CompTemperatureGradientChart from './Components/TemperatureGradientChart';
+import CompGirderMaterial from './Components/GirderMaterial';
+import CompImportSectionButton from './Components/ImportSectionButton';
+import CompSelfEqStressesCharts from './Components/SelfEqStressesCharts';
+import CompZone from './Components/Zone';
+import CompGirderType from './Components/GirderType';
+import CompSurface from './Components/Surface';
+
+import CompTableMaterialStress from './Components/MaterialStressTables';
+
+//Variables
 import { 
-	GuideBox, 
-	Panel,
-	Typography,
-	DropList,
-	Check,
-	TextField,
-	TabGroup, Tab, Table, TableHead, TableRow, TableCell, TableBody,
+	VarApplyT3, 
+	VarApplyT3C, 
+	VarApplyT3H, 
+	VarImportSectionButton, 
+	VarCalculationParseResult,
+	VarGirderMaterial,
+	VarZone,
+	VarSurface,
+	VarTemperatureGradientChart,
+	VarSelfEqStressesTempHeatingChart,
+	VarSelfEqStressesTempCoolingChart,
+} from './Components/variables';
 
-	ComponentsIconButtonWithName,
-	ComponentsDialogHelpIconButton,
-	ComponentsTypographyBody1,
-} from "@midasit-dev/moaui";
+//pyscript util
+import { dbRead } from './pyscript_utils';
 
-import ImportSection from './Components/ImportSection';
-import AddButton from './Components/AddButton';
-import SelfEqStressesCharts from './Components/SelfEqStressesCharts';
-import TemperatureGradientChart from './Components/TemperatureGradientChart';
-import PythonSample1 from './PythonSample1';
-
-const ComponentsTabGroupWithTable = ({
-	tab1Label = 'Tab 1',
-	tab1TableHeadRow = [ 'header1', 'header2', 'header3', 'header4' ],
-	tab1TableDataRows = [
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-	],
-	tab2Label = 'Tab 2',
-	tab2TableHeadRow = [ 'another1', 'another2', 'another3', 'another4' ],
-	tab2TableDataRows = [
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-	],
-}: any) => {
-	const [value, setValue] = React.useState('Tab 1');
-	const CompTable = ({ headRow, dataRows }: any) => {
-		return (
-			<Table>
-				<TableHead>
-					<TableRow>
-						{headRow.map((item: any, index: number) => (
-							<TableCell key={index}>{item}</TableCell>
-						))}
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{dataRows.map((item: any, index: number) => (
-						<TableRow key={index}>
-							{Object.keys(item).map((key: any, index: number) => (
-								<TableCell key={index}>{item[key]}</TableCell>
-							))}
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-		)
-	}
-
-	return (
-    <Panel width={300}>
-      <TabGroup value={value} onChange={(e: any, newValue: string) => setValue(newValue)}>
-        <Tab value="Tab 1" label={tab1Label} />
-        <Tab value="Tab 2" label={tab2Label} />
-      </TabGroup>
-      {value === "Tab 1" && <CompTable headRow={tab1TableHeadRow} dataRows={tab1TableDataRows} />}
-			{value === "Tab 2" && <CompTable headRow={tab2TableHeadRow} dataRows={tab2TableDataRows} />}
-    </Panel>
-  );
-}
-
-const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
-	width = 300,
-	height = 30,
-	title = 'Title',
-	dropListwidth = 150,
-	items = [ 
-		['Korean', 	 1],
-		['American', 2],
-		['Asia', 		 3],
-		['Midas', 	 4],
-	],
-	defaultValue = 1,
-	value = undefined,
-	onChange = undefined,
-	show = false,
-}: any) => {
-	const [valueLocal, setValueLocal] = React.useState(defaultValue);
-	let onChangeLocal = (e: any) => {
-		setValueLocal(e.target.value);
-	}
-
-	const itemsMap = new Map<string, number>(items as [string, number][]);
-	return (
-		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
-			<Typography flexItem textAlign='center' height={height}>{title}</Typography>
-			<DropList 
-				itemList={itemsMap} 
-				width={dropListwidth} 
-				defaultValue={defaultValue}
-				value={value || valueLocal}
-				onChange={onChange || onChangeLocal}
-			/>
-		</GuideBox>
-	)
-};
-
-const ComponentsGuideBoxLayout1 = () => {
+const App = () => {
 	const visible = false;
 
-	//fill in global variables
+	//UI Values
+	const importSectionValue = useRecoilValue(VarImportSectionButton);
+	const zoneValue = useRecoilValue(VarZone);
+	const surfaceValue = useRecoilValue(VarSurface);
+	const girderMatlValue = useRecoilValue(VarGirderMaterial);
+	const applyT3 = useRecoilValue(VarApplyT3);
+	const applyT3H = useRecoilValue(VarApplyT3H);
+	const applyT3C = useRecoilValue(VarApplyT3C);
+
+	//Setters
+	const setCalcValue = useSetRecoilState(VarCalculationParseResult);
+	const setTempGradientChartValue = useSetRecoilState(VarTemperatureGradientChart);
+	const setSelfEqStressLeftValue = useSetRecoilState(VarSelfEqStressesTempHeatingChart);
+	const setSelfEqStressRightValue = useSetRecoilState(VarSelfEqStressesTempCoolingChart);
+
 	React.useEffect(() => {
-		function checkPyScriptReady(callback : any) {
-			// if pyscript is ready, call callback function
-			if (pyscript && pyscript.interpreter) {
-				const pGetDB = pyscript.interpreter.globals.get("getDB");
-				const db = JSON.parse(pGetDB("NODE"));
-				console.log(db);
-			} else {
-				// if not, wait 100ms and try again
-				setTimeout(() => checkPyScriptReady(callback), 100);
-			}
+		if (importSectionValue.selected !== '') {
+			executeMainFunction({
+				importSectionValue,
+				girderMatlValue,
+				zoneValue,
+				surfaceValue,
+				applyT3,
+				applyT3H,
+				applyT3C,
+				setCalcValue,
+				setTempGradientChartValue,
+				setSelfEqStressLeftValue,
+				setSelfEqStressRightValue,
+			});
 		}
-	
-		checkPyScriptReady(() => {});
-	}, []);
-
-	//Import Section Select Value
-	const [importSectionValue, setImportSectionValue] = React.useState({
-    selected: '',
-		temp: '',
-    items: [
-			"List Item 1",
-			"List Item 2",
-			"List Item 3",
-			"List Item 4",
-			"List Item 5",
-			"List Item 6",
-			"List Item 7",
-			"List Item 8",
-			"List Item 9",
-			"List Item 10",
-			"List Item 11",
-			"List Item 12",
-		],
-  });
-
-	//Select Load Case (Add Button)
-	const [addValue, setAddValue] = React.useState({
-    selected: '',
-		temp: '',
-    items: [
-			"Static Load Case 1",
-			"Static Load Case 2",
-			"Static Load Case 3",
-			"Static Load Case 4",
-			"Static Load Case 5",
-			"Static Load Case 6",
-			"Static Load Case 7",
-			"Static Load Case 8",
-			"Static Load Case 9",
-		],
-  });
-
-	//Self Equilibrating Stresses Chart Values
-	const [leftSelfEqStressesChartValue, setLeftSelfEqStressesChartValue] = React.useState([
-		{
-			'id': 'AASHTO_HeatingG',
-			'color': '#f47560',
-			'data': [
-					{ "x": -5.9701, "y": 0.0 },
-					{ "x": -4.2611, "y": -30.0 },
-					{ "x": -0.2734, "y": -100.0 },
-					{ "x": 0.4872, "y": -230.0 },
-					{ "x": 0.6042, "y": -250.0 },
-					{ "x": 0.8090, "y": -285.0 },
-					{ "x": 0.8968, "y": -300.0 },
-					{ "x": 1.4234, "y": -390.0 },
-					{ "x": 1.4819, "y": -400.0 },
-					{ "x": 1.4723, "y": -410.0 },
-					{ "x": 1.2408, "y": -650.0 },
-					{ "x": 1.2023, "y": -690.0 },
-					{ "x": 0.3537, "y": -1570.0 },
-					{ "x": 0.0162, "y": -1920.0 },
-					{ "x": -0.0899, "y": -2030.0 },
-					{ "x": -0.1525, "y": -2095.0 },
-					{ "x": -0.1574, "y": -2100.0 },
-					{ "x": -0.1767, "y": -2120.0 },
-					{ "x": -0.1863, "y": -2130.0 },
-					{ "x": -1.4015, "y": -2330.0 }
-			],
-		},
-		{
-			'id': 'Girder',
-			'color': '#333333',
-			'data': [
-				{ 'x': 0.0, 'y': 0.0 },
-				{ 'x': 0.0, 'y': -2330.0 },
-			],
-		},
-	]);
-
-	const [rightSelfEqStressesChartValue, setRightSelfEqStressesChartValue] = React.useState([
-		{
-			'id': 'Cooling',
-			'color': '#f47560',
-			'data': [
-					{ "x": -5.9701, "y": 0.0 },
-					{ "x": -4.2611, "y": -30.0 },
-					{ "x": -0.2734, "y": -100.0 },
-					{ "x": 0.4872, "y": -230.0 },
-					{ "x": 0.6042, "y": -250.0 },
-					{ "x": 0.8090, "y": -285.0 },
-					{ "x": 0.8968, "y": -300.0 },
-					{ "x": 1.4234, "y": -390.0 },
-					{ "x": 1.4819, "y": -400.0 },
-					{ "x": 1.4723, "y": -410.0 },
-					{ "x": 1.2408, "y": -650.0 },
-					{ "x": 1.2023, "y": -690.0 },
-					{ "x": 0.3537, "y": -1570.0 },
-					{ "x": 0.0162, "y": -1920.0 },
-					{ "x": -0.0899, "y": -2030.0 },
-					{ "x": -0.1525, "y": -2095.0 },
-					{ "x": -0.1574, "y": -2100.0 },
-					{ "x": -0.1767, "y": -2120.0 },
-					{ "x": -0.1863, "y": -2130.0 },
-					{ "x": -1.4015, "y": -2330.0 }
-			],
-		},
-		{
-			'id': 'Girder',
-			'color': '#333333',
-			'data': [
-				{ 'x': 0.0, 'y': 0.0 },
-				{ 'x': 0.0, 'y': -2330.0 },
-			],
-		},
-	]);
-
-	//Temperature Gradient Chart Values
-	const [temperatureGradientChartValue, setTemperatureGradientChartValue] = React.useState([
-		{
-			'id': 'TempHeating',
-			'color': '#f47560',
-			'data': [
-				{ 'x': 23.0, 'y': 0.0 },
-				{ 'x': 6.0, 'y': -100.0 },
-				{ 'x': 0.0, 'y': -400.0 },
-				{ 'x': 0.0, 'y': -2130.0 },
-				{ 'x': 3.0, 'y': -2330.0 },
-			],
-		},
-		{
-			'id': 'TempCooling',
-			'color': '#1f78b4',
-			'data': [
-				{ 'x': -4.6, 'y': 0.0 },
-				{ 'x': -1.2, 'y': -100.0 },
-				{ 'x': 0.0, 'y': -400.0 },
-				{ 'x': 0.0, 'y': -2130.0 },
-				{ 'x': -3.0, 'y': -2330.0 },
-			],
-		},
-		{
-			'id': 'Girder',
-			'color': '#333333',
-			'data': [
-				{ 'x': 0.0, 'y': 0.0 },
-				{ 'x': 0.0, 'y': -2330.0 },
-			],
-		},
-	]);	
+	},[zoneValue, surfaceValue, girderMatlValue, applyT3, applyT3C, applyT3H, importSectionValue.ids, importSectionValue.items, importSectionValue.selected, setCalcValue, setSelfEqStressLeftValue, setSelfEqStressRightValue, setTempGradientChartValue, importSectionValue]);
 
 	return (
-    <GuideBox show={visible} padding={1}>
+    <GuideBox show={visible} width={1100} padding={1} spacing={2}>
       {/** Top Panels */}
-      <GuideBox show={visible} width={1300} padding={1} row spacing={2} center>
-        <Panel variant="shadow" height={520}>
+      <GuideBox show={visible} row spacing={2} center height={520}>
+        <Panel variant="shadow2" height={505}>
           <GuideBox show={visible} fill="2">
-            <GuideBox
-              show={visible}
-              width="100%"
-              height={60}
-              fill="3"
-              verCenter
-            >
+            <GuideBox show={visible} width="100%" height={30} fill="3" verCenter>
               <Typography variant="h1">Girder Properties</Typography>
             </GuideBox>
-            <GuideBox show={visible} width="100%" fill="3" spacing={1}>
-              <GuideBox show={visible} width="100%" spacing={1} row>
-                <TemplatesDualComponentsTypographyDropListSpaceBetween
-                  width="100%"
-                  title="Girder Type"
-                />
-                <GuideBox show={visible} width={43} height={30} />
-              </GuideBox>
-              <GuideBox show={visible} width="100%" spacing={1} row>
-                <TemplatesDualComponentsTypographyDropListSpaceBetween
-                  width="100%"
-                  title="Zone"
-                />
-                <GuideBox show={visible} width={43} height={30} />
-              </GuideBox>
-              <GuideBox show={visible} width="100%" spacing={1} row>
-                <TemplatesDualComponentsTypographyDropListSpaceBetween
-                  width="100%"
-                  title="Surface"
-                />
-                <GuideBox show={visible} width={43} height={30} />
-              </GuideBox>
-              <GuideBox show={visible} width="100%" spacing={1} row>
-                <TemplatesDualComponentsTypographyDropListSpaceBetween
-                  width="100%"
-                  title="Girder Material"
-                />
-                <ComponentsIconButtonWithName iconName="Refresh" />
-              </GuideBox>
-              <GuideBox show={visible} width="100%" spacing={1} row verCenter>
-                <Check name="Apply T3" namePlacement="start" />
-                <GuideBox
-                  show={visible}
-                  width={75}
-                  height={30}
-                  verCenter
-                  paddingX={0.75}
-                >
-                  <TextField
-                    width="100%"
-                    height={30}
-                    title="H:"
-                    placeholder="1.8"
-                    disabled
-                  />
-                </GuideBox>
-                <GuideBox show={visible} width={75} height={30} verCenter>
-                  <TextField
-                    width="100%"
-                    height={30}
-                    title="C:"
-                    placeholder="1.8"
-                    disabled
-                  />
-                </GuideBox>
-                <ComponentsIconButtonWithName iconName="Help" />
-              </GuideBox>
+            <GuideBox show={visible} width="100%" fill="3" spacing={1.5}>
+              <CompGirderType />
+              <CompZone />
+              <CompSurface />
+              <CompGirderMaterial />
+              <CompApplyT3 />
             </GuideBox>
             <GuideBox show={visible} width="100%" fill="3" marginTop={2}>
-              <ComponentsTabGroupWithTable
-                tab1Label="Material"
-                tab1TableHeadRow={["Component", "Property", "Symbol", "Value"]}
-                tab2Label="Stress Summary"
-                tab2TableHeadRow={[
-                  "Component",
-                  "Position",
-                  "Heating",
-                  "Cooling",
-                ]}
-              />
+							<CompTableMaterialStress />
             </GuideBox>
           </GuideBox>
         </Panel>
-        <Panel variant="shadow" height={520}>
+        <Panel variant="shadow2" height={505}>
           <GuideBox show={visible} fill="2" spacing={2}>
-            <GuideBox show={visible} width="100%" height={60} fill="3" center>
-              <Typography variant='h1'>Temperature Gradient</Typography>
+            <GuideBox show={visible} width="100%" height={30} fill="3" center>
+              <Typography variant="h1">Temperature Gradient</Typography>
             </GuideBox>
             <GuideBox show={visible} width="100%" fill="3" center>
-              <TemperatureGradientChart
-								value={temperatureGradientChartValue}
-							/>
+              	<CompTemperatureGradientChart />
             </GuideBox>
           </GuideBox>
         </Panel>
-        <Panel variant="shadow" height={520}>
+        <Panel variant="shadow2" height={505}>
           <GuideBox show={visible} fill="2" spacing={2}>
-            <GuideBox show={visible} width="100%" height={60} fill="3" center>
-              <Typography variant='h1'>Self Equilibrating Stresses</Typography>
+            <GuideBox show={visible} width="100%" height={30} fill="3" center>
+              <Typography variant="h1">Self Equilibrating Stresses</Typography>
             </GuideBox>
             <GuideBox show={visible} width="100%" fill="3" center row>
-              <SelfEqStressesCharts 
-								leftValue={leftSelfEqStressesChartValue}
-								rightValue={rightSelfEqStressesChartValue}
-							/>
+              <CompSelfEqStressesCharts />
             </GuideBox>
           </GuideBox>
         </Panel>
       </GuideBox>
 
       {/** Bottom Buttons */}
-      <GuideBox show={visible} width={1300} row padding={1} fill="2" center>
-        <GuideBox
-          show={visible}
-          width="30%"
-          height={30}
-          fill="3"
-          row
-          spacing={2}
-          verCenter
-        >
-          <ComponentsDialogHelpIconButton />
-          <ImportSection 
-						value={importSectionValue}
-						setValue={setImportSectionValue}
-					/>
+      <GuideBox show={visible} row fill="2" center>
+        <GuideBox show={visible} width="30%" height={30} fill="3" row spacing={2} verCenter>
+					<ComponentsIconButtonWithName iconName="Help" />
+          <CompImportSectionButton />
         </GuideBox>
-        <GuideBox
-          show={visible}
-          width="69%"
-          height={30}
-          fill="4"
-          row
-          spacing={3}
-          horRight
-          verCenter
-        >
-          <Typography>The above Temperature Gradient Loads in MIDAS Civil Load Cases</Typography>
-          {/* <Button
-            color="negative"
-            onClick={() => {
-              console.log("main_func start");
-              const main_func = pyscript.interpreter.globals.get("main");
-              main_func();
-            }}
-          >
-            Add
-          </Button> */}
-					<AddButton 
-						value={addValue}
-						setValue={setAddValue}
-					/>
+        <GuideBox show={visible} width="69%" height={30} fill="4" row spacing={3} horRight verCenter>
+          <Typography>
+            The above Temperature Gradient Loads in MIDAS Civil Load Cases
+          </Typography>
+          <CompAddButton />
         </GuideBox>
       </GuideBox>
-			<PythonSample1 />
     </GuideBox>
   );
 };
 
-export default ComponentsGuideBoxLayout1;
+export default App;
+
+const executeMainFunction = ({
+	//UI Values
+	importSectionValue,
+	girderMatlValue,
+	zoneValue,
+	surfaceValue,
+	applyT3,
+	applyT3H,
+	applyT3C,
+
+	//Setters
+	setCalcValue,
+	setTempGradientChartValue,
+	setSelfEqStressLeftValue,
+	setSelfEqStressRightValue,
+}: any) => {
+	const section_Key = parseInt(importSectionValue.ids[importSectionValue.items.indexOf(importSectionValue.selected)]);
+	const main_func = pyscript.interpreter.globals.get("main_calculation");
+	const results = main_func(
+		section_Key,
+		girderMatlValue,
+		zoneValue,
+		surfaceValue,
+		applyT3,
+		parseFloat(applyT3H),
+		parseFloat(applyT3C),
+		JSON.stringify(dbRead('UNIT')),
+		JSON.stringify(dbRead('SECT')),
+		JSON.stringify(dbRead('MATL'))
+	);
+	const json_parse_results = JSON.parse(results);
+	setCalcValue(json_parse_results);
+
+	//Update Temperature Gradient Chart Values
+	{
+		let chart1HeightItem = [ { x: 0.0, y: 0.0 }, { x: 0.0, y: -json_parse_results["height"] }, ];
+
+		let chart1HeatingItem = [];
+		for (let i = 0; i < json_parse_results["inf_point"].length; i++) {
+			chart1HeatingItem.push({ x: json_parse_results["inf_temp_h"][i], y: json_parse_results["inf_point"][i] });
+		}
+
+		let chart1CoolingItem = [];
+		for (let i = 0; i < json_parse_results["inf_point"].length; i++) {
+			chart1CoolingItem.push({ x: json_parse_results["inf_temp_c"][i], y: json_parse_results["inf_point"][i] });
+		}
+
+		setTempGradientChartValue([
+			{ id: "TempHeating", 	color: "#f47560", data: chart1HeatingItem, },
+			{ id: "TempCooling", 	color: "#1f78b4", data: chart1CoolingItem, },
+			{ id: "Girder", 			color: "#333333", data: chart1HeightItem,  },
+		]);
+	}
+
+	//Update Self Equilibrating Stresses Chart Values
+	{
+		const chart1HeightItem = [
+			{ 'x': 0.0, 'y': 0.0 },
+			{ 'x': 0.0, 'y': -json_parse_results["height"] }
+		];
+
+		const self_eq_stress = json_parse_results["self_eq_stress"];
+		let x_outer_h_stress: any[] = self_eq_stress[0][0]["s"];
+		let y_outer_h_stress: any[] = self_eq_stress[0][0]["z"];
+		
+		let sorted_indices_outer_h: number[] = y_outer_h_stress.map((v, i) => i).sort((a, b) => y_outer_h_stress[a] - y_outer_h_stress[b]);
+		
+		x_outer_h_stress = sorted_indices_outer_h.map(i => x_outer_h_stress[i]);
+		y_outer_h_stress = sorted_indices_outer_h.map(i => y_outer_h_stress[i]);
+		
+		if (self_eq_stress[4].length > 0) {
+			let x_slab_h_stress: any[] = self_eq_stress[4][0]["s"];
+			let y_slab_h_stress: any[] = self_eq_stress[4][0]["z"];
+		
+			const sorted_indices_slab_h: number[] = y_slab_h_stress.map((v, i) => i).sort((a, b) => y_slab_h_stress[a] - y_slab_h_stress[b]);
+		
+			x_slab_h_stress = sorted_indices_slab_h.map(i => x_slab_h_stress[i]);
+			y_slab_h_stress = sorted_indices_slab_h.map(i => y_slab_h_stress[i]);
+			x_outer_h_stress = x_outer_h_stress.concat(x_slab_h_stress);
+			y_outer_h_stress = y_outer_h_stress.concat(y_slab_h_stress);
+		}
+		
+		let chart2HeatingItem:any = [];
+		for (let i = 0; i < x_outer_h_stress.length; i++){
+			chart2HeatingItem.push({ 'x': x_outer_h_stress[i], 'y': y_outer_h_stress[i] });
+		}
+
+		setSelfEqStressLeftValue([
+			{ 'id': 'AASHTO_HeatingG', 	'color': '#f47560', 'data': chart2HeatingItem, 	},
+			{ 'id': 'Girder', 					'color': '#333333', 'data': chart1HeightItem, 	},
+		])
+
+		let x_outer_c_stress: any[] = self_eq_stress[1][0]["s"];
+		let y_outer_c_stress: any[] = self_eq_stress[1][0]["z"];
+		
+		const sorted_indices_outer_c: number[] = y_outer_c_stress.map((v, i) => i).sort((a, b) => y_outer_c_stress[a] - y_outer_c_stress[b]);
+		
+		x_outer_c_stress = sorted_indices_outer_c.map(i => x_outer_c_stress[i]);
+		y_outer_c_stress = sorted_indices_outer_c.map(i => y_outer_c_stress[i]);
+		
+		if (self_eq_stress[5].length > 0) {
+			let x_slab_c_stress: any[] = self_eq_stress[5][0]["s"];
+			let y_slab_c_stress: any[] = self_eq_stress[5][0]["z"];
+		
+			const sorted_indices_slab_c: number[] = y_slab_c_stress.map((v, i) => i).sort((a, b) => y_slab_c_stress[a] - y_slab_c_stress[b]);
+		
+			x_slab_c_stress = sorted_indices_slab_c.map(i => x_slab_c_stress[i]);
+			y_slab_c_stress = sorted_indices_slab_c.map(i => y_slab_c_stress[i]);
+			x_outer_c_stress = x_outer_c_stress.concat(x_slab_c_stress);
+			y_outer_c_stress = y_outer_c_stress.concat(y_slab_c_stress);
+		}
+
+		let chart2CoolingItem:any = [];
+		for (let i = 0; i < x_outer_c_stress.length; i++){
+			chart2CoolingItem.push({ 'x': x_outer_c_stress[i], 'y': y_outer_c_stress[i] });
+		}
+
+		setSelfEqStressRightValue([
+			{ 'id': 'AASHTO_CoolingG', 	'color': '#1f78b4', 'data': chart2CoolingItem, 	},
+			{ 'id': 'Girder', 					'color': '#333333', 'data': chart1HeightItem, 	},
+		])
+	}
+}
