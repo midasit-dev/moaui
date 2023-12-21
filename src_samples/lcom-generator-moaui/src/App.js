@@ -17,7 +17,7 @@ import {
 	processToken,
 	sendData,
 } from "./utils";
-import { VerifyUtil } from '@midasit-dev/moaui';
+import { VerifyUtil, VerifyDialog } from '@midasit-dev/moaui';
 
 //component
 import MoaDataGrid from "@midasit-dev/moaui/Components/DataGrid";
@@ -42,66 +42,6 @@ const defaultCombValues = {
 	active: "ACTIVE",
 	data: [],
 };
-
-function FormDialog() {
-	const [open, setOpen] = React.useState(true);
-	const handleClose = () => setOpen(false);
-
-	const [baseUrl, setBaseUrl] = React.useState("");
-	const [mapiKey, setMapiKey] = React.useState("");
-	const handleOk = () => {
-		window.location.search = `?redirectTo=${baseUrl}&mapiKey=${mapiKey}`;
-	};
-
-	const handleBaseUrlChange = (e) => {
-		console.log(e);
-		setBaseUrl(e.target.value)
-	};
-
-	const handleMapiKeyChange = (e) => {
-		console.log(e);
-		setMapiKey(e.target.value)
-	};
-
-	return (
-		<div>
-			<mui.Dialog open={open} onClose={handleClose}>
-				<mui.DialogTitle>Enter URL and MAPI-Key</mui.DialogTitle>
-				<mui.DialogContent>
-					<MoaTypography>
-						To use the plugin, <br />
-						you need a base URL and an MAPI-key
-					</MoaTypography>
-					<br />
-					<MoaTypography variant="h1">Base URL</MoaTypography>
-					<MoaTextField
-						autoFocus
-						margin="dense"
-						id="baseurl"
-						placeholder="ex) https://api-beta.midasit.com"
-						type="email"
-						fullWidth
-						variant="standard"
-						onChange={handleBaseUrlChange}
-					/>
-					<div style={{ height: "1rem" }} />
-					<MoaTypography variant="h1">MAPI-Key</MoaTypography>
-					<MoaTextField
-						id="mapikey"
-						type="email"
-						fullWidth
-						variant="standard"
-						onChange={handleMapiKeyChange}
-					/>
-				</mui.DialogContent>
-				<mui.DialogActions>
-					<MoaButton onClick={handleOk}>OK</MoaButton>
-					<MoaButton onClick={handleClose}>CANCEL</MoaButton>
-				</mui.DialogActions>
-			</mui.Dialog>
-		</div>
-	);
-}
 
 function App() {
 	return <Main />;
@@ -455,7 +395,7 @@ function Main() {
 	return (
 		<div style={{width:"100%", display: "flex", justifyContent: "center", backgroundColor: "white"}}>
 			{openFormDlg === true ? (
-				<FormDialog />
+				<VerifyDialog />
 			) : (
 				<MoaStack width="100%" maxWidth="844px" sx={{mb:"1rem"}}>
 					<GridListComponents
