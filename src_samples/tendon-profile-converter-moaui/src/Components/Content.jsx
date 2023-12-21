@@ -1,9 +1,9 @@
 import React from "react";
 
-import MoaTypography from "@midasit-dev/moaui/Typography";
-import MoaButton from "@midasit-dev/moaui/Button";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
 import IconButton from "@mui/material/IconButton";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import Scrollbars from "rc-scrollbars";
 import List from "./List";
 

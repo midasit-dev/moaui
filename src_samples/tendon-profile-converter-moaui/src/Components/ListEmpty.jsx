@@ -1,6 +1,6 @@
 import React from 'react';
-import MoaTypography from "@midasit-dev/moaui/Typography";
-import MoaStack from '@midasit-dev/moaui/Stack';
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
+import MoaStack from '@midasit-dev/moaui/Components/Stack';
 
 ListEmpty.defaultProps = {
 	height: "auto",
