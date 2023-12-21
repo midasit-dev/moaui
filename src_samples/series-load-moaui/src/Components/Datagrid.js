@@ -1,6 +1,6 @@
 import * as React from 'react';
-import MoaStack from '@midasit-dev/moaui/Stack';
-import MoaDataGrid from '@midasit-dev/moaui/DataGrid';
+import MoaStack from '@midasit-dev/moaui/Components/Stack';
+import MoaDataGrid from '@midasit-dev/moaui/Components/DataGrid';
 import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';

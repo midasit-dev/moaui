@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MoaButton from '@midasit-dev/moaui/Button';
+import MoaButton from '@midasit-dev/moaui/Components/Button';
 
 export function NormalButton(types, texts, clickevent) {
   return (

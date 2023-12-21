@@ -1,9 +1,9 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 
-import MoaStack from "@midasit-dev/moaui/Stack";
-import MoaTextField from "@midasit-dev/moaui/TextField";
-import MoaTypography from "@midasit-dev/moaui/Typography";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
+import MoaTextField from "@midasit-dev/moaui/Components/TextField";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 import { MathJax } from "better-react-mathjax";
 
 const mathJaxWidth = 35;

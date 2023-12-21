@@ -1,7 +1,7 @@
 import * as React from 'react';
-import MoaDropList from '@midasit-dev/moaui/DropList';
-import MoaStack from '@midasit-dev/moaui/Stack';
-import MoaTypography from '@midasit-dev/moaui/Typography';
+import MoaDropList from '@midasit-dev/moaui/Components/DropList';
+import MoaStack from '@midasit-dev/moaui/Components/Stack';
+import MoaTypography from '@midasit-dev/moaui/Components/Typography';
 
 
 export default function SelectVariants(title, preSetList, preListNb, setPreListNb) {

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import MoaRadioGroup from '@midasit-dev/moaui/RadioGroup';
-import MoaRadioButton from '@midasit-dev/moaui/Radio';
+import MoaRadioGroup from '@midasit-dev/moaui/Components/RadioGroup';
+import MoaRadioButton from '@midasit-dev/moaui/Components/Radio';
 
 const values = [
 	{ key: "MCS", label: 'Monotone Cubic Hermite Spline' },
