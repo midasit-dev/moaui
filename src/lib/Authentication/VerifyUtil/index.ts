@@ -22,7 +22,7 @@ export function getProductionUrl() {
 		return `http://localhost:7112`;
 	}
 
-	return `${window.location.origin}`;
+	return `https://moa-engineers.midasit.com`;
 }
 
 //위 ProductionUrl과 같은 기능을 하는 함수인데

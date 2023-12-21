@@ -136,6 +136,7 @@ const ButtonCategory: React.FC<{}> = () => (
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.ButtonComposite}>Composite</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.ButtonContained}>Contained</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.ButtonLoading}>Loading</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.ButtonNegative}>Negative</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.ButtonNormal}>Normal</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.ButtonOutlined}>Outlined</CustomDraggableComponent>
@@ -213,6 +214,27 @@ const CheckGroupCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
+const ChipCategory: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>Chip</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.ChipDefault}>Default</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
 const CodeBlockCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -274,6 +296,7 @@ const DialogCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.DialogDialogButton}>DialogButton</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DialogHelpButton}>HelpButton</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DialogHelpIconButton}>HelpIconButton</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.DialogOnClose}>OnClose</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -863,6 +886,9 @@ export const ButtonComposite =
 export const ButtonContained = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ButtonContained}>ButtonContained</CustomDraggableComponent>;
 
+export const ButtonLoading = 
+	() => <CustomDraggableComponent itemType={ItemTypes.ButtonLoading}>ButtonLoading</CustomDraggableComponent>;
+
 export const ButtonNegative = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ButtonNegative}>ButtonNegative</CustomDraggableComponent>;
 
@@ -899,6 +925,9 @@ export const CheckGroupStateful =
 export const CheckGroupUnControlled = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CheckGroupUnControlled}>CheckGroupUnControlled</CustomDraggableComponent>;
 
+export const ChipDefault = 
+	() => <CustomDraggableComponent itemType={ItemTypes.ChipDefault}>ChipDefault</CustomDraggableComponent>;
+
 export const CodeBlockJavascript = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>CodeBlockJavascript</CustomDraggableComponent>;
 
@@ -916,6 +945,9 @@ export const DialogHelpButton =
 
 export const DialogHelpIconButton = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DialogHelpIconButton}>DialogHelpIconButton</CustomDraggableComponent>;
+
+export const DialogOnClose = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DialogOnClose}>DialogOnClose</CustomDraggableComponent>;
 
 export const DropListDropdown = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>DropListDropdown</CustomDraggableComponent>;
@@ -1151,6 +1183,7 @@ const DraggableComponent: React.FC = () => {
 			<ChartLineCategory />
 			<CheckCategory />
 			<CheckGroupCategory />
+			<ChipCategory />
 			<CodeBlockCategory />
 			<DataGridCategory />
 			<DialogCategory />

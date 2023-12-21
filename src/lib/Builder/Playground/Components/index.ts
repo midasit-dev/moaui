@@ -2,6 +2,7 @@ export { default as VerifyDialogDefault } from '../../../Authentication/VerifyDi
 export { default as AlertError } from '../../../Components/Alert/Code/Error.code';
 export { default as ButtonComposite } from '../../../Components/Button/Code/Composite.code';
 export { default as ButtonContained } from '../../../Components/Button/Code/Contained.code';
+export { default as ButtonLoading } from '../../../Components/Button/Code/Loading.code';
 export { default as ButtonNegative } from '../../../Components/Button/Code/Negative.code';
 export { default as ButtonNormal } from '../../../Components/Button/Code/Normal.code';
 export { default as ButtonOutlined } from '../../../Components/Button/Code/Outlined.code';
@@ -14,12 +15,14 @@ export { default as CheckNotRequired } from '../../../Components/Check/Code/NotR
 export { default as CheckRequired } from '../../../Components/Check/Code/Required.code';
 export { default as CheckGroupStateful } from '../../../Components/CheckGroup/Code/Stateful.code';
 export { default as CheckGroupUnControlled } from '../../../Components/CheckGroup/Code/UnControlled.code';
+export { default as ChipDefault } from '../../../Components/Chip/Code/Default.code';
 export { default as CodeBlockJavascript } from '../../../Components/CodeBlock/Code/Javascript.code';
 export { default as CodeBlockTypescript } from '../../../Components/CodeBlock/Code/Typescript.code';
 export { default as DataGridPagination } from '../../../Components/DataGrid/Code/Pagination.code';
 export { default as DialogDialogButton } from '../../../Components/Dialog/Code/DialogButton.code';
 export { default as DialogHelpButton } from '../../../Components/Dialog/Code/HelpButton.code';
 export { default as DialogHelpIconButton } from '../../../Components/Dialog/Code/HelpIconButton.code';
+export { default as DialogOnClose } from '../../../Components/Dialog/Code/OnClose.code';
 export { default as DropListDropdown } from '../../../Components/DropList/Code/Dropdown.code';
 export { default as GridColumn } from '../../../Components/Grid/Code/Column.code';
 export { default as GridItems } from '../../../Components/Grid/Code/Items.code';

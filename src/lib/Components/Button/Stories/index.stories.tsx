@@ -10,7 +10,8 @@ import {
 	TextCode, 
 	NormalCode, 
 	NegativeCode, 
-	WidthCode 
+	WidthCode,
+	LoadingCode,
 } from "../Code";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -34,6 +35,7 @@ export const Text = LiveEditStory(cleanMask(TextCode));
 export const Normal = LiveEditStory(cleanMask(NormalCode));
 export const Negative = LiveEditStory(cleanMask(NegativeCode));
 export const Width = LiveEditStory(cleanMask(WidthCode));
+export const Loading = LiveEditStory(cleanMask(LoadingCode));
 
 export const Sample: Story = {
   args: {

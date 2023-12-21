@@ -1,19 +1,17 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Button.defaultProps = {
-	variant: "contained",
-	disabled: false,
-	loading: false,
+Chip.defaultProps = {
+	title: '',
 } as StyledProps;
 
 /**
- * moaui Styled Button
+ * moaui Styled Chip
  * 
  * @param props 
  * @returns React.ReactElement
  */
-function Button(props: StyledProps) {	
+function Chip(props: StyledProps) {	
 	return <StyledComponent {...props} />
 }
 
-export default Button;
+export default Chip;

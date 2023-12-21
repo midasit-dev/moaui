@@ -9,6 +9,7 @@ import {
 	HelpButtonCode, 
 	HelpIconButtonCode,
 	DialogButtonCode,
+	OnCloseCode,
 } from "../Code";
 
 const meta = {
@@ -25,3 +26,4 @@ export const Help = LiveEditStory(cleanMask(HelpCode));
 export const HelpButton = LiveEditStory(cleanMask(HelpButtonCode));
 export const HelpIconButton = LiveEditStory(cleanMask(HelpIconButtonCode));
 export const DialogButton = LiveEditStory(cleanMask(DialogButtonCode));
+export const OnClose = LiveEditStory(cleanMask(OnCloseCode));

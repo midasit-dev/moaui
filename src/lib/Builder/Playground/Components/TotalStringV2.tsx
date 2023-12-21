@@ -18,8 +18,7 @@ function extractComponentName(str:string){
 
 function extractComponentImport(str:string){
 	const code = CodeExtractor.extract(str);
-	let filteredImportCodes = code.importCodes.filter(info => info.includes("react") !== true);
-	return filteredImportCodes[0];
+	return code.importCodes[0];
 }
 
 export default function TotalCodeString(){
@@ -296,6 +295,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.AlertError ? `${extractComponentName(All.AlertError)}` : ""}
 					${item.type === ItemTypes.ButtonComposite ? `${extractComponentName(All.ButtonComposite)}` : ""}
 					${item.type === ItemTypes.ButtonContained ? `${extractComponentName(All.ButtonContained)}` : ""}
+					${item.type === ItemTypes.ButtonLoading ? `${extractComponentName(All.ButtonLoading)}` : ""}
 					${item.type === ItemTypes.ButtonNegative ? `${extractComponentName(All.ButtonNegative)}` : ""}
 					${item.type === ItemTypes.ButtonNormal ? `${extractComponentName(All.ButtonNormal)}` : ""}
 					${item.type === ItemTypes.ButtonOutlined ? `${extractComponentName(All.ButtonOutlined)}` : ""}
@@ -308,12 +308,14 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.CheckRequired ? `${extractComponentName(All.CheckRequired)}` : ""}
 					${item.type === ItemTypes.CheckGroupStateful ? `${extractComponentName(All.CheckGroupStateful)}` : ""}
 					${item.type === ItemTypes.CheckGroupUnControlled ? `${extractComponentName(All.CheckGroupUnControlled)}` : ""}
+					${item.type === ItemTypes.ChipDefault ? `${extractComponentName(All.ChipDefault)}` : ""}
 					${item.type === ItemTypes.CodeBlockJavascript ? `${extractComponentName(All.CodeBlockJavascript)}` : ""}
 					${item.type === ItemTypes.CodeBlockTypescript ? `${extractComponentName(All.CodeBlockTypescript)}` : ""}
 					${item.type === ItemTypes.DataGridPagination ? `${extractComponentName(All.DataGridPagination)}` : ""}
 					${item.type === ItemTypes.DialogDialogButton ? `${extractComponentName(All.DialogDialogButton)}` : ""}
 					${item.type === ItemTypes.DialogHelpButton ? `${extractComponentName(All.DialogHelpButton)}` : ""}
 					${item.type === ItemTypes.DialogHelpIconButton ? `${extractComponentName(All.DialogHelpIconButton)}` : ""}
+					${item.type === ItemTypes.DialogOnClose ? `${extractComponentName(All.DialogOnClose)}` : ""}
 					${item.type === ItemTypes.DropListDropdown ? `${extractComponentName(All.DropListDropdown)}` : ""}
 					${item.type === ItemTypes.GridColumn ? `${extractComponentName(All.GridColumn)}` : ""}
 					${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}

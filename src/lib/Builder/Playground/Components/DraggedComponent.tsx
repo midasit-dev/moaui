@@ -9,6 +9,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.AlertError: return <All.AlertError />;
 		case ItemTypes.ButtonComposite: return <All.ButtonComposite />;
 		case ItemTypes.ButtonContained: return <All.ButtonContained />;
+		case ItemTypes.ButtonLoading: return <All.ButtonLoading />;
 		case ItemTypes.ButtonNegative: return <All.ButtonNegative />;
 		case ItemTypes.ButtonNormal: return <All.ButtonNormal />;
 		case ItemTypes.ButtonOutlined: return <All.ButtonOutlined />;
@@ -21,12 +22,14 @@ function DraggedComponent(props: any){
 		case ItemTypes.CheckRequired: return <All.CheckRequired />;
 		case ItemTypes.CheckGroupStateful: return <All.CheckGroupStateful />;
 		case ItemTypes.CheckGroupUnControlled: return <All.CheckGroupUnControlled />;
+		case ItemTypes.ChipDefault: return <All.ChipDefault />;
 		case ItemTypes.CodeBlockJavascript: return <All.CodeBlockJavascript />;
 		case ItemTypes.CodeBlockTypescript: return <All.CodeBlockTypescript />;
 		case ItemTypes.DataGridPagination: return <All.DataGridPagination />;
 		case ItemTypes.DialogDialogButton: return <All.DialogDialogButton />;
 		case ItemTypes.DialogHelpButton: return <All.DialogHelpButton />;
 		case ItemTypes.DialogHelpIconButton: return <All.DialogHelpIconButton />;
+		case ItemTypes.DialogOnClose: return <All.DialogOnClose />;
 		case ItemTypes.DropListDropdown: return <All.DropListDropdown />;
 		case ItemTypes.GridColumn: return <All.GridColumn />;
 		case ItemTypes.GridItems: return <All.GridItems />;

@@ -24,6 +24,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/Alert/Code/Error.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Composite.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Contained.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Button/Code/Loading.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Negative.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Normal.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Button/Code/Outlined.code.tsx?raw"));
@@ -36,12 +37,14 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/Check/Code/Required.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CheckGroup/Code/Stateful.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CheckGroup/Code/UnControlled.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Chip/Code/Default.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Javascript.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Typescript.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/DataGrid/Code/Pagination.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Dialog/Code/DialogButton.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Dialog/Code/HelpButton.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Dialog/Code/HelpIconButton.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Dialog/Code/OnClose.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/DropList/Code/Dropdown.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Grid/Code/Column.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Grid/Code/Items.code.tsx?raw"));

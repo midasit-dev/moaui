@@ -2,6 +2,7 @@ export { default as VerifyDialogDefault } from '../../../Authentication/VerifyDi
 export { default as AlertError } from '../../../Components/Alert/Code/Error.code.tsx?raw';
 export { default as ButtonComposite } from '../../../Components/Button/Code/Composite.code.tsx?raw';
 export { default as ButtonContained } from '../../../Components/Button/Code/Contained.code.tsx?raw';
+export { default as ButtonLoading } from '../../../Components/Button/Code/Loading.code.tsx?raw';
 export { default as ButtonNegative } from '../../../Components/Button/Code/Negative.code.tsx?raw';
 export { default as ButtonNormal } from '../../../Components/Button/Code/Normal.code.tsx?raw';
 export { default as ButtonOutlined } from '../../../Components/Button/Code/Outlined.code.tsx?raw';
@@ -14,12 +15,14 @@ export { default as CheckNotRequired } from '../../../Components/Check/Code/NotR
 export { default as CheckRequired } from '../../../Components/Check/Code/Required.code.tsx?raw';
 export { default as CheckGroupStateful } from '../../../Components/CheckGroup/Code/Stateful.code.tsx?raw';
 export { default as CheckGroupUnControlled } from '../../../Components/CheckGroup/Code/UnControlled.code.tsx?raw';
+export { default as ChipDefault } from '../../../Components/Chip/Code/Default.code.tsx?raw';
 export { default as CodeBlockJavascript } from '../../../Components/CodeBlock/Code/Javascript.code.tsx?raw';
 export { default as CodeBlockTypescript } from '../../../Components/CodeBlock/Code/Typescript.code.tsx?raw';
 export { default as DataGridPagination } from '../../../Components/DataGrid/Code/Pagination.code.tsx?raw';
 export { default as DialogDialogButton } from '../../../Components/Dialog/Code/DialogButton.code.tsx?raw';
 export { default as DialogHelpButton } from '../../../Components/Dialog/Code/HelpButton.code.tsx?raw';
 export { default as DialogHelpIconButton } from '../../../Components/Dialog/Code/HelpIconButton.code.tsx?raw';
+export { default as DialogOnClose } from '../../../Components/Dialog/Code/OnClose.code.tsx?raw';
 export { default as DropListDropdown } from '../../../Components/DropList/Code/Dropdown.code.tsx?raw';
 export { default as GridColumn } from '../../../Components/Grid/Code/Column.code.tsx?raw';
 export { default as GridItems } from '../../../Components/Grid/Code/Items.code.tsx?raw';

@@ -45,67 +45,92 @@ const HelpIcon = () => {
   );
 }
 
-const HelpDialog = ({open, setOpen, props}: {open: boolean; setOpen?: (open: boolean) => void; props?: HelpProps}) => {
+const HelpDialog = ({
+	open, 
+	setOpen, 
+	onClose, 
+	props
+}: {
+	open: boolean; 
+	setOpen?: (open: boolean) => void; 
+	onClose?: () => void; 
+	props?: HelpProps;
+}) => {
 	return (
-		<Dialog open={open}>
-			<Stack direction="column" justifyContent="center" spacing={1}>
-				{/** Title Bar */}
-				<Stack
-					direction="row"
-					alignItems="center"
-					justifyContent="space-between"
-					paddingX={2}
-					paddingY={1}
-					spacing={1}
-					bgcolor={"#dddddd"}
-				>
-					<Stack direction="row" alignItems="center" spacing={1}>
-						{props?.titleIcon ? props?.titleIcon : <HelpIcon />}
-						<Typography variant="h1">
-							Help : {props?.titleText ? props?.titleText : 'Define title text'}
-						</Typography>
-					</Stack>
-					<IconButton transparent onClick={() => setOpen?.(false)}>
-						<Icon iconName="Close" />
-					</IconButton>
-				</Stack>
+    <Dialog
+      open={open}
+      onClose={() => {
+				//esc | backdrop click
+        setOpen?.(false);
+        onClose?.();
+      }}
+    >
+      <Stack direction="column" justifyContent="center" spacing={1}>
+        {/** Title Bar */}
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          paddingX={2}
+          paddingY={1}
+          spacing={1}
+          bgcolor={"#dddddd"}
+        >
+          <Stack direction="row" alignItems="center" spacing={1}>
+            {props?.titleIcon ? props?.titleIcon : <HelpIcon />}
+            <Typography variant="h1">
+              Help : {props?.titleText ? props?.titleText : "Define title text"}
+            </Typography>
+          </Stack>
+          <IconButton transparent onClick={() => {
+						setOpen?.(false);
+						onClose?.();
+					}}>
+            <Icon iconName="Close" />
+          </IconButton>
+        </Stack>
 
-				{/** Body Region*/}
-				<Stack
-					direction="column"
-					justifyContent="center"
-					padding={2}
-					spacing={1}
-				>
-					{props?.body?.map((body, index) => {
-						if (body.type === 'single') {
-							return (
-                <Stack key={index} direction="column" spacing={1} paddingBottom={2}>
+        {/** Body Region*/}
+        <Stack
+          direction="column"
+          justifyContent="center"
+          padding={2}
+          spacing={1}
+        >
+          {props?.body?.map((body, index) => {
+            if (body.type === "single") {
+              return (
+                <Stack
+                  key={index}
+                  direction="column"
+                  spacing={1}
+                  paddingBottom={2}
+                >
                   <Typography variant="h1">{body.title}</Typography>
                   <Typography>{body.content}</Typography>
                 </Stack>
               );
-						} else if (body.type === 'multiple') {
-							return (
+            } else if (body.type === "multiple") {
+              return (
                 <Stack direction="column" spacing={1} paddingBottom={2}>
                   <Typography variant="h1">{body.title}</Typography>
                   {body.content?.map((content: any, index: number) => {
-										if (typeof content === 'string') {
-											return <Typography key={index}>{content}</Typography>;
-										} else {
-											return <div key={index}>{content}</div>;
-										}
+                    if (typeof content === "string") {
+                      return <Typography key={index}>{content}</Typography>;
+                    } else {
+                      return <div key={index}>{content}</div>;
+                    }
                   })}
                 </Stack>
               );
-						} else {
-							return <Typography>undefined body type</Typography>;
-						}
-					})}
-				</Stack>
-			</Stack>
-		</Dialog>
-	)
+            } else {
+              return <Typography>undefined body type</Typography>;
+            }
+          })}
+        </Stack>
+      </Stack>
+    </Dialog>
+  );
 }
 
 export default HelpDialog;

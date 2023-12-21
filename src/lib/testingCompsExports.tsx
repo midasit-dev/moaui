@@ -5,6 +5,7 @@ export { default as AuthenticationVerifyDialogDefault } from "./Authentication/V
 export { default as ComponentsAlertError } from "./Components/Alert/Code/Error.code";
 export { default as ComponentsButtonComposite } from "./Components/Button/Code/Composite.code";
 export { default as ComponentsButtonContained } from "./Components/Button/Code/Contained.code";
+export { default as ComponentsButtonLoading } from "./Components/Button/Code/Loading.code";
 export { default as ComponentsButtonNegative } from "./Components/Button/Code/Negative.code";
 export { default as ComponentsButtonNormal } from "./Components/Button/Code/Normal.code";
 export { default as ComponentsButtonOutlined } from "./Components/Button/Code/Outlined.code";
@@ -17,12 +18,14 @@ export { default as ComponentsCheckNotRequired } from "./Components/Check/Code/N
 export { default as ComponentsCheckRequired } from "./Components/Check/Code/Required.code";
 export { default as ComponentsCheckGroupStateful } from "./Components/CheckGroup/Code/Stateful.code";
 export { default as ComponentsCheckGroupUnControlled } from "./Components/CheckGroup/Code/UnControlled.code";
+export { default as ComponentsChipDefault } from "./Components/Chip/Code/Default.code";
 export { default as ComponentsCodeBlockJavascript } from "./Components/CodeBlock/Code/Javascript.code";
 export { default as ComponentsCodeBlockTypescript } from "./Components/CodeBlock/Code/Typescript.code";
 export { default as ComponentsDataGridPagination } from "./Components/DataGrid/Code/Pagination.code";
 export { default as ComponentsDialogDialogButton } from "./Components/Dialog/Code/DialogButton.code";
 export { default as ComponentsDialogHelpButton } from "./Components/Dialog/Code/HelpButton.code";
 export { default as ComponentsDialogHelpIconButton } from "./Components/Dialog/Code/HelpIconButton.code";
+export { default as ComponentsDialogOnClose } from "./Components/Dialog/Code/OnClose.code";
 export { default as ComponentsDropListDropdown } from "./Components/DropList/Code/Dropdown.code";
 export { default as ComponentsGridColumn } from "./Components/Grid/Code/Column.code";
 export { default as ComponentsGridItems } from "./Components/Grid/Code/Items.code";

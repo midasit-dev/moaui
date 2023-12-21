@@ -39,17 +39,30 @@ export type StyledProps = {
     type: "" | "help";
     data: object | HelpProps;
   };
+
+	/**
+	 * If you define onClose, it makes dialog dynamic
+	 */
+	onClose?: () => void
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { open, setOpen, json, children, headerIcon, headerTitle, ...rest } = props;
+	const { open, setOpen, json, children, headerIcon, headerTitle, onClose, ...rest } = props;
 
 	if (json && json.type === 'help') {
-		return <HelpDialog open={open} setOpen={setOpen} props={json.data} />;
+		return <HelpDialog open={open} setOpen={setOpen} onClose={onClose} props={json.data} />;
 	}
 
 	return (
-    <Dialog open={open} {...rest}>
+    <Dialog
+      open={open}
+      onClose={() => {
+				//esc | backdrop click
+        setOpen?.(false);
+        onClose?.();
+      }}
+      {...rest}
+    >
       <GuideBox
         show
         row
@@ -63,7 +76,10 @@ const StyledComponent = styled((props: StyledProps) => {
           {headerIcon ? headerIcon : <></>}
           <Typography variant="h1">{headerTitle}</Typography>
         </GuideBox>
-        <IconButton transparent onClick={() => setOpen?.(false)}>
+        <IconButton transparent onClick={() => {
+					setOpen?.(false);
+					onClose?.();
+				}}>
           <Icon iconName="Close" />
         </IconButton>
       </GuideBox>
