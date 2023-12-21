@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-		"@midasit-dev/moaui": "0.1.10",
+		"@midasit-dev/moaui": "0.1.11",
     "@mui/icons-material": "^5.14.8",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
