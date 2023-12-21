@@ -1,6 +1,6 @@
 import * as React from "react";
-import MoaTextField from "@midasit-dev/moaui/TextField";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import MoaTextField from "@midasit-dev/moaui/Components/TextField";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
 
 export default function TextFieldInput(title = NaN, values, SetValue, Display) {
 	return (

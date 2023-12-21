@@ -1,8 +1,8 @@
 import './App.css';
 import * as React from 'react';
-import MoaPanel from "@midasit-dev/moaui/Panel";
-import MoaStack from "@midasit-dev/moaui/Stack";
-import Sep from '@midasit-dev/moaui/Seperator';
+import MoaPanel from "@midasit-dev/moaui/Components/Panel";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
+import Sep from '@midasit-dev/moaui/Components/Seperator';
 import { useSnackbar } from 'notistack';
 // UserDefined Components
 import * as Buttons from './Components/Buttons'
@@ -202,7 +202,7 @@ function App() {
   return (
 	<div className="App" >
 		{showDialog && <MKeyDialog />}
-		<div className="MainApp" style={{marginTop:"0.2rem"}}>
+		<div className="MainApp" style={{marginTop:"0.2rem", backgroundColor:"#FFF", display:"flex", justifyContent:"center"}}>
 			<MoaPanel height={657}>
 				<MoaStack direction="row" justifyContent="space-between" alignItems="center" marginY={1}>
 					<MoaStack direction="row" spacing={2}>

@@ -1,8 +1,8 @@
 import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import React from "react";
-import MoaButton from "@midasit-dev/moaui/Button";
-import MoaTextField from "@midasit-dev/moaui/TextField";
-import MoaTypography from "@midasit-dev/moaui/Typography";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
+import MoaTextField from "@midasit-dev/moaui/Components/TextField";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 
 export default function FormDialog() {
 	const [open, setOpen] = React.useState(true);
