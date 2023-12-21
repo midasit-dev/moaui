@@ -18,7 +18,8 @@ function extractComponentName(str:string){
 
 function extractComponentImport(str:string){
 	const code = CodeExtractor.extract(str);
-	return code.importCodes[0];
+	let filteredImportCodes = code.importCodes.filter(info => info.includes("react") !== true);
+	return filteredImportCodes[0];
 }
 
 export default function TotalCodeString(){
