@@ -11,13 +11,23 @@
  */
 
 import React from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { VarGirderType, VarImportSectionButton } from "./variables";
 import { GuideBox, Typography } from "@midasit-dev/moaui";
+import { getGirderType } from "../pyscript_utils";
+import { parseId } from "../utils";
 
 const CompGirderType = () => {
-  const girderType = useRecoilValue(VarGirderType);
+  const [girderType, setGirderType] = useRecoilState(VarGirderType);
   const importSectionValue = useRecoilValue(VarImportSectionButton);
+
+	React.useEffect(() => {
+		if (importSectionValue.selected !== '') {
+			const selectedSectID = parseId(importSectionValue.selected);
+			const type = getGirderType(selectedSectID);
+			setGirderType(type);
+		}
+	}, [importSectionValue, setGirderType]);
 
   return (
     <GuideBox width="100%" row horSpaceBetween>

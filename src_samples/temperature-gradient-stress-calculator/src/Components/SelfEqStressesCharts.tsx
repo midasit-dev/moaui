@@ -56,13 +56,9 @@ const TempHeatingChart = ({
 			axisRightTickValues={4}
 			axisRightTickRotation={-30}
 			axisRightDecimals={2}
-			width={200}
+			width={300}
 			height={400}
 			pointSize={0}
-			marginTop={60}
-			marginRight={70}
-			marginLeft={10}
-			marginBottom={10}
 		/>
 	);
 }
@@ -81,13 +77,9 @@ const TempCoolingChart = ({
 			axisRightTickValues={4}
 			axisRightTickRotation={-30}
 			axisRightDecimals={2}
-			width={200}
+			width={300}
 			height={400}
 			pointSize={0}
-			marginTop={60}
-			marginRight={70}
-			marginLeft={10}
-			marginBottom={10}
 		/>
 	);
 }

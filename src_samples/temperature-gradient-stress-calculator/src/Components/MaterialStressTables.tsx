@@ -47,19 +47,24 @@ const CompTableMaterialStress = () => {
 			},
 		]);
 
+		const ensureToFixed = (value: any, fractionDigits: number) => {
+			if (typeof value === 'number') return value.toFixed(fractionDigits);
+			return value;
+		}
+
 		const stressCount = calcValue["stress_heating"].length;
 
 		if (stressCount === 2) {
 			setMatlStressValueTable2([
 				{
 					Component: <TypoBody1 text="Girder Top" />,
-					Heating: <TypoBody1 text={calcValue["stress_heating"][0].toFixed(3)} />,
-					Cooling: <TypoBody1 text={calcValue["stress_cooling"][0].toFixed(3)} />,
+					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][0], 3)} />,
+					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][0], 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Girder Bot" />,
-					Heating: <TypoBody1 text={calcValue["stress_heating"][1].toFixed(3)} />,
-					Cooling: <TypoBody1 text={calcValue["stress_cooling"][1].toFixed(3)} />,
+					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][1], 3)} />,
+					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][1], 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Slab Top" />,
@@ -76,23 +81,23 @@ const CompTableMaterialStress = () => {
 			setMatlStressValueTable2([
 				{
 					Component: <TypoBody1 text="Girder Top" />,
-					Heating: <TypoBody1 text={calcValue["stress_heating"][0].toFixed(3)} />,
-					Cooling: <TypoBody1 text={calcValue["stress_cooling"][0].toFixed(3)} />,
+					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][0], 3)} />,
+					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][0], 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Girder Bot" />,
-					Heating: <TypoBody1 text={calcValue["stress_heating"][1].toFixed(3)} />,
-					Cooling: <TypoBody1 text={calcValue["stress_cooling"][1].toFixed(3)} />,
+					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][1], 3)} />,
+					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][1], 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Slab Top" />,
-					Heating: <TypoBody1 text={calcValue["stress_heating"][2].toFixed(3)} />,
-					Cooling: <TypoBody1 text={calcValue["stress_cooling"][2].toFixed(3)} />,
+					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][2], 3)} />,
+					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][2], 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Slab Bot" />,
-					Heating: <TypoBody1 text={calcValue["stress_heating"][3].toFixed(3)} />,
-					Cooling: <TypoBody1 text={calcValue["stress_cooling"][3].toFixed(3)} />,
+					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][3], 3)} />,
+					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][3], 3)} />,
 				}
 			])
 		}

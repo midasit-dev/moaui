@@ -29,8 +29,10 @@ const CompGirderMaterial = () => {
 		const items: [string, number][] = [];
 		const ids = Object.keys(matlData);
 		for (const id of ids) {
-			const matlName = matlData[id].NAME;
-			items.push([matlName, +id]);
+			if (matlData[id].TYPE === 'CONC' || matlData[id].TYPE === 'STEEL') {
+				const matlName = matlData[id].NAME;
+				items.push([matlName, +id]);	
+			}
 		}
 
 		setList(items);

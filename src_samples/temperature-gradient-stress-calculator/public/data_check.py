@@ -1,3 +1,5 @@
+import copy
+import numpy as np
 
 def available_section_type(res_sect):
     id_list = list(res_sect.keys())
@@ -188,20 +190,9 @@ def get_material_prop(units, matl):
                 thermal = 0.000012 if temp_unit == "C" else 0.0000066667
             elif standard == "IRS(RC)":
                 thermal = 0.0000117 if temp_unit == "C" else 0.0000065000
-
     elast = matl["PARAM"][0]["ELAST"]
     
     return elast, thermal
-
-def available_beam_elem(elem, res_elem):
-    for i in range(len(elem)):
-        if res_elem[elem[i]]["TYPE"] != "BEAM":
-            return False
-
-def available_btmp_sect(elem, res_elem, section_key):
-    for i in range(len(elem)):
-        if res_elem[elem[i]]["SECT"] != section_key:
-            return False
 
 def create_btmp_input(res_btmp, elem, stld_name_heat, stld_name_cool, inf_point, inf_temp_h, inf_temp_c):
     
@@ -280,3 +271,68 @@ def create_btmp_input(res_btmp, elem, stld_name_heat, stld_name_cool, inf_point,
         }
     
     return btmp_data_heat, btmp_data_cool
+
+def create_chart_data(height, inf_point, inf_temp_h, inf_temp_c, self_eq_stress):
+
+    # Temperature Gradient
+    x_g = [0,0]
+    y_g = [0, -height]
+
+    x_h_temp = copy.deepcopy(inf_temp_h)
+    x_h_temp.insert(0, 0)
+    x_h_temp.append(0)
+
+    x_c_temp = copy.deepcopy(inf_temp_c)
+    x_c_temp.insert(0, 0)
+    x_c_temp.append(0)
+
+    y_temp = copy.deepcopy(inf_point)
+    y_temp.insert(0, 0)
+    y_temp.append(inf_point[-1])
+    
+    # Heating Stress
+    x_outer_h_stress = self_eq_stress[0][0]["s"]
+    y_outer_h_stress = self_eq_stress[0][0]["z"]
+
+    sorted_indices = np.argsort(y_outer_h_stress)
+    x_outer_h_stress = np.array(x_outer_h_stress)[sorted_indices]
+    y_outer_h_stress = np.array(y_outer_h_stress)[sorted_indices]
+
+    if len(self_eq_stress[4]) > 0:
+        x_slab_h_stress = self_eq_stress[4][0]["s"]
+        y_slab_h_stress = self_eq_stress[4][0]["z"]
+
+        sorted_indices = np.argsort(y_slab_h_stress)
+        x_slab_h_stress = np.array(x_slab_h_stress)[sorted_indices]
+        y_slab_h_stress = np.array(y_slab_h_stress)[sorted_indices]
+
+    # Cooling Stress
+    x_outer_c_stress = self_eq_stress[1][0]["s"]
+    y_outer_c_stress = self_eq_stress[1][0]["z"]
+
+    sorted_indices = np.argsort(y_outer_c_stress)
+    x_outer_c_stress = np.array(x_outer_c_stress)[sorted_indices]
+    y_outer_c_stress = np.array(y_outer_c_stress)[sorted_indices]
+
+    if len(self_eq_stress[5]) > 0:
+        x_slab_c_stress = self_eq_stress[5][0]["s"]
+        y_slab_c_stress = self_eq_stress[5][0]["z"]
+
+        sorted_indices = np.argsort(y_slab_c_stress)
+        x_slab_c_stress = np.array(x_slab_c_stress)[sorted_indices]
+        y_slab_c_stress = np.array(y_slab_c_stress)[sorted_indices]
+
+    if len(self_eq_stress[4]) > 0:
+        x_outer_h = list(x_outer_h_stress) + list(x_slab_h_stress)
+        y_outer_h = list(y_outer_h_stress) + list(y_slab_h_stress)
+    else:
+        x_outer_h = list(x_outer_h_stress)
+        y_outer_h = list(y_outer_h_stress)
+    if len(self_eq_stress[5]) > 0:
+        x_outer_c = list(x_outer_c_stress) + list(x_slab_c_stress)
+        y_outer_c = list(y_outer_c_stress) + list(y_slab_c_stress)
+    else:
+        x_outer_c = list(x_outer_c_stress)
+        y_outer_c = list(y_outer_c_stress)
+    
+    return x_g, y_g, x_h_temp, x_c_temp, y_temp, x_outer_h, y_outer_h, x_outer_c, y_outer_c

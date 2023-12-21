@@ -3,6 +3,7 @@ import { RecoilRoot } from 'recoil';
 import App from './App';
 import { VerifyDialog, VerifyUtil } from '@midasit-dev/moaui';
 import { setGlobalVariable, getGlobalVariable } from './pyscript_utils';
+import { SnackbarProvider } from 'notistack';
 
 const Wrapper = () => {
 	const [ installed, setInstalled ] = React.useState(false);
@@ -29,7 +30,9 @@ const Wrapper = () => {
 			<VerifyDialog />
 			{installed && VerifyUtil.isExistQueryStrings('mapiKey') &&
 				<RecoilRoot>
-					<App />
+					<SnackbarProvider maxSnack={3}>
+						<App />
+					</SnackbarProvider>
 				</RecoilRoot>
 			}
 		</>

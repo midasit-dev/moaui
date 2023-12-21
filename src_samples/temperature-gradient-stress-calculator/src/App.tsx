@@ -17,7 +17,7 @@ import { GuideBox, Panel, Typography, ComponentsIconButtonWithName } from "@mida
 
 //Components
 import CompApplyT3 from './Components/ApplyT3';
-import CompAddButton from './Components/AddButton';
+import CompAssignLoadButton from './Components/AssignLoadButton';
 import CompTemperatureGradientChart from './Components/TemperatureGradientChart';
 import CompGirderMaterial from './Components/GirderMaterial';
 import CompImportSectionButton from './Components/ImportSectionButton';
@@ -25,6 +25,7 @@ import CompSelfEqStressesCharts from './Components/SelfEqStressesCharts';
 import CompZone from './Components/Zone';
 import CompGirderType from './Components/GirderType';
 import CompSurface from './Components/Surface';
+import CompUnitNotation from './Components/UnitNotation';
 
 import CompTableMaterialStress from './Components/MaterialStressTables';
 
@@ -42,9 +43,9 @@ import {
 	VarSelfEqStressesTempHeatingChart,
 	VarSelfEqStressesTempCoolingChart,
 } from './Components/variables';
-
-//pyscript util
-import { dbRead } from './pyscript_utils';
+import { parseId } from './utils';
+import { checkPyScriptReady } from './pyscript_utils';
+import { useSnackbar } from 'notistack';
 
 const App = () => {
 	const visible = false;
@@ -64,32 +65,62 @@ const App = () => {
 	const setSelfEqStressLeftValue = useSetRecoilState(VarSelfEqStressesTempHeatingChart);
 	const setSelfEqStressRightValue = useSetRecoilState(VarSelfEqStressesTempCoolingChart);
 
+	const { enqueueSnackbar } = useSnackbar();
+
 	React.useEffect(() => {
 		if (importSectionValue.selected !== '') {
-			executeMainFunction({
-				importSectionValue,
-				girderMatlValue,
-				zoneValue,
-				surfaceValue,
-				applyT3,
-				applyT3H,
-				applyT3C,
-				setCalcValue,
-				setTempGradientChartValue,
-				setSelfEqStressLeftValue,
-				setSelfEqStressRightValue,
-			});
+			checkPyScriptReady(() => {
+				const section_Key = parseId(importSectionValue.selected);
+				const main_func = pyscript.interpreter.globals.get("stress_calculation");
+				const results = main_func(
+					section_Key,
+					girderMatlValue,
+					zoneValue,
+					surfaceValue,
+					applyT3,
+					parseFloat(applyT3H),
+					parseFloat(applyT3C),
+				);
+				const paringResults = JSON.parse(results);
+				if (paringResults.hasOwnProperty('error')) {
+					enqueueSnackbar(paringResults['error'], { variant: 'error' });
+					return;
+				}
+
+				setCalcValue(paringResults);
+			
+				setTempGradientChartValue([
+					{ id: "TempHeating", 	color: "#f47560", data: paringResults["chart_temp_h"], },
+					{ id: "TempCooling", 	color: "#1f78b4", data: paringResults["chart_temp_c"], },
+					{ id: "Girder", 			color: "#333333", data: paringResults["chart_girder"],  },
+				]);
+			
+				//Update Self Equilibrating Stresses Chart Values
+				setSelfEqStressLeftValue([
+					{ 'id': 'AASHTO_HeatingG', 	'color': '#f47560', 'data': paringResults["chart_heating"], },
+					{ 'id': 'Girder', 					'color': '#333333', 'data': paringResults["chart_girder"], 	},
+				])
+			
+				setSelfEqStressRightValue([
+					{ 'id': 'AASHTO_CoolingG', 	'color': '#1f78b4', 'data': paringResults["chart_cooling"], },
+					{ 'id': 'Girder', 					'color': '#333333', 'data': paringResults["chart_girder"], 	},
+				])
+			})
 		}
-	},[zoneValue, surfaceValue, girderMatlValue, applyT3, applyT3C, applyT3H, importSectionValue.ids, importSectionValue.items, importSectionValue.selected, setCalcValue, setSelfEqStressLeftValue, setSelfEqStressRightValue, setTempGradientChartValue, importSectionValue]);
+	},[zoneValue, surfaceValue, girderMatlValue, applyT3, applyT3C, applyT3H, importSectionValue.ids, importSectionValue.items, importSectionValue.selected, setCalcValue, setSelfEqStressLeftValue, setSelfEqStressRightValue, setTempGradientChartValue, importSectionValue, enqueueSnackbar]);
 
 	return (
-    <GuideBox show={visible} width={1100} padding={1} spacing={2}>
+    <GuideBox show={visible} width={1450} padding={1} spacing={2}>
       {/** Top Panels */}
       <GuideBox show={visible} row spacing={2} center height={520}>
         <Panel variant="shadow2" height={505}>
           <GuideBox show={visible} fill="2">
-            <GuideBox show={visible} width="100%" height={30} fill="3" verCenter>
-              <Typography variant="h1">Girder Properties</Typography>
+            <GuideBox show={visible} width="100%" height={30} fill="5" verCenter row horSpaceBetween>
+							<GuideBox row horSpaceBetween>
+								<Typography variant="h1">Girder Properties</Typography>
+								<CompUnitNotation />
+							</GuideBox>
+							<GuideBox width={43} height={30} />
             </GuideBox>
             <GuideBox show={visible} width="100%" fill="3" spacing={1.5}>
               <CompGirderType />
@@ -135,7 +166,7 @@ const App = () => {
           <Typography>
             The above Temperature Gradient Loads in MIDAS Civil Load Cases
           </Typography>
-          <CompAddButton />
+          <CompAssignLoadButton />
         </GuideBox>
       </GuideBox>
     </GuideBox>
@@ -143,127 +174,3 @@ const App = () => {
 };
 
 export default App;
-
-const executeMainFunction = ({
-	//UI Values
-	importSectionValue,
-	girderMatlValue,
-	zoneValue,
-	surfaceValue,
-	applyT3,
-	applyT3H,
-	applyT3C,
-
-	//Setters
-	setCalcValue,
-	setTempGradientChartValue,
-	setSelfEqStressLeftValue,
-	setSelfEqStressRightValue,
-}: any) => {
-	const section_Key = parseInt(importSectionValue.ids[importSectionValue.items.indexOf(importSectionValue.selected)]);
-	const main_func = pyscript.interpreter.globals.get("main_calculation");
-	const results = main_func(
-		section_Key,
-		girderMatlValue,
-		zoneValue,
-		surfaceValue,
-		applyT3,
-		parseFloat(applyT3H),
-		parseFloat(applyT3C),
-		JSON.stringify(dbRead('UNIT')),
-		JSON.stringify(dbRead('SECT')),
-		JSON.stringify(dbRead('MATL'))
-	);
-	const json_parse_results = JSON.parse(results);
-	setCalcValue(json_parse_results);
-
-	//Update Temperature Gradient Chart Values
-	{
-		let chart1HeightItem = [ { x: 0.0, y: 0.0 }, { x: 0.0, y: -json_parse_results["height"] }, ];
-
-		let chart1HeatingItem = [];
-		for (let i = 0; i < json_parse_results["inf_point"].length; i++) {
-			chart1HeatingItem.push({ x: json_parse_results["inf_temp_h"][i], y: json_parse_results["inf_point"][i] });
-		}
-
-		let chart1CoolingItem = [];
-		for (let i = 0; i < json_parse_results["inf_point"].length; i++) {
-			chart1CoolingItem.push({ x: json_parse_results["inf_temp_c"][i], y: json_parse_results["inf_point"][i] });
-		}
-
-		setTempGradientChartValue([
-			{ id: "TempHeating", 	color: "#f47560", data: chart1HeatingItem, },
-			{ id: "TempCooling", 	color: "#1f78b4", data: chart1CoolingItem, },
-			{ id: "Girder", 			color: "#333333", data: chart1HeightItem,  },
-		]);
-	}
-
-	//Update Self Equilibrating Stresses Chart Values
-	{
-		const chart1HeightItem = [
-			{ 'x': 0.0, 'y': 0.0 },
-			{ 'x': 0.0, 'y': -json_parse_results["height"] }
-		];
-
-		const self_eq_stress = json_parse_results["self_eq_stress"];
-		let x_outer_h_stress: any[] = self_eq_stress[0][0]["s"];
-		let y_outer_h_stress: any[] = self_eq_stress[0][0]["z"];
-		
-		let sorted_indices_outer_h: number[] = y_outer_h_stress.map((v, i) => i).sort((a, b) => y_outer_h_stress[a] - y_outer_h_stress[b]);
-		
-		x_outer_h_stress = sorted_indices_outer_h.map(i => x_outer_h_stress[i]);
-		y_outer_h_stress = sorted_indices_outer_h.map(i => y_outer_h_stress[i]);
-		
-		if (self_eq_stress[4].length > 0) {
-			let x_slab_h_stress: any[] = self_eq_stress[4][0]["s"];
-			let y_slab_h_stress: any[] = self_eq_stress[4][0]["z"];
-		
-			const sorted_indices_slab_h: number[] = y_slab_h_stress.map((v, i) => i).sort((a, b) => y_slab_h_stress[a] - y_slab_h_stress[b]);
-		
-			x_slab_h_stress = sorted_indices_slab_h.map(i => x_slab_h_stress[i]);
-			y_slab_h_stress = sorted_indices_slab_h.map(i => y_slab_h_stress[i]);
-			x_outer_h_stress = x_outer_h_stress.concat(x_slab_h_stress);
-			y_outer_h_stress = y_outer_h_stress.concat(y_slab_h_stress);
-		}
-		
-		let chart2HeatingItem:any = [];
-		for (let i = 0; i < x_outer_h_stress.length; i++){
-			chart2HeatingItem.push({ 'x': x_outer_h_stress[i], 'y': y_outer_h_stress[i] });
-		}
-
-		setSelfEqStressLeftValue([
-			{ 'id': 'AASHTO_HeatingG', 	'color': '#f47560', 'data': chart2HeatingItem, 	},
-			{ 'id': 'Girder', 					'color': '#333333', 'data': chart1HeightItem, 	},
-		])
-
-		let x_outer_c_stress: any[] = self_eq_stress[1][0]["s"];
-		let y_outer_c_stress: any[] = self_eq_stress[1][0]["z"];
-		
-		const sorted_indices_outer_c: number[] = y_outer_c_stress.map((v, i) => i).sort((a, b) => y_outer_c_stress[a] - y_outer_c_stress[b]);
-		
-		x_outer_c_stress = sorted_indices_outer_c.map(i => x_outer_c_stress[i]);
-		y_outer_c_stress = sorted_indices_outer_c.map(i => y_outer_c_stress[i]);
-		
-		if (self_eq_stress[5].length > 0) {
-			let x_slab_c_stress: any[] = self_eq_stress[5][0]["s"];
-			let y_slab_c_stress: any[] = self_eq_stress[5][0]["z"];
-		
-			const sorted_indices_slab_c: number[] = y_slab_c_stress.map((v, i) => i).sort((a, b) => y_slab_c_stress[a] - y_slab_c_stress[b]);
-		
-			x_slab_c_stress = sorted_indices_slab_c.map(i => x_slab_c_stress[i]);
-			y_slab_c_stress = sorted_indices_slab_c.map(i => y_slab_c_stress[i]);
-			x_outer_c_stress = x_outer_c_stress.concat(x_slab_c_stress);
-			y_outer_c_stress = y_outer_c_stress.concat(y_slab_c_stress);
-		}
-
-		let chart2CoolingItem:any = [];
-		for (let i = 0; i < x_outer_c_stress.length; i++){
-			chart2CoolingItem.push({ 'x': x_outer_c_stress[i], 'y': y_outer_c_stress[i] });
-		}
-
-		setSelfEqStressRightValue([
-			{ 'id': 'AASHTO_CoolingG', 	'color': '#1f78b4', 'data': chart2CoolingItem, 	},
-			{ 'id': 'Girder', 					'color': '#333333', 'data': chart1HeightItem, 	},
-		])
-	}
-}

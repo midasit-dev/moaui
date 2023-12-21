@@ -12,13 +12,12 @@ import { atom } from 'recoil';
 /**
  * @description Variable of ImportSectionButton.tsx
  */
-export const VarImportSectionButton = atom({
+export const VarImportSectionButton = atom<any>({
 	key: 'VarImportSectionButton',
 	default: {
     selected: '',
-		temp: '',
-		ids: [ '', ],
-    items: [ '', ],
+		ids: [],
+    items: [],
 	},
 });
 
@@ -122,7 +121,7 @@ export const VarMaterialStressTableDataOfTab2 = atom<any>({
  */
 export const VarApplyT3 = atom({
 	key: "VarApplyT3",
-	default: false,
+	default: true,
 });
 
 export const VarApplyT3H = atom({
@@ -167,9 +166,6 @@ export const VarZone = atom({
 /**
  * @description Variable of GirderType.tsx
  */
-export const VarGirderTypeValue1 = 'Steel';
-export const VarGirderTypeValue2 = 'Concrete';
-
 export const VarGirderType = atom({
 	key: "VarGirderType",
 	default: 'Steel',
@@ -194,21 +190,20 @@ export const VarCalculationParseResult = atom<any>({
 /**
  * @description Variable of AddButton.tsx
  */
-export const VarAddButton = atom({
-	key: "VarAddButton",
+export const VarAddButtonHeating = atom({
+	key: "VarAddButtonHeating",
 	default: {
     selected: '',
-		temp: '',
-    items: [
-			"Static Load Case 1",
-			"Static Load Case 2",
-			"Static Load Case 3",
-			"Static Load Case 4",
-			"Static Load Case 5",
-			"Static Load Case 6",
-			"Static Load Case 7",
-			"Static Load Case 8",
-			"Static Load Case 9",
-		],
+		ids: [],
+    items: [],
+	}
+});
+
+export const VarAddButtonCooling = atom({
+	key: "VarAddButtonCooling",
+	default: {
+    selected: '',
+		ids: [],
+    items: [],
 	}
 });

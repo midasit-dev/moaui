@@ -11,71 +11,49 @@
  */
 
 import React from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { VarImportSectionButton, VarGirderType, VarGirderTypeValue1, VarGirderTypeValue2 } from './variables';
-import { dbRead } from '../pyscript_utils';
-import { Dialog, Icon, Button, GuideBox, Scrollbars, List, ListItem, ListItemButton, Typography, Panel } from "@midasit-dev/moaui";
+import { useRecoilState } from 'recoil';
+import { VarImportSectionButton } from './variables';
+import { getImportSectionValues } from '../pyscript_utils';
+import { Dialog, Icon, Button, GuideBox, Scrollbars, List, ListItem, ListItemButton, Typography, Panel, Alert } from "@midasit-dev/moaui";
+import { useSnackbar } from 'notistack';
+import { idItemString } from '../utils';
 
 const CompImportSectionButton = () => {
 	const [value, setValue] = useRecoilState(VarImportSectionButton);
-	const setGirderType = useSetRecoilState(VarGirderType);
+	const [open, setOpen] = React.useState(false);
 
-	const type_PSC   = React.useMemo(() => ["1CEL", "2CEL", "3CEL", "PSCI", "PSCT", "PSCH", "PSCM", "PSCB", "VALU"], []);
-	const type_COMP1 = React.useMemo(() => ["B", "I", "Tub", "GB", "GI", "GT"], []);
-	const type_COMP2 = React.useMemo(() => ["PC", "CI", "CT"], []);
-	const type_COMP  = React.useMemo(() => [...type_COMP1, ...type_COMP2], [type_COMP1, type_COMP2]);
+	const [selected, setSelected] = React.useState('');
 
-	const getGirderType = React.useCallback((type: string, shape: string) => {
-		if (type === "PSC" 			&& type_PSC.includes(shape)) return VarGirderTypeValue2;
-		if (type === "COMPOSITE" && type_COMP1.includes(shape)) return VarGirderTypeValue1;
-		if (type === "COMPOSITE" && type_COMP2.includes(shape)) return VarGirderTypeValue2;
-		return '';
-	}, [type_COMP1, type_COMP2, type_PSC]);
-
-	//Import Section Value를 가져옵니다.
 	React.useEffect(() => {
-		const sectData = dbRead('SECT');
-		if (!sectData) {
-			console.error('Failed to read SECT data from database.');
+		setSelected(value.selected);
+	}, [value.selected]);
+
+	const { enqueueSnackbar } = useSnackbar();
+
+	//Section List를 업데이트 하는 로직
+	const dbUpdate = React.useCallback((loadingFalse: any = undefined) => {
+		//{name: [], id: []} or {error: 'error message'}
+		const sectionValues = getImportSectionValues();
+		if (sectionValues.hasOwnProperty('error')) {
+			enqueueSnackbar(sectionValues['error'], { variant: 'error' });
+			if (loadingFalse) loadingFalse(false);
 			return;
 		}
 
-		const Ids = Object.keys(sectData);
-
-		let useItems: any = [];
-		let useIds: string[] = [];
-		for (const id of Ids) {
-			const type = sectData[id].SECTTYPE;
-			const beforeShape = sectData[id]["SECT_BEFORE"]["SHAPE"];
-			const curSectName = sectData[id].SECT_NAME;
-			if ((type === "PSC" 				&& type_PSC.includes(beforeShape)) ||
-					(type === "COMPOSITE" 	&& type_COMP.includes(beforeShape))) {
-				useItems.push(curSectName);
-				useIds.push(id);
-			}
-		}
-
-		setValue(prevState => ({
+		setValue((prevState: any) => ({
 			...prevState,
-			ids: useIds,
-			items: useItems,
+			ids: sectionValues['id'],
+			items: sectionValues['name'],
 		}));
-	}, [setValue, type_COMP, type_COMP1, type_COMP2, type_PSC]);
+		if (loadingFalse) loadingFalse(false);
+	}, [enqueueSnackbar, setValue]);
 
-	//Section Value 변경 시, Girder Type 변경
 	React.useEffect(() => {
-		if (value.selected !== '') {
-			const selectedSectID = value.ids[value.items.indexOf(value.selected)];
-			const sectData = dbRead('SECT');
-			const type = sectData[selectedSectID]["SECTTYPE"];
-			const shape = sectData[selectedSectID]["SECT_BEFORE"]["SHAPE"];
+		dbUpdate();
+	}, [dbUpdate]);
 
-			setGirderType(getGirderType(type, shape));
-		}
-	}
-	, [setGirderType, value.items, value.ids, value.selected, getGirderType]);
+	const [loadingRefresh, setLoadingRefresh] = React.useState(false);
 
-	const [open, setOpen] = React.useState(false);
 	return (
     <>
       <Button onClick={() => setOpen(true)}>Import Section</Button>
@@ -87,17 +65,26 @@ const CompImportSectionButton = () => {
         <GuideBox spacing={2}>
           <ComponentsListTypographyRadio
 						value={value}
-						setValue={setValue}
+						selected={selected}
+						setSelected={setSelected}
           />
-          <GuideBox width="100%" horRight>
+          <GuideBox width="100%" row horSpaceBetween>
+						<Button 
+							onClick={() => {
+								setLoadingRefresh(true);
+								setTimeout(() => dbUpdate(setLoadingRefresh), 500);
+							}}
+							loading={loadingRefresh}
+						>
+							Refresh
+						</Button>
             <Button 
 							color="negative" 
 							onClick={() => {
-								setOpen(false);
-								const selectedItem = value.temp;
-								if (selectedItem) {
-									setValue({...value, selected: selectedItem, temp: ''});
+								if (selected) {
+									setValue({...value, selected: selected});
 								}
+								setOpen(false);
 							}}
 							disabled={value.items.length === 0}
 						>
@@ -114,10 +101,9 @@ export default CompImportSectionButton;
 
 const ComponentsListTypographyRadio = ({
 	value,
-	setValue,
+	selected,
+	setSelected,
 }: any) => {
-	const [selected, setSelected] = React.useState(value.selected);
-
   return (
 		<Scrollbars
 			outline="strock"
@@ -129,10 +115,14 @@ const ComponentsListTypographyRadio = ({
 			titleAlign="center"
 		>
 			<List dense={true} disablePadding={true}>
-        {value.items.length === 0 && ( //If Empty Items
+        {value.items.length === 0 &&( //If Empty Items
 					<GuideBox width="100%" center spacing={2} height={300}>
-						<Typography variant="h1" color='#b81414'>Section data is empty</Typography>
-						<Typography variant="body1">Add a new Section in MIDAS Civil</Typography>
+						<Alert variant="outlined" severity="error" title="Alert Message">
+							<GuideBox spacing={1}>
+								<p>Section data is empty</p>
+								<p>Add a new Section in MIDAS Civil</p>
+							</GuideBox>
+						</Alert>
 					</GuideBox>
 				)}
         {value.items.length > 0 && ( //If Not Empty Items
@@ -146,7 +136,7 @@ const ComponentsListTypographyRadio = ({
                   secondaryAction={
                     <Panel variant="box" paddingRight={value.items.length < 9 ? 0 : 2.5}>
 											{
-												selected === item ? 
+												selected === idItemString(value, index) ? 
 													<Icon iconName="RadioButtonCheckedTwoTone"   opacity={0.5} /> :
 													<Icon iconName="RadioButtonUncheckedTwoTone" opacity={0.5} />
 											}
@@ -155,12 +145,9 @@ const ComponentsListTypographyRadio = ({
                 >
                   <ListItemButton 
 										padding={0.8}
-										onClick={() => {
-											setSelected(item);
-											setValue({...value, temp: item});
-										}}
+										onClick={() => setSelected(idItemString(value, index))}
 									>
-                    <Typography marginLeft={1}>{item}</Typography>
+                    <Typography marginLeft={1}>{idItemString(value, index)}</Typography>
                   </ListItemButton>
                 </ListItem>
               );

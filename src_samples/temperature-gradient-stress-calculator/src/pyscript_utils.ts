@@ -41,10 +41,39 @@ export function getGlobalVariable() {
 	console.log('g_base_port: ', g_values.g_base_port);
 }
 
-export function dbRead(itemName: string) {
+export function dbRead(itemName: string): any {
 	return checkPyScriptReady(() => {
 		const py_db_read_func = pyscript.interpreter.globals.get('py_db_read');
 		const result = py_db_read_func(itemName);
 		return JSON.parse(result);
+	});
+}
+
+export function getImportSectionValues(): any {
+	return checkPyScriptReady(() => {
+		const py_func = pyscript.interpreter.globals.get('import_section');
+		const result = py_func();
+		return JSON.parse(result);
+	});
+}
+
+export function getGirderType(selectedSectID: number): string {
+	return checkPyScriptReady(() => {
+		const py_func = pyscript.interpreter.globals.get('girder_type');
+		return py_func(selectedSectID);
+	});
+}
+
+export function getUnitNotation(): string {
+	return checkPyScriptReady(() => {
+		const py_func = pyscript.interpreter.globals.get('unit_notation');
+		return py_func();
+	});
+}
+
+export function assignLoad(objStr: string): any {
+	return checkPyScriptReady(() => {
+		const py_func = pyscript.interpreter.globals.get('assign_load');
+		return JSON.parse(py_func(objStr));
 	});
 }
