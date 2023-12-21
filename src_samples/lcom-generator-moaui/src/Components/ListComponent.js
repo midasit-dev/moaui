@@ -2,15 +2,17 @@ import React from "react";
 import { Scrollbars } from "rc-scrollbars";
 import { updateCheckState } from "../utils";
 
-import Stack from "@midasit-dev/moaui/Stack";
-import Checkbox from "@midasit-dev/moaui/Check";
+import Stack from "@midasit-dev/moaui/Components/Stack";
+import Checkbox from "@midasit-dev/moaui/Components/Check";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-import MoaButton from "@midasit-dev/moaui/Button";
-import Typography from "@midasit-dev/moaui/Typography";
-import MoaTypography from "@midasit-dev/moaui/Typography";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
+import Typography from "@midasit-dev/moaui/Components/Typography";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
+
+import { VerifyUtil } from '@midasit-dev/moaui';
 
 const baseWidth = 6;
 const innerWidth = baseWidth + "rem";
@@ -40,7 +42,8 @@ const ColoredContainer = (props) => (
 const awaiter = async (setPending, setListData, func, userData) => {
     try {
         setPending(true);
-        setListData(await func(userData));
+		if (VerifyUtil.getMapiKey() !== "")
+        	setListData(await func(userData));
         setPending(false);
     } catch (_) { console.log(_); }
 };

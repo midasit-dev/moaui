@@ -2,12 +2,12 @@
 import * as LCOM from "./Workers/LoadCombinationWorker";
 
 //library
-import MoaButton from "@midasit-dev/moaui/Button";
-import MoaDroplist from "@midasit-dev/moaui/DropList";
-import MoaStack from "@midasit-dev/moaui/Stack";
-import MoaTextField from "@midasit-dev/moaui/TextField";
-import MoaSeperator from "@midasit-dev/moaui/Seperator";
-import MoaTypography from "@midasit-dev/moaui/Typography";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
+import MoaDroplist from "@midasit-dev/moaui/Components/DropList";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
+import MoaTextField from "@midasit-dev/moaui/Components/TextField";
+import MoaSeperator from "@midasit-dev/moaui/Components/Seperator";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 import * as mui from "@mui/material";
 import * as React from "react";
 import Scrollbars from "rc-scrollbars";
@@ -20,7 +20,7 @@ import {
 import { VerifyUtil } from '@midasit-dev/moaui';
 
 //component
-import MoaDataGrid from "@midasit-dev/moaui/DataGrid";
+import MoaDataGrid from "@midasit-dev/moaui/Components/DataGrid";
 import { GridActionsCellItem, useGridApiRef } from "@mui/x-data-grid";
 import { GridListComponents } from "./Components/GridListComponents";
 

@@ -6,7 +6,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@midasit-dev/moaui": "^0.0.39",
+    "@midasit-dev/moaui": "^0.1.10",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.8",
     "@mui/x-data-grid": "^6.11.2",

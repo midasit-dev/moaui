@@ -1,7 +1,7 @@
 import * as React from "react";
-import MoaButton from "@midasit-dev/moaui/Button";
-import Typography from "@midasit-dev/moaui/Typography";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
+import Typography from "@midasit-dev/moaui/Components/Typography";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import { ListComponent } from "./ListComponent";
 import { useSnackbar } from "notistack";
 import { makeObject, setStateUpdate } from "../utils";
