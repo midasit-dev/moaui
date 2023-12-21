@@ -3,10 +3,10 @@ import Modal from "@mui/material/Modal";
 import * as Buttons from "./Buttons.js";
 
 import Dialog from "@mui/material/Dialog";
-import MoaPanel from "@midasit-dev/moaui/Panel";
-import MoaStack from "@midasit-dev/moaui/Stack";
-import MoaButton from "@midasit-dev/moaui/Button";
-import MoaTextField from "@midasit-dev/moaui/TextField";
+import MoaPanel from "@midasit-dev/moaui/Components/Panel";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
+import MoaTextField from "@midasit-dev/moaui/Components/TextField";
 
 import HelpImage from "../svg/help.svg";
 

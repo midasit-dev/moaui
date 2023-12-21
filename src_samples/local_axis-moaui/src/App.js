@@ -1,20 +1,22 @@
 import "./App.css";
 import * as React from "react";
 // Material UI import data
-import MoaPanel from "@midasit-dev/moaui/Panel";
-import MoaGrid from "@midasit-dev/moaui/Grid";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import MoaPanel from "@midasit-dev/moaui/Components/Panel";
+import MoaGrid from "@midasit-dev/moaui/Components/Grid";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import { useSnackbar } from "notistack";
 // UserDefined Components
 import RadioButtonsGroup from "./Components/RadioGroup";
-import MoaTextField from "@midasit-dev/moaui/TextField";
+import MoaTextField from "@midasit-dev/moaui/Components/TextField";
 // import TextFieldInput from "./Components/TextField";
-import MoaButton from "@midasit-dev/moaui/Button/Styled";
+import MoaButton from "@midasit-dev/moaui/Components/Button/Styled";
 import * as Charts from "./Components/Chart";
 import * as Modals from "./Components/Modal";
 import * as Common from "./Function/Common";
 import * as Spline from "./Function/Spline";
-import MoaTypography from "@midasit-dev/moaui/Typography";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
+
+import { VerifyDialog, VerifyUtil } from '@midasit-dev/moaui';
 
 const enqueueMessage = (func, message, variant = "error") => {
 	func(message, {
@@ -274,10 +276,22 @@ function Main() {
 }
 
 function App() {
+	//moaUI Verify Dialog
+	const [openFormDlg, setOpenFormDlg] = React.useState(false);
+	React.useEffect(() => {
+		if (!VerifyUtil.isExistQueryStrings('redirectTo') && !VerifyUtil.isExistQueryStrings('mapiKey')) {
+			setOpenFormDlg(true);
+		}
+	}, []);
+
 	return (
 		<div className="App">
 			<div className="MainApp">
+			{openFormDlg === true ? (
+				<VerifyDialog />
+			) : 
 				<Main />
+			}
 			</div>
 		</div>
 	);
