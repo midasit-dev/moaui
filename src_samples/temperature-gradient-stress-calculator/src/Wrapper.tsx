@@ -6,6 +6,7 @@ import { setGlobalVariable, getGlobalVariable } from './pyscript_utils';
 import { SnackbarProvider } from 'notistack';
 
 const ValidWrapper = () => {
+	const [isInitialized, setIsInitialized] = React.useState(false);
   const [isValid, setIsValid] = React.useState(false);
   const [checkUri, setCheckUri] = React.useState(false);
   const [checkMapiKey, setCheckMapiKey] = React.useState(false);
@@ -44,9 +45,14 @@ const ValidWrapper = () => {
 			}
       setCheckMapiKey(_checkMapiKey);
 
-      if (!_checkUri || !_checkMapiKey) return;
+			//최종 결과 Set
+      if (!_checkUri || !_checkMapiKey) {
+				setIsValid(false);
+			} else {
+				setIsValid(true);
+			}
 
-      setIsValid(true);
+			setIsInitialized(true);
     };
 
     callback();
@@ -54,14 +60,15 @@ const ValidWrapper = () => {
 
   return (
     <>
-      {isValid && (
-        <RecoilRoot>
-          <SnackbarProvider maxSnack={3}>
-            <App />
-          </SnackbarProvider>
-        </RecoilRoot>
-      )}
-      {!isValid && (
+      {isInitialized && isValid && (
+				<RecoilRoot>
+					<SnackbarProvider maxSnack={3}>
+						<App />
+					</SnackbarProvider>
+				</RecoilRoot>
+			)}
+				
+			{isInitialized && !isValid && (
         <Panel variant="shadow2" padding={3} margin={3}>
           <GuideBox opacity={0.9} spacing={2}>
             <Typography variant="h1">Validation Check</Typography>
