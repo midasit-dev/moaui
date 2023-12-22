@@ -12,78 +12,59 @@
 import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
- //@midasit-dev/moaui
-import { GuideBox, Panel, Typography, ComponentsIconButtonWithName } from "@midasit-dev/moaui";
+//@midasit-dev/moaui
+import { GuideBox, Panel, Button, Typography, ComponentsIconButtonWithName } from "@midasit-dev/moaui";
 
- //Components
-//  import CompApplyT3 from './Components/ApplyT3';
-//  import CompAssignLoadButton from './Components/AssignLoadButton';
-//  import CompTemperatureGradientChart from './Components/TemperatureGradientChart';
-//  import CompGirderMaterial from './Components/GirderMaterial';
-//  import CompImportSectionButton from './Components/ImportSectionButton';
-//  import CompSelfEqStressesCharts from './Components/SelfEqStressesCharts';
-//  import CompZone from './Components/Zone';
+//Components
 import CompTimeHistory from './Components/TimeHistory';
-//  import CompSurface from './Components/Surface';
-//  import CompUnitNotation from './Components/UnitNotation';
+import CompTHfunction from './Components/TimeHistoryFunction';
+import CompStaticLoad from './Components/StaticLoad';
 
-//  import CompTableMaterialStress from './Components/MaterialStressTables';
+//Variables
+import { 
+	VarTHloadcase, 
+	VarSTloadcase, 
+	VarTHfunction,
+	VarScaleFactor,
+	VarScaleError,
+	VarAngleHor,
+	VarAngleError
+} from './Components/variables';
 
- //Variables
-//  import { 
-// 	 VarApplyT3, 
-// 	 VarApplyT3C, 
-// 	 VarApplyT3H, 
-// 	 VarImportSectionButton, 
-// 	 VarCalculationParseResult,
-// 	 VarGirderMaterial,
-// 	 VarZone,
-// 	 VarSurface,
-// 	 VarTemperatureGradientChart,
-// 	 VarSelfEqStressesTempHeatingChart,
-// 	 VarSelfEqStressesTempCoolingChart,
-//  } from './Components/variables';
-//  import { parseId } from './utils';
 import { checkPyScriptReady } from './pyscript_utils';
 import { useSnackbar } from 'notistack';
 
 const App = () => {
-	const visible = true;
+	const visible = false;
 
-	 //UI Values
-	//  const importSectionValue = useRecoilValue(VarImportSectionButton);
-	//  const zoneValue = useRecoilValue(VarZone);
-	//  const surfaceValue = useRecoilValue(VarSurface);
-	//  const girderMatlValue = useRecoilValue(VarGirderMaterial);
-	//  const applyT3 = useRecoilValue(VarApplyT3);
-	//  const applyT3H = useRecoilValue(VarApplyT3H);
-	//  const applyT3C = useRecoilValue(VarApplyT3C);
-
-	//  //Setters
-	//  const setCalcValue = useSetRecoilState(VarCalculationParseResult);
-	//  const setTempGradientChartValue = useSetRecoilState(VarTemperatureGradientChart);
-	//  const setSelfEqStressLeftValue = useSetRecoilState(VarSelfEqStressesTempHeatingChart);
-	//  const setSelfEqStressRightValue = useSetRecoilState(VarSelfEqStressesTempCoolingChart);
+	//UI Values
+	const TimeHistoryLC = useRecoilValue(VarTHloadcase);
+	const StaticLoadLC = useRecoilValue(VarSTloadcase);
+	const THfunction = useRecoilValue(VarTHfunction);
+	const ScaleFactor = useRecoilValue(VarScaleFactor);
+	const ScaleError = useRecoilValue(VarScaleError);
+	const AngleHor = useRecoilValue(VarAngleHor);
+	const AngleError = useRecoilValue(VarAngleError);
+	
+	function CreateLoads() {
+		
+	}
 
 	const { enqueueSnackbar } = useSnackbar();
+	function messageHandler(message: string) {
+		enqueueSnackbar(message);
+	}
 
 	return (
-	<GuideBox show={visible} fill="1" width={300} padding={1} spacing={1}>
+	<GuideBox show={visible} width={350} padding={1} spacing={1}>
 	   {/** Top Panels */}
 		<Panel variant="shadow2" width="100%" height="100%">
-			<GuideBox show={visible} width="100%" height={200}>
 				<CompTimeHistory />
-				<Typography variant="h1">Time History Load Cases Name</Typography>
-			</GuideBox>
-			<GuideBox show={visible} width="100%" height={100}>
-				<Typography variant="h1">Static Load</Typography>
-			</GuideBox>
-			<GuideBox show={visible} width="100%" height={100}>
-				<Typography variant="h1">Function</Typography>
-			</GuideBox>
+				<CompStaticLoad />
+				<CompTHfunction />
 		</Panel>
-		<GuideBox show={visible} fill="1" height={50}>
-
+		<GuideBox show={visible} horRight>
+			<Button color='negative' onClick={CreateLoads}>Create</Button>
 		</GuideBox>
 	</GuideBox>
 	);

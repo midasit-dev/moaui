@@ -135,19 +135,6 @@ export const VarApplyT3C = atom({
 });
 
 /**
- * @description Variable of GirderMaterial.tsx
- */
-export const VarGirderMaterial = atom({
-	key: 'VarGirderMaterial',
-	default: 0,
-});
-
-export const VarGirderMaterialList = atom({
-	key: 'VarGirderMaterialList',
-	default: [ ['', 1] ],
-});
-
-/**
  * @description Variable of Surface.tsx
  */
 export const VarSurface = atom({
@@ -206,4 +193,63 @@ export const VarAddButtonCooling = atom({
 		ids: [],
     items: [],
 	}
+});
+
+/**
+ * @description Variable of ThisHistory.tsx
+ */
+export const VarTHloadcase = atom({
+	key: 'VarTHloadcase',
+	default: 0,
+});
+
+export const VarTHloadCaseList = atom({
+	key: 'VarTHloadCaseList',
+	default: [ ['', 1] ],
+});
+
+/**
+ * @description Variable of StaticLoad.tsx
+ */
+export const VarSTloadcase = atom({
+	key: 'VarSTloadcase',
+	default: 0,
+});
+
+export const VarSTloadCaseList = atom({
+	key: 'VarSTloadCaseList',
+	default: [ ['', 1] ],
+});
+
+/**
+ * @description Variable of TimeHistoryFunction.tsx
+ */
+export const VarTHfunction = atom({
+	key: 'VarTHfunction',
+	default: 0,
+});
+
+export const VarTHfunctionList = atom({
+	key: 'VarTHfunctionList',
+	default: [ ['Linear', 1] ],
+});
+
+export const VarScaleFactor = atom({
+	key: "VarScaleFactor",
+	default: '1',
+});
+
+export const VarScaleError = atom({
+	key: "VarScaleError",
+	default: false,
+});
+
+export const VarAngleHor = atom({
+	key: "VarAngleHor",
+	default: '0',
+});
+
+export const VarAngleError = atom({
+	key: "VarAngleError",
+	default: false,
 });

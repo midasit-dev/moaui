@@ -42,5 +42,13 @@ def py_db_read(item_name):
 '''
 # ↓↓↓↓↓↓↓↓↓↓↓↓ write a main logic here ↓↓↓↓↓↓↓↓↓↓↓↓
 
-def main():
-  print('main logic!')
+def main(
+		jsonInput:str
+	):
+	
+    UIinputs = json.loads(jsonInput)
+	
+    if type(UIinputs) is not dict:
+        return json.dumps({'error': 'input is not json'})
+    else:
+        return json.dumps({"success" : "Hello World!"})
