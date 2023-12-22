@@ -1,7 +1,44 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
-import { GuideBox, VerifyUtil, Icon, Typography, Button, TextField } from "../../";
+import { GuideBox, VerifyUtil, Icon, Typography, Button, TextField, Color } from "../../";
+import { CircularProgress, circularProgressClasses, Box } from '@mui/material';
+import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
+
+function CustomCircularProgress({
+	color
+}: any) {
+  return (
+    <Box sx={{ position: 'relative', display: 'flex', opacity: 0.3 }}>
+      <CircularProgress
+        variant="determinate"
+        sx={{
+          // color: (theme) => theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+					color: color === "negative" ? Color.text.secondary : Color.primary.enable,
+        }}
+        size={30}
+        thickness={4}
+        value={100}
+      />
+      <CircularProgress
+        variant="indeterminate"
+        disableShrink
+        sx={{
+          // color: (theme) => (theme.palette.mode === 'light' ? Color.primary.enable_strock : '#308fe8'),
+					color: color === "negative" ? Color.primaryNegative.white : Color.primary.enable_strock,
+          animationDuration: '550ms',
+          position: 'absolute',
+          left: 0,
+          [`& .${circularProgressClasses.circle}`]: {
+            strokeLinecap: 'round',
+          },
+        }}
+        size={30}
+        thickness={4}
+      />
+    </Box>
+  );
+}
 
 export interface StyledProps {
 	/**
@@ -16,6 +53,10 @@ export interface StyledProps {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: any;
+	/**
+	 * If `true`, loading option
+	 */
+	loading?: boolean;
 }
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -38,8 +79,23 @@ const StyledComponent = styled((props: StyledProps) => {
 		handleClose();
 	};
 
-	const handleBaseUrlChange = (e: any) => setBaseUrl(e.target.value);
+	const handleBaseUriChange = (e: any) => {
+		const url = e.target.value;
+		const extractedUrl = VerifyUtil.extractProtocolDomainPort(url);
+		if (extractedUrl) {
+			const protocol = extractedUrl.protocol;
+			const domain = extractedUrl.domain;
+			const port = extractedUrl.port;
+			setBaseUrl(`${protocol}://${domain}:${port}`);
+		} else {
+			setBaseUrl("");
+		}
+	}
 	const handleMapiKeyChange = (e: any) => setMapiKey(e.target.value);
+
+	React.useEffect(() => {
+		console.log(baseUrl, mapiKey)
+	}, [baseUrl, mapiKey])
 
 	return (
     <Dialog 
@@ -49,12 +105,17 @@ const StyledComponent = styled((props: StyledProps) => {
 		>
       <GuideBox width={350} fill="1" padding={4}>
         <GuideBox width={350} fill="1" spacing={3}>
-          <GuideBox width="100%" fill="2" spacing={1} center>
-            <GuideBox width="100%" fill="2" spacing={1} center row>
-              <Icon iconName="Warning" />
-              <Typography>To use the plugin</Typography>
-            </GuideBox>
-            <Typography>you need a base URL and an MAPI-key.</Typography>
+          <GuideBox width={350} fill="2" spacing={1} center row horSpaceBetween>
+						<GuideBox width="70%" spacing={1}>
+							<GuideBox width="100%" fill="2" spacing={1} row>
+								<Icon iconName="Warning" />
+								<Typography>To use the plugin</Typography>
+							</GuideBox>
+							<Typography>you need a base URI and an MAPI-key.</Typography>
+          	</GuideBox>
+						<GuideBox width="30%" horRight>
+							{props.loading ? <CustomCircularProgress color="negative" /> : <CheckTwoToneIcon sx={{ color: Color.text.secondary }} />}
+          	</GuideBox>
           </GuideBox>
           <GuideBox
             width="100%"
@@ -63,13 +124,15 @@ const StyledComponent = styled((props: StyledProps) => {
             row
             horSpaceBetween
             verCenter
+						opacity={props.loading ? 0.5 : 1}
           >
-            <Typography variant="h1">Base URL</Typography>
+            <Typography variant="h1">Base URI</Typography>
             <TextField
               autoFocus
               width={250}
-              placeholder="default: https://moa-engineers.midasit.com:443"
-              onChange={handleBaseUrlChange}
+              placeholder="https://moa-engineers.midasit.com:443"
+              onChange={handleBaseUriChange}
+							disabled={props.loading}
             />
           </GuideBox>
           <GuideBox
@@ -79,12 +142,14 @@ const StyledComponent = styled((props: StyledProps) => {
             row
             horSpaceBetween
             verCenter
-          >
+						opacity={props.loading ? 0.5 : 1}
+						>
             <Typography variant="h1">MAPI-Key</Typography>
             <TextField
               width={250}
-              placeholder="ex) 1234"
+              placeholder="MIDASIT Auth API Key"
               onChange={handleMapiKeyChange}
+							disabled={props.loading}
             />
           </GuideBox>
           <GuideBox show width="100%" fill="2" center>
@@ -93,6 +158,7 @@ const StyledComponent = styled((props: StyledProps) => {
               color="negative"
               onClick={handleOk}
               width="100%"
+							disabled={props.loading}
             >
               continue
             </Button>

@@ -74,6 +74,7 @@ const VerifyDialogCategory: React.FC<{}> = () => (
 				width: '188px',
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.VerifyDialogDefault}>Default</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.VerifyDialogLoading}>Loading</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -876,6 +877,9 @@ const TendonProfileConverterCategory: React.FC<{}> = () => (
 
 export const VerifyDialogDefault = 
 	() => <CustomDraggableComponent itemType={ItemTypes.VerifyDialogDefault}>VerifyDialogDefault</CustomDraggableComponent>;
+
+export const VerifyDialogLoading = 
+	() => <CustomDraggableComponent itemType={ItemTypes.VerifyDialogLoading}>VerifyDialogLoading</CustomDraggableComponent>;
 
 export const AlertError = 
 	() => <CustomDraggableComponent itemType={ItemTypes.AlertError}>AlertError</CustomDraggableComponent>;

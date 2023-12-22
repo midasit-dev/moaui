@@ -292,6 +292,7 @@ export default function TotalCodeString(){
 					}}
 				>
 					${item.type === ItemTypes.VerifyDialogDefault ? `${extractComponentName(All.VerifyDialogDefault)}` : ""}
+					${item.type === ItemTypes.VerifyDialogLoading ? `${extractComponentName(All.VerifyDialogLoading)}` : ""}
 					${item.type === ItemTypes.AlertError ? `${extractComponentName(All.AlertError)}` : ""}
 					${item.type === ItemTypes.ButtonComposite ? `${extractComponentName(All.ButtonComposite)}` : ""}
 					${item.type === ItemTypes.ButtonContained ? `${extractComponentName(All.ButtonContained)}` : ""}
