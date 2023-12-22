@@ -27,7 +27,7 @@ const Wrapper = () => {
 
 	return (
 		<>
-			<VerifyDialog />
+			<VerifyDialog loading={!installed} />
 			{installed && VerifyUtil.isExistQueryStrings('mapiKey') &&
 				<RecoilRoot>
 					<SnackbarProvider maxSnack={3}>
