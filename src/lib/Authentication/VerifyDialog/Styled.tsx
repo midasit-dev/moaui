@@ -88,7 +88,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			const port = extractedUrl.port;
 			setBaseUrl(`${protocol}://${domain}:${port}`);
 		} else {
-			setBaseUrl("");
+			setBaseUrl("https://moa-engineers.midasit.com:443");
 		}
 	}
 	const handleMapiKeyChange = (e: any) => setMapiKey(e.target.value);
