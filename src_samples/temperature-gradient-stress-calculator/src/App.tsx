@@ -140,7 +140,7 @@ const App = () => {
               <Typography variant="h1">Temperature Gradient</Typography>
             </GuideBox>
             <GuideBox show={visible} width="100%" fill="3" center>
-              	<CompTemperatureGradientChart />
+							<CompTemperatureGradientChart />
             </GuideBox>
           </GuideBox>
         </Panel>
@@ -162,7 +162,7 @@ const App = () => {
 					<ComponentsIconButtonWithName iconName="Help" />
           <CompImportSectionButton />
         </GuideBox>
-        <GuideBox show={visible} width="69%" height={30} fill="4" row spacing={3} horRight verCenter>
+        <GuideBox show={visible} width="70%" height={30} fill="4" row spacing={3} horRight verCenter>
           <Typography>
             The above Temperature Gradient Loads in MIDAS Civil Load Cases
           </Typography>

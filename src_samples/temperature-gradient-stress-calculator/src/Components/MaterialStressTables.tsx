@@ -14,7 +14,7 @@ import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { VarCalculationParseResult } from './variables';
 import { VarMaterialStressTableDataOfTab1 , VarMaterialStressTableDataOfTab2 } from './variables';
-import { Typography, Table, TableHead, TableRow, TableCell, TableBody, Panel, Tab, TabGroup } from '@midasit-dev/moaui';
+import { Typography, Table, TableHead, TableRow, TableCell, TableBody, GuideBox, Tab, TabGroup } from '@midasit-dev/moaui';
 
 const TypoBody1 = ({ text }: any) => <Typography variant="body1" textAlign='center'>{text}</Typography>;
 
@@ -152,13 +152,13 @@ const ComponentsTabGroupWithTable = (props: any) => {
 	}
 
 	return (
-    <Panel width={300}>
+    <GuideBox width={300}>
       <TabGroup value={tabValue} onChange={(e: any, newValue: string) => setTabValue(newValue)}>
         <Tab value="Tab 1" label={tab1Label} />
         <Tab value="Tab 2" label={tab2Label} />
       </TabGroup>
       {tabValue === "Tab 1" && <CompTable headRow={tab1TableHeadRow} dataRows={tab1TableDataRows} />}
 			{tabValue === "Tab 2" && <CompTable headRow={tab2TableHeadRow} dataRows={tab2TableDataRows} />}
-    </Panel>
+    </GuideBox>
   );
 }

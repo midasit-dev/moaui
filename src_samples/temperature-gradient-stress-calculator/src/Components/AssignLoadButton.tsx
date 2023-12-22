@@ -90,7 +90,7 @@ const CompAddButton = () => {
             return;
           }
 
-          const q = [];
+          const q: any[] = [];
           if (heatingCheck) q.push("heating");
           if (coolingCheck) q.push("cooling");
 					q.push("assign");
@@ -281,7 +281,7 @@ const DialogPage = ({
 					</GuideBox>
 				}
 				{curQueue === "assign" &&
-					<GuideBox width={250} spacing={2} >
+					<GuideBox width={250} spacing={2}>
 						<Typography variant="h1">Current Values</Typography>
 						<GuideBox opacity={0.9} paddingBottom={1.5} spacing={1}>
 							{heatingCheck &&
