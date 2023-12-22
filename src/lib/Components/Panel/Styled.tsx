@@ -25,7 +25,6 @@ class StyleVariant {
 		boxSizing: 'border-box',
 		backgroundColor: 'var(--color-bg, #ffffff)',
 		display: 'flex',
-		marginTop: '-40px',
 		boxShadow: 'var(--elevation-200-canvas, 0px 0px .5px rgba(0, 0, 0, .18), 0px 3px 8px rgba(0, 0, 0, .1), 0px 1px 3px rgba(0, 0, 0, .1))',
 	}
 
