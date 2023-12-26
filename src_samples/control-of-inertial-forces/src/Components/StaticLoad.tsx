@@ -45,7 +45,7 @@ const CompStaticLoad = () => {
 			nbofStldName.push(element.LCNAME);
 		}
 		const uniqueNbofStldName: string[] = Array.from(new Set(nbofStldName));
-		
+
 		const uniqueStldName: string[] = [...uniqueCnldStldName, ...uniqueNbofStldName]
 
 		const items: [string, number][] = [];
@@ -56,7 +56,7 @@ const CompStaticLoad = () => {
 				items.push([thisName, +id]);	
 			}
 		}
-
+		
 		setList(items);
 
 		//첫번째 데이터를 선택합니다.
