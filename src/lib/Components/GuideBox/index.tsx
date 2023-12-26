@@ -2,7 +2,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 GuideBox.defaultProps = {
 	show: false,
-	width: 'inherit',
+	width: 'auto',
 	height: 'auto',
 	fill: '1',
 	opacity: 1,

@@ -4,9 +4,9 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import IconButton from "@mui/material/IconButton"
 import Box from "@mui/material/Box";
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import SpellcheckOutlinedIcon from '@mui/icons-material/SpellcheckOutlined';
 import prettier from "prettier/standalone";
 import parserBabel from 'prettier/parser-babel';
+import ContentPasteTwoToneIcon from '@mui/icons-material/ContentPasteTwoTone';
 // import parserBabel from "prettier/plugins/babel";
 import { Typography, Color } from "../..";
 	
@@ -31,21 +31,28 @@ interface CodeComponentProps {
 	 * 
 	 * @default false
 	 */
-	hidetitle?: string;
+	hidetitle?: boolean;
 	/**
 	 * The radius of the code block
 	 * 
 	 * @default 8
 	 */
 	radius?: number;
+	/**
+	 * The width of the code block
+	 * 
+	 * @default "100%"
+	 */
+	width?: number | string;
 }
 
 CodeBlock.defaultProps = {
 	children: "",
 	language: "javascript",
 	title: "",
-	hidetitle: "false",
+	hidetitle: false,
 	radius: 8,
+	width: "100%",
 }
 /**
  * A code block with syntax highlighting
@@ -99,28 +106,30 @@ function CodeBlock(props: CodeComponentProps){
 
 	return (
 		<>
-			<Box
-				display="flex"
-				justifyContent={"space-between"}
-				alignItems='center'
-				sx={{
-					backgroundColor: Color.primaryNegative.enable,
-					width: "100%",
-					height: "2rem",
-					borderTopLeftRadius: props.radius,
-					borderTopRightRadius: props.radius,
-				}}
-			>
-				{/* <Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button> */}
-				<Typography color={Color.primaryNegative.white} variant="h1" paddingLeft='1.4rem'>{props.title}</Typography>
-				<IconButton onClick={copyToClipboard} sx={{backgroundColor:"transparent", width:"30px", height:"100%", mr: '0.6rem'}}>
-					{copySuccess ? (
-						<SpellcheckOutlinedIcon style={{ color: "gray", fontSize: "20" }}/>
-					) : (
-						<CodeRoundedIcon style={{ color: "white", fontSize: "20" }} />
-					)}
-				</IconButton>
-			</Box>
+			{!props.hidetitle &&
+				<Box
+					display="flex"
+					justifyContent={"space-between"}
+					alignItems='center'
+					sx={{
+						backgroundColor: Color.primaryNegative.enable,
+						width: props.width,
+						height: "2rem",
+						borderTopLeftRadius: props.radius,
+						borderTopRightRadius: props.radius,
+					}}
+				>
+					{/* <Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button> */}
+					<Typography color={Color.primaryNegative.white} variant="h1" paddingLeft='1.4rem'>{props.title}</Typography>
+					<IconButton onClick={copyToClipboard} sx={{backgroundColor:"transparent", width:"30px", height:"100%", mr: '0.6rem'}}>
+						{copySuccess ? (
+							<ContentPasteTwoToneIcon style={{ color: "gray", fontSize: "20" }}/>
+						) : (
+							<CodeRoundedIcon style={{ color: "white", fontSize: "20" }} />
+						)}
+					</IconButton>
+				</Box>
+			}
 			<SyntaxHighlighter
 				showLineNumbers
 				style={vscDarkPlus}
@@ -131,6 +140,7 @@ function CodeBlock(props: CodeComponentProps){
 					padding: '1rem 1rem 1rem 0',
 					fontSize: "3px",
 					margin: 0,
+					width: props.width,
 					// minHeight: "100px",
 				}}
 				{...props}

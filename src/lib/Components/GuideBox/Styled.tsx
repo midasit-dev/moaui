@@ -21,7 +21,7 @@ export type StyledProps = {
 	/**
 	 * width of block
 	 *
-	 * @default inherit
+	 * @default auto
 	 */
 	width?: number | string;
   /**

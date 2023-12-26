@@ -20,6 +20,7 @@ export { default as ComponentsCheckRequired } from "./Components/Check/Code/Requ
 export { default as ComponentsCheckGroupStateful } from "./Components/CheckGroup/Code/Stateful.code";
 export { default as ComponentsCheckGroupUnControlled } from "./Components/CheckGroup/Code/UnControlled.code";
 export { default as ComponentsChipDefault } from "./Components/Chip/Code/Default.code";
+export { default as ComponentsCodeBlockHideTitle } from "./Components/CodeBlock/Code/HideTitle.code";
 export { default as ComponentsCodeBlockJavascript } from "./Components/CodeBlock/Code/Javascript.code";
 export { default as ComponentsCodeBlockTypescript } from "./Components/CodeBlock/Code/Typescript.code";
 export { default as ComponentsDataGridPagination } from "./Components/DataGrid/Code/Pagination.code";

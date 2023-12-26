@@ -251,6 +251,7 @@ const CodeBlockCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.CodeBlockHideTitle}>HideTitle</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>Javascript</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockTypescript}>Typescript</CustomDraggableComponent>
 			</div>
@@ -931,6 +932,9 @@ export const CheckGroupUnControlled =
 
 export const ChipDefault = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ChipDefault}>ChipDefault</CustomDraggableComponent>;
+
+export const CodeBlockHideTitle = 
+	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockHideTitle}>CodeBlockHideTitle</CustomDraggableComponent>;
 
 export const CodeBlockJavascript = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>CodeBlockJavascript</CustomDraggableComponent>;

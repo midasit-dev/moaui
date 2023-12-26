@@ -6,6 +6,7 @@ import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { 
 	JavascriptCode,
 	TypescriptCode,
+	HideTitleCode,
 } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -26,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Javascript = LiveEditStory(cleanMask(JavascriptCode));
 export const Typescript = LiveEditStory(cleanMask(TypescriptCode));
+export const HideTitle = LiveEditStory(cleanMask(HideTitleCode));
 
 export const Sample: Story = {
 	args: {

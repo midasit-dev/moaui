@@ -18,6 +18,7 @@ export const ItemTypes = {
 	CheckGroupStateful: 'CheckGroupStateful',
 	CheckGroupUnControlled: 'CheckGroupUnControlled',
 	ChipDefault: 'ChipDefault',
+	CodeBlockHideTitle: 'CodeBlockHideTitle',
 	CodeBlockJavascript: 'CodeBlockJavascript',
 	CodeBlockTypescript: 'CodeBlockTypescript',
 	DataGridPagination: 'DataGridPagination',
