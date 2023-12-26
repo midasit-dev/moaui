@@ -12,7 +12,7 @@ export type MarginTypes = {
 	 * <MoaTypography margin={0} />
 	 * ```
 	 */
-	margin?: CSS.PropertiesFallback<number | string>;
+	margin?: string | number;
 
 	/**
 	 * Set the marginX
@@ -22,7 +22,7 @@ export type MarginTypes = {
 	 * <MoaTypography marginX={0} />
 	 * ```
 	 */
-	marginX?: CSS.StandardLonghandProperties['marginLeft'] & CSS.StandardLonghandProperties['marginRight'];
+	marginX?: CSS.StandardLonghandProperties['marginLeft'] & CSS.StandardLonghandProperties['marginRight'] | number;
 
 	/**
 	 * Set the marginY
@@ -32,7 +32,7 @@ export type MarginTypes = {
 	 * <MoaTypography marginY={0} />
 	 * ```
 	 */
-	marginY?: CSS.StandardLonghandProperties['marginTop'] & CSS.StandardLonghandProperties['marginBottom'];
+	marginY?: CSS.StandardLonghandProperties['marginTop'] & CSS.StandardLonghandProperties['marginBottom'] | number;
 
 	/**
 	 * Set the marginTop
@@ -42,7 +42,7 @@ export type MarginTypes = {
 	 * <MoaTypography marginTop={0} />
 	 * ```
 	 */
-	marginTop?: CSS.StandardLonghandProperties['marginTop'];
+	marginTop?: CSS.StandardLonghandProperties['marginTop'] | number;
 
 	/**
 	 * Set the marginBottom
@@ -52,7 +52,7 @@ export type MarginTypes = {
 	 * <MoaTypography marginBottom={0} />
 	 * ```
 	 */
-	marginBottom?: CSS.StandardLonghandProperties['marginBottom'];
+	marginBottom?: CSS.StandardLonghandProperties['marginBottom'] | number;
 	
 	/**
 	 * Set the marginLeft
@@ -62,7 +62,7 @@ export type MarginTypes = {
 	 * <MoaTypography marginLeft={0} />
 	 * ```
 	 */
-	marginLeft?: CSS.StandardLonghandProperties['marginLeft'];
+	marginLeft?: CSS.StandardLonghandProperties['marginLeft'] | number;
 	
 	/**
 	 * Set the marginRight
@@ -72,15 +72,19 @@ export type MarginTypes = {
 	 * <MoaTypography marginRight={0} />
 	 * ```
 	 */
-	marginRight?: CSS.StandardLonghandProperties['marginRight'];
+	marginRight?: CSS.StandardLonghandProperties['marginRight'] | number;
 }
 
-export const MarginProps = (props: any) => ({
-	margin: props?.margin || 0,
-	marginX: props?.marginX || 0,
-	marginY: props?.marginY || 0,
-	marginTop: props?.marginTop || 0,
-	marginBottom: props?.marginBottom || 0,
-	marginLeft: props?.marginLeft || 0,
-	marginRight: props?.marginRight || 0,
-});
+export const MarginProps = (props: any) => {
+	let MarginObject: any = {};
+	if (props && props.margin) MarginObject.margin = props.margin;
+	if (props && props.marginX) MarginObject.marginLeft = props.marginX;
+	if (props && props.marginX) MarginObject.marginRight = props.marginX;
+	if (props && props.marginY) MarginObject.marginTop = props.marginY;
+	if (props && props.marginY) MarginObject.marginBottom = props.marginY;
+	if (props && props.marginTop) MarginObject.marginTop = props.marginTop;
+	if (props && props.marginBottom) MarginObject.marginBottom = props.marginBottom;
+	if (props && props.marginLeft) MarginObject.marginLeft = props.marginLeft;
+	if (props && props.marginRight) MarginObject.marginRight = props.marginRight;
+	return MarginObject;
+}

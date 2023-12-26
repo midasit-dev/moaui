@@ -1,0 +1,34 @@
+import type { StorybookConfig } from "@storybook/react-webpack5";
+import { getCodeEditorStaticDirs } from "storybook-addon-code-editor/getStaticDirs";
+import path from "path";
+
+const config: StorybookConfig = {
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: [
+		"storybook-addon-code-editor",
+		"@storybook/addon-essentials",
+    "@storybook/addon-links",
+    "@storybook/addon-onboarding",
+    "@storybook/addon-interactions",
+  ],
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
+  docs: {
+    autodocs: "tag",
+		defaultName: "Explore",
+  },
+	staticDirs: [
+		...getCodeEditorStaticDirs(),
+	],
+  webpackFinal: async (config:any) => { // 웹팩 설정 커스터마이징
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@src/lib': path.resolve(__dirname, '../src/lib'), // 실제 내부코드에서 사용할 때 쓸 별칭!
+      '@midasit-dev/moaui': path.resolve(__dirname, '../src/lib'), // 이건 *.code.*를 렌더링하기 위한 별칭임 (사용하지 말 것)
+    };
+    return config; // 수정된 설정 반환
+  },
+};
+export default config;

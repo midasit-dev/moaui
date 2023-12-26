@@ -1,0 +1,1 @@
+export { default as NameCode } from "./Name.code.tsx?raw";
