@@ -7,7 +7,6 @@ GuideBox.defaultProps = {
 	fill: '1',
 	opacity: 1,
 	duration: 1,
-	progress: false,
 } as StyledProps;
 
 /**
