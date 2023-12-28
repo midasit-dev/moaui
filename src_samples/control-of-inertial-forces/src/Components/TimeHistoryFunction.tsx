@@ -13,7 +13,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { VarTHfunction, VarTHfunctionList, VarScaleFactor, VarScaleError } from "./variables";
-import { VarAngleHor, VarAngleError } from "./variables";
+// import { VarAngleHor, VarAngleError } from "./variables";
 import { GuideBox, Typography, DropList, TextField ,IconButton, Icon } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
 
@@ -22,8 +22,8 @@ const CompTHfunction = () => {
 	const [THfuncList, setTHfuncList] = useRecoilState(VarTHfunctionList);
 	const [scale, setScale] = useRecoilState(VarScaleFactor);
 	const [scaleErr, setScaleErr] = useRecoilState(VarScaleError);
-	const [angle, setAngle] = useRecoilState(VarAngleHor);
-	const [angleErr, setAngleErr] = useRecoilState(VarAngleError);
+	// const [angle, setAngle] = useRecoilState(VarAngleHor);
+	// const [angleErr, setAngleErr] = useRecoilState(VarAngleError);
 
 	const refreshThfcData = React.useCallback(() => {
 		const thfcData = dbRead('THFC');
@@ -66,13 +66,13 @@ const CompTHfunction = () => {
 	}, [scale, setScaleErr]);
 
 	//Angle of Horizontal Load가 숫자가 아니면 에러를 발생시킵니다.
-	React.useEffect(() => {
-		if (angle === "" || angle === undefined || angle === null || isNaN(+angle)) {
-			setAngleErr(true);
-		} else {
-			setAngleErr(false);
-		}
-	}, [angle, setAngleErr]);
+	// React.useEffect(() => {
+	// 	if (angle === "" || angle === undefined || angle === null || isNaN(+angle)) {
+	// 		setAngleErr(true);
+	// 	} else {
+	// 		setAngleErr(false);
+	// 	}
+	// }, [angle, setAngleErr]);
 
 	return (
 		<GuideBox width="100%" column spacing={1} paddingBottom={1}>
@@ -110,7 +110,7 @@ const CompTHfunction = () => {
 					/>
 				</GuideBox>
 			</GuideBox>
-			<GuideBox width="100%" row horSpaceBetween verCenter spacing={1}>
+			{/* <GuideBox width="100%" row horSpaceBetween verCenter spacing={1}>
 				<GuideBox row horSpaceBetween verCenter height={30} paddingLeft={1}>
 					<Typography>
 						Angle of Horizontal Load
@@ -126,7 +126,7 @@ const CompTHfunction = () => {
 				<Typography>
 					[deg]
 				</Typography>
-			</GuideBox>
+			</GuideBox> */}
 		</GuideBox>
 	);
 };
