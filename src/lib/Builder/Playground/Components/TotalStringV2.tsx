@@ -328,6 +328,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.GuideBoxLayout3 ? `${extractComponentName(All.GuideBoxLayout3)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout4 ? `${extractComponentName(All.GuideBoxLayout4)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout5 ? `${extractComponentName(All.GuideBoxLayout5)}` : ""}
+					${item.type === ItemTypes.GuideBoxLoading ? `${extractComponentName(All.GuideBoxLoading)}` : ""}
 					${item.type === ItemTypes.GuideBoxOpacity ? `${extractComponentName(All.GuideBoxOpacity)}` : ""}
 					${item.type === ItemTypes.GuideBoxPulse ? `${extractComponentName(All.GuideBoxPulse)}` : ""}
 					${item.type === ItemTypes.GuideBoxRowDirection ? `${extractComponentName(All.GuideBoxRowDirection)}` : ""}
@@ -375,6 +376,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TextFieldError ? `${extractComponentName(All.TextFieldError)}` : ""}
 					${item.type === ItemTypes.TextFieldLabel ? `${extractComponentName(All.TextFieldLabel)}` : ""}
 					${item.type === ItemTypes.TextFieldLeft ? `${extractComponentName(All.TextFieldLeft)}` : ""}
+					${item.type === ItemTypes.TextFieldMultiLine ? `${extractComponentName(All.TextFieldMultiLine)}` : ""}
 					${item.type === ItemTypes.TextFieldRight ? `${extractComponentName(All.TextFieldRight)}` : ""}
 					${item.type === ItemTypes.TypographyBody1 ? `${extractComponentName(All.TypographyBody1)}` : ""}
 					${item.type === ItemTypes.TypographyBody2 ? `${extractComponentName(All.TypographyBody2)}` : ""}

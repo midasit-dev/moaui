@@ -21,6 +21,7 @@ import {
 	Layout5_SampleCode,
 	OpacityCode,
 	PulseCode,
+	LoadingCode,
 } from "../Code";
 
 const meta = {
@@ -51,6 +52,7 @@ export const Layout5 = LiveEditStory(cleanMask(Layout5Code));
 export const Layout5_Sample = LiveEditStory(cleanMask(Layout5_SampleCode));
 export const Opacity = LiveEditStory(cleanMask(OpacityCode));
 export const Pulse = LiveEditStory(cleanMask(PulseCode));
+export const Loading = LiveEditStory(cleanMask(LoadingCode));
 
 export const Sample: Story = {
   args: {

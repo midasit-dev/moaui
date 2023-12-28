@@ -3,7 +3,9 @@ import { styled, keyframes } from "@mui/material/styles";
 import MoaStyledComponent from "../../Style/MoaStyled";
 import { MarginTypes, MarginProps } from "../../Style/Margin";
 import { PaddingTypes, PaddingProps } from "../../Style/Padding";
-import { Stack } from "../..";
+import { Stack, Color } from "../..";
+import CircularProgress, { circularProgressClasses } from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export type StyledProps = {
 	/**
@@ -104,6 +106,11 @@ export type StyledProps = {
 	 * animation style (pulse)
 	 */
 	pulse?: boolean;
+
+	/**
+	 * loading option
+	 */
+	loading?: boolean;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -195,6 +202,64 @@ const kf_pulse = keyframes`
   }
 `;
 
+const kf_transition = keyframes`
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+`;
+
+function CustomCircularloading({
+	color
+}: any) {
+  return (
+    <Box sx={{ position: 'relative', display: 'flex', opacity: 0.3 }}>
+      <CircularProgress
+        variant="determinate"
+        sx={{
+          // color: (theme) => theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+					color: color === "negative" ? '#1F2327' : Color.primary.enable,
+        }}
+        size={30}
+        thickness={4}
+        value={100}
+      />
+      <CircularProgress
+        variant="indeterminate"
+        disableShrink
+        sx={{
+          // color: (theme) => (theme.palette.mode === 'light' ? Color.primary.enable_strock : '#308fe8'),
+					color: color === "negative" ? Color.primaryNegative.white : Color.primary.enable_strock,
+          animationDuration: '550ms',
+          position: 'absolute',
+          left: 0,
+          [`& .${circularProgressClasses.circle}`]: {
+            strokeLinecap: 'round',
+          },
+        }}
+        size={30}
+        thickness={4}
+      />
+    </Box>
+  );
+}
+
+// Loading button styles
+const loadingStackStyles = {
+	position: 'relative', // Make sure it's above the other elements
+}
+
+const loadingStyles: React.CSSProperties = {
+	position: 'absolute',
+	top: '50%',
+	left: '50%',
+	transform: 'translate(-50%, -50%)', // Center the button
+	zIndex: 2, // Ensure it's on top
+	marginTop: 0, // Reset margin because of stack spacing value
+};
+
 const GuideBox = (props: StyledProps) => {
 	const { 
 		children, 
@@ -221,6 +286,7 @@ const GuideBox = (props: StyledProps) => {
 		opacity,
 		duration,
 		pulse,
+		loading,
 		...rest 
 	} = props;
 
@@ -234,7 +300,9 @@ const GuideBox = (props: StyledProps) => {
 				...PaddingProps(props),
 				backgroundColor: getBackgroundColor(props),
 				opacity: opacity,
-				animation: pulse ? `${kf_pulse} ${duration}s infinite` : 'none',
+				...(pulse ? { animation: `${kf_pulse} ${duration}s infinite` } : {}),
+				...(loading ? loadingStackStyles : {}),
+				...(loading ? { animation: `${kf_transition} ${duration}s infinite` } : {}),
 			}}
 			overflow={"hidden"}
 			direction={getItemDirection(props).value}
@@ -243,7 +311,15 @@ const GuideBox = (props: StyledProps) => {
 			justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
 			alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
 		>
+			{/* Existing children */}
 			{props.children}
+
+			{/* Loading loading */}
+			{loading && (
+				<div style={{...loadingStyles}}>
+					<CustomCircularloading color="negative" />
+				</div>
+      )}
 		</Stack>
   );
 }

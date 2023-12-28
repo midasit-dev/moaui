@@ -31,7 +31,7 @@ interface CodeComponentProps {
 	 * 
 	 * @default false
 	 */
-	hidetitle?: boolean;
+	hideTitle?: boolean;
 	/**
 	 * The radius of the code block
 	 * 
@@ -50,7 +50,7 @@ CodeBlock.defaultProps = {
 	children: "",
 	language: "javascript",
 	title: "",
-	hidetitle: false,
+	hideTitle: false,
 	radius: 8,
 	width: "100%",
 }
@@ -105,18 +105,20 @@ function CodeBlock(props: CodeComponentProps){
 	}
 
 	return (
-		<>
-			{!props.hidetitle &&
+		<Box width={props.width}>
+			{!props.hideTitle &&
 				<Box
 					display="flex"
 					justifyContent={"space-between"}
 					alignItems='center'
 					sx={{
 						backgroundColor: Color.primaryNegative.enable,
-						width: props.width,
+						width: '100%',
 						height: "2rem",
 						borderTopLeftRadius: props.radius,
 						borderTopRightRadius: props.radius,
+						paddingX: "0.5rem",
+						paddingY: "0.5rem",
 					}}
 				>
 					{/* <Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button> */}
@@ -140,14 +142,14 @@ function CodeBlock(props: CodeComponentProps){
 					padding: '1rem 1rem 1rem 0',
 					fontSize: "3px",
 					margin: 0,
-					width: props.width,
+					width: '100%',
 					// minHeight: "100px",
 				}}
 				{...props}
 			>
 				{formattedCode}
 			</SyntaxHighlighter>
-		</>
+		</Box>
 	);
 }
 

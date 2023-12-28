@@ -13,7 +13,7 @@ document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;`;
 			<CodeBlock 
 				language="javascript"
 				title="javascript Code Block"
-				hidetitle
+				hideTitle
 				radius={0}
 			>
 				{code}

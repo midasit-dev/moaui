@@ -36,6 +36,7 @@ export { default as GuideBoxLayout2 } from '../../../Components/GuideBox/Code/La
 export { default as GuideBoxLayout3 } from '../../../Components/GuideBox/Code/Layout3.code';
 export { default as GuideBoxLayout4 } from '../../../Components/GuideBox/Code/Layout4.code';
 export { default as GuideBoxLayout5 } from '../../../Components/GuideBox/Code/Layout5.code';
+export { default as GuideBoxLoading } from '../../../Components/GuideBox/Code/Loading.code';
 export { default as GuideBoxOpacity } from '../../../Components/GuideBox/Code/Opacity.code';
 export { default as GuideBoxPulse } from '../../../Components/GuideBox/Code/Pulse.code';
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code';
@@ -83,6 +84,7 @@ export { default as TextFieldBasic } from '../../../Components/TextField/Code/Ba
 export { default as TextFieldError } from '../../../Components/TextField/Code/Error.code';
 export { default as TextFieldLabel } from '../../../Components/TextField/Code/Label.code';
 export { default as TextFieldLeft } from '../../../Components/TextField/Code/Left.code';
+export { default as TextFieldMultiLine } from '../../../Components/TextField/Code/MultiLine.code';
 export { default as TextFieldRight } from '../../../Components/TextField/Code/Right.code';
 export { default as TypographyBody1 } from '../../../Components/Typography/Code/Body1.code';
 export { default as TypographyBody2 } from '../../../Components/Typography/Code/Body2.code';

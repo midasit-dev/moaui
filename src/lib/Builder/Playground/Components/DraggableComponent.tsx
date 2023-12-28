@@ -370,6 +370,7 @@ const GuideBoxCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout3}>Layout3</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout4}>Layout4</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout5}>Layout5</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLoading}>Loading</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxOpacity}>Opacity</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxPulse}>Pulse</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxRowDirection}>RowDirection</CustomDraggableComponent>
@@ -757,6 +758,7 @@ const TextFieldCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldError}>Error</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldLabel}>Label</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldLeft}>Left</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldMultiLine}>MultiLine</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldRight}>Right</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -990,6 +992,9 @@ export const GuideBoxLayout4 =
 export const GuideBoxLayout5 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout5}>GuideBoxLayout5</CustomDraggableComponent>;
 
+export const GuideBoxLoading = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLoading}>GuideBoxLoading</CustomDraggableComponent>;
+
 export const GuideBoxOpacity = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxOpacity}>GuideBoxOpacity</CustomDraggableComponent>;
 
@@ -1130,6 +1135,9 @@ export const TextFieldLabel =
 
 export const TextFieldLeft = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldLeft}>TextFieldLeft</CustomDraggableComponent>;
+
+export const TextFieldMultiLine = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldMultiLine}>TextFieldMultiLine</CustomDraggableComponent>;
 
 export const TextFieldRight = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldRight}>TextFieldRight</CustomDraggableComponent>;

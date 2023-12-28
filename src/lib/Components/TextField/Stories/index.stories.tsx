@@ -4,7 +4,7 @@ import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { LeftCode, RightCode, LabelCode, ErrorCode, BasicCode } from '../Code';
+import { LeftCode, RightCode, LabelCode, ErrorCode, BasicCode, MultiLineCode } from '../Code';
 
 const meta = {
   title: 'Components/TextField',
@@ -24,6 +24,7 @@ export const Left = LiveEditStory(cleanMask(LeftCode));
 export const Right = LiveEditStory(cleanMask(RightCode));
 export const Label = LiveEditStory(cleanMask(LabelCode));
 export const Error = LiveEditStory(cleanMask(ErrorCode));
+export const MultiLine = LiveEditStory(cleanMask(MultiLineCode));
 
 export const Sample: Story = {
 	args: {

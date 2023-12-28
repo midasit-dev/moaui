@@ -84,6 +84,18 @@ export type StyledProps = {
 	 * The alignment of the textfield.
 	 */
 	textAlign?: "left" | "center" | "right",
+	/**
+	 * The multiline of the textfield.
+	 */
+	multiline?: boolean,
+	/**
+	 * The rows of the textfield.
+	 */
+	rows?: number,
+	/**
+	 * The max rows of the textfield.
+	 */
+	maxRows?: number,
 }
 
 const StyledComponent = styled((props:StyledProps) => {
@@ -119,7 +131,7 @@ const StyledComponent = styled((props:StyledProps) => {
 			InputProps={{ // input component의 스타일 변경
 				sx:{
 					width: props?.width || "auto",
-					height:"1.75rem",
+					...(props?.multiline ? {height: "auto"} : {height: "1.75rem"}),
 					padding: "0.375rem 0.375rem 0.375rem 0.625rem",
 					alignItems: "center",
 					flexShrink: 0,
@@ -134,6 +146,9 @@ const StyledComponent = styled((props:StyledProps) => {
 				}
 			}}
 			placeholder={props?.placeholder}
+			multiline={props?.multiline}
+			rows={props?.rows}
+			maxRows={props?.maxRows}
 		/>
 	)
 })(({theme}) => ({

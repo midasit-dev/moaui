@@ -16,14 +16,14 @@ import {
 } from "@midasit-dev/moaui";
 
 const ComponentsGuideBoxLayout1 = () => {
-	const visible = true;
+	const visible = false;
 
 	return (
 		<GuideBox show={visible} padding={1}>
 			{/** Top Panels */}
-			<GuideBox show={visible} width={1050} padding={1} row spacing={2} center>
+			<GuideBox show={visible} width={910} padding={1} row spacing={2} center>
 
-				<Panel variant='shadow' height={486}>
+				<Panel variant='shadow2' height={520}>
 					<GuideBox show={visible} fill='2'>
 						<GuideBox show={visible} width='100%' height={60} fill='3' center>
 							<ComponentsTypographyH1 />
@@ -55,7 +55,7 @@ const ComponentsGuideBoxLayout1 = () => {
 						</GuideBox>
 					</GuideBox>
 				</Panel>
-				<Panel variant='shadow' height={486}>
+				<Panel variant='shadow2' height={520}>
 					<GuideBox show={visible} fill='2' spacing={2}>
 							<GuideBox show={visible} width='100%' height={60} fill='3' center>
 								<ComponentsTypographyH1 />
@@ -65,7 +65,7 @@ const ComponentsGuideBoxLayout1 = () => {
 							</GuideBox>
 					</GuideBox>
 				</Panel>
-				<Panel variant='shadow' height={486}>
+				<Panel variant='shadow2' height={520}>
 					<GuideBox show={visible} fill='2' spacing={2}>
 						<GuideBox show={visible} width='100%' height={60} fill='3' center>
 							<ComponentsTypographyH1 />
@@ -79,7 +79,7 @@ const ComponentsGuideBoxLayout1 = () => {
 			</GuideBox>
 
 			{/** Bottom Buttons */}
-			<GuideBox show={visible} width={1050} row padding={1} fill='2' center>
+			<GuideBox show={visible} width={910} row padding={1} fill='2' center>
 				<GuideBox show={visible} width="30%" height={30} fill='3' row spacing={2} verCenter>
 					<ComponentsDialogHelpIconButton />
 					<Button>Import Section</Button>

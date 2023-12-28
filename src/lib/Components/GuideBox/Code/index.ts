@@ -15,3 +15,4 @@ export { default as Layout5Code } from './Layout5.code.tsx?raw';
 export { default as Layout5_SampleCode } from './Layout5_Sample.code.except.tsx?raw';
 export { default as OpacityCode } from './Opacity.code.tsx?raw';
 export { default as PulseCode } from './Pulse.code.tsx?raw';
+export { default as LoadingCode } from './Loading.code.tsx?raw';
