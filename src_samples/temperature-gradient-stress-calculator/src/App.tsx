@@ -168,7 +168,7 @@ const App = () => {
   return (
     <GuideBox show={visible} width={1450} padding={1} spacing={2}>
       {/** Top Panels */}
-      <GuideBox show={visible} row spacing={2} center height={520}>
+      <GuideBox show={visible} width='inherit' row spacing={2} center height={520}>
         <Panel variant="shadow2" height={505}>
           <GuideBox show={visible} fill="2">
             <GuideBox
@@ -180,7 +180,7 @@ const App = () => {
               row
               horSpaceBetween
             >
-              <GuideBox row horSpaceBetween>
+              <GuideBox row horSpaceBetween width="inherit">
                 <Typography variant="h1">Girder Properties</Typography>
                 <CompUnitNotation />
               </GuideBox>
@@ -221,7 +221,7 @@ const App = () => {
       </GuideBox>
 
       {/** Bottom Buttons */}
-      <GuideBox show={visible} row fill="2" center>
+      <GuideBox show={visible} width='inherit' row fill="2" center>
         <GuideBox
           show={visible}
           width="30%"

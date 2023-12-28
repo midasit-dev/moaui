@@ -33,12 +33,18 @@ import { assignLoad, dbRead } from "../pyscript_utils";
 import { idItemString, parseId } from "../utils";
 
 const CompAddButton = () => {
+	const { enqueueSnackbar } = useSnackbar();
+
 	const [value_h, setValue_h] = useRecoilState(VarAddButtonHeating);
 	const [value_c, setValue_c] = useRecoilState(VarAddButtonCooling);
 
 	//Static Load Case 데이터를 업데이트 하는 로직.
 	const dbUpdate = React.useCallback(() => {
 		const stld = dbRead('STLD');
+		if (stld.hasOwnProperty('error')) {
+			enqueueSnackbar(stld['error'], { variant: 'error' });
+			return;
+		}
 		const ids: any[] = [];
 		const items: any[] = [];
 		for (const [key, value] of Object.entries(stld)) {
@@ -48,7 +54,7 @@ const CompAddButton = () => {
 
 		setValue_h((prevState: any) => ({ ...prevState, ids: ids, items: items }));
 		setValue_c((prevState: any) => ({ ...prevState, ids: ids, items: items }));
-	}, [setValue_c, setValue_h]);
+	}, [enqueueSnackbar, setValue_c, setValue_h]);
 	React.useEffect(() => dbUpdate(), [dbUpdate]);
 
 	const [open, setOpen] = useState(false);
@@ -65,8 +71,6 @@ const CompAddButton = () => {
 
 	const heatingCheck = useRecoilValue(VarTemperatureGradientChartHeatingCheck);
 	const coolingCheck = useRecoilValue(VarTemperatureGradientChartCoolingCheck);
-
-	const { enqueueSnackbar } = useSnackbar();
 
 	const [queue, setQueue] = useState<any[]>([]);
 	const [curQueue, setCurQueue] = useState<string | undefined>('');

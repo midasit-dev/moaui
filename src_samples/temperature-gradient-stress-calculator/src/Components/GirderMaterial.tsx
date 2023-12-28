@@ -15,15 +15,18 @@ import { useRecoilState } from "recoil";
 import { VarGirderMaterial, VarGirderMaterialList } from "./variables";
 import { GuideBox, Typography, DropList, IconButton, Icon } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
+import { useSnackbar } from "notistack";
 
 const CompGirderMaterial = () => {
+	const { enqueueSnackbar } = useSnackbar();
+
 	const [value, setValue] = useRecoilState(VarGirderMaterial);
 	const [list, setList] = useRecoilState(VarGirderMaterialList);
 
 	const refreshMatlData = React.useCallback(() => {
 		const matlData = dbRead('MATL');
-		if (!matlData) {
-			console.error('Failed to read MATL data from database.');
+		if (matlData.hasOwnProperty('error')) {
+			enqueueSnackbar(matlData.error, { variant: 'error' });
 			return;
 		}
 		const items: [string, number][] = [];
@@ -41,7 +44,7 @@ const CompGirderMaterial = () => {
 		if (items.length > 0) {
 			setValue(items[0][1]);
 		}
-	}, [setList, setValue]);
+	}, [enqueueSnackbar, setList, setValue]);
 
 	//데이터를 채워줍니다.
 	React.useEffect(() => {
@@ -50,7 +53,7 @@ const CompGirderMaterial = () => {
 
   return (
     <GuideBox width="100%" row horSpaceBetween>
-      <GuideBox row horSpaceBetween verCenter height={30}>
+      <GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
         <Typography>
           Girder Material
         </Typography>

@@ -31,7 +31,7 @@ const CompGirderType = () => {
 
   return (
     <GuideBox width="100%" row horSpaceBetween>
-      <GuideBox row horSpaceBetween verCenter height={30}>
+      <GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
         <Typography>
           Girder Type
         </Typography>

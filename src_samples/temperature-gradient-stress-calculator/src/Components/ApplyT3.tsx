@@ -22,7 +22,7 @@ const CompApplyT3 = () => {
 
   return (
     <GuideBox width="100%" row horSpaceBetween>
-			<GuideBox row horSpaceBetween verCenter height={30}>
+			<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
 				<Check
 					name="Apply T3"
 					namePlacement="start"

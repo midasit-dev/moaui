@@ -27,7 +27,7 @@ const Zone = () => {
 
   return (
 		<GuideBox width="100%" row horSpaceBetween>
-			<GuideBox row horSpaceBetween verCenter height={30}>
+			<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
 				<Typography flexItem textAlign="center" height={30}>Zone</Typography>
 				<DropList
 					width={100}

@@ -39,7 +39,7 @@ def import_section():
     
     # Read seciton data
     res_sect = civil.db_read("SECT")
-    if res_sect == None:
+    if res_sect == None or "error" in res_sect.keys():
         error_message = {"error":"There is no section data"}
         return json.dumps(error_message)
     
