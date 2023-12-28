@@ -93,6 +93,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.TextFieldLeft: return <All.TextFieldLeft />;
 		case ItemTypes.TextFieldMultiLine: return <All.TextFieldMultiLine />;
 		case ItemTypes.TextFieldRight: return <All.TextFieldRight />;
+		case ItemTypes.TooltipRight: return <All.TooltipRight />;
 		case ItemTypes.TypographyBody1: return <All.TypographyBody1 />;
 		case ItemTypes.TypographyBody2: return <All.TypographyBody2 />;
 		case ItemTypes.TypographyBody3: return <All.TypographyBody3 />;

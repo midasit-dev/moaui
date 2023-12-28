@@ -89,6 +89,7 @@ export { default as ComponentsTextFieldLabel } from "./Components/TextField/Code
 export { default as ComponentsTextFieldLeft } from "./Components/TextField/Code/Left.code";
 export { default as ComponentsTextFieldMultiLine } from "./Components/TextField/Code/MultiLine.code";
 export { default as ComponentsTextFieldRight } from "./Components/TextField/Code/Right.code";
+export { default as ComponentsTooltipRight } from "./Components/Tooltip/Code/Right.code";
 export { default as ComponentsTypographyBody1 } from "./Components/Typography/Code/Body1.code";
 export { default as ComponentsTypographyBody2 } from "./Components/Typography/Code/Body2.code";
 export { default as ComponentsTypographyBody3 } from "./Components/Typography/Code/Body3.code";

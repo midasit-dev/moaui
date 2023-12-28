@@ -765,6 +765,27 @@ const TextFieldCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
+const TooltipCategory: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>Tooltip</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.TooltipRight}>Right</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
 const TypographyCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -1142,6 +1163,9 @@ export const TextFieldMultiLine =
 export const TextFieldRight = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldRight}>TextFieldRight</CustomDraggableComponent>;
 
+export const TooltipRight = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TooltipRight}>TooltipRight</CustomDraggableComponent>;
+
 export const TypographyBody1 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TypographyBody1}>TypographyBody1</CustomDraggableComponent>;
 
@@ -1223,6 +1247,7 @@ const DraggableComponent: React.FC = () => {
 			<TabGroupCategory />
 			<TableCategory />
 			<TextFieldCategory />
+			<TooltipCategory />
 			<TypographyCategory />
 			<TypographyGroupCategory />
 			<DualComponentsCategory />

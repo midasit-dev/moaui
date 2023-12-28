@@ -46,6 +46,7 @@ export { default as ChartLine } from "./Components/ChartLine";
 export { default as GuideBox } from "./Components/GuideBox";
 export { default as Alert } from "./Components/Alert";
 export { default as Chip } from "./Components/Chip";
+export { default as Tooltip } from "./Components/Tooltip";
 
 /**
  * authentication

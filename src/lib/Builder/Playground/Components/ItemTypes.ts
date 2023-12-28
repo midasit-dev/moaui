@@ -87,6 +87,7 @@ export const ItemTypes = {
 	TextFieldLeft: 'TextFieldLeft',
 	TextFieldMultiLine: 'TextFieldMultiLine',
 	TextFieldRight: 'TextFieldRight',
+	TooltipRight: 'TooltipRight',
 	TypographyBody1: 'TypographyBody1',
 	TypographyBody2: 'TypographyBody2',
 	TypographyBody3: 'TypographyBody3',

@@ -108,6 +108,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/TextField/Code/Left.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TextField/Code/MultiLine.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TextField/Code/Right.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Tooltip/Code/Right.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Typography/Code/Body1.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Typography/Code/Body2.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Typography/Code/Body3.code.tsx?raw"));

@@ -378,6 +378,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TextFieldLeft ? `${extractComponentName(All.TextFieldLeft)}` : ""}
 					${item.type === ItemTypes.TextFieldMultiLine ? `${extractComponentName(All.TextFieldMultiLine)}` : ""}
 					${item.type === ItemTypes.TextFieldRight ? `${extractComponentName(All.TextFieldRight)}` : ""}
+					${item.type === ItemTypes.TooltipRight ? `${extractComponentName(All.TooltipRight)}` : ""}
 					${item.type === ItemTypes.TypographyBody1 ? `${extractComponentName(All.TypographyBody1)}` : ""}
 					${item.type === ItemTypes.TypographyBody2 ? `${extractComponentName(All.TypographyBody2)}` : ""}
 					${item.type === ItemTypes.TypographyBody3 ? `${extractComponentName(All.TypographyBody3)}` : ""}
