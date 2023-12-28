@@ -11,8 +11,8 @@
  */
 
 import React from "react";
-import { useRecoilState } from "recoil";
-import { VarZone } from "./variables";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { VarForceCalcStress, VarZone } from "./variables";
 import { GuideBox, Typography, DropList } from "@midasit-dev/moaui";
 
 const Zone = () => {
@@ -25,6 +25,9 @@ const Zone = () => {
 		["ZONE4", 4],
 	]);
 
+	//계산 실행 여부를 저장합니다.
+	const setForceCalcStress = useSetRecoilState(VarForceCalcStress);
+
   return (
 		<GuideBox width="100%" row horSpaceBetween>
 			<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
@@ -34,7 +37,10 @@ const Zone = () => {
 					itemList={itemsMap}
 					defaultValue={value}
 					value={value}
-					onChange={(e: any) => setValue(e.target.value)}
+					onChange={(e: any) => {
+						setValue(e.target.value);
+						setForceCalcStress(true);
+					}}
 				/>
 			</GuideBox>
 			<GuideBox width={43} height={30} />

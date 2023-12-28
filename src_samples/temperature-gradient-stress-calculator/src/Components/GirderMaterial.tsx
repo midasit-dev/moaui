@@ -11,8 +11,8 @@
  */
 
 import React from "react";
-import { useRecoilState } from "recoil";
-import { VarGirderMaterial, VarGirderMaterialList } from "./variables";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { VarGirderMaterial, VarGirderMaterialList, VarForceCalcStress } from "./variables";
 import { GuideBox, Typography, DropList, IconButton, Icon } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
 import { useSnackbar } from "notistack";
@@ -34,7 +34,7 @@ const CompGirderMaterial = () => {
 		for (const id of ids) {
 			if (matlData[id].TYPE === 'CONC' || matlData[id].TYPE === 'STEEL') {
 				const matlName = matlData[id].NAME;
-				items.push([matlName, +id]);	
+				items.push([`${id}: ${matlName}`, +id]);
 			}
 		}
 
@@ -44,12 +44,17 @@ const CompGirderMaterial = () => {
 		if (items.length > 0) {
 			setValue(items[0][1]);
 		}
+
+		enqueueSnackbar('Material data is updated.', { variant: 'success' });
 	}, [enqueueSnackbar, setList, setValue]);
 
 	//데이터를 채워줍니다.
 	React.useEffect(() => {
 		refreshMatlData();
 	}, [refreshMatlData]);
+
+	//계산 실행 여부를 저장합니다.
+	const setForceCalcStress = useSetRecoilState(VarForceCalcStress);
 
   return (
     <GuideBox width="100%" row horSpaceBetween>
@@ -59,10 +64,15 @@ const CompGirderMaterial = () => {
         </Typography>
         <DropList
           width={100}
-          itemList={new Map<string, number>(list as [string, number][])}
-          defaultValue={value}
+          itemList={() => {
+
+						return new Map<string, number>(list as [string, number][]);
+					}}
           value={value}
-          onChange={(e: any) => setValue(e.target.value)}
+          onChange={(e: any) => {
+						setValue(e.target.value);
+						setForceCalcStress(true);
+					}}
         />
       </GuideBox>
       <IconButton transparent onClick={refreshMatlData}>

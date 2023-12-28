@@ -24,47 +24,67 @@ const CompTableMaterialStress = () => {
 	const [matlStressValueTable2, setMatlStressValueTable2] = useRecoilState(VarMaterialStressTableDataOfTab2);
 
 	React.useEffect(() => {
+		const ensureHyphen = (key: string, index: number | null, opt: string, digit: number) => {
+			if (Object.keys(calcValue).length === 0) return '-';
+
+			if (opt === 'toFixed') {
+				if (index !== null) {
+					const val = calcValue[key][index];
+					return typeof val === 'number' ? val.toFixed(digit) : '-';
+				}
+				const val = calcValue[key];
+				return typeof val === 'number' ? val.toFixed(digit) : '-';
+			} else if (opt === 'toExponential') {
+				if (index !== null) {
+					const val = calcValue[key][index];
+					return typeof val === 'number' ? val.toExponential(digit) : '-';
+				}
+				const val = calcValue[key];
+				return typeof val === 'number' ? val.toExponential(digit) : '-';
+			} else {
+				return '-';
+			}
+		}
+
 		setMatlStressValueTable1([
 			{ 
 				Component: <TypoBody1 text="Girder" />,
 				Property: <TypoBody1 text="E_girder" />,
-				Value: <TypoBody1 text={calcValue["g_elastic"].toFixed(0)} />,
+				Value: <TypoBody1 text={ensureHyphen("g_elastic", null, "toFixed", 0)} />,
 			},
 			{ 
 				Component: <TypoBody1 text="Girder" />,
 				Property: <TypoBody1 text="G_thermal" />,
-				Value: <TypoBody1 text={calcValue["g_thermal"].toExponential(2)} />,
+				Value: <TypoBody1 text={ensureHyphen("g_thermal", null, "toExponential", 2)} />,
 			},
 			{ 
 				Component: <TypoBody1 text="Slab" />,
 				Property: <TypoBody1 text="S_elastic" />,
-				Value: <TypoBody1 text={calcValue["s_elastic"].toFixed(0)} />,
+				Value: <TypoBody1 text={ensureHyphen("s_elastic", null, "toFixed", 0)} />,
 			},
 			{ 
 				Component: <TypoBody1 text="Slab" />,
 				Property: <TypoBody1 text="S_thermal" />,
-				Value: <TypoBody1 text={calcValue["s_thermal"].toExponential(2)} />,
+				Value: <TypoBody1 text={ensureHyphen("s_thermal", null, "toExponential", 2)} />,
 			},
 		]);
 
-		const ensureToFixed = (value: any, fractionDigits: number) => {
-			if (typeof value === 'number') return value.toFixed(fractionDigits);
-			return value;
+		let stressCount = -1;
+		if (Object.keys(calcValue).length !== 0) {
+			stressCount = calcValue["stress_heating"].length;
 		}
-
-		const stressCount = calcValue["stress_heating"].length;
 
 		if (stressCount === 2) {
 			setMatlStressValueTable2([
-				{
+				{	
 					Component: <TypoBody1 text="Girder Top" />,
-					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][0], 3)} />,
-					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][0], 3)} />,
+					Heating: <TypoBody1 text={ensureHyphen("stress_heating", 0, "toFixed", 3)} />,
+					Cooling: <TypoBody1 text={ensureHyphen("stress_cooling", 0, "toFixed", 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Girder Bot" />,
-					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][1], 3)} />,
-					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][1], 3)} />,
+					Heating: <TypoBody1 text={ensureHyphen("stress_heating", 1, "toFixed", 3)} />,
+					Cooling: <TypoBody1 text={ensureHyphen("stress_cooling", 1, "toFixed", 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Slab Top" />,
@@ -81,23 +101,23 @@ const CompTableMaterialStress = () => {
 			setMatlStressValueTable2([
 				{
 					Component: <TypoBody1 text="Girder Top" />,
-					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][0], 3)} />,
-					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][0], 3)} />,
+					Heating: <TypoBody1 text={ensureHyphen("stress_heating", 0, "toFixed", 3)} />,
+					Cooling: <TypoBody1 text={ensureHyphen("stress_cooling", 0, "toFixed", 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Girder Bot" />,
-					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][1], 3)} />,
-					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][1], 3)} />,
+					Heating: <TypoBody1 text={ensureHyphen("stress_heating", 1, "toFixed", 3)} />,
+					Cooling: <TypoBody1 text={ensureHyphen("stress_cooling", 1, "toFixed", 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Slab Top" />,
-					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][2], 3)} />,
-					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][2], 3)} />,
+					Heating: <TypoBody1 text={ensureHyphen("stress_heating", 2, "toFixed", 3)} />,
+					Cooling: <TypoBody1 text={ensureHyphen("stress_cooling", 2, "toFixed", 3)} />,
 				},
 				{
 					Component: <TypoBody1 text="Slab Bot" />,
-					Heating: <TypoBody1 text={ensureToFixed(calcValue["stress_heating"][3], 3)} />,
-					Cooling: <TypoBody1 text={ensureToFixed(calcValue["stress_cooling"][3], 3)} />,
+					Heating: <TypoBody1 text={ensureHyphen("stress_heating", 3, "toFixed", 3)} />,
+					Cooling: <TypoBody1 text={ensureHyphen("stress_cooling", 3, "toFixed", 3)} />,
 				}
 			])
 		}

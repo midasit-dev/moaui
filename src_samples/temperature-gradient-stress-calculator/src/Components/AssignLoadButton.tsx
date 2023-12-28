@@ -59,12 +59,12 @@ const CompAddButton = () => {
 
 	const [open, setOpen] = useState(false);
 
-	const [selected_h, setSelected_h] = useState('');
+	const [selected_h, setSelected_h] = useState<string>('');
 	React.useEffect(() => {
 		setSelected_h(value_h.selected);
 	}, [value_h.selected]);
 
-	const [selected_c, setSelected_c] = useState('');
+	const [selected_c, setSelected_c] = useState<string>('');
 	React.useEffect(() => {
 		setSelected_c(value_c.selected);
 	}, [value_c.selected]);
@@ -75,9 +75,9 @@ const CompAddButton = () => {
 	const [queue, setQueue] = useState<any[]>([]);
 	const [curQueue, setCurQueue] = useState<string | undefined>('');
 
-	// React.useEffect(() => {
-	// 	console.log(queue, curQueue, 'h: ', value_h, 'h_sel:', selected_h, 'c: ', value_c, 'c_sel', selected_c);
-	// }, [queue, curQueue, value_h, value_c, selected_h, selected_c]);
+	React.useEffect(() => {
+		console.log(queue, curQueue, 'h: ', value_h, 'h_sel:', selected_h, 'c: ', value_c, 'c_sel', selected_c);
+	}, [queue, curQueue, value_h, value_c, selected_h, selected_c]);
 
   return (
     <>
@@ -182,6 +182,10 @@ const DialogPage = ({
 
 	const [loading, setLoading] = useState(false);
 
+	React.useEffect(() => {
+		console.log(selected);
+	}, [selected]);
+
 	return (
     <Dialog
       open={open}
@@ -262,7 +266,10 @@ const DialogPage = ({
 				{curQueue !== "assign" && 
 					<GuideBox width="100%" row horSpaceBetween>
 						<GuideBox width={150} row spacing={1}>
-							<Button onClick={() => dbUpdate()}>
+							<Button onClick={() => {
+								dbUpdate();
+								enqueueSnackbar('Static Load data is updated', { variant: 'success' });
+							}}>
 								Refresh
 							</Button>
 						</GuideBox>
@@ -277,7 +284,7 @@ const DialogPage = ({
 									setValue({ ...value, selected: selected });
 								}
 							}}
-							disabled={value.items.length === 0 || selected === ""}
+							disabled={value.items.length === 0 || selected === "" || !selected}
 						>
 							Select
 						</Button>
@@ -320,22 +327,25 @@ const DialogPage = ({
 								setLoading(true);
 
 								setTimeout(() => {
-									const res = assignLoad(JSON.stringify({
-										heating_assign: heatingCheck,
-										cooling_assign: coolingCheck,
-										select_stld_key_heat: parseId(value_h.selected),
-										select_stld_key_cool: parseId(value_c.selected),
-										result_data: JSON.stringify(calcValue["assign_load_input"]),
-									}));
-
-									if (res.hasOwnProperty('error')) {
-										enqueueSnackbar(res['error'], { variant: 'error' });
-										setLoading(false);
-										return;
-									}
-
-									if (res.hasOwnProperty('success')) {
-										enqueueSnackbar(res['success'], { variant: 'success' });
+									try {
+										const res = assignLoad(JSON.stringify({
+											heating_assign: heatingCheck,
+											cooling_assign: coolingCheck,
+											select_stld_key_heat: parseId(value_h.selected),
+											select_stld_key_cool: parseId(value_c.selected),
+											result_data: JSON.stringify(calcValue["assign_load_input"]),
+										}));
+	
+										if (res.hasOwnProperty('error')) {
+											enqueueSnackbar(res['error'], { variant: 'error' });
+										}
+	
+										if (res.hasOwnProperty('success')) {
+											enqueueSnackbar(res['success'], { variant: 'success' });
+										}
+									} catch (err) {
+										console.error(err);
+									} finally {
 										setLoading(false);
 										setOpen(false);
 									}

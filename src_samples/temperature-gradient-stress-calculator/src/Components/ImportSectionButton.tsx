@@ -11,12 +11,28 @@
  */
 
 import React from 'react';
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useRecoilState } from 'recoil';
-import { VarImportSectionButton } from './variables';
 import { getImportSectionValues } from '../pyscript_utils';
 import { Dialog, Icon, Button, GuideBox, Scrollbars, List, ListItem, ListItemButton, Typography, Panel, Alert } from "@midasit-dev/moaui";
 import { useSnackbar } from 'notistack';
-import { idItemString } from '../utils';
+import { idItemString, stressCalculation } from '../utils';
+
+//Variables
+import {
+  VarApplyT3,
+  VarApplyT3C,
+  VarApplyT3H,
+  VarImportSectionButton,
+  VarCalculationParseResult,
+  VarGirderMaterial,
+  VarZone,
+  VarSurface,
+  VarTemperatureGradientChart,
+  VarSelfEqStressesTempHeatingChart,
+  VarSelfEqStressesTempCoolingChart,
+	VarForceCalcStress,
+} from "./variables";
 
 const CompImportSectionButton = () => {
 	const [value, setValue] = useRecoilState(VarImportSectionButton);
@@ -48,15 +64,70 @@ const CompImportSectionButton = () => {
 		if (loadingFalse) loadingFalse(false);
 	}, [enqueueSnackbar, setValue]);
 
-	React.useEffect(() => {
-		dbUpdate();
-	}, [dbUpdate]);
+	// React.useEffect(() => {
+	// 	dbUpdate();
+	// }, [dbUpdate]);
 
 	const [loadingRefresh, setLoadingRefresh] = React.useState(false);
 
+	//UI Values
+	const importSectionValue = useRecoilValue(VarImportSectionButton);
+	const zoneValue = useRecoilValue(VarZone);
+	const surfaceValue = useRecoilValue(VarSurface);
+	const girderMatlValue = useRecoilValue(VarGirderMaterial);
+	const applyT3 = useRecoilValue(VarApplyT3);
+	const applyT3H = useRecoilValue(VarApplyT3H);
+	const applyT3C = useRecoilValue(VarApplyT3C);
+
+	//Setters
+	const setCalcValue = useSetRecoilState(VarCalculationParseResult);
+	const setTempGradientChartValue = useSetRecoilState(VarTemperatureGradientChart);
+	const setSelfEqStressLeftValue = useSetRecoilState(VarSelfEqStressesTempHeatingChart);
+	const setSelfEqStressRightValue = useSetRecoilState(VarSelfEqStressesTempCoolingChart);
+
+	const [loading, setLoading] = React.useState(false);
+
+	//다른 UI에서 값이 변경됨을 감지하고 stressCalculation을 실행합니다.
+	//import Section Value는 현 컴포넌트 Select 버튼 클릭 시 동작하기 때문에 의존성을 제외합니다.
+	const [forceCalcStress, setForceCalcStress] = useRecoilState(VarForceCalcStress);
+	React.useEffect(() => {
+		if (forceCalcStress) {
+			try {
+				const calcValue = stressCalculation(
+					importSectionValue,
+					girderMatlValue,
+					zoneValue,
+					surfaceValue,
+					applyT3,
+					applyT3H,
+					applyT3C,
+					setCalcValue,
+					setTempGradientChartValue,
+					setSelfEqStressLeftValue,
+					setSelfEqStressRightValue
+				);
+	
+				if (calcValue.hasOwnProperty('error')) {
+					enqueueSnackbar(calcValue['error'], { variant: 'error' });
+				} else {
+					enqueueSnackbar('Calculate stress is successfully', { variant: 'success' });
+				}
+			} catch (err) {
+				console.error(err);
+			}
+
+			setForceCalcStress(false);
+		}
+	}, 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	[forceCalcStress]);
+
 	return (
     <>
-      <Button onClick={() => setOpen(true)}>Import Section</Button>
+      <Button onClick={() => {
+				dbUpdate();
+				setOpen(true);
+			}}>Import Section</Button>
       <Dialog
         open={open}
         setOpen={setOpen}
@@ -73,6 +144,7 @@ const CompImportSectionButton = () => {
 							onClick={() => {
 								setLoadingRefresh(true);
 								setTimeout(() => dbUpdate(setLoadingRefresh), 500);
+								enqueueSnackbar('Section data is updated', { variant: 'success' });
 							}}
 							loading={loadingRefresh}
 						>
@@ -82,11 +154,43 @@ const CompImportSectionButton = () => {
 							color="negative" 
 							onClick={() => {
 								if (selected) {
-									setValue({...value, selected: selected});
+									setLoading(true);
+
+									setTimeout(() => {
+										try {
+											let curValue = { ...value, selected: selected };
+											setValue(curValue);
+					
+											const calcValue = stressCalculation(
+												curValue,
+												girderMatlValue,
+												zoneValue,
+												surfaceValue,
+												applyT3,
+												applyT3H,
+												applyT3C,
+												setCalcValue,
+												setTempGradientChartValue,
+												setSelfEqStressLeftValue,
+												setSelfEqStressRightValue
+											);
+							
+											if (calcValue.hasOwnProperty('error')) {
+												enqueueSnackbar(calcValue['error'], { variant: 'error' });
+											} else {
+												enqueueSnackbar('Calculate stress is successfully', { variant: 'success' });
+											}
+										} catch (err) {
+											console.error(err);
+										} finally {
+											setLoading(false);
+											setOpen(false);
+										}
+									})
 								}
-								setOpen(false);
 							}}
 							disabled={value.items.length === 0}
+							loading={loading}
 						>
 							Select
 						</Button>

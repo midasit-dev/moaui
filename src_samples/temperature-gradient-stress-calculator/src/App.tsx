@@ -10,14 +10,12 @@
  */
 
 import React from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
 
 //@midasit-dev/moaui
 import {
   GuideBox,
   Panel,
   Typography,
-  ComponentsIconButtonWithName,
 } from "@midasit-dev/moaui";
 
 //Components
@@ -33,137 +31,10 @@ import CompSurface from "./Components/Surface";
 import CompUnitNotation from "./Components/UnitNotation";
 
 import CompTableMaterialStress from "./Components/MaterialStressTables";
-
-//Variables
-import {
-  VarApplyT3,
-  VarApplyT3C,
-  VarApplyT3H,
-  VarImportSectionButton,
-  VarCalculationParseResult,
-  VarGirderMaterial,
-  VarZone,
-  VarSurface,
-  VarTemperatureGradientChart,
-  VarSelfEqStressesTempHeatingChart,
-  VarSelfEqStressesTempCoolingChart,
-} from "./Components/variables";
-import { parseId } from "./utils";
-import { checkPyScriptReady } from "./pyscript_utils";
-import { useSnackbar } from "notistack";
+import CompImportSectionButtonHelp from "./Components/ImportSectionButtonHelp";
 
 const App = () => {
   const visible = false;
-
-  //UI Values
-  const importSectionValue = useRecoilValue(VarImportSectionButton);
-  const zoneValue = useRecoilValue(VarZone);
-  const surfaceValue = useRecoilValue(VarSurface);
-  const girderMatlValue = useRecoilValue(VarGirderMaterial);
-  const applyT3 = useRecoilValue(VarApplyT3);
-  const applyT3H = useRecoilValue(VarApplyT3H);
-  const applyT3C = useRecoilValue(VarApplyT3C);
-
-  //Setters
-  const setCalcValue = useSetRecoilState(VarCalculationParseResult);
-  const setTempGradientChartValue = useSetRecoilState(
-    VarTemperatureGradientChart
-  );
-  const setSelfEqStressLeftValue = useSetRecoilState(
-    VarSelfEqStressesTempHeatingChart
-  );
-  const setSelfEqStressRightValue = useSetRecoilState(
-    VarSelfEqStressesTempCoolingChart
-  );
-
-  const { enqueueSnackbar } = useSnackbar();
-
-  React.useEffect(() => {
-    if (importSectionValue.selected !== "") {
-      checkPyScriptReady(() => {
-        const section_Key = parseId(importSectionValue.selected);
-        const main_func =
-          pyscript.interpreter.globals.get("stress_calculation");
-        const results = main_func(
-          section_Key,
-          girderMatlValue,
-          zoneValue,
-          surfaceValue,
-          applyT3,
-          parseFloat(applyT3H),
-          parseFloat(applyT3C)
-        );
-        const paringResults = JSON.parse(results);
-        if (paringResults.hasOwnProperty("error")) {
-          enqueueSnackbar(paringResults["error"], { variant: "error" });
-          return;
-        }
-
-        setCalcValue(paringResults);
-
-        setTempGradientChartValue([
-          {
-            id: "TempHeating",
-            color: "#f47560",
-            data: paringResults["chart_temp_h"],
-          },
-          {
-            id: "TempCooling",
-            color: "#1f78b4",
-            data: paringResults["chart_temp_c"],
-          },
-          {
-            id: "Girder",
-            color: "#333333",
-            data: paringResults["chart_girder"],
-          },
-        ]);
-
-        //Update Self Equilibrating Stresses Chart Values
-        setSelfEqStressLeftValue([
-          {
-            id: "AASHTO_HeatingG",
-            color: "#f47560",
-            data: paringResults["chart_heating"],
-          },
-          {
-            id: "Girder",
-            color: "#333333",
-            data: paringResults["chart_girder"],
-          },
-        ]);
-
-        setSelfEqStressRightValue([
-          {
-            id: "AASHTO_CoolingG",
-            color: "#1f78b4",
-            data: paringResults["chart_cooling"],
-          },
-          {
-            id: "Girder",
-            color: "#333333",
-            data: paringResults["chart_girder"],
-          },
-        ]);
-      });
-    }
-  }, [
-    zoneValue,
-    surfaceValue,
-    girderMatlValue,
-    applyT3,
-    applyT3C,
-    applyT3H,
-    importSectionValue.ids,
-    importSectionValue.items,
-    importSectionValue.selected,
-    setCalcValue,
-    setSelfEqStressLeftValue,
-    setSelfEqStressRightValue,
-    setTempGradientChartValue,
-    importSectionValue,
-    enqueueSnackbar,
-  ]);
 
   return (
 		<GuideBox show={visible} width={1450} padding={1} spacing={2}>
@@ -231,7 +102,7 @@ const App = () => {
           spacing={2}
           verCenter
         >
-          <ComponentsIconButtonWithName iconName="Help" />
+					<CompImportSectionButtonHelp />
           <CompImportSectionButton />
         </GuideBox>
         <GuideBox

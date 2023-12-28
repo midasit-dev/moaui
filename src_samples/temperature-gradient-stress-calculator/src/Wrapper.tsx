@@ -62,7 +62,14 @@ const ValidWrapper = () => {
     <>
       {isInitialized && isValid && (
 				<RecoilRoot>
-					<SnackbarProvider maxSnack={3}>
+					<SnackbarProvider 
+						maxSnack={3} 
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'center',
+						}}
+						autoHideDuration={1000}
+					>
 						<App />
 					</SnackbarProvider>
 				</RecoilRoot>

@@ -139,7 +139,7 @@ export const VarApplyT3C = atom({
  */
 export const VarGirderMaterial = atom({
 	key: 'VarGirderMaterial',
-	default: 0,
+	default: 1,
 });
 
 export const VarGirderMaterialList = atom({
@@ -176,15 +176,11 @@ export const VarGirderType = atom({
  */
 export const VarCalculationParseResult = atom<any>({
 	key: "VarCalculationParseResult",
-	default: {
-		self_eq_stress: [],
-		g_elastic: 0,
-		g_thermal: 0,
-		s_elastic: 0,
-		s_thermal: 0,
-		stress_heating: [ 0, 0, 0, 0 ],
-		stress_cooling: [ 0, 0, 0, 0 ]
-	}
+	default: {}
+});
+export const VarForceCalcStress = atom({
+	key: "VarForceCalcStress",
+	default: false,
 });
 
 /**
