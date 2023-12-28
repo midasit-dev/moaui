@@ -71,6 +71,9 @@ def girder_type(
     res_sect = civil.db_read("SECT")
 
     #Type_of_Girder
+    if res_sect == None or "error" in res_sect.keys():
+        error_message = {"error":"There is no section data"}
+        return json.dumps(error_message)
     sect_type = res_sect[section_key]["SECTTYPE"]
     sect_shape = res_sect[section_key]["SECT_BEFORE"]["SHAPE"]
     type_of_girder = dc.get_girder_type(sect_type, sect_shape) # "Steel : 2" or "Concrete : 1"

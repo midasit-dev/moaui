@@ -166,7 +166,7 @@ const App = () => {
   ]);
 
   return (
-    <GuideBox show={visible} width={1450} padding={1} spacing={2}>
+		<GuideBox show={visible} width={1450} padding={1} spacing={2}>
       {/** Top Panels */}
       <GuideBox show={visible} width='inherit' row spacing={2} center height={520}>
         <Panel variant="shadow2" height={505}>

@@ -5,6 +5,5 @@ export const idItemString = (value: any, index: number) => {
 
 // example) "1: NAME" -> 1 (number)
 export const parseId = (idItemStr: string) => {
-	return parseInt(idItemStr.replace(/\D/g, ''), 10);
-	// return parseInt(idItemStr.split(':')[0]);
+	return parseInt(idItemStr.split(':')[0]);
 }

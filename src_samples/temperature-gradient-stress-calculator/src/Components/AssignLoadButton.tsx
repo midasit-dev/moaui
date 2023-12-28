@@ -187,7 +187,6 @@ const DialogPage = ({
       open={open}
       setOpen={setOpen}
 			onClose={() => {
-				console.log('onClose', value.selected);
 				setSelected(value.selected)
 			}}
       headerIcon={chip}
