@@ -33,7 +33,7 @@ const CompTHfunction = () => {
 		}
 		const items: [string, number][] = [];
 		// Preset:Linear를 추가합니다.
-		items.push(["Preset : Linear", 0]);
+		items.push(["Preset:Linear", 0]);
 
 		const ids = Object.keys(thfcData);
 		for (const id of ids) {
