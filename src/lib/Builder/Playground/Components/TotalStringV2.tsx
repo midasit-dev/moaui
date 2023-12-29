@@ -318,6 +318,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.DialogHelpButton ? `${extractComponentName(All.DialogHelpButton)}` : ""}
 					${item.type === ItemTypes.DialogHelpIconButton ? `${extractComponentName(All.DialogHelpIconButton)}` : ""}
 					${item.type === ItemTypes.DialogOnClose ? `${extractComponentName(All.DialogOnClose)}` : ""}
+					${item.type === ItemTypes.DropListDisabled ? `${extractComponentName(All.DropListDisabled)}` : ""}
 					${item.type === ItemTypes.DropListDropdown ? `${extractComponentName(All.DropListDropdown)}` : ""}
 					${item.type === ItemTypes.GridColumn ? `${extractComponentName(All.GridColumn)}` : ""}
 					${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}

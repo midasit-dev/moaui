@@ -3,7 +3,7 @@ import Explore from "./Explore.mdx";
 import DropList from "..";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { DropdownCode } from '../Code';
+import { DropdownCode, DisabledCode } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
@@ -26,6 +26,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Dropdown = LiveEditStory(cleanMask(DropdownCode));
+export const Disabled = LiveEditStory(cleanMask(DisabledCode));
 
 export const Sample: Story = {
   args: {

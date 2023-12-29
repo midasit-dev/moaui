@@ -28,6 +28,7 @@ export { default as ComponentsDialogDialogButton } from "./Components/Dialog/Cod
 export { default as ComponentsDialogHelpButton } from "./Components/Dialog/Code/HelpButton.code";
 export { default as ComponentsDialogHelpIconButton } from "./Components/Dialog/Code/HelpIconButton.code";
 export { default as ComponentsDialogOnClose } from "./Components/Dialog/Code/OnClose.code";
+export { default as ComponentsDropListDisabled } from "./Components/DropList/Code/Disabled.code";
 export { default as ComponentsDropListDropdown } from "./Components/DropList/Code/Dropdown.code";
 export { default as ComponentsGridColumn } from "./Components/Grid/Code/Column.code";
 export { default as ComponentsGridItems } from "./Components/Grid/Code/Items.code";

@@ -319,6 +319,7 @@ const DropListCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.DropListDisabled}>Disabled</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>Dropdown</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -979,6 +980,9 @@ export const DialogHelpIconButton =
 
 export const DialogOnClose = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DialogOnClose}>DialogOnClose</CustomDraggableComponent>;
+
+export const DropListDisabled = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DropListDisabled}>DropListDisabled</CustomDraggableComponent>;
 
 export const DropListDropdown = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>DropListDropdown</CustomDraggableComponent>;

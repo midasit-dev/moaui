@@ -51,6 +51,11 @@ export type StyledProps = {
 	 * @defaultValue ""
    */
 	defaultValue?: any;
+	/**
+	 * If true, the droplist is disabled.
+	 * @defaultValue false
+	 */
+	disabled?: boolean;
 }
 
 const StyledComponent = styled((props:StyledProps) => {
@@ -87,6 +92,7 @@ const StyledComponent = styled((props:StyledProps) => {
 						height: "1.75rem",
 					}}
 					onChange={onChange}
+					disabled={props?.disabled}
 				>
 					{Array.from(itemMap.keys()).map((key, index) => {
 						if(key === "subheader")
