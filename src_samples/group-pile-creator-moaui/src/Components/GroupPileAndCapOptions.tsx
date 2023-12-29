@@ -8,6 +8,7 @@ import {
   VarPileSpacingTran,
   VarCapEdgeSpacingLong,
   VarCapEdgeSpacingTran,
+	VarCapModeling,
 } from "./variables";
 import {
   GuideBox,
@@ -29,6 +30,8 @@ const CompGroupPileAndCapOptions = () => {
   const [pile_spacing_tran, setPile_spacing_tran] = useRecoilState(VarPileSpacingTran);
   const [cap_edge_spacing_long, setCap_edge_spacing_long] = useRecoilState(VarCapEdgeSpacingLong);
   const [cap_edge_spacing_tran, setCap_edge_spacing_tran] = useRecoilState(VarCapEdgeSpacingTran);
+
+	const cap_modeling = useRecoilValue(VarCapModeling);
 
   return (
     <GuideBox spacing={2}>
@@ -100,6 +103,7 @@ const CompGroupPileAndCapOptions = () => {
                 value={cap_edge_spacing_long}
                 onChange={(e: any) => setCap_edge_spacing_long(e.target.value)}
 								error={validations.cap_edge_spacing(cap_edge_spacing_long)}
+								disabled={!cap_modeling}
 							/>
             </TableCell>
             <TableCell>
@@ -108,6 +112,7 @@ const CompGroupPileAndCapOptions = () => {
                 value={cap_edge_spacing_tran}
                 onChange={(e: any) => setCap_edge_spacing_tran(e.target.value)}
 								error={validations.cap_edge_spacing(cap_edge_spacing_tran)}
+								disabled={!cap_modeling}
 							/>
             </TableCell>
           </TableRow>

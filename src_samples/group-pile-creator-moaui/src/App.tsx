@@ -119,8 +119,8 @@ const App = (props: any) => {
 	const { enqueueSnackbar } = useSnackbar();
 
   return (
-		<GuideBox show width="100%" center>
-			<GuideBox show padding={1} spacing={1}>
+		<GuideBox width="100%" center>
+			<GuideBox padding={1} spacing={1}>
 				<GuideBox width={780} row horSpaceBetween>
 					<GuideBox padding={1} spacing={1.5}>
 						<GuideBox width={400} height={30} center>
@@ -131,10 +131,10 @@ const App = (props: any) => {
 							<CompTypographyAndDropList title="Boundary Group" list={bngr_ID_list}  state={bngr_ID} setState={setBngr_ID} />
 							<CompTypographyAndDropList title="Pile Material" list={pile_matl_ID_list}  state={pile_matl_ID} setState={setPile_matl_ID} />
 							<CompTypographyAndDropList title="Pile Section" list={pile_sect_ID_list}  state={pile_sect_ID} setState={setPile_sect_ID} />
-							<CompTypographyAndDropList title="Pile Cap Material" list={cap_matl_ID_list}  state={cap_matl_ID} setState={setCap_matl_ID} />
-							<CompTypographyAndDropList title="Pile Cap Section" list={cap_sect_ID_list}  state={cap_sect_ID} setState={setCap_sect_ID} />
-							<CompTypographyAndTextField title="Pile Start Node No." state={pile_start_nb} setState={setPile_start_nb} errorOptionIndex={1} error={validations.pile_start_nb(pile_start_nb)}/>
-							<CompTypographyAndTextField title="Pile Cap Start Node No." state={cap_start_nb} setState={setCap_start_nb} errorOptionIndex={1} error={validations.cap_start_nb(cap_start_nb)} />
+							<CompTypographyAndDropList title="Pile Cap Material" list={cap_matl_ID_list}  state={cap_matl_ID} setState={setCap_matl_ID} disabled={!cap_modeling} />
+							<CompTypographyAndDropList title="Pile Cap Section" list={cap_sect_ID_list}  state={cap_sect_ID} setState={setCap_sect_ID} disabled={!cap_modeling} />
+							<CompTypographyAndTextField title="Pile Start Node No." state={pile_start_nb} setState={setPile_start_nb} errorOptionIndex={1} error={validations.pile_start_nb(pile_start_nb)} />
+							<CompTypographyAndTextField title="Pile Cap Start Node No." state={cap_start_nb} setState={setCap_start_nb} errorOptionIndex={1} error={validations.cap_start_nb(cap_start_nb)} disabled={!cap_modeling} />
 						</GuideBox>
 					</GuideBox>
 
@@ -146,7 +146,7 @@ const App = (props: any) => {
 							<CompLengthUnit />
 							<CompTypographyAndTextField title="Pile Diameter" state={pile_dia} setState={setPile_dia} errorOptionIndex={2} error={validations.pile_dia(pile_dia)} />
 							<CompTypographyAndTextField title="Pile Length" state={pile_length} setState={setPile_length} errorOptionIndex={2} error={validations.pile_length(pile_length)} />
-							<CompTypographyAndTextField title="Pile Cap Height" state={cap_height} setState={setCap_height} errorOptionIndex={2} error={validations.cap_height(cap_height)} />
+							<CompTypographyAndTextField title="Pile Cap Height" state={cap_height} setState={setCap_height} errorOptionIndex={2} error={validations.cap_height(cap_height)} disabled={!cap_modeling} />
 						</GuideBox>
 					</GuideBox>
 				</GuideBox>

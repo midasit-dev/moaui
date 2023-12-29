@@ -11,6 +11,7 @@ const CompTypographyAndTextField = (props: any) => {
 		state,
 		setState,
 		error,
+		disabled,
 	} = props;
 
 	return (
@@ -24,6 +25,7 @@ const CompTypographyAndTextField = (props: any) => {
 					placeholder='Input value ...'
 					onChange={(e: any) => setState(e.target.value)}
 					value={state}
+					disabled={disabled}
 				/>
 			</GuideBox>
 		</GuideBox>

@@ -7,6 +7,7 @@ const CompTypographyAndDropList = (props: any) => {
 		list,
 		state,
 		setState,
+		disabled,
 	} = props;
 
 	return (
@@ -19,6 +20,7 @@ const CompTypographyAndDropList = (props: any) => {
 					defaultValue={state}
 					value={state}
 					onChange={(e: any) => setState(e.target.value)}
+					disabled={disabled}
 				/>
 			</GuideBox>
 		</GuideBox>
