@@ -56,6 +56,10 @@ export type StyledProps = {
 	 * @defaultValue false
 	 */
 	disabled?: boolean;
+	/**
+	 * Set the width value of droplist's list width.
+	 */
+	listWidth?: string | number;
 }
 
 const StyledComponent = styled((props:StyledProps) => {
@@ -90,6 +94,11 @@ const StyledComponent = styled((props:StyledProps) => {
 							fontFeatureSettings: Font.fontFeatureSettings,
 						},
 						height: "1.75rem",
+
+						//드롭다운 메뉴 스타일
+						'& .MuiButtonBase-root-MuiMenuItem-root': {
+							...(props.listWidth && { width: props.listWidth }) //list Width가 있을 경우 조절 가능
+						}
 					}}
 					onChange={onChange}
 					disabled={props?.disabled}

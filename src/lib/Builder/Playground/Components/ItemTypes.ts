@@ -28,6 +28,7 @@ export const ItemTypes = {
 	DialogOnClose: 'DialogOnClose',
 	DropListDisabled: 'DropListDisabled',
 	DropListDropdown: 'DropListDropdown',
+	DropListListWidth: 'DropListListWidth',
 	GridColumn: 'GridColumn',
 	GridItems: 'GridItems',
 	GridRow: 'GridRow',

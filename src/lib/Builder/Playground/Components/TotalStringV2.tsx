@@ -320,6 +320,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.DialogOnClose ? `${extractComponentName(All.DialogOnClose)}` : ""}
 					${item.type === ItemTypes.DropListDisabled ? `${extractComponentName(All.DropListDisabled)}` : ""}
 					${item.type === ItemTypes.DropListDropdown ? `${extractComponentName(All.DropListDropdown)}` : ""}
+					${item.type === ItemTypes.DropListListWidth ? `${extractComponentName(All.DropListListWidth)}` : ""}
 					${item.type === ItemTypes.GridColumn ? `${extractComponentName(All.GridColumn)}` : ""}
 					${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}
 					${item.type === ItemTypes.GridRow ? `${extractComponentName(All.GridRow)}` : ""}

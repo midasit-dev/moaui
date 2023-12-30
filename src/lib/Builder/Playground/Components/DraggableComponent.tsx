@@ -321,6 +321,7 @@ const DropListCategory: React.FC<{}> = () => (
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.DropListDisabled}>Disabled</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>Dropdown</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.DropListListWidth}>ListWidth</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -986,6 +987,9 @@ export const DropListDisabled =
 
 export const DropListDropdown = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>DropListDropdown</CustomDraggableComponent>;
+
+export const DropListListWidth = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DropListListWidth}>DropListListWidth</CustomDraggableComponent>;
 
 export const GridColumn = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GridColumn}>GridColumn</CustomDraggableComponent>;
