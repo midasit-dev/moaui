@@ -94,11 +94,6 @@ const StyledComponent = styled((props:StyledProps) => {
 							fontFeatureSettings: Font.fontFeatureSettings,
 						},
 						height: "1.75rem",
-
-						//드롭다운 메뉴 스타일
-						'& .MuiButtonBase-root-MuiMenuItem-root': {
-							...(props.listWidth && { width: props.listWidth }) //list Width가 있을 경우 조절 가능
-						}
 					}}
 					onChange={onChange}
 					disabled={props?.disabled}
@@ -135,7 +130,7 @@ const StyledComponent = styled((props:StyledProps) => {
 									gap: "0.625rem",
 									alignSelf: "stretch",
 									minHeight:"1.75rem",
-									width: `${parentWidthInPixels}px`,
+									width: props.listWidth || `${parentWidthInPixels}px`,
 									height:"1.75rem",
 									//font
 									color: Color.text.secondary,
