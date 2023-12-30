@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { Dialog, Typography, Button, Stack, Icon } from "@midasit-dev/moaui"; 
+import { Dialog, Typography, Stack, Icon } from "@midasit-dev/moaui"; 
 
 export default function InfoDialog (props: any) {
 	const InfoSvg = () => {

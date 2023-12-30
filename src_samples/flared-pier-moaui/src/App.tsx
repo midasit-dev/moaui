@@ -2,129 +2,129 @@ import React from "react";
 import {
   GuideBox,
   Panel,
-	ComponentsTypographyBody1,
 	Button,
-	DropList,
-	TextField,
 	Table, TableHead, TableRow, TableCell, TableBody,
 	Typography,
 	Icon,
 	IconButton,
+	Dialog,
+	Tooltip,
 } from "@midasit-dev/moaui";
-import { useSnackbar } from 'notistack';
 import InfoDialog from "./Components/InfoDialog";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { VarBngrID, VarBngrIDList, VarCapBotLen, VarCapBotMatlID, VarCapBotMatlIDList, VarCapBotSectID, VarCapBotSectIDList, VarCapTopLen, VarCapTopMatlID, VarCapTopMatlIDList, VarCapTopSectID, VarCapTopSectIDList, VarColumnLen, VarColumnMatlID, VarColumnMatlIDList, VarColumnSectID, VarColumnSectIDList, VarGrupID, VarGrupIDList, VarStartNodeNb, VarValidations } from "./Components/variables";
+import CompRefresh from "./Components/Refresh";
+import CompTypographyAndDropList from "./Components/TypographyAndDropList";
+import CompTypographyAndTextField from "./Components/TypographyAndTextField";
+import CompSingleDropList from "./Components/SingleDropList";
+import CompSelectedReferenceNodes from "./Components/SelectedReferenceNodes";
+import { create_pier } from "./pyscript_utils";
+import CompUnitNotation from "./Components/UnitNotation";
+import { useSnackbar } from "notistack";
+import CompPileStartNodeNo from "./Components/PileStartNodeNo";
 
-import { setGlobalVariable, getGlobalVariable } from "./pyscript_g_variables";
+const App = () => {
+	const {enqueueSnackbar} = useSnackbar();
 
-const ComponentsGuideBoxLayout5 = () => {
-	const { enqueueSnackbar } = useSnackbar();
-  const visible = false;
-	const headers = ["Component", "column", "Cap 1", "Cap 2"];
-	const rows = [
-		["Section", <DropList width={"100%"} />, <DropList width={"100%"} />, <DropList width={"100%"} />],
-		["Material", <DropList width={"100%"} />, <DropList width={"100%"} />, <DropList width={"100%"} />],
-		["Length(+Z)", <TextField width={"100%"} placeholder="12" textAlign="center"/>, <TextField width={"100%"} placeholder="1.2" textAlign="center"/>, <TextField width={"100%"} placeholder="0.15" textAlign="center"/>],
-	]
 	const [openInfo, setOpenInfo] = React.useState(false);
 
-	React.useEffect(() => {
-		function checkPyScriptReady(callback : any) {
-			// PyScript가 준비될 때까지 재귀적으로 체크
-			if (pyscript && pyscript.interpreter) {
-				setGlobalVariable();
-				callback();
-			} else {
-				// 아직 준비되지 않았다면, 100ms 후에 다시 체크
-				setTimeout(() => checkPyScriptReady(callback), 100);
-			}
-		}
+	const validations = useRecoilValue(VarValidations);
 
-		async function get_StructuralGroup() {
-			getGlobalVariable();
-			const Gruplist = pyscript.interpreter.globals.get("get_grup");
-			console.log(await Gruplist());
-		}
+	const [grup_ID, setGrup_ID] = useRecoilState(VarGrupID);
+	const [bngr_ID, setBngrID] = useRecoilState(VarBngrID);
+	const start_node_nb = useRecoilValue(VarStartNodeNb);
+	const [column_sect_ID, setColumn_sect_ID] = useRecoilState(VarColumnSectID);
+	const [cap_bot_sect_ID, setCap_bot_sect_ID] = useRecoilState(VarCapBotSectID);
+	const [cap_top_sect_ID, setCap_top_sect_ID] = useRecoilState(VarCapTopSectID);
+	const [column_matl_ID, setColumn_matl_ID] = useRecoilState(VarColumnMatlID);
+	const [cap_bot_matl_ID, setCap_bot_matl_ID] = useRecoilState(VarCapBotMatlID);
+	const [cap_top_matl_ID, setCap_top_matl_ID] = useRecoilState(VarCapTopMatlID);
+	const [column_len, setColumn_len] 	= useRecoilState(VarColumnLen);
+	const [cap_bot_len, setCap_bot_len] = useRecoilState(VarCapBotLen);
+	const [cap_top_len, setCap_top_len] = useRecoilState(VarCapTopLen);
 
-		checkPyScriptReady(get_StructuralGroup);
-	}, []);
+	const grup_ID_list = useRecoilValue(VarGrupIDList);
+	const bngr_ID_list = useRecoilValue(VarBngrIDList);
+	const column_sect_ID_list = useRecoilValue(VarColumnSectIDList);
+	const cap_bot_sect_ID_list = useRecoilValue(VarCapBotSectIDList);
+	const cap_top_sect_ID_list = useRecoilValue(VarCapTopSectIDList);
+	const column_matl_ID_list = useRecoilValue(VarColumnMatlIDList);
+	const cap_bot_matl_ID_list = useRecoilValue(VarCapBotMatlIDList);
+	const cap_top_matl_ID_list = useRecoilValue(VarCapTopMatlIDList);
 
-	function onClickInfoButton() {
-		setOpenInfo(true);
-	}
+	const validationCheckLists = [
+		{ title: "Structure Group", value: grup_ID, error: !validations.grup_ID(grup_ID), reason: "NONE" },
+		{ title: "Boundary Group", value: bngr_ID, error: !validations.bngr_ID(bngr_ID), reason: "NONE" },
+		{ title: "Pile Start Node No.", value: start_node_nb, error: !validations.start_node_nb(start_node_nb), reason: "It must be between 1 and 1,000,000 or duplicated node number" },
+		{ title: "Column Section", value: column_sect_ID, error: !validations.column_sect_ID(column_sect_ID), reason: "NONE" },
+		{ title: "Cap Bottom Section", value: cap_bot_sect_ID, error: !validations.cap_bot_sect_ID(cap_bot_sect_ID), reason: "NONE" },
+		{ title: "Cap Top Section", value: cap_top_sect_ID, error: !validations.cap_top_sect_ID(cap_top_sect_ID), reason: "NONE" },
+		{ title: "Column Material", value: column_matl_ID, error: !validations.column_matl_ID(column_matl_ID), reason: "NONE" },
+		{ title: "Cap Bottom Material", value: cap_bot_matl_ID, error: !validations.cap_bot_matl_ID(cap_bot_matl_ID), reason: "NONE" },
+		{ title: "Cap Top Material", value: cap_top_matl_ID, error: !validations.cap_top_matl_ID(cap_top_matl_ID), reason: "NONE" },
+		{ title: "Column Length", value: column_len, error: !validations.column_len(column_len), reason: "It must be larger than 0" },
+		{ title: "Cap Bottom Length", value: cap_bot_len, error: !validations.cap_bot_len(cap_bot_len), reason: "It must be larger than 0" },
+		{ title: "Cap Top Length", value: cap_top_len, error: !validations.cap_top_len(cap_top_len), reason: "It must be larger than 0" },
+	];
 
-	function onClickCreateButton() {
-		enqueueSnackbar("Please check your all inputs", { variant: 'warning' });
-
-		setGlobalVariable();
-		const func = pyscript.interpreter.globals.get("main");
-		func();
-	}
-
-	function onClickRefreshButton() {
-	}
+	const [loading, setLoading] = React.useState(false);
+	const [open, setOpen] = React.useState(false);
+	const [disabledCreateButton, setDisabledCreateButton] = React.useState(true);
 
   return (
-		<React.Fragment>
-			<GuideBox
-				tag="Outline"
-				show={visible}
-				fill="1"
-				padding={1}
-				spacing={0}
-				width={430}
-				height={430}
-				center
-			>
-				<GuideBox show={visible} fill="2" width={"100%"} height={30} verCenter row>
-					<Typography variant="h1">Pier Option</Typography>
-					<IconButton transparent={true} marginLeft={"2px"} onClick={onClickInfoButton}><Icon iconName="ErrorOutline" /></IconButton>
+		<GuideBox width='100%' center>
+
+			<GuideBox padding={1} spacing={2} width={430} center>
+				
+				<GuideBox width={"100%"} height={30} row verCenter horSpaceBetween>
+					<GuideBox row verCenter>
+						<Typography variant="h1">Pier Option</Typography>
+						<IconButton transparent={true} marginLeft={"2px"} onClick={() => setOpenInfo(true)}><Icon iconName="ErrorOutline" /></IconButton>
+						<InfoDialog open={openInfo} setOpen={setOpenInfo}/>
+					</GuideBox>
+					<GuideBox>
+						<CompUnitNotation />
+					</GuideBox>
 				</GuideBox>
-				<GuideBox show={visible} fill="2" width={"100%"} height={30} row horSpaceBetween verCenter>
-					<Typography variant="body1">Structural Group</Typography>
-					<DropList width={"30%"} />
-				</GuideBox>
-				<GuideBox show={visible} fill="2" width={"100%"} height={30} row horSpaceBetween verCenter>
-					<Typography variant="body1">Boundary Group</Typography>
-					<DropList width={"30%"} />
-				</GuideBox>
-				<GuideBox
-					show={visible}
-					tag="DropLists"
-					fill="2"
-					width={"100%"}
-					height={30}
-					row horSpaceBetween verCenter
-				>
-					<Typography variant="body1">Pier Start Nodes No.</Typography>
-					<TextField width={"130px"} placeholder="TextField"/>
-				</GuideBox>
-				<GuideBox
-					show={visible}
-					tag="DropLists"
-					fill="2"
-					width={"100%"}
-					height={30}
-					row horSpaceBetween verCenter
-				>
-					<Typography variant="body1">Selected Reference Nodes</Typography>
-					<TextField width={"130px"} placeholder="TextField"/>
-				</GuideBox>
-				<Panel variant="shadow" width={"96%"} marginTop={1}>
-					<GuideBox
-						show={visible}
-						tag="DropLists"
-						fill="2"
-						width={"100%"}
-						height={200}
-					>
+
+				<CompTypographyAndDropList title="Structural Group" list={grup_ID_list}  state={grup_ID} setState={setGrup_ID} />
+				<CompTypographyAndDropList title="Boundary Group" list={bngr_ID_list}  state={bngr_ID} setState={setBngrID} />
+				<CompPileStartNodeNo />
+				<CompSelectedReferenceNodes />
+
+				<Panel variant="shadow2" width={"100%"} marginTop={1}>
+					<GuideBox width={"100%"}>
 						<Table>
 							<TableHead>
 								<TableRow>
-									{headers.map((header, index) => <TableCell key={index}><Typography textAlign='center'>{header}</Typography></TableCell>)}
+									{["Component", "Column", "Cap Bot", "Cap Top"].map((header, index) => 
+										<TableCell key={index}>
+											<Typography textAlign='center'>{header}</Typography>
+										</TableCell>
+									)}
 								</TableRow>
 							</TableHead>
 							<TableBody>
-									{rows.map((row, index) => {
+									{[
+										[
+											"Section", 
+											<CompSingleDropList list={column_sect_ID_list} state={column_sect_ID} setState={setColumn_sect_ID} />,
+											<CompSingleDropList list={cap_bot_sect_ID_list} state={cap_bot_sect_ID} setState={setCap_bot_sect_ID} />,
+											<CompSingleDropList list={cap_top_sect_ID_list} state={cap_top_sect_ID} setState={setCap_top_sect_ID} />,
+										],
+										[
+											"Material", 
+											<CompSingleDropList list={column_matl_ID_list} state={column_matl_ID} setState={setColumn_matl_ID} />,
+											<CompSingleDropList list={cap_bot_matl_ID_list} state={cap_bot_matl_ID} setState={setCap_bot_matl_ID} />,
+											<CompSingleDropList list={cap_top_matl_ID_list} state={cap_top_matl_ID} setState={setCap_top_matl_ID} />,
+										],
+										[
+											"Length(+Z)",
+											<CompTypographyAndTextField textFieldWidth={82} state={column_len} setState={setColumn_len} 	error={!validations.column_len(column_len)} />,
+											<CompTypographyAndTextField textFieldWidth={82} state={cap_bot_len} setState={setCap_bot_len} error={!validations.cap_bot_len(cap_bot_len)} />,
+											<CompTypographyAndTextField textFieldWidth={82} state={cap_top_len} setState={setCap_top_len} error={!validations.cap_top_len(cap_top_len)} />,
+										],
+									].map((row, index) => {
 										return (
 											<TableRow key={index}>
 												{row.map((cell, index) => <TableCell key={index}>{cell}</TableCell>)}
@@ -135,24 +135,92 @@ const ComponentsGuideBoxLayout5 = () => {
 						</Table>
 					</GuideBox>
 				</Panel>
-				<GuideBox
-					show={visible}
-					tag="DropLists"
-					fill="2"
-					width={"100%"}
-					height={30}
-					row horSpaceBetween verCenter
-					marginTop={1}
-				>
-					<Button onClick={onClickRefreshButton}>Refresh</Button>
-					<Button color="negative" variant="contained" onClick={onClickCreateButton}>Create</Button>
+				<GuideBox width="100%" height={30} row horSpaceBetween verCenter marginTop={1}>
+					<CompRefresh />
+					<Button 
+						color="negative" 
+						variant="contained" 
+						onClick={() => {
+							const hasError = validationCheckLists.some((item) => item.error);
+							setDisabledCreateButton(hasError);
+							setOpen(true);
+						}}
+					>
+						Create
+					</Button>
+					<Dialog
+						open={open}
+						setOpen={setOpen}
+						headerTitle="Validation Check"
+					>
+						<GuideBox spacing={2}>
+							<Typography variant="h1">Input Values</Typography>
+							<GuideBox opacity={0.9} paddingBottom={1.5} spacing={1}>
+								{validationCheckLists.map((item, index) => (
+									<GuideBox key={index} row spacing={2}>
+										<GuideBox width={200} row horSpaceBetween>
+											<Typography variant="body1">{item.title}</Typography>
+											<Typography variant="h1" color={item.error ? "red" : "primary"}>{item.value !== null ? item.value.toString() : '-'}</Typography>
+										</GuideBox>
+										{item.error ?
+											<Tooltip title={<Typography variant="body1" color="red">{item.reason}</Typography>} placement="top">
+												<Typography variant="body1" color="red">ER</Typography>
+											</Tooltip>
+											:
+											<Typography variant="body1" color='primary'>OK</Typography>
+										}
+									</GuideBox>
+								))}
+							</GuideBox>
+							<Button 
+								width="100%" 
+								color="negative" 
+								disabled={disabledCreateButton}
+								onClick={() => {
+									setLoading(true);
+
+									setTimeout(() => {
+										try {
+											const res = create_pier(
+												grup_ID,
+												bngr_ID,
+												start_node_nb,
+												column_sect_ID,
+												cap_bot_sect_ID,
+												cap_top_sect_ID,
+												column_matl_ID,
+												cap_bot_matl_ID,
+												cap_top_matl_ID,
+												column_len,
+												cap_bot_len,
+												cap_top_len,
+											);
+		
+											if (res.hasOwnProperty('error')) {
+												enqueueSnackbar(res['error'], { variant: 'error' });
+											}
+		
+											if (res.hasOwnProperty('success')) {
+												enqueueSnackbar(res['success'], { variant: 'success' });
+											}
+										} catch (err) {
+											console.error(err);
+										} finally {
+											setLoading(false);
+											setOpen(false);
+										}
+									}, 500);
+								}}
+								loading={loading}
+							>
+								Create
+							</Button>
+						</GuideBox>
+					</Dialog>
 				</GuideBox>
 			</GuideBox>
-			{
-				openInfo && <InfoDialog open={openInfo} setOpen={setOpenInfo}/>
-			}
-		</React.Fragment>
-  );
-};
+		</GuideBox>
+	);
+}
 
-export default ComponentsGuideBoxLayout5;
+export default App;

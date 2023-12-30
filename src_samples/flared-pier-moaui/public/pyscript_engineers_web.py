@@ -1,3 +1,4 @@
+# default Setting
 g_MAPI_key = ""
 g_base_uri = "moa-engineers.midasit.com"
 g_base_port = "443"
@@ -18,7 +19,7 @@ def get_g_values():
 		'g_base_uri': g_base_uri,
 		'g_base_port': g_base_port
 	})
-
+  
 # from javascript import globalThis
 # fetch = globalThis.fetch
 # JSON = globalThis.JSON
@@ -77,7 +78,7 @@ def get_base_url(product, country="KR"):
         base_port = g_base_port
         base_url = f"https://{base_uri}:{base_port}/gen"
     else:
-        print(f"BASE_URL Error: Unable to find the registry key or value for {product}")
+        print(f"Error: Unable to find the registry key or value for {product}")
     return base_url
 
 def get_MAPI_Key(product, country="KR"):
@@ -88,7 +89,7 @@ def get_MAPI_Key(product, country="KR"):
     elif(product == Product.GEN):
         mapikey = g_MAPI_key
     else:
-        print(f"MAPI_KEY Error: Unable to find the registry key or value for {product}")
+        print(f"Error: Unable to find the registry key or value for {product}")
     return mapikey
 
 class MidasAPI:
@@ -127,15 +128,12 @@ class MidasAPI:
         return requests_json.post(url, headers=self.headers, jsonObj={'Assign': item})
     
     def db_read(self, item_name):
-        print("URL:", self.base_url)
-        print("MAPI:",g_MAPI_key)
-        print("Headers:", self.headers)
         url = f'{self.base_url}/db/{item_name}'
         responseJson = requests_json.get(url, headers=self.headers)
         # check response.json()[item_name] is Exist
         if item_name not in responseJson:
-            print(f"db_read Error: Unable to find the registry key or value for {item_name}")
-            return None
+            error_message = {"error": f"Error: Unable to find the registry key or value for {item_name}"}
+            return error_message
         keyVals = responseJson[item_name]
         return { int(k): v for k, v in keyVals.items() }
     
@@ -145,11 +143,11 @@ class MidasAPI:
         responseJson = requests_json.get(url, headers=self.headers)
         # check responseJson[item_name] is Exist
         if item_name not in responseJson:
-            print(f"db_read_itemName Error: Unable to find the registry key or value for {item_name}")
-            return None
+            error_message = {"error": f"Error: Unable to find the registry key or value for {item_name}"}
+            return error_message
         if item_id_str not in responseJson[item_name]:
-            print(f"db_read_itemID Error: Unable to find the registry key or value for {item_id}")
-            return None
+            error_message = {"error": f"Error: Unable to find the registry key or value for {item_id}"}
+            return error_message
         return responseJson[item_name][item_id_str]
     
     def db_update(self, item_name, items):
@@ -186,7 +184,9 @@ class MidasAPI:
     ## view ############################################################################################################
     def view_select_get(self):
         url = f'{self.base_url}/view/select'
-        return requests_json.get(url, headers=self.headers)
+        response = requests_json.get(url, headers=self.headers)
+        if 'error' in response: return None
+        return response['SELECT']
     
     ## Steel Code Check (Gen Only) ########################################################################################################
     def post_steelcodecheck(self):

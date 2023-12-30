@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.2.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
     "react-scripts": "^5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -42,7 +43,8 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "@midasit-dev/moaui": "^0.0.90",
-    "notistack": "^3.0.1"
+    "@midasit-dev/moaui": "^0.1.32",
+    "notistack": "^3.0.1",
+    "recoil": "^0.7.7"
   }
 }

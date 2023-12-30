@@ -26,7 +26,6 @@ def create_flared_pier_data(
 
     # Pier_Coordinations
     total_length = column_len + cap_bot_len + cap_top_len
-
     unit_length = 1
 
     div = int(column_len  // unit_length)
@@ -35,10 +34,11 @@ def create_flared_pier_data(
     pier_depth = [-total_length]
     for i in range(div):
         pier_depth.append(pier_depth[-1] + unit_length)
+    
     if mod != 0:
         pier_depth.append(pier_depth[-1] + mod)
     else:
-        pier_depth.append(pier_depth[-1] + unit_length)
+        pass
     
     pier_depth.append(pier_depth[-1] + cap_bot_len)
     pier_depth.append(pier_depth[-1] + cap_top_len)
@@ -124,7 +124,7 @@ def create_boundary_condtions(
         rigd_id = max([item["ID"] for item in res_rigd[top_node_nb]["ITEMS"]]) + 1
     else :
         rigd_id = 1
-
+    
     rigd_body = {
         top_node_nb : {
             "ITEMS":[
