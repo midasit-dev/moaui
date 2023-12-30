@@ -45,7 +45,7 @@ export const VarTHfunction = atom({
 
 export const VarTHfunctionList = atom({
 	key: 'VarTHfunctionList',
-	default: [ ['Linear', 1] ],
+	default: [ ['Preset:Linear', 0] ],
 });
 
 export const VarScaleFactor = atom({

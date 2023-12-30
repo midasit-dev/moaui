@@ -31,7 +31,7 @@ const CompAngleTable = () => {
 		},
 		{
 			field: 'angle',
-			headerName: 'Angle',
+			headerName: 'Angle [deg]',
 			type: 'number',
 			width: 140,
 			editable: true,
@@ -39,8 +39,8 @@ const CompAngleTable = () => {
 			renderCell: (params) => (
 				<div
 				style={{
-					backgroundColor: isDuplicate(params.value) ? '#d47483' : 'inherit',
-					color: isDuplicate(params.value) ? 'white' : 'inherit',
+					// backgroundColor: isDuplicate(params.value) ? '#d47483' : 'inherit',
+					color: isDuplicate(params.value) ? '#d47483' : 'inherit',
 				}}
 				>
 				{params.value}

@@ -118,6 +118,10 @@ class MidasAPI:
         url = f'{self.base_url}/doc/anal'
         return requests_json.post(url, headers=self.headers, jsonObj={})
     
+    def doc_importmxt(self, file_path):
+        url = f'{self.base_url}/doc/importmxt'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Argument': file_path})
+    
     ## db #############################################################################################################
     def db_create(self, item_name, items):
         url = f'{self.base_url}/db/{item_name}'
@@ -158,10 +162,14 @@ class MidasAPI:
         url = f'{self.base_url}/db/{item_name}/{item_id}'
         return requests_json.put(url, headers=self.headers, jsonObj={'Assign': item})
     
-    def db_delete(self, item_name, item_id):
-        url = f'{self.base_url}/db/{item_name}/{item_id}'
+    def db_delete(self, item_name):
+        url = f'{self.base_url}/db/{item_name}'
         return requests_json.delete(url, headers=self.headers)
     
+    def db_delete_item(self, item_name, item_id):
+        url = f'{self.base_url}/db/{item_name}/{item_id}'
+        return requests_json.delete(url, headers=self.headers)
+
     def db_get_next_id(self, item_name):
         res_all = self.db_read(item_name)
         if not res_all:
