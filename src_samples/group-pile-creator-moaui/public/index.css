@@ -36,7 +36,7 @@ html {
     "Segoe UI Symbol",
     "Noto Color Emoji";
   line-height: 1.5;
-	background-color: #f9f9f9;
+	background-color: #f1f1f1;
 }
 .spinner::after {
   content: "";

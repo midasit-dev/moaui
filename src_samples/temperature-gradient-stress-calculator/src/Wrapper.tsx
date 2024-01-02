@@ -1,11 +1,13 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import App from './App';
-import { GuideBox, Panel, Typography, VerifyDialog, VerifyUtil } from '@midasit-dev/moaui';
+import { GuideBox, Panel, Typography, VerifyDialog, VerifyUtil, IconButton, Icon } from '@midasit-dev/moaui';
 import { setGlobalVariable, getGlobalVariable } from './pyscript_utils';
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider, closeSnackbar } from 'notistack';
 
-const ValidWrapper = () => {
+const ValidWrapper = (props: any) => {
+	const { isIntalledPyscript } = props;
+
 	const [isInitialized, setIsInitialized] = React.useState(false);
   const [isValid, setIsValid] = React.useState(false);
   const [checkUri, setCheckUri] = React.useState(false);
@@ -58,6 +60,24 @@ const ValidWrapper = () => {
     callback();
   }, []);
 
+	const ValidationComponent = ({
+		title = 'undefiend',
+		checkIf = false,
+		strValid = 'Valid',
+		strInvalid = 'Invalid',
+	}: any) => {
+		return (
+			<GuideBox row horSpaceBetween width={300}>
+				<Typography variant="body1">{title}: </Typography>
+				{checkIf ? ( 
+					<Typography variant="h1" color="#1f78b4">{strValid}</Typography>
+				) : (
+					<Typography variant="h1" color="#D32F2F">{strInvalid}</Typography>
+				)}
+			</GuideBox>
+		);
+	}
+
   return (
     <>
       {isInitialized && isValid && (
@@ -68,7 +88,11 @@ const ValidWrapper = () => {
 							vertical: 'bottom',
 							horizontal: 'center',
 						}}
-						autoHideDuration={1000}
+						action={(key) => (
+							<IconButton transparent transparentColor="white" onClick={() => closeSnackbar(key)}>
+								<Icon iconName="Close" />
+							</IconButton>
+						)}
 					>
 						<App />
 					</SnackbarProvider>
@@ -77,36 +101,15 @@ const ValidWrapper = () => {
 				
 			{isInitialized && !isValid && (
         <Panel variant="shadow2" padding={3} margin={3}>
-          <GuideBox opacity={0.9} spacing={2}>
-            <Typography variant="h1">Validation Check</Typography>
-            <GuideBox spacing={2}>
-              <GuideBox row horSpaceBetween width={300}>
-                <Typography variant="body1">Base URI: </Typography>
-                {checkUri ? (
-                  <Typography variant="h1" color="#1f78b4">
-                    Valid
-                  </Typography>
-                ) : (
-                  <Typography variant="h1" color="#D32F2F">
-                    Invalid
-                  </Typography>
-                )}
-              </GuideBox>
-              <GuideBox row horSpaceBetween width={300}>
-                <Typography variant="body1">MAPI-Key: </Typography>
-                {checkMapiKey ? (
-                  <Typography variant="h1" color="#1f78b4">
-                    Valid
-                  </Typography>
-                ) : (
-                  <Typography variant="h1" color="#D32F2F">
-                    {`Invalid (${checkMapiKeyMsg})`}
-                  </Typography>
-                )}
-              </GuideBox>
-            </GuideBox>
-          </GuideBox>
-        </Panel>
+					<GuideBox opacity={0.9} spacing={2}>
+						<Typography variant="h1">Validation Check</Typography>
+						<GuideBox spacing={2}>
+							<ValidationComponent title="pyscript" checkIf={isIntalledPyscript} strValid="Installed" strInvalid={`Not Installed`} />
+							<ValidationComponent title="Base URI" checkIf={checkUri} strValid="Valid" strInvalid="Invalid" />
+							<ValidationComponent title="MAPI-Key" checkIf={checkMapiKey} strValid="Valid" strInvalid={`Invalid (${checkMapiKeyMsg})`} />
+						</GuideBox>
+					</GuideBox>
+				</Panel>
       )}
     </>
   );
@@ -136,7 +139,7 @@ const PyscriptWrapper = () => {
 		<>
 			<VerifyDialog loading={!installed} />
 			{installed && VerifyUtil.isExistQueryStrings('mapiKey') &&
-				<ValidWrapper />
+				<ValidWrapper isIntalledPyscript={installed} />
 			}
 		</>
 	)

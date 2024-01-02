@@ -1,9 +1,9 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import App from './App';
-import { GuideBox, Panel, Typography, VerifyDialog, VerifyUtil } from '@midasit-dev/moaui';
+import { GuideBox, Panel, Typography, VerifyDialog, VerifyUtil, IconButton, Icon } from '@midasit-dev/moaui';
 import { setGlobalVariable, getGlobalVariable } from './pyscript_utils';
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider, closeSnackbar } from 'notistack';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
@@ -89,9 +89,14 @@ const ValidWrapper = (props: any) => {
             <SnackbarProvider
               maxSnack={3}
               anchorOrigin={{
-                vertical: "top",
+                vertical: "bottom",
                 horizontal: "center",
               }}
+							action={(key) => (
+								<IconButton transparent transparentColor="white" onClick={() => closeSnackbar(key)}>
+									<Icon iconName="Close" />
+								</IconButton>
+							)}
             >
               <App />
             </SnackbarProvider>

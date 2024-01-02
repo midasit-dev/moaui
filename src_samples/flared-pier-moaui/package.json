@@ -1,5 +1,5 @@
 {
-  "name": "flared_pier",
+  "name": "flared-pier-creator-moaui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,7 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+		"rename": "rmdir /s /q flared-pier-creator-moaui &&ren build flared-pier-creator-moaui",
+    "build": "react-scripts build && npm run rename",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -43,7 +44,7 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "@midasit-dev/moaui": "^0.1.32",
+    "@midasit-dev/moaui": "^0.1.35",
     "notistack": "^3.0.1",
     "recoil": "^0.7.7"
   }
