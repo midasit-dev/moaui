@@ -47,6 +47,7 @@ export const ItemTypes = {
 	IconClose: 'IconClose',
 	IconButtonAdd: 'IconButtonAdd',
 	IconButtonClose: 'IconButtonClose',
+	IconButtonTransparent: 'IconButtonTransparent',
 	IconButtonWithName: 'IconButtonWithName',
 	ListControlled: 'ListControlled',
 	ListDynamic: 'ListDynamic',

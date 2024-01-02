@@ -53,6 +53,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.IconClose: return <All.IconClose />;
 		case ItemTypes.IconButtonAdd: return <All.IconButtonAdd />;
 		case ItemTypes.IconButtonClose: return <All.IconButtonClose />;
+		case ItemTypes.IconButtonTransparent: return <All.IconButtonTransparent />;
 		case ItemTypes.IconButtonWithName: return <All.IconButtonWithName />;
 		case ItemTypes.ListControlled: return <All.ListControlled />;
 		case ItemTypes.ListDynamic: return <All.ListDynamic />;

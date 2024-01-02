@@ -338,6 +338,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.IconClose ? `${extractComponentName(All.IconClose)}` : ""}
 					${item.type === ItemTypes.IconButtonAdd ? `${extractComponentName(All.IconButtonAdd)}` : ""}
 					${item.type === ItemTypes.IconButtonClose ? `${extractComponentName(All.IconButtonClose)}` : ""}
+					${item.type === ItemTypes.IconButtonTransparent ? `${extractComponentName(All.IconButtonTransparent)}` : ""}
 					${item.type === ItemTypes.IconButtonWithName ? `${extractComponentName(All.IconButtonWithName)}` : ""}
 					${item.type === ItemTypes.ListControlled ? `${extractComponentName(All.ListControlled)}` : ""}
 					${item.type === ItemTypes.ListDynamic ? `${extractComponentName(All.ListDynamic)}` : ""}

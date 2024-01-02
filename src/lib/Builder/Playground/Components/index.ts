@@ -46,6 +46,7 @@ export { default as IconAdd } from '../../../Components/Icon/Code/Add.code';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code';
 export { default as IconButtonAdd } from '../../../Components/IconButton/Code/Add.code';
 export { default as IconButtonClose } from '../../../Components/IconButton/Code/Close.code';
+export { default as IconButtonTransparent } from '../../../Components/IconButton/Code/Transparent.code';
 export { default as IconButtonWithName } from '../../../Components/IconButton/Code/WithName.code';
 export { default as ListControlled } from '../../../Components/List/Code/Controlled.code';
 export { default as ListDynamic } from '../../../Components/List/Code/Dynamic.code';

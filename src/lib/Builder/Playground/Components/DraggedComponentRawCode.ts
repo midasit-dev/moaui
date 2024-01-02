@@ -46,6 +46,7 @@ export { default as IconAdd } from '../../../Components/Icon/Code/Add.code.tsx?r
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code.tsx?raw';
 export { default as IconButtonAdd } from '../../../Components/IconButton/Code/Add.code.tsx?raw';
 export { default as IconButtonClose } from '../../../Components/IconButton/Code/Close.code.tsx?raw';
+export { default as IconButtonTransparent } from '../../../Components/IconButton/Code/Transparent.code.tsx?raw';
 export { default as IconButtonWithName } from '../../../Components/IconButton/Code/WithName.code.tsx?raw';
 export { default as ListControlled } from '../../../Components/List/Code/Controlled.code.tsx?raw';
 export { default as ListDynamic } from '../../../Components/List/Code/Dynamic.code.tsx?raw';
