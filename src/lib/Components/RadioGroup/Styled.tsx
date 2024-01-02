@@ -12,6 +12,9 @@ export interface StyledProps extends RadioGroupProps {
 	 * @default "Radio Group"
 	 */
 	ariaLabel?: string,
+	/**
+	 * The content of the component.
+	 */
 	children?: React.ReactElement[],
 	/**
 	 * The default value. Use when the component is not controlled.
@@ -38,6 +41,10 @@ export interface StyledProps extends RadioGroupProps {
 	 * Value of the header text. If leave empty this field, header field will not show.
 	 */
 	text?: string,
+	/**
+	 * set a spacing between radio buttons.
+	 */
+	spacing?: number,
 
 	/**
 	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
