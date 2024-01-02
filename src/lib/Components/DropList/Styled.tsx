@@ -57,13 +57,18 @@ export type StyledProps = {
 	 */
 	disabled?: boolean;
 	/**
+		 * Set the background color of droplist
+		 */
+	backgroundColor?: string;
+
+	/**
 	 * Set the width value of droplist's list width.
 	 */
 	listWidth?: string | number;
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	const {itemList, width, value, onChange, defaultValue} = props;
+	const {itemList, width, value, onChange, defaultValue, backgroundColor, listWidth} = props;
 	const itemMap = typeof itemList === 'function' ? itemList() : itemList;
 
 	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
@@ -92,6 +97,9 @@ const StyledComponent = styled((props:StyledProps) => {
 							//font
 							color: Color.text.secondary,
 							fontFeatureSettings: Font.fontFeatureSettings,
+
+							//background color
+							backgroundColor: backgroundColor || Color.primary.white,
 						},
 						height: "1.75rem",
 					}}
@@ -130,7 +138,7 @@ const StyledComponent = styled((props:StyledProps) => {
 									gap: "0.625rem",
 									alignSelf: "stretch",
 									minHeight:"1.75rem",
-									width: props.listWidth || `${parentWidthInPixels}px`,
+									width: listWidth || `${parentWidthInPixels}px`,
 									height:"1.75rem",
 									//font
 									color: Color.text.secondary,
