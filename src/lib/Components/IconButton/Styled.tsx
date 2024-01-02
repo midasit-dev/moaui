@@ -83,6 +83,10 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * @default false
 	 */
 	transparent?: boolean;
+	/**
+	 * If transparent is `true`, transparentColor applied. set a main color of icon!
+	 */
+	transparentColor?: string;
 
 	/**
 	 * If border is `true`, `primary` color applied.
@@ -95,37 +99,71 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { sx, children, color, transparent, border, ...rest } = props;
+	const { sx, children, color, transparent, transparentColor, border, ...rest } = props;
 	const CustomBackgroundColor = useCallback(({color, transparent, border} : { 
 			color: StyledProps["color"];
 			transparent: StyledProps["transparent"];
 			border: StyledProps["border"];
 		}) => {
-			const primaryColorConfig = color === "negative" ? "primaryNegative" : "primary";
-			const textColorConfig = color === "negative" ? "textNegative" : "text";
-			const transparency = (192).toString(16);
-
-			let borderStyle = `1px solid ${Color[primaryColorConfig].enable_strock}`;
-			if (transparent) borderStyle = 'none';
-			if (border) borderStyle = `1px solid ${Color.primaryNegative.enable_strock}`;
-
-			return {
-				border: borderStyle,
-				background: transparent ? 'transparent' : Color[primaryColorConfig].enable,
-				color: Color[textColorConfig].primary,
+			const normalStyle = color === "normal" ? {
+				border: `1px solid ${Color.primary.enable_strock}`,
+				background: Color.primary.enable,
+				color: Color.text.primary,
 				"&:hover": {
-					background: Color[primaryColorConfig].hover,
-					color: Color[primaryColorConfig].white,
+					background: Color.primary.hover,
+					color: Color.primary.white,
 				},
 				":active": {
-					background: Color[primaryColorConfig].focus,
-					color: Color[primaryColorConfig].white,
+					background: Color.primary.focus,
+					color: Color.primary.white,
 				},
 				":disabled": {
-					background: `${Color[primaryColorConfig].enable}${transparency}`,
-					color: `${Color[textColorConfig].disable}${transparency}`,
-					border: `1px solid ${Color[primaryColorConfig].enable_strock}${transparency}`,
+					background: `${Color.primary.enable}c0`,
+					color: `${Color.text.disable}c0`,
+					border: `1px solid ${Color.primary.enable_strock}c0`,
 				},
+			} : {};
+
+			const negativeStyle = color === "negative" ? {
+				border: `1px solid ${Color.primaryNegative.enable_strock}`,
+				background: Color.primaryNegative.enable,
+				color: Color.textNegative.primary,
+				"&:hover": {
+					background: Color.primaryNegative.hover,
+					color: Color.primaryNegative.white,
+				},
+				":active": {
+					background: Color.primaryNegative.focus,
+					color: Color.primaryNegative.white,
+				},
+				":disabled": {
+					background: `${Color.primaryNegative.enable}c0`,
+					color: `${Color.textNegative.disable}c0`,
+					border: `1px solid ${Color.primaryNegative.enable_strock}c0`,
+				},
+			} : {};
+
+			const transparentStyle = transparent ? {
+				background: "transparent",
+				color: transparentColor ? transparentColor : Color.text.primary,
+				"&:hover": {
+					background: "transparent",
+					opacity: 0.6,
+				},
+				":active": {
+					background: "transparent",
+					opacity: 0.4,
+				},
+				":disabled": {
+					background: "transparent",
+					opacity: 0.2,
+				},
+			} : {};
+
+			return {
+				...normalStyle,
+				...negativeStyle,
+				...transparentStyle,
 			};
 	}, []);
 
