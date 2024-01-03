@@ -77,6 +77,7 @@ const StyledComponent = styled((props: StyledProps) => {
 				display: props.flexItem ? 'flex' : 'block',
 				...MarginProps(props),
 				...PaddingProps(props),
+				boxSizing: 'border-box',
 			}}
 			justifyContent='center'
 		>

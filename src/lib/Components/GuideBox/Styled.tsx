@@ -111,6 +111,13 @@ export type StyledProps = {
 	 * loading option
 	 */
 	loading?: boolean;
+	
+	/**
+	 * overflow option 
+	 * 
+	 * @default hidden
+	 */
+	overflow?: 'visible' | 'hidden' | 'clip' | 'scroll' | 'auto';
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -287,6 +294,7 @@ const GuideBox = (props: StyledProps) => {
 		duration,
 		pulse,
 		loading,
+		overflow,
 		...rest 
 	} = props;
 
@@ -303,8 +311,9 @@ const GuideBox = (props: StyledProps) => {
 				...(pulse ? { animation: `${kf_pulse} ${duration}s infinite` } : {}),
 				...(loading ? loadingStackStyles : {}),
 				...(loading ? { animation: `${kf_transition} ${duration}s infinite` } : {}),
+				boxSizing: 'border-box',
 			}}
-			overflow={"hidden"}
+			overflow={overflow || "hidden"}
 			direction={getItemDirection(props).value}
 			spacing={spacing}
 			display={"flex"}

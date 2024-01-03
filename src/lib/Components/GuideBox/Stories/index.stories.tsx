@@ -22,6 +22,7 @@ import {
 	OpacityCode,
 	PulseCode,
 	LoadingCode,
+	OverflowCode,
 } from "../Code";
 
 const meta = {
@@ -53,6 +54,7 @@ export const Layout5_Sample = LiveEditStory(cleanMask(Layout5_SampleCode));
 export const Opacity = LiveEditStory(cleanMask(OpacityCode));
 export const Pulse = LiveEditStory(cleanMask(PulseCode));
 export const Loading = LiveEditStory(cleanMask(LoadingCode));
+export const Overflow = LiveEditStory(cleanMask(OverflowCode));
 
 export const Sample: Story = {
   args: {
