@@ -97,10 +97,6 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 */
 	color?: 'primary' | 'secondary' | 'third' | 'disable' | string;
 	/**
-	 * Set the flexItem
-	 */
-	flexItem?: boolean;
-	/**
 	 * Set the width
 	 */
 	width?: string | number;
@@ -112,7 +108,7 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Set the Size
 	 */
 	size?: 'small' | 'medium' | 'large';
-	
+
 	/**
 	 * Set the alignItems (Top)
 	 */
@@ -154,19 +150,35 @@ const getFontSize = (size: any) => {
 	}
 }
 
+const getHorizontalAlign = (props: StyledProps) => {
+	if (props.center) return 'center';
+	if (props.horLeft) return 'flex-start';
+	if (props.horCenter) return 'center';
+	if (props.horRight) return 'flex-end';
+	return 'flex-start';
+}
+
+const getVerticalAlign = (props: StyledProps) => {
+	if (props.center) return 'center';
+	if (props.verTop) return 'flex-start';
+	if (props.verCenter) return 'center';
+	if (props.verBottom) return 'flex-end';
+	return 'flex-start';
+}
+
 const StyledComponent = styled((props: StyledProps) => {
 	const { 
 		children, 
 		variant, 
 		color, 
 		size, 
-		verTop,
-		verCenter,
-		verBottom,
-		horLeft,
-		horCenter,
-		horRight,
-		center,
+		// verTop,
+		// verCenter,
+		// verBottom,
+		// horLeft,
+		// horCenter,
+		// horRight,
+		// center,
 	} = props;
 
 	return (
@@ -176,14 +188,9 @@ const StyledComponent = styled((props: StyledProps) => {
 				...Font.defaultFontSet,
 				...MarginProps(props),
 				...PaddingProps(props),
-				display: props.flexItem ? 'flex' : 'block',
-				...(verTop ? { display: 'flex', alignItems: 'flex-start' } : {}),
-				...(verCenter ? { display: 'flex', alignItems: 'center' } : {}),
-				...(verBottom ? { display: 'flex', alignItems: 'flex-end' } : {}),
-				...(horLeft ? { display: 'flex', justifyContent: 'flex-start' } : {}),
-				...(horCenter ? { display: 'flex', justifyContent: 'center' } : {}),
-				...(horRight ? { display: 'flex', justifyContent: 'flex-end' } : {}),
-				...(center ? { display: 'flex', justifyContent: 'center', alignItems: '' } : {}),
+				display: 'flex',
+				justifyContent: getHorizontalAlign(props),
+				alignItems: getVerticalAlign(props),
 				width: props.width || 'auto',
 				height: props.height || 'auto',
 				fontSize: getFontSize(size),

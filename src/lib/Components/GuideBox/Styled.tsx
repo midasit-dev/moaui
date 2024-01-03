@@ -115,7 +115,7 @@ export type StyledProps = {
 	/**
 	 * overflow option 
 	 * 
-	 * @default hidden
+	 * @default visible
 	 */
 	overflow?: 'visible' | 'hidden' | 'clip' | 'scroll' | 'auto';
 
@@ -321,7 +321,7 @@ const GuideBox = (props: StyledProps) => {
 				...(loading ? { animation: `${kf_transition} ${duration}s infinite` } : {}),
 				...(borderRadius ? { borderRadius: borderRadius } : {}),
 			}}
-			overflow={overflow || "hidden"}
+			overflow={overflow || "visible"}
 			direction={getItemDirection(props).value}
 			spacing={spacing}
 			display={"flex"}

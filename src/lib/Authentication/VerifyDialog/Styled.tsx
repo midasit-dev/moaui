@@ -103,9 +103,9 @@ const StyledComponent = styled((props: StyledProps) => {
 			sx={{ backdropFilter: "blur(5px)" }}
 			onClose={props.onClose}
 		>
-      <GuideBox width={350} fill="1" padding={4}>
-        <GuideBox width={350} fill="1" spacing={3}>
-          <GuideBox width={350} fill="2" spacing={1} center row horSpaceBetween>
+      <GuideBox width={400} fill="1" padding={4}>
+        <GuideBox width='100%' fill="1" spacing={3}>
+          <GuideBox width='100%' fill="2" spacing={1} center row horSpaceBetween>
 						<GuideBox width="70%" spacing={1}>
 							<GuideBox width="100%" fill="2" spacing={1} row>
 								<Icon iconName="Warning" />
