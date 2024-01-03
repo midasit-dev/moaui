@@ -44,6 +44,7 @@ export { default as GuideBoxPulse } from '../../../Components/GuideBox/Code/Puls
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code.tsx?raw';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code.tsx?raw';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code.tsx?raw';
+export { default as IconToButton } from '../../../Components/Icon/Code/ToButton.code.tsx?raw';
 export { default as IconButtonAdd } from '../../../Components/IconButton/Code/Add.code.tsx?raw';
 export { default as IconButtonClose } from '../../../Components/IconButton/Code/Close.code.tsx?raw';
 export { default as IconButtonTransparent } from '../../../Components/IconButton/Code/Transparent.code.tsx?raw';

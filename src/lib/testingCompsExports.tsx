@@ -47,6 +47,7 @@ export { default as ComponentsGuideBoxPulse } from "./Components/GuideBox/Code/P
 export { default as ComponentsGuideBoxRowDirection } from "./Components/GuideBox/Code/RowDirection.code";
 export { default as ComponentsIconAdd } from "./Components/Icon/Code/Add.code";
 export { default as ComponentsIconClose } from "./Components/Icon/Code/Close.code";
+export { default as ComponentsIconToButton } from "./Components/Icon/Code/ToButton.code";
 export { default as ComponentsIconButtonAdd } from "./Components/IconButton/Code/Add.code";
 export { default as ComponentsIconButtonClose } from "./Components/IconButton/Code/Close.code";
 export { default as ComponentsIconButtonTransparent } from "./Components/IconButton/Code/Transparent.code";

@@ -51,6 +51,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.GuideBoxRowDirection: return <All.GuideBoxRowDirection />;
 		case ItemTypes.IconAdd: return <All.IconAdd />;
 		case ItemTypes.IconClose: return <All.IconClose />;
+		case ItemTypes.IconToButton: return <All.IconToButton />;
 		case ItemTypes.IconButtonAdd: return <All.IconButtonAdd />;
 		case ItemTypes.IconButtonClose: return <All.IconButtonClose />;
 		case ItemTypes.IconButtonTransparent: return <All.IconButtonTransparent />;

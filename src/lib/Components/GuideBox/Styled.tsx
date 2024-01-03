@@ -111,6 +111,11 @@ export type StyledProps = {
 	 * loading option
 	 */
 	loading?: boolean;
+
+	/**
+	 * border radius
+	 */
+	borderRadius?: number | string;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -287,6 +292,7 @@ const GuideBox = (props: StyledProps) => {
 		duration,
 		pulse,
 		loading,
+		borderRadius,
 		...rest 
 	} = props;
 
@@ -303,6 +309,7 @@ const GuideBox = (props: StyledProps) => {
 				...(pulse ? { animation: `${kf_pulse} ${duration}s infinite` } : {}),
 				...(loading ? loadingStackStyles : {}),
 				...(loading ? { animation: `${kf_transition} ${duration}s infinite` } : {}),
+				...(borderRadius ? { borderRadius: borderRadius } : {}),
 			}}
 			overflow={"hidden"}
 			direction={getItemDirection(props).value}
