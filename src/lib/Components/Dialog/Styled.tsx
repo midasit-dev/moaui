@@ -1,8 +1,10 @@
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from '../../Style/MoaStyled';
 import { Dialog } from "@mui/material";
 import HelpDialog, { type HelpProps } from "./HelpDialog";
-import { GuideBox, IconButton, Icon, Typography } from "../..";
+import { GuideBox, Typography, Icon } from "../..";
+
 
 export type StyledProps = {
   /**
@@ -63,25 +65,12 @@ const StyledComponent = styled((props: StyledProps) => {
       }}
       {...rest}
     >
-      <GuideBox
-        show
-        row
-        verCenter
-        spacing={1}
-        padding={2}
-        fill="2"
-        horSpaceBetween
-      >
+      <GuideBox show row verCenter spacing={1} padding={2} fill="2" horSpaceBetween>
         <GuideBox row verCenter spacing={2}>
           {headerIcon ? headerIcon : <></>}
           <Typography variant="h1">{headerTitle}</Typography>
         </GuideBox>
-        <IconButton transparent onClick={() => {
-					setOpen?.(false);
-					onClose?.();
-				}}>
-          <Icon iconName="Close" />
-        </IconButton>
+				<Icon iconName='Close' toButton onClick={() => setOpen?.(false)}/>
       </GuideBox>
       <GuideBox padding={2}>{children}</GuideBox>
     </Dialog>
