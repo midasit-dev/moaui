@@ -1,7 +1,7 @@
 import { IconButton, Icon } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsIconButtonWithName = ({
-	iconName = "Add",/**${props-seperator}*/
+	iconName = "Add",/**${props-separator}*/
 }) => {
 	const onClick = () => {
 		alert("Clicked!");

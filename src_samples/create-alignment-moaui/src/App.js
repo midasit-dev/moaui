@@ -2,7 +2,7 @@ import './App.css';
 import * as React from 'react';
 import MoaPanel from "@midasit-dev/moaui/Components/Panel";
 import MoaStack from "@midasit-dev/moaui/Components/Stack";
-import Sep from '@midasit-dev/moaui/Components/Seperator';
+import Sep from '@midasit-dev/moaui/Components/Separator';
 import { useSnackbar } from 'notistack';
 // UserDefined Components
 import * as Buttons from './Components/Buttons'
@@ -42,7 +42,7 @@ const enqueueMessage = (func, message, variant = "error") => {
   );
 };
 
-function Seperator() {
+function Separator() {
 	return (
 		<div width="100%">
 			<Sep direction="vertical" />
@@ -214,7 +214,7 @@ function App() {
 						{Buttons.SubButton("contained", "Data Clear", clearData)}
 					</MoaStack>
 				</MoaStack>
-				<Seperator />
+				<Separator />
 				<MoaStack height={293}>
 					{VerticalTabs(
 						tabValue, setTabValue,
@@ -222,7 +222,7 @@ function App() {
 						DataGrids.DataGridSegm(segmGrid, setSegmGrid, SegmModalOpen)
 					)}
 				</MoaStack>
-				<Seperator />
+				<Separator />
 				<MoaStack height={295} padding={0}>
 				<div className='userWrap'>
 					<div className='chartStyle'>

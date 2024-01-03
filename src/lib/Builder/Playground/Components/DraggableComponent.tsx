@@ -586,14 +586,14 @@ const ScrollbarsCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
-const SeperatorCategory: React.FC<{}> = () => (
+const SeparatorCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
 				marginLeft: '5px'
 			}}>
-				<h4>Seperator</h4>
+				<h4>Separator</h4>
 			</div>
 		</GuideBox>
 		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
@@ -601,8 +601,8 @@ const SeperatorCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
-				<CustomDraggableComponent itemType={ItemTypes.SeperatorHorizontal}>Horizontal</CustomDraggableComponent>
-				<CustomDraggableComponent itemType={ItemTypes.SeperatorVertical}>Vertical</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.SeparatorHorizontal}>Horizontal</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.SeparatorVertical}>Vertical</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -1111,11 +1111,11 @@ export const ScrollbarsCheckGroup =
 export const ScrollbarsList = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ScrollbarsList}>ScrollbarsList</CustomDraggableComponent>;
 
-export const SeperatorHorizontal = 
-	() => <CustomDraggableComponent itemType={ItemTypes.SeperatorHorizontal}>SeperatorHorizontal</CustomDraggableComponent>;
+export const SeparatorHorizontal = 
+	() => <CustomDraggableComponent itemType={ItemTypes.SeparatorHorizontal}>SeparatorHorizontal</CustomDraggableComponent>;
 
-export const SeperatorVertical = 
-	() => <CustomDraggableComponent itemType={ItemTypes.SeperatorVertical}>SeperatorVertical</CustomDraggableComponent>;
+export const SeparatorVertical = 
+	() => <CustomDraggableComponent itemType={ItemTypes.SeparatorVertical}>SeparatorVertical</CustomDraggableComponent>;
 
 export const StackColumn = 
 	() => <CustomDraggableComponent itemType={ItemTypes.StackColumn}>StackColumn</CustomDraggableComponent>;
@@ -1259,7 +1259,7 @@ const DraggableComponent: React.FC = () => {
 			<RadioCategory />
 			<RadioGroupCategory />
 			<ScrollbarsCategory />
-			<SeperatorCategory />
+			<SeparatorCategory />
 			<StackCategory />
 			<SwitchCategory />
 			<SwitchGroupCategory />

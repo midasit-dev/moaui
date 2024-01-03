@@ -19,7 +19,7 @@ const DropAcceptList = [
   ItemTypes.CHECKBOX,
   ItemTypes.RADIO,
   ItemTypes.SWITCH,
-  ItemTypes.SEPERATOR,
+  ItemTypes.SEPARATOR,
   ItemTypes.TYPOGRAPHY,
   ItemTypes.DROPLIST,
   ItemTypes.TAB,

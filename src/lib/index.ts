@@ -21,7 +21,7 @@ export { default as IconButton } from "./Components/IconButton";
 export { default as Panel } from "./Components/Panel";
 export { default as Radio } from "./Components/Radio";
 export { default as RadioGroup } from "./Components/RadioGroup";
-export { default as Seperator } from "./Components/Seperator";
+export { default as Separator } from "./Components/Separator";
 export { default as Stack } from "./Components/Stack";
 export { default as Switch } from "./Components/Switch";
 export { default as SwitchGroup } from "./Components/SwitchGroup";

@@ -74,8 +74,8 @@ function DraggedComponent(props: any){
 		case ItemTypes.RadioGroupUnControlled: return <All.RadioGroupUnControlled />;
 		case ItemTypes.ScrollbarsCheckGroup: return <All.ScrollbarsCheckGroup />;
 		case ItemTypes.ScrollbarsList: return <All.ScrollbarsList />;
-		case ItemTypes.SeperatorHorizontal: return <All.SeperatorHorizontal />;
-		case ItemTypes.SeperatorVertical: return <All.SeperatorVertical />;
+		case ItemTypes.SeparatorHorizontal: return <All.SeparatorHorizontal />;
+		case ItemTypes.SeparatorVertical: return <All.SeparatorVertical />;
 		case ItemTypes.StackColumn: return <All.StackColumn />;
 		case ItemTypes.StackRow: return <All.StackRow />;
 		case ItemTypes.SwitchLabel: return <All.SwitchLabel />;

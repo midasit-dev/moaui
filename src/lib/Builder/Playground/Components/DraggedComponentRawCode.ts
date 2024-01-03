@@ -67,8 +67,8 @@ export { default as RadioGroupControlled } from '../../../Components/RadioGroup/
 export { default as RadioGroupUnControlled } from '../../../Components/RadioGroup/Code/UnControlled.code.tsx?raw';
 export { default as ScrollbarsCheckGroup } from '../../../Components/Scrollbars/Code/CheckGroup.code.tsx?raw';
 export { default as ScrollbarsList } from '../../../Components/Scrollbars/Code/List.code.tsx?raw';
-export { default as SeperatorHorizontal } from '../../../Components/Seperator/Code/Horizontal.code.tsx?raw';
-export { default as SeperatorVertical } from '../../../Components/Seperator/Code/Vertical.code.tsx?raw';
+export { default as SeparatorHorizontal } from '../../../Components/Separator/Code/Horizontal.code.tsx?raw';
+export { default as SeparatorVertical } from '../../../Components/Separator/Code/Vertical.code.tsx?raw';
 export { default as StackColumn } from '../../../Components/Stack/Code/Column.code.tsx?raw';
 export { default as StackRow } from '../../../Components/Stack/Code/Row.code.tsx?raw';
 export { default as SwitchLabel } from '../../../Components/Switch/Code/Label.code.tsx?raw';

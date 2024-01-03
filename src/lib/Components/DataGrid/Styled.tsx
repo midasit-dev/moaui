@@ -42,7 +42,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					fontWeight: 500,
 					backgroundColor: Color.component.gray_light,
 				},
-				".MuiDataGrid-columnSeperator": {
+				".MuiDataGrid-columnSeparator": {
 					color: Color.component.gray,
 				},
 				".MuiDataGrid-columnHeaderTitleContainer": {
