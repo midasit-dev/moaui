@@ -13,7 +13,7 @@ const CompDesignSpectrum = () => {
       <GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
         <Typography
           flexItem
-          textAlign="center"
+          center
           variant="h1"
           height={30}
           color={Color.secondary.main}

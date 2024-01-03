@@ -44,7 +44,7 @@ const CompGroupPileAndCapOptions = () => {
             {["Component", "Longitudinal", "Transverse"].map(
               (header, index) => (
                 <TableCell key={index}>
-                  <Typography textAlign="center">{header}</Typography>
+                  <Typography center>{header}</Typography>
                 </TableCell>
               )
             )}
@@ -53,7 +53,7 @@ const CompGroupPileAndCapOptions = () => {
         <TableBody>
           <TableRow>
             <TableCell>
-              <Typography textAlign="center">Pile Array</Typography>
+              <Typography center>Pile Array</Typography>
             </TableCell>
             <TableCell>
               <TextField
@@ -74,7 +74,7 @@ const CompGroupPileAndCapOptions = () => {
           </TableRow>
           <TableRow>
             <TableCell>
-              <Typography textAlign="center">Spacing (c-c)</Typography>
+              <Typography center>Spacing (c-c)</Typography>
             </TableCell>
             <TableCell>
               <TextField
@@ -95,7 +95,7 @@ const CompGroupPileAndCapOptions = () => {
           </TableRow>
           <TableRow>
             <TableCell>
-              <Typography textAlign="center">Cap Edge</Typography>
+              <Typography center>Cap Edge</Typography>
             </TableCell>
             <TableCell>
               <TextField

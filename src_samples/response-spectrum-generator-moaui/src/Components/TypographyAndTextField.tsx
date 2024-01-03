@@ -21,7 +21,7 @@ const CompTypographyAndTextField = (props: any) => {
 			<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
 				<Typography 
 					flexItem 
-					textAlign="center" 
+					center 
 					variant="h1" 
 					height={30} 
 					color={blueTitle ? Color.secondary.main : Color.text.primary}

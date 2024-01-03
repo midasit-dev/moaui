@@ -44,7 +44,7 @@ const App = () => {
         <CompDesignSpectrum />
 
 				<GuideBox row verCenter>
-					<Typography flexItem textAlign="center" variant="h1" height={30} color={Color.secondary.main}>
+					<Typography center variant="h1" height={30} color={Color.secondary.main}>
 						Seismic Data
 					</Typography>
 					<IconButton onClick={() => {}} transparent>

@@ -39,7 +39,7 @@ const CompSelectedReferenceNodes = () => {
 	return (
 			<GuideBox width="100%" row horSpaceBetween loading={loading}>
 				<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
-					<Typography flexItem textAlign="center" height={30}>Selected Reference Nodes</Typography>
+					<Typography center height={30}>Selected Reference Nodes</Typography>
 					<TextField
 						width={200}
 						height={30}

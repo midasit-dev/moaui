@@ -17,7 +17,7 @@ const CompPileStartNodeNo = (props: any) => {
 	return (
 		<GuideBox width="100%" row horSpaceBetween>
 			<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
-				<Typography flexItem textAlign="center" height={30}>Pile Start Node No.</Typography>
+				<Typography center height={30}>Pile Start Node No.</Typography>
 				<GuideBox width={200} row verCenter spacing={1} horSpaceBetween>
 					<TextField
 						width={115}

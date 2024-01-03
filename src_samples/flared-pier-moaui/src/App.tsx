@@ -99,7 +99,7 @@ const App = () => {
 								<TableRow>
 									{["Component", "Column", "Cap Bot", "Cap Top"].map((header, index) => 
 										<TableCell key={index}>
-											<Typography textAlign='center'>{header}</Typography>
+											<Typography center>{header}</Typography>
 										</TableCell>
 									)}
 								</TableRow>

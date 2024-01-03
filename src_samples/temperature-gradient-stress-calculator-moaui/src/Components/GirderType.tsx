@@ -36,11 +36,11 @@ const CompGirderType = () => {
           Girder Type
         </Typography>
         {importSectionValue.selected !== "" ? (
-          <Typography flexItem textAlign="center">
+          <Typography center>
             {girderType}
           </Typography>
         ) : (
-          <Typography flexItem textAlign="center" color="red">
+          <Typography center color="red">
             There is no selected section.
           </Typography>
         )}

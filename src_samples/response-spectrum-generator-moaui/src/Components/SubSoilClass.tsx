@@ -14,7 +14,7 @@ const CompSubSoilClass = () => {
 
   return (
     <GuideBox width='100%'>
-      <Typography flexItem textAlign="center" variant="h1" height={30}>
+      <Typography center variant="h1" height={30}>
 				Site Sub Soil Class
       </Typography>
       <GuideBox padding={1} width='100%' center>

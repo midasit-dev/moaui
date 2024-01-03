@@ -16,7 +16,7 @@ import { VarCalculationParseResult } from './variables';
 import { VarMaterialStressTableDataOfTab1 , VarMaterialStressTableDataOfTab2 } from './variables';
 import { Typography, Table, TableHead, TableRow, TableCell, TableBody, GuideBox, Tab, TabGroup } from '@midasit-dev/moaui';
 
-const TypoBody1 = ({ text }: any) => <Typography variant="body1" textAlign='center'>{text}</Typography>;
+const TypoBody1 = ({ text }: any) => <Typography variant="body1" center>{text}</Typography>;
 
 const CompTableMaterialStress = () => {
 	const calcValue = useRecoilValue(VarCalculationParseResult);
