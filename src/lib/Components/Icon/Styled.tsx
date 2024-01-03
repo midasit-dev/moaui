@@ -22,10 +22,18 @@ export type StyledProps = {
 	 * opacity={0.5}
 	 */
 	opacity?: number;
+	/**
+	 * If `true`, the component is shown as a button.
+	 */
+	toButton?: boolean;
+	/**
+	 * The click event handler of the icon.
+	 */
+	onClick?: (event: React.SyntheticEvent) => void;
 }
 
-const StyledComponent = styled((props:StyledProps) => {
-	const { iconName } = props;
+const Default = (props: StyledProps) => {
+	const { iconName, opacity, ...rest } = props;
 
 	if (iconName === undefined || 
 			iconName === null ||
@@ -35,14 +43,58 @@ const StyledComponent = styled((props:StyledProps) => {
 
 	const iconStyle = {
 		fontSize: '16px',   // Set icon size to 16px
-		opacity: props.opacity,
+		opacity: opacity,
 	};
 
 	const Icon = MuiIcon[iconName as keyof typeof MuiIcon] as React.ElementType;
-	
+
 	return (
 		<Icon style={iconStyle} />
 	)
+}
+
+const ToButton = (props: StyledProps) => {
+	const { iconName, opacity, onClick, ...rest } = props;
+
+  const [varOpacity, setVarOpacity] = React.useState(1);
+
+  const customStyle = {
+    width: 'atuo',
+    height: 'auto',
+    cursor: 'pointer',
+    opacity: varOpacity,
+    transition: 'opacity 0.1s ease',
+  };
+
+	const Icon = MuiIcon[iconName as keyof typeof MuiIcon] as React.ElementType;
+
+  return (
+    <div
+      style={customStyle}
+      onMouseOver={() => setVarOpacity(0.5)}
+      onMouseOut={() => setVarOpacity(1)}
+      onMouseDown={() => setVarOpacity(0.2)}
+      onMouseUp={() => setVarOpacity(0.5)}
+			onClick={onClick}
+    >
+			<Icon 
+				iconName={iconName}
+				sx={{
+					fontSize: '16px',   // Set icon size to 16px
+					opacity: opacity,
+				}}
+			/>
+		</div>
+  );
+}
+
+const StyledComponent = styled((props:StyledProps) => {
+	const { toButton } = props;
+	if (toButton) { 
+		return <ToButton {...props} />
+	}
+
+	return <Default {...props} />
 })
 (({theme}) => ({}))
 

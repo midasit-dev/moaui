@@ -398,6 +398,7 @@ const IconCategory: React.FC<{}> = () => (
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.IconAdd}>Add</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.IconClose}>Close</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.IconToButton}>ToButton</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -1039,6 +1040,9 @@ export const IconAdd =
 
 export const IconClose = 
 	() => <CustomDraggableComponent itemType={ItemTypes.IconClose}>IconClose</CustomDraggableComponent>;
+
+export const IconToButton = 
+	() => <CustomDraggableComponent itemType={ItemTypes.IconToButton}>IconToButton</CustomDraggableComponent>;
 
 export const IconButtonAdd = 
 	() => <CustomDraggableComponent itemType={ItemTypes.IconButtonAdd}>IconButtonAdd</CustomDraggableComponent>;

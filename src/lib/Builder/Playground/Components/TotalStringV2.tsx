@@ -336,6 +336,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.GuideBoxRowDirection ? `${extractComponentName(All.GuideBoxRowDirection)}` : ""}
 					${item.type === ItemTypes.IconAdd ? `${extractComponentName(All.IconAdd)}` : ""}
 					${item.type === ItemTypes.IconClose ? `${extractComponentName(All.IconClose)}` : ""}
+					${item.type === ItemTypes.IconToButton ? `${extractComponentName(All.IconToButton)}` : ""}
 					${item.type === ItemTypes.IconButtonAdd ? `${extractComponentName(All.IconButtonAdd)}` : ""}
 					${item.type === ItemTypes.IconButtonClose ? `${extractComponentName(All.IconButtonClose)}` : ""}
 					${item.type === ItemTypes.IconButtonTransparent ? `${extractComponentName(All.IconButtonTransparent)}` : ""}

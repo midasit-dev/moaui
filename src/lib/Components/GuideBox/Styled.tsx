@@ -118,6 +118,11 @@ export type StyledProps = {
 	 * @default hidden
 	 */
 	overflow?: 'visible' | 'hidden' | 'clip' | 'scroll' | 'auto';
+
+	/**
+	 * border radius
+	 */
+	borderRadius?: number | string;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -295,6 +300,7 @@ const GuideBox = (props: StyledProps) => {
 		pulse,
 		loading,
 		overflow,
+		borderRadius,
 		...rest 
 	} = props;
 
@@ -308,10 +314,12 @@ const GuideBox = (props: StyledProps) => {
 				...PaddingProps(props),
 				backgroundColor: getBackgroundColor(props),
 				opacity: opacity,
+				boxSizing: 'border-box',
+				
 				...(pulse ? { animation: `${kf_pulse} ${duration}s infinite` } : {}),
 				...(loading ? loadingStackStyles : {}),
 				...(loading ? { animation: `${kf_transition} ${duration}s infinite` } : {}),
-				boxSizing: 'border-box',
+				...(borderRadius ? { borderRadius: borderRadius } : {}),
 			}}
 			overflow={overflow || "hidden"}
 			direction={getItemDirection(props).value}

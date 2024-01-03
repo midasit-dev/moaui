@@ -45,6 +45,7 @@ export const ItemTypes = {
 	GuideBoxRowDirection: 'GuideBoxRowDirection',
 	IconAdd: 'IconAdd',
 	IconClose: 'IconClose',
+	IconToButton: 'IconToButton',
 	IconButtonAdd: 'IconButtonAdd',
 	IconButtonClose: 'IconButtonClose',
 	IconButtonTransparent: 'IconButtonTransparent',
