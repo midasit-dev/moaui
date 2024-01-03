@@ -25,7 +25,7 @@ const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
 	const itemsMap = new Map<string, number>(items as [string, number][]);
 	return (
 		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
-			<Typography flexItem textAlign='center' height={height}>{title}</Typography>
+			<Typography flexItem center height={height}>{title}</Typography>
 			<DropList 
 				itemList={itemsMap} 
 				width={dropListwidth} 

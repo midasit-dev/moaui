@@ -40,6 +40,7 @@ export { default as GuideBoxLayout4 } from '../../../Components/GuideBox/Code/La
 export { default as GuideBoxLayout5 } from '../../../Components/GuideBox/Code/Layout5.code';
 export { default as GuideBoxLoading } from '../../../Components/GuideBox/Code/Loading.code';
 export { default as GuideBoxOpacity } from '../../../Components/GuideBox/Code/Opacity.code';
+export { default as GuideBoxOverflow } from '../../../Components/GuideBox/Code/Overflow.code';
 export { default as GuideBoxPulse } from '../../../Components/GuideBox/Code/Pulse.code';
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code';

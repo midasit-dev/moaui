@@ -97,12 +97,6 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 */
 	color?: 'primary' | 'secondary' | 'third' | 'disable' | string;
 	/**
-	 * Set the text align
-	 * 
-	 * @default left
-	 */
-	textAlign: "center" | "left";
-	/**
 	 * Set the flexItem
 	 */
 	flexItem?: boolean;
@@ -118,6 +112,37 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Set the Size
 	 */
 	size?: 'small' | 'medium' | 'large';
+	
+	/**
+	 * Set the alignItems (Top)
+	 */
+	verTop?: boolean;
+	/**
+	 * Set the alignItems (Middle)
+	 */
+	verCenter?: boolean;
+	/**
+	 * Set the alignItems (Bottom)
+	 */
+	verBottom?: boolean;
+
+	/**
+	 * Set the justifyContent (Left)
+	 */
+	horLeft?: boolean;
+	/**
+	 * Set the justifyContent (Center)
+	 */
+	horCenter?: boolean;
+	/**
+	 * Set the justifyContent (Right)
+	 */
+	horRight?: boolean;
+
+	/**
+	 * Set the center (vertical, horizontal)
+	 */
+	center?: boolean;
 }
 
 const getFontSize = (size: any) => {
@@ -130,7 +155,19 @@ const getFontSize = (size: any) => {
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { children, variant, color, textAlign, size } = props;
+	const { 
+		children, 
+		variant, 
+		color, 
+		size, 
+		verTop,
+		verCenter,
+		verBottom,
+		horLeft,
+		horCenter,
+		horRight,
+		center,
+	} = props;
 
 	return (
 		<Typography 
@@ -139,9 +176,14 @@ const StyledComponent = styled((props: StyledProps) => {
 				...Font.defaultFontSet,
 				...MarginProps(props),
 				...PaddingProps(props),
-				textAlign: textAlign,
-				alignItems: textAlign,
 				display: props.flexItem ? 'flex' : 'block',
+				...(verTop ? { display: 'flex', alignItems: 'flex-start' } : {}),
+				...(verCenter ? { display: 'flex', alignItems: 'center' } : {}),
+				...(verBottom ? { display: 'flex', alignItems: 'flex-end' } : {}),
+				...(horLeft ? { display: 'flex', justifyContent: 'flex-start' } : {}),
+				...(horCenter ? { display: 'flex', justifyContent: 'center' } : {}),
+				...(horRight ? { display: 'flex', justifyContent: 'flex-end' } : {}),
+				...(center ? { display: 'flex', justifyContent: 'center', alignItems: '' } : {}),
 				width: props.width || 'auto',
 				height: props.height || 'auto',
 				fontSize: getFontSize(size),

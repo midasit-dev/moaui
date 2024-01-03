@@ -45,7 +45,7 @@ export interface StyledProps {
 	 * 
 	 * @default left
 	 */
-	titleAlign: "center" | "left";
+	titleAlign: "left" | "center" | "right";
 }
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -61,7 +61,9 @@ const StyledComponent = styled((props: StyledProps) => {
 					<Typography 
 						variant={titleVariant}
 						color={titleColor}
-						textAlign={titleAlign}
+						horLeft={titleAlign === "left"}
+						horCenter={titleAlign === "center"}
+						horRight={titleAlign === "right"}
 					>
 						{title}
 					</Typography>

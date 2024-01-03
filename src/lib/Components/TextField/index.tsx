@@ -54,11 +54,11 @@ function Textfield(props: StyledProps) : React.ReactElement {
 						titlePosition === "right" ?
 						<>
 							<StyledComponent {...rest} />
-							<Typography flexItem textAlign="center">{`${title}`}</Typography>
+							<Typography center>{`${title}`}</Typography>
 						</>
 						:
 						<>
-							<Typography flexItem textAlign="center">{`${title}`}</Typography>
+							<Typography center>{`${title}`}</Typography>
 							<StyledComponent {...rest}/>
 						</>
 					}

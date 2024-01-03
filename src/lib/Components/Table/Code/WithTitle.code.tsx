@@ -21,7 +21,7 @@ const ComponentsTableWithTitle = ({
 				<Table padding="normal" width={300}>
 					<TableHead>
 						<TableRow>
-							{headers.map((header, index) => <TableCell key={index}><Typography textAlign='center'>{header}</Typography></TableCell>)}
+							{headers.map((header, index) => <TableCell key={index}><Typography center>{header}</Typography></TableCell>)}
 						</TableRow>
 					</TableHead>
 					<TableBody>

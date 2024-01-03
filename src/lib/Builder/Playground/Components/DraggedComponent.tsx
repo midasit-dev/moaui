@@ -47,6 +47,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.GuideBoxLayout5: return <All.GuideBoxLayout5 />;
 		case ItemTypes.GuideBoxLoading: return <All.GuideBoxLoading />;
 		case ItemTypes.GuideBoxOpacity: return <All.GuideBoxOpacity />;
+		case ItemTypes.GuideBoxOverflow: return <All.GuideBoxOverflow />;
 		case ItemTypes.GuideBoxPulse: return <All.GuideBoxPulse />;
 		case ItemTypes.GuideBoxRowDirection: return <All.GuideBoxRowDirection />;
 		case ItemTypes.IconAdd: return <All.IconAdd />;

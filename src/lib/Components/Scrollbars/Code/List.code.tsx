@@ -55,7 +55,7 @@ const ComponentsScrollbarsList = () => {
         <ComponentsListDynamic values={values} setValues={setValues} />
       </Scrollbars>
       {values.map((value: any, index: any) => (
-        <Typography key={index} marginTop={2} textAlign="center">
+        <Typography key={index} marginTop={2} center>
           {value.checked ? "Checked" : "UnChecked"}
         </Typography>
       ))}

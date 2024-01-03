@@ -374,6 +374,7 @@ const GuideBoxCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout5}>Layout5</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLoading}>Loading</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxOpacity}>Opacity</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxOverflow}>Overflow</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxPulse}>Pulse</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxRowDirection}>RowDirection</CustomDraggableComponent>
 			</div>
@@ -1028,6 +1029,9 @@ export const GuideBoxLoading =
 
 export const GuideBoxOpacity = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxOpacity}>GuideBoxOpacity</CustomDraggableComponent>;
+
+export const GuideBoxOverflow = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxOverflow}>GuideBoxOverflow</CustomDraggableComponent>;
 
 export const GuideBoxPulse = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxPulse}>GuideBoxPulse</CustomDraggableComponent>;

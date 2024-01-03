@@ -43,6 +43,7 @@ export { default as ComponentsGuideBoxLayout4 } from "./Components/GuideBox/Code
 export { default as ComponentsGuideBoxLayout5 } from "./Components/GuideBox/Code/Layout5.code";
 export { default as ComponentsGuideBoxLoading } from "./Components/GuideBox/Code/Loading.code";
 export { default as ComponentsGuideBoxOpacity } from "./Components/GuideBox/Code/Opacity.code";
+export { default as ComponentsGuideBoxOverflow } from "./Components/GuideBox/Code/Overflow.code";
 export { default as ComponentsGuideBoxPulse } from "./Components/GuideBox/Code/Pulse.code";
 export { default as ComponentsGuideBoxRowDirection } from "./Components/GuideBox/Code/RowDirection.code";
 export { default as ComponentsIconAdd } from "./Components/Icon/Code/Add.code";
