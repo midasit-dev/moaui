@@ -198,7 +198,10 @@ def NZ_input(soilClass, rf, hf, dist, df, max_period):
     NTCH=[a*b for a,b in zip(NTD,CHT)]
     value= [x*rf*hf/df for x in NTCH]
 
-    return period, value
+    return json.dumps({
+		  "period": period,
+			"value": value
+		})
     # ==================================== Convert Period, value to aFUNC ================================== #
 def to_aFUNC(period, value):
     # 결과 출력
@@ -260,9 +263,36 @@ def SPFC_UPDATE(ID,name,GRAV, aFUNC):
         "aFUNC": aFUNC
     }
     civilApp.db_update_item("SPFC", ID, data)
+    
+    result_message = {"success":"Updating SPFC is completed"}
+    return json.dumps(result_message)
+    
+def main_NZS1170_5_2004(
+  func_name: str,
+	soilClass: str, 
+ 	rf: float, 
+ 	hf: float, 
+  dist: float, 
+  df: float, 
+  max_period: float
+):
+  # for graph data
+	inputs = json.loads(NZ_input(soilClass, rf, hf, dist, df, max_period)) 	# Seismic Data, Maximum Period (sec)
+	aPeriod = inputs["period"] 																# Period
+	aValue = inputs["value"] 																	# Spectral Data
+	
+	# do SPFC_UPDATE
+	civilApp = MidasAPI(Product.CIVIL, "KR")
+	ID = civilApp.db_get_next_id("SPFC")
+	name = func_name 																					# func name
+	aFUNC = to_aFUNC(aPeriod, aValue)
+	GRAV = UNIT_GET()
+	return SPFC_UPDATE(ID,name,GRAV, aFUNC)
 
 # ==================================== API CALL ================================== #
-# aPeriod, aValue = NZ_input("A",1.3,0.08,2.0,1.5,6.0) 	# Seismic Data, Maximum Period (sec)
+# inputs = json.loads(NZ_input("A",1.3,0.08,2.0,1.5,6.0)) 	# Seismic Data, Maximum Period (sec)
+# aPeriod = inputs["period"] 									# Period
+# aValue = inputs["value"] 										# Spectral Data
 # plot(aPeriod,aValue)																	# Plotting the Graph
 # ID=civilApp.db_get_next_id("SPFC")
 # name="RS01" 																					#func name

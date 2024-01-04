@@ -14,14 +14,14 @@ const CompTypographyAndTextField = (props: any) => {
 		error,
 		disabled,
 		blueTitle = false,
+		placeholder = 'Input value ...',
 	} = props;
 
 	return (
 		<GuideBox width="100%" row horSpaceBetween>
 			<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
 				<Typography 
-					flexItem 
-					center 
+					verCenter
 					variant="h1" 
 					height={30} 
 					color={blueTitle ? Color.secondary.main : Color.text.primary}
@@ -32,7 +32,7 @@ const CompTypographyAndTextField = (props: any) => {
 					error={error}
 					width={200}
 					height={30}
-					placeholder='Input value ...'
+					placeholder={placeholder}
 					onChange={(e: any) => setState(e.target.value)}
 					value={state}
 					disabled={disabled}

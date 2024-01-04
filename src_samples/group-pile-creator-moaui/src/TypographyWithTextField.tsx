@@ -15,7 +15,7 @@ export const TypographyWithTextField = ({
 
 	return (
 		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
-			<Typography flexItem center height={height}>{title}</Typography>
+			<Typography center height={height}>{title}</Typography>
 			<TextField
 				width={textFieldWidth}
 				height={30}

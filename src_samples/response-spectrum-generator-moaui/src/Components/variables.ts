@@ -1,4 +1,20 @@
 import { atom } from 'recoil';
+import { isLargerThanZero } from '../utils';
+
+//if true, it is Valid
+export const VarValids = atom({
+	key: 'Errors',
+	default: {
+		VarFunctionName: (value: any) => value !== '',
+		VarDesignSpectrum: (value: any) => true,
+		VarSiteSubSoilClass: (value: any) => true,
+		VarReturnPeriodFactor: (value: any) => isLargerThanZero(value),
+		VarHazardFactor: (value: any) => isLargerThanZero(value),
+		VarDistanceFromNearestMajorFault: (value: any) => isLargerThanZero(value),
+		VarDesignDuctilityFactor: (value: any) => isLargerThanZero(value),
+		VarMaximumPeriod: (value: any) => isLargerThanZero(value),
+	},
+});
 
 export const VarFuncName = atom({
 	key: 'VarFuncName',
@@ -19,7 +35,7 @@ export const VarDesignSpectrum = atom({
 
 export const VarSiteSubSoilClass = atom({
 	key: 'VarSiteSubSoilClass',
-	default: 1,
+	default: "A",
 });
 
 export const VarReturnPeriodFactor = atom({

@@ -10,71 +10,52 @@
  */
 
 import React from "react";
-import { Color, GuideBox, Panel, Typography, IconButton, Icon, Button } from "@midasit-dev/moaui";
+import { GuideBox } from "@midasit-dev/moaui";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
-  VarDesignDuctilityFactor,
-  VarDistanceFromNearestMajorFault,
+  VarDesignSpectrum,
   VarFuncName,
-  VarHazardFactor,
   VarMaximumPeriod,
-  VarReturnPeriodFactor,
-  VarSiteSubSoilClass,
+	VarValids,
 } from "./Components/variables";
 import CompTypographyAndTextField from "./Components/TypographyAndTextField";
 import CompDesignSpectrum from "./Components/DesignSpectrum";
-import CompSubSoilClass from "./Components/SubSoilClass";
-import CompDistanceFromNearestMajorFault from "./Components/DistanceFromNearestMajorFault";
+import CompSeismicDataNZS117052004 from "./Components/SeismicData_NZS1170_5_2004";
+import CompHelpDialog from "./Components/HelpDialog";
+import CompUpdate from "./Components/Update";
+import CompPreviewRight from "./Components/PreviewRight";
 
 const App = () => {
+	const valids = useRecoilValue(VarValids);
+
   const [func_name, setFunc_name] = useRecoilState(VarFuncName);
-  const site_sub_soil_class = useRecoilValue(VarSiteSubSoilClass); 
-	const [return_period_factor, setReturn_period_factor] = useRecoilState(VarReturnPeriodFactor);
-  const [hazard_factor, setHazard_factor] = useRecoilState(VarHazardFactor);
-  const distance_from_nearest_major_fault = useRecoilValue(VarDistanceFromNearestMajorFault);
-  const [design_ductility_factor, setDesign_ductility_factor] = useRecoilState(VarDesignDuctilityFactor);
+	const design_spectrum = useRecoilValue(VarDesignSpectrum);
   const [maximum_period, setMaximum_period] = useRecoilState(VarMaximumPeriod);
 
   return (
     //You can modify the code here and test.
     <GuideBox width="100%" center>
-      <GuideBox width={400} verCenter horSpaceBetween spacing={2} padding={2}>
+			<GuideBox center padding={2} spacing={2}>
 
-        <CompTypographyAndTextField title="Function Name" state={func_name} setState={setFunc_name} blueTitle />
-        <CompDesignSpectrum />
-
-				<GuideBox row verCenter>
-					<Typography center variant="h1" height={30} color={Color.secondary.main}>
-						Seismic Data
-					</Typography>
-					<IconButton onClick={() => {}} transparent>
-						<Icon iconName="InfoOutlined" />
-					</IconButton>
-				</GuideBox>
-        <Panel variant="shadow2" width="100%">
-          <GuideBox width="100%" spacing={2}>
-            <CompSubSoilClass />
-            <CompTypographyAndTextField title="Return Period Factor (R)" state={return_period_factor} setState={setReturn_period_factor} />
-            <CompTypographyAndTextField title="Hazard Factor (Z)" state={hazard_factor} setState={setHazard_factor} />
-						<CompDistanceFromNearestMajorFault />
-            <CompTypographyAndTextField title="Design Ductility Factor" state={design_ductility_factor} setState={setDesign_ductility_factor} />
-          </GuideBox>
-        </Panel>
-
-				<CompTypographyAndTextField title="Maximum Period (sec)" state={maximum_period} setState={setMaximum_period} blueTitle />
-
-				<GuideBox row verCenter>
-					<GuideBox row verCenter width="50%">
-						<IconButton onClick={() => {}} transparent>
-							<Icon iconName="Help" />
-						</IconButton>
-						<Button>Preview</Button>
+				<GuideBox row spacing={4}>
+					<GuideBox height={490} spacing={2} verSpaceBetween>
+						<CompTypographyAndTextField title="Function Name" state={func_name} setState={setFunc_name} blueTitle placeholder="RS 01" error={!valids.VarFunctionName(func_name)} />
+						<CompDesignSpectrum />
+						{design_spectrum === 1 && <CompSeismicDataNZS117052004 />}
+						{/** 기준이 추가되면 아래로 추가 */}
+						<CompTypographyAndTextField title="Maximum Period (sec)" state={maximum_period} setState={setMaximum_period} blueTitle error={!valids.VarMaximumPeriod(maximum_period)} />
 					</GuideBox>
-					<GuideBox horRight width="50%">
-						<Button>OK</Button>
+					<GuideBox>
+						<CompPreviewRight />
 					</GuideBox>
 				</GuideBox>
-      </GuideBox>
+
+				<GuideBox width="100%" row horSpaceBetween>
+					<CompHelpDialog />
+					<CompUpdate />
+				</GuideBox>
+
+    	</GuideBox>
     </GuideBox>
   );
 };
