@@ -21,7 +21,7 @@
     "build": "react-scripts build && npm run rename",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "rename": "rmdir /s /q response-spectrum-generator-moaui && ren response-spectrum-generator-moaui"
+    "rename": "rmdir /s /q response-spectrum-generator-moaui && ren build response-spectrum-generator-moaui"
   },
   "eslintConfig": {
     "extends": [

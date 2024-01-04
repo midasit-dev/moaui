@@ -141,7 +141,7 @@ const CompChartLeftBottom = (props: any) => {
 			marginRight={70}
 			marginLeft={70}
 			marginBottom={60}
-			pointSize={1}
+			pointSize={0}
 		/>
 	);
 }
