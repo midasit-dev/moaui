@@ -43,6 +43,7 @@ export { default as GuideBoxOpacity } from '../../../Components/GuideBox/Code/Op
 export { default as GuideBoxOverflow } from '../../../Components/GuideBox/Code/Overflow.code.tsx?raw';
 export { default as GuideBoxPulse } from '../../../Components/GuideBox/Code/Pulse.code.tsx?raw';
 export { default as GuideBoxRowDirection } from '../../../Components/GuideBox/Code/RowDirection.code.tsx?raw';
+export { default as GuideBoxSpaceBetween } from '../../../Components/GuideBox/Code/SpaceBetween.code.tsx?raw';
 export { default as IconAdd } from '../../../Components/Icon/Code/Add.code.tsx?raw';
 export { default as IconClose } from '../../../Components/Icon/Code/Close.code.tsx?raw';
 export { default as IconToButton } from '../../../Components/Icon/Code/ToButton.code.tsx?raw';

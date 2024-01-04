@@ -23,6 +23,7 @@ import {
 	PulseCode,
 	LoadingCode,
 	OverflowCode,
+	SpaceBetweenCode,
 } from "../Code";
 
 const meta = {
@@ -55,6 +56,7 @@ export const Opacity = LiveEditStory(cleanMask(OpacityCode));
 export const Pulse = LiveEditStory(cleanMask(PulseCode));
 export const Loading = LiveEditStory(cleanMask(LoadingCode));
 export const Overflow = LiveEditStory(cleanMask(OverflowCode));
+export const SpaceBetween = LiveEditStory(cleanMask(SpaceBetweenCode));
 
 export const Sample: Story = {
   args: {

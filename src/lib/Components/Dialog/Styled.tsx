@@ -46,10 +46,25 @@ export type StyledProps = {
 	 * If you define onClose, it makes dialog dynamic
 	 */
 	onClose?: () => void
+
+	/**
+	 * If you define maxWidth, it makes dialog dynamic
+	 */
+	maxWidth?: string | number | false;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { open, setOpen, json, children, headerIcon, headerTitle, onClose, ...rest } = props;
+	const {
+    open,
+    setOpen,
+    json,
+    children,
+    headerIcon,
+    headerTitle,
+    onClose,
+		maxWidth,
+    ...rest
+  } = props;
 
 	if (json && json.type === 'help') {
 		return <HelpDialog open={open} setOpen={setOpen} onClose={onClose} props={json.data} />;
@@ -63,7 +78,8 @@ const StyledComponent = styled((props: StyledProps) => {
         setOpen?.(false);
         onClose?.();
       }}
-      {...rest}
+			maxWidth={false}
+			{...rest}
     >
       <GuideBox show row verCenter spacing={1} padding={2} fill="2" horSpaceBetween>
         <GuideBox row verCenter spacing={2}>

@@ -44,6 +44,7 @@ export const ItemTypes = {
 	GuideBoxOverflow: 'GuideBoxOverflow',
 	GuideBoxPulse: 'GuideBoxPulse',
 	GuideBoxRowDirection: 'GuideBoxRowDirection',
+	GuideBoxSpaceBetween: 'GuideBoxSpaceBetween',
 	IconAdd: 'IconAdd',
 	IconClose: 'IconClose',
 	IconToButton: 'IconToButton',

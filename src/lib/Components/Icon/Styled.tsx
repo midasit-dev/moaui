@@ -66,7 +66,7 @@ const ToButton = (props: StyledProps) => {
     transition: 'opacity 0.1s ease',
   };
 
-	const Icon = MuiIcon[iconName as keyof typeof MuiIcon] as React.ElementType;
+	const MuiIconWrapper = MuiIcon[iconName as keyof typeof MuiIcon] as React.ElementType;
 
   return (
     <div
@@ -77,8 +77,7 @@ const ToButton = (props: StyledProps) => {
       onMouseUp={() => setVarOpacity(0.5)}
 			onClick={onClick}
     >
-			<Icon 
-				iconName={iconName}
+			<MuiIconWrapper 
 				sx={{
 					fontSize: '16px',   // Set icon size to 16px
 					opacity: opacity,

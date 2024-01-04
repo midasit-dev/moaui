@@ -335,6 +335,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.GuideBoxOverflow ? `${extractComponentName(All.GuideBoxOverflow)}` : ""}
 					${item.type === ItemTypes.GuideBoxPulse ? `${extractComponentName(All.GuideBoxPulse)}` : ""}
 					${item.type === ItemTypes.GuideBoxRowDirection ? `${extractComponentName(All.GuideBoxRowDirection)}` : ""}
+					${item.type === ItemTypes.GuideBoxSpaceBetween ? `${extractComponentName(All.GuideBoxSpaceBetween)}` : ""}
 					${item.type === ItemTypes.IconAdd ? `${extractComponentName(All.IconAdd)}` : ""}
 					${item.type === ItemTypes.IconClose ? `${extractComponentName(All.IconClose)}` : ""}
 					${item.type === ItemTypes.IconToButton ? `${extractComponentName(All.IconToButton)}` : ""}

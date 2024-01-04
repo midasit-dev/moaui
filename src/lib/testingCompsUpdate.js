@@ -10,7 +10,7 @@ const getAllFilePaths = (rootPath) => {
 			allFiles.push(...subFiles);
 		} else {
 			//*.code.* 파일만 추출
-			if (/.*\/(.*)\/Code\/(.*)\.code\.(tsx|jsx|ts|js)/ig.test(path)) allFiles.push(path);
+			if (/.*\/(.*)\/Code\/(.*)\.(code|code\.except)\.(tsx|jsx|ts|js)/ig.test(path)) allFiles.push(path);
 			continue;
 		}
 	}
@@ -20,7 +20,7 @@ const getAllFilePaths = (rootPath) => {
 const generateFileInformations = (paths) => {
 	let json = [];
 	for (const path of paths) {
-		const exec = /(.*)\/(.*)\/(.*)\/Code\/(.*)\.code\.(tsx|jsx|ts|js)/ig.exec(path);
+		const exec = /(.*)\/(.*)\/(.*)\/Code\/(.*)\.(code|code\.except)\.(tsx|jsx|ts|js)/ig.exec(path);
 		json.push({
 			title: `${exec[2]}${exec[3]}${exec[4]}`,
 			path: path.replace('.tsx', ''),

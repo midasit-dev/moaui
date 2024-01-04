@@ -50,6 +50,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.GuideBoxOverflow: return <All.GuideBoxOverflow />;
 		case ItemTypes.GuideBoxPulse: return <All.GuideBoxPulse />;
 		case ItemTypes.GuideBoxRowDirection: return <All.GuideBoxRowDirection />;
+		case ItemTypes.GuideBoxSpaceBetween: return <All.GuideBoxSpaceBetween />;
 		case ItemTypes.IconAdd: return <All.IconAdd />;
 		case ItemTypes.IconClose: return <All.IconClose />;
 		case ItemTypes.IconToButton: return <All.IconToButton />;

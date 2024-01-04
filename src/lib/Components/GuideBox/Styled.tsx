@@ -92,6 +92,10 @@ export type StyledProps = {
 	 * guide box item align veritcal option 'bottom' (super option)
 	 */
 	verBottom?: boolean;
+	/**
+	 * guide box item align veritcal option 'space-between' (super option)
+	 */
+	verSpaceBetween?: boolean;
 
 	/**
 	 * guide box opacity option
@@ -167,6 +171,8 @@ const getItemVerticalAlign = (props: StyledProps) => {
 		return { condition: true, value: 'center' };
 	} else if (props.verBottom) {
 		return { condition: true, value: 'flex-end' };
+	} else if (props.verSpaceBetween) {
+		return { condition: true, value: 'space-between' };
 	} else {
 		return { condition: false, value: 'flex-start' };
 	}
@@ -293,6 +299,7 @@ const GuideBox = (props: StyledProps) => {
 		verTop, 
 		verCenter, 
 		verBottom,
+		verSpaceBetween,
 		padding, paddingX, paddingY, paddingTop, paddingBottom, paddingLeft, paddingRight,
 		margin, marginX, marginY, marginTop, marginBottom, marginLeft, marginRight, 
 		opacity,
