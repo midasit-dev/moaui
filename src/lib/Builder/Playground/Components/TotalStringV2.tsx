@@ -59,8 +59,8 @@ export default function TotalCodeString(){
 				extractCode = extractComponentImport(All.RadioGroupControlled);
 			else if(value.type === ItemTypes.ScrollbarsCheckGroup || value.type === ItemTypes.ScrollbarsList)
 				extractCode = extractComponentImport(All.ScrollbarsCheckGroup);
-			else if(value.type === ItemTypes.SeperatorHorizontal || value.type === ItemTypes.SeperatorVertical)
-				extractCode = extractComponentImport(All.SeperatorHorizontal);
+			else if(value.type === ItemTypes.SeparatorHorizontal || value.type === ItemTypes.SeparatorVertical)
+				extractCode = extractComponentImport(All.SeparatorHorizontal);
 			else if(value.type === ItemTypes.StackColumn || value.type === ItemTypes.StackRow)
 				extractCode = extractComponentImport(All.StackColumn);
 			else if(value.type === ItemTypes.SwitchLabel)
@@ -203,10 +203,10 @@ export default function TotalCodeString(){
 				extractCode = extractComponentCode(All.ScrollbarsCheckGroup);
 			else if(value === ItemTypes.ScrollbarsList)
 				extractCode = extractComponentCode(All.ScrollbarsList);
-			else if(value === ItemTypes.SeperatorHorizontal)
-				extractCode = extractComponentCode(All.SeperatorHorizontal);
-			else if(value === ItemTypes.SeperatorVertical)
-				extractCode = extractComponentCode(All.SeperatorVertical);
+			else if(value === ItemTypes.SeparatorHorizontal)
+				extractCode = extractComponentCode(All.SeparatorHorizontal);
+			else if(value === ItemTypes.SeparatorVertical)
+				extractCode = extractComponentCode(All.SeparatorVertical);
 			else if(value === ItemTypes.StackColumn)
 				extractCode = extractComponentCode(All.StackColumn);
 			else if(value === ItemTypes.StackRow)
@@ -359,8 +359,8 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.RadioGroupUnControlled ? `${extractComponentName(All.RadioGroupUnControlled)}` : ""}
 					${item.type === ItemTypes.ScrollbarsCheckGroup ? `${extractComponentName(All.ScrollbarsCheckGroup)}` : ""}
 					${item.type === ItemTypes.ScrollbarsList ? `${extractComponentName(All.ScrollbarsList)}` : ""}
-					${item.type === ItemTypes.SeperatorHorizontal ? `${extractComponentName(All.SeperatorHorizontal)}` : ""}
-					${item.type === ItemTypes.SeperatorVertical ? `${extractComponentName(All.SeperatorVertical)}` : ""}
+					${item.type === ItemTypes.SeparatorHorizontal ? `${extractComponentName(All.SeparatorHorizontal)}` : ""}
+					${item.type === ItemTypes.SeparatorVertical ? `${extractComponentName(All.SeparatorVertical)}` : ""}
 					${item.type === ItemTypes.StackColumn ? `${extractComponentName(All.StackColumn)}` : ""}
 					${item.type === ItemTypes.StackRow ? `${extractComponentName(All.StackRow)}` : ""}
 					${item.type === ItemTypes.SwitchLabel ? `${extractComponentName(All.SwitchLabel)}` : ""}

@@ -1,17 +1,17 @@
 import React from "react";
 import StyledComponent, {type StyledProps} from "./Styled";
 
-Seperator.defaultProps = {
+Separator.defaultProps = {
 	direction: "horizontal"
 } as StyledProps;
 
 /**
- * moaui Styled Seperator
+ * moaui Styled Separator
  * 
- * @param {MoaSeperatorProps} props - direction
- * @returns {React.ReactElement} MoaSeperator
+ * @param {MoaSeparatorProps} props - direction
+ * @returns {React.ReactElement} MoaSeparator
  */
-export default function Seperator(props:StyledProps): React.ReactElement {
+export default function Separator(props:StyledProps): React.ReactElement {
 	return (
 		<StyledComponent {...props}/>
 	)

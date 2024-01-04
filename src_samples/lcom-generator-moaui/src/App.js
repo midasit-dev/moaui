@@ -6,7 +6,7 @@ import MoaButton from "@midasit-dev/moaui/Components/Button";
 import MoaDroplist from "@midasit-dev/moaui/Components/DropList";
 import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import MoaTextField from "@midasit-dev/moaui/Components/TextField";
-import MoaSeperator from "@midasit-dev/moaui/Components/Seperator";
+import MoaSeparator from "@midasit-dev/moaui/Components/Separator";
 import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 import * as mui from "@mui/material";
 import * as React from "react";
@@ -406,7 +406,7 @@ function Main() {
 						ref={ref}
 					/>
 					<MoaStack marginBottom="10px">
-						<MoaSeperator />
+						<MoaSeparator />
 					</MoaStack>
 					<MoaStack direction={isPortrate ? "column" : "row"} width="100%" spacing={1} justifyContent="center">
 						<MoaStack direction="column" width={isPortrate? "100%" : "70%"}>

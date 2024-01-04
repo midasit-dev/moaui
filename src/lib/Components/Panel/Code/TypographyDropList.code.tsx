@@ -2,13 +2,13 @@ import React from 'react'; /**${comma}*/
 import { Panel, Stack, Typography, DropList } from "@midasit-dev/moaui"; /**${comma}*/
 
 const ComponentsPanelTypographyDropList = ({ 
-	title = "Title Text",/**${props-seperator}*/
+	title = "Title Text",/**${props-separator}*/
 	items = new Map<string, number>([ 
 		['Korean', 1],
 		['American', 2],
 		['Asia', 3],
 		['Midas', 4]
-	]),/**${props-seperator}*/
+	]),/**${props-separator}*/
 }: any) => {
 	const [values, setValues] = React.useState({
     selected: 1,

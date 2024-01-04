@@ -2,20 +2,20 @@ import React from 'react';/**${comma}*/
 import { GuideBox, Typography, DropList } from "@midasit-dev/moaui";/**${comma}*/
 
 const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
-	width = 300,/**${props-seperator}*/
-	height = 30,/**${props-seperator}*/
-	title = 'Title',/**${props-seperator}*/
-	dropListwidth = 150,/**${props-seperator}*/
+	width = 300,/**${props-separator}*/
+	height = 30,/**${props-separator}*/
+	title = 'Title',/**${props-separator}*/
+	dropListwidth = 150,/**${props-separator}*/
 	items = [ 
 		['Korean', 	 1],
 		['American', 2],
 		['Asia', 		 3],
 		['Midas', 	 4],
-	],/**${props-seperator}*/
-	defaultValue = 1,/**${props-seperator}*/
-	value = undefined,/**${props-seperator}*/
-	onChange = undefined,/**${props-seperator}*/
-	show = false,/**${props-seperator}*/
+	],/**${props-separator}*/
+	defaultValue = 1,/**${props-separator}*/
+	value = undefined,/**${props-separator}*/
+	onChange = undefined,/**${props-separator}*/
+	show = false,/**${props-separator}*/
 }: any) => {
 	const [valueLocal, setValueLocal] = React.useState(defaultValue);
 	let onChangeLocal = (e: any) => {

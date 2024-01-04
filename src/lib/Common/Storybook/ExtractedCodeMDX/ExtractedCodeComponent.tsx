@@ -89,8 +89,8 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/RadioGroup/Code/UnControlled.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Scrollbars/Code/CheckGroup.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Scrollbars/Code/List.code.tsx?raw"));
-			rawCodes.push(await import("../../../Components/Seperator/Code/Horizontal.code.tsx?raw"));
-			rawCodes.push(await import("../../../Components/Seperator/Code/Vertical.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Separator/Code/Horizontal.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Separator/Code/Vertical.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Stack/Code/Column.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Stack/Code/Row.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Switch/Code/Label.code.tsx?raw"));
