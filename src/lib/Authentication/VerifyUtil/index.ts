@@ -19,13 +19,13 @@ export function getProductionUrl() {
 	if (redirectToUrl !== "") { return redirectToUrl; }
 
 	const origin = window.location.origin;
-	if (!origin.includes('localhost') 	&&
-			!origin.includes('-dv')	&&
-			!origin.includes('-st')	&&
-			!origin.includes('moa-engineers.midasit.com')) {
-				console.error(`Invalid origin (current origin is ${origin === "" ? "undefined" : origin})`);
-				return '';
-		}
+	// if (!origin.includes('localhost') 	&&
+	// 		!origin.includes('-dv')	&&
+	// 		!origin.includes('-st')	&&
+	// 		!origin.includes('moa-engineers.midasit.com')) {
+	// 			console.error(`Invalid origin (current origin is ${origin === "" ? "undefined" : origin})`);
+	// 			return '';
+	// 	}
 
 	if (origin.includes('localhost')) {
 		return `http://localhost:7112`;
@@ -122,10 +122,19 @@ export function getBaseUri(): string {
 		}
 
 		const domain = splitOrigin[1].replace('//', '');
-		if (domain !== 'localhost' && !domain.includes('-dv') && !domain.includes('-st') && !domain.includes('moa-engineers.midasit.com')) {
-			console.error(`Invalid origin (current origin is ${origin === "" ? "undefined" : origin})`);
-			return '';
-		}
+		// if (
+    //   domain !== "localhost" &&
+    //   !domain.includes("-dv") &&
+    //   !domain.includes("-st") &&
+    //   !domain.includes("moa-engineers.midasit.com")
+    // ) {
+    //   console.error(
+    //     `Invalid origin (current origin is ${
+    //       origin === "" ? "undefined" : origin
+    //     })`
+    //   );
+    //   return "";
+    // }
 
 		//https : moa-engineers.midasit.com : 443
 		baseUri = `${domain}`;
