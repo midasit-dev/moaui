@@ -164,20 +164,20 @@ class MidasAPI:
     
     def db_get_next_id(self, item_name):
         res_all = self.db_read(item_name)
-        if not res_all:
+        if not res_all or "error" in res_all:
             return 1
         next_id = max(map(int, res_all.keys()))
         return next_id + 1
     
     def db_get_max_id(self, item_name):
         res_all = self.db_read(item_name)
-        if not res_all:
+        if not res_all or "error" in res_all:
             return 0
         return max(map(int, res_all.keys()))
     
     def db_get_min_id(self, item_name):
         res_all = self.db_read(item_name)
-        if not res_all:
+        if not res_all or "error" in res_all:
             return 1
         return min(map(int, res_all.keys()))
     
