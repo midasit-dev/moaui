@@ -20,6 +20,7 @@ import {
 	VarValids,
 } from "./variables";
 import CompTypographyAndTextField from "./TypographyAndTextField";
+import { debounce } from 'lodash';
 
 const CompSeismicData_NZS1170_5_2004 = (props: any) => {
 	const valids = useRecoilValue(VarValids);
@@ -53,6 +54,22 @@ const CompDistanceFromNearestMajorFault = () => {
 	const valids = useRecoilValue(VarValids);
   const [distance_from_nearest_major_fault, setDistance_from_nearest_major_fault,] = useRecoilState(VarDistanceFromNearestMajorFault);
 
+	const [value, setValue] = React.useState(distance_from_nearest_major_fault);
+
+	//for 디바운스!
+  React.useEffect(() => {
+    const debounceSetValue = debounce((newValue) => {
+      setDistance_from_nearest_major_fault(newValue);
+    }, 500);
+
+    debounceSetValue(value);
+
+    // Cleanup the debounce function on component unmount
+    return () => {
+      debounceSetValue.cancel();
+    };
+  }, [value, setDistance_from_nearest_major_fault]);
+
   return (
     <GuideBox width="100%" row horSpaceBetween>
       <GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
@@ -65,8 +82,8 @@ const CompDistanceFromNearestMajorFault = () => {
           width={200}
           height={30}
           placeholder="Input value ..."
-          onChange={(e: any) => setDistance_from_nearest_major_fault(e.target.value)}
-          value={distance_from_nearest_major_fault}
+          onChange={(e: any) => setValue(e.target.value)}
+          value={value}
           disabled={false}
         />
       </GuideBox>

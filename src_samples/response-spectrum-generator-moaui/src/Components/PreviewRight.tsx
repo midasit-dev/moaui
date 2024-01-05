@@ -38,7 +38,7 @@ const CompPreviewRight = () => {
 	const [chartData, setChartData] = React.useState<ChartData[]>([]);
 	const processing = React.useRef(false);
 
-	const updateChart = React.useCallback(() => {
+	React.useEffect(() => {
     if (processing.current) return;
 
     setLoading(true);
@@ -102,19 +102,15 @@ const CompPreviewRight = () => {
     enqueueSnackbar,
   ]);
 
-	React.useEffect(() => {
-		updateChart();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	return (
-		<Panel variant="shadow2" padding={2}>
-			<GuideBox show fill='1' center padding={1} borderRadius={1}>
-				<Typography variant='h1'>Preview Design Spectrum</Typography>
-			</GuideBox>
-			<GuideBox loading={loading} center>
-				<CompChartLeftBottom data={chartData} />
-				<Button onClick={updateChart} loading={loading}>Redraw</Button>
+		<Panel variant="shadow2" height="inherit" padding={2}>
+			<GuideBox height="100%" verSpaceBetween>
+				<GuideBox show fill='1' width="100%" center padding={1} borderRadius={1}>
+					<Typography variant='h1'>Preview Design Spectrum</Typography>
+				</GuideBox>
+				<GuideBox loading={loading} center>
+					<CompChartLeftBottom data={chartData} />
+				</GuideBox>
 			</GuideBox>
 		</Panel>
 	);
@@ -133,15 +129,21 @@ const CompChartLeftBottom = (props: any) => {
 			axisBottomTickValues={5}
 			axisBottomDecimals={2}
 			axisBottomTickRotation={0}
+			axisBottomLegend='Period (sec)'
+			axisBottomLegendOffset={50}
 			axisLeft
 			axisLeftTickValues={5}
 			axisLeftDecimals={5}
 			axisLeftTickRotation={0}
-			marginTop={40}
-			marginRight={70}
-			marginLeft={70}
+			axisLeftLegend='Spectral Data'
+			axisLeftLegendOffset={-80}
+			marginTop={20}
+			marginRight={20}
+			marginLeft={90}
 			marginBottom={60}
 			pointSize={0}
+			xDecimals={2}
+			yDecimals={4}
 		/>
 	);
 }

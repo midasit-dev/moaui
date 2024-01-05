@@ -5,6 +5,7 @@ import {
 	Color,
 } from '@midasit-dev/moaui';
 import React from 'react';
+import { debounce } from 'lodash';
 
 const CompTypographyAndTextField = (props: any) => {
 	const {
@@ -16,6 +17,22 @@ const CompTypographyAndTextField = (props: any) => {
 		blueTitle = false,
 		placeholder = 'Input value ...',
 	} = props;
+
+	const [value, setValue] = React.useState(state);
+
+	//for 디바운스!
+  React.useEffect(() => {
+    const debounceSetValue = debounce((newValue) => {
+      setState(newValue);
+    }, 500);
+
+    debounceSetValue(value);
+
+    // Cleanup the debounce function on component unmount
+    return () => {
+      debounceSetValue.cancel();
+    };
+  }, [value, setState]);
 
 	return (
 		<GuideBox width="100%" row horSpaceBetween>
@@ -33,8 +50,8 @@ const CompTypographyAndTextField = (props: any) => {
 					width={200}
 					height={30}
 					placeholder={placeholder}
-					onChange={(e: any) => setState(e.target.value)}
-					value={state}
+					onChange={(e: any) => setValue(e.target.value)}
+					value={value}
 					disabled={disabled}
 				/>
 			</GuideBox>

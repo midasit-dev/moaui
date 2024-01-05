@@ -35,10 +35,6 @@ const CompHelpDialog = (props: any) => {
 							<Typography variant='h1'>Details</Typography>
 						</GuideBox>
 						<GuideBox row spacing={2} verCenter>
-							<Button>Redraw</Button>
-							<Typography>Preview the entered spectral data as graph</Typography>
-						</GuideBox>
-						<GuideBox row spacing={2} verCenter>
 							<Button color='negative'>Update</Button>
 							<Typography>Enter spectral data to program</Typography>
 						</GuideBox>

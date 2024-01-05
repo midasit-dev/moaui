@@ -1,4 +1,4 @@
-#Response Spectrum Generator
+# Response Spectrum Generator
 - This plugin generates **Design Response Spectrum Data** based on the national code.
 
 

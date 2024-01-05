@@ -45,7 +45,7 @@ const App = () => {
 						{/** 기준이 추가되면 아래로 추가 */}
 						<CompTypographyAndTextField title="Maximum Period (sec)" state={maximum_period} setState={setMaximum_period} blueTitle error={!valids.VarMaximumPeriod(maximum_period)} />
 					</GuideBox>
-					<GuideBox>
+					<GuideBox height={490}>
 						<CompPreviewRight />
 					</GuideBox>
 				</GuideBox>
