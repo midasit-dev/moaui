@@ -34,6 +34,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/ChartLine/Code/AxisLegend.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/ChartLine/Code/AxisPointSize.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/ChartLine/Code/AxisTopRight.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/ChartLine/Code/Decimals.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Check/Code/NotRequired.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Check/Code/Required.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CheckGroup/Code/Stateful.code.tsx?raw"));

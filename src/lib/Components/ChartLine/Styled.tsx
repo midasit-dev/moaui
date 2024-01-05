@@ -60,6 +60,18 @@ export type StyledProps = {
 	 */
 	axisTopLegend?: string;
 	/**
+	 * set a top axis legend offset
+	 * 
+	 * @default -36
+	 */
+	axisTopLegendOffset?: number;
+	/**
+	 * set a top axis legend position
+	 * 
+	 * @default middle
+	 */
+	axisTopLegendPosition?: 'start' | 'middle' | 'end';
+	/**
 	 * set a right axis
 	 * 
 	 * @default false
@@ -81,6 +93,18 @@ export type StyledProps = {
 	 * set a right axis legend (write a axis label!)
 	 */
 	axisRightLegend?: string; 
+	/**
+	 * set a right axis legend offset
+	 * 
+	 * @default 40
+	 */
+	axisRightLegendOffset?: number;
+	/**
+	 * set a right axis legend position
+	 * 
+	 * @default middle
+	 */
+	axisRightLegendPosition?: 'start' | 'middle' | 'end';
 	/**
 	 * set a bottom axis
 	 * 
@@ -104,6 +128,18 @@ export type StyledProps = {
 	 */
 	axisBottomLegend?: string;
 	/**
+	 * set a bottom axis legend offset
+	 * 
+	 * @default 36
+	 */
+	axisBottomLegendOffset?: number;
+	/**
+	 * set a bottom axis legend position
+	 * 
+	 * @default middle
+	 */
+	axisBottomLegendPosition?: 'start' | 'middle' | 'end';
+	/**
 	 * set a left axis
 	 * 
 	 * @default false
@@ -125,6 +161,18 @@ export type StyledProps = {
 	 * set a left axis legend (write a axis label!)
 	 */
 	axisLeftLegend?: string;
+	/**
+	 * set a left axis legend offset
+	 * 
+	 * @default -40
+	 */
+	axisLeftLegendOffset?: number;
+	/**
+	 * set a left axis legend position
+	 * 
+	 * @default middle
+	 */
+	axisLeftLegendPosition?: 'start' | 'middle' | 'end';
 	/**
 	 * set a point size
 	 * 
@@ -156,6 +204,15 @@ export type StyledProps = {
 	 * @default 60
 	 */
 	marginLeft?: number;
+
+	/**
+	 * set a x axis decimals
+	 */
+	xDecimals?: number;
+	/**
+	 * set a y axis decimals
+	 */
+	yDecimals?: number;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -205,7 +262,7 @@ const StyledComponent = styled((props: StyledProps) => {
 					min: minX,
 					max: maxX,
 				}}
-				xFormat=">-.2f"
+				xFormat={`>-.${props.xDecimals || 2}f`}
         yScale={{ 
 					type: 'linear', 
 					stacked: false, 
@@ -213,7 +270,7 @@ const StyledComponent = styled((props: StyledProps) => {
 					min: minY, 
 					max: maxY,
 				}}
-				yFormat=">-.2f"
+				yFormat={`>-.${props.yDecimals || 2}f`}
 				gridXValues={xGridCount !== 0 ? xGridCount : undefined}
 				gridYValues={yGridCount !== 0 ? yGridCount : undefined}
 				axisTop={props.axisTop ? {
@@ -222,8 +279,8 @@ const StyledComponent = styled((props: StyledProps) => {
 					tickPadding: 5,
 					tickRotation: props.axisTopTickRotation || undefined,
 					legend: props.axisTopLegend || undefined,
-					legendOffset: -36,
-					legendPosition: "middle",
+					legendOffset: props.axisTopLegendOffset || -36,
+					legendPosition: props.axisTopLegendPosition || "middle",
 					format: (value: any) => value.toFixed(props.axisTopDecimals), //소수점 2째자리까지 표기
 				} : null}
 				axisRight={props.axisRight ? {
@@ -232,8 +289,8 @@ const StyledComponent = styled((props: StyledProps) => {
 					tickPadding: 5,
 					tickRotation: props.axisRightTickRotation || undefined,
 					legend: props.axisRightLegend || undefined,
-					legendOffset: 40,
-					legendPosition: "middle",
+					legendOffset: props.axisRightLegendOffset || 40,
+					legendPosition: props.axisRightLegendPosition || "middle",
 					format: (value: any) => value.toFixed(props.axisRightDecimals), //소수점 2째자리까지 표기
 				} : null}
 				axisBottom={props.axisBottom ? {
@@ -242,8 +299,8 @@ const StyledComponent = styled((props: StyledProps) => {
 					tickPadding: 5,
 					tickRotation: props.axisBottomTickRotation || undefined,
 					legend: props.axisBottomLegend || undefined,
-					legendOffset: 36,
-					legendPosition: "middle",
+					legendOffset: props.axisBottomLegendOffset || 36,
+					legendPosition: props.axisBottomLegendPosition || "middle",
 					format: (value: any) => value.toFixed(props.axisBottomDecimals), //소수점 2째자리까지 표기
 				} : null}
 				axisLeft={props.axisLeft ? {
@@ -252,8 +309,8 @@ const StyledComponent = styled((props: StyledProps) => {
 					tickPadding: 5,
 					tickRotation: props.axisLeftTickRotation || undefined,
 					legend: props.axisLeftLegend || undefined,
-					legendOffset: -40,
-					legendPosition: "middle",
+					legendOffset: props.axisLeftLegendOffset || -40,
+					legendPosition: props.axisLeftLegendPosition || "middle",
 					format: (value: any) => value.toFixed(props.axisLeftDecimals), //소수점 2째자리까지 표기
 				} : null}
 				pointSize={props.pointSize}

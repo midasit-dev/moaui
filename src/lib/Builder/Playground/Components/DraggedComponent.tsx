@@ -19,6 +19,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.ChartLineAxisLegend: return <All.ChartLineAxisLegend />;
 		case ItemTypes.ChartLineAxisPointSize: return <All.ChartLineAxisPointSize />;
 		case ItemTypes.ChartLineAxisTopRight: return <All.ChartLineAxisTopRight />;
+		case ItemTypes.ChartLineDecimals: return <All.ChartLineDecimals />;
 		case ItemTypes.CheckNotRequired: return <All.CheckNotRequired />;
 		case ItemTypes.CheckRequired: return <All.CheckRequired />;
 		case ItemTypes.CheckGroupStateful: return <All.CheckGroupStateful />;

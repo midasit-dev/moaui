@@ -13,6 +13,7 @@ export const ItemTypes = {
 	ChartLineAxisLegend: 'ChartLineAxisLegend',
 	ChartLineAxisPointSize: 'ChartLineAxisPointSize',
 	ChartLineAxisTopRight: 'ChartLineAxisTopRight',
+	ChartLineDecimals: 'ChartLineDecimals',
 	CheckNotRequired: 'CheckNotRequired',
 	CheckRequired: 'CheckRequired',
 	CheckGroupStateful: 'CheckGroupStateful',

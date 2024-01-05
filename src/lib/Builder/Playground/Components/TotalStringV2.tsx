@@ -305,6 +305,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.ChartLineAxisLegend ? `${extractComponentName(All.ChartLineAxisLegend)}` : ""}
 					${item.type === ItemTypes.ChartLineAxisPointSize ? `${extractComponentName(All.ChartLineAxisPointSize)}` : ""}
 					${item.type === ItemTypes.ChartLineAxisTopRight ? `${extractComponentName(All.ChartLineAxisTopRight)}` : ""}
+					${item.type === ItemTypes.ChartLineDecimals ? `${extractComponentName(All.ChartLineDecimals)}` : ""}
 					${item.type === ItemTypes.CheckNotRequired ? `${extractComponentName(All.CheckNotRequired)}` : ""}
 					${item.type === ItemTypes.CheckRequired ? `${extractComponentName(All.CheckRequired)}` : ""}
 					${item.type === ItemTypes.CheckGroupStateful ? `${extractComponentName(All.CheckGroupStateful)}` : ""}

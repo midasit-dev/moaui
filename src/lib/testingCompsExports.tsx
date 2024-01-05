@@ -15,6 +15,7 @@ export { default as ComponentsButtonWidth } from "./Components/Button/Code/Width
 export { default as ComponentsChartLineAxisLegend } from "./Components/ChartLine/Code/AxisLegend.code";
 export { default as ComponentsChartLineAxisPointSize } from "./Components/ChartLine/Code/AxisPointSize.code";
 export { default as ComponentsChartLineAxisTopRight } from "./Components/ChartLine/Code/AxisTopRight.code";
+export { default as ComponentsChartLineDecimals } from "./Components/ChartLine/Code/Decimals.code";
 export { default as ComponentsCheckNotRequired } from "./Components/Check/Code/NotRequired.code";
 export { default as ComponentsCheckRequired } from "./Components/Check/Code/Required.code";
 export { default as ComponentsCheckGroupControlled } from "./Components/CheckGroup/Code/Controlled.code.except";

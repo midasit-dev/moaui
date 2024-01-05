@@ -12,6 +12,7 @@ export { default as ButtonWidth } from '../../../Components/Button/Code/Width.co
 export { default as ChartLineAxisLegend } from '../../../Components/ChartLine/Code/AxisLegend.code';
 export { default as ChartLineAxisPointSize } from '../../../Components/ChartLine/Code/AxisPointSize.code';
 export { default as ChartLineAxisTopRight } from '../../../Components/ChartLine/Code/AxisTopRight.code';
+export { default as ChartLineDecimals } from '../../../Components/ChartLine/Code/Decimals.code';
 export { default as CheckNotRequired } from '../../../Components/Check/Code/NotRequired.code';
 export { default as CheckRequired } from '../../../Components/Check/Code/Required.code';
 export { default as CheckGroupStateful } from '../../../Components/CheckGroup/Code/Stateful.code';

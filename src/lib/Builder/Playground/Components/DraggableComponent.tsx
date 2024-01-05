@@ -166,6 +166,7 @@ const ChartLineCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.ChartLineAxisLegend}>AxisLegend</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.ChartLineAxisPointSize}>AxisPointSize</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.ChartLineAxisTopRight}>AxisTopRight</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.ChartLineDecimals}>Decimals</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -946,6 +947,9 @@ export const ChartLineAxisPointSize =
 
 export const ChartLineAxisTopRight = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ChartLineAxisTopRight}>ChartLineAxisTopRight</CustomDraggableComponent>;
+
+export const ChartLineDecimals = 
+	() => <CustomDraggableComponent itemType={ItemTypes.ChartLineDecimals}>ChartLineDecimals</CustomDraggableComponent>;
 
 export const CheckNotRequired = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CheckNotRequired}>CheckNotRequired</CustomDraggableComponent>;
