@@ -74,7 +74,7 @@ const App = () => {
   return (
 		<GuideBox width='100%' center>
 
-			<GuideBox padding={1} spacing={2} width={430} center>
+			<GuideBox padding={1} spacing={2} width={500} center>
 				
 				<GuideBox width={"100%"} height={30} row verCenter horSpaceBetween>
 					<GuideBox row verCenter>
@@ -94,7 +94,7 @@ const App = () => {
 
 				<Panel variant="shadow2" width={"100%"} marginTop={1}>
 					<GuideBox width={"100%"}>
-						<Table>
+						<Table width="100%">
 							<TableHead>
 								<TableRow>
 									{["Component", "Column", "Cap Bot", "Cap Top"].map((header, index) => 

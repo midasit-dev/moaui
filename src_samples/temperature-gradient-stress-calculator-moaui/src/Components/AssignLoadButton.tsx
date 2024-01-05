@@ -293,14 +293,14 @@ const DialogPage = ({
 				{curQueue === "assign" &&
 					<GuideBox width={250} spacing={2}>
 						<Typography variant="h1">Current Values</Typography>
-						<GuideBox opacity={0.9} paddingBottom={1.5} spacing={1}>
+						<GuideBox width="inherit" opacity={0.9} paddingBottom={1.5} spacing={1}>
 							{heatingCheck &&
-								<GuideBox spacing={1}>
-									<GuideBox row horSpaceBetween>
+								<GuideBox width="inherit" spacing={1}>
+									<GuideBox width="inherit" row horSpaceBetween>
 										<Typography variant="body1">Heating CheckBox: </Typography>
 										<Typography variant="h1">{heatingCheck ? 'checked' : 'unchecked'}</Typography>
 									</GuideBox>
-									<GuideBox row horSpaceBetween>
+									<GuideBox width="inherit" row horSpaceBetween>
 										<Typography variant="body1">Heating Selected: </Typography>
 										<Typography variant="h1" color="#D32F2F">{value_h.selected}</Typography>
 									</GuideBox>
@@ -308,12 +308,12 @@ const DialogPage = ({
 							}
 
 							{coolingCheck &&
-								<GuideBox spacing={1}>
-									<GuideBox row horSpaceBetween>
+								<GuideBox width="inherit" spacing={1}>
+									<GuideBox width="inherit" row horSpaceBetween>
 										<Typography variant="body1">Cooling CheckBox: </Typography>
 										<Typography variant="h1">{coolingCheck ? 'checked' : 'unchecked'}</Typography>
 									</GuideBox>
-									<GuideBox row horSpaceBetween>
+									<GuideBox width="inherit" row horSpaceBetween>
 										<Typography variant="body1">Cooling Selected: </Typography>
 										<Typography variant="h1" color="#1f78b4">{value_c.selected}</Typography>
 									</GuideBox>	

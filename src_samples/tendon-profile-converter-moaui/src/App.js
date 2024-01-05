@@ -1,8 +1,7 @@
 import React from "react";
-import MKeyDialog from "./Components/MKeyDialog";
 import Contents from "./Components/Content";
 import { SnackbarProvider } from "notistack";
-import { VerifyUtil } from "@midasit-dev/moaui";
+import { VerifyDialog, VerifyUtil } from "@midasit-dev/moaui";
 
 function App() {
 	const [showDialog, setDialogShowState] = React.useState(false);
@@ -18,7 +17,7 @@ function App() {
 	return (
 		<React.Fragment>
 			<SnackbarProvider maxSnack={3}>
-				{showDialog && <MKeyDialog />}
+				{showDialog && <VerifyDialog />}
 				<Contents />
 			</SnackbarProvider>
 			<py-script src="./Runtime/pyruntime.py"></py-script>
