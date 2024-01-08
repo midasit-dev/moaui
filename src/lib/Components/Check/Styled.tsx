@@ -58,6 +58,11 @@ export type StyledProps = {
   indeterminate?: boolean;
 
   /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef?: React.Ref<HTMLInputElement>;
+
+  /**
    * `Not Used` The sx prop lets you style elements quickly using values from your theme.
    * @defaultValue undefined
    */
@@ -86,6 +91,7 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
           disableFocusRipple
           disableRipple
           disableTouchRipple
+          inputRef={props?.inputRef}
           inputProps={{
             "aria-label": `${props?.name || ""} ${props?.ariaLabel}`,
           }}
