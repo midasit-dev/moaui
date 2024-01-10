@@ -65,6 +65,11 @@ export type StyledProps = {
 	 * Set the width value of droplist's list width.
 	 */
 	listWidth?: string | number;
+
+	/**
+	 * Set the placeholder of droplist's input.
+	 */
+	placeholder?: string;
 }
 
 const StyledComponent = styled((props:StyledProps) => {
@@ -81,84 +86,111 @@ const StyledComponent = styled((props:StyledProps) => {
 	},[width]);
 
 	return (
-		<React.Fragment>
-			<FormControl ref={parentRef} sx={{width: width, maxHeightight:"1.75rem"}}>
-				<DropList
-					defaultValue={defaultValue}
-					autoWidth
-					value={value}
-					sx={{
-						'& .MuiOutlinedInput-input.MuiSelect-select':{
-							display: "flex",
-							alignItems: "center",
-							gap: "0.375rem",
-							alignSelf: "stretch",
-							padding: "0.375rem 0.375rem 0.375rem 0.625rem",
-							//font
-							color: Color.text.secondary,
-							fontFeatureSettings: Font.fontFeatureSettings,
+    <React.Fragment>
+      <FormControl
+        ref={parentRef}
+        sx={{ width: width, maxHeightight: "1.75rem" }}
+      >
+        <DropList
+          defaultValue={defaultValue}
+          autoWidth
+          value={value}
+          sx={{
+            "& .MuiOutlinedInput-input.MuiSelect-select": {
+              display: "flex",
+              alignItems: "center",
+              gap: "0.375rem",
+              alignSelf: "stretch",
+              padding: "0.375rem 0.375rem 0.375rem 0.625rem",
+              //font
+              color: Color.text.secondary,
+              fontFeatureSettings: Font.fontFeatureSettings,
 
-							//background color
-							backgroundColor: backgroundColor || Color.primary.white,
-						},
-						height: "1.75rem",
-					}}
-					onChange={onChange}
-					disabled={props?.disabled}
-				>
-					{Array.from(itemMap.keys()).map((key, index) => {
-						if(key === "subheader")
-							return (
-								<ListSubheader key={"subheader" + itemMap.get(key) + index}
-									sx={{
-										display: "flex",
-										padding: "0.25rem 0.625rem",
-										justifyContent: "center",
-										alignItems: "center",
-										gap: "0.625rem",
-										alignSelf: "stretch",
-										height: "1.75rem",
-										width: `${parentWidthInPixels}px`,
-										//font
-										color: Color.text.secondary,
-										fontFeatureSettings: Font.fontFeatureSettings,
-									}}
-								>
-									{itemMap.get(key)}
-								</ListSubheader>
-							)
+              //background color
+              backgroundColor: backgroundColor || Color.primary.white,
+            },
+            height: "1.75rem",
+          }}
+          onChange={onChange}
+          disabled={props?.disabled}
+          displayEmpty={props?.placeholder ? true : false}
+        >
+					{props?.placeholder && 
+						<MenuItem disabled value=""
+							sx={{
+								display: "flex",
+								padding: "0.25rem 0.625rem",
+								justifyContent: "center",
+								alignItems: "center",
+								gap: "0.625rem",
+								alignSelf: "stretch",
+								minHeight: "1.75rem",
+								width: listWidth || `${parentWidthInPixels}px`,
+								height: "1.75rem",
+								//font
+								color: Color.text.secondary,
+								fontFeatureSettings: Font.fontFeatureSettings,
+							}}
+						>
+							<em>{`${props?.placeholder}`}</em>
+						</MenuItem>
+					}
+          {Array.from(itemMap.keys()).map((key, index) => {
+            if (key === "subheader")
+              return (
+                <ListSubheader
+                  key={"subheader" + itemMap.get(key) + index}
+                  sx={{
+                    display: "flex",
+                    padding: "0.25rem 0.625rem",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "0.625rem",
+                    alignSelf: "stretch",
+                    height: "1.75rem",
+                    width: `${parentWidthInPixels}px`,
+                    //font
+                    color: Color.text.secondary,
+                    fontFeatureSettings: Font.fontFeatureSettings,
+                  }}
+                >
+                  {itemMap.get(key)}
+                </ListSubheader>
+              );
 
-						return (
-							<MenuItem key={"item"+ itemMap.get(key) + index} value={itemMap.get(key)}
-								sx={{
-									display: "flex",
-									padding: "0.25rem 0.625rem",
-									justifyContent: "center",
-									alignItems: "center",
-									gap: "0.625rem",
-									alignSelf: "stretch",
-									minHeight:"1.75rem",
-									width: listWidth || `${parentWidthInPixels}px`,
-									height:"1.75rem",
-									//font
-									color: Color.text.secondary,
-									fontFeatureSettings: Font.fontFeatureSettings,
-									'&.Mui-selected':{
-										backgroundColor: `${Color.primary.enable_strock}!important`,
-									},
-									'&:hover': {
-										backgroundColor: `${Color.component.gray_light}!important`,
-									}
-								}}
-							>
-								{key}
-							</MenuItem>
-						)
-					})}
-				</DropList>	
-			</FormControl>
-		</React.Fragment>
-	)
+            return (
+              <MenuItem
+                key={"item" + itemMap.get(key) + index}
+                value={itemMap.get(key)}
+                sx={{
+                  display: "flex",
+                  padding: "0.25rem 0.625rem",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "0.625rem",
+                  alignSelf: "stretch",
+                  minHeight: "1.75rem",
+                  width: listWidth || `${parentWidthInPixels}px`,
+                  height: "1.75rem",
+                  //font
+                  color: Color.text.secondary,
+                  fontFeatureSettings: Font.fontFeatureSettings,
+                  "&.Mui-selected": {
+                    backgroundColor: `${Color.primary.enable_strock}!important`,
+                  },
+                  "&:hover": {
+                    backgroundColor: `${Color.component.gray_light}!important`,
+                  },
+                }}
+              >
+                {key}
+              </MenuItem>
+            );
+          })}
+        </DropList>
+      </FormControl>
+    </React.Fragment>
+  );
 })(({theme}) => ({
 	display: "flex",
 	fullWidth: true,
