@@ -1,0 +1,14 @@
+{
+	"packages": [
+		"numpy",
+		"pandas"
+	],
+	"fetch": [
+		{
+			"files": [
+				"./pyscript_engineers_web.py",
+				"./Component.py"
+			]
+		}
+	]
+}
