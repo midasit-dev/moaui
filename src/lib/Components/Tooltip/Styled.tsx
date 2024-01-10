@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from '../../Style/MoaStyled';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import { Typography } from "../../";
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -58,7 +59,7 @@ const StyledComponent = styled((props: StyledProps) => {
 
 	return (
 		<BootstrapTooltip
-			title={title || undefined}
+			title={typeof title === 'string' ? <Typography>{title}</Typography> : title || undefined}
 			placement={placement || 'bottom'}
 		>
 			<div>

@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.1.52",
+  "version": "0.1.66",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,7 +42,9 @@
     "@mui/x-data-grid": "^6.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
-    "@mui/material": "^5.14.3"
+    "@mui/material": "^5.14.3",
+    "@nivo/core": "^0.84.0",
+    "@nivo/line": "^0.84.0"
   },
   "dependencies": {
     "@mui/x-data-grid": "^6.11.1",

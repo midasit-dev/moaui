@@ -127,6 +127,13 @@ export type StyledProps = {
 	 * border radius
 	 */
 	borderRadius?: number | string;
+	/**
+	 * border option
+	 * 
+	 * @example
+	 * border="1px solid #000"
+	 */
+	border?: string;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -308,6 +315,7 @@ const GuideBox = (props: StyledProps) => {
 		loading,
 		overflow,
 		borderRadius,
+		border,
 		...rest 
 	} = props;
 
@@ -327,6 +335,7 @@ const GuideBox = (props: StyledProps) => {
 				...(loading ? loadingStackStyles : {}),
 				...(loading ? { animation: `${kf_transition} ${duration}s infinite` } : {}),
 				...(borderRadius ? { borderRadius: borderRadius } : {}),
+				...(border ? { border: border } : {}),
 			}}
 			overflow={overflow || "visible"}
 			direction={getItemDirection(props).value}

@@ -111,6 +111,8 @@ export { default as ComponentsTypographyH1 } from "./Components/Typography/Code/
 export { default as ComponentsTypographyGroupText } from "./Components/TypographyGroup/Code/Text.code";
 export { default as TemplatesDualComponentsTypographyDropListSpaceBetween } from "./Templates/DualComponents/Code/TypographyDropListSpaceBetween.code";
 export { default as TemplatesDualComponentsTypographyTextFieldSpaceBetween } from "./Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code";
+export { default as TemplatesFunctionalComponentsDataGridWithClipboardOption } from "./Templates/FunctionalComponents/Code/DataGridWithClipboardOption.code.except";
+export { default as TemplatesFunctionalComponentsDataGridWithClipboardOptionSample } from "./Templates/FunctionalComponents/Code/DataGridWithClipboardOptionSample.code.except";
 export { default as TemplatesFunctionalComponentsValidCheckDialog } from "./Templates/FunctionalComponents/Code/ValidCheckDialog.code.except";
 export { default as TemplatesTendonProfileConverterBottomButtons } from "./Templates/TendonProfileConverter/Code/BottomButtons.code";
 export { default as TemplatesTendonProfileConverterComposite } from "./Templates/TendonProfileConverter/Code/Composite.code";

@@ -4,8 +4,10 @@ import DataGrid from "..";
 import { Panel } from "../../../";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { PaginationCode, } from '../Code';
-import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { 
+	PaginationCode,
+ } from '../Code';
+import { cleanMask, } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/DataGrid',

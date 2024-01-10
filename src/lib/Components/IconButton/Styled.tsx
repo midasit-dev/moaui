@@ -105,7 +105,8 @@ const StyledComponent = styled((props: StyledProps) => {
 			transparent: StyledProps["transparent"];
 			border: StyledProps["border"];
 		}) => {
-			const normalStyle = color === "normal" ? {
+			//color === "normal"
+			const normalStyle = {
 				border: `1px solid ${Color.primary.enable_strock}`,
 				background: Color.primary.enable,
 				color: Color.text.primary,
@@ -122,7 +123,7 @@ const StyledComponent = styled((props: StyledProps) => {
 					color: `${Color.text.disable}c0`,
 					border: `1px solid ${Color.primary.enable_strock}c0`,
 				},
-			} : {};
+			};
 
 			const negativeStyle = color === "negative" ? {
 				border: `1px solid ${Color.primaryNegative.enable_strock}`,
@@ -144,6 +145,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			} : {};
 
 			const transparentStyle = transparent ? {
+				border: 'none',
 				background: "transparent",
 				color: transparentColor ? transparentColor : Color.text.primary,
 				"&:hover": {
@@ -157,6 +159,7 @@ const StyledComponent = styled((props: StyledProps) => {
 				":disabled": {
 					background: "transparent",
 					opacity: 0.2,
+					border: 'none',
 				},
 			} : {};
 

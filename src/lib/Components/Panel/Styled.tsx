@@ -61,6 +61,10 @@ export type StyledProps = {
 	 * @defaultValue false
 	 */
 	flexItem?: boolean;
+	/**
+	 * Set the backgroundColor of panel
+	 */
+	backgroundColor?: string;
 } & MarginTypes & PaddingTypes & BoxProps;
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -78,6 +82,7 @@ const StyledComponent = styled((props: StyledProps) => {
 				...MarginProps(props),
 				...PaddingProps(props),
 				boxSizing: 'border-box',
+				...(props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}),
 			}}
 			justifyContent='center'
 		>
