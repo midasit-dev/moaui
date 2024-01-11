@@ -1,22 +1,22 @@
 /**
- *		                                                                         __      
- *		                                                                        /\ \__   
- *		  ___     ___     ___ ___     _____     ___     ___       __     ___    \ \ ,_\  
- *		 /'___\  / __`\ /' __` __`\  /\ '__`\  / __`\ /' _ `\   /'__`\ /' _ `\   \ \ \/  
- *		/\ \__/ /\ \L\ \/\ \/\ \/\ \ \ \ \L\ \/\ \L\ \/\ \/\ \ /\  __/ /\ \/\ \   \ \ \_ 
- *		\ \____\\ \____/\ \_\ \_\ \_\ \ \ ,__/\ \____/\ \_\ \_\\ \____\\ \_\ \_\   \ \__\
- *		 \/____/ \/___/  \/_/\/_/\/_/  \ \ \/  \/___/  \/_/\/_/ \/____/ \/_/\/_/    \/__/
- *		                                \ \_\                                            
- *		                                 \/_/                                            
+ *  ██████╗ ██████╗ ███╗   ███╗██████╗  ██████╗ ███╗   ██╗███████╗███╗   ██╗████████╗
+ * ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔═══██╗████╗  ██║██╔════╝████╗  ██║╚══██╔══╝
+ * ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║██╔██╗ ██║█████╗  ██╔██╗ ██║   ██║   
+ * ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║██║╚██╗██║██╔══╝  ██║╚██╗██║   ██║   
+ * ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝██║ ╚████║███████╗██║ ╚████║   ██║   
+ *  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝   ╚═╝   
  */
 
 import React from "react";
 import { useRecoilState } from "recoil";
 import { VarSTloadcase, VarSTloadCaseList } from "./variables";
-import { GuideBox, Typography, DropList, IconButton, Icon } from "@midasit-dev/moaui";
+import { GuideBox, Typography, DropList, IconButton, Icon, Separator } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
+import { useSnackbar } from "notistack";
 
 const CompStaticLoad = () => {
+	const { enqueueSnackbar } = useSnackbar();
+
 	const [value, setValue] = useRecoilState(VarSTloadcase);
 	const [list, setList] = useRecoilState(VarSTloadCaseList);
 
@@ -25,9 +25,14 @@ const CompStaticLoad = () => {
 		const cnldData = dbRead('CNLD');
 		const nbofData = dbRead('NBOF');
 
-		if (!stldData) {
-			console.error('Failed to read data from database.');
-			return;
+		if ('error' in stldData) {
+			enqueueSnackbar(stldData.error, { variant: 'error' }); return;
+		}
+		if ('error' in cnldData) {
+			enqueueSnackbar(cnldData.error, { variant: 'error' }); return;
+		}
+		if ('error' in nbofData) {
+			enqueueSnackbar(nbofData.error, { variant: 'error' }); return;
 		}
 		
 		const cnldStldName:string[] = [];
@@ -63,6 +68,7 @@ const CompStaticLoad = () => {
 		if (items.length > 0) {
 			setValue(items[0][1]);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setList, setValue]);
 
 	//데이터를 채워줍니다.
@@ -71,22 +77,26 @@ const CompStaticLoad = () => {
 	}, [refreshStldData]);
 
 	return (
-		<GuideBox width="100%" column spacing={1} paddingBottom={2}>
-			<Typography variant="h1">Staic Load</Typography>
-			<GuideBox width="100%" row horSpaceBetween>
-				<GuideBox row horSpaceBetween verCenter paddingLeft={1}>
-					<DropList
-						width="100%"
-						itemList={new Map<string, number>(list as [string, number][])}
-						defaultValue={value}
-						value={value}
-						onChange={(e: any) => setValue(e.target.value)}
-					/>
-					<IconButton transparent onClick={refreshStldData}>
-						<Icon iconName="Refresh" />
-					</IconButton>
-				</GuideBox>
+		<GuideBox width="100%" spacing={2}>
+
+			<GuideBox width="100%" spacing={1}>
+				<Typography variant="h1">Static Load</Typography>
+				<Separator />
 			</GuideBox>
+
+			<GuideBox width="100%" row horSpaceBetween verCenter>
+				<DropList
+					width="100%"
+					itemList={new Map<string, number>(list as [string, number][])}
+					defaultValue={value}
+					value={value}
+					onChange={(e: any) => setValue(e.target.value)}
+				/>
+				<IconButton transparent onClick={refreshStldData}>
+					<Icon iconName="Refresh" />
+				</IconButton>
+			</GuideBox>
+
 		</GuideBox>
 	);
 };

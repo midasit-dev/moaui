@@ -1,23 +1,23 @@
 /**
- *		                                                                         __      
- *		                                                                        /\ \__   
- *		  ___     ___     ___ ___     _____     ___     ___       __     ___    \ \ ,_\  
- *		 /'___\  / __`\ /' __` __`\  /\ '__`\  / __`\ /' _ `\   /'__`\ /' _ `\   \ \ \/  
- *		/\ \__/ /\ \L\ \/\ \/\ \/\ \ \ \ \L\ \/\ \L\ \/\ \/\ \ /\  __/ /\ \/\ \   \ \ \_ 
- *		\ \____\\ \____/\ \_\ \_\ \_\ \ \ ,__/\ \____/\ \_\ \_\\ \____\\ \_\ \_\   \ \__\
- *		 \/____/ \/___/  \/_/\/_/\/_/  \ \ \/  \/___/  \/_/\/_/ \/____/ \/_/\/_/    \/__/
- *		                                \ \_\                                            
- *		                                 \/_/                                            
+ *  ██████╗ ██████╗ ███╗   ███╗██████╗  ██████╗ ███╗   ██╗███████╗███╗   ██╗████████╗
+ * ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔═══██╗████╗  ██║██╔════╝████╗  ██║╚══██╔══╝
+ * ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║██╔██╗ ██║█████╗  ██╔██╗ ██║   ██║   
+ * ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║██║╚██╗██║██╔══╝  ██║╚██╗██║   ██║   
+ * ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝██║ ╚████║███████╗██║ ╚████║   ██║   
+ *  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝   ╚═╝   
  */
 
 import React from "react";
 import { useRecoilState } from "recoil";
 import { VarTHfunction, VarTHfunctionList, VarScaleFactor, VarScaleError } from "./variables";
 // import { VarAngleHor, VarAngleError } from "./variables";
-import { GuideBox, Typography, DropList, TextField ,IconButton, Icon } from "@midasit-dev/moaui";
+import { GuideBox, Typography, DropList, TextField ,IconButton, Icon, Separator } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
+import { useSnackbar } from "notistack";
 
 const CompTHfunction = () => {
+	const { enqueueSnackbar } = useSnackbar();
+
 	const [THfunc, setTHfunc] = useRecoilState(VarTHfunction);
 	const [THfuncList, setTHfuncList] = useRecoilState(VarTHfunctionList);
 	const [scale, setScale] = useRecoilState(VarScaleFactor);
@@ -27,8 +27,8 @@ const CompTHfunction = () => {
 
 	const refreshThfcData = React.useCallback(() => {
 		const thfcData = dbRead('THFC');
-		if (!thfcData) {
-			console.error('Failed to read THIS data from database.');
+		if ('error' in thfcData) {
+			enqueueSnackbar(thfcData.error, { variant: 'error' });
 			return;
 		}
 		const items: [string, number][] = [];
@@ -49,6 +49,7 @@ const CompTHfunction = () => {
 		if (items.length > 0) {
 			setTHfunc(items[0][1]);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setTHfuncList, setTHfunc]);
 
 	//데이터를 채워줍니다.
@@ -75,41 +76,47 @@ const CompTHfunction = () => {
 	// }, [angle, setAngleErr]);
 
 	return (
-		<GuideBox width="100%" column spacing={1} paddingBottom={1}>
-			<Typography variant="h1">
-				Fucntion
-			</Typography>
-			<GuideBox width="100%" row horSpaceBetween verCenter>
-				<GuideBox row horSpaceBetween verCenter paddingLeft={1} height={30}>
-					<Typography>
-						Function Name
-					</Typography>
-					<DropList
-					width={120}
-						itemList={new Map<string, number>(THfuncList as [string, number][])}
-						defaultValue={THfunc}
-						value={THfunc}
-						onChange={(e: any) => setTHfunc(e.target.value)}
-					/>
-				</GuideBox>
-				<IconButton transparent onClick={refreshThfcData}>
-					<Icon iconName="Refresh" />
-				</IconButton>
+		<GuideBox width="100%" spacing={2}>
+
+			<GuideBox width="100%" spacing={1}>
+				<Typography variant="h1">Function</Typography>
+				<Separator />
 			</GuideBox>
-			<GuideBox width="100%" row horSpaceBetween verCenter>
-				<GuideBox row horSpaceBetween verCenter height={30} paddingLeft={1} paddingRight={4.5}>
-					<Typography>
-						Scale Factor
-					</Typography>
-					<TextField
-						type="number"
+
+			<GuideBox width="100%" spacing={1}>
+				<GuideBox width="100%" row horSpaceBetween verCenter>
+					<GuideBox width={248} row horSpaceBetween verCenter height={30}>
+						<Typography>Function Name</Typography>
+						<DropList
 						width={120}
-						value={scale}
-						onChange={(e: any) => setScale(e.target.value)}
-						error={scaleErr}
-					/>
+							itemList={new Map<string, number>(THfuncList as [string, number][])}
+							defaultValue={THfunc}
+							value={THfunc}
+							onChange={(e: any) => setTHfunc(e.target.value)}
+						/>
+					</GuideBox>
+
+					<IconButton transparent onClick={refreshThfcData}>
+						<Icon iconName="Refresh" />
+					</IconButton>
+				</GuideBox>
+
+				<GuideBox width="100%" row horSpaceBetween verCenter>
+					<GuideBox width={248} row horSpaceBetween verCenter height={30}>
+						<Typography>Scale Factor</Typography>
+						<TextField
+							type="number"
+							width={120}
+							value={scale}
+							onChange={(e: any) => setScale(e.target.value)}
+							error={scaleErr}
+						/>
+					</GuideBox>
+
+					<GuideBox width={36} height={28} />
 				</GuideBox>
 			</GuideBox>
+
 			{/* <GuideBox width="100%" row horSpaceBetween verCenter spacing={1}>
 				<GuideBox row horSpaceBetween verCenter height={30} paddingLeft={1}>
 					<Typography>

@@ -1,19 +1,25 @@
 /**
- *	                        __                                                   
- *	  ___ ___       __     /\_\     ___                 __      _____    _____   
- *	/' __` __`\   /'__`\   \/\ \  /' _ `\             /'__`\   /\ '__`\ /\ '__`\ 
- *	/\ \/\ \/\ \ /\ \L\.\_  \ \ \ /\ \/\ \           /\ \L\.\_ \ \ \L\ \\ \ \L\ \
- *	\ \_\ \_\ \_\\ \__/.\_\  \ \_\\ \_\ \_\          \ \__/.\_\ \ \ ,__/ \ \ ,__/
- *	 \/_/\/_/\/_/ \/__/\/_/   \/_/ \/_/\/_/  _______  \/__/\/_/  \ \ \/   \ \ \/ 
- *	                                        /\______\             \ \_\    \ \_\ 
- *	                                        \/______/              \/_/     \/_/ 
+ * 
+ * ██████╗        █████╗ ██████╗ ██████╗ 
+ * ╚════██╗      ██╔══██╗██╔══██╗██╔══██╗
+ *  █████╔╝█████╗███████║██████╔╝██████╔╝
+ *  ╚═══██╗╚════╝██╔══██║██╔═══╝ ██╔═══╝ 
+ * ██████╔╝      ██║  ██║██║     ██║     
+ * ╚═════╝       ╚═╝  ╚═╝╚═╝     ╚═╝     
+ * 
+ * @description Entry point for the application after Wrapper
+ * @next last entry point
  */
 
 import React from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 //@midasit-dev/moaui
-import { GuideBox, Panel, Button } from "@midasit-dev/moaui";
+import {
+	GuideBox,
+	Panel,
+	Button
+} from "@midasit-dev/moaui";
 
 //Components
 import CompTimeHistory from './Components/TimeHistory';
@@ -22,27 +28,33 @@ import CompStaticLoad from './Components/StaticLoad';
 import CompAngleTable from './Components/AngleTable';
 
 //Variables
-import { 
-	VarTHloadcase, 
-	VarSTloadcase, 
+import {
+	VarTHloadcase,
+	VarSTloadcase,
 	VarTHfunction,
 	VarScaleFactor,
 	VarRowData
 } from './Components/variables';
 
-import { checkPyScriptReady } from './pyscript_utils';
+import {
+	checkPyScriptReady,
+
+} from './pyscript_utils';
 import { useSnackbar } from 'notistack';
 
-const App = () => {
-	const visible = false;
-
-	// py-terminal 태그를 가진 모든 요소 가져오기
+const deletePyscriptTerminalTag = () => {
+	// Get all elements with the py-terminal tag
 	const pyTerminals = document.querySelectorAll('py-terminal');
 
-	// 가져온 모든 py-terminal 요소를 제거
+	// Remove all py-terminal elements
 	pyTerminals.forEach(pyTerminal => {
 		pyTerminal.remove();
 	});
+}
+
+const App = () => {
+	//App이 마운트 되었을 때만 실행.
+	React.useEffect(() => deletePyscriptTerminalTag(), []);
 
 	//UI Values
 	const TimeHistoryLC = useRecoilValue(VarTHloadcase);
@@ -50,8 +62,8 @@ const App = () => {
 	const THfunction = useRecoilValue(VarTHfunction);
 	const ScaleFactor = useRecoilValue(VarScaleFactor);
 	const RowData = useRecoilValue(VarRowData);
-	
-	function CreateLoads() {
+
+	const createLoads = React.useCallback(() => {
 		const jsoninput = {
 			"TimeHistoryLC": TimeHistoryLC,
 			"StaticLoadLC": StaticLoadLC,
@@ -88,37 +100,64 @@ const App = () => {
 				return;
 			}
 		}
-		
-		checkPyScriptReady(()=>{
-			const main_func = pyscript.interpreter.globals.get("main");	
+
+		checkPyScriptReady(() => {
+			const main_func = pyscript.interpreter.globals.get("main");
 			const results = main_func(JSON.stringify(jsoninput));
 			const paringResults = JSON.parse(results);
-			console.log(paringResults)
-			if (paringResults.hasOwnProperty("error")) {
-				enqueueSnackbar(paringResults["error"], { variant: "error" });
+			if ('error' in paringResults) {
+				enqueueSnackbar(`${paringResults["error"]}`, { variant: "error" });
 				return;
-			} else if (paringResults.hasOwnProperty("success")) {
+			} 
+			
+			if (paringResults.hasOwnProperty("success")) {
 				enqueueSnackbar(paringResults["success"], { variant: "success" });
 				return;
 			}
-		})
-	}
+
+			enqueueSnackbar("An unkwon error occurred while creating.", { variant: "error" });
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const { enqueueSnackbar } = useSnackbar();
 
+	const [loading, setLoading] = React.useState(false);
+
 	return (
-	<GuideBox show={visible} width={320} padding={1} spacing={1}>
-	   {/** Top Panels */}
-		<Panel variant="shadow2" width="100%" height="100%">
-			<CompTimeHistory />
-			<CompStaticLoad />
-			<CompTHfunction />
-			<CompAngleTable />
-		</Panel>
-		<GuideBox show={visible} horRight>
-			<Button color='negative' onClick={CreateLoads}>Create</Button>
+		<GuideBox width="100%" center>
+			<GuideBox width={320} spacing={2}>
+				<Panel width="100%" variant='shadow2'>
+					<GuideBox width='100%' padding={1} spacing={3}>
+						{/** Top Panels */}
+						<CompTimeHistory />
+						<CompStaticLoad />
+						<CompTHfunction />
+						<CompAngleTable />
+					</GuideBox>
+				</Panel>
+				<GuideBox width="100%" horRight>
+					<Button 
+						color='negative' 
+						onClick={() => {
+							setLoading(true);
+							setTimeout(() => {
+								try {
+									createLoads();
+								} catch (e: any) {
+									console.error(e);
+								} finally {
+									setLoading(false); return;
+								}
+							}, 500);
+						}}
+						loading={loading}
+					>
+						Create
+					</Button>
+				</GuideBox>
+			</GuideBox>
 		</GuideBox>
-	</GuideBox>
 	);
 };
 

@@ -1,19 +1,16 @@
 /**
- *		                                                                         __      
- *		                                                                        /\ \__   
- *		  ___     ___     ___ ___     _____     ___     ___       __     ___    \ \ ,_\  
- *		 /'___\  / __`\ /' __` __`\  /\ '__`\  / __`\ /' _ `\   /'__`\ /' _ `\   \ \ \/  
- *		/\ \__/ /\ \L\ \/\ \/\ \/\ \ \ \ \L\ \/\ \L\ \/\ \/\ \ /\  __/ /\ \/\ \   \ \ \_ 
- *		\ \____\\ \____/\ \_\ \_\ \_\ \ \ ,__/\ \____/\ \_\ \_\\ \____\\ \_\ \_\   \ \__\
- *		 \/____/ \/___/  \/_/\/_/\/_/  \ \ \/  \/___/  \/_/\/_/ \/____/ \/_/\/_/    \/__/
- *		                                \ \_\                                            
- *		                                 \/_/                                            
+ *  ██████╗ ██████╗ ███╗   ███╗██████╗  ██████╗ ███╗   ██╗███████╗███╗   ██╗████████╗
+ * ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔═══██╗████╗  ██║██╔════╝████╗  ██║╚══██╔══╝
+ * ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║██╔██╗ ██║█████╗  ██╔██╗ ██║   ██║   
+ * ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║██║╚██╗██║██╔══╝  ██║╚██╗██║   ██║   
+ * ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝██║ ╚████║███████╗██║ ╚████║   ██║   
+ *  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝   ╚═╝   
  */
 
 import React from "react";
 import { useRecoilState } from "recoil";
 import { VarRowData } from "./variables";
-import { GuideBox, Typography, Stack, IconButton, Icon, DataGrid } from "@midasit-dev/moaui";
+import { GuideBox, Typography, IconButton, Icon, DataGrid, Separator, Panel } from "@midasit-dev/moaui";
 import { useGridApiRef, GridColDef } from '@mui/x-data-grid';
 
 const CompAngleTable = () => {
@@ -26,22 +23,22 @@ const CompAngleTable = () => {
 			type: 'number',
 			align: 'left',
 			headerAlign: 'left',
-			width: 80,
+			width: 100,
 			sortable: false
 		},
 		{
 			field: 'angle',
 			headerName: 'Angle [deg]',
 			type: 'number',
-			width: 140,
+			width: 180,
 			editable: true,
 			sortable: false,
 			renderCell: (params) => (
 				<div
-				style={{
-					// backgroundColor: isDuplicate(params.value) ? '#d47483' : 'inherit',
-					color: isDuplicate(params.value) ? '#d47483' : 'inherit',
-				}}
+					style={{
+						// backgroundColor: isDuplicate(params.value) ? '#d47483' : 'inherit',
+						color: isDuplicate(params.value) ? '#d47483' : 'inherit',
+					}}
 				>
 				{params.value}
 				</div>
@@ -87,22 +84,24 @@ const CompAngleTable = () => {
 	},[rows, setRows]);
 
 	return (
-		<GuideBox width="100%" column spacing={1} paddingLeft={1} paddingBottom={2}>
-			<GuideBox width="100%" row verCenter>
-				<GuideBox width="60%">
-					<Typography>Angle of Horizontal Load</Typography>
+		<GuideBox width="100%" spacing={2}>
+			<GuideBox width="100%" spacing={1}>
+				<GuideBox width="100%" row verCenter horSpaceBetween>
+					<Typography variant="h1">Angle of Horizontal Load</Typography>
+					<GuideBox row horRight>
+						<IconButton transparent onClick={handleAddRow}>
+							<Icon iconName="Add" />
+						</IconButton>
+						<IconButton transparent onClick={handleDeleteRow}>
+							<Icon iconName="Remove" />
+						</IconButton>
+					</GuideBox>
 				</GuideBox>
-				<GuideBox width="40%" row horRight paddingRight={5.5}>
-					<IconButton transparent onClick={handleAddRow}>
-						<Icon iconName="Add" />
-					</IconButton>
-					<IconButton transparent onClick={handleDeleteRow}>
-						<Icon iconName="Remove" />
-					</IconButton>
-				</GuideBox>
+				<Separator />
 			</GuideBox>
-			<GuideBox  width="100%" paddingLeft={2} paddingRight={5.5}>
-				<Stack direction="row" height={135} width={240}>
+
+			<GuideBox width="100%">
+				<Panel variant='box' width="100%" height={135}>
 					<DataGrid
 						apiRef={apiRef}
 						rows={rows}
@@ -112,7 +111,7 @@ const CompAngleTable = () => {
 						hideFooter
 						processRowUpdate={processRowUpdate}
 					/>
-				</Stack>
+				</Panel>
 			</GuideBox>
 		</GuideBox>
 

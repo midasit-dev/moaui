@@ -140,6 +140,15 @@ class MidasAPI:
             return None
         keyVals = responseJson[item_name]
         return { int(k): v for k, v in keyVals.items() }
+      
+    def db_read_try_catch(self, item_name):
+        url = f'{self.base_url}/db/{item_name}'
+        responseJson = requests_json.get(url, headers=self.headers)
+        if item_name not in responseJson:
+            error_dict = { "error": f"Error: Unable to find the registry key or value for {item_name}" }
+            raise Exception(error_dict)
+        keyVals = responseJson[item_name]
+        return { int(k): v for k, v in keyVals.items() }
     
     def db_read_item(self, item_name, item_id):
         item_id_str = str(item_id)

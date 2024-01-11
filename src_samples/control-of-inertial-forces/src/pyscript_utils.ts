@@ -1,13 +1,14 @@
-/*
- *		                                        __              ___              
- *		                                       /\ \__    __    /\_ \             
- *		 _____    __  __               __  __  \ \ ,_\  /\_\   \//\ \      ____  
- *		/\ '__`\ /\ \/\ \             /\ \/\ \  \ \ \/  \/\ \    \ \ \    /',__\ 
- *		\ \ \L\ \\ \ \_\ \            \ \ \_\ \  \ \ \_  \ \ \    \_\ \_ /\__, `\
- *		 \ \ ,__/ \/`____ \            \ \____/   \ \__\  \ \_\   /\____\\/\____/
- *		  \ \ \/   `/___/> \  _______   \/___/     \/__/   \/_/   \/____/ \/___/ 
- *		   \ \_\      /\___/ /\______\                                           
- *		    \/_/      \/__/  \/______/                                           
+/**
+ * 
+ * ██╗   ██╗████████╗██╗██╗       ██╗     ██╗██████╗ ██╗   ██╗██╗ 
+ * ██║   ██║╚══██╔══╝██║██║      ███║    ██╔╝██╔══██╗╚██╗ ██╔╝╚██╗
+ * ██║   ██║   ██║   ██║██║█████╗╚██║    ██║ ██████╔╝ ╚████╔╝  ██║
+ * ██║   ██║   ██║   ██║██║╚════╝ ██║    ██║ ██╔═══╝   ╚██╔╝   ██║
+ * ╚██████╔╝   ██║   ██║███████╗  ██║    ╚██╗██║        ██║   ██╔╝
+ *  ╚═════╝    ╚═╝   ╚═╝╚══════╝  ╚═╝     ╚═╝╚═╝        ╚═╝   ╚═╝ 
+ * 
+ * @description Functions for executing python script in typescript
+ * @linkcode ./public/pyscript_main.py
  */
 
 import { VerifyUtil } from "@midasit-dev/moaui";
@@ -24,7 +25,6 @@ export function checkPyScriptReady(callback: any) {
 
 //before execute a python main function, insert this function
 export function setGlobalVariable() {
-	console.log('initialize_global_variables for python script')
 	const set_func = pyscript.interpreter.globals.get('set_g_values');
 	set_func(JSON.stringify({
 		g_mapi_key: VerifyUtil.getMapiKey(),
@@ -36,9 +36,16 @@ export function setGlobalVariable() {
 export function getGlobalVariable() {
 	const get_func = pyscript.interpreter.globals.get('get_g_values');
 	const g_values = JSON.parse(get_func());
-	console.log('g_mapi_key: ', g_values.g_mapi_key);
-	console.log('g_base_uri: ', g_values.g_base_uri);
-	console.log('g_base_port: ', g_values.g_base_port);
+	console.log(`
+┌─┐┬ ┬  ┬┌┐┌┌─┐┌┬┐┌─┐┬  ┬  ┌─┐┌┬┐
+├─┘└┬┘  ││││└─┐ │ ├─┤│  │  ├┤  ││
+┴   ┴   ┴┘└┘└─┘ ┴ ┴ ┴┴─┘┴─┘└─┘─┴┘
+
+@ Global variables in python script
+- MAPI-Key: ${g_values.g_mapi_key}
+- Base-Uri: ${g_values.g_base_uri}
+- Base-Port: ${g_values.g_base_port}
+	`);
 }
 
 /**
