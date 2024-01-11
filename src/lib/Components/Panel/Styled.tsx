@@ -3,26 +3,22 @@ import MoaStyledComponent from "../../Style/MoaStyled";
 import { Color } from '../../';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { MarginTypes, MarginProps } from '../../Style/Margin';
-import { PaddingTypes, PaddingProps } from '../../Style/Padding';
+import { PaddingTypes, PaddingProps, hasPaddingProps } from '../../Style/Padding';
 
 class StyleVariant {
 	private static readonly layout = {
-		padding: "0.625rem 0.625rem",
 		alignItems: 'flex-start',
 		gap: '0.625rem',
 	}
 
 	static readonly shadow = {
 		...this.layout,
-		borderRadius: '0.25rem',
 		background: Color.primary.white,
 		boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.14)',
 	}
 
 	static readonly shadow2 = {
 		...this.layout,
-		borderRadius: '0.25rem',
-		boxSizing: 'border-box',
 		backgroundColor: 'var(--color-bg, #ffffff)',
 		display: 'flex',
 		boxShadow: 'var(--elevation-200-canvas, 0px 0px .5px rgba(0, 0, 0, .18), 0px 3px 8px rgba(0, 0, 0, .1), 0px 1px 3px rgba(0, 0, 0, .1))',
@@ -30,7 +26,6 @@ class StyleVariant {
 
 	static readonly strock = {
 		...this.layout,
-		borderRadius: '0.25rem',
 		border: `1px solid ${Color.component.gray_light}`,
 		background: Color.primary.white,
 	}
@@ -65,28 +60,48 @@ export type StyledProps = {
 	 * Set the backgroundColor of panel
 	 */
 	backgroundColor?: string;
+	/**
+	 * Set the borderRadius of panel
+	 */
+	borderRadius?: number | string;
 } & MarginTypes & PaddingTypes & BoxProps;
 
 const StyledComponent = styled((props: StyledProps) => {
+	const {
+		children,
+		variant,
+		width,
+		height,
+		flexItem,
+		backgroundColor,
+		borderRadius,
+		...rest
+	} = props;
+
 	let _sx = {};
-	if (props.variant === 'shadow') _sx = StyleVariant.shadow;
-	if (props.variant === 'shadow2') _sx = StyleVariant.shadow2;
-	if (props.variant === 'strock') _sx = StyleVariant.strock;
+	if (variant === 'shadow') _sx = StyleVariant.shadow;
+	if (variant === 'shadow2') _sx = StyleVariant.shadow2;
+	if (variant === 'strock') _sx = StyleVariant.strock;
+
+	console.log(borderRadius);
 	return (
 		<Box 
 			sx={{
 				..._sx, 
-				width: props.width,
-				height: props.height,
-				display: props.flexItem ? 'flex' : 'block',
-				...MarginProps(props),
-				...PaddingProps(props),
+				width: width,
+				height: height,
+				display: flexItem ? 'flex' : 'block',
 				boxSizing: 'border-box',
-				...(props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}),
+
+				...MarginProps(props),
+				...(hasPaddingProps(props) ? PaddingProps(props) : { padding: '0.625rem'}),
+
+				...(backgroundColor ? { backgroundColor: backgroundColor } : {}),
+				...(borderRadius !== undefined ? { borderRadius: borderRadius } : { borderRadius: '0.25rem' }),
 			}}
 			justifyContent='center'
 		>
-			{props.children}
+			{children}
 		</Box>
 	)
 })(({theme}) => ({}));

@@ -351,6 +351,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.ListItemDefault ? `${extractComponentName(All.ListItemDefault)}` : ""}
 					${item.type === ItemTypes.ListItemButtonDefault ? `${extractComponentName(All.ListItemButtonDefault)}` : ""}
 					${item.type === ItemTypes.PanelBox ? `${extractComponentName(All.PanelBox)}` : ""}
+					${item.type === ItemTypes.PanelPadding0 ? `${extractComponentName(All.PanelPadding0)}` : ""}
 					${item.type === ItemTypes.PanelShadow ? `${extractComponentName(All.PanelShadow)}` : ""}
 					${item.type === ItemTypes.PanelShadow2 ? `${extractComponentName(All.PanelShadow2)}` : ""}
 					${item.type === ItemTypes.PanelStrock ? `${extractComponentName(All.PanelStrock)}` : ""}

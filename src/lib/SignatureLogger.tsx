@@ -1,4 +1,4 @@
-const currentVersionFromPackageJson = '0.1.68';
+const currentVersionFromPackageJson = '0.1.69';
 
 /**
  * logo Color Code

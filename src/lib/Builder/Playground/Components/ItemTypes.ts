@@ -60,6 +60,7 @@ export const ItemTypes = {
 	ListItemDefault: 'ListItemDefault',
 	ListItemButtonDefault: 'ListItemButtonDefault',
 	PanelBox: 'PanelBox',
+	PanelPadding0: 'PanelPadding0',
 	PanelShadow: 'PanelShadow',
 	PanelShadow2: 'PanelShadow2',
 	PanelStrock: 'PanelStrock',

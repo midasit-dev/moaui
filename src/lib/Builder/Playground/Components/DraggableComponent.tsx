@@ -513,6 +513,7 @@ const PanelCategory: React.FC<{}> = () => (
 				width: '188px',
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.PanelBox}>Box</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.PanelPadding0}>Padding0</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelShadow}>Shadow</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelShadow2}>Shadow2</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelStrock}>Strock</CustomDraggableComponent>
@@ -1088,6 +1089,9 @@ export const ListItemButtonDefault =
 
 export const PanelBox = 
 	() => <CustomDraggableComponent itemType={ItemTypes.PanelBox}>PanelBox</CustomDraggableComponent>;
+
+export const PanelPadding0 = 
+	() => <CustomDraggableComponent itemType={ItemTypes.PanelPadding0}>PanelPadding0</CustomDraggableComponent>;
 
 export const PanelShadow = 
 	() => <CustomDraggableComponent itemType={ItemTypes.PanelShadow}>PanelShadow</CustomDraggableComponent>;

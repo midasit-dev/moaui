@@ -75,6 +75,20 @@ export type MarginTypes = {
 	marginRight?: CSS.StandardLonghandProperties['marginRight'] | number;
 }
 
+export const hasMarginProps = (props: any) => {
+	const isUndefined = (value: any) => value === undefined;
+
+	return (
+		!isUndefined(props.margin) ||
+		!isUndefined(props.marginX) ||
+		!isUndefined(props.marginY) ||
+		!isUndefined(props.marginTop) ||
+		!isUndefined(props.marginBottom) ||
+		!isUndefined(props.marginLeft) ||
+		!isUndefined(props.marginRight)
+	);
+}
+
 export const MarginProps = (props: any) => {
 	let MarginObject: any = {};
 	if (props && props.margin) MarginObject.margin = props.margin;

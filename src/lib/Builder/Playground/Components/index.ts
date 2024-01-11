@@ -59,6 +59,7 @@ export { default as ListUnControlled } from '../../../Components/List/Code/UnCon
 export { default as ListItemDefault } from '../../../Components/ListItem/Code/Default.code';
 export { default as ListItemButtonDefault } from '../../../Components/ListItemButton/Code/Default.code';
 export { default as PanelBox } from '../../../Components/Panel/Code/Box.code';
+export { default as PanelPadding0 } from '../../../Components/Panel/Code/Padding0.code';
 export { default as PanelShadow } from '../../../Components/Panel/Code/Shadow.code';
 export { default as PanelShadow2 } from '../../../Components/Panel/Code/Shadow2.code';
 export { default as PanelStrock } from '../../../Components/Panel/Code/Strock.code';
