@@ -1,4 +1,4 @@
-const currentVersionFromPackageJson = '0.1.67';
+const currentVersionFromPackageJson = '0.1.68';
 
 /**
  * logo Color Code
@@ -15,8 +15,9 @@ export const RenderingSignatureLogger = () => {
 	const title = `moaui (React UI Library) v${currentVersionFromPackageJson}`;
 	const deploy = `- deploy: https://www.npmjs.com/package/@midasit-dev/moaui`
 	const repository = `- repository: https://github.com/midasit-dev/moaui`;
+	const doumentation = `- documentation: https://midasit-dev.github.io/moaui/`;
 
-	console.log(`\n\n\n${logo}\n\n${title}\n${deploy}\n${repository}\n\n\n`);
+	console.log(`\n\n\n${logo}\n\n${title}\n${deploy}\n${repository}\n${doumentation}\n\n\n`);
 
 	return null;
 }
