@@ -58,3 +58,8 @@ export { default as VerifyUtil } from "./Authentication/VerifyUtil";
  * Testing Components
  */
 export * from "./testingCompsExports";
+
+/**
+ * Signature Logger
+ */
+export { default as SignatureLogger } from "./SignatureLogger";
