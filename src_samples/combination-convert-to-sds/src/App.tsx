@@ -207,8 +207,8 @@ const App = () => {
 
 			// 엑셀 워크시트를 생성합니다.
 			const worksheet = XLSX.utils.json_to_sheet(dataToExport, {
-				header: columns.map(col => col.headerName || col.field), // columns 배열을 사용하여 헤더를 지정합니다.
-				skipHeader: true // true :헤더를 건너뜁니다. false : 헤더를 포함합니다.
+				header: columns.slice(1).map(col => col.headerName || col.field), // columns 배열을 사용하여 헤더를 지정합니다.
+				skipHeader: false // true :헤더를 건너뜁니다. false : 헤더를 포함합니다.
 			});
 
 			// 워크북을 생성합니다.
