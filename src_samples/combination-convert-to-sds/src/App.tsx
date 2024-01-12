@@ -275,6 +275,14 @@ const App = () => {
 		return [...csvRows].join('\n');
 	}
 
+  // py-terminal 태그를 가진 모든 요소 가져오기
+  const pyTerminals = document.querySelectorAll('py-terminal');
+ 
+  // 가져온 모든 py-terminal 요소를 제거
+  pyTerminals.forEach(pyTerminal => {
+      pyTerminal.remove();
+  });
+
 	return (
 		//You can modify the code here and test.
 		<GuideBox show={false} width='100%' fill='2' paddingY={1} paddingX={1} row spacing={2} horCenter>
