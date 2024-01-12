@@ -176,7 +176,7 @@ interface ResultMain {
 export function runCreate(select_type:any, select_LCB:any): ResultMain {
 	return checkPyScriptReady(() => {
 		const py_run_main = pyscript.interpreter.globals.get('main');
-		const result = py_run_main(select_type, select_LCB); //return string
+		const result = py_run_main(select_type, select_LCB);
 		// console.log('result string: \n', result);
 		// console.log('result type: ',  typeof result);
 		return JSON.parse(result);

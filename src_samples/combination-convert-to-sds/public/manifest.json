@@ -1,5 +1,5 @@
 {
-  "short_name": "Plug-in Item Title",
+  "short_name": "Combination_Convert_to_SDS",
   "name": "Plug-in for MIDAS/Civil",
   "icons": [
     {
@@ -12,6 +12,6 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "width": "600",
-  "height": "500"
+  "width": "1085",
+  "height": "480"
 }

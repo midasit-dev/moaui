@@ -10,12 +10,27 @@
  */
 
 import React from 'react';
-import { GuideBox, Panel, Typography, Color, DropList, Check, Button, DataGrid } from '@midasit-dev/moaui';
-import Scrollbars from "rc-scrollbars";
+import { GuideBox, Panel, Typography, DropList, Check, Button, DataGrid } from '@midasit-dev/moaui';
 import { getLcbTypelist, getActivelist, runCreate } from './pyscript_utils';
 import { useSnackbar } from 'notistack';
 import './App.css';
 import * as XLSX from 'xlsx';
+import InfiniLoading from './InfinitLoading';
+
+function getCurrentDateText(): string {
+  const currentDate = new Date();
+
+  // Get the current year, month, and date
+  const year = currentDate.getFullYear();
+  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const date = currentDate.getDate().toString().padStart(2, '0');
+
+  // Combine them into the desired format
+  const currentDateText = `${year}${month}${date}`;
+
+  return currentDateText;
+}
+
 
 /**
  * This is a sample code.
@@ -42,7 +57,7 @@ const App = () => {
 	const [updateDataFrame, setUpdateDataFrame] = React.useState(false);
 	// create Button
 	const [disalbleCreate, setDisableCreate] = React.useState(true);
-
+	const [isPending, setIsPending] = React.useState(false);
 	// snackbar
 	const { enqueueSnackbar } = useSnackbar();
 
@@ -119,24 +134,25 @@ const App = () => {
 
 	// Create 버튼 핸들러
 	const onClickCreateHandler = (event: any) => {
-		// setDataframe("");
 		const res = runCreate(checkedlist, dropValue);
 		if (res.hasOwnProperty("error")) {
 			enqueueSnackbar(res.error, { variant: 'error' });
+			setIsPending(false);
 			return;
 		}
 
 		if (res.hasOwnProperty("value") && res.value !== undefined) {
+			setIsPending(true);
 			enqueueSnackbar("Success", { variant: 'success' });
 			// requestAnimationFrame 사용
 			// 레이아웃 변경이 필요한 작업을 requestAnimationFrame 콜백 내에서 수행하여 변경 사항을 브라우저의 렌더링 사이클과 동기화.
 			_data_.current.value = res.value;
 			requestAnimationFrame(() => {
 				setUpdateDataFrame(true);
-				// setDataframe(res.value);
 			});
 		} else {
 			enqueueSnackbar("Failed", { variant: 'error' });
+			setIsPending(false);
 			return;
 		}
 	}
@@ -170,6 +186,7 @@ const App = () => {
 				parseHeaders[0].sortable = false; // 첫 번째 컬럼은 정렬되지 않도록 설정합니다.
 				setColumns(parseHeaders);
 				setRows(parsedRows);
+				setIsPending(false);
 				setUpdateDataFrame(false);
 			})
 		}
@@ -199,7 +216,8 @@ const App = () => {
 			XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 			
 			/* 파일로 내보내기 (browser only) */
-			const fileName = `export-${Date.now()}.xlsx`;
+			const currentDateText = getCurrentDateText();
+			const fileName = `LCB-${currentDateText}.xlsx`;
 			XLSX.writeFile(workbook, `${fileName}`);
 			enqueueSnackbar(`Success to download excel file : ${fileName}`, { variant: 'success' });
 		} catch (error) {
@@ -350,12 +368,16 @@ const App = () => {
 				<Panel width={"100%"} height={"100%"}>
 					<GuideBox show width='100%'fill='none' spacing={1}>
 					<GuideBox show width='100%' height={"370px"} fill='none' horSpaceBetween verCenter>
-						<DataGrid
-							rows={rows}
-							columns={columns}
-							sortModel={sortModel}
-							onSortModelChange={handleSortModelChange}
-						/>
+						{isPending ?
+							<InfiniLoading />
+							:
+							<DataGrid
+								rows={rows}
+								columns={columns}
+								sortModel={sortModel}
+								onSortModelChange={handleSortModelChange}
+							/>
+						}
 					</GuideBox>
 					<GuideBox show width='100%' height={"30px"} fill='none' horRight row spacing={1}>
 						<Button onClick={handleCopyData}>
