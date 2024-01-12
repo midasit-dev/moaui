@@ -89,7 +89,7 @@ const StyledComponent = styled((props:StyledProps) => {
     <React.Fragment>
       <FormControl
         ref={parentRef}
-        sx={{ width: width, maxHeightight: "1.75rem" }}
+        sx={{ width: width, maxHeight: "1.75rem" }}
       >
         <DropList
           defaultValue={defaultValue}
