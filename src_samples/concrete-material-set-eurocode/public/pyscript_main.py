@@ -71,6 +71,7 @@ def py_db_delete(item_name, item_id):
 from bisect import insort
 import math
 
+# MATERIAL PROPERTIES
 def concrete_properties(grade):
 
 	# Density and Weight of Cocnrete
@@ -107,52 +108,143 @@ def concrete_properties(grade):
 	# §3.1.3(5) The thermal expansion coefficient may be taken equal to 10*10^-6 /°C
 	alpha = 10*10**-6
 	formatted_alpha = "{:.1e}".format(alpha)
+
+	return_value = {
+		"density": formatted_density,
+		"weight": formatted_weight,
+		"Elastic": formatted_Ecm,
+		"Shear": formatted_G,
+		"Poisson": formatted_nu,
+		"Thermal": formatted_alpha,
+	}
+
+	return json.dumps(return_value)
+
+# ADDITIONAL MATERIAL PROPERTIES
+def addInfo_material(grade, partial_factor) :
 	
+	# ---------------------------------------------------------------------------------------------
+	# Concrete Properties
+	# ---------------------------------------------------------------------------------------------
+	# Elastic Modulus
+	# EN 1992-1-1:2004
+	# Table 3.1
+	if check_numbers(partial_factor):
+		return json.dumps({ "error": "Partial Factor must be a number" })
+	elif math.isnan(partial_factor):
+		return json.dumps({ "error": "Partial Factor must be a number" })
+	elif partial_factor<=1:
+		return json.dumps({ "error": "Partial Factor must be greater than 1" })
+
+	# Mean value of concrete cylinder compressive strength 
+	fcm = grade + 8
+	
+	# Mean value of axial tensile strength of concrete 
+	if grade <= 50:
+		fctm = 0.30*grade**(2/3)
+	elif grade > 50:
+		fctm = 2.12*math.log(1+(fcm/10))
+	
+	# Characteristic axial tensile strength of concrete
+	fctk_5 = 0.7*fctm
+	fctk_95 = 1.3*fctm
+
+	# Design value of concrete compressive strength
+	fcd_alpha_max = 1*grade/partial_factor
+	fcd_alpha_bridge = 0.85*grade/partial_factor
+	fcd_alpha_min = 0.8*grade/partial_factor
+
+	# Compressive strain in the concrete at the peak stress f
+	# Ultimate compressive strain in the concrete
+	epsilon_c1 = min(0.7*(fcm)**0.31/1000,0.0028)
+	if grade <= 50:
+		epsilon_cu1 = 0.0035
+	elif grade > 50:
+		epsilon_cu1 = (2.8 + 27*((98-fcm)/100)**4)/1000
+	
+	if grade <= 50:
+		epsilon_c2 = 0.002
+		epsilon_cu2 = 0.0035
+		n = 2
+	elif grade > 50:
+		epsilon_c2 = (2.0+0.085*(grade-50)**0.53)/1000
+		epsilon_cu2 = (2.6+35*((90-grade)/100)**4)/1000
+		n = 1.4 + 23.4*((90-grade)/100)**4
+	
+	if grade <= 50:
+		epsilon_c3 = 0.00175
+		epsilon_cu3 = 0.0035
+	elif grade > 50:
+		epsilon_c3 = (1.75+0.55*((grade-50)/40))/1000
+		epsilon_cu3 = (2.6+35*((90-grade)/100)**4)/1000
+	
+	# as DATA GRID
 	return_value = [
 		{
 			"id": 1,
-			"desc": 'Density, ρ',
-			"value": formatted_density,
-			"unit":'kN/m3/g'
+			"descStrength": 'fcm',
+			"valueStrength": "{:.3f}".format(fcm),
+			"descStrain": 'εc1',
+			"valueStrain": "{:.3e}".format(epsilon_c1),
 		},
 		{
 			"id": 2,
-			"desc": 'Unit Weight, w',
-			"value": formatted_weight,
-			"unit":'kN/m3'
+			"descStrength": 'fctm',
+			"valueStrength": "{:.3f}".format(fctm),
+			"descStrain": 'εcu1',
+			"valueStrain": "{:.3e}".format(epsilon_cu1),
 		},
 		{
 			"id": 3,
-			"desc": 'Elastic Modulus, E',
-			"value": formatted_Ecm,
-			"unit":'MPa'
+			"descStrength": 'fctk,0.05',
+			"valueStrength": "{:.3f}".format(fctk_5),
+			"descStrain": 'εc2',
+			"valueStrain": "{:.3e}".format(epsilon_c2),
 		},
 		{
 			"id": 4,
-			"desc": 'Shear Modulus, G',
-			"value": formatted_G,
-			"unit":'MPa'
+			"descStrength": 'fctk,0.95',
+			"valueStrength": "{:.3f}".format(fctk_95),
+			"descStrain": 'εcu2',
+			"valueStrain": "{:.3e}".format(epsilon_cu2),
 		},
 		{
 			"id": 5,
-			"desc": 'poisson\'s ratio, ν',
-			"value": formatted_nu,
-			"unit":'-'
+			"descStrength": 'fcd with αcc = 1.00',
+			"valueStrength": "{:.3f}".format(fcd_alpha_max),
+			"descStrain": 'n',
+			"valueStrain": "{:.3f}".format(n),
 		},
 		{
 			"id": 6,
-			"desc": 'Coefficient of thermal expansion, α',
-			"value": formatted_alpha,
-			"unit":'1/°C'
-		}
+			"descStrength": 'fcd with αcc = 0.85',
+			"valueStrength": "{:.3f}".format(fcd_alpha_bridge),
+			"descStrain": 'εc3',
+			"valueStrain": "{:.3e}".format(epsilon_c3),
+		},
+		{
+			"id": 7,
+			"descStrength": 'fcd with αcc = 0.80',
+			"valueStrength": "{:.3f}".format(fcd_alpha_min),
+			"descStrain": 'εcu3',
+			"valueStrain": "{:.3e}".format(epsilon_cu3),
+		},
 	]
 
 	return json.dumps(return_value)
 
+# STRESS-STRAIN CURVE
 def stain_stress_curve(grade, partial_factor):
 	
 	# EN 1992-1-1:2004
 	# §3.1.5 Stress-strain relation for non-linear structural analysis
+	if check_numbers(partial_factor):
+		return json.dumps({ "error": "Partial Factor must be a number" })
+	elif math.isnan(partial_factor):
+		return json.dumps({ "error": "Partial Factor must be a number" })
+	elif partial_factor<=1:
+		return json.dumps({ "error": "Partial Factor must be greater than 1" })
+	
 	fcm = grade + 8
 	Ecm = 22 * ((fcm)/10)**0.3*1000
 	epsilon_c1 = min(0.7*(fcm)**0.31/1000,0.0028)
@@ -403,6 +495,7 @@ def stain_stress_curve(grade, partial_factor):
 
 	return json.dumps(return_value)
 
+# TIMEDEPENDENT PROPERTIES
 def creep_shrinkage_comps(input_data):
 	
 	input_data = json.loads(input_data)
@@ -413,16 +506,39 @@ def creep_shrinkage_comps(input_data):
 	# h0 is the notional value of the member in mm
 	# t0 is the age of concrete at loading in days
 
-	fck = float(input_data["grade"])
+	fck = input_data["grade"]
 	fcm = fck + 8
-	RH = float(input_data["humidity"])
-	h0 = float(input_data["notion"]) * 1000
-	t0 = float(input_data["dayCreep"])
-	T = float(input_data["temperature"])
-	t_last = float(input_data["dayLast"])
-	cement_class = input_data["cement"]
-	ts = float(input_data["dayShrink"])
-
+	RH = convert_to_number(input_data["humidity"])
+	h0 = convert_to_number(input_data["notionalSize"])
+	t0 = convert_to_number(input_data["dayCreep"])
+	T = convert_to_number(input_data["temperature"])
+	t_last = convert_to_number(input_data["dayLast"])
+	cement_class = input_data["cementType"]
+	ts = convert_to_number(input_data["dayShrink"])
+	silica = input_data["silica"]
+	codeType = input_data["codeType"]
+	print(codeType)
+	#Value Validation
+	if check_numbers(RH, h0, t0, T, t_last, ts):
+		return json.dumps({ "error": "Input must be a number" })
+	elif math.isnan(RH) or math.isnan(h0) or math.isnan(t0) or math.isnan(T) or math.isnan(t_last) or math.isnan(ts):
+		return json.dumps({ "error": "Input must be a number" })
+	elif RH < 40 or RH > 99:
+		return json.dumps({ "error": "Relative Humidity must be between 40 and 99" })
+	elif h0 <= 0:
+		return json.dumps({ "error": "Notional Size must be greater than 0" })
+	elif T < -40 or T > 40:
+		return json.dumps({ "error": "Temperature must be between -40 and 40" })
+	elif t0 <= 0:
+		return json.dumps({ "error": "t0 must be greater than 0" })
+	elif ts <= 0:
+		return json.dumps({ "error": "ts must be greater than 0" })
+	elif t_last <= max(t0, ts):
+		return json.dumps({ "error": "t,end must be greater than t0 and ts" })
+	# elif codeType == "EC2-2" and (fck <= 50 or RH > 80):
+	# 	return json.dumps({ "error": "EC2-2 is only valid for fck > 50 and RH <= 80" })
+	
+	h0 = h0 *1000
 	# ---------------------------------------------------------------------------------------------
 	# Creep Coefficient
 	# ---------------------------------------------------------------------------------------------
@@ -551,7 +667,7 @@ def creep_shrinkage_comps(input_data):
 
 	# βas(t) is the time-development coefficient for drying shrinkage
 	beta_as_t = []
-	for _, t_i in enumerate(t_c):
+	for _, t_i in enumerate(t_s):
 		beta_as_t.append(
 			(1 - math.exp(-0.2*t_i**0.5))
 		)
@@ -568,13 +684,13 @@ def creep_shrinkage_comps(input_data):
 
 	# εcs(t) is the total shrinkage strain
 	epsilon_cs_t = []
-	for i, _ in enumerate(t_c):
+	for i, _ in enumerate(t_s):
 		epsilon_cs_t.append(
 			epsilon_cd_t[i] + epsilon_ca_t[i]
 		)
 	
 	# εcs is the total shrinkage strain
-	epsilon_ts_inf = epsilon_cd_inf + epsilon_ca_inf
+	epsilon_cs_inf = epsilon_cd_inf + epsilon_ca_inf
 
 	# ---------------------------------------------------------------------------------------------
 	# Compressive Strength and Modulus
@@ -636,25 +752,129 @@ def creep_shrinkage_comps(input_data):
 		)
 
 	# ---------------------------------------------------------------------------------------------
+	# EN 1992-2
+	# ---------------------------------------------------------------------------------------------	
+	# Autogeneous shrinkage
+	beta_cc_t_br = []
+	for _, t_i in enumerate(t_s):
+		beta_cc_t_br.append(
+			math.exp(s*(1-(28/t_i)**0.5))
+		)
+
+	fcm_t_br = []
+	for i, _ in enumerate(t_s):
+		fcm_t_br.append(
+			beta_cc_t_br[i] * fcm
+		)
+	
+	epsilon_ca_t_br = []
+	for i, t_i in enumerate(t_s):
+		if t_i < 28:
+			if fcm_t_br[i] / fck < 0.1:
+				epsilon_ca_t_br.append(0)
+			elif fcm_t_br[i] / fck >= 0.1:
+				epsilon_ca_t_br.append(
+					(fck - 20)*(2.2 * fcm_t_br[i]/fck - 0.2)*10**-6
+				)
+		elif t_i >= 28:
+			epsilon_ca_t_br.append(
+				(fck - 20)*(2.8 - 1.1 * math.exp(-t_i/96))*10**-6
+			)
+
+	# Drying shrinkage
+	if silica ==  True:
+		beta_cd_br = 0.007
+	elif silica == False:
+		beta_cd_br = 0.021
+	
+	if fck <= 55:
+		Kfck = 18
+	elif fck > 55:
+		Kfck = 30 - 0.21*fck
+
+	epsilon_cd_t_br = []
+	for i, t_i in enumerate(t_s):
+		epsilon_cd_t_br.append(
+			(Kfck*(72*math.exp(-0.046*fck)+75-RH)*(t_i - ts)*10**-6)/((t_i - ts)+beta_cd_br*h0**2)
+		)
+
+	# εcs(t) is the total shrinkage strain
+	epsilon_cs_t_br = []
+	for i, _ in enumerate(t_s):
+		epsilon_cs_t_br.append(
+			epsilon_cd_t_br[i] + epsilon_ca_t_br[i]
+		)
+	
+	# Basic Creep
+	beta_cc_t0 = math.exp(s*(1-(28/t0)**0.5))
+	fcm_t0 = beta_cc_t0 * fcm
+	if silica ==  True:
+		phi_b0 = 3.6 / (fcm_t0**0.37)
+		beta_bc = 0.37 * math.exp(2.8 * fcm_t0/fck)
+	elif silica == False:
+		phi_b0 = 1.4
+		beta_bc = 0.4 * math.exp(3.1 * fcm_t0/fck)
+	
+	phi_b_t_t0 = []
+	for i, t_i in enumerate(t_c):
+		phi_b_t_t0.append(
+			phi_b0 * (math.sqrt(t_i - t0)/(math.sqrt(t_i - t0) + beta_bc))
+		)
+	
+	# Dry Creep
+	if silica ==  True:
+		phi_d0 = 1000
+	elif silica == False:
+		phi_d0 = 3200
+	
+	phi_d_t_t0 = []
+	epsilon_cd_t0 = (Kfck*(72*math.exp(-0.046*fck)+75-RH)*(t0 - ts)*10**-6)/((t0 - ts)+beta_cd_br*h0**2)
+	for i, t_i in enumerate(t_c):
+		phi_d_t_t0.append(
+			phi_d0 *(epsilon_cd_t_br[i]-epsilon_cd_t0)
+		)
+
+	phi_t_t0_br = []
+	for i, t_i in enumerate(t_c):
+		phi_t_t0_br.append(
+			phi_b_t_t0 + phi_d_t_t0
+		)
+
+	# ---------------------------------------------------------------------------------------------
 	# Graph Data
 	# ---------------------------------------------------------------------------------------------	
 	data_creep = []
+	data_creep_br = []
 	data_shrinkage = []
+	data_shrinkage_br = []
 	data_compStr = []
 	data_tensStr = []
 	data_compEls = []
+
 	for i, _ in enumerate(t_c):
 		data_creep.append({
 			"x": t_c[i],
 			"y": phi_t_t0[i],
 		})
-	
+
+	for i, _ in enumerate(t_c):
+		data_creep_br.append({
+			"x": t_c[i],
+			"y": phi_t_t0_br[i],
+		})
+
 	for i, _ in enumerate(t_s):
 		data_shrinkage.append({
 			"x": t_s[i],
 			"y": epsilon_cs_t[i]*(10**5),
 		})
-	
+
+	for i, _ in enumerate(t_s):
+		data_shrinkage_br.append({
+			"x": t_s[i],
+			"y": epsilon_cs_t_br[i]*(10**5),
+	})
+
 	for i, _ in enumerate(t_sm):
 		data_compStr.append({
 			"x": t_sm[i],
@@ -668,14 +888,21 @@ def creep_shrinkage_comps(input_data):
 			"x": t_sm[i],
 			"y": Ecm_t[i],
 		})
-	print("Creep", phi_0)
-	print("Shrinkage", epsilon_ts_inf*10**5)
+
+	# if codeType == "EN2-1":
 	result_value = {
 		"Strength":{
 			"GraphData": {
 				"compStrength" : data_compStr,
 				"tensStrength" : data_tensStr,
 				"compElastic" : data_compEls,
+			},
+			"TimeDependent" :{
+				"t_sm": t_sm,
+				"beta_cc_t" : beta_cc_t,
+				"fcm_t" : fcm_t,
+				"fctm_t" : fctm_t,
+				"Ecm_t" : Ecm_t,
 			}
 		},
 		"Creep" :{
@@ -704,9 +931,7 @@ def creep_shrinkage_comps(input_data):
 			"TimeDependent" :{
 				"t_s": t_s,
 				"beta_ds_t_ts" : beta_ds_t_ts,
-				"epsilon_cd_t" : epsilon_cd_t,
 				"beta_as_t" : beta_as_t,
-				"epsilon_ca_t" : epsilon_ca_t,
 				"epsilon_ca_t" : epsilon_ca_t,
 				"epsilon_cd_t" : epsilon_cd_t,
 				"epsilon_cs_t" : epsilon_cs_t,
@@ -714,7 +939,7 @@ def creep_shrinkage_comps(input_data):
 			"Value" : {
 				"epsilon_ca_inf" : epsilon_ca_inf,
 				"epsilon_cd_inf" : epsilon_cd_inf,
-				"epsilon_ts_inf" : epsilon_ts_inf,
+				"epsilon_cs_inf" : epsilon_cs_inf,
 				"kh" : kh,
 				"beta_RH" : beta_RH,
 				"alpha_ds1" : alpha_ds1,
@@ -723,5 +948,75 @@ def creep_shrinkage_comps(input_data):
 			}
 		}
 	}
+	# elif codeType == "EN2-2":
+	# 	result_value = {
+	# 		"Strength":{
+	# 			"GraphData": {
+	# 				"compStrength" : data_compStr,
+	# 				"tensStrength" : data_tensStr,
+	# 				"compElastic" : data_compEls,
+	# 			},
+	# 			"TimeDependent" :{
+	# 				"t_sm": t_sm,
+	# 				"beta_cc_t" : beta_cc_t,
+	# 				"fcm_t" : fcm_t,
+	# 				"fctm_t" : fctm_t,
+	# 				"Ecm_t" : Ecm_t,
+	# 			}
+	# 		},
+	# 		"Creep" :{
+	# 			"GraphData": data_creep_br,
+	# 			"TimeDependent" :{
+	# 				"t_c": t_c,
+	# 				"phi_b_t_t0" : phi_b_t_t0,
+	# 				"phi_d_t_t0" : phi_d_t_t0,
+	# 				"phi_t_t0" : phi_t_t0_br,
+	# 			},
+	# 			"Value" : {
+	# 				"beta_cc_t0" : beta_cc_t0,
+	# 				"fcm_t0" : fcm_t0,
+	# 				"phi_b0" : phi_b0,
+	# 				"beta_bc" : beta_bc,
+	# 				"phi_d0" : phi_d0,
+	# 			}
+	# 		},
+	# 		"Shrinkage" : {
+	# 			"GraphData": data_shrinkage,
+	# 			"TimeDependent" :{
+	# 				"t_s": t_s,
+	# 				"beta_cc_t" : beta_cc_t_br,
+	# 				"fcm_t" : fcm_t_br,
+	# 				"epsilon_ca_t" : epsilon_ca_t_br,
+	# 				"epsilon_cd_t" : epsilon_cd_t_br,
+	# 				"epsilon_cs_t" : epsilon_cs_t_br,
+	# 			},
+	# 			"Value" : {
+	# 				"beta_cd_br" : beta_cd_br,
+	# 				"Kfck" : Kfck,
+	# 			}
+	# 		}
+	# 	}
 
 	return json.dumps(result_value)
+
+def get_material_ID():
+	civil = MidasAPI(Product.CIVIL, "KR")
+	res_matl = civil.db_read("MATL")
+	if "error" in res_matl:
+		return 1
+	else:
+		max_id = max(list(res_matl.keys()))
+		return max_id + 1
+
+def check_numbers(*args):
+	for arg in args:
+		if not isinstance(arg, (int, float)):
+			return True
+	return False
+
+def convert_to_number(value):
+    try:
+        result = float(value)
+        return result
+    except (ValueError, TypeError):
+        return math.nan
