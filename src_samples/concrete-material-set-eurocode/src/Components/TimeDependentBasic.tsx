@@ -212,7 +212,6 @@ const TimeDependentBasic = () => {
         enqueueSnackbar
     ])
 
-
 	return (
         <GuideBox row width='100%' spacing={1}>
             <GuideBox show={false} width={500} column spacing={1}>
@@ -256,7 +255,7 @@ const TimeDependentBasic = () => {
                             error={temperatureErr}
                         />
                         <TextFiledwithTitleUnit
-                            title="Age of concrete at the beginning of shrinkage, cs"
+                            title="Age of concrete at the beginning of shrinkage, ts"
                             unit="day"
                             value={dayShrink}
                             setValue={setDayShrink}

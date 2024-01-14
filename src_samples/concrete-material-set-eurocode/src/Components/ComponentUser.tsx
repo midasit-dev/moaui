@@ -139,7 +139,7 @@ const lineArea = ({ series, xScale, yScale}: any) => {
             let minData: any = series.find((d: any) => d.areaType === "min").data;
             let maxData: any = series.find((d: any) => d.areaType === "max").data;
             areaData = [...maxData, ...minData.reverse()];
-            console.log(areaData)
+            
             startPt = {
                 "x":data[0].data.x,
                 "y":0

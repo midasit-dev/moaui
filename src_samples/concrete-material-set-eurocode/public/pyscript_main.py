@@ -69,7 +69,9 @@ def py_db_delete(item_name, item_id):
 '''
 # ↓↓↓↓↓↓↓↓↓↓↓↓ write a main logic here ↓↓↓↓↓↓↓↓↓↓↓↓
 from bisect import insort
+import copy
 import math
+import re
 
 # MATERIAL PROPERTIES
 def concrete_properties(grade):
@@ -517,7 +519,7 @@ def creep_shrinkage_comps(input_data):
 	ts = convert_to_number(input_data["dayShrink"])
 	silica = input_data["silica"]
 	codeType = input_data["codeType"]
-	print(codeType)
+
 	#Value Validation
 	if check_numbers(RH, h0, t0, T, t_last, ts):
 		return json.dumps({ "error": "Input must be a number" })
@@ -998,6 +1000,233 @@ def creep_shrinkage_comps(input_data):
 	# 	}
 
 	return json.dumps(result_value)
+
+def Create_material(input_data):
+	input_data = json.loads(input_data)
+
+	ID = int(input_data["ID"])
+	selected_grade = input_data["selectedGrade"]
+	RH = convert_to_number(input_data["humidity"])
+	h0 = convert_to_number(input_data["notionalSize"])
+	cementType = input_data["cementType"]
+	codeType = input_data["codeType"]
+	dayShrinkage = convert_to_number(input_data["dayShrinkage"])
+	silica = input_data["silica"]
+
+	#Value Validation
+	if check_numbers(RH, h0):
+		return json.dumps({ "error": "RH, h0 must be a number" })
+	elif RH < 40 or RH > 99:
+		return json.dumps({ "error": "RH must be between 40 and 99" })
+	elif h0 <= 0:
+		return json.dumps({ "error": "h0 must be greater than 0" })
+	elif not isinstance(ID, int):
+		return json.dumps({ "error": "ID number must be integer" })
+	elif dayShrinkage <= 0:
+		return json.dumps({ "error": "ts must be greater than 0" })
+	elif selected_grade == None:
+		return json.dumps({ "error": "No selected grade" })
+
+	# ---------------------------------------------------------------------------------------------
+	# Material Properties
+	# ---------------------------------------------------------------------------------------------
+	civil = MidasAPI(Product.CIVIL, "KR")
+
+	unit_basic = {
+		"1": {
+			"FORCE": "KN",
+			"DIST": "M",
+			"HEAT": "KCAL",
+			"TEMPER": "C"
+		}
+	}
+	res_unit = civil.db_update("UNIT", unit_basic)
+	if "error" in res_unit:
+		return json.dumps({ "error": "Midas Error" })
+	
+	ID_list = []
+	Grade_list = []
+	for i in range(len(selected_grade)):
+		ID_list.append(ID+i)
+		Grade_list.append(selected_grade[i]["strength"])
+	res_matl = civil.db_read("MATL")
+	res_matl_key = list(res_matl.keys())
+
+	if ID_list in res_matl_key:
+		return json.dumps({ "error": "ID already exists" })
+	
+	matl_basic = {
+            "TYPE": "CONC",
+            "NAME": "C12/15",
+            "HE_SPEC": 0,
+            "HE_COND": 0,
+            "PLMT": 0,
+            "P_NAME": "",
+            "bMASS_DENS": False,
+            "DAMP_RAT": 0.05,
+            "PARAM": [
+                {
+                    "P_TYPE": 1,
+                    "STANDARD": "EN04(RC)",
+                    "CODE": "",
+                    "DB": "C12/15",
+                    "bELAST": False,
+                }
+            ]
+        }
+
+	matl_create = {}
+	for i, ID in enumerate(ID_list):
+		matl_create[ID] = copy.deepcopy(matl_basic)
+		matl_create[ID]["NAME"] = Grade_list[i]
+		matl_create[ID]["PARAM"][0]["DB"] = Grade_list[i]
+	
+	res_matl_craete = civil.db_create("MATL", matl_create)
+	if "error" in res_matl_craete:
+		return json.dumps({ "error": "MATL Error" })
+	
+	# ---------------------------------------------------------------------------------------------
+	# Creep & Shrinkage Properties
+	# ---------------------------------------------------------------------------------------------
+	res_tdmt = civil.db_read("TDMT")
+	if "error" in res_tdmt:
+		max_tdmt_key = 0
+		res_tdmt_name = []
+	else:
+		max_tdmt_key = max(list(res_tdmt.keys()))
+		res_tdmt_name = [item["NAME"] for item in res_tdmt.values()]
+
+	tdmt_name_list = []
+	intersection = set(Grade_list) & set(res_tdmt_name)
+
+	if bool(intersection):
+		for i in range(len(Grade_list)):
+			tdmt_name_list.append(
+				Grade_list[i] + "_" + "CS"
+			)
+	else:
+		for i in range(len(Grade_list)):
+			tdmt_name_list.append(
+				Grade_list[i]
+			)
+
+	tdmt_base = {
+		"NAME": "C12/15",
+		"CODE": "EUROPEAN",
+		"STR": 12000,
+		"HU": 70,
+		"AGE": 3,
+		"MSIZE": 1,
+		"CTYPE": "Class N",
+		"TCODE": 1,
+		"bSILICA": True
+	}
+
+	pattern = re.compile(r'C(\d+)')
+	fck = [float(pattern.search(strength).group(1)) for strength in Grade_list]
+
+	if codeType == "EC2-1":
+		intCode = 0
+		bSILICA = False
+	elif codeType == "EC2-2":
+		intCode = 1
+		bSILICA = silica
+
+	tdmt_create ={}
+	for i, ID in enumerate(ID_list):
+		max_tdmt_key += 1
+		tdmt_create[max_tdmt_key] = copy.deepcopy(tdmt_base)
+		tdmt_create[max_tdmt_key]["NAME"] = tdmt_name_list[i]
+		tdmt_create[max_tdmt_key]["STR"] = fck[i]*1000
+		tdmt_create[max_tdmt_key]["HU"] = RH
+		tdmt_create[max_tdmt_key]["MSIZE"] = h0
+		tdmt_create[max_tdmt_key]["CTYPE"] = "Class " + cementType 
+		tdmt_create[max_tdmt_key]["TCODE"] = intCode
+		tdmt_create[max_tdmt_key]["AGE"] = dayShrinkage
+		tdmt_create[max_tdmt_key]["bSILICA"] = bSILICA
+	
+	res_tdmt_create = civil.db_create("TDMT", tdmt_create)
+	if "error" in res_tdmt_create:
+		return json.dumps({ "error": "TDMT Error" })
+
+	# ---------------------------------------------------------------------------------------------
+	# Compressive Strength Properties
+	# ---------------------------------------------------------------------------------------------
+	res_tdme = civil.db_read("TDME")
+	if "error" in res_tdme:
+		max_tdme_key = 0
+		res_tdme_name = []
+	else:
+		max_tdme_key = max(list(res_tdme.keys()))
+		res_tdme_name = [item["NAME"] for item in res_tdme.values()]
+	
+	tdme_name_list = []
+	intersection = set(Grade_list) & set(res_tdme_name)
+
+	if bool(intersection):
+		for i in range(len(Grade_list)):
+			tdme_name_list.append(
+				Grade_list[i] + "_" + "CS"
+			)
+	else:
+		for i in range(len(Grade_list)):
+			tdme_name_list.append(
+				Grade_list[i]
+			)
+	
+	tdme_base ={
+		"NAME": "C12/15",
+		"TYPE": "CODE",
+		"CODENAME": "EUROPEAN",
+		"STRENGTH": 20000,
+		"iCTYPE": 2
+	}
+
+	if cementType == "R":
+		iCTYPE = 1
+	elif cementType == "N":
+		iCTYPE = 2
+	elif cementType == "S":
+		iCTYPE = 3
+
+	tdme_create = {}
+	for i, ID in enumerate(ID_list):
+		max_tdme_key += 1
+		tdme_create[max_tdme_key] = copy.deepcopy(tdme_base)
+		tdme_create[max_tdme_key]["NAME"] = tdme_name_list[i]
+		tdme_create[max_tdme_key]["STRENGTH"] = (fck[i] + 8) * 1000
+		tdme_create[max_tdme_key]["iCTYPE"] = iCTYPE
+	
+	res_tdme_create = civil.db_create("TDME", tdme_create)
+	if "error" in res_tdme_create:
+		return json.dumps({ "error": "TDME Error" })
+	
+	# ---------------------------------------------------------------------------------------------
+	# Material Link
+	# ---------------------------------------------------------------------------------------------
+	res_tmat = civil.db_read("TMAT")
+	if "error" in res_tmat:
+		max_tdme_key = 0
+	else:
+		max_tdme_key = max(list(res_tmat.keys()))
+
+	tmat_base = {
+		"TDMT_NAME": "C12/15",
+		"TDME_NAME": "C12/15"
+	}
+
+	tmat_create = {}
+	for i, ID in enumerate(ID_list):
+		max_tdme_key += 1
+		tmat_create[max_tdme_key] = copy.deepcopy(tmat_base)
+		tmat_create[max_tdme_key]["TDMT_NAME"] = tdmt_name_list[i]
+		tmat_create[max_tdme_key]["TDME_NAME"] = tdme_name_list[i]
+	
+	res_tmat_create = civil.db_create("TMAT", tmat_create)
+	if "error" in res_tmat_create:
+		return json.dumps({ "error": "TMAT Error" })
+	
+	return(json.dumps({"success": "Success"}))
 
 def get_material_ID():
 	civil = MidasAPI(Product.CIVIL, "KR")
