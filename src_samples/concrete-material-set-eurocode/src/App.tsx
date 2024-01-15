@@ -14,11 +14,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { GuideBox, Panel, Button } from '@midasit-dev/moaui';
 import TabGroup from './Components/TabGroupMain';
 import DialogButton from './Components/ButtonDialog';
-//Variables
-import { 
-	VarDialogConcrete, 
-
-} from './Components/variables';
+import CreateButton from './Components/ButtonCreate';
 
 const App = () => {
 	const visible = false;
@@ -35,9 +31,9 @@ const App = () => {
 		<GuideBox column show={visible} width={1145} padding={1}>
 			<Panel variant="shadow2" width="100%" height="100%">
 				<TabGroup/>
-				<GuideBox row paddingTop={1} horSpaceBetween>
+				<GuideBox row width="100%" paddingTop={1} horSpaceBetween>
 					<DialogButton/>
-					<Button variant="contained" color="negative"> CREATE </Button>
+					<CreateButton/>
 				</GuideBox>
 			</Panel>
 		</GuideBox>
