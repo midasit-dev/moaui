@@ -25,6 +25,7 @@ export { default as DataGridPagination } from '../../../Components/DataGrid/Code
 export { default as DialogDialogButton } from '../../../Components/Dialog/Code/DialogButton.code.tsx?raw';
 export { default as DialogHelpButton } from '../../../Components/Dialog/Code/HelpButton.code.tsx?raw';
 export { default as DialogHelpIconButton } from '../../../Components/Dialog/Code/HelpIconButton.code.tsx?raw';
+export { default as DialogHiddenClose } from '../../../Components/Dialog/Code/HiddenClose.code.tsx?raw';
 export { default as DialogOnClose } from '../../../Components/Dialog/Code/OnClose.code.tsx?raw';
 export { default as DropListDisabled } from '../../../Components/DropList/Code/Disabled.code.tsx?raw';
 export { default as DropListDropdown } from '../../../Components/DropList/Code/Dropdown.code.tsx?raw';

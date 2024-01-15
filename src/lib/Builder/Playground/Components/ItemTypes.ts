@@ -26,6 +26,7 @@ export const ItemTypes = {
 	DialogDialogButton: 'DialogDialogButton',
 	DialogHelpButton: 'DialogHelpButton',
 	DialogHelpIconButton: 'DialogHelpIconButton',
+	DialogHiddenClose: 'DialogHiddenClose',
 	DialogOnClose: 'DialogOnClose',
 	DropListDisabled: 'DropListDisabled',
 	DropListDropdown: 'DropListDropdown',

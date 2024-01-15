@@ -1,5 +1,5 @@
 import React from 'react'; /**${comma}*/
-import { Dialog, Icon, Button, GuideBox, Typography } from "@midasit-dev/moaui";/**${comma}*/
+import { Dialog, Icon, Button, GuideBox } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsDialogHiddenClose = () => {
 	const [open, setOpen] = React.useState(false);
@@ -13,9 +13,7 @@ const ComponentsDialogHiddenClose = () => {
 				headerIcon={<Icon iconName="HourglassEmpty" />}
         headerTitle="Loading ..."
       >
-				<GuideBox width={300} height={150} spacing={2}>
-					<Typography>Hidden Close ...</Typography>
-				</GuideBox>
+				<GuideBox width={100} height={50} loading />
 			</Dialog>
     </>
   );

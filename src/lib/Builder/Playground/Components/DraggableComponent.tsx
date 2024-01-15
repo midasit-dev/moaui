@@ -299,6 +299,7 @@ const DialogCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.DialogDialogButton}>DialogButton</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DialogHelpButton}>HelpButton</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DialogHelpIconButton}>HelpIconButton</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.DialogHiddenClose}>HiddenClose</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DialogOnClose}>OnClose</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -988,6 +989,9 @@ export const DialogHelpButton =
 
 export const DialogHelpIconButton = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DialogHelpIconButton}>DialogHelpIconButton</CustomDraggableComponent>;
+
+export const DialogHiddenClose = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DialogHiddenClose}>DialogHiddenClose</CustomDraggableComponent>;
 
 export const DialogOnClose = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DialogOnClose}>DialogOnClose</CustomDraggableComponent>;

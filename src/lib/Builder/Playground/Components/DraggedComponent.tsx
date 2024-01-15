@@ -32,6 +32,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.DialogDialogButton: return <All.DialogDialogButton />;
 		case ItemTypes.DialogHelpButton: return <All.DialogHelpButton />;
 		case ItemTypes.DialogHelpIconButton: return <All.DialogHelpIconButton />;
+		case ItemTypes.DialogHiddenClose: return <All.DialogHiddenClose />;
 		case ItemTypes.DialogOnClose: return <All.DialogOnClose />;
 		case ItemTypes.DropListDisabled: return <All.DropListDisabled />;
 		case ItemTypes.DropListDropdown: return <All.DropListDropdown />;
