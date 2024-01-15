@@ -58,17 +58,17 @@ fs.writeFileSync("./dist/package.json", JSON.stringify(distPackageJson, null, 2)
 console.log(`Updated dist/package.json main to ${distPackageJson.main}`);
 console.log(`Updated dist/package.json types to ${distPackageJson.types}`);
 
-//update SignatureLogger.tsx
-var signatureLogger = fs.readFileSync("./src/lib/SignatureLogger.tsx", "utf8");
+//update Signature.tsx
+var signatureLogger = fs.readFileSync("./src/lib/Signature.tsx", "utf8");
 
-//replace version in SignatureLogger.tsx
+//replace version in Signature.tsx
 signatureLogger = signatureLogger.replace(
   /const currentVersionFromPackageJson = '[^']*'/,
   `const currentVersionFromPackageJson = '${newVersion}'`
 );
 
-//write SignatureLogger.tsx
-fs.writeFileSync("./src/lib/SignatureLogger.tsx", signatureLogger);
+//write Signature.tsx
+fs.writeFileSync("./src/lib/Signature.tsx", signatureLogger);
 
 //write console
-console.log(`Updated SignatureLogger.tsx version to ${newVersion}`);
+console.log(`Updated Signature.tsx version to ${newVersion}`);

@@ -92,11 +92,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		}
 	}
 	const handleMapiKeyChange = (e: any) => setMapiKey(e.target.value);
-
-	React.useEffect(() => {
-		console.log(baseUrl, mapiKey)
-	}, [baseUrl, mapiKey])
-
+	
 	return (
     <Dialog 
 			open={open} 

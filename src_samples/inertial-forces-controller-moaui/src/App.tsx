@@ -125,37 +125,35 @@ const App = () => {
 	const [loading, setLoading] = React.useState(false);
 
 	return (
-		<GuideBox width="100%" center padding={0}>
-			<GuideBox width={352} spacing={2} padding={2}>
-				<Panel width="100%" variant='shadow2'>
-					<GuideBox width='100%' padding={1} spacing={3}>
-						{/** Top Panels */}
-						<CompTimeHistory />
-						<CompStaticLoad />
-						<CompTHfunction />
-						<CompAngleTable />
-					</GuideBox>
-				</Panel>
-				<GuideBox width="100%" horRight>
-					<Button 
-						color='negative' 
-						onClick={() => {
-							setLoading(true);
-							setTimeout(() => {
-								try {
-									createLoads();
-								} catch (e: any) {
-									console.error(e);
-								} finally {
-									setLoading(false); return;
-								}
-							}, 500);
-						}}
-						loading={loading}
-					>
-						Create
-					</Button>
+		<GuideBox width={352} spacing={2} padding={2}>
+			<Panel width="100%" variant='shadow2'>
+				<GuideBox width='100%' padding={1} spacing={3}>
+					{/** Top Panels */}
+					<CompTimeHistory />
+					<CompStaticLoad />
+					<CompTHfunction />
+					<CompAngleTable />
 				</GuideBox>
+			</Panel>
+			<GuideBox width="100%" horRight>
+				<Button 
+					color='negative' 
+					onClick={() => {
+						setLoading(true);
+						setTimeout(() => {
+							try {
+								createLoads();
+							} catch (e: any) {
+								console.error(e);
+							} finally {
+								setLoading(false); return;
+							}
+						}, 500);
+					}}
+					loading={loading}
+				>
+					Create
+				</Button>
 			</GuideBox>
 		</GuideBox>
 	);

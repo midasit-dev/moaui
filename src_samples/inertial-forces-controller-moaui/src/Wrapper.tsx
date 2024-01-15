@@ -119,8 +119,10 @@ const ValidWrapper = () => {
 							</IconButton>
 						)}
 					>
-						<MidasControllerSample />
-						<App />
+						<GuideBox width="100%" center padding={0}>
+							<MidasControllerSample />
+							<App />
+						</GuideBox>
 					</SnackbarProvider>
 				</RecoilRoot>
 			)}

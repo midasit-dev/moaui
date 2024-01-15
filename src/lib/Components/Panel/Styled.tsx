@@ -82,8 +82,6 @@ const StyledComponent = styled((props: StyledProps) => {
 	if (variant === 'shadow') _sx = StyleVariant.shadow;
 	if (variant === 'shadow2') _sx = StyleVariant.shadow2;
 	if (variant === 'strock') _sx = StyleVariant.strock;
-
-	console.log(borderRadius);
 	return (
 		<Box 
 			sx={{
