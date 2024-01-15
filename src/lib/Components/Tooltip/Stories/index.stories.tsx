@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { GuideBox, Tooltip, IconButton, Icon } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
@@ -6,7 +7,6 @@ import {
 	RightCode, 
 } from "../Code";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { GuideBox, Tooltip, IconButton, Icon } from "../../..";
 
 const meta = {
   title: "Components/Tooltip",

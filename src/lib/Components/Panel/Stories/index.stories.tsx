@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Panel from "..";
+import { Panel } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";

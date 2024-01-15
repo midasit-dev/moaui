@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Grid from "..";
-import { Typography, Panel } from "../../..";
+import { Grid, Typography, Panel } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

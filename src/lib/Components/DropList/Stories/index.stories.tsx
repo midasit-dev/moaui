@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { DropList } from "../../../index";
 import Explore from "./Explore.mdx";
-import DropList from "..";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { DropdownCode, DisabledCode, ListWidthCode } from '../Code';

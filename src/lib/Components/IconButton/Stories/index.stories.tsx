@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import IconButton from "..";
-import { Icon } from "../../..";
+import { IconButton, Icon } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

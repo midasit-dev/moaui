@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Separator from "..";
-import { Panel, Typography } from '../../..';
+import { Separator, Panel, Typography } from '../../../index';
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { DataGrid, Panel } from "../../../index";
 import Explore from './Explore.mdx';
-import DataGrid from "..";
-import { Panel } from "../../../";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { 

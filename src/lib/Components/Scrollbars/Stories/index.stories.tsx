@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Scrollbars from "..";
+import { Scrollbars, Check, Stack } from "../../../index";
 import Explore from "./Explore.mdx";
-import { Check, Stack } from "../../..";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";

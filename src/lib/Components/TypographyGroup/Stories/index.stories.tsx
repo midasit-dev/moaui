@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TypographyGroup from "..";
+import { TypographyGroup } from "../../../index";
 import Explore from "./Exlpore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

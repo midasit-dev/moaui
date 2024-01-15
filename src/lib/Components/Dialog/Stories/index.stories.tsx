@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta } from "@storybook/react";
-import Dialog from "..";
+import { Dialog } from "../../../index";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";

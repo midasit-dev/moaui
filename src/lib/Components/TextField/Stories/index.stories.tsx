@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Textfield from "..";
+import { TextField } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
@@ -8,13 +8,13 @@ import { LeftCode, RightCode, LabelCode, ErrorCode, BasicCode, MultiLineCode } f
 
 const meta = {
   title: 'Components/TextField',
-  component: Textfield,
+  component: TextField,
 	tags: ['autodocs'],
   parameters: { 
 		docs: { page: Explore },
 		layout: 'centered',
 	},
-} satisfies Meta<typeof Textfield>;
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SwitchGroup from "..";
-import { Switch } from "../../..";
-
+import { SwitchGroup, Switch } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

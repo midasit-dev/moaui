@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TabGroup from "..";
-import { Tab } from "../../..";
+import { TabGroup, Tab } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

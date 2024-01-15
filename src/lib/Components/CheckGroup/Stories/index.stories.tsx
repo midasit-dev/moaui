@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CheckGroup from "..";
-import { Check } from "../../..";
+import { CheckGroup, Check } from "../../../index";
 import Exlpore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

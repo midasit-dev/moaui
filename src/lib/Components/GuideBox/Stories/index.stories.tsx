@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import GuideBox from "..";
+import { GuideBox, Button } from "../../../index";
 import Explore from "./Explore.mdx";
-import { Button } from "../../..";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";

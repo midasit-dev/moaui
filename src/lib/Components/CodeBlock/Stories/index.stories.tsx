@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CodeBlock from "..";
+import { CodeBlock } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
