@@ -1,4 +1,4 @@
-const currentVersionFromPackageJson = '0.1.73';
+const currentVersionFromPackageJson = '0.1.74';
 
 const log = () => {
 	/**

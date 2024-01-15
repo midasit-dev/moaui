@@ -43,6 +43,7 @@ export { default as ComponentsGridItems } from "./Components/Grid/Code/Items.cod
 export { default as ComponentsGridRow } from "./Components/Grid/Code/Row.code";
 export { default as ComponentsGuideBoxBasic300x300 } from "./Components/GuideBox/Code/Basic300x300.code";
 export { default as ComponentsGuideBoxEmpty } from "./Components/GuideBox/Code/Empty.code";
+export { default as ComponentsGuideBoxFlexGrow } from "./Components/GuideBox/Code/FlexGrow.code";
 export { default as ComponentsGuideBoxLayout1 } from "./Components/GuideBox/Code/Layout1.code";
 export { default as ComponentsGuideBoxLayout1_Sample } from "./Components/GuideBox/Code/Layout1_Sample.code.except";
 export { default as ComponentsGuideBoxLayout2 } from "./Components/GuideBox/Code/Layout2.code";

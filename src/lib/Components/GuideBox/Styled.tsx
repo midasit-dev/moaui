@@ -134,6 +134,16 @@ export type StyledProps = {
 	 * border="1px solid #000"
 	 */
 	border?: string;
+	/**
+	 * Set a flex grow
+	 * 
+	 * @example
+	 * <GuideBox show width="100%" height="100vh">
+	 * 	<GuideBox show width={150} height={150} />
+	 * 	<GuideBox show flexGrow={1} height={150} />
+	 * </GuideBox>
+	 */
+	flexGrow?: number;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -316,6 +326,7 @@ const GuideBox = (props: StyledProps) => {
 		overflow,
 		borderRadius,
 		border,
+		flexGrow,
 		...rest 
 	} = props;
 
@@ -343,6 +354,7 @@ const GuideBox = (props: StyledProps) => {
 			display={"flex"}
 			justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
 			alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
+			flexGrow={flexGrow || undefined}
 		>
 			{/* Existing children */}
 			{props.children}
