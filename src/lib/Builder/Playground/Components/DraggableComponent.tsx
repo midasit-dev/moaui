@@ -368,6 +368,7 @@ const GuideBoxCategory: React.FC<{}> = () => (
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxBasic300x300}>Basic300x300</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxEmpty}>Empty</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.GuideBoxFlexGrow}>FlexGrow</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout1}>Layout1</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout2}>Layout2</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout3}>Layout3</CustomDraggableComponent>
@@ -1014,6 +1015,9 @@ export const GuideBoxBasic300x300 =
 
 export const GuideBoxEmpty = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxEmpty}>GuideBoxEmpty</CustomDraggableComponent>;
+
+export const GuideBoxFlexGrow = 
+	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxFlexGrow}>GuideBoxFlexGrow</CustomDraggableComponent>;
 
 export const GuideBoxLayout1 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GuideBoxLayout1}>GuideBoxLayout1</CustomDraggableComponent>;

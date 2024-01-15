@@ -34,6 +34,7 @@ export { default as GridItems } from '../../../Components/Grid/Code/Items.code';
 export { default as GridRow } from '../../../Components/Grid/Code/Row.code';
 export { default as GuideBoxBasic300x300 } from '../../../Components/GuideBox/Code/Basic300x300.code';
 export { default as GuideBoxEmpty } from '../../../Components/GuideBox/Code/Empty.code';
+export { default as GuideBoxFlexGrow } from '../../../Components/GuideBox/Code/FlexGrow.code';
 export { default as GuideBoxLayout1 } from '../../../Components/GuideBox/Code/Layout1.code';
 export { default as GuideBoxLayout2 } from '../../../Components/GuideBox/Code/Layout2.code';
 export { default as GuideBoxLayout3 } from '../../../Components/GuideBox/Code/Layout3.code';

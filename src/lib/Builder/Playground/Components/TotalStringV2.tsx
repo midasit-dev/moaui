@@ -326,6 +326,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}
 					${item.type === ItemTypes.GridRow ? `${extractComponentName(All.GridRow)}` : ""}
 					${item.type === ItemTypes.GuideBoxBasic300x300 ? `${extractComponentName(All.GuideBoxBasic300x300)}` : ""}
+					${item.type === ItemTypes.GuideBoxFlexGrow ? `${extractComponentName(All.GuideBoxFlexGrow)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout1 ? `${extractComponentName(All.GuideBoxLayout1)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout2 ? `${extractComponentName(All.GuideBoxLayout2)}` : ""}
 					${item.type === ItemTypes.GuideBoxLayout3 ? `${extractComponentName(All.GuideBoxLayout3)}` : ""}

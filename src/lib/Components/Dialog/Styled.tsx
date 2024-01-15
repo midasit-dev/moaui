@@ -51,6 +51,11 @@ export type StyledProps = {
 	 * If you define maxWidth, it makes dialog dynamic
 	 */
 	maxWidth?: string | number | false;
+
+	/**
+	 * Set a Hidden Close Option
+	 */
+	hiddenClose?: boolean;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -63,6 +68,7 @@ const StyledComponent = styled((props: StyledProps) => {
     headerTitle,
     onClose,
 		maxWidth,
+		hiddenClose,
     ...rest
   } = props;
 
@@ -86,7 +92,7 @@ const StyledComponent = styled((props: StyledProps) => {
           {headerIcon ? headerIcon : <></>}
           <Typography variant="h1">{headerTitle}</Typography>
         </GuideBox>
-				<Icon iconName='Close' toButton onClick={() => setOpen?.(false)}/>
+				{!hiddenClose && <Icon iconName='Close' toButton onClick={() => setOpen?.(false)}/>}
       </GuideBox>
       <GuideBox padding={2}>{children}</GuideBox>
     </Dialog>

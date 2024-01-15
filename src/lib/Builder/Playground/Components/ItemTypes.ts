@@ -35,6 +35,7 @@ export const ItemTypes = {
 	GridRow: 'GridRow',
 	GuideBoxBasic300x300: 'GuideBoxBasic300x300',
 	GuideBoxEmpty: 'GuideBoxEmpty',
+	GuideBoxFlexGrow: 'GuideBoxFlexGrow',
 	GuideBoxLayout1: 'GuideBoxLayout1',
 	GuideBoxLayout2: 'GuideBoxLayout2',
 	GuideBoxLayout3: 'GuideBoxLayout3',
