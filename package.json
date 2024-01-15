@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.1.74",
+  "version": "0.1.75",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -105,7 +105,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "prepare-npmjs": "npm run update-testing-exports && node prepare.js && tsc -p tsconfig.npm.json",
-    "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish",
+    "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish --access public",
     "update-extract-code": "cd src/lib/Common/Storybook/ExtractedCodeMDX/ && node update.js",
     "update-testing-exports": "cd src/lib && node testingCompsUpdate.js",
     "update-playground": "cd src/lib/Builder/Playground/Components && node update.js",
