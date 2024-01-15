@@ -8,7 +8,6 @@ const config: StorybookConfig = {
 		"storybook-addon-code-editor",
 		"@storybook/addon-essentials",
     "@storybook/addon-links",
-    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
   ],
   framework: {
