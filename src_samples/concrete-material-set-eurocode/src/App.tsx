@@ -17,8 +17,6 @@ import DialogButton from './Components/ButtonDialog';
 import CreateButton from './Components/ButtonCreate';
 
 const App = () => {
-	const visible = false;
-
 	// py-terminal 태그를 가진 모든 요소 가져오기
 	const pyTerminals = document.querySelectorAll('py-terminal');
 
@@ -28,14 +26,12 @@ const App = () => {
 	});
 	
 	return (
-		<GuideBox column show={visible} width={1145} padding={1}>
-			<Panel variant="shadow2" width="100%" height="100%">
-				<TabGroup/>
-				<GuideBox row width="100%" paddingTop={1} horSpaceBetween>
-					<DialogButton/>
-					<CreateButton/>
-				</GuideBox>
-			</Panel>
+		<GuideBox column padding={2.5} spacing={1}>
+			<TabGroup/>
+			<GuideBox row width="100%" paddingTop={1} horSpaceBetween>
+				<DialogButton/>
+				<CreateButton/>
+			</GuideBox>
 		</GuideBox>
 	);
 }

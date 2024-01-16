@@ -22,7 +22,7 @@ import {
 } from "./variables";
 import { useGridApiRef, GridColDef } from '@mui/x-data-grid';
 import { GuideBox, Button, Dialog, Typography, Stack, DataGrid, TextField } from "@midasit-dev/moaui";
-import { checkPyScriptReady } from '../pyscript_utils';
+import { checkPyScriptReady } from '../utils_pyscript';
 import { useValidationRange2 } from './ComponentUser';
 import { useSnackbar } from 'notistack';
 

@@ -35,7 +35,7 @@ import {
 } from "./variables";
 import { useGridApiRef, GridColDef } from '@mui/x-data-grid';
 import { GuideBox, Button, Dialog, Typography, Stack, DataGrid, TabGroup, Tab } from "@midasit-dev/moaui";
-import { checkPyScriptReady } from '../pyscript_utils';
+import { checkPyScriptReady } from '../utils_pyscript';
 import { useSnackbar } from 'notistack';
 
 const DialogButton = () => {

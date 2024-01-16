@@ -10,29 +10,29 @@
  *		                                 \/_/                                            
  */
 
-import React from "react"; 
+import React from "react";
 import { useRecoilState } from "recoil";
 import { VarTabGroupMain } from "./variables";
-import { TabGroup, Tab, GuideBox } from "@midasit-dev/moaui"; 
+import { TabGroup, Tab, GuideBox } from "@midasit-dev/moaui";
 import ConcreteBasic from "./ConcreteBasic";
 import TimeDependentBasic from "./TimeDependentBasic";
 
 const ComponentsTabGroup = () => {
-    const [value, setValue] = useRecoilState(VarTabGroupMain);
+	const [value, setValue] = useRecoilState(VarTabGroupMain);
 
-    return (
-        <GuideBox show={false} width='100%' >
-            <TabGroup
-                value={value}
-                onChange={(event: React.SyntheticEvent, newValue: string) => setValue(newValue)}
-            >
-                <Tab value="Material" label="Concrete" />
-                <Tab value="TimeDependent" label="Time-Dependent" />
-            </TabGroup>
-            {value === "Material" && <ConcreteBasic/>}
-            {value === "TimeDependent" && <TimeDependentBasic/>}
-        </GuideBox>
-    );
-}; 
+	return (
+		<GuideBox show={false} width='100%'>
+			<TabGroup
+				value={value}
+				onChange={(event: React.SyntheticEvent, newValue: string) => setValue(newValue)}
+			>
+				<Tab value="Material" label="Concrete" />
+				<Tab value="TimeDependent" label="Time-Dependent" />
+			</TabGroup>
+			{value === "Material" && <ConcreteBasic />}
+			{value === "TimeDependent" && <TimeDependentBasic />}
+		</GuideBox>
+	);
+};
 
 export default ComponentsTabGroup;

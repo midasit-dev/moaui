@@ -34,7 +34,7 @@ import {
 } from "./variables";
 import { GuideBox, Typography, TextField, Panel, RadioGroup, Radio, Check, DropList } from "@midasit-dev/moaui";
 import { useValidationRange1, useValidationRange2, useValidationDepend, TextFiledwithTitleUnit } from './ComponentUser';
-import { checkPyScriptReady } from '../pyscript_utils';
+import { checkPyScriptReady } from '../utils_pyscript';
 import { chartBasic } from './ComponentUser';
 import { useSnackbar } from 'notistack';
 

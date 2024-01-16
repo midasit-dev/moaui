@@ -18,10 +18,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run rename",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "rename": "rmdir /s /q plugin-name-moaui && ren build plugin-name-moaui"
+    "dev-on": "cd src/DevTools && node dev-on.js",
+    "dev-off": "cd src/DevTools && node dev-off.js",
+    "dev-server": "cd src/DevTools && node server.js",
+    "dev": "npm run dev-on && npm run dev-server"
   },
   "eslintConfig": {
     "extends": [
@@ -43,8 +46,12 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "@midasit-dev/moaui": "^0.1.42",
+    "@midasit-dev/moaui": "^0.1.77",
+    "@types/lodash": "^4.14.202",
+    "cors": "^2.8.5",
+    "lodash": "^4.17.21",
     "notistack": "^3.0.1",
+    "react-colorful": "^5.6.1",
     "recoil": "^0.7.7"
   }
 }
