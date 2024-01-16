@@ -7,6 +7,7 @@ import { default as ContainerSizeUpdator } from './Components/ContainerSizeUpdat
 import { default as ContainerBackgroundUpdator } from './Components/ContainerBackgroundUpdator';
 
 import { IsDevEnv } from './Utils';
+import Constant from './constant.json';
 
 export {
 	TitleBarSample,
@@ -18,6 +19,7 @@ export {
 	ContainerBackgroundUpdator,
 	
 	IsDevEnv,
+	Constant,
 }
 
 const Tools = {
@@ -30,6 +32,7 @@ const Tools = {
 	ContainerBackgroundUpdator,
 
 	IsDevEnv,
+	Constant,
 };
 
 export default Tools;

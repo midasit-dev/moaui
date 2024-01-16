@@ -1,6 +1,5 @@
 import React from 'react';
 import Moaui from '@midasit-dev/moaui';
-import Utils from '../Utils';
 import Header from './Shared/Header';
 import onClickHandler from './Shared/OnClickHandler';
 
@@ -17,8 +16,6 @@ const Tool = () => {
 	const [loading, setLoading] = React.useState(false);
 
 	React.useEffect(() => {
-		if (!Utils.IsDevEnv()) return;
-
 		if (constainerSizeUpdate) {
 			//Get the width and height values of the entire container.
 			const myElement = document.getElementById('container');
@@ -38,8 +35,6 @@ const Tool = () => {
 	}), [containerSize.height, containerSize.width]);
 
 	const [show, setShow] = React.useState(true);
-
-	if (!Utils.IsDevEnv()) return null;
 
 	return (
 		<Moaui.GuideBox width="100%" spacing={2} center>

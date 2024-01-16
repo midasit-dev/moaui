@@ -58,43 +58,6 @@ app.put('/public/manifest-json', (req, res) => {
 	}
 });
 
-app.put('/public/index-html', (req, res) => {
-	logServerON(port);
-	console.log(`\n\x1b[36mPUT /public/index-html ...\x1b[0m\n`);
-
-	const { 
-		title, 
-	} = req.body;
-
-	// 현재 스크립트의 디렉토리를 기준으로 index.html의 경로 생성
-	const indexPath = path.join(__dirname, '../../public/index.html');
-
-	try {
-		const preData = fs.readFileSync(indexPath, 'utf-8');
-		let newData = preData;
-
-		if (title) {
-			newData = preData
-				.replace(/<title>(.*)<\/title>/, `<title>${title}<\/title>`);
-		}
-
-		fs.writeFileSync(indexPath, newData, (err) => {
-			if (err) {
-				console.error(err);
-				return res.status(500).send('An error occurred');
-			}
-			res.send('index.html updated successfully!');
-		});
-	} catch (error) {
-		console.error('Error updating index.html:', error);
-		return res.status(500).send('An error occurred');
-	} finally {
-		logServerON(port);
-		console.log(`\x1b[36mPUT /public/index-html Completed!\x1b[0m`);
-		console.log(`modified at \x1b[37m\x1b[1m${indexPath}\x1b[0m`);
-	}
-});
-
 app.get('/build', (req, res) => {
 	logServerON(port);
   console.log(`\n\x1b[36mStart Plug-in Item Package Build ...\x1b[0m\n`);
@@ -111,8 +74,8 @@ app.get('/build', (req, res) => {
 
 	logServerON(port);
   console.log(`\x1b[36mPlug-in Item Package Build Completed!\x1b[0m`);
-	const buildPath = path.join(__dirname, '../../build');
-	console.log(`production build, \x1b[37m\x1b[1m${buildPath}\\index.html\x1b[0m`);
+	const buildPath = path.join(__dirname, '../../build/index.html');
+	console.log(`production build, \x1b[37m\x1b[1m${buildPath}\x1b[0m`);
 });
 
 app.get('/upgrade/moaui', (req, res) => {
@@ -135,6 +98,44 @@ app.get('/upgrade/moaui', (req, res) => {
 	}
 });
 
+app.get('/health', (req, res) => {
+	res.send('ok');
+});
+
+//./Utils.ts의 const devServerStatus: string = ''; 
+//부분을 const devServerStatus: string = 'listening'; 으로 변경한다
+const changeServerStatus = (status) => {
+	const utilsPath = path.join(__dirname, 'Utils.ts');
+	const utilsText = fs.readFileSync(utilsPath, 'utf-8');
+	const newUtilsText = utilsText.replace(
+		/const devServerStatus: string = '.*';/g,
+		`const devServerStatus: string = '${status}';`
+		);
+	fs.writeFileSync(utilsPath, newUtilsText, 'utf-8');
+}
+
+const server = app.listen(port, () => {
+	logServerON();
+	changeServerStatus('listening');
+});
+
+// 서버 종료 이벤트 리스너
+server.on('close', () => {
+	logServerOFF();
+	changeServerStatus('');
+});
+
+// 어떤 이유로든 서버를 강제로 종료
+// 예시: Ctrl+C를 눌러 프로세스를 종료하는 경우
+process.on('SIGINT', () => {
+	console.log(`\n\x1b[36mServer Closing ...\x1b[0m`)
+  server.close(() => {
+		logServerOFF();
+		changeServerStatus('');
+    process.exit(0);
+  });
+});
+
 const logServerON = () => {
 	console.clear();
 	console.log(`\n\x1b[32m┌─┐┌─┐┬─┐┬  ┬┌─┐┬─┐  ╔═╗╔╗╔\n└─┐├┤ ├┬┘└┐┌┘├┤ ├┬┘  ║ ║║║║\n└─┘└─┘┴└─ └┘ └─┘┴└─  ╚═╝╝╚╝\x1b[0m\n`);
@@ -143,6 +144,8 @@ const logServerON = () => {
 	console.log(`  Base URL:\t\x1b[1m${baseUrl}\x1b[0m\n`);	
 }
 
-app.listen(port, () => {
-	logServerON();
-});
+const logServerOFF = () => {
+	console.clear();
+	console.log(`\n\x1b[31m┌─┐┌─┐┬─┐┬  ┬┌─┐┬─┐  ╔═╗╔═╗╔═╗\n└─┐├┤ ├┬┘└┐┌┘├┤ ├┬┘  ║ ║╠╣ ╠╣ \n└─┘└─┘┴└─ └┘ └─┘┴└─  ╚═╝╚  ╚  \x1b[0m\n`);
+	console.log(`Bye, moaui-cra dev mode!\n`);
+}

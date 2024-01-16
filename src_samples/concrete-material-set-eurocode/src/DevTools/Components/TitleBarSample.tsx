@@ -1,12 +1,8 @@
-import Utils from '../Utils';
-
 interface ToolProps {
 	title: string;
 }
 
 const Tool = (props: ToolProps) => {
-	if (!Utils.IsDevEnv()) return null;
-
 	const { title } = props;
 
 	return (

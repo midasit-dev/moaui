@@ -21,10 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev-on": "cd src/DevTools && node dev-on.js",
-    "dev-off": "cd src/DevTools && node dev-off.js",
-    "dev-server": "cd src/DevTools && node server.js",
-    "dev": "npm run dev-on && npm run dev-server"
+    "dev": "cd src/DevTools && node server.js"
   },
   "eslintConfig": {
     "extends": [

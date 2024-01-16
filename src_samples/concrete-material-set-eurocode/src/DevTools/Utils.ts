@@ -1,6 +1,15 @@
-export const IsDevEnv = () => process.env.NODE_ENV !== 'development';
+const devServerStatus: string = 'listening';
+export const isDevServerListening = () => devServerStatus === 'listening';
+
+export const IsDevEnv = () => {
+	const b1 = process.env.NODE_ENV === 'development';
+	const b2 = isDevServerListening();
+
+	return b1 && b2;
+};
 
 const Utils = {
+	isDevServerListening,
 	IsDevEnv,
 };
 
