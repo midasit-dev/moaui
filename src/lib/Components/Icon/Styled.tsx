@@ -59,6 +59,7 @@ const ToButton = (props: StyledProps) => {
   const [varOpacity, setVarOpacity] = React.useState(1);
 
   const customStyle = {
+		display: 'flex',
     width: 'atuo',
     height: 'auto',
     cursor: 'pointer',
