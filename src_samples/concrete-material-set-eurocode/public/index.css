@@ -37,6 +37,7 @@ html {
     "Noto Color Emoji";
   line-height: 1.5;
 	background-color: #f1f1f1;
+	overflow: hidden;
 }
 html, body {
 	padding: 0;

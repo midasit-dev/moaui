@@ -25,7 +25,7 @@ const App = () => {
 	});
 	
 	return (
-		<GuideBox column padding={2.5} spacing={1}>
+		<GuideBox column paddingX={2} paddingBottom={2} spacing={1}>
 			<TabGroup/>
 			<GuideBox row width="100%" paddingTop={1} horSpaceBetween>
 				<DialogButton/>

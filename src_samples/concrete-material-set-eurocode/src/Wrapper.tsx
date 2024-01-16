@@ -122,7 +122,13 @@ const ValidWrapper = (props: any) => {
 	React.useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/manifest.json`)
       .then(response => response.json())
-      .then(data => data.background_color ? setBgColor(data.background_color) : null)
+      .then(data => {
+				if (data.background_color) {
+					setBgColor(data.background_color);
+					//document bgColor Change
+					document.body.style.backgroundColor = data.background_color;
+				}
+			})
       .catch(error => console.error('Error fetching manifest.json:', error));
   }, []);
 
@@ -144,20 +150,20 @@ const ValidWrapper = (props: any) => {
 					>
 						{/** Production Mode */}
 						{!devTools.IsDevEnv() &&
-							<GuideBox tag="AppBackground" show center fill={bgColor} width="100%" height='100vh' spacing={3}>
+							<GuideBox tag="AppBackground" show center fill={bgColor} width="100%">
 								<App />
 							</GuideBox>
 						}
 
 						{/** Development Mode */}
 						{devTools.IsDevEnv() && 
-							<GuideBox show row width="100%" height='100vh' spacing={3} fill={"#e9ebef"}>
+							<GuideBox show row width="100%" height='100vh' fill={"#e9ebef"}>
 								<GuideBox flexGrow={1} center height="100vh">
 								<div id='container'>
 									<Panel variant="shadow2" padding={0} borderRadius='4px'>
 										<GuideBox width="auto">
 											<devTools.TitleBarSample title={title} />
-											<GuideBox tag="AppBackground" show center fill={bgColor} borderRadius='0 0 4px 4px'>
+											<GuideBox tag="AppBackground" show center fill={bgColor} borderRadius='0 0 4px 4px' spacing={3}>
 												<App />
 											</GuideBox>
 										</GuideBox>
