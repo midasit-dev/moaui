@@ -93,7 +93,9 @@ const TemplatesTendonProfileConverterComposite = () => {
 		return (
 			<>
 				<Scrollbars
-					outline="strock"
+					panelProps={{
+						variant: 'strock',
+					}}
 					width={300}
 					height={300}
 					title="Convertable Tendon Profile List"
