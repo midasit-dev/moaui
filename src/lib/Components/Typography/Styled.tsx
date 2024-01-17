@@ -108,6 +108,10 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Set the Size
 	 */
 	size?: 'small' | 'medium' | 'large';
+	/**
+	 * Make typography into a single line
+	 */
+	singleLine?: boolean;
 
 	/**
 	 * Set the alignItems (Top)
@@ -172,6 +176,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		variant, 
 		color, 
 		size, 
+		singleLine,
 		// verTop,
 		// verCenter,
 		// verBottom,
@@ -184,11 +189,15 @@ const StyledComponent = styled((props: StyledProps) => {
 	return (
 		<Typography 
 			sx={{
+				whiteSpace: singleLine ? 'nowrap' : 'pre-line',
+				overflow: singleLine ? 'hidden' : 'visible',
+				textOverflow: singleLine ? 'ellipsis' : 'clip',
+				wordBreak: 'break-word',
 				...FontStyle.selector(variant),
 				...Font.defaultFontSet,
 				...MarginProps(props),
 				...PaddingProps(props),
-				display: 'flex',
+				display: singleLine ? "block" : 'flex',
 				justifyContent: getHorizontalAlign(props),
 				alignItems: getVerticalAlign(props),
 				width: props.width || 'auto',

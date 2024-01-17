@@ -775,6 +775,37 @@ const TextFieldCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
+const TextFieldV2Category: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>TextFieldV2</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Basic}>Basic</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Bottom}>Bottom</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2CheckErrorAsFunction}>CheckErrorAsFunction</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Error}>Error</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Left}>Left</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2MultiLine}>MultiLine</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Number}>Number</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOption}>NumberOption</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Right}>Right</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2SinglelineTitle}>SinglelineTitle</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Top}>Top</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
 const TooltipCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -790,6 +821,7 @@ const TooltipCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.TooltipArrowBorder}>ArrowBorder</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TooltipRight}>Right</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -815,6 +847,7 @@ const TypographyCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.TypographyBody2}>Body2</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TypographyBody3}>Body3</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TypographyH1}>H1</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TypographySingleLine}>SingleLine</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -1203,6 +1236,42 @@ export const TextFieldMultiLine =
 export const TextFieldRight = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldRight}>TextFieldRight</CustomDraggableComponent>;
 
+export const TextFieldV2Basic = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Basic}>TextFieldV2Basic</CustomDraggableComponent>;
+
+export const TextFieldV2Bottom = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Bottom}>TextFieldV2Bottom</CustomDraggableComponent>;
+
+export const TextFieldV2CheckErrorAsFunction = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2CheckErrorAsFunction}>TextFieldV2CheckErrorAsFunction</CustomDraggableComponent>;
+
+export const TextFieldV2Error = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Error}>TextFieldV2Error</CustomDraggableComponent>;
+
+export const TextFieldV2Left = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Left}>TextFieldV2Left</CustomDraggableComponent>;
+
+export const TextFieldV2MultiLine = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2MultiLine}>TextFieldV2MultiLine</CustomDraggableComponent>;
+
+export const TextFieldV2Number = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Number}>TextFieldV2Number</CustomDraggableComponent>;
+
+export const TextFieldV2NumberOption = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOption}>TextFieldV2NumberOption</CustomDraggableComponent>;
+
+export const TextFieldV2Right = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Right}>TextFieldV2Right</CustomDraggableComponent>;
+
+export const TextFieldV2SinglelineTitle = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2SinglelineTitle}>TextFieldV2SinglelineTitle</CustomDraggableComponent>;
+
+export const TextFieldV2Top = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Top}>TextFieldV2Top</CustomDraggableComponent>;
+
+export const TooltipArrowBorder = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TooltipArrowBorder}>TooltipArrowBorder</CustomDraggableComponent>;
+
 export const TooltipRight = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TooltipRight}>TooltipRight</CustomDraggableComponent>;
 
@@ -1217,6 +1286,9 @@ export const TypographyBody3 =
 
 export const TypographyH1 = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TypographyH1}>TypographyH1</CustomDraggableComponent>;
+
+export const TypographySingleLine = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TypographySingleLine}>TypographySingleLine</CustomDraggableComponent>;
 
 export const TypographyGroupText = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TypographyGroupText}>TypographyGroupText</CustomDraggableComponent>;
@@ -1287,6 +1359,7 @@ const DraggableComponent: React.FC = () => {
 			<TabGroupCategory />
 			<TableCategory />
 			<TextFieldCategory />
+			<TextFieldV2Category />
 			<TooltipCategory />
 			<TypographyCategory />
 			<TypographyGroupCategory />

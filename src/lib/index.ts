@@ -37,6 +37,7 @@ import { default as TableCell } from "./Components/TableCell";
 import { default as TableHead } from "./Components/TableHead";
 import { default as TableRow } from "./Components/TableRow";
 import { default as TextField } from "./Components/TextField";
+import { default as TextFieldV2 } from "./Components/TextFieldV2";
 import { default as Typography } from "./Components/Typography";
 import { default as TypographyGroup } from "./Components/TypographyGroup";
 import { default as Icon } from "./Components/Icon";
@@ -91,6 +92,7 @@ const Moaui = {
   TableHead,
   TableRow,
   TextField,
+  TextFieldV2,
   Typography,
   TypographyGroup,
   Icon,
@@ -144,6 +146,7 @@ export {
   TableHead,
   TableRow,
   TextField,
+  TextFieldV2,
   Typography,
   TypographyGroup,
   Icon,
