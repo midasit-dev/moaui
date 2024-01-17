@@ -134,6 +134,7 @@ const App = () => {
 
 	// Create 버튼 핸들러
 	const onClickCreateHandler = (event: any) => {
+		setIsPending(true);
 		const res = runCreate(checkedlist, dropValue);
 		if (res.hasOwnProperty("error")) {
 			enqueueSnackbar(res.error, { variant: 'error' });
@@ -142,7 +143,6 @@ const App = () => {
 		}
 
 		if (res.hasOwnProperty("value") && res.value !== undefined) {
-			setIsPending(true);
 			enqueueSnackbar("Success", { variant: 'success' });
 			// requestAnimationFrame 사용
 			// 레이아웃 변경이 필요한 작업을 requestAnimationFrame 콜백 내에서 수행하여 변경 사항을 브라우저의 렌더링 사이클과 동기화.
@@ -369,7 +369,7 @@ const App = () => {
 					</Panel>
 				</GuideBox>
 				<GuideBox show width='100%' height={"30px"} fill='none' verCenter>
-					<Button variant="contained" color="negative" width="100%" onClick={onClickCreateHandler} disabled={disalbleCreate}>Create</Button>
+					<Button variant="contained" color="negative" width="100%" onClick={onClickCreateHandler} disabled={disalbleCreate} loading={isPending}>Create</Button>
 				</GuideBox>
 			</GuideBox>
 			<GuideBox show width='800px' fill='none'>
