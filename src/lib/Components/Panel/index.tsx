@@ -19,3 +19,5 @@ function Panel(props: StyledProps) : JSX.Element {
 }
 
 export default Panel;
+
+export type { StyledProps };
