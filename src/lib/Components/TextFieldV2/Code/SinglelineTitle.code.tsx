@@ -11,7 +11,7 @@ const ComponentsTextFieldSingleTitle = () => {
 				disabled={false}
 				defaultValue=""
 				error={false}
-				spacing={2}
+				gap={2}
 				singleLineTitle={true}
 			/>
 			<TextFieldV2
@@ -22,7 +22,7 @@ const ComponentsTextFieldSingleTitle = () => {
 				disabled={false}
 				defaultValue=""
 				error={false}
-				spacing={2}
+				gap={2}
 				singleLineTitle={false}
 			/>
 		</>
