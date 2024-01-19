@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import VerifyDialog from "..";
+import { VerifyDialog } from "../../../";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
