@@ -61,6 +61,7 @@ export const ItemTypes = {
 	ListUnControlled: 'ListUnControlled',
 	ListItemDefault: 'ListItemDefault',
 	ListItemButtonDefault: 'ListItemButtonDefault',
+	MidasControllerTitle: 'MidasControllerTitle',
 	PanelBox: 'PanelBox',
 	PanelPadding0: 'PanelPadding0',
 	PanelShadow: 'PanelShadow',

@@ -499,6 +499,27 @@ const ListItemButtonCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
+const MidasControllerCategory: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>MidasController</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.MidasControllerTitle}>Title</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
 const PanelCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -1128,6 +1149,9 @@ export const ListItemDefault =
 export const ListItemButtonDefault = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ListItemButtonDefault}>ListItemButtonDefault</CustomDraggableComponent>;
 
+export const MidasControllerTitle = 
+	() => <CustomDraggableComponent itemType={ItemTypes.MidasControllerTitle}>MidasControllerTitle</CustomDraggableComponent>;
+
 export const PanelBox = 
 	() => <CustomDraggableComponent itemType={ItemTypes.PanelBox}>PanelBox</CustomDraggableComponent>;
 
@@ -1347,6 +1371,7 @@ const DraggableComponent: React.FC = () => {
 			<ListCategory />
 			<ListItemCategory />
 			<ListItemButtonCategory />
+			<MidasControllerCategory />
 			<PanelCategory />
 			<RadioCategory />
 			<RadioGroupCategory />

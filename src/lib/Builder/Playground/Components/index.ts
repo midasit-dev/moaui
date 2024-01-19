@@ -60,6 +60,7 @@ export { default as ListTypographyRadio } from '../../../Components/List/Code/Ty
 export { default as ListUnControlled } from '../../../Components/List/Code/UnControlled.code';
 export { default as ListItemDefault } from '../../../Components/ListItem/Code/Default.code';
 export { default as ListItemButtonDefault } from '../../../Components/ListItemButton/Code/Default.code';
+export { default as MidasControllerTitle } from '../../../Components/MidasController/Code/Title.code';
 export { default as PanelBox } from '../../../Components/Panel/Code/Box.code';
 export { default as PanelPadding0 } from '../../../Components/Panel/Code/Padding0.code';
 export { default as PanelShadow } from '../../../Components/Panel/Code/Shadow.code';

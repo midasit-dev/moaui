@@ -46,6 +46,7 @@ import { default as Scrollbars } from "./Components/Scrollbars";
 import { default as List } from "./Components/List";
 import { default as ListItem } from "./Components/ListItem";
 import { default as ListItemButton } from "./Components/ListItemButton";
+import { default as MidasController } from './Components/MidasController';
 import { default as Dialog } from "./Components/Dialog";
 import { default as ChartLine } from "./Components/ChartLine";
 import { default as GuideBox } from "./Components/GuideBox";
@@ -101,6 +102,7 @@ const Moaui = {
   List,
   ListItem,
   ListItemButton,
+	MidasController,
   Dialog,
   ChartLine,
   GuideBox,
@@ -156,6 +158,7 @@ export {
   List,
   ListItem,
   ListItemButton,
+	MidasController,
   Dialog,
   ChartLine,
   GuideBox,

@@ -352,6 +352,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.ListUnControlled ? `${extractComponentName(All.ListUnControlled)}` : ""}
 					${item.type === ItemTypes.ListItemDefault ? `${extractComponentName(All.ListItemDefault)}` : ""}
 					${item.type === ItemTypes.ListItemButtonDefault ? `${extractComponentName(All.ListItemButtonDefault)}` : ""}
+					${item.type === ItemTypes.MidasControllerTitle ? `${extractComponentName(All.MidasControllerTitle)}` : ""}
 					${item.type === ItemTypes.PanelBox ? `${extractComponentName(All.PanelBox)}` : ""}
 					${item.type === ItemTypes.PanelPadding0 ? `${extractComponentName(All.PanelPadding0)}` : ""}
 					${item.type === ItemTypes.PanelShadow ? `${extractComponentName(All.PanelShadow)}` : ""}

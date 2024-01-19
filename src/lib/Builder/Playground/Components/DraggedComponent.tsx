@@ -67,6 +67,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.ListUnControlled: return <All.ListUnControlled />;
 		case ItemTypes.ListItemDefault: return <All.ListItemDefault />;
 		case ItemTypes.ListItemButtonDefault: return <All.ListItemButtonDefault />;
+		case ItemTypes.MidasControllerTitle: return <All.MidasControllerTitle />;
 		case ItemTypes.PanelBox: return <All.PanelBox />;
 		case ItemTypes.PanelPadding0: return <All.PanelPadding0 />;
 		case ItemTypes.PanelShadow: return <All.PanelShadow />;

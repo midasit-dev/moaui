@@ -82,6 +82,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/List/Code/UnControlled.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/ListItem/Code/Default.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/ListItemButton/Code/Default.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/MidasController/Code/Title.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Box.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Padding0.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Shadow.code.tsx?raw"));
