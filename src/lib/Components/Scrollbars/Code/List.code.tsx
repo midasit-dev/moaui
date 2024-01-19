@@ -45,8 +45,10 @@ const ComponentsScrollbarsList = () => {
   return (
     <>
       <Scrollbars
-        outline="strock"
-        width={400}
+				panelProps={{
+					variant: 'strock',
+				}}
+				width={400}
         height={150}
         title="Scrollbars Title Text"
         titleVariant="body2"

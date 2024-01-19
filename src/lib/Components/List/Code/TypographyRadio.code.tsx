@@ -15,7 +15,9 @@ const ComponentsListTypographyRadio = ({
 
   return (
 		<Scrollbars
-			outline="strock"
+			panelProps={{
+				variant: 'strock',
+			}}
 			width={300}
 			height={300}
 			title="Type Your Title Text"

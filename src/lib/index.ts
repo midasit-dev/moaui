@@ -22,7 +22,7 @@ import { default as DataGrid } from "./Components/DataGrid";
 import { default as DropList } from "./Components/DropList";
 import { default as Grid } from "./Components/Grid";
 import { default as IconButton } from "./Components/IconButton";
-import { default as Panel } from "./Components/Panel";
+import { default as Panel, type StyledProps as PanelProps } from "./Components/Panel";
 import { default as Radio } from "./Components/Radio";
 import { default as RadioGroup } from "./Components/RadioGroup";
 import { default as Separator } from "./Components/Separator";
@@ -132,6 +132,7 @@ export {
   Grid,
   IconButton,
   Panel,
+	PanelProps,
   Radio,
   RadioGroup,
   Separator,
