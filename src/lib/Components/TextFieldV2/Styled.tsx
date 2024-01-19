@@ -58,30 +58,10 @@ export type StyledProps = {
 	 * @defaultValue undefined
 	 */
 	value?:string,
-
-	/**
-	 * The width of the textfield.
-	 * @defaultValue "auto"
-	 * @optional
-	 * @type string
-	 * @example 
-	 * width="auto"
-	 * width="100%"
-	 * width="10rem"
-	 * width="10vw"
-	 * width="10vh"
-	 * width="10ex"
-	 * width="10px"
-	 */
-	width?: number | string,
 	/**
 	 * The height of the textfield.
 	 */
 	height?: string | number;
-	/**
-	 * The spacing title and textfield.
-	 */
-	spacing?: number,
 	/**
 	 * The alignment of the textfield.
 	 */

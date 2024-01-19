@@ -26,6 +26,27 @@ type StyledPropsExtension = {
 	 * @optional
 	 */
 	singleLineTitle?: boolean,
+	
+	/**
+	 * The width of the textfield.
+	 * @defaultValue "auto"
+	 * @optional
+	 * @type string
+	 * @example 
+	 * width="auto"
+	 * width="100%"
+	 * width="10rem"
+	 * width="10vw"
+	 * width="10vh"
+	 * width="10ex"
+	 * width="10px"
+	*/
+	width?: number | string,
+
+	/**
+	 * The gap between title and textfield.
+	 */
+	gap?: number,
 };
 
 TextFieldV2.defaultProps = {
@@ -35,10 +56,10 @@ TextFieldV2.defaultProps = {
 	titlePosition : "left",
 	error : false,
 	disabled : false,
-	spacing: 1,
+	gap: 1,
 	inputAlign: "left",
 	singleLineTitle: false,
-} as StyledProps;
+} as StyledProps & StyledPropsExtension;
 
 /**
  * moaui Styled TextField
@@ -48,7 +69,7 @@ TextFieldV2.defaultProps = {
  */
 
 function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactElement {
-	const {title, titlePosition, singleLineTitle, width, ...rest} = props;
+	const {title, titlePosition, singleLineTitle, width, gap, ...rest} = props;
 
 	const flexResolver = React.useCallback((titlePosition: string | undefined) => {
 		console.log(titlePosition);
@@ -67,7 +88,9 @@ function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactEle
 				<Grid
 					width={`${width}`}
 					flexDirection={flexResolver(titlePosition)}
+					flexWrap={"nowrap"}
 					container
+					gap={gap}
 				>
 					<React.Fragment>
 						<Grid item xs={["bottom", "top"].includes(titlePosition || "") ? 12 : 6} display="flex" alignItems="center" justifyContent={titlePosition === "right" ? "end" : "start"}>
