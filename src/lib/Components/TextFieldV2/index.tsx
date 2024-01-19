@@ -26,22 +26,6 @@ type StyledPropsExtension = {
 	 * @optional
 	 */
 	singleLineTitle?: boolean,
-	
-	/**
-	 * The width of the textfield.
-	 * @defaultValue "auto"
-	 * @optional
-	 * @type string
-	 * @example 
-	 * width="auto"
-	 * width="100%"
-	 * width="10rem"
-	 * width="10vw"
-	 * width="10vh"
-	 * width="10ex"
-	 * width="10px"
-	*/
-	width?: number | string,
 
 	/**
 	 * The gap between title and textfield.
