@@ -17,6 +17,14 @@ export function WideButton(types, texts, clickevent) {
   );
 };
 
+export function WideButtonColor(color, types, texts, clickevent) {
+  return (
+    <React.Fragment>
+      <MoaButton color={color} size="small" variant={types} onClick={clickevent}>{texts}</MoaButton>
+    </React.Fragment>
+  );
+};
+
 export function WideButtonSubColor(types, texts, clickevent) {
   return (
     <React.Fragment>

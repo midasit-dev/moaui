@@ -2,7 +2,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 
 import MoaStack from "@midasit-dev/moaui/Components/Stack";
-import MoaTextField from "@midasit-dev/moaui/Components/TextField";
+import { TextField } from "@midasit-dev/moaui";
 import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 import { MathJax } from "better-react-mathjax";
 
@@ -13,7 +13,7 @@ function StyledTextField(props) {
 	const { defaultValue, units, value, onChange, disabled, width, type } = props;
 
 	return (
-		<MoaTextField
+		<TextField
 			disabled={disabled}
 			width={width}
 			hiddenLabel
@@ -97,7 +97,7 @@ function SubInputField(title = NaN, values, SetValue, Display) {
 	return (
 		<MoaStack
 			direction="row"
-			pacing={2}
+			spacing={2}
 			justifyContent="space-between"
 			alignItems="center"
 			marginY={0.5}

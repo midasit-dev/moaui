@@ -1,6 +1,6 @@
 {
   "short_name": "Series Load",
-  "name": "Series Load (moa UI)",
+  "name": "Series Load",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,6 +12,6 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "width": 760,
-  "height": 770
+  "width": 808,
+  "height": 784
 }

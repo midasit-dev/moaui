@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { SnackbarProvider } from "notistack";
 import { MathJaxContext } from "better-react-mathjax";
+import './overrideMidasController';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
