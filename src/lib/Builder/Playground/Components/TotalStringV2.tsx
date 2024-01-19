@@ -388,11 +388,24 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TextFieldLeft ? `${extractComponentName(All.TextFieldLeft)}` : ""}
 					${item.type === ItemTypes.TextFieldMultiLine ? `${extractComponentName(All.TextFieldMultiLine)}` : ""}
 					${item.type === ItemTypes.TextFieldRight ? `${extractComponentName(All.TextFieldRight)}` : ""}
+					${item.type === ItemTypes.TextFieldV2Basic ? `${extractComponentName(All.TextFieldV2Basic)}` : ""}
+					${item.type === ItemTypes.TextFieldV2Bottom ? `${extractComponentName(All.TextFieldV2Bottom)}` : ""}
+					${item.type === ItemTypes.TextFieldV2CheckErrorAsFunction ? `${extractComponentName(All.TextFieldV2CheckErrorAsFunction)}` : ""}
+					${item.type === ItemTypes.TextFieldV2Error ? `${extractComponentName(All.TextFieldV2Error)}` : ""}
+					${item.type === ItemTypes.TextFieldV2Left ? `${extractComponentName(All.TextFieldV2Left)}` : ""}
+					${item.type === ItemTypes.TextFieldV2MultiLine ? `${extractComponentName(All.TextFieldV2MultiLine)}` : ""}
+					${item.type === ItemTypes.TextFieldV2Number ? `${extractComponentName(All.TextFieldV2Number)}` : ""}
+					${item.type === ItemTypes.TextFieldV2NumberOption ? `${extractComponentName(All.TextFieldV2NumberOption)}` : ""}
+					${item.type === ItemTypes.TextFieldV2Right ? `${extractComponentName(All.TextFieldV2Right)}` : ""}
+					${item.type === ItemTypes.TextFieldV2SinglelineTitle ? `${extractComponentName(All.TextFieldV2SinglelineTitle)}` : ""}
+					${item.type === ItemTypes.TextFieldV2Top ? `${extractComponentName(All.TextFieldV2Top)}` : ""}
+					${item.type === ItemTypes.TooltipArrowBorder ? `${extractComponentName(All.TooltipArrowBorder)}` : ""}
 					${item.type === ItemTypes.TooltipRight ? `${extractComponentName(All.TooltipRight)}` : ""}
 					${item.type === ItemTypes.TypographyBody1 ? `${extractComponentName(All.TypographyBody1)}` : ""}
 					${item.type === ItemTypes.TypographyBody2 ? `${extractComponentName(All.TypographyBody2)}` : ""}
 					${item.type === ItemTypes.TypographyBody3 ? `${extractComponentName(All.TypographyBody3)}` : ""}
 					${item.type === ItemTypes.TypographyH1 ? `${extractComponentName(All.TypographyH1)}` : ""}
+					${item.type === ItemTypes.TypographySingleLine ? `${extractComponentName(All.TypographySingleLine)}` : ""}
 					${item.type === ItemTypes.TypographyGroupText ? `${extractComponentName(All.TypographyGroupText)}` : ""}
 					${item.type === ItemTypes.DualComponentsTypographyDropListSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyDropListSpaceBetween)}` : ""}
 					${item.type === ItemTypes.DualComponentsTypographyTextFieldSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyTextFieldSpaceBetween)}` : ""}

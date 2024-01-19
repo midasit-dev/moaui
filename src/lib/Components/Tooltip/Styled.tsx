@@ -4,11 +4,15 @@ import MoaStyledComponent from '../../Style/MoaStyled';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { Typography } from "../../";
 
-const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
+const BootstrapTooltip = styled(({ className, arrowBorder, ...props }: TooltipProps & { arrowBorder?: boolean } ) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
-))(({ theme }: { theme: any }) => ({
+))(({ theme, arrowBorder }: { theme: any, arrowBorder?: boolean }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: theme.palette.common.white,
+	width: "1rem",
+	"&::before": {
+		border: arrowBorder ? "0.5px solid rgba(0, 0, 0, .1)" : undefined,
+	  }
   },
   [`& .${tooltipClasses.tooltip}`]: {
 		padding: "0.625rem 0.625rem",
@@ -47,6 +51,16 @@ export type StyledProps = {
 	| 'top-end'
 	| 'top-start'
 	| 'top';
+	/**
+	 * Tooltip open state.
+	 * @default undefined
+	 */
+	open?: boolean;
+	/**
+	 * Draw border around the arrow.
+	 * @default false
+	 */
+	arrowBorder?: boolean;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -54,6 +68,8 @@ const StyledComponent = styled((props: StyledProps) => {
 		children,
 		title,
 		placement,
+		open,
+		arrowBorder,
 		...rest
 	} = props;
 
@@ -61,6 +77,8 @@ const StyledComponent = styled((props: StyledProps) => {
 		<BootstrapTooltip
 			title={typeof title === 'string' ? <Typography>{title}</Typography> : title || undefined}
 			placement={placement || 'bottom'}
+			open={props?.open}
+			arrowBorder={arrowBorder}
 		>
 			<div>
 				{children}

@@ -5,6 +5,7 @@ import Explore from "./Explore.mdx";
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
 import { 
 	RightCode, 
+	ArrowBorderCode,
 } from "../Code";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -22,6 +23,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Right = LiveEditStory(cleanMask(RightCode));
+export const ArrowBorder = LiveEditStory(cleanMask(ArrowBorderCode));
 
 export const Sample: Story = {
   args: {
