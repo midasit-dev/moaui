@@ -20,6 +20,7 @@ export { default as ComponentsChartLineAxisLegend } from "./Components/ChartLine
 export { default as ComponentsChartLineAxisPointSize } from "./Components/ChartLine/Code/AxisPointSize.code";
 export { default as ComponentsChartLineAxisTopRight } from "./Components/ChartLine/Code/AxisTopRight.code";
 export { default as ComponentsChartLineDecimals } from "./Components/ChartLine/Code/Decimals.code";
+export { default as ComponentsCheckDisabled } from "./Components/Check/Code/Disabled.code";
 export { default as ComponentsCheckNotRequired } from "./Components/Check/Code/NotRequired.code";
 export { default as ComponentsCheckRequired } from "./Components/Check/Code/Required.code";
 export { default as ComponentsCheckGroupControlled } from "./Components/CheckGroup/Code/Controlled.code.except";

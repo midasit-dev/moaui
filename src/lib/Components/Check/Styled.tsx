@@ -129,6 +129,9 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
         gap: "0.25rem",
         ".MuiTypography-root": {
           color: `${Color.text.secondary}!important`,
+					"&.Mui-disabled": {
+						color: `${Color.component.gray_light}!important`,
+					},
         },
       }}
     />

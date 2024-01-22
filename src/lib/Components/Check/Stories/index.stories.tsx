@@ -6,6 +6,7 @@ import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { 
 	NotRequiredCode,
 	RequiredCode,
+	DisabledCode,
 } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -24,6 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 export const NotRequired = LiveEditStory(cleanMask(NotRequiredCode));
 export const Required = LiveEditStory(cleanMask(RequiredCode));
+export const Disabled = LiveEditStory(cleanMask(DisabledCode));
 
 export const Sample: Story = {
   args: {
