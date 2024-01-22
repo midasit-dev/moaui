@@ -112,6 +112,8 @@ function DraggedComponent(props: any){
 		case ItemTypes.TextFieldV2MultiLine: return <All.TextFieldV2MultiLine />;
 		case ItemTypes.TextFieldV2Number: return <All.TextFieldV2Number />;
 		case ItemTypes.TextFieldV2NumberOption: return <All.TextFieldV2NumberOption />;
+		case ItemTypes.TextFieldV2NumberOptionNegativeInteger: return <All.TextFieldV2NumberOptionNegativeInteger />;
+		case ItemTypes.TextFieldV2NumberOptionPositiveInteger: return <All.TextFieldV2NumberOptionPositiveInteger />;
 		case ItemTypes.TextFieldV2Right: return <All.TextFieldV2Right />;
 		case ItemTypes.TextFieldV2SinglelineTitle: return <All.TextFieldV2SinglelineTitle />;
 		case ItemTypes.TextFieldV2Top: return <All.TextFieldV2Top />;

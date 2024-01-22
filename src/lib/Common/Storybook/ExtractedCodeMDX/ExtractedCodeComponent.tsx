@@ -127,6 +127,8 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/TextFieldV2/Code/MultiLine.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TextFieldV2/Code/Number.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TextFieldV2/Code/NumberOption.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/TextFieldV2/Code/NumberOptionNegativeInteger.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/TextFieldV2/Code/NumberOptionPositiveInteger.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TextFieldV2/Code/Right.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TextFieldV2/Code/SinglelineTitle.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TextFieldV2/Code/Top.code.tsx?raw"));

@@ -397,6 +397,8 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TextFieldV2MultiLine ? `${extractComponentName(All.TextFieldV2MultiLine)}` : ""}
 					${item.type === ItemTypes.TextFieldV2Number ? `${extractComponentName(All.TextFieldV2Number)}` : ""}
 					${item.type === ItemTypes.TextFieldV2NumberOption ? `${extractComponentName(All.TextFieldV2NumberOption)}` : ""}
+					${item.type === ItemTypes.TextFieldV2NumberOptionNegativeInteger ? `${extractComponentName(All.TextFieldV2NumberOptionNegativeInteger)}` : ""}
+					${item.type === ItemTypes.TextFieldV2NumberOptionPositiveInteger ? `${extractComponentName(All.TextFieldV2NumberOptionPositiveInteger)}` : ""}
 					${item.type === ItemTypes.TextFieldV2Right ? `${extractComponentName(All.TextFieldV2Right)}` : ""}
 					${item.type === ItemTypes.TextFieldV2SinglelineTitle ? `${extractComponentName(All.TextFieldV2SinglelineTitle)}` : ""}
 					${item.type === ItemTypes.TextFieldV2Top ? `${extractComponentName(All.TextFieldV2Top)}` : ""}

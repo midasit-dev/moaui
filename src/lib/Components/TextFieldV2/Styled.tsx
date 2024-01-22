@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import TextField from '@mui/material/TextField';
 import Color from '../../Style/Color';
@@ -144,6 +144,8 @@ const StyledComponent = styled((props:StyledProps) => {
 	const [localValue, setLocalValue] = useState<string | undefined>(props?.value || props?.defaultValue);
 	const [tooltipText, setTooltipText] = useState<string | undefined>(undefined);
 	const [errorOverride, setErrorOverride] = useState<boolean | undefined>(undefined);
+	const numberOptionsMin = useMemo(() => Number(props?.numberOptions?.min), [props?.numberOptions?.min]);
+	const numberOptionsMax = useMemo(() => Number(props?.numberOptions?.max), [props?.numberOptions?.max]);
 	const Text = useCallback((props: any) => {
 		
 		return (
@@ -191,8 +193,8 @@ const StyledComponent = styled((props:StyledProps) => {
 						style:{
 							textAlign: props?.inputAlign,
 						},
-						min: props?.numberOptions?.min,
-						max: props?.numberOptions?.max,
+						min: numberOptionsMin,
+						max: numberOptionsMax,
 						step: props?.numberOptions?.step,
 					}
 				}}
@@ -214,25 +216,25 @@ const StyledComponent = styled((props:StyledProps) => {
 
 	if (props?.type === "number") {
 		useEffect(() => {
-			if (props?.numberOptions?.min && props?.numberOptions?.max && props?.numberOptions?.min > props?.numberOptions?.max) {
+			if (!Number.isNaN(numberOptionsMin) && !Number.isNaN(numberOptionsMax) && numberOptionsMin > numberOptionsMax) {
 				setTooltipText("min is greater than max");
 				setErrorOverride(true);
 				return;
 			}
 
 			let txt = "";
-			if (props?.numberOptions?.min) {
-				txt += `min value ${props?.numberOptions?.condition?.min === "greater" ? ">" : ">=" } ${props?.numberOptions?.min}`;
+			if (!Number.isNaN(numberOptionsMin)) {
+				txt += `min value ${props?.numberOptions?.condition?.min === "greater" ? ">" : ">=" } ${numberOptionsMin}`;
 			}
 			
-			if (props?.numberOptions?.max) {
+			if (!Number.isNaN(numberOptionsMax)) {
 				if (txt) txt += "\n";
-				txt += `max value ${props?.numberOptions?.condition?.max === "less" ? "<" : "<="} ${props?.numberOptions?.max}`;
+				txt += `max value ${props?.numberOptions?.condition?.max === "less" ? "<" : "<="} ${numberOptionsMax}`;
 			}
 			
 			setTooltipText(txt);
 			setErrorOverride(undefined);
-		}, [props?.numberOptions?.condition?.max, props?.numberOptions?.condition?.min, props?.numberOptions?.max, props?.numberOptions?.min, props.type]);
+		}, [props?.numberOptions?.condition?.max, props?.numberOptions?.condition?.min, numberOptionsMax, numberOptionsMin, props.type]);
 
 		return (
 			<Tooltip open={errorOverride} title={tooltipText} arrowBorder>
@@ -244,20 +246,24 @@ const StyledComponent = styled((props:StyledProps) => {
 						value = Math.round(value);
 					}
 
-					if (props?.numberOptions?.min && props?.numberOptions?.condition?.min === "greater" && value <= props?.numberOptions?.min) {
-						value = props?.numberOptions?.min + 1;
-					} else if (props?.numberOptions?.min && props?.numberOptions?.condition?.min === "greaterEqual" && value < props?.numberOptions?.min) {
-						value = props?.numberOptions?.min;
-					} else if (props?.numberOptions?.min && value <= props?.numberOptions?.min) {
-						value = props?.numberOptions?.min;
+					if (!Number.isNaN(numberOptionsMin)){
+						if (props?.numberOptions?.condition?.min === "greater" && value <= numberOptionsMin) {
+							value = numberOptionsMin + 1;
+						} else if (props?.numberOptions?.condition?.min === "greaterEqual" && value < numberOptionsMax) {
+							value = numberOptionsMin;
+						} else if (value <= numberOptionsMin) {
+							value = numberOptionsMin;
+						}
 					}
 					
-					if (props?.numberOptions?.max && props?.numberOptions?.condition?.max === "less" && value >= props?.numberOptions?.max) {
-						value = props?.numberOptions?.max - 1;
-					} else if (props?.numberOptions?.max && props?.numberOptions?.condition?.max === "lessEqual" && value > props?.numberOptions?.max) {
-						value = props?.numberOptions?.max;
-					} else if (props?.numberOptions?.max && value >= props?.numberOptions?.max) {
-						value = props?.numberOptions?.max;
+					if (!Number.isNaN(numberOptionsMax)) {
+						if (props?.numberOptions?.condition?.max === "less" && value >= numberOptionsMax) {
+							value = numberOptionsMax - 1;
+						} else if (props?.numberOptions?.condition?.max === "lessEqual" && value > numberOptionsMax) {
+							value = numberOptionsMax;
+						} else if (value >= numberOptionsMax) {
+							value = numberOptionsMax;
+						}
 					}
 
 					(e.target as HTMLInputElement).value = value + "";

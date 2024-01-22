@@ -819,6 +819,8 @@ const TextFieldV2Category: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2MultiLine}>MultiLine</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Number}>Number</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOption}>NumberOption</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOptionNegativeInteger}>NumberOptionNegativeInteger</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOptionPositiveInteger}>NumberOptionPositiveInteger</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Right}>Right</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2SinglelineTitle}>SinglelineTitle</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Top}>Top</CustomDraggableComponent>
@@ -1283,6 +1285,12 @@ export const TextFieldV2Number =
 
 export const TextFieldV2NumberOption = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOption}>TextFieldV2NumberOption</CustomDraggableComponent>;
+
+export const TextFieldV2NumberOptionNegativeInteger = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOptionNegativeInteger}>TextFieldV2NumberOptionNegativeInteger</CustomDraggableComponent>;
+
+export const TextFieldV2NumberOptionPositiveInteger = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOptionPositiveInteger}>TextFieldV2NumberOptionPositiveInteger</CustomDraggableComponent>;
 
 export const TextFieldV2Right = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Right}>TextFieldV2Right</CustomDraggableComponent>;

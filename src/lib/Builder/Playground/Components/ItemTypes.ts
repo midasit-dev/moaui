@@ -106,6 +106,8 @@ export const ItemTypes = {
 	TextFieldV2MultiLine: 'TextFieldV2MultiLine',
 	TextFieldV2Number: 'TextFieldV2Number',
 	TextFieldV2NumberOption: 'TextFieldV2NumberOption',
+	TextFieldV2NumberOptionNegativeInteger: 'TextFieldV2NumberOptionNegativeInteger',
+	TextFieldV2NumberOptionPositiveInteger: 'TextFieldV2NumberOptionPositiveInteger',
 	TextFieldV2Right: 'TextFieldV2Right',
 	TextFieldV2SinglelineTitle: 'TextFieldV2SinglelineTitle',
 	TextFieldV2Top: 'TextFieldV2Top',

@@ -105,6 +105,8 @@ export { default as TextFieldV2Left } from '../../../Components/TextFieldV2/Code
 export { default as TextFieldV2MultiLine } from '../../../Components/TextFieldV2/Code/MultiLine.code.tsx?raw';
 export { default as TextFieldV2Number } from '../../../Components/TextFieldV2/Code/Number.code.tsx?raw';
 export { default as TextFieldV2NumberOption } from '../../../Components/TextFieldV2/Code/NumberOption.code.tsx?raw';
+export { default as TextFieldV2NumberOptionNegativeInteger } from '../../../Components/TextFieldV2/Code/NumberOptionNegativeInteger.code.tsx?raw';
+export { default as TextFieldV2NumberOptionPositiveInteger } from '../../../Components/TextFieldV2/Code/NumberOptionPositiveInteger.code.tsx?raw';
 export { default as TextFieldV2Right } from '../../../Components/TextFieldV2/Code/Right.code.tsx?raw';
 export { default as TextFieldV2SinglelineTitle } from '../../../Components/TextFieldV2/Code/SinglelineTitle.code.tsx?raw';
 export { default as TextFieldV2Top } from '../../../Components/TextFieldV2/Code/Top.code.tsx?raw';

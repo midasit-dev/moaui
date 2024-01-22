@@ -16,6 +16,8 @@ import {
 	MultiLineCode,
 	NumberCode,
 	NumberOptionCode,
+	NumberOptionNegativeIntegerCode,
+	NumberOptionPositiveIntegerCode,
 } from '../Code';
 
 const meta = {
@@ -42,6 +44,8 @@ export const CheckErrorAsFunction = LiveEditStory(cleanMask(CheckErrorAsFunction
 export const MultiLine = LiveEditStory(cleanMask(MultiLineCode));
 export const Number = LiveEditStory(cleanMask(NumberCode));
 export const NumberOption = LiveEditStory(cleanMask(NumberOptionCode));
+export const NumberOptionNegativeInteger = LiveEditStory(cleanMask(NumberOptionNegativeIntegerCode));
+export const NumberOptionPositiveInteger = LiveEditStory(cleanMask(NumberOptionPositiveIntegerCode));
 
 export const Sample: Story = {
 	args: {

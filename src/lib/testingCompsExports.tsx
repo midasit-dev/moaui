@@ -119,6 +119,8 @@ export { default as ComponentsTextFieldV2Left } from "./Components/TextFieldV2/C
 export { default as ComponentsTextFieldV2MultiLine } from "./Components/TextFieldV2/Code/MultiLine.code";
 export { default as ComponentsTextFieldV2Number } from "./Components/TextFieldV2/Code/Number.code";
 export { default as ComponentsTextFieldV2NumberOption } from "./Components/TextFieldV2/Code/NumberOption.code";
+export { default as ComponentsTextFieldV2NumberOptionNegativeInteger } from "./Components/TextFieldV2/Code/NumberOptionNegativeInteger.code";
+export { default as ComponentsTextFieldV2NumberOptionPositiveInteger } from "./Components/TextFieldV2/Code/NumberOptionPositiveInteger.code";
 export { default as ComponentsTextFieldV2Right } from "./Components/TextFieldV2/Code/Right.code";
 export { default as ComponentsTextFieldV2SinglelineTitle } from "./Components/TextFieldV2/Code/SinglelineTitle.code";
 export { default as ComponentsTextFieldV2Top } from "./Components/TextFieldV2/Code/Top.code";
