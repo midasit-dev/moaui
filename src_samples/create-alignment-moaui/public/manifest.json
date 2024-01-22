@@ -1,6 +1,6 @@
 {
   "short_name": "Create alignment",
-  "name": "Plugin for MIDAS Civil NX",
+  "name": "Create alignment",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,6 +12,6 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "width": "660",
-  "height": "710"
+  "width": "662",
+  "height": "721"
 }

@@ -1,6 +1,6 @@
 import './App.css';
 import * as React from 'react';
-import MoaPanel from "@midasit-dev/moaui/Components/Panel";
+import { GuideBox, Panel } from '@midasit-dev/moaui';
 import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import Sep from '@midasit-dev/moaui/Components/Separator';
 import { useSnackbar } from 'notistack';
@@ -14,8 +14,8 @@ import VerticalTabs from './Components/Tabs';
 import { CreateLayout } from './Function/CreateLayout';
 import { midasAPI, convertChartData, chartScaleSet } from './Function/Common';
 import { checkAllTrue, AlignDataValid, SegmDataValid, NodeElemValid } from './Function/Validation';
-import { VerifyUtil } from "@midasit-dev/moaui";
-import MKeyDialog from "./Components/MKeyDialog";
+import { VerifyUtil, VerifyDialog, MidasController } from "@midasit-dev/moaui";
+// import MKeyDialog from "./Components/MKeyDialog";
 
 //Data Grid Default Setting
 const AlignDefault = [
@@ -201,9 +201,14 @@ function App() {
   //Main UI
   return (
 	<div className="App" >
-		{showDialog && <MKeyDialog />}
-		<div className="MainApp" style={{marginTop:"0.2rem", backgroundColor:"#FFF", display:"flex", justifyContent:"center"}}>
-			<MoaPanel height={657}>
+		{/* {showDialog && <MKeyDialog />} */}
+		{showDialog && <VerifyDialog />}
+		{process.env.NODE_ENV === 'development' && <MidasController title='Create alignment' icoSrc={`${process.env.PUBLIC_URL}/favicon.ico`}/>}
+		<GuideBox
+			padding={2}
+			center
+		>
+			<Panel width={630} height={657} variant='shadow2'>
 				<MoaStack direction="row" justifyContent="space-between" alignItems="center" marginY={1}>
 					<MoaStack direction="row" spacing={2}>
 						{TextFieldInput("Start Node", nodeStart, setNodeStart)}
@@ -233,10 +238,10 @@ function App() {
 					</div>
 				</div>
 				</MoaStack>
-			</MoaPanel>
-		{Modals.AlignHelp(openAlignModal, AlignModalClose)}
-		{Modals.SegmHelp(openSegmModal, SegmModalClose)}
-		</div>
+			</Panel>
+			{Modals.AlignHelp(openAlignModal, AlignModalClose)}
+			{Modals.SegmHelp(openSegmModal, SegmModalClose)}
+		</GuideBox>
 	</div>
   );
 }

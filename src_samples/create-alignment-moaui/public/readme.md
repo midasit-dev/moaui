@@ -17,7 +17,11 @@
     |Cubic Parabola|L > 0|(Rs ≠ 0 and Re = 0) or (Rs = 0 and Re ≠ 0)|
 
 - The valid input values of Segments are as below Segments.
-
-    |Length|Nb|Structure Group Name|Material ID|Section ID|
-    |:------:|:------:|:------:|:------:|:------:|
-    |Real value > 0|Integer > 0|String less 90 char.|Integer, 1~999,999|Integer, 1~999,999|
+	|Segment|Valid Input|
+	|:------:|:------:|
+	|Length|Real value > 0|
+	|Nb|Integer > 0|
+	|Structure Group Name|String less 90 char.|
+	|Material ID|Integer, 1~999,999|
+	|Section ID|Integer, 1~999,999|
+	
