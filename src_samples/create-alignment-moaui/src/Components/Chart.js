@@ -84,6 +84,7 @@ function ChartLine(data, chartScale) {
 function ChartScatter(data, chartScale) {
   return(
     <ResponsiveScatterPlot
+			tooltip={customTooltip}
       data={data}
       theme={{ fontSize: "11px", axis: { legend: { text: { fontSize: "11px", fontWeight:"bold" } } } }}
       margin={{ top: 30, right: 30, bottom: 60, left: 60 }}

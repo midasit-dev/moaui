@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { SnackbarProvider } from 'notistack';
+import './overrideMidasController';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

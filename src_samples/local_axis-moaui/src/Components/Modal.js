@@ -3,7 +3,7 @@ import Modal from "@mui/material/Modal";
 import * as Buttons from "./Buttons.js";
 
 import Dialog from "@mui/material/Dialog";
-import MoaPanel from "@midasit-dev/moaui/Components/Panel";
+import { Panel } from "@midasit-dev/moaui";
 import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import MoaButton from "@midasit-dev/moaui/Components/Button";
 import MoaTextField from "@midasit-dev/moaui/Components/TextField";
@@ -21,7 +21,7 @@ function NodeImportDialog(openDialog, onCloseDialog, setNode, clickevent) {
 			aria-describedby="Node Import Dialog"
 		>
 			<MoaStack>
-				<MoaPanel>
+				<Panel>
 					<MoaStack spacing={1} direction="row" alignItems="center">
 						<MoaTextField
 							focused
@@ -34,7 +34,7 @@ function NodeImportDialog(openDialog, onCloseDialog, setNode, clickevent) {
 						/>
 						<MoaButton variant="contained" onClick={clickevent}>APPLY</MoaButton>
 					</MoaStack>
-				</MoaPanel>
+				</Panel>
 			</MoaStack>
 		</Dialog>
 	);

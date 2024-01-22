@@ -7,7 +7,6 @@
     "@babel/plugin-transform-private-property-in-object": "^7.22.11",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@midasit-dev/moaui": "^0.1.12",
     "@mui/material": "^5.14.5",
     "@nivo/core": "^0.83.0",
     "@nivo/line": "^0.83.0",
@@ -46,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@midasit-dev/moaui": "^0.1.83"
   }
 }
