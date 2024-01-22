@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartLine, Color, GuideBox, Panel, Typography } from "@midasit-dev/moaui";
+import { ChartLine, Color, GuideBox, Typography } from "@midasit-dev/moaui";
 import { 
 	createGraphData4NZS1170_5_2004,
  } from "../utils_pyscript";
@@ -59,6 +59,7 @@ const CompPreviewRight = () => {
 
           const arrX = result["period"];
           const arrY = result["value"];
+
           if (arrX.length !== arrY.length) {
             enqueueSnackbar(
               "Creating graph data is failed (Calc Input Error)",
@@ -85,6 +86,7 @@ const CompPreviewRight = () => {
       } finally {
         enqueueSnackbar("Updating graph data is successfully", {
           variant: "success",
+					autoHideDuration: 1500,
         });
         setLoading(false);
 
@@ -103,16 +105,14 @@ const CompPreviewRight = () => {
   ]);
 
 	return (
-		<Panel variant="shadow2" height="inherit" padding={2}>
-			<GuideBox height="100%" verSpaceBetween>
-				<GuideBox show fill='1' width="100%" center padding={1} borderRadius={1}>
-					<Typography variant='h1'>Preview Design Spectrum</Typography>
-				</GuideBox>
-				<GuideBox loading={loading} center>
-					<CompChartLeftBottom data={chartData} />
-				</GuideBox>
+		<GuideBox height="100%" verSpaceBetween>
+			<GuideBox show fill='1' width="100%" center padding={1} borderRadius={1}>
+				<Typography variant='h1'>Preview Design Spectrum</Typography>
 			</GuideBox>
-		</Panel>
+			<GuideBox loading={loading} center>
+				<CompChartLeftBottom data={chartData} />
+			</GuideBox>
+		</GuideBox>
 	);
 }
 

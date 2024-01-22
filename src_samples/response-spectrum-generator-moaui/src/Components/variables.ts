@@ -21,12 +21,21 @@ export const VarFuncName = atom({
 	default: '',
 });
 
+const designSpectrumCodes: Array<[string, number]> = [
+	[ "NZS 1170.5 (2004)", 1 ]
+]
 export const VarDesignSpectrumList = atom({
 	key: 'VarDesignSpectrumList',
-	default: [
-		[ "NZS 1170.5 (2004)", 1 ]
-	],
+	default: designSpectrumCodes,
 });
+export const getDesignSpectrumCodeName = (index: number): string => {
+	const codeNames = designSpectrumCodes;
+	if (codeNames.length !== 0 && codeNames[index - 1]) {
+		return codeNames[index - 1][0];
+	} else {
+		return '';
+	}
+}
 
 export const VarDesignSpectrum = atom({
 	key: 'VarDesignSpectrum',

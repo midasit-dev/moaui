@@ -3,7 +3,7 @@ import {
   Panel,
   GuideBox,
   Typography,
-  TextField,
+  TextFieldV2,
   RadioGroup,
   Radio,
   Dialog,
@@ -19,7 +19,7 @@ import {
   VarSiteSubSoilClass,
 	VarValids,
 } from "./variables";
-import CompTypographyAndTextField from "./TypographyAndTextField";
+import CompTypographyAndTextFieldNumOnly from "./TypographyAndTextFieldNumOnly";
 import { debounce } from 'lodash';
 
 const CompSeismicData_NZS1170_5_2004 = (props: any) => {
@@ -31,17 +31,17 @@ const CompSeismicData_NZS1170_5_2004 = (props: any) => {
 
 	return (
 		<GuideBox overflow='visible'>
-			<Panel variant="shadow2" width="100%" padding={2}>
+			<Panel variant="strock" width="100%" padding={2}>
 				<GuideBox show fill='1' row borderRadius={1} center marginBottom={1}>
 					<Typography variant="h1">Seismic Data</Typography>
 					<CompInfoDialog />
 				</GuideBox>
 				<GuideBox width="100%" spacing={2}>
 					<CompSubSoilClass />
-					<CompTypographyAndTextField title="Return Period Factor (R)" state={return_period_factor} setState={setReturn_period_factor} error={!valids.VarReturnPeriodFactor(return_period_factor)} />
-					<CompTypographyAndTextField title="Hazard Factor (Z)" state={hazard_factor} setState={setHazard_factor} error={!valids.VarHazardFactor(hazard_factor)} />
+					<CompTypographyAndTextFieldNumOnly title="Return Period Factor (R)" state={return_period_factor} setState={setReturn_period_factor} error={!valids.VarReturnPeriodFactor(return_period_factor)} />
+					<CompTypographyAndTextFieldNumOnly title="Hazard Factor (Z)" state={hazard_factor} setState={setHazard_factor} error={!valids.VarHazardFactor(hazard_factor)} />
 					<CompDistanceFromNearestMajorFault />
-					<CompTypographyAndTextField title="Design Ductility Factor" state={design_ductility_factor} setState={setDesign_ductility_factor} error={!valids.VarDesignDuctilityFactor(design_ductility_factor)} />
+					<CompTypographyAndTextFieldNumOnly title="Design Ductility Factor" state={design_ductility_factor} setState={setDesign_ductility_factor} error={!valids.VarDesignDuctilityFactor(design_ductility_factor)} />
 				</GuideBox>
 			</Panel>
 		</GuideBox>
@@ -77,14 +77,19 @@ const CompDistanceFromNearestMajorFault = () => {
 					<Typography variant="h1">Distance From</Typography>
 					<Typography variant="h1">Nearest Major Fault (km)</Typography>
 				</GuideBox>
-        <TextField
+        <TextFieldV2
           error={!valids.VarDistanceFromNearestMajorFault(distance_from_nearest_major_fault)}
-          width={200}
+          width={150}
           height={30}
           placeholder="Input value ..."
           onChange={(e: any) => setValue(e.target.value)}
           value={value}
           disabled={false}
+					type='number'
+					numberOptions={{
+						min: 0.01,
+						step: 1.0,
+					}}
         />
       </GuideBox>
     </GuideBox>
@@ -109,7 +114,7 @@ const CompSubSoilClass = () => {
           <Radio name="B" value="B" marginLeft={3} />
           <Radio name="C" value="C" marginLeft={3} />
           <Radio name="D" value="D" marginLeft={3} />
-          <Radio name="E" value="F" marginLeft={3} />
+          <Radio name="E" value="E" marginLeft={3} />
         </RadioGroup>
       </GuideBox>
     </GuideBox>

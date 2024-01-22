@@ -10,7 +10,7 @@
  */
 
 import React from "react";
-import { GuideBox } from "@midasit-dev/moaui";
+import { GuideBox, Panel } from "@midasit-dev/moaui";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   VarDesignSpectrum,
@@ -34,20 +34,27 @@ const App = () => {
 
   return (
     //You can modify the code here and test.
-    <GuideBox width="100%" center>
-			<GuideBox center padding={2} spacing={2}>
+    <GuideBox width="100%" center padding={2}>
+			<GuideBox center spacing={2}>
 
-				<GuideBox row spacing={4}>
-					<GuideBox height={490} spacing={2} verSpaceBetween>
-						<CompTypographyAndTextField title="Function Name" state={func_name} setState={setFunc_name} blueTitle placeholder="RS 01" error={!valids.VarFunctionName(func_name)} />
-						<CompDesignSpectrum />
-						{design_spectrum === 1 && <CompSeismicDataNZS117052004 />}
-						{/** 기준이 추가되면 아래로 추가 */}
-						<CompTypographyAndTextField title="Maximum Period (sec)" state={maximum_period} setState={setMaximum_period} blueTitle error={!valids.VarMaximumPeriod(maximum_period)} />
-					</GuideBox>
-					<GuideBox height={490}>
-						<CompPreviewRight />
-					</GuideBox>
+				<GuideBox row spacing={2}>
+
+					<Panel variant="shadow2" padding={2}>
+						<GuideBox height={490} spacing={2} verSpaceBetween>
+							<CompTypographyAndTextField title="Function Name" state={func_name} setState={setFunc_name} blueTitle placeholder="RS 01" error={!valids.VarFunctionName(func_name)} />
+							<CompDesignSpectrum />
+							{design_spectrum === 1 && <CompSeismicDataNZS117052004 />}
+							{/** 기준이 추가되면 아래로 추가 */}
+							<CompTypographyAndTextField title="Maximum Period (sec)" state={maximum_period} setState={setMaximum_period} blueTitle error={!valids.VarMaximumPeriod(maximum_period)} />
+						</GuideBox>
+					</Panel>
+
+					<Panel variant="shadow2" padding={2}>
+						<GuideBox height={490}>
+							<CompPreviewRight />
+						</GuideBox>
+					</Panel>
+
 				</GuideBox>
 
 				<GuideBox width="100%" row horSpaceBetween>

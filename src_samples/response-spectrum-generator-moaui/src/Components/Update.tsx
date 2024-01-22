@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import {
   VarDesignDuctilityFactor,
   VarDesignSpectrum,
+	getDesignSpectrumCodeName,
   VarDistanceFromNearestMajorFault,
   VarFuncName,
   VarHazardFactor,
@@ -76,7 +77,7 @@ const CompValidCheckDialogNZS117052004 = (props: any) => {
 	React.useEffect(() => {
 		setCheckList([
 			{ title: "Function Name", value: func_name, error: !valids.VarFunctionName(func_name), reason: "The length of name must be greater than 0." },
-			{ title: "Design Spectrum", value: design_spectrum, error: !valids.VarDesignSpectrum(design_spectrum), reason: "" },
+			{ title: "Design Spectrum", value: getDesignSpectrumCodeName(design_spectrum), error: !valids.VarDesignSpectrum(design_spectrum), reason: "" },
 			{ title: "Site Sub Soil Class", value: site_sub_soil_class, error: !valids.VarSiteSubSoilClass(site_sub_soil_class), reason: "" },
 			{ title: "Return Period Factor", value: return_period_factor, error: !valids.VarReturnPeriodFactor(return_period_factor), reason: "Return period factor must be greater than 0." },
 			{ title: "Hazard Factor", value: hazard_factor, error: !valids.VarHazardFactor(hazard_factor), reason: "Hazard Factor must be greater than 0." },
@@ -117,7 +118,10 @@ const CompValidCheckDialogNZS117052004 = (props: any) => {
 				}
 
 				if (result.hasOwnProperty("success")) {
-					enqueueSnackbar(result.success, { variant: "success" });
+					enqueueSnackbar(result.success, { 
+						variant: "success",
+						autoHideDuration: 1500,
+					});
 				}
 			}}
 			maxPanelRows={8}
