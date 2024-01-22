@@ -143,7 +143,7 @@ const App = () => {
 		}
 
 		if (res.hasOwnProperty("value") && res.value !== undefined) {
-			enqueueSnackbar("Success", { variant: 'success' });
+			enqueueSnackbar("Success", { variant: 'success', autoHideDuration: 1000 });
 			// requestAnimationFrame 사용
 			// 레이아웃 변경이 필요한 작업을 requestAnimationFrame 콜백 내에서 수행하여 변경 사항을 브라우저의 렌더링 사이클과 동기화.
 			_data_.current.value = res.value;
@@ -219,7 +219,7 @@ const App = () => {
 			const currentDateText = getCurrentDateText();
 			const fileName = `LCB-${currentDateText}.xlsx`;
 			XLSX.writeFile(workbook, `${fileName}`);
-			enqueueSnackbar(`Success to download excel file : ${fileName}`, { variant: 'success' });
+			enqueueSnackbar(`Success to download excel file : ${fileName}`, { variant: 'success', autoHideDuration: 1000 });
 		} catch (error) {
 			enqueueSnackbar("Failed to download excel file", { variant: 'error' });
 		}
@@ -252,7 +252,7 @@ const App = () => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       // 성공적으로 클립보드에 복사됐을 때 snackbar를 표시합니다.
-			enqueueSnackbar("Data copied to clipboard", { variant: 'success' });
+			enqueueSnackbar("Data copied to clipboard", { variant: 'success', autoHideDuration: 1000 });
     }).catch(err => {
       // 에러 처리
 			enqueueSnackbar("Failed to copy data", { variant: 'error' });
