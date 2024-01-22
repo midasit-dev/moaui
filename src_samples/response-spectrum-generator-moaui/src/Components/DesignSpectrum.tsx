@@ -1,12 +1,12 @@
 import React from "react";
 import { GuideBox, Typography, DropList, Color } from "@midasit-dev/moaui";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { VarDesignSpectrum, VarDesignSpectrumList } from "./variables";
 
 const CompDesignSpectrum = () => {
 	//나중에 추가되면 Recoil에 변수 추가할 것
 	const [design_spectrum, setDesign_spectrum] = useRecoilState(VarDesignSpectrum);
-	const [design_spectrum_list, setDesign_spectrum_list] = useRecoilState(VarDesignSpectrumList);
+	const design_spectrum_list = useRecoilValue(VarDesignSpectrumList);
 
   return (
     <GuideBox width="100%" row horSpaceBetween>

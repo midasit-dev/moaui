@@ -17,7 +17,7 @@ import {
   Button,
 	TemplatesFunctionalComponentsValidCheckDialog,
 } from "@midasit-dev/moaui";
-import { spfcUpdate4NZS1170_5_2004 } from "../pyscript_utils";
+import { spfcUpdate4NZS1170_5_2004 } from "../utils_pyscript";
 
 const CompUpdate = () => {
 	//기준

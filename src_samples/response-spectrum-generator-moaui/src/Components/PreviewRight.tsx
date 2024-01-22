@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, ChartLine, Color, Dialog, GuideBox, Panel, Typography } from "@midasit-dev/moaui";
+import { ChartLine, Color, GuideBox, Panel, Typography } from "@midasit-dev/moaui";
 import { 
 	createGraphData4NZS1170_5_2004,
- } from "../pyscript_utils";
+ } from "../utils_pyscript";
 import { 
 	VarDesignSpectrum,
 	VarDesignDuctilityFactor,

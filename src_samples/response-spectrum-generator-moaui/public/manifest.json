@@ -1,6 +1,6 @@
 {
   "short_name": "Response Spectrum Generator",
-  "name": "Response Spectrum Generator for MIDAS/Civil NX",
+  "name": "Response Spectrum Generator",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,7 +11,7 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "width": "1030",
-  "height": "600"
+  "background_color": "#f1f1f1",
+  "width": 972,
+  "height": 598
 }
