@@ -8,7 +8,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Circle from '@mui/icons-material/Circle';
 import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
 import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked';
-import { MarginTypes, MarginProps } from '../../Style/Margin';
+import { MarginTypes, MarginProps, hasMarginProps } from '../../Style/Margin';
 import { PaddingTypes, PaddingProps } from '../../Style/Padding';
 
 export type StyledProps = {
@@ -140,10 +140,10 @@ const StyledComponent =
 			}
 			label={props?.name}
 			sx={{
-				...MarginProps(props),
+				...(!hasMarginProps(props) ? { marginLeft: 0, marginRight: 0} : MarginProps(props)),
 				...PaddingProps(props),
 				".MuiFormControlLabel-label": {
-					marginLeft: "0.25rem", /** 4px */
+					// marginLeft: "0.25rem", /** 4px */
 					color: `${Color.text.secondary}!important`,
 				},
 			}}

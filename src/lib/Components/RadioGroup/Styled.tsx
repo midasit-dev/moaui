@@ -54,12 +54,17 @@ export interface StyledProps extends RadioGroupProps {
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { ariaLabel, text, sx, ...rest } = props;
+	const { ariaLabel, text, children, sx, ...rest } = props;
 	
 	return (
 		<FormControl aria-label={`${text} ${ariaLabel}`}>
 			{text && <div style={{padding: '0.25rem'}}><Typography>{text}</Typography></div>}
-			<RadioGroup {...rest} style={{paddingLeft: text ? '0.5rem' : '0rem'}} />
+			<RadioGroup 
+				{...rest}
+				style={{paddingLeft: text ? '0.5rem' : '0rem'}}
+			>
+				{children}
+			</RadioGroup>
 		</FormControl>
 	)
 
