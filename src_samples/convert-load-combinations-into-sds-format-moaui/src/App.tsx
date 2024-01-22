@@ -11,7 +11,7 @@
 
 import React from 'react';
 import { GuideBox, Panel, Typography, DropList, Check, Button, DataGrid } from '@midasit-dev/moaui';
-import { getLcbTypelist, getActivelist, runCreate } from './pyscript_utils';
+import { getLcbTypelist, getActivelist, runCreate, dbRead, getAllLcblist } from './utils_pyscript';
 import { useSnackbar } from 'notistack';
 import './App.css';
 import * as XLSX from 'xlsx';
@@ -37,12 +37,40 @@ function getCurrentDateText(): string {
  * for more information, please visit https://midasit-dev.github.io/moaui
  */
 const App = () => {
+	// snackbar
+	const { enqueueSnackbar } = useSnackbar();
+
 	// Import - DropList
-	const [dropValue, setDropValue] = React.useState();
-	const [droplist, setDroplist] = React.useState<any>(new Map<string, number>([["Steel Design", 0]]));
+	const [dropValue, setDropValue] = React.useState<string>();
+	const [droplist, setDroplist] = React.useState<any>(new Map<string, number>([["NONE", 0]]));
+	// Enable Lcb Active Types
+	const [enableLcbActiveTypes, setEnableLcbActiveTypes] = React.useState<string[]>([]);
+	React.useEffect(() => {
+		if (dropValue !== undefined) {
+			const allLcbList = getAllLcblist();
+			const RealAPIType = allLcbList[dropValue];
+			const dbName = RealAPIType["API"];
+			const res = dbRead(dbName);
+			if (res.hasOwnProperty("error")) {
+				enqueueSnackbar(res.error, { variant: 'error' });
+				setEnableLcbActiveTypes([]);
+				return;
+			}
+
+			const uniqueSet = new Set<string>();
+			Object.values(res).forEach((item: any) => {
+				uniqueSet.add(item["ACTIVE"]);
+			});
+			const uniqueArray: string[] = Array.from(uniqueSet);
+			setEnableLcbActiveTypes(uniqueArray);
+		}
+		//eslint-disable-next-line
+	}, [dropValue]);
+
 	// Select Active Type - Check
 	const [checklist, setChecklist] = React.useState<any>(new Map<string, number>([]));
 	const [checkKeys, setCheckKeys] = React.useState<any>([]);
+
 	const [checkedlist, setCheckedlist] = React.useState<any>([0]);
 	const [checkedStrength_Stress, setCheckedStrength_Stress] = React.useState(false);
 	const [checkedSpecial, setCheckedSpecial] = React.useState(false);
@@ -58,8 +86,6 @@ const App = () => {
 	// create Button
 	const [disalbleCreate, setDisableCreate] = React.useState(true);
 	const [isPending, setIsPending] = React.useState(false);
-	// snackbar
-	const { enqueueSnackbar } = useSnackbar();
 
 	function onChangeDroplistHandler(event: any){
 		setDropValue(event.target.value);
@@ -285,7 +311,7 @@ const App = () => {
 
 	return (
 		//You can modify the code here and test.
-		<GuideBox show={false} width='100%' fill='2' paddingY={1} paddingX={1} row spacing={2} horCenter>
+		<GuideBox show={false} width='100%' fill='2' row spacing={2} horCenter padding={2}>
 			<GuideBox show width='250px'  fill='none' spacing={1}>
 				<GuideBox show width='100%' fill='none' row horSpaceBetween verCenter>
 					<Typography variant='h1' marginLeft={1}>Import</Typography>
@@ -295,6 +321,7 @@ const App = () => {
 						placeholder='Select lcb Type'
 						value={dropValue}
 						onChange={onChangeDroplistHandler}
+						maxLength={24}
 					/>
 				</GuideBox>
 				<GuideBox show width='100%' height={"350px"} fill='none' verCenter>
@@ -305,7 +332,7 @@ const App = () => {
 						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
 							<Check 
 								name={checkKeys[0]}
-								disabled={false}
+								disabled={!enableLcbActiveTypes.includes('STRENGTH')}
 								checked={checkedStrength_Stress}
 								onChange={onChangeStrength_StressHandler}
 							/>
@@ -313,55 +340,55 @@ const App = () => {
 						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
 							<Check 
 								name={checkKeys[1]}
-								disabled={false}
-								checked={checkedSpecial}
-								onChange={onChangeSpecialHandler}
-							/>
-						</GuideBox>
-						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
-							<Check 
-								name={checkKeys[2]}
-								disabled={false}
-								checked={checkedStrength_Elastic}
-								onChange={onChangeStrength_ElasticHandler}
-							/>
-						</GuideBox>
-						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
-							<Check 
-								name={checkKeys[3]}
-								disabled={false}
-								checked={checkedU_G_Serviceablility}
-								onChange={onChangeU_G_ServiceablilityHandler}
-							/>
-						</GuideBox>
-						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
-							<Check 
-								name={checkKeys[4]}
-								disabled={false}
+								disabled={!enableLcbActiveTypes.includes('SERVICE')}
 								checked={checkedServiceability}
 								onChange={onChangeServiceabilityHandler}
 							/>
 						</GuideBox>
 						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
 							<Check 
-								name={checkKeys[5]}
-								disabled={false}
+								name={checkKeys[2]}
+								disabled={!enableLcbActiveTypes.includes('SPECIAL')}
+								checked={checkedSpecial}
+								onChange={onChangeSpecialHandler}
+							/>
+						</GuideBox>
+						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
+							<Check 
+								name={checkKeys[3]}
+								disabled={!enableLcbActiveTypes.includes('VERTICAL')}
 								checked={checkedVertical}
 								onChange={onChangeVerticalHandler}
 							/>
 						</GuideBox>
 						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
 							<Check 
-								name={checkKeys[6]}
-								disabled={false}
+								name={checkKeys[4]}
+								disabled={!enableLcbActiveTypes.includes('ELSTRENGTH')}
+								checked={checkedStrength_Elastic}
+								onChange={onChangeStrength_ElasticHandler}
+							/>
+						</GuideBox>
+						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
+							<Check 
+								name={checkKeys[5]}
+								disabled={!enableLcbActiveTypes.includes('UGSTRENGTH')}
 								checked={checkedU_G_Strength_Stress}
 								onChange={onChangeU_G_Strength_StressHandler}
 							/>
 						</GuideBox>
 						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
 							<Check 
+								name={checkKeys[6]}
+								disabled={!enableLcbActiveTypes.includes('UGSERVICE')}
+								checked={checkedU_G_Serviceablility}
+								onChange={onChangeU_G_ServiceablilityHandler}
+							/>
+						</GuideBox>
+						<GuideBox show width='100%' fill='none' verCenter paddingY={0.8}>
+							<Check 
 								name={checkKeys[7]}
-								disabled={false}
+								disabled={!enableLcbActiveTypes.includes('UGSPECIAL')}
 								checked={checkedU_G_Special}
 								onChange={onChangeU_G_SpecialHandler}
 							/>

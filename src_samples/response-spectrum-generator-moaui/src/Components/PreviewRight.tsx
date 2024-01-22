@@ -11,6 +11,7 @@ import {
   VarReturnPeriodFactor,
   VarSiteSubSoilClass,
 	VarMaximumPeriod,
+	VarValids,
 } from "./variables";
 import { useRecoilValue } from "recoil";
 import { useSnackbar } from 'notistack';
@@ -22,6 +23,8 @@ interface ChartData {
 }
 
 const CompPreviewRight = () => {
+	const varValids = useRecoilValue(VarValids);
+
 	const design_spectrum = useRecoilValue(VarDesignSpectrum);
 
   //NZS1170.5 (2004)용 데이터
@@ -48,6 +51,13 @@ const CompPreviewRight = () => {
         processing.current = true;
 
         if (design_spectrum === 1) {
+					if (!varValids.VarReturnPeriodFactor(return_period_factor) ||
+							!varValids.VarHazardFactor(hazard_factor) ||
+							!varValids.VarDesignDuctilityFactor(design_ductility_factor) ||
+							!varValids.VarDistanceFromNearestMajorFault(distance_from_nearest_major_fault)) {
+						throw new Error('Creating graph data is failed (Calc Input Error)');
+					}
+
           const result = createGraphData4NZS1170_5_2004(
             site_sub_soil_class,
             return_period_factor,
@@ -65,7 +75,7 @@ const CompPreviewRight = () => {
               "Creating graph data is failed (Calc Input Error)",
               { variant: "error" }
             );
-            return;
+            throw new Error("Creating graph data is failed (Calc Input Error)");
           }
 
           const data_of_chart = [];
@@ -94,6 +104,7 @@ const CompPreviewRight = () => {
       }
     }, 500);
   }, [
+		varValids,
     design_spectrum,
     site_sub_soil_class,
     return_period_factor,

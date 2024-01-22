@@ -5,55 +5,55 @@ from js import Blob, document
 from js import window
 ### Select_Active_List & Select_LCB_Case ###
 
-def get_select_acitve_list():
-    Active_Type_list = {
-        1: "Strength/Stress",
-        2: "Serviceability",
-        3: "Special",
-        4: "Vertical",
-        5: "Strength(Ealstic)",
-        6: "U.G.Strength/Stress",
-        7: "U.G.Serviceability",
-        8: "U.G.Special"
-    }
-    
-    return json.dumps(Active_Type_list)
+all_active_type_list = {
+		0: { "Real": "Inactive", "API": "INACTIVE" },
+		1: { "Real": "Strength/Stress", "API": "STRENGTH" },
+		2: { "Real": "Serviceability", "API": "SERVICE" },
+		3: { "Real": "Special", "API": "SPECIAL" },
+		4: { "Real": "Vertical", "API": "VERTICAL" },
+		5: { "Real": "Strength(Ealstic)", "API": "ELSTRENGTH" },
+		6: { "Real": "U.G.Strength/Stress", "API": "UGSTRENGTH" },
+		7: { "Real": "U.G.Serviceability", "API": "UGSERVICE" },
+		8: { "Real": "U.G.Special", "API": "UGSPECIAL" }
+}
 
+active_type_list = {}
+for key, value in all_active_type_list.items():
+	if key == 0: continue
+	active_type_list[key] = value["Real"]
+ 
+active_type_list_api = {}
+for key, value in all_active_type_list.items():
+	active_type_list_api[key] = value["API"]
+
+all_lcb_type_list = {
+	1: { "Real": "Steel Design", "API": "LCOM-STEEL" },
+ 	2: { "Real": "Concrete Design", "API": "LCOM-CONC" },
+  3: { "Real": "SRC_Design", "API": "LCOM-SRC" },
+  4: { "Real": "Composite Steel Girder Design", "API": "LCOM-STLCOMP" },
+  5: { "Real": "Seismic", "API": "LCOM-SEISMIC" }	
+}
+
+def get_all_lcb_type_list():
+	return json.dumps(all_lcb_type_list)
+
+lcb_type_list = {}
+for key, value in all_lcb_type_list.items():
+	lcb_type_list[key] = value["Real"]
+ 
+lcb_type_list_api = {}
+for key, value in all_lcb_type_list.items():
+	lcb_type_list_api[key] = value["API"]
+
+def get_select_acitve_list():
+	return json.dumps(active_type_list)
+       
 def get_lcb_type_list():
-    lcb_type_List = {
-        # 0: "Select LCB Case",
-        1: "Steel Design",
-        2: "Concrete Design",
-        3: "SRC_Design",
-        4: "Composite Steel Girder Design",
-        5: "Seismic"
-    }
-    
-    return json.dumps(lcb_type_List)
+    return json.dumps(lcb_type_list)
 
 def generate_select_lists(select_type, select_LCB):
-    Active_Type_list_API = {
-        0: "INACTIVE",
-        1: "STRENGTH",
-        2: "SERVICE",
-        3: "SPECIAL",
-        4: "VERTICAL",
-        5: "ELSTRENGTH",
-        6: "UGSTRENGTH",
-        7: "UGSERVICE",
-        8: "UGSPECIAL"
-    }
-
-    lcb_type_List_API = {
-        1: "LCOM-STEEL",
-        2: "LCOM-CONC",
-        3: "LCOM-SRC",
-        4: "LCOM-STLCOMP",
-        5: "LCOM-SEISMIC"
-    }
-
-    Select_Active_List = [Active_Type_list_API[item] for item in select_type]
-    Select_LCB_Case = lcb_type_List_API[select_LCB]
+    Select_Active_List = [active_type_list_api[item] for item in select_type]
+    Select_LCB_Case = lcb_type_list_api[select_LCB]
 
     return Select_Active_List, Select_LCB_Case
 

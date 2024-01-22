@@ -1,6 +1,6 @@
 {
-  "short_name": "Combination_Convert_to_SDS",
-  "name": "Plug-in for MIDAS/Civil",
+  "short_name": "Convert Load Combinations into SDS Format",
+  "name": "Convert Load Combinations into SDS Format",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,7 +11,7 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "width": "1085",
-  "height": "480"
+  "background_color": "#f1f1f1",
+  "width": 1098,
+  "height": 492
 }

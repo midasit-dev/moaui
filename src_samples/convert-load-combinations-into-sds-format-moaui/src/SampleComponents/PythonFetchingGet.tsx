@@ -1,6 +1,6 @@
 import { Button, CodeBlock, GuideBox, Panel, DataGrid } from "@midasit-dev/moaui";
 import React from "react";
-import { dbRead } from "../pyscript_utils";
+import { dbRead } from "../utils_pyscript";
 
 interface InputObject {
   [key: string]: {
@@ -40,7 +40,7 @@ const ComponentsDataGrid = ({
 }
 
 const Script = () => {
-	return `import { dbRead } from "../pyscript_utils";
+	return `import { dbRead } from "../utils_pyscript";
 
 	const result = dbRead("NODE");
 	console.log(result);`

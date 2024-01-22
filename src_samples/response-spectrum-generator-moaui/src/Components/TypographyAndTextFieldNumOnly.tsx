@@ -55,8 +55,11 @@ const DualComp = (props: any) => {
 					disabled={disabled}
 					type='number'
 					numberOptions={{
-						min: 0.01,
+						min: 0,
 						step: 1.0,
+						condition: {
+							min: 'greater'
+						}
 					}}
 				/>
 			</GuideBox>

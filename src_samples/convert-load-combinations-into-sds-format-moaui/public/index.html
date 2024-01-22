@@ -13,7 +13,12 @@
 	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
 	<py-config type="json" src="./pyscript_config.json"></py-config>
 
-	<title>Convert Load Combinations into SDS Format</title>
+	<script>
+    fetch('./manifest.json').then(response => response.json()).then(data => {
+        document.title = data.name;
+				document.bgColor = data.background_color;
+      }).catch(error => console.error('Error fetching manifest.json:', error));
+  </script>
 </head>
 
 <body>

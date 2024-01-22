@@ -87,8 +87,11 @@ const CompDistanceFromNearestMajorFault = () => {
           disabled={false}
 					type='number'
 					numberOptions={{
-						min: 0.01,
+						min: 0.0,
 						step: 1.0,
+						condition: {
+							min: 'greater'
+						}
 					}}
         />
       </GuideBox>

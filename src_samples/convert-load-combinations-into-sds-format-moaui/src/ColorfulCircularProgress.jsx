@@ -13,7 +13,7 @@ export default function ColorfulCircularProgress ({ size= 100, speed= 2, sx= {} 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [speed]);
 
   const rotatingStyle = {
     width: `${size}`,

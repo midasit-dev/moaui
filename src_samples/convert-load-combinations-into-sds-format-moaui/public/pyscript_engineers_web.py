@@ -130,7 +130,6 @@ class MidasAPI:
     def db_read(self, item_name):
         url = f'{self.base_url}/db/{item_name}'
         responseJson = requests_json.get(url, headers=self.headers)
-        print("responseJson :",responseJson);
         # check response.json()[item_name] is Exist
         if item_name not in responseJson:
             error_message = {"error": f"Error: Unable to find the registry key or value for {item_name}"}

@@ -15,7 +15,7 @@
 import json
 from pyscript_engineers_web import set_g_values, get_g_values, requests_json
 from pyscript_engineers_web import MidasAPI, Product
-from Component import get_select_acitve_list, get_lcb_type_list, generate_select_lists, save_dataframe_to_excel
+from Component import get_all_lcb_type_list, get_select_acitve_list, get_lcb_type_list, generate_select_lists, save_dataframe_to_excel
 import copy
 import pandas as pd
 import numpy as np
@@ -42,7 +42,7 @@ def py_db_create_item(item_name, item_id, item):
 
 def py_db_read(item_name):
 	civil = MidasAPI(Product.CIVIL, "KR")
-	return json.dumps(civil.db_read_try_catch(item_name))
+	return json.dumps(civil.db_read(item_name))
 
 def py_db_read_item(item_name, item_id):
 	civil = MidasAPI(Product.CIVIL, "KR")

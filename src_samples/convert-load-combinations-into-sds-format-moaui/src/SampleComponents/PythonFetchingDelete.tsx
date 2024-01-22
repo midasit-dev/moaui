@@ -1,9 +1,9 @@
 import { Button, CodeBlock, GuideBox, Typography } from "@midasit-dev/moaui";
 import React from "react";
-import { dbDelete } from "../pyscript_utils";
+import { dbDelete } from "../utils_pyscript";
 
 const Script = () => {
-	return `import { dbDelete } from "../pyscript_utils";
+	return `import { dbDelete } from "../utils_pyscript";
 
 	const result = dbDelete("NODE", 1);
 	console.log(result);`

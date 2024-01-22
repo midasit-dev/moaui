@@ -1,9 +1,9 @@
 import { Button, CodeBlock, GuideBox, Typography } from "@midasit-dev/moaui";
 import React from "react";
-import { dbCreate } from "../pyscript_utils";
+import { dbCreate } from "../utils_pyscript";
 
 const Script = () => {
-	return `import { dbCreate } from "../pyscript_utils";
+	return `import { dbCreate } from "../utils_pyscript";
 
 	const result = dbCreate("NODE", {
 		"1": {
