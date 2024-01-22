@@ -31,6 +31,7 @@ export const ItemTypes = {
 	DropListDisabled: 'DropListDisabled',
 	DropListDropdown: 'DropListDropdown',
 	DropListListWidth: 'DropListListWidth',
+	DropListMaxLength: 'DropListMaxLength',
 	GridColumn: 'GridColumn',
 	GridItems: 'GridItems',
 	GridRow: 'GridRow',

@@ -70,10 +70,40 @@ export type StyledProps = {
 	 * Set the placeholder of droplist's input.
 	 */
 	placeholder?: string;
+
+	/**
+	 * Set a string max length of droplist's input.
+	 */
+	maxLength?: number;
+}
+
+const useDroplistOpenCloseEffect = () => {
+	const [isDroplistOpen, setIsDroplistOpen] = React.useState<boolean>(false);
+
+	const truncateText = React.useCallback((text: string | undefined, maxLength: number | undefined) => {
+		if (text === undefined) {
+			return "";
+		}
+
+		if (isDroplistOpen) {
+			return text;
+		}
+
+		if (maxLength !== undefined && text.length > maxLength) {
+			return text.slice(0, maxLength) + "...";
+		}
+		return text;
+	}, [isDroplistOpen]);
+
+	return { 
+		isDroplistOpen, 
+		setIsDroplistOpen, 
+		truncateText,
+	};
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	const {itemList, width, value, onChange, defaultValue, backgroundColor, listWidth} = props;
+	const {itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
 	const itemMap = typeof itemList === 'function' ? itemList() : itemList;
 
 	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
@@ -84,6 +114,8 @@ const StyledComponent = styled((props:StyledProps) => {
 			setParentWidthInPixels(parentRef.current.offsetWidth);
 		}
 	},[width]);
+
+	const { truncateText, isDroplistOpen, setIsDroplistOpen } = useDroplistOpenCloseEffect();
 
 	return (
     <React.Fragment>
@@ -114,6 +146,10 @@ const StyledComponent = styled((props:StyledProps) => {
           onChange={onChange}
           disabled={props?.disabled}
           displayEmpty={props?.placeholder ? true : false}
+
+					open={isDroplistOpen}
+					onOpen={() => setIsDroplistOpen(true)}
+					onClose={() => setIsDroplistOpen(false)}
         >
 					{props?.placeholder && 
 						<MenuItem disabled value=""
@@ -132,7 +168,7 @@ const StyledComponent = styled((props:StyledProps) => {
 								fontFeatureSettings: Font.fontFeatureSettings,
 							}}
 						>
-							<em>{`${props?.placeholder}`}</em>
+							<em>{`${truncateText(props?.placeholder, maxLength || undefined)}`}</em>
 						</MenuItem>
 					}
           {Array.from(itemMap.keys()).map((key, index) => {
@@ -183,7 +219,7 @@ const StyledComponent = styled((props:StyledProps) => {
                   },
                 }}
               >
-                {key}
+                {truncateText(key, maxLength || undefined)}
               </MenuItem>
             );
           })}
