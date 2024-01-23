@@ -1,9 +1,48 @@
+/**
+ * 
+ * ██████╗       ██╗    ██╗██████╗  █████╗ ██████╗ ██████╗ ███████╗██████╗ 
+ * ╚════██╗      ██║    ██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
+ *  █████╔╝█████╗██║ █╗ ██║██████╔╝███████║██████╔╝██████╔╝█████╗  ██████╔╝
+ * ██╔═══╝ ╚════╝██║███╗██║██╔══██╗██╔══██║██╔═══╝ ██╔═══╝ ██╔══╝  ██╔══██╗
+ * ███████╗      ╚███╔███╔╝██║  ██║██║  ██║██║     ██║     ███████╗██║  ██║
+ * ╚══════╝       ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝╚═╝  ╚═╝
+ * 
+ * @description Wrapper for Pyscript
+ * @next ./src/App.tsx
+ */
+
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import App from './App';
-import { GuideBox, Panel, Typography, VerifyDialog, VerifyUtil, IconButton, Icon } from '@midasit-dev/moaui';
-import { setGlobalVariable, getGlobalVariable } from './pyscript_utils';
-import { SnackbarProvider, closeSnackbar } from 'notistack';
+import { 
+	GuideBox, 
+	Panel, 
+	Typography, 
+	VerifyDialog, 
+	VerifyUtil, 
+	IconButton, 
+	Icon,
+} from '@midasit-dev/moaui';
+import { 
+	SnackbarProvider, 
+	closeSnackbar 
+} from 'notistack';
+import { 
+	setGlobalVariable, 
+	getGlobalVariable 
+} from './utils_pyscript';
+import Signature from './Signature';
+import { Signature as SignatureMoaui } from '@midasit-dev/moaui';
+import devTools from "./DevTools"
+
+// PY Terminal 삭제하는 코드
+//// py-terminal 태그를 가진 모든 요소 가져오기
+//const pyTerminals = document.querySelectorAll('py-terminal');
+//
+//// 가져온 모든 py-terminal 요소를 제거
+//pyTerminals.forEach(pyTerminal => {
+//	pyTerminal.remove();
+//});
 
 const ValidWrapper = (props: any) => {
 	const { isIntalledPyscript } = props;
@@ -29,20 +68,20 @@ const ValidWrapper = (props: any) => {
 
       const mapiKey = VerifyUtil.getMapiKey();
       const verifyMapiKey = await VerifyUtil.getVerifyInfoAsync(mapiKey);
-      if (verifyMapiKey.hasOwnProperty("error")) {
+      if ('error' in verifyMapiKey && 'message' in verifyMapiKey.error) {
         _checkMapiKey = false;
-				setCheckMapiKeyMsg('error');
+				setCheckMapiKeyMsg(verifyMapiKey.error.message);
       }
-			if (verifyMapiKey.hasOwnProperty("keyVerified")) {
+			if ('keyVerified' in verifyMapiKey) {
 				if (!verifyMapiKey["keyVerified"]) {
 					_checkMapiKey = false;
 					setCheckMapiKeyMsg('keyVerified');
 				}
 			}
-			if (verifyMapiKey.hasOwnProperty("status")) {
-				if (verifyMapiKey["status"] === "disconnected") {
+			if ('status' in verifyMapiKey) {
+				if (verifyMapiKey["status"] !== "connected") {
 					_checkMapiKey = false;
-					setCheckMapiKeyMsg('disconnected');
+					setCheckMapiKeyMsg(verifyMapiKey['status']);
 				}
 			}
       setCheckMapiKey(_checkMapiKey);
@@ -67,7 +106,7 @@ const ValidWrapper = (props: any) => {
 		strInvalid = 'Invalid',
 	}: any) => {
 		return (
-			<GuideBox row horSpaceBetween width={300}>
+			<GuideBox row horSpaceBetween width={350}>
 				<Typography variant="body1">{title}: </Typography>
 				{checkIf ? ( 
 					<Typography variant="h1" color="#1f78b4">{strValid}</Typography>
@@ -77,6 +116,14 @@ const ValidWrapper = (props: any) => {
 			</GuideBox>
 		);
 	}
+
+	const [bgColor, setBgColor] = React.useState('#eee');
+	React.useEffect(() => {
+    fetch(`${process.env.PUBLIC_URL}/manifest.json`)
+      .then(response => response.json())
+      .then(data => data.name ? setBgColor(data.background_color) : null)
+      .catch(error => console.error('Error fetching manifest.json:', error));
+  }, []);
 
   return (
     <>
@@ -94,22 +141,38 @@ const ValidWrapper = (props: any) => {
 							</IconButton>
 						)}
 					>
-						<App />
+						{/** Production Mode */}
+						{!devTools.IsDevEnv() &&
+							<GuideBox tag="AppBackground" show center fill={bgColor} width="100%">
+								<App />
+							</GuideBox>
+						}
+
+						{/** Development Mode */}
+						{devTools.IsDevEnv() && 
+							<devTools.Kit bgColorState={[bgColor, setBgColor]}>
+								<GuideBox tag="AppBackground" show center fill={bgColor} borderRadius='0 0 4px 4px' spacing={3}>
+									<App />
+								</GuideBox>
+							</devTools.Kit>
+						}
 					</SnackbarProvider>
 				</RecoilRoot>
 			)}
 				
 			{isInitialized && !isValid && (
-        <Panel variant="shadow2" padding={3} margin={3}>
-					<GuideBox opacity={0.9} spacing={2}>
-						<Typography variant="h1">Validation Check</Typography>
-						<GuideBox spacing={2}>
-							<ValidationComponent title="pyscript" checkIf={isIntalledPyscript} strValid="Installed" strInvalid={`Not Installed`} />
-							<ValidationComponent title="Base URI" checkIf={checkUri} strValid="Valid" strInvalid="Invalid" />
-							<ValidationComponent title="MAPI-Key" checkIf={checkMapiKey} strValid="Valid" strInvalid={`Invalid (${checkMapiKeyMsg})`} />
+				<GuideBox width="100%" height="100vh" center>
+					<Panel variant="shadow2" padding={3} margin={3}>
+						<GuideBox opacity={0.9} spacing={2}>
+							<Typography variant="h1">Validation Check</Typography>
+							<GuideBox spacing={2}>
+								<ValidationComponent title="pyscript" checkIf={isIntalledPyscript} strValid="Installed" strInvalid={`Not Installed`} />
+								<ValidationComponent title="Base URI" checkIf={checkUri} strValid="Valid" strInvalid="Invalid" />
+								<ValidationComponent title="MAPI-Key" checkIf={checkMapiKey} strValid="Valid" strInvalid={`Invalid (${checkMapiKeyMsg})`} />
+							</GuideBox>
 						</GuideBox>
-					</GuideBox>
-				</Panel>
+					</Panel>
+				</GuideBox>
       )}
     </>
   );
@@ -125,6 +188,8 @@ const PyscriptWrapper = () => {
       if (pyscript && pyscript.interpreter) {
         setGlobalVariable();
         getGlobalVariable();
+				Signature.log();
+				SignatureMoaui.log();
 				setInstalled(true);
       } else {
         // if not, wait 100ms and try again

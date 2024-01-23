@@ -54,8 +54,11 @@ const CompTemperatureGradientChart = () => {
 					axisRightTickValues={5}
 					axisRightDecimals={2}
 					axisRightTickRotation={-30}
-					width={450}
-					height={400}
+					width={300}
+					marginTop={50}
+					marginRight={50}
+					marginLeft={16}
+					marginBottom={16}
 				/>
       </GuideBox>
       <GuideBox row spacing={2} center>

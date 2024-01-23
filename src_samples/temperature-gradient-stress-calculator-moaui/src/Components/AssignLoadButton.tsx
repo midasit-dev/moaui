@@ -199,7 +199,9 @@ const DialogPage = ({
       <GuideBox spacing={2}>
 				{curQueue !== "assign" && 
 					<Scrollbars
-						outline="strock"
+						panelProps={{
+							variant: 'strock'
+						}}
 						width={300}
 						height={300}
 						title="Select Static Load case from MIDAS Civil"
@@ -230,30 +232,21 @@ const DialogPage = ({
 												key={index}
 												disableGutters
 												padding={0}
-												secondaryAction={
-													<Panel
-														variant="box"
-														paddingRight={value.items.length < 9 ? 0 : 2.5}
-													>
-														{selected === idItemString(value, index) ? (
-															<Icon
-																iconName="RadioButtonCheckedTwoTone"
-																opacity={0.5}
-															/>
-														) : (
-															<Icon
-																iconName="RadioButtonUncheckedTwoTone"
-																opacity={0.5}
-															/>
-														)}
-													</Panel>
-												}
 											>
 												<ListItemButton
 													padding={0.8}
 													onClick={() => setSelected(idItemString(value, index))}
 												>
-													<Typography marginLeft={1}>{idItemString(value, index)}</Typography>
+													<GuideBox width='100%' row horSpaceBetween verCenter>
+														<Typography>{idItemString(value, index)}</Typography>
+														<Panel variant="box" paddingRight={value.items.length < 9 ? 0 : 2.5}>
+															{
+																selected === idItemString(value, index) ? 
+																	<Icon iconName="RadioButtonCheckedTwoTone"   opacity={0.5} /> :
+																	<Icon iconName="RadioButtonUncheckedTwoTone" opacity={0.5} />
+															}
+														</Panel>
+													</GuideBox>
 												</ListItemButton>
 											</ListItem>
 										);

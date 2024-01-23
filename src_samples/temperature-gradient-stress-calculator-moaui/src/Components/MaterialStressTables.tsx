@@ -172,7 +172,7 @@ const ComponentsTabGroupWithTable = (props: any) => {
 	}
 
 	return (
-    <GuideBox width={300}>
+    <GuideBox width='100%'>
       <TabGroup value={tabValue} onChange={(e: any, newValue: string) => setTabValue(newValue)}>
         <Tab value="Tab 1" label={tab1Label} />
         <Tab value="Tab 2" label={tab2Label} />

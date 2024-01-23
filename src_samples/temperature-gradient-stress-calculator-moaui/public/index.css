@@ -19,6 +19,10 @@ py-button:not(:defined) {
 py-box:not(:defined) {
   display: none;
 }
+html, body {
+	margin: 0;
+	padding: 0;
+}
 html {
   font-family:
     ui-sans-serif,
@@ -37,6 +41,7 @@ html {
     "Noto Color Emoji";
   line-height: 1.5;
 	background-color: #f1f1f1;
+	overflow: hidden;
 }
 .spinner::after {
   content: "";

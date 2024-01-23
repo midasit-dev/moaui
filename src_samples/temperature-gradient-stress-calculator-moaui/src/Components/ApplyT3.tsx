@@ -36,11 +36,11 @@ const CompApplyT3 = () => {
 						checked={applyT3}
 						onChange={() => setApplyT3(!applyT3)}
 					/>
-				<GuideBox width={75} height={30} verCenter paddingX={0.75}>
+				<GuideBox verCenter paddingX={0.75} row spacing={1}>
+					<Typography variant="body1">H: </Typography>
 					<TextField
-						width="100%"
+						width={50}
 						height={30}
-						title="H:"
 						placeholder="1.8"
 						disabled={!applyT3}
 						onChange={(e: any) => {
@@ -54,11 +54,11 @@ const CompApplyT3 = () => {
 						value={applyT3H}
 					/>
 				</GuideBox>
-				<GuideBox width={75} height={30} verCenter>
+				<GuideBox verCenter paddingX={0.75} row spacing={1}>
+					<Typography variant="body1">C: </Typography>
 					<TextField
-						width="100%"
+						width={50}
 						height={30}
-						title="C:"
 						placeholder="1.8"
 						disabled={!applyT3}
 						onChange={(e: any) => {

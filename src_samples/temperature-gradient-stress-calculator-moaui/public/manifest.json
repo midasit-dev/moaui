@@ -1,5 +1,5 @@
 {
-  "short_name": "Temp Gradient Calculator",
+  "short_name": "Temperature Gradient self-Equilibrating Stresses Calculator - AASHTO LRFD",
   "name": "Temperature Gradient self-Equilibrating Stresses Calculator - AASHTO LRFD",
   "icons": [
     {
@@ -11,7 +11,7 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "width": "1510",
-  "height": "632"
+  "background_color": "#f1f1f1",
+  "width": 1186,
+  "height": 630
 }

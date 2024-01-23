@@ -38,11 +38,11 @@ const App = () => {
 
   return (
 		<GuideBox width="100%" center>
-			<GuideBox show={visible} width={1450} padding={1} spacing={2}>
+			<GuideBox show={visible} padding={2} spacing={2}>
 				{/** Top Panels */}
-				<GuideBox show={visible} width='inherit' row spacing={2} center height={520}>
-					<Panel variant="shadow2" height={505}>
-						<GuideBox show={visible} fill="2">
+				<GuideBox show={visible} width='100%' row spacing={2} center height={520}>
+					<Panel variant="shadow2" height={522} width={350}>
+						<GuideBox show={visible} fill="2" padding={1}>
 							<GuideBox
 								show={visible}
 								width="100%"
@@ -65,13 +65,13 @@ const App = () => {
 								<CompGirderMaterial />
 								<CompApplyT3 />
 							</GuideBox>
-							<GuideBox show={visible} width="100%" fill="3" marginTop={2}>
+							<GuideBox width="100%" marginTop={2}>
 								<CompTableMaterialStress />
 							</GuideBox>
 						</GuideBox>
 					</Panel>
-					<Panel variant="shadow2" height={505}>
-						<GuideBox show={visible} fill="2" spacing={2}>
+					<Panel variant="shadow2" height={522}>
+						<GuideBox show={visible} fill="2" spacing={2} padding={1}>
 							<GuideBox show={visible} width="100%" height={30} fill="3" center>
 								<Typography variant="h1">Temperature Gradient</Typography>
 							</GuideBox>
@@ -80,8 +80,8 @@ const App = () => {
 							</GuideBox>
 						</GuideBox>
 					</Panel>
-					<Panel variant="shadow2" height={505}>
-						<GuideBox show={visible} fill="2" spacing={2}>
+					<Panel variant="shadow2" height={522}>
+						<GuideBox show={visible} fill="2" spacing={2} padding={1}>
 							<GuideBox show={visible} width="100%" height={30} fill="3" center>
 								<Typography variant="h1">Self Equilibrating Stresses</Typography>
 							</GuideBox>
@@ -93,7 +93,7 @@ const App = () => {
 				</GuideBox>
 
 				{/** Bottom Buttons */}
-				<GuideBox show={visible} width='inherit' row fill="2" center>
+				<GuideBox show={visible} width='100%' row fill="2" center>
 					<GuideBox
 						show={visible}
 						width="30%"

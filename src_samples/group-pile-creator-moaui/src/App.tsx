@@ -12,6 +12,7 @@ import {
 import CompLengthUnit from "./Components/LengthUnit";
 import CompGroupPileAndCapOptions from "./Components/GroupPileAndCapOptions";
 import CompTypographyAndTextField from "./Components/TypographyAndTextField";
+import TypographyAndTextFieldStartNodeOnly from "./Components/TypographyAndTextFieldStartNodeOnly";
 import {
   VarBngrID,
   VarCapHeight,
@@ -120,42 +121,46 @@ const App = (props: any) => {
 
   return (
 		<GuideBox width="100%" center>
-			<GuideBox padding={1} spacing={1}>
-				<GuideBox width={780} row horSpaceBetween>
-					<GuideBox padding={1} spacing={1.5}>
-						<GuideBox width={400} height={30} center>
-							<Typography variant="h1">Group Pile Option</Typography>
+			<GuideBox padding={2} spacing={2}>
+				<GuideBox row horSpaceBetween spacing={2}>
+					<Panel variant="shadow2" padding={0} height={450}>
+						<GuideBox padding={2} spacing={1.5}>
+							<GuideBox width={400} height={30} center>
+								<Typography variant="h1">Group Pile Option</Typography>
+							</GuideBox>
+							<GuideBox width={400} spacing={2.35}>
+								<CompTypographyAndDropList title="Structure Group" list={grup_ID_list}  state={grup_ID} setState={setGrup_ID} />
+								<CompTypographyAndDropList title="Boundary Group" list={bngr_ID_list}  state={bngr_ID} setState={setBngr_ID} />
+								<CompTypographyAndDropList title="Pile Material" list={pile_matl_ID_list}  state={pile_matl_ID} setState={setPile_matl_ID} />
+								<CompTypographyAndDropList title="Pile Section" list={pile_sect_ID_list}  state={pile_sect_ID} setState={setPile_sect_ID} />
+								<CompTypographyAndDropList title="Pile Cap Material" list={cap_matl_ID_list}  state={cap_matl_ID} setState={setCap_matl_ID} disabled={!cap_modeling} />
+								<CompTypographyAndDropList title="Pile Cap Section" list={cap_sect_ID_list}  state={cap_sect_ID} setState={setCap_sect_ID} disabled={!cap_modeling} />
+								<TypographyAndTextFieldStartNodeOnly title="Pile Start Node No." state={pile_start_nb} setState={setPile_start_nb} errorOptionIndex={1} error={validations.pile_start_nb(pile_start_nb)} />
+								<TypographyAndTextFieldStartNodeOnly title="Pile Cap Start Node No." state={cap_start_nb} setState={setCap_start_nb} errorOptionIndex={1} error={validations.cap_start_nb(cap_start_nb)} disabled={!cap_modeling} />
+							</GuideBox>
 						</GuideBox>
-						<GuideBox width={400} spacing={2.35}>
-							<CompTypographyAndDropList title="Structure Group" list={grup_ID_list}  state={grup_ID} setState={setGrup_ID} />
-							<CompTypographyAndDropList title="Boundary Group" list={bngr_ID_list}  state={bngr_ID} setState={setBngr_ID} />
-							<CompTypographyAndDropList title="Pile Material" list={pile_matl_ID_list}  state={pile_matl_ID} setState={setPile_matl_ID} />
-							<CompTypographyAndDropList title="Pile Section" list={pile_sect_ID_list}  state={pile_sect_ID} setState={setPile_sect_ID} />
-							<CompTypographyAndDropList title="Pile Cap Material" list={cap_matl_ID_list}  state={cap_matl_ID} setState={setCap_matl_ID} disabled={!cap_modeling} />
-							<CompTypographyAndDropList title="Pile Cap Section" list={cap_sect_ID_list}  state={cap_sect_ID} setState={setCap_sect_ID} disabled={!cap_modeling} />
-							<CompTypographyAndTextField title="Pile Start Node No." state={pile_start_nb} setState={setPile_start_nb} errorOptionIndex={1} error={validations.pile_start_nb(pile_start_nb)} />
-							<CompTypographyAndTextField title="Pile Cap Start Node No." state={cap_start_nb} setState={setCap_start_nb} errorOptionIndex={1} error={validations.cap_start_nb(cap_start_nb)} disabled={!cap_modeling} />
-						</GuideBox>
-					</GuideBox>
+					</Panel>
 
-					<GuideBox spacing={2.8} padding={1}>
-						<Panel variant="shadow2">
-							<CompGroupPileAndCapOptions />
-						</Panel>
-						<GuideBox width={320} horSpaceBetween spacing={1}>
-							<CompLengthUnit />
-							<CompTypographyAndTextField title="Pile Diameter" state={pile_dia} setState={setPile_dia} errorOptionIndex={2} error={validations.pile_dia(pile_dia)} />
-							<CompTypographyAndTextField title="Pile Length" state={pile_length} setState={setPile_length} errorOptionIndex={2} error={validations.pile_length(pile_length)} />
-							<CompTypographyAndTextField title="Pile Cap Height" state={cap_height} setState={setCap_height} errorOptionIndex={2} error={validations.cap_height(cap_height)} disabled={!cap_modeling} />
+					<Panel variant="shadow2" padding={0} height={450}>
+						<GuideBox spacing={2.8} padding={2}>
+							<Panel variant="box" border='1px solid #ddd'>
+								<CompGroupPileAndCapOptions />
+							</Panel>
+							<GuideBox width={320} horSpaceBetween spacing={1}>
+								<CompLengthUnit />
+								<CompTypographyAndTextField title="Pile Diameter" state={pile_dia} setState={setPile_dia} errorOptionIndex={2} error={validations.pile_dia(pile_dia)} />
+								<CompTypographyAndTextField title="Pile Length" state={pile_length} setState={setPile_length} errorOptionIndex={2} error={validations.pile_length(pile_length)} />
+								<CompTypographyAndTextField title="Pile Cap Height" state={cap_height} setState={setCap_height} errorOptionIndex={2} error={validations.cap_height(cap_height)} disabled={!cap_modeling} />
+							</GuideBox>
 						</GuideBox>
-					</GuideBox>
+					</Panel>
 				</GuideBox>
 
-				<GuideBox width={780} row horSpaceBetween>
-					<GuideBox width={304} height={30} padding={1} verCenter>
+				<GuideBox width="100%" row horSpaceBetween>
+					<GuideBox width={304} height={30} verCenter>
 						<CompRefresh />
 					</GuideBox>
-					<GuideBox width={324} height={30} padding={1} row horSpaceBetween verCenter>
+					<GuideBox width={324} height={30} row horSpaceBetween verCenter>
 						<Check 
 							name="Create Pile Cap"
 							namePlacement="start"
