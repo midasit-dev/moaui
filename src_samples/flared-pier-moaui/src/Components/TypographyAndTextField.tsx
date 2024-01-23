@@ -18,8 +18,8 @@ const CompTypographyAndTextField = (props: any) => {
 
 	return (
 		<GuideBox width="100%" row horSpaceBetween>
-			<GuideBox width="inherit" row horSpaceBetween verCenter height={30}>
-				<Typography center height={30}>{title}</Typography>
+			<GuideBox width="inherit" row horSpaceBetween={title !== undefined} horCenter={title === undefined} verCenter height={30}>
+				{title && <Typography center height={30}>{title}</Typography>}
 				<TextField
 					error={error}
 					width={textFieldWidth}

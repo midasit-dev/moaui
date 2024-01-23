@@ -81,7 +81,7 @@ const CompRefresh = () => {
 			}
 		}
 
-		enqueueSnackbar("The Pier Options is updated.", { variant: "success" });
+		enqueueSnackbar("The Pier Options is updated.", { variant: "success", autoHideDuration: 1500 });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

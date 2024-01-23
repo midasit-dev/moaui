@@ -44,20 +44,6 @@ import devTools from "./DevTools"
 //	pyTerminal.remove();
 //});
 
-
-// TODO 임시로 커스텀 훅 테스트 (나중에 별도로 분리 필요)
-export const useBackgroundColor = () => {
-	const [bgColor, setBgColor] = React.useState('#eee');
-	React.useEffect(() => {
-		fetch(`${process.env.PUBLIC_URL}/manifest.json`)
-			.then(response => response.json())
-			.then(data => data.name ? setBgColor(data.background_color) : null)
-			.catch(error => console.error('Error fetching manifest.json:', error));
-	}, []);
-
-	return { bgColor, setBgColor };
-}
-
 const ValidWrapper = (props: any) => {
 	const { isIntalledPyscript } = props;
 
@@ -131,7 +117,13 @@ const ValidWrapper = (props: any) => {
 		);
 	}
 
-	const { bgColor } = useBackgroundColor();
+	const [bgColor, setBgColor] = React.useState('#eee');
+	React.useEffect(() => {
+    fetch(`${process.env.PUBLIC_URL}/manifest.json`)
+      .then(response => response.json())
+      .then(data => data.name ? setBgColor(data.background_color) : null)
+      .catch(error => console.error('Error fetching manifest.json:', error));
+  }, []);
 
   return (
     <>
@@ -158,7 +150,7 @@ const ValidWrapper = (props: any) => {
 
 						{/** Development Mode */}
 						{devTools.IsDevEnv() && 
-							<devTools.Kit>
+							<devTools.Kit bgColorState={[bgColor, setBgColor]}>
 								<GuideBox tag="AppBackground" show center fill={bgColor} borderRadius='0 0 4px 4px' spacing={3}>
 									<App />
 								</GuideBox>

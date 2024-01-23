@@ -11,11 +11,18 @@ app.use(cors());
 const constantPath = path.join(__dirname, 'constant.json');
 const constantJson = fs.readFileSync(constantPath, 'utf-8');
 const constant = JSON.parse(constantJson);
-const port = constant.port;
-const baseUrl = constant.baseUrl;
+const defaultPort = constant.port;
+const defaultHost = constant.host;
+let anotherPort = '';
+const currentPort = () => {
+	return anotherPort || defaultPort;
+}
+const currentBaseUrl = () => {
+	return `http://${defaultHost}:${currentPort()}`;
+}
 
 app.put('/public/manifest-json', (req, res) => {
-	logServerON(port);
+	logServerON(currentPort(), currentBaseUrl());
   console.log(`\n\x1b[36mPUT /public/manifest-json ...\x1b[0m\n`);
 
   const { 
@@ -52,7 +59,7 @@ app.put('/public/manifest-json', (req, res) => {
     console.error('Error updating manifest.json:', error);
     return res.status(500).send('An error occurred');
   } finally {
-		logServerON(port);
+		logServerON(currentPort(), currentBaseUrl());
 		console.log(`\x1b[36mPUT /public/manifest-json Completed!\x1b[0m`);
 		console.log(`modified at \x1b[37m\x1b[1m${manifestPath}\x1b[0m`);
 		console.log('modified data:', req.body, '\n');
@@ -60,7 +67,7 @@ app.put('/public/manifest-json', (req, res) => {
 });
 
 app.get('/build', (req, res) => {
-	logServerON(port);
+	logServerON(currentPort(), currentBaseUrl());
   console.log(`\n\x1b[36mStart Plug-in Item Package Build ...\x1b[0m\n`);
 
   try {
@@ -73,14 +80,14 @@ app.get('/build', (req, res) => {
     res.status(500).send('An error occurred during npm run build');
   }
 
-	logServerON(port);
+	logServerON(currentPort(), currentBaseUrl());
   console.log(`\x1b[36mPlug-in Item Package Build Completed!\x1b[0m`);
 	const buildPath = path.join(__dirname, '../../build/index.html');
 	console.log(`production build, \x1b[37m\x1b[1m${buildPath}\x1b[0m`);
 });
 
 app.get('/upgrade/moaui', (req, res) => {
-	logServerON(port);
+	logServerON(currentPort(), currentBaseUrl());
 	console.log(`\n\x1b[36mStart @midasit-dev/moaui upgrade ...\x1b[0m\n`);
 
 	try {
@@ -90,7 +97,7 @@ app.get('/upgrade/moaui', (req, res) => {
 		// console.log(upgradeStdout.toString());
 		res.send(JSON.stringify({ message: upgradeStdout.toString() }));
 
-		logServerON(port);
+		logServerON(currentPort(), currentBaseUrl());
 		console.log(`\x1b[36m@midasit-dev/moaui upgrade Completed!\x1b[0m`);
 		console.log(`installed! \x1b[37m\x1b[1m${listStdout.toString()}\x1b[0m`);
 	} catch (error) {
@@ -115,34 +122,79 @@ const changeServerStatus = (status) => {
 	fs.writeFileSync(utilsPath, newUtilsText, 'utf-8');
 }
 
-const server = app.listen(port, () => {
-	logServerON();
-	changeServerStatus('listening');
-});
+//port 변경
+const changeConstant = (port) => {
+	anotherPort = port;
+	const constantPath = path.join(__dirname, 'constant.json');
+	const constantJson = fs.readFileSync(constantPath, 'utf-8');
+	const constant = JSON.parse(constantJson);
+	constant.port = currentPort();
+	constant.baseUrl = currentBaseUrl();
+	fs.writeFileSync(constantPath, JSON.stringify(constant, null, 2), 'utf-8');
+}
 
-// 서버 종료 이벤트 리스너
-server.on('close', () => {
-	logServerOFF();
-	changeServerStatus('');
-});
+//default Port로 원복
+const resetConstant = () => {
+	anotherPort = '';
+	const constantPath = path.join(__dirname, 'constant.json');
+	const constantJson = fs.readFileSync(constantPath, 'utf-8');
+	const constant = JSON.parse(constantJson);
+	constant.port = currentPort();
+	constant.baseUrl = currentBaseUrl();
+	fs.writeFileSync(constantPath, JSON.stringify(constant, null, 2), 'utf-8');
+}
 
-// 어떤 이유로든 서버를 강제로 종료
-// 예시: Ctrl+C를 눌러 프로세스를 종료하는 경우
-process.on('SIGINT', () => {
-	console.log(`\n\x1b[36mServer Closing ...\x1b[0m`)
-  server.close(() => {
+function findAvailablePortAndStartServer(port) {
+  const server = app.listen(port, () => {
+    logServerON(currentPort(), currentBaseUrl());
+    changeServerStatus('listening');
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log(`Port ${port} is already in use, trying the next one...`);
+			anotherPort = port + 1;
+			changeConstant(anotherPort);
+
+      findAvailablePortAndStartServer(anotherPort);
+    } else {
+      console.error('Error starting server:', err.message);
+    }
+  });
+
+  server.on('listening', () => {
+    logServerON(currentPort(), currentBaseUrl());
+    console.log(`\x1b[36mServer is running on port ${port}\x1b[0m`);
+  });
+
+	// 서버 종료 이벤트 리스너
+	server.on('close', () => {
 		logServerOFF();
 		changeServerStatus('');
-    process.exit(0);
-  });
-});
+		resetConstant();
+	});
 
-const logServerON = () => {
+	// 어떤 이유로든 서버를 강제로 종료
+	// 예시: Ctrl+C를 눌러 프로세스를 종료하는 경우
+	process.on('SIGINT', () => {
+		console.log(`\n\x1b[36mServer Closing ...\x1b[0m`)
+		server.close(() => {
+			logServerOFF();
+			changeServerStatus('');
+			resetConstant();
+			process.exit(0);
+		});
+	});
+}
+
+findAvailablePortAndStartServer(currentPort());
+
+const logServerON = (_port, _baseUrl) => {
 	console.clear();
 	console.log(`\n\x1b[32m┌─┐┌─┐┬─┐┬  ┬┌─┐┬─┐  ╔═╗╔╗╔\n└─┐├┤ ├┬┘└┐┌┘├┤ ├┬┘  ║ ║║║║\n└─┘└─┘┴└─ └┘ └─┘┴└─  ╚═╝╝╚╝\x1b[0m\n`);
   console.log(`Welcome, moaui-cra dev mode!\n`);
-	console.log(`  Port:\t\t\x1b[1m${port}\x1b[0m`);
-	console.log(`  Base URL:\t\x1b[1m${baseUrl}\x1b[0m\n`);	
+	console.log(`  Port:\t\t\x1b[1m${_port}\x1b[0m`);
+	console.log(`  Base URL:\t\x1b[1m${_baseUrl}\x1b[0m\n`);	
 }
 
 const logServerOFF = () => {

@@ -31,7 +31,7 @@ const CompSeismicData_NZS1170_5_2004 = (props: any) => {
 
 	return (
 		<GuideBox overflow='visible'>
-			<Panel variant="strock" width="100%" padding={2}>
+			<Panel variant="strock" width="100%" padding={2} border="1px solid #ddd">
 				<GuideBox show fill='1' row borderRadius={1} center marginBottom={1}>
 					<Typography variant="h1">Seismic Data</Typography>
 					<CompInfoDialog />

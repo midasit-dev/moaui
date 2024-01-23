@@ -19,6 +19,7 @@ import {
 	VarValids,
 } from "./Components/variables";
 import CompTypographyAndTextField from "./Components/TypographyAndTextField";
+import CompTypographyAndTextFieldNumOnly from "./Components/TypographyAndTextFieldNumOnly";
 import CompDesignSpectrum from "./Components/DesignSpectrum";
 import CompSeismicDataNZS117052004 from "./Components/SeismicData_NZS1170_5_2004";
 import CompHelpDialog from "./Components/HelpDialog";
@@ -45,7 +46,15 @@ const App = () => {
 							<CompDesignSpectrum />
 							{design_spectrum === 1 && <CompSeismicDataNZS117052004 />}
 							{/** 기준이 추가되면 아래로 추가 */}
-							<CompTypographyAndTextField title="Maximum Period (sec)" state={maximum_period} setState={setMaximum_period} blueTitle error={!valids.VarMaximumPeriod(maximum_period)} />
+							<CompTypographyAndTextFieldNumOnly 
+								title="Maximum Period (sec)" 
+								state={maximum_period} 
+								setState={setMaximum_period} 
+								blueTitle error={!valids.VarMaximumPeriod(maximum_period)}
+								textFieldProps={{
+									width: 200, height: 30,
+								}}
+							/>
 						</GuideBox>
 					</Panel>
 

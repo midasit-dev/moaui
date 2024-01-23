@@ -19,6 +19,10 @@ py-button:not(:defined) {
 py-box:not(:defined) {
   display: none;
 }
+html, body {
+	margin: 0;
+	padding: 0;
+}
 html {
   font-family:
     ui-sans-serif,

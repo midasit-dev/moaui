@@ -9,14 +9,16 @@
 	<link rel="icon" href="./favicon.ico">
 	<link rel="stylesheet" href="./index.css" />
 
-	<!-- [PYSCRIPT LATEST	]-->
+	<!-- PYSCRIPT Configuration -->
 	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
 	<py-config type="json" src="./pyscript_config.json"></py-config>
 
-	<!-- [PYSCRIPT RELEASE] -->
-	<!-- <script type="module" src="https://pyscript.net/releases/2023.12.1/core.js"></script> -->
-
-	<title>Flared Pier Creator</title>
+	<script>
+    fetch('./manifest.json').then(response => response.json()).then(data => {
+        document.title = data.name;
+				document.bgColor = data.background_color;
+      }).catch(error => console.error('Error fetching manifest.json:', error));
+  </script>
 </head>
 
 <body>
@@ -27,34 +29,7 @@
 	<div id="midas-controller"></div>
 
 	<div id="root"></div>
-	<!-- [PYSCRIPT LATEST	]-->
 	<py-script src="./pyscript_main.py"></py-script>
-	<!-- FOR PYSCRIPT CONFIGURATIONS
-		* using pyodide version: 0.23.1
-		* inner CPython version: 3.11.2
-		* if check the packages, (if the package is included below links, you can use it)
-		* 	you can search in https://pyodide.org/en/0.23.1/usage/packages-in-pyodide.html
-		*		you can search in https://docs.python.org/3.11/library/index.html
-
-		Available Packages: [
-			"arrr",
-			"numpy",
-			"openpyxl",
-			"dash",
-			"matplotlib", (if you want to use "mpl_toolkits", this package is required.)
-			"numpy",
-			"scipy",
-			"shapely"
-		]
-
-		Unavailable Packages of internal modules: [
-			"requests",
-			"winreg",
-		]
-	-->
-
-	<!-- [PYSCRIPT RELEASE] -->
-	<!-- <script type="py" src="./pyscript_main.py" config="./pyscript_config.json"></script> -->
 </body>
 
 </html>
