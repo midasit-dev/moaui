@@ -187,6 +187,7 @@ const CheckCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.CheckDisabled}>Disabled</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CheckNotRequired}>NotRequired</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CheckRequired}>Required</CustomDraggableComponent>
 			</div>
@@ -536,6 +537,7 @@ const PanelCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.PanelBorder}>Border</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelBox}>Box</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelPadding0}>Padding0</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.PanelShadow}>Shadow</CustomDraggableComponent>
@@ -1011,6 +1013,9 @@ export const ChartLineAxisTopRight =
 export const ChartLineDecimals = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ChartLineDecimals}>ChartLineDecimals</CustomDraggableComponent>;
 
+export const CheckDisabled = 
+	() => <CustomDraggableComponent itemType={ItemTypes.CheckDisabled}>CheckDisabled</CustomDraggableComponent>;
+
 export const CheckNotRequired = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CheckNotRequired}>CheckNotRequired</CustomDraggableComponent>;
 
@@ -1157,6 +1162,9 @@ export const ListItemButtonDefault =
 
 export const MidasControllerTitle = 
 	() => <CustomDraggableComponent itemType={ItemTypes.MidasControllerTitle}>MidasControllerTitle</CustomDraggableComponent>;
+
+export const PanelBorder = 
+	() => <CustomDraggableComponent itemType={ItemTypes.PanelBorder}>PanelBorder</CustomDraggableComponent>;
 
 export const PanelBox = 
 	() => <CustomDraggableComponent itemType={ItemTypes.PanelBox}>PanelBox</CustomDraggableComponent>;

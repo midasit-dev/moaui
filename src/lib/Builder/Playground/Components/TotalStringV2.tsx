@@ -306,6 +306,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.ChartLineAxisPointSize ? `${extractComponentName(All.ChartLineAxisPointSize)}` : ""}
 					${item.type === ItemTypes.ChartLineAxisTopRight ? `${extractComponentName(All.ChartLineAxisTopRight)}` : ""}
 					${item.type === ItemTypes.ChartLineDecimals ? `${extractComponentName(All.ChartLineDecimals)}` : ""}
+					${item.type === ItemTypes.CheckDisabled ? `${extractComponentName(All.CheckDisabled)}` : ""}
 					${item.type === ItemTypes.CheckNotRequired ? `${extractComponentName(All.CheckNotRequired)}` : ""}
 					${item.type === ItemTypes.CheckRequired ? `${extractComponentName(All.CheckRequired)}` : ""}
 					${item.type === ItemTypes.CheckGroupStateful ? `${extractComponentName(All.CheckGroupStateful)}` : ""}
@@ -354,6 +355,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.ListItemDefault ? `${extractComponentName(All.ListItemDefault)}` : ""}
 					${item.type === ItemTypes.ListItemButtonDefault ? `${extractComponentName(All.ListItemButtonDefault)}` : ""}
 					${item.type === ItemTypes.MidasControllerTitle ? `${extractComponentName(All.MidasControllerTitle)}` : ""}
+					${item.type === ItemTypes.PanelBorder ? `${extractComponentName(All.PanelBorder)}` : ""}
 					${item.type === ItemTypes.PanelBox ? `${extractComponentName(All.PanelBox)}` : ""}
 					${item.type === ItemTypes.PanelPadding0 ? `${extractComponentName(All.PanelPadding0)}` : ""}
 					${item.type === ItemTypes.PanelShadow ? `${extractComponentName(All.PanelShadow)}` : ""}

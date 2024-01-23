@@ -20,6 +20,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.ChartLineAxisPointSize: return <All.ChartLineAxisPointSize />;
 		case ItemTypes.ChartLineAxisTopRight: return <All.ChartLineAxisTopRight />;
 		case ItemTypes.ChartLineDecimals: return <All.ChartLineDecimals />;
+		case ItemTypes.CheckDisabled: return <All.CheckDisabled />;
 		case ItemTypes.CheckNotRequired: return <All.CheckNotRequired />;
 		case ItemTypes.CheckRequired: return <All.CheckRequired />;
 		case ItemTypes.CheckGroupStateful: return <All.CheckGroupStateful />;
@@ -69,6 +70,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.ListItemDefault: return <All.ListItemDefault />;
 		case ItemTypes.ListItemButtonDefault: return <All.ListItemButtonDefault />;
 		case ItemTypes.MidasControllerTitle: return <All.MidasControllerTitle />;
+		case ItemTypes.PanelBorder: return <All.PanelBorder />;
 		case ItemTypes.PanelBox: return <All.PanelBox />;
 		case ItemTypes.PanelPadding0: return <All.PanelPadding0 />;
 		case ItemTypes.PanelShadow: return <All.PanelShadow />;

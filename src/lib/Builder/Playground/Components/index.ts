@@ -13,6 +13,7 @@ export { default as ChartLineAxisLegend } from '../../../Components/ChartLine/Co
 export { default as ChartLineAxisPointSize } from '../../../Components/ChartLine/Code/AxisPointSize.code';
 export { default as ChartLineAxisTopRight } from '../../../Components/ChartLine/Code/AxisTopRight.code';
 export { default as ChartLineDecimals } from '../../../Components/ChartLine/Code/Decimals.code';
+export { default as CheckDisabled } from '../../../Components/Check/Code/Disabled.code';
 export { default as CheckNotRequired } from '../../../Components/Check/Code/NotRequired.code';
 export { default as CheckRequired } from '../../../Components/Check/Code/Required.code';
 export { default as CheckGroupStateful } from '../../../Components/CheckGroup/Code/Stateful.code';
@@ -62,6 +63,7 @@ export { default as ListUnControlled } from '../../../Components/List/Code/UnCon
 export { default as ListItemDefault } from '../../../Components/ListItem/Code/Default.code';
 export { default as ListItemButtonDefault } from '../../../Components/ListItemButton/Code/Default.code';
 export { default as MidasControllerTitle } from '../../../Components/MidasController/Code/Title.code';
+export { default as PanelBorder } from '../../../Components/Panel/Code/Border.code';
 export { default as PanelBox } from '../../../Components/Panel/Code/Box.code';
 export { default as PanelPadding0 } from '../../../Components/Panel/Code/Padding0.code';
 export { default as PanelShadow } from '../../../Components/Panel/Code/Shadow.code';

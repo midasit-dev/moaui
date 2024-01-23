@@ -35,6 +35,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/ChartLine/Code/AxisPointSize.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/ChartLine/Code/AxisTopRight.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/ChartLine/Code/Decimals.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Check/Code/Disabled.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Check/Code/NotRequired.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Check/Code/Required.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CheckGroup/Code/Stateful.code.tsx?raw"));
@@ -84,6 +85,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/ListItem/Code/Default.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/ListItemButton/Code/Default.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/MidasController/Code/Title.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Panel/Code/Border.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Box.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Padding0.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Panel/Code/Shadow.code.tsx?raw"));

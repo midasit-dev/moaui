@@ -64,6 +64,10 @@ export type StyledProps = {
 	 * Set the borderRadius of panel
 	 */
 	borderRadius?: number | string;
+	/**
+	 * Set the border of panel
+	 */
+	border?: string;
 } & MarginTypes & PaddingTypes & BoxProps;
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -75,6 +79,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		flexItem,
 		backgroundColor,
 		borderRadius,
+		border,
 		...rest
 	} = props;
 
@@ -94,8 +99,9 @@ const StyledComponent = styled((props: StyledProps) => {
 				...MarginProps(props),
 				...(hasPaddingProps(props) ? PaddingProps(props) : { padding: '0.625rem'}),
 
-				...(backgroundColor ? { backgroundColor: backgroundColor } : {}),
+				...(backgroundColor !== undefined ? { backgroundColor: backgroundColor } : {}),
 				...(borderRadius !== undefined ? { borderRadius: borderRadius } : { borderRadius: '0.25rem' }),
+				...(border !== undefined ? { border: border } : {}),
 			}}
 			justifyContent='center'
 		>

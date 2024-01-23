@@ -12,6 +12,7 @@ import {
 	TypographyTextFieldCode,
 	TypographyDropListCode,
 	Padding0Code,
+	BorderCode,
 } from "../Code";
 
 const meta = {
@@ -34,6 +35,7 @@ export const Strock = LiveEditStory(cleanMask(StrockCode));
 export const TypographyTextField = LiveEditStory(cleanMask(TypographyTextFieldCode));
 export const TypographyDropList = LiveEditStory(cleanMask(TypographyDropListCode));
 export const Padding0 = LiveEditStory(cleanMask(Padding0Code));
+export const Border = LiveEditStory(cleanMask(BorderCode));
 
 export const Sample: Story = {
 	args: {

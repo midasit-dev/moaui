@@ -77,6 +77,7 @@ export { default as ComponentsListUnControlled } from "./Components/List/Code/Un
 export { default as ComponentsListItemDefault } from "./Components/ListItem/Code/Default.code";
 export { default as ComponentsListItemButtonDefault } from "./Components/ListItemButton/Code/Default.code";
 export { default as ComponentsMidasControllerTitle } from "./Components/MidasController/Code/Title.code";
+export { default as ComponentsPanelBorder } from "./Components/Panel/Code/Border.code";
 export { default as ComponentsPanelBox } from "./Components/Panel/Code/Box.code";
 export { default as ComponentsPanelPadding0 } from "./Components/Panel/Code/Padding0.code";
 export { default as ComponentsPanelShadow } from "./Components/Panel/Code/Shadow.code";
