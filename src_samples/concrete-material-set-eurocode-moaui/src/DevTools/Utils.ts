@@ -1,5 +1,4 @@
-const devServerStatus: string = '';
-export const isDevServerListening = () => devServerStatus === 'listening';
+import { isDevServerListening } from "./ServerListening";
 
 export const IsDevEnv = () => {
 	const b1 = process.env.NODE_ENV === 'development';

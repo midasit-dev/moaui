@@ -175,7 +175,7 @@ export function chartBasic(charts_data: any, color: any, yscaleMax: number, xsca
                 data={charts_data}
                 colors={color}
                 theme={{ axis: { legend: { text: { fontSize: "11px", fontWeight: "bold" } } } }}
-                margin={{ top: 30, right: 20, bottom: 50, left: 60 }}
+                margin={{ top: 30, right: 20, bottom: 60, left: 60 }}
                 xScale={{
                     type: 'linear',
                     min: 0,

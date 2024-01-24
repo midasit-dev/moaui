@@ -219,7 +219,7 @@ const TimeDependentBasic = () => {
                     <GuideBox width="100%" column spacing={1}>
                         <GuideBox width="100%" row horSpaceBetween verCenter>
                             <Typography>
-                                Mean concrete strenght, fcm
+                                Mean concrete strength, fcm
                             </Typography>
                             <GuideBox row verCenter spacing={1}>
                                 <TextField
