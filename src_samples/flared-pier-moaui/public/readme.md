@@ -1,3 +1,5 @@
+![](https://hubs.ly/Q02hx6f30)
+
 # Flared Pier Creator
 - This Plug-in creates a **Flared Pier**. The user can utilize their pre-made section and material in MIDAS CIVIL NX.
 ## Details

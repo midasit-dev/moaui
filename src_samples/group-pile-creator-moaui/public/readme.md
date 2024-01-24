@@ -1,3 +1,5 @@
+![](https://hubs.ly/Q02hx6fs0)
+
 # Group Pile Generator
 - Create a group pile with a pile cap using the plug-in.
 ## Details

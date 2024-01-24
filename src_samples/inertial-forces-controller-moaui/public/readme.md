@@ -1,3 +1,5 @@
+![](https://hubs.ly/Q02hxwLC0)
+
 # Inertial Forces Controller
 - This  plugin automatically converts the direction of inertial forces acting on the piers of a curved bridge.
 

@@ -1,3 +1,5 @@
+![](https://hubs.ly/Q02hxwP10)
+
 # Alignment Generator
 - Generate complex alignment including arc or clothoid/cubic parabola using Alignment Creator Plug-in.
 ## Details

@@ -1,3 +1,5 @@
+![](https://hubs.ly/Q02hx6j00)
+
 # Temperature Gradient Self-Equilibrating Stresses Calculator - AASHTO LRFD
 - This Plug-in calculates **Self-Equilibrating Stresses** considering the temperature gradient of PSC, Concrete and Steel Composite Sections based on AASHTO-LRFD.
 ## Details

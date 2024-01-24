@@ -3,7 +3,7 @@ REM 디렉토리명에 -moaui가 포함된 디렉토리들만 대상으로 npm �
 
 for /D %%i in (*-moaui) do (
 	echo Processing directory: %%i
-	start "" code %%i\public\readme.md
+	code %%i\public\readme.md
 )
 
 echo All done.

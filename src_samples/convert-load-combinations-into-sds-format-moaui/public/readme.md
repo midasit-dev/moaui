@@ -1,3 +1,5 @@
+![](https://hubs.ly/Q02hxw9x0)
+
 # Convert Load Combinations into SDS Format
 This plug-in transforms the load combinations into combinations only for **the basic load cases**, making them **applicable in SDS**.
 
