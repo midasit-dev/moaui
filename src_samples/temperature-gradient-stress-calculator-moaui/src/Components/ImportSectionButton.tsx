@@ -110,7 +110,7 @@ const CompImportSectionButton = () => {
 				if (calcValue.hasOwnProperty('error')) {
 					enqueueSnackbar(calcValue['error'], { variant: 'error' });
 				} else {
-					enqueueSnackbar('Calculate stress is successfully', { variant: 'success' });
+					enqueueSnackbar('Calculate stress is successfully', { variant: 'success', autoHideDuration: 1500 });
 				}
 			} catch (err) {
 				console.error(err);
@@ -144,7 +144,7 @@ const CompImportSectionButton = () => {
 							onClick={() => {
 								setLoadingRefresh(true);
 								setTimeout(() => dbUpdate(setLoadingRefresh), 500);
-								enqueueSnackbar('Section data is updated', { variant: 'success' });
+								enqueueSnackbar('Section data is updated', { variant: 'success', autoHideDuration: 1500 });
 							}}
 							loading={loadingRefresh}
 						>
@@ -178,7 +178,7 @@ const CompImportSectionButton = () => {
 											if (calcValue.hasOwnProperty('error')) {
 												enqueueSnackbar(calcValue['error'], { variant: 'error' });
 											} else {
-												enqueueSnackbar('Calculate stress is successfully', { variant: 'success' });
+												enqueueSnackbar('Calculate stress is successfully', { variant: 'success', autoHideDuration: 1500 });
 											}
 										} catch (err) {
 											console.error(err);

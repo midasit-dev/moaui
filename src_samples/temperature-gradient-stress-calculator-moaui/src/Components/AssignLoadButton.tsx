@@ -261,7 +261,7 @@ const DialogPage = ({
 						<GuideBox width={150} row spacing={1}>
 							<Button onClick={() => {
 								dbUpdate();
-								enqueueSnackbar('Static Load data is updated', { variant: 'success' });
+								enqueueSnackbar('Static Load data is updated', { variant: 'success', autoHideDuration: 1500 });
 							}}>
 								Refresh
 							</Button>
@@ -334,7 +334,7 @@ const DialogPage = ({
 										}
 	
 										if (res.hasOwnProperty('success')) {
-											enqueueSnackbar(res['success'], { variant: 'success' });
+											enqueueSnackbar(res['success'], { variant: 'success', autoHideDuration: 1500 });
 										}
 									} catch (err) {
 										console.error(err);

@@ -103,7 +103,7 @@ const CreateButton = () => {
                 enqueueSnackbar(parsed_results.error, { variant: 'error' });
                 return;
             } else if (parsed_results.hasOwnProperty("success")) {
-				enqueueSnackbar(parsed_results["success"], { variant: "success" });
+				enqueueSnackbar(parsed_results["success"], { variant: "success", autoHideDuration: 1500 });
 				return;
 			}
         })

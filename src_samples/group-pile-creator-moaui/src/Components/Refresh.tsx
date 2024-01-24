@@ -68,7 +68,7 @@ const CompRefresh = () => {
 			}
 		}
 
-		enqueueSnackbar("The Group Pile Options is updated.", { variant: "success" });
+		enqueueSnackbar("The Group Pile Options is updated.", { variant: "success", autoHideDuration: 1500 });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

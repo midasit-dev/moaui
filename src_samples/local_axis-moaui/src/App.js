@@ -19,7 +19,7 @@ import { VerifyDialog, VerifyUtil, MidasController } from '@midasit-dev/moaui';
 const enqueueMessage = (func, message, variant = "error") => {
 	func(message, {
 		variant: variant,
-		autoHideDuration: 3000,
+		autoHideDuration: variant === 'success' ? 1500 : 3000,
 		anchorOrigin: { vertical: "bottom", horizontal: "center" },
 	});
 };

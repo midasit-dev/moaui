@@ -111,7 +111,7 @@ const App = () => {
 			} 
 			
 			if (paringResults.hasOwnProperty("success")) {
-				enqueueSnackbar(paringResults["success"], { variant: "success" });
+				enqueueSnackbar(paringResults["success"], { variant: "success", autoHideDuration: 1500 });
 				return;
 			}
 

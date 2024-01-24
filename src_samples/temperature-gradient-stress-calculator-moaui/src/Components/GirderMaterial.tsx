@@ -45,7 +45,7 @@ const CompGirderMaterial = () => {
 			setValue(items[0][1]);
 		}
 
-		enqueueSnackbar('Material data is updated.', { variant: 'success' });
+		enqueueSnackbar('Material data is updated.', { variant: 'success', autoHideDuration: 1500 });
 	}, [enqueueSnackbar, setList, setValue]);
 
 	//데이터를 채워줍니다.

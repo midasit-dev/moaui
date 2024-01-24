@@ -8,7 +8,7 @@ export function useUpstream() {
 	const updateData = React.useCallback(async (selected) => {
 		try {
 			await updateDataIntoProduct(selected);
-			enqueueSnackbar("Successfully updated to product")
+			enqueueSnackbar("Successfully updated to product", { variant: "success", autoHideDuration: 1500 })
 		} catch (error) {
 			enqueueSnackbar(error, { variant: "error" });
 		}
@@ -23,7 +23,7 @@ export function useUpstream() {
 			const handleSuccess = () => {};
 
 			const successCount = await makeDataIntoProduct(selected, handleSuccess, handleFail);
-			enqueueSnackbar(`${successCount}/${Object.keys(selected).length} items Successfully added to product`, { variant: "success" });
+			enqueueSnackbar(`${successCount}/${Object.keys(selected).length} items Successfully added to product`, { variant: "success", autoHideDuration: 1500 });
 		} catch (error) {
 			enqueueSnackbar(error, { variant: "error" });
 		}

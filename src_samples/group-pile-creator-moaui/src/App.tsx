@@ -254,7 +254,7 @@ const App = (props: any) => {
 												}
 			
 												if (res.hasOwnProperty('success')) {
-													enqueueSnackbar(res['success'], { variant: 'success' });
+													enqueueSnackbar(res['success'], { variant: 'success', autoHideDuration: 1500 });
 												}
 											} catch (err) {
 												console.error(err);
