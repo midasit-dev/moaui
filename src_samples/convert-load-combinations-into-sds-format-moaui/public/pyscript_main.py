@@ -298,10 +298,16 @@ def main(select_type, select_LCB):
 		# return result_df.to_json(orient='records')
 		save_dataframe_to_excel(result_df)
   
-		print(str(result_df))
+		# pd.set_option('display.max_rows', None)
+		# pd.set_option('display.max_columns', None)
+		# print("Last result: \n",str(result_df))
+		# pd.reset_option('all')
 		# return str(result_df)
+  
+  	# Convert the DataFrame to a list of dictionaries
+		result_list = result_df.to_dict(orient='records')
 		return json.dumps({
-			"value": str(result_df)
+			"value": result_list
 		})
   
 	except Exception as e:

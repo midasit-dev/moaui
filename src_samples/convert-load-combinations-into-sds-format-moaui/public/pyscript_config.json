@@ -1,7 +1,8 @@
 {
 	"packages": [
 		"numpy",
-		"pandas"
+		"pandas",
+		"matplotlib"
 	],
 	"fetch": [
 		{

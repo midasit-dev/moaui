@@ -81,7 +81,7 @@ const App = () => {
 	const [checkedU_G_Strength_Stress, setCheckedU_G_Strength_Stress] = React.useState(false);
 	const [checkedU_G_Special, setCheckedU_G_Special] = React.useState(false);
 	// datagrid
-	const _data_ = React.useRef({ value: "" });
+	const _data_ = React.useRef({ value: [""] });
 	const [updateDataFrame, setUpdateDataFrame] = React.useState(false);
 	// create Button
 	const [disalbleCreate, setDisableCreate] = React.useState(true);
@@ -172,7 +172,8 @@ const App = () => {
 			enqueueSnackbar("Success", { variant: 'success', autoHideDuration: 1000 });
 			// requestAnimationFrame 사용
 			// 레이아웃 변경이 필요한 작업을 requestAnimationFrame 콜백 내에서 수행하여 변경 사항을 브라우저의 렌더링 사이클과 동기화.
-			_data_.current.value = res.value;
+			const resData = res.value as unknown;
+			_data_.current.value = resData as string[];
 			requestAnimationFrame(() => {
 				setUpdateDataFrame(true);
 			});
@@ -191,25 +192,22 @@ const App = () => {
 	React.useEffect(() => {
 		if (updateDataFrame) {
 			requestAnimationFrame(() => {
-				const dataString = _data_.current.value;
-				let rowsArray = dataString.trim().split('\n').map((row: any) => row.split(/\s+/));
-				rowsArray[0].unshift("No");
-				const headers = rowsArray[0];
-				const parsedRows = rowsArray.slice(1).map((row:any, index:any) =>
-					headers.reduce((acc:any, header:any, columnIndex:any) => {
-						acc.id = `${index}`; // Use the row index as the unique id
-						// console.log("accHeader :", acc[header]);
-						// console.log("rowHeader :", row[columnIndex]);
-						acc[header] = row[columnIndex];
-						// console.log(acc)
-						return acc;
-					}, {} as any)
-				);
-				let parseHeaders = headers.map((header:any) => ({ field: header }));
-				parseHeaders[0].width = 50; // 첫 번째 컬럼의 너비를 50px로 지정합니다.
-				parseHeaders[0].headerName = "No";
-				parseHeaders[0].cellClassName = "cell-no"; // css에 저장된 cell-no 클래스를 적용, 컬럼 배경색을 변경합니다.
-				parseHeaders[0].sortable = false; // 첫 번째 컬럼은 정렬되지 않도록 설정합니다.
+				const data = _data_.current.value;
+				console.log("dataString :", data);
+
+				// 배열의 첫 번째 객체의 키를 사용하여 컬럼 헤더를 생성합니다.
+				 const headers = Object.keys(data[0]);
+				 headers.unshift("No"); // 'No' 컬럼 추가
+				 
+				// 데이터 배열을 처리하여 각 객체에 'id' 프로퍼티를 추가합니다.
+				const parsedRows = data.map((row: any, index: number) => ({ id: index + 1, ...row, No: index + 1 }));
+				 
+				// 컬럼 정의를 생성합니다.
+				 const parseHeaders = headers.map((header) => {
+					 const column = { field: header, headerName: header, sortable: false, width: header === 'No' ? 50 : 90};
+					 return column;
+				 });
+
 				setColumns(parseHeaders);
 				setRows(parsedRows);
 				setIsPending(false);
@@ -396,7 +394,7 @@ const App = () => {
 					</Panel>
 				</GuideBox>
 				<GuideBox show width='100%' height={"30px"} fill='none' verCenter>
-					<Button variant="contained" color="negative" width="100%" onClick={onClickCreateHandler} disabled={disalbleCreate} loading={isPending}>Create</Button>
+					<Button variant="contained" color="negative" width="100%" onClick={onClickCreateHandler} disabled={disalbleCreate || isPending} loading={isPending}>Create</Button>
 				</GuideBox>
 			</GuideBox>
 			<GuideBox show width='800px' fill='none'>
