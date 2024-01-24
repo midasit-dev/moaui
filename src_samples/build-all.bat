@@ -7,7 +7,7 @@ for /D %%i in (*-moaui) do (
 	npm install
 	npm run build
 	IF EXIST build (
-		powershell -Command "Compress-Archive -LiteralPath 'build' -DestinationPath '../0_TempZip/%%~nxi.zip' -Force"
+		powershell -Command "Compress-Archive -Path ('build\*' | Resolve-Path) -DestinationPath '../0_TempZip/%%~nxi.zip' -Force"
 	)
 	cd ..
 )
