@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Alert } from "../../../index";
+import { MidasController } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
@@ -10,13 +10,13 @@ import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: "Components/MidasController",
-  component: Alert,
+  component: MidasController,
   parameters: {
     layout: "centered",
     docs: { page: Explore },
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof Alert>;
+} satisfies Meta<typeof MidasController>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

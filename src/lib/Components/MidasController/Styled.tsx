@@ -20,6 +20,8 @@ const StyledComponent = styled((props: StyledProps) => {
 		...rest
 	} = props;
 
+	const [opacityValue, setOpacityValue] = React.useState(1);
+
 	return (
 		<div style={{ display: 'flex', width: '100%' }}>
 			<span style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', height: '2rem', zIndex: 1000 }}>
@@ -36,16 +38,35 @@ const StyledComponent = styled((props: StyledProps) => {
 						{title}
 					</span>
 				</div>
-				<div style={{ width: '3rem', userSelect: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#21272A', color: '#BDC2C8', borderRadius: '0 4px 0 0', }} onClick={() => {
-					// @ts-ignore
-					if (!window.chrome.webview) return;
-					// @ts-ignore
-					window.chrome.webview.postMessage('REQ_EXIT');
-				}}>
+				<div 
+					style={{ 
+						width: '3rem', 
+						userSelect: 'none', 
+						display: 'flex', 
+						justifyContent: 'center', 
+						alignItems: 'center', 
+						backgroundColor: '#21272A', 
+						color: '#BDC2C8', 
+						borderRadius: '0 4px 0 0',
+						transition: 'opacity 0.3s',
+						opacity: opacityValue,
+						cursor: 'pointer',
+					}} 
+					onMouseOver={() => setOpacityValue(0.8)}
+					onMouseOut={() => setOpacityValue(1)}
+					onMouseDown={() => setOpacityValue(0.6)}
+					onMouseUp={() => setOpacityValue(1)}
+					onClick={() => {
+						// @ts-ignore
+						if (!window.chrome.webview) return;
+						// @ts-ignore
+						window.chrome.webview.postMessage('REQ_EXIT');
+					}}
+				>
 					<svg width="1rem" viewBox="0 0 24 24">
 						<path fill="#BDC2C8" d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
 						</path>
-					</svg>										
+					</svg>
 				</div>									
 			</span>
 		</div>
