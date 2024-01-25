@@ -25,7 +25,7 @@ const StyledComponent = styled((props: StyledProps) => {
 	return (
 		<div style={{ display: 'flex', width: '100%' }}>
 			<span style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', height: '2rem', zIndex: 1000 }}>
-				<div style={{ display: 'flex', flexDirection: 'row', backgroundColor: '#21272A', paddingTop: '0.5rem', paddingBottom: '0.5rem', width: '100%', fontFamily: 'Pretendard', color: '#BDC2C8', borderRadius: '4px 0 0 0', }} onMouseDown={(event: any) => {
+				<div style={{ display: 'flex', flexDirection: 'row', backgroundColor: '#21272A', paddingTop: '0.5rem', paddingBottom: '0.5rem', width: '100%', fontFamily: 'Pretendard', color: '#BDC2C8', }} onMouseDown={(event: any) => {
 					// @ts-ignore
 					if (!window.chrome.webview) return;
 					// @ts-ignore
