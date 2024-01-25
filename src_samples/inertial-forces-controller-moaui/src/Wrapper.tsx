@@ -19,7 +19,7 @@ import { setGlobalVariable, getGlobalVariable } from './pyscript_utils';
 import { SnackbarProvider, closeSnackbar } from 'notistack';
 import SignatureLogger from './SignatureLogger';
 import { 
-	SignatureLogger as SignatureLoggerOfMoaui,
+	Signature as SignatureWithMoaui,
 	IconButton,
 	Icon,
 } from '@midasit-dev/moaui';
@@ -106,7 +106,7 @@ const ValidWrapper = () => {
 			{isInitialized && isValid && (
 				<RecoilRoot>
 					<SignatureLogger />
-					<SignatureLoggerOfMoaui />
+					<SignatureWithMoaui.Component />
 					<SnackbarProvider
 						maxSnack={3}
 						anchorOrigin={{
