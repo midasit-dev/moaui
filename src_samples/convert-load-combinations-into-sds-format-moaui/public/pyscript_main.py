@@ -147,33 +147,32 @@ def main(select_type, select_LCB):
 		# 최종 comb에 변경할 내용만 추출하기
 
 		final_comb = {}
+		i = len(inactive_vCOMB)
+		for n in range(i-1): 
+				for key in active_data.keys():
+						vCOMB = active_data[key]["vCOMB"]
+						for index, value in enumerate(vCOMB):
+								if value["LCNAME"] in list_cbc_set:
+										final_comb[key] = active_data[key]
 
-		for key in active_data.keys() :
-				vCOMB = active_data[key]["vCOMB"]
-				for index, value in enumerate(vCOMB):
-						if value["LCNAME"] in list_cbc_set :
-								final_comb[key] = active_data[key]
+										# active vCOMB에서 Factor값 추출
+										for index, value in enumerate(vCOMB):
+												if value["LCNAME"] in list_cbc_set:
+														factor = value["FACTOR"]
+														lcname = value["LCNAME"]
+														vCOMB_del = vCOMB.pop(index)
 
-		# active vCOMB에서 Factor값 추출
-		for key in active_data.keys() :
-				vCOMB = active_data[key]["vCOMB"]
-				for index,value in enumerate(vCOMB) :    
-						if value["LCNAME"] in list_cbc_set : 
-								factor = value["FACTOR"]
-								lcname = value["LCNAME"]
-								vCOMB_del = vCOMB.pop(index)
+														# Factor를 곱한 inactive_vCOMB 만들기
+														vCOMB_reset = copy.deepcopy(inactive_vCOMB)
+														for i in range(len(vCOMB_reset[lcname])):
+																final_factor = vCOMB_reset[lcname][i]["FACTOR"] * factor
+																vCOMB_reset[lcname][i]["FACTOR"] = final_factor
 
-		# Factor를 곱한 inactive_vCOMB 만들기
-								vCOMB_reset = copy.deepcopy(inactive_vCOMB)
-								for i in range(len(vCOMB_reset[lcname])) :
-										final_factor = vCOMB_reset[lcname][i]["FACTOR"] * factor
-										vCOMB_reset[lcname][i]["FACTOR"] = final_factor
+														# vCOMB 리스트 결합
+														sum_vCOMB = list(vCOMB) + list(vCOMB_reset[lcname])
 
-		# vCOMB 리스트 결합
-								sum_vCOMB = list(vCOMB)+list(vCOMB_reset[lcname])
-
-		# final_comb vCOMB 대체 
-								final_comb[key]["vCOMB"] = sum_vCOMB
+														# final_comb vCOMB 대체
+														final_comb[key]["vCOMB"] = sum_vCOMB
 
 		# CivilApp.db_update("LCOM-CONC",final_comb)
 
