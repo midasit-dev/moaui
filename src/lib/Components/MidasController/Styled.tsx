@@ -47,7 +47,6 @@ const StyledComponent = styled((props: StyledProps) => {
 						alignItems: 'center', 
 						backgroundColor: '#21272A', 
 						color: '#BDC2C8', 
-						borderRadius: '0 4px 0 0',
 						transition: 'opacity 0.3s',
 						opacity: opacityValue,
 						cursor: 'pointer',
