@@ -14,7 +14,7 @@ import * as Common from "./Function/Common";
 import * as Spline from "./Function/Spline";
 import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 
-import { VerifyDialog, VerifyUtil, MidasController } from '@midasit-dev/moaui';
+import { VerifyDialog, VerifyUtil } from '@midasit-dev/moaui';
 
 const enqueueMessage = (func, message, variant = "error") => {
 	func(message, {
@@ -284,7 +284,6 @@ function App() {
 		<div className="App">
 			{openFormDlg ? <VerifyDialog /> :
 				<>
-					{process.env.NODE_ENV === 'development' && <MidasController title='Local Axis' icoSrc={`${process.env.PUBLIC_URL}/favicon.ico`}/>}
 					<Main />
 				</>
 			}

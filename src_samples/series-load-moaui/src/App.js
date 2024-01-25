@@ -20,7 +20,6 @@ import * as Validation from "./Function/Validation";
 import MoaPanel from "@midasit-dev/moaui/Components/Panel";
 import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import MoaGuideBox from "@midasit-dev/moaui/Components/GuideBox";
-import MidasController from "@midasit-dev/moaui/Components/MidasController";
 // import MoaTextField from "@midasit-dev/moaui/Components/TextField";
 // import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 // import MoaButton from "@midasit-dev/moaui/Components/Button";
@@ -460,10 +459,6 @@ function App() {
 			{ openFormDlg && <VerifyDialog /> }
       {
 				<>
-					{
-						process.env.NODE_ENV === 'development' && 
-							<MidasController title="Series Loads" icoSrc={`${process.env.PUBLIC_URL}/favicon.ico`}/>
-					}
 					<MoaGuideBox row spacing={2} padding={2}>
 						<MoaPanel variant="shadow2">
 							<MoaStack width={width / 2} height={height}>

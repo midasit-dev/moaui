@@ -14,7 +14,7 @@ import VerticalTabs from './Components/Tabs';
 import { CreateLayout } from './Function/CreateLayout';
 import { midasAPI, convertChartData, chartScaleSet } from './Function/Common';
 import { checkAllTrue, AlignDataValid, SegmDataValid, NodeElemValid } from './Function/Validation';
-import { VerifyUtil, VerifyDialog, MidasController } from "@midasit-dev/moaui";
+import { VerifyUtil, VerifyDialog } from "@midasit-dev/moaui";
 // import MKeyDialog from "./Components/MKeyDialog";
 
 //Data Grid Default Setting
@@ -203,7 +203,6 @@ function App() {
 	<div className="App" >
 		{/* {showDialog && <MKeyDialog />} */}
 		{showDialog && <VerifyDialog />}
-		{process.env.NODE_ENV === 'development' && <MidasController title='Create alignment' icoSrc={`${process.env.PUBLIC_URL}/favicon.ico`}/>}
 		<GuideBox
 			padding={2}
 			center
