@@ -48,6 +48,6 @@
     ]
   },
   "devDependencies": {
-    "@midasit-dev/moaui": "^0.1.82"
+    "@midasit-dev/moaui": "^0.1.91"
   }
 }

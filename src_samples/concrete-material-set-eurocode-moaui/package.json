@@ -43,7 +43,7 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "@midasit-dev/moaui": "^0.1.89",
+    "@midasit-dev/moaui": "^0.1.91",
     "@types/lodash": "^4.14.202",
     "cors": "^2.8.5",
     "lodash": "^4.17.21",

@@ -46,6 +46,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@midasit-dev/moaui": "^0.1.83"
+    "@midasit-dev/moaui": "^0.1.91"
   }
 }
