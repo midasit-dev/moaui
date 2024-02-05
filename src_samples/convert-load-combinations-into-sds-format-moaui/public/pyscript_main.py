@@ -164,7 +164,7 @@ def main(select_type, select_LCB):
 														# Factor를 곱한 inactive_vCOMB 만들기
 														vCOMB_reset = copy.deepcopy(inactive_vCOMB)
 														for i in range(len(vCOMB_reset[lcname])):
-																final_factor = round(vCOMB_reset[lcname][i]["FACTOR"] * factor, 4)
+																final_factor = round(vCOMB_reset[lcname][i]["FACTOR"] * factor, 5)
 																print("factor : ",factor)
 																print(vCOMB_reset[lcname][i]["FACTOR"]);
 																print("final_factor : ",final_factor)
