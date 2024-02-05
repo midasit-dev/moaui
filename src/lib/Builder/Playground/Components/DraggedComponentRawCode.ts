@@ -19,8 +19,10 @@ export { default as CheckRequired } from '../../../Components/Check/Code/Require
 export { default as CheckGroupStateful } from '../../../Components/CheckGroup/Code/Stateful.code.tsx?raw';
 export { default as CheckGroupUnControlled } from '../../../Components/CheckGroup/Code/UnControlled.code.tsx?raw';
 export { default as ChipDefault } from '../../../Components/Chip/Code/Default.code.tsx?raw';
+export { default as CodeBlockBackgroundColor } from '../../../Components/CodeBlock/Code/BackgroundColor.code.tsx?raw';
 export { default as CodeBlockHideTitle } from '../../../Components/CodeBlock/Code/HideTitle.code.tsx?raw';
 export { default as CodeBlockJavascript } from '../../../Components/CodeBlock/Code/Javascript.code.tsx?raw';
+export { default as CodeBlockPadding } from '../../../Components/CodeBlock/Code/Padding.code.tsx?raw';
 export { default as CodeBlockTypescript } from '../../../Components/CodeBlock/Code/Typescript.code.tsx?raw';
 export { default as DataGridPagination } from '../../../Components/DataGrid/Code/Pagination.code.tsx?raw';
 export { default as DialogDialogButton } from '../../../Components/Dialog/Code/DialogButton.code.tsx?raw';

@@ -26,8 +26,10 @@ function DraggedComponent(props: any){
 		case ItemTypes.CheckGroupStateful: return <All.CheckGroupStateful />;
 		case ItemTypes.CheckGroupUnControlled: return <All.CheckGroupUnControlled />;
 		case ItemTypes.ChipDefault: return <All.ChipDefault />;
+		case ItemTypes.CodeBlockBackgroundColor: return <All.CodeBlockBackgroundColor />;
 		case ItemTypes.CodeBlockHideTitle: return <All.CodeBlockHideTitle />;
 		case ItemTypes.CodeBlockJavascript: return <All.CodeBlockJavascript />;
+		case ItemTypes.CodeBlockPadding: return <All.CodeBlockPadding />;
 		case ItemTypes.CodeBlockTypescript: return <All.CodeBlockTypescript />;
 		case ItemTypes.DataGridPagination: return <All.DataGridPagination />;
 		case ItemTypes.DialogDialogButton: return <All.DialogDialogButton />;

@@ -253,8 +253,10 @@ const CodeBlockCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.CodeBlockBackgroundColor}>BackgroundColor</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockHideTitle}>HideTitle</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>Javascript</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.CodeBlockPadding}>Padding</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockTypescript}>Typescript</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -1031,11 +1033,17 @@ export const CheckGroupUnControlled =
 export const ChipDefault = 
 	() => <CustomDraggableComponent itemType={ItemTypes.ChipDefault}>ChipDefault</CustomDraggableComponent>;
 
+export const CodeBlockBackgroundColor = 
+	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockBackgroundColor}>CodeBlockBackgroundColor</CustomDraggableComponent>;
+
 export const CodeBlockHideTitle = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockHideTitle}>CodeBlockHideTitle</CustomDraggableComponent>;
 
 export const CodeBlockJavascript = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>CodeBlockJavascript</CustomDraggableComponent>;
+
+export const CodeBlockPadding = 
+	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockPadding}>CodeBlockPadding</CustomDraggableComponent>;
 
 export const CodeBlockTypescript = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockTypescript}>CodeBlockTypescript</CustomDraggableComponent>;

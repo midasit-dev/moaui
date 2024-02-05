@@ -8,9 +8,9 @@ import prettier from "prettier/standalone";
 import parserBabel from 'prettier/parser-babel';
 import ContentPasteTwoToneIcon from '@mui/icons-material/ContentPasteTwoTone';
 // import parserBabel from "prettier/plugins/babel";
-import { Typography, Color } from "../..";
+import { Typography, Color, GuideBox, Button } from "../..";
 	
-interface CodeComponentProps {	
+interface CodeComponentProps {
 	/**
 	 * The code to be displayed
 	 * @default ""
@@ -44,7 +44,37 @@ interface CodeComponentProps {
 	 * @default "100%"
 	 */
 	width?: number | string;
-}
+	/**
+	 * The background color of the code block
+	 */
+	backgroundColor?: string;
+
+	/**
+	 * The padding of the code block
+	 */
+	titlePadding?: number | string;
+	/**
+	 * The padding X of the code block
+	 */
+	titlePaddingX?: number | string;
+	/**
+	 * The padding Y of the code block
+	 */
+	titlePaddingY?: number | string;
+
+	/**
+	 * The padding of the code block
+	 */
+	codePadding?: number | string;
+	/**
+	 * The padding X of the code block
+	 */
+	codePaddingX?: number | string;
+	/**
+	 * The padding Y of the code block
+	 */
+	codePaddingY?: number | string;
+};
 
 CodeBlock.defaultProps = {
 	children: "",
@@ -54,6 +84,23 @@ CodeBlock.defaultProps = {
 	radius: 8,
 	width: "100%",
 }
+
+const combinePadding = (
+	padding: number | string | undefined, 
+	paddingX: number | string | undefined,
+	paddingY: number | string | undefined
+) => {
+	if (typeof padding === "number") padding = `${padding * 8}px`;
+	if (typeof paddingX === "number") paddingX = `${paddingX * 8}px`;
+	if (typeof paddingY === "number") paddingY = `${paddingY * 8}px`;
+
+	if (padding !== undefined) return padding;
+	if (paddingX !== undefined && paddingY !== undefined) return `${paddingY} ${paddingX}`;
+	if (paddingX !== undefined) return `0.5rem ${paddingX}`;
+	if (paddingY !== undefined) return `${paddingY} 0.5rem`;
+	return "0.5rem";
+}
+
 /**
  * A code block with syntax highlighting
  * 
@@ -107,30 +154,29 @@ function CodeBlock(props: CodeComponentProps){
 	return (
 		<Box width={props.width}>
 			{!props.hideTitle &&
-				<Box
-					display="flex"
-					justifyContent={"space-between"}
-					alignItems='center'
-					sx={{
-						backgroundColor: Color.primaryNegative.enable,
-						width: '100%',
-						height: "2rem",
-						borderTopLeftRadius: props.radius,
-						borderTopRightRadius: props.radius,
-						paddingX: "0.5rem",
-						paddingY: "0.5rem",
-					}}
+				<GuideBox
+					show
+					fill={Color.primaryNegative.enable}
+					width="100%"
+					row
+					horSpaceBetween
+					verCenter
+					padding={combinePadding(props.titlePadding, props.titlePaddingX, props.titlePaddingY)}
+					borderRadius={`${props.radius}px ${props.radius}px 0 0`}
 				>
-					{/* <Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button> */}
-					<Typography color={Color.primaryNegative.white} variant="h1" paddingLeft='1.4rem'>{props.title}</Typography>
-					<IconButton onClick={copyToClipboard} sx={{backgroundColor:"transparent", width:"30px", height:"100%", mr: '0.6rem'}}>
-						{copySuccess ? (
-							<ContentPasteTwoToneIcon style={{ color: "gray", fontSize: "20" }}/>
-						) : (
-							<CodeRoundedIcon style={{ color: "white", fontSize: "20" }} />
-						)}
-					</IconButton>
-				</Box>
+					<Typography 
+						color={Color.primaryNegative.white} 
+						variant="h1"
+						paddingLeft='11px'
+					>
+						{props.title}
+					</Typography>
+					{
+						copySuccess ? 
+							<Button variant="text" disabled>copied</Button> :
+								<Button variant="text" onClick={copyToClipboard}>copy</Button>
+					}
+				</GuideBox>
 			}
 			<SyntaxHighlighter
 				showLineNumbers
@@ -139,11 +185,13 @@ function CodeBlock(props: CodeComponentProps){
 				customStyle={{
 					borderBottomRightRadius: props.radius,
 					borderBottomLeftRadius: props.radius,
-					padding: '1rem 1rem 1rem 0',
 					fontSize: "3px",
 					margin: 0,
 					width: '100%',
 					// minHeight: "100px",
+					...(props.backgroundColor !== undefined && { backgroundColor: props.backgroundColor }),
+					boxSizing: "border-box",
+					padding: combinePadding(props.codePadding, props.codePaddingX, props.codePaddingY),
 				}}
 				{...props}
 			>

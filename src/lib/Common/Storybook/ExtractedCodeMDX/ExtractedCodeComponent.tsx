@@ -41,8 +41,10 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/CheckGroup/Code/Stateful.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CheckGroup/Code/UnControlled.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Chip/Code/Default.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/CodeBlock/Code/BackgroundColor.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/HideTitle.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Javascript.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/CodeBlock/Code/Padding.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Typescript.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/DataGrid/Code/Pagination.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Dialog/Code/DialogButton.code.tsx?raw"));
