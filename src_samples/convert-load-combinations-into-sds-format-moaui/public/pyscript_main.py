@@ -77,8 +77,7 @@ def main(select_type, select_LCB):
 	try:
 		CivilApp = MidasAPI(Product.CIVIL, "KR")
 		Select_Active_List, Select_LCB_Case = generate_select_lists(select_type, select_LCB)
-		print("Select_Active_List:", Select_Active_List)
-		print("Select_LCB_Case:", Select_LCB_Case)
+  
 		# Select ANAL_NAME List
 		ANAL_NAME_List = {
 				1 : "CBS",
@@ -107,7 +106,7 @@ def main(select_type, select_LCB):
 				if lcomb_Select[key]["iTYPE"] == 0:
 						lcomb_data[key] = lcomb_Select[key]
 				else : pass
-				
+
 		# LoadCase에 CBC데이터가 있는 경우 ACTIVE -> INACTIVE로 변경
 
 		# Active / InActive 구분
@@ -165,7 +164,10 @@ def main(select_type, select_LCB):
 														# Factor를 곱한 inactive_vCOMB 만들기
 														vCOMB_reset = copy.deepcopy(inactive_vCOMB)
 														for i in range(len(vCOMB_reset[lcname])):
-																final_factor = vCOMB_reset[lcname][i]["FACTOR"] * factor
+																final_factor = round(vCOMB_reset[lcname][i]["FACTOR"] * factor, 4)
+																print("factor : ",factor)
+																print(vCOMB_reset[lcname][i]["FACTOR"]);
+																print("final_factor : ",final_factor)
 																vCOMB_reset[lcname][i]["FACTOR"] = final_factor
 
 														# vCOMB 리스트 결합
@@ -208,7 +210,6 @@ def main(select_type, select_LCB):
 		# 정렬된 결과를 딕셔너리로 변환
 		load_Case_st_sort = {k: v for k, v in load_Case_st_rev}
 
-
 		list_st = []
 		list_st_case = []
 		for key in load_Case_st_sort.keys() :
@@ -218,7 +219,7 @@ def main(select_type, select_LCB):
 
 		## SPLC
 		load_case_dy = CivilApp.db_read_try_catch("SPLC")
-  
+
 		list_Es_check = ()
 		list_dy = []
 		list_dy_case = []
@@ -244,7 +245,6 @@ def main(select_type, select_LCB):
 		sum_list_type = list_st_case + list_dy_case + list_Es_case
 
 		# factor list 생성
-
 		lc_factors = {lcname: {key: next((item['FACTOR'] for item in value.get('vCOMB', []) if item['LCNAME'] == lcname), 0)
 																								for key, value in final_load_case.items()}
 																for lcname in sum_list_case}
@@ -271,18 +271,13 @@ def main(select_type, select_LCB):
   
 		sorted_factors = {key: lc_factors_with_underscore[key] for key in sorted_keys_with_underscore}
 
-
-		# print(lc_factors_array.items())
-
 		# Pandas 형식으로 정리
 		df1 = pd.DataFrame(sorted_factors)
-		print("df: \n",df1)
 		df2 = pd.DataFrame(lcb_number_list)
 		df2_2 = df2.rename(columns={0:"Name"})
 		df3 = pd.DataFrame(Active_list)
 		df3_2 = df3.rename(columns={0:"ACTIVE"})
 		df1.reset_index(drop=True, inplace=True)
-		print("df_rest :\n",df1)
 
 		# df2를 이어붙이기
 		result_df = pd.concat([df3_2,df2_2, df1], axis=1)
