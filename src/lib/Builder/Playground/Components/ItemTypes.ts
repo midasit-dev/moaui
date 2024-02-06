@@ -21,7 +21,6 @@ export const ItemTypes = {
 	CheckGroupUnControlled: 'CheckGroupUnControlled',
 	ChipDefault: 'ChipDefault',
 	CodeBlockBackgroundColor: 'CodeBlockBackgroundColor',
-	CodeBlockHideTitle: 'CodeBlockHideTitle',
 	CodeBlockJavascript: 'CodeBlockJavascript',
 	CodeBlockPadding: 'CodeBlockPadding',
 	CodeBlockTypescript: 'CodeBlockTypescript',

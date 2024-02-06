@@ -254,7 +254,6 @@ const CodeBlockCategory: React.FC<{}> = () => (
 				width: '188px',
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockBackgroundColor}>BackgroundColor</CustomDraggableComponent>
-				<CustomDraggableComponent itemType={ItemTypes.CodeBlockHideTitle}>HideTitle</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>Javascript</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockPadding}>Padding</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockTypescript}>Typescript</CustomDraggableComponent>
@@ -1035,9 +1034,6 @@ export const ChipDefault =
 
 export const CodeBlockBackgroundColor = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockBackgroundColor}>CodeBlockBackgroundColor</CustomDraggableComponent>;
-
-export const CodeBlockHideTitle = 
-	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockHideTitle}>CodeBlockHideTitle</CustomDraggableComponent>;
 
 export const CodeBlockJavascript = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>CodeBlockJavascript</CustomDraggableComponent>;

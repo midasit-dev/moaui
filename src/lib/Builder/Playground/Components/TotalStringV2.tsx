@@ -313,7 +313,6 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.CheckGroupUnControlled ? `${extractComponentName(All.CheckGroupUnControlled)}` : ""}
 					${item.type === ItemTypes.ChipDefault ? `${extractComponentName(All.ChipDefault)}` : ""}
 					${item.type === ItemTypes.CodeBlockBackgroundColor ? `${extractComponentName(All.CodeBlockBackgroundColor)}` : ""}
-					${item.type === ItemTypes.CodeBlockHideTitle ? `${extractComponentName(All.CodeBlockHideTitle)}` : ""}
 					${item.type === ItemTypes.CodeBlockJavascript ? `${extractComponentName(All.CodeBlockJavascript)}` : ""}
 					${item.type === ItemTypes.CodeBlockPadding ? `${extractComponentName(All.CodeBlockPadding)}` : ""}
 					${item.type === ItemTypes.CodeBlockTypescript ? `${extractComponentName(All.CodeBlockTypescript)}` : ""}

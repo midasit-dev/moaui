@@ -56,7 +56,6 @@ function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactEle
 	const {title, titlePosition, singleLineTitle, width, gap, ...rest} = props;
 
 	const flexResolver = React.useCallback((titlePosition: string | undefined) => {
-		console.log(titlePosition);
 		switch (titlePosition) {
 			case "left": return "row";
 			case "right": return "row-reverse";

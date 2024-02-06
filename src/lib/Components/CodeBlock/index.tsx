@@ -1,12 +1,9 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import IconButton from "@mui/material/IconButton"
 import Box from "@mui/material/Box";
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import prettier from "prettier/standalone";
 import parserBabel from 'prettier/parser-babel';
-import ContentPasteTwoToneIcon from '@mui/icons-material/ContentPasteTwoTone';
 // import parserBabel from "prettier/plugins/babel";
 import { Typography, Color, GuideBox, Button } from "../..";
 	
@@ -26,12 +23,6 @@ interface CodeComponentProps {
 	 * @default ""
 	 */
 	title?:string;
-	/**
-	 * Whether to hide the title
-	 * 
-	 * @default false
-	 */
-	hideTitle?: boolean;
 	/**
 	 * The radius of the code block
 	 * 
@@ -80,7 +71,6 @@ CodeBlock.defaultProps = {
 	children: "",
 	language: "javascript",
 	title: "",
-	hideTitle: false,
 	radius: 8,
 	width: "100%",
 }
@@ -153,31 +143,29 @@ function CodeBlock(props: CodeComponentProps){
 
 	return (
 		<Box width={props.width}>
-			{!props.hideTitle &&
-				<GuideBox
-					show
-					fill={Color.primaryNegative.enable}
-					width="100%"
-					row
-					horSpaceBetween
-					verCenter
-					padding={combinePadding(props.titlePadding, props.titlePaddingX, props.titlePaddingY)}
-					borderRadius={`${props.radius}px ${props.radius}px 0 0`}
+			<GuideBox
+				show
+				fill={Color.primaryNegative.enable}
+				width="100%"
+				row
+				horSpaceBetween
+				verCenter
+				padding={combinePadding(props.titlePadding, props.titlePaddingX, props.titlePaddingY)}
+				borderRadius={`${props.radius}px ${props.radius}px 0 0`}
+			>
+				<Typography 
+					color={Color.primaryNegative.white} 
+					variant="h1"
+					paddingLeft='11px'
 				>
-					<Typography 
-						color={Color.primaryNegative.white} 
-						variant="h1"
-						paddingLeft='11px'
-					>
-						{props.title}
-					</Typography>
-					{
-						copySuccess ? 
-							<Button variant="text" disabled>copied</Button> :
-								<Button variant="text" onClick={copyToClipboard}>copy</Button>
-					}
-				</GuideBox>
-			}
+					{props.title}
+				</Typography>
+				{
+					copySuccess ? 
+						<Button variant="text" disabled>copied</Button> :
+							<Button variant="text" onClick={copyToClipboard}>copy</Button>
+				}
+			</GuideBox>
 			<SyntaxHighlighter
 				showLineNumbers
 				style={vscDarkPlus}
