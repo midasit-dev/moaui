@@ -34,6 +34,7 @@ export { default as DropListDropdown } from '../../../Components/DropList/Code/D
 export { default as DropListListWidth } from '../../../Components/DropList/Code/ListWidth.code.tsx?raw';
 export { default as DropListMaxLength } from '../../../Components/DropList/Code/MaxLength.code.tsx?raw';
 export { default as FloatingBoxGuideBoxProps } from '../../../Components/FloatingBox/Code/GuideBoxProps.code.tsx?raw';
+export { default as FloatingBoxMouseEvents } from '../../../Components/FloatingBox/Code/MouseEvents.code.tsx?raw';
 export { default as FloatingBoxWithPanel } from '../../../Components/FloatingBox/Code/WithPanel.code.tsx?raw';
 export { default as GridColumn } from '../../../Components/Grid/Code/Column.code.tsx?raw';
 export { default as GridItems } from '../../../Components/Grid/Code/Items.code.tsx?raw';

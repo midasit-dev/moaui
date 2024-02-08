@@ -7,6 +7,7 @@ import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 import {
 	WithPanelCode,
 	GuideBoxPropsCode,
+	MouseEventsCode,
 } from "../Code";
 
 const meta = {
@@ -24,6 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 export const WithPanel = LiveEditStory(cleanMask(WithPanelCode));
 export const GuideBoxProps = LiveEditStory(cleanMask(GuideBoxPropsCode));
+export const MouseEvents = LiveEditStory(cleanMask(MouseEventsCode));
 
 export const Sample: Story = {
   args: {

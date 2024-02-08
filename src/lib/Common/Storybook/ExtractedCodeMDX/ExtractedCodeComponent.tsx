@@ -56,6 +56,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/DropList/Code/ListWidth.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/DropList/Code/MaxLength.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/FloatingBox/Code/GuideBoxProps.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/FloatingBox/Code/MouseEvents.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/FloatingBox/Code/WithPanel.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Grid/Code/Column.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Grid/Code/Items.code.tsx?raw"));

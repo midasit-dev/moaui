@@ -46,6 +46,22 @@ export type StyledProps = {
 	 * children of floating box
 	 */
 	children?: React.ReactNode;
+
+	/**
+	 * mouse events
+	 */
+	onMouseDown?: React.MouseEventHandler;
+	onMouseUp?: React.MouseEventHandler;
+	onMouseOver?: React.MouseEventHandler;
+	onMouseLeave?: React.MouseEventHandler;
+	onClick?: React.MouseEventHandler;
+
+	/**
+	 * styles
+	 */
+	cursor?: React.CSSProperties['cursor'];
+	opacity?: React.CSSProperties['opacity'];
+	transition?: React.CSSProperties['transition'];
 };
 
 const FloatingBox = (props: StyledProps) => {
@@ -59,6 +75,16 @@ const FloatingBox = (props: StyledProps) => {
 		fill,
 		guideBoxProps,
 		children,
+
+		onMouseDown,
+		onMouseUp,
+		onMouseOver,
+		onMouseLeave,
+		onClick,
+
+		cursor,
+		opacity,
+		transition,
 	} = props;
 
 	return (
@@ -71,7 +97,15 @@ const FloatingBox = (props: StyledProps) => {
 				width: width,
 				height: height,
 				backgroundColor: GuideBoxFillColor(show, fill),
+				...(cursor ? {cursor: cursor} : {}),
+				...(opacity ? {opacity: opacity} : {}),
+				...(transition? {transition: transition} : {})
 			}}
+			onMouseDown={onMouseDown}
+			onMouseUp={onMouseUp}
+			onMouseOver={onMouseOver}
+			onMouseLeave={onMouseLeave}
+			onClick={onClick}
 		>
 			<GuideBox {...guideBoxProps}>
 				{children}

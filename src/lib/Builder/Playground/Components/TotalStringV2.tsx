@@ -327,6 +327,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.DropListListWidth ? `${extractComponentName(All.DropListListWidth)}` : ""}
 					${item.type === ItemTypes.DropListMaxLength ? `${extractComponentName(All.DropListMaxLength)}` : ""}
 					${item.type === ItemTypes.FloatingBoxGuideBoxProps ? `${extractComponentName(All.FloatingBoxGuideBoxProps)}` : ""}
+					${item.type === ItemTypes.FloatingBoxMouseEvents ? `${extractComponentName(All.FloatingBoxMouseEvents)}` : ""}
 					${item.type === ItemTypes.FloatingBoxWithPanel ? `${extractComponentName(All.FloatingBoxWithPanel)}` : ""}
 					${item.type === ItemTypes.GridColumn ? `${extractComponentName(All.GridColumn)}` : ""}
 					${item.type === ItemTypes.GridItems ? `${extractComponentName(All.GridItems)}` : ""}
