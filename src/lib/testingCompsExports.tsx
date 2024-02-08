@@ -42,6 +42,8 @@ export { default as ComponentsDropListDisabled } from "./Components/DropList/Cod
 export { default as ComponentsDropListDropdown } from "./Components/DropList/Code/Dropdown.code";
 export { default as ComponentsDropListListWidth } from "./Components/DropList/Code/ListWidth.code";
 export { default as ComponentsDropListMaxLength } from "./Components/DropList/Code/MaxLength.code";
+export { default as ComponentsFloatingBoxGuideBoxProps } from "./Components/FloatingBox/Code/GuideBoxProps.code";
+export { default as ComponentsFloatingBoxWithPanel } from "./Components/FloatingBox/Code/WithPanel.code";
 export { default as ComponentsGridColumn } from "./Components/Grid/Code/Column.code";
 export { default as ComponentsGridItems } from "./Components/Grid/Code/Items.code";
 export { default as ComponentsGridRow } from "./Components/Grid/Code/Row.code";

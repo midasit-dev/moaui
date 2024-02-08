@@ -1,4 +1,4 @@
-import StyledComponent, { type StyledProps } from "./Styled";
+import StyledComponent, { type StyledProps, fillColor } from "./Styled";
 
 GuideBox.defaultProps = {
 	show: false,
@@ -16,3 +16,8 @@ GuideBox.defaultProps = {
  * @returns React.ReactElement
  */
 export default function GuideBox(props: StyledProps) { return (<StyledComponent {...props} />) };
+
+export { 
+	type StyledProps,
+	fillColor,
+};

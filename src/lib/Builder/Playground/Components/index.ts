@@ -33,6 +33,8 @@ export { default as DropListDisabled } from '../../../Components/DropList/Code/D
 export { default as DropListDropdown } from '../../../Components/DropList/Code/Dropdown.code';
 export { default as DropListListWidth } from '../../../Components/DropList/Code/ListWidth.code';
 export { default as DropListMaxLength } from '../../../Components/DropList/Code/MaxLength.code';
+export { default as FloatingBoxGuideBoxProps } from '../../../Components/FloatingBox/Code/GuideBoxProps.code';
+export { default as FloatingBoxWithPanel } from '../../../Components/FloatingBox/Code/WithPanel.code';
 export { default as GridColumn } from '../../../Components/Grid/Code/Column.code';
 export { default as GridItems } from '../../../Components/Grid/Code/Items.code';
 export { default as GridRow } from '../../../Components/Grid/Code/Row.code';

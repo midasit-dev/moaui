@@ -49,10 +49,11 @@ import { default as ListItemButton } from "./Components/ListItemButton";
 import { default as MidasController } from './Components/MidasController';
 import { default as Dialog } from "./Components/Dialog";
 import { default as ChartLine } from "./Components/ChartLine";
-import { default as GuideBox } from "./Components/GuideBox";
+import { default as GuideBox, type StyledProps as GuideBoxProps, fillColor as GuideBoxFillColor } from "./Components/GuideBox";
 import { default as Alert } from "./Components/Alert";
 import { default as Chip } from "./Components/Chip";
 import { default as Tooltip } from "./Components/Tooltip";
+import { default as FloatingBox, type StyledProps as FloatingBoxProps } from "./Components/FloatingBox";
 
 // moaui authentication
 import { default as VerifyDialog } from "./Authentication/VerifyDialog";
@@ -109,6 +110,7 @@ const Moaui = {
   Alert,
   Chip,
   Tooltip,
+	FloatingBox,
   VerifyDialog,
   VerifyUtil,
   Signature,
@@ -162,9 +164,13 @@ export {
   Dialog,
   ChartLine,
   GuideBox,
+	GuideBoxProps,
+	GuideBoxFillColor,
   Alert,
   Chip,
   Tooltip,
+	FloatingBox,
+	FloatingBoxProps,
   VerifyDialog,
   VerifyUtil,
   Signature,

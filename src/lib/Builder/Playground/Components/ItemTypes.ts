@@ -34,6 +34,8 @@ export const ItemTypes = {
 	DropListDropdown: 'DropListDropdown',
 	DropListListWidth: 'DropListListWidth',
 	DropListMaxLength: 'DropListMaxLength',
+	FloatingBoxGuideBoxProps: 'FloatingBoxGuideBoxProps',
+	FloatingBoxWithPanel: 'FloatingBoxWithPanel',
 	GridColumn: 'GridColumn',
 	GridItems: 'GridItems',
 	GridRow: 'GridRow',

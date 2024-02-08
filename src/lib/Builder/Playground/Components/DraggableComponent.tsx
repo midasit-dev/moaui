@@ -332,6 +332,28 @@ const DropListCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
+const FloatingBoxCategory: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>FloatingBox</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.FloatingBoxGuideBoxProps}>GuideBoxProps</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.FloatingBoxWithPanel}>WithPanel</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
 const GridCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
@@ -1074,6 +1096,12 @@ export const DropListListWidth =
 export const DropListMaxLength = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListMaxLength}>DropListMaxLength</CustomDraggableComponent>;
 
+export const FloatingBoxGuideBoxProps = 
+	() => <CustomDraggableComponent itemType={ItemTypes.FloatingBoxGuideBoxProps}>FloatingBoxGuideBoxProps</CustomDraggableComponent>;
+
+export const FloatingBoxWithPanel = 
+	() => <CustomDraggableComponent itemType={ItemTypes.FloatingBoxWithPanel}>FloatingBoxWithPanel</CustomDraggableComponent>;
+
 export const GridColumn = 
 	() => <CustomDraggableComponent itemType={ItemTypes.GridColumn}>GridColumn</CustomDraggableComponent>;
 
@@ -1388,6 +1416,7 @@ const DraggableComponent: React.FC = () => {
 			<DataGridCategory />
 			<DialogCategory />
 			<DropListCategory />
+			<FloatingBoxCategory />
 			<GridCategory />
 			<GuideBoxCategory />
 			<IconCategory />

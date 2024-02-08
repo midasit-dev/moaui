@@ -195,30 +195,30 @@ const getItemVerticalAlign = (props: StyledProps) => {
 	}
 }
 
-const getBackgroundColor = (props: StyledProps): string => {
-	if (!props.show) {
+export const fillColor = (show: StyledProps['show'], fill: StyledProps['fill']): string => {
+	if (!show) {
 		return "transparent";
-	} else if (props.fill) {
-		if (props.fill === '0') {
+	} else if (fill) {
+		if (fill === '0') {
 			return 'rgba(240, 240, 240, 0.5)';
-		} else if (props.fill === '1') {
+		} else if (fill === '1') {
 			return 'rgba(210, 210, 210, 0.5)';
-		} else if (props.fill === '2') {
+		} else if (fill === '2') {
 			return 'rgba(180, 180, 180, 0.5)';
-		} else if (props.fill === '3') {
+		} else if (fill === '3') {
 			return 'rgba(150, 150, 150, 0.5)';
-		} else if (props.fill === '4') {
+		} else if (fill === '4') {
 			return 'rgba(120, 120, 120, 0.5)';
-		} else if (props.fill === '5') {
+		} else if (fill === '5') {
 			return 'rgba(90, 90, 90, 0.5)';
-		} else if (props.fill === '6') {
+		} else if (fill === '6') {
 			return 'rgba(60, 60, 60, 0.5)';
-		} else if (props.fill === '7') {
+		} else if (fill === '7') {
 			return 'rgba(30, 30, 30, 0.5)';
-		} else if (props.fill === '8') {
+		} else if (fill === '8') {
 			return 'rgba(0, 0, 0, 0.5)';
 		} else {
-			return props.fill;
+			return fill;
 		}
 	} else {
 		return "rgba(240, 240, 240, 0.5)";
@@ -338,7 +338,7 @@ const GuideBox = (props: StyledProps) => {
 			sx={{
 				...MarginProps(props),
 				...PaddingProps(props),
-				backgroundColor: getBackgroundColor(props),
+				backgroundColor: fillColor(show, fill),
 				opacity: opacity,
 				boxSizing: 'border-box',
 				

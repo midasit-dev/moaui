@@ -68,6 +68,10 @@ export type StyledProps = {
 	 * Set the border of panel
 	 */
 	border?: string;
+	/**
+	 * Set the position relative of panel
+	 */
+	relative?: boolean;
 } & MarginTypes & PaddingTypes & BoxProps;
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -80,6 +84,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		backgroundColor,
 		borderRadius,
 		border,
+		relative,
 		...rest
 	} = props;
 
@@ -102,6 +107,7 @@ const StyledComponent = styled((props: StyledProps) => {
 				...(backgroundColor !== undefined ? { backgroundColor: backgroundColor } : {}),
 				...(borderRadius !== undefined ? { borderRadius: borderRadius } : { borderRadius: '0.25rem' }),
 				...(border !== undefined ? { border: border } : {}),
+				...(relative ? { position: 'relative' } : {}),
 			}}
 			justifyContent='center'
 		>
