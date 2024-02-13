@@ -347,6 +347,7 @@ const FloatingBoxCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.FloatingBoxClassName}>ClassName</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.FloatingBoxGuideBoxProps}>GuideBoxProps</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.FloatingBoxMouseEvents}>MouseEvents</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.FloatingBoxWithPanel}>WithPanel</CustomDraggableComponent>
@@ -1096,6 +1097,9 @@ export const DropListListWidth =
 
 export const DropListMaxLength = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListMaxLength}>DropListMaxLength</CustomDraggableComponent>;
+
+export const FloatingBoxClassName = 
+	() => <CustomDraggableComponent itemType={ItemTypes.FloatingBoxClassName}>FloatingBoxClassName</CustomDraggableComponent>;
 
 export const FloatingBoxGuideBoxProps = 
 	() => <CustomDraggableComponent itemType={ItemTypes.FloatingBoxGuideBoxProps}>FloatingBoxGuideBoxProps</CustomDraggableComponent>;

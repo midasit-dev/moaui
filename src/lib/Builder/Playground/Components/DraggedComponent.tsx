@@ -40,6 +40,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.DropListDropdown: return <All.DropListDropdown />;
 		case ItemTypes.DropListListWidth: return <All.DropListListWidth />;
 		case ItemTypes.DropListMaxLength: return <All.DropListMaxLength />;
+		case ItemTypes.FloatingBoxClassName: return <All.FloatingBoxClassName />;
 		case ItemTypes.FloatingBoxGuideBoxProps: return <All.FloatingBoxGuideBoxProps />;
 		case ItemTypes.FloatingBoxMouseEvents: return <All.FloatingBoxMouseEvents />;
 		case ItemTypes.FloatingBoxWithPanel: return <All.FloatingBoxWithPanel />;

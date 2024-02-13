@@ -8,6 +8,7 @@ import {
 	WithPanelCode,
 	GuideBoxPropsCode,
 	MouseEventsCode,
+	ClassNameCode,
 } from "../Code";
 
 const meta = {
@@ -26,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const WithPanel = LiveEditStory(cleanMask(WithPanelCode));
 export const GuideBoxProps = LiveEditStory(cleanMask(GuideBoxPropsCode));
 export const MouseEvents = LiveEditStory(cleanMask(MouseEventsCode));
+export const ClassName = LiveEditStory(cleanMask(ClassNameCode));
 
 export const Sample: Story = {
   args: {

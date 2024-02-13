@@ -10,6 +10,7 @@ import {
 } from '../../';
 
 export type StyledProps = {
+	className?: React.HTMLAttributes<HTMLDivElement>['className'];
 	/**
 	 * key of floating box
 	 */
@@ -67,6 +68,8 @@ export type StyledProps = {
 
 const FloatingBox = (props: StyledProps) => {
 	const {
+		className,
+
 		key,
 		show,
 		x,
@@ -91,6 +94,7 @@ const FloatingBox = (props: StyledProps) => {
 
 	return (
 		<div
+			className={className}
 			key={key}
 			style={{
 				position: 'absolute',

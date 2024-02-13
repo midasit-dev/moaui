@@ -34,6 +34,7 @@ export const ItemTypes = {
 	DropListDropdown: 'DropListDropdown',
 	DropListListWidth: 'DropListListWidth',
 	DropListMaxLength: 'DropListMaxLength',
+	FloatingBoxClassName: 'FloatingBoxClassName',
 	FloatingBoxGuideBoxProps: 'FloatingBoxGuideBoxProps',
 	FloatingBoxMouseEvents: 'FloatingBoxMouseEvents',
 	FloatingBoxWithPanel: 'FloatingBoxWithPanel',
