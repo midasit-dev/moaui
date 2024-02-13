@@ -15,8 +15,8 @@ import { default as Color } from "./Style/Color";
 import { default as Font } from "./Style/Font";
 
 // moaui components
-import { default as Button } from "./Components/Button";
-import { default as Check } from "./Components/Check";
+import { default as Button, type StyledProps as ButtonProps } from "./Components/Button";
+import { default as Check, type StyledProps as CheckProps } from "./Components/Check";
 import { default as CheckGroup } from "./Components/CheckGroup";
 import { default as DataGrid } from "./Components/DataGrid";
 import { default as DropList } from "./Components/DropList";
@@ -36,8 +36,8 @@ import { default as TableBody } from "./Components/TableBody";
 import { default as TableCell } from "./Components/TableCell";
 import { default as TableHead } from "./Components/TableHead";
 import { default as TableRow } from "./Components/TableRow";
-import { default as TextField } from "./Components/TextField";
-import { default as TextFieldV2 } from "./Components/TextFieldV2";
+import { default as TextField, type StyledProps as TextFieldProps } from "./Components/TextField";
+import { default as TextFieldV2, type StyledProps as TextFieldV2Props } from "./Components/TextFieldV2";
 import { default as Typography } from "./Components/Typography";
 import { default as TypographyGroup } from "./Components/TypographyGroup";
 import { default as Icon } from "./Components/Icon";
@@ -129,7 +129,9 @@ export {
   Color,
   Font,
   Button,
+	ButtonProps,
   Check,
+	CheckProps,
   CheckGroup,
   DataGrid,
   DropList,
@@ -151,7 +153,9 @@ export {
   TableHead,
   TableRow,
   TextField,
+	TextFieldProps,
   TextFieldV2,
+	TextFieldV2Props,
   Typography,
   TypographyGroup,
   Icon,

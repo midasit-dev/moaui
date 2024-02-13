@@ -17,3 +17,7 @@ function Button(props: StyledProps) {
 }
 
 export default Button;
+
+export {
+	type StyledProps,
+}

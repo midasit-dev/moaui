@@ -71,3 +71,7 @@ function Textfield(props: StyledProps) : React.ReactElement {
 }
 
 export default Textfield;
+
+export {
+	type StyledProps,
+};

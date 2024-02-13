@@ -16,3 +16,7 @@ Check.defaultProps = {
 } as StyledProps;
 
 export default Check;
+
+export {
+	type StyledProps,
+}

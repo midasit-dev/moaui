@@ -93,3 +93,7 @@ function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactEle
 }
 
 export default TextFieldV2;
+
+export {
+	type StyledProps,
+};
