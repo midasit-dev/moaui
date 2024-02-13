@@ -62,6 +62,7 @@ export type StyledProps = {
 	cursor?: React.CSSProperties['cursor'];
 	opacity?: React.CSSProperties['opacity'];
 	transition?: React.CSSProperties['transition'];
+	border?: React.CSSProperties['border'];
 };
 
 const FloatingBox = (props: StyledProps) => {
@@ -85,6 +86,7 @@ const FloatingBox = (props: StyledProps) => {
 		cursor,
 		opacity,
 		transition,
+		border,
 	} = props;
 
 	return (
@@ -97,9 +99,11 @@ const FloatingBox = (props: StyledProps) => {
 				width: width,
 				height: height,
 				backgroundColor: GuideBoxFillColor(show, fill),
+				boxSizing: 'border-box',
 				...(cursor ? {cursor: cursor} : {}),
 				...(opacity ? {opacity: opacity} : {}),
-				...(transition? {transition: transition} : {})
+				...(transition? {transition: transition} : {}),
+				...(border? {border: border} : {})
 			}}
 			onMouseDown={onMouseDown}
 			onMouseUp={onMouseUp}

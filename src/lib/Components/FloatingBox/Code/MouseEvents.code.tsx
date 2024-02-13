@@ -30,6 +30,7 @@ const floatingBoxProperties: FloatingBoxProps = {
 const FloatingBoxSample = () => {
 	const [fill, setFill] = useState('1');
 	const [opacity, setOpacity] = useState(1);
+	const [border, setBorder] = useState('none');
 
 	const props = {
 		...floatingBoxProperties,
@@ -37,8 +38,15 @@ const FloatingBoxSample = () => {
 		opacity: opacity,
 		cursor: 'pointer',
 		transition: 'opacity 0.4s ease',
-		onMouseOver: () => setOpacity(0.7),
-		onMouseLeave: () => setOpacity(1),
+		border: border,
+		onMouseOver: () => {
+			setOpacity(0.7);
+			setBorder('1px solid #c1c1c1');
+		},
+		onMouseLeave: () => {
+			setOpacity(1);
+			setBorder('none');
+		},
 		onMouseDown: () => setFill('2'),
 		onMouseUp: () => setFill('1'),
 		onClick: () => console.log('clicked!'),
