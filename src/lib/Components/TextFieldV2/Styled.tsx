@@ -160,7 +160,6 @@ const StyledComponent = styled((props:StyledProps) => {
 				fullWidth
 				onBlur={props?.onBlur}
 				sx={{
-					width: props?.width || "auto",
 					height: props?.height || "auto",
 					'& .MuiOutlinedInput-root': {
 						'& fieldset':{

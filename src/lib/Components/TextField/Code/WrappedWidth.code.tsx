@@ -1,11 +1,12 @@
 import { TextField } from "@midasit-dev/moaui"; /**${comma}*/
 
-const ComponentsTextFieldRight = () => {
+const ComponentsTextFieldWrappedWidth = () => {
   return (
 		<TextField 
+			wrappedWidth='200px'
 			width="100px"
 			placeholder="placeholder"
-			title="title"
+			title="cm"
 			titlePosition="right"
 			disabled={false}
 			defaultValue=""
@@ -15,4 +16,4 @@ const ComponentsTextFieldRight = () => {
   );
 }; /**${comma}*/
 
-export default ComponentsTextFieldRight;
+export default ComponentsTextFieldWrappedWidth;

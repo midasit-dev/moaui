@@ -3,7 +3,7 @@ import { DropList } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { DropdownCode, DisabledCode, ListWidthCode, MaxLengthCode } from '../Code';
+import { DropdownCode, DisabledCode, ListWidthCode, MaxLengthCode, ItemListFromArrayCode } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
@@ -29,21 +29,8 @@ export const Dropdown = LiveEditStory(cleanMask(DropdownCode));
 export const Disabled = LiveEditStory(cleanMask(DisabledCode));
 export const ListWidth = LiveEditStory(cleanMask(ListWidthCode));
 export const MaxLength = LiveEditStory(cleanMask(MaxLengthCode));
+export const ItemListFromArray = LiveEditStory(cleanMask(ItemListFromArrayCode));
 
 export const Sample: Story = {
-  args: {
-		itemList: () => { return new Map<string, number>([ ['1', 1], ['2', 2], ['3', 3], ['4', 4] ]); },
-		value: '1',
-		width: "100px",
-		defaultValue: ""
-  },
-	render: ({ itemList, width, defaultValue }) => {
-		return (
-			<DropList 
-				itemList={itemList} 
-				width={width} 
-				defaultValue={defaultValue}
-			/>
-		)
-	}
+  args: DropList.sampleProps
 };

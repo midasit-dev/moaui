@@ -73,6 +73,10 @@ export type StyledProps = {
 	 */
 	width?: number | string,
 	/**
+	 * The width of the textfield. (WrappedWidth title + TextField)
+	 */
+	wrappedWidth?: number | string,
+	/**
 	 * The height of the textfield.
 	 */
 	height?: string | number;

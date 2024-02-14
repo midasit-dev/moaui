@@ -1,7 +1,6 @@
 import React from "react";
 import StyledComponent, {type StyledProps} from "./Styled";
 import { Typography, Grid } from "../..";
-import * as mui from "@mui/material";
 
 type StyledPropsExtension = {
 	/**
@@ -31,6 +30,15 @@ type StyledPropsExtension = {
 	 * The gap between title and textfield.
 	 */
 	gap?: number,
+
+	/**
+	 * The scale of width of title. (all 12, title + input (textfield) = 12)
+	 */
+	titleXs?: number,
+	/**
+	 * The scale of width of textfield. (all 12, title + input (textfield) = 12)
+	 */
+	inputXs?: number,
 };
 
 TextFieldV2.defaultProps = {
@@ -45,6 +53,30 @@ TextFieldV2.defaultProps = {
 	singleLineTitle: false,
 } as StyledProps & StyledPropsExtension;
 
+TextFieldV2.sampleProps = {
+	autoFocus: false,
+	type: "text",
+	placeholder: "Placeholder",
+	title : "Title",
+	titlePosition : "left",
+	defaultValue: "Default Value",
+	error : false,
+	disabled : false,
+	onChange: () => {},
+	value: "",
+	width: '150px',
+	titleXs: 3,
+	inputXs: 9,
+	height: '30px',
+	textAlign: "left",
+	multiline: false,
+	rows: 1,
+	maxRows: 1,
+	gap: 1,
+	inputAlign: "left",
+	singleLineTitle: false,
+} as StyledProps;
+
 /**
  * moaui Styled TextField
  * 
@@ -53,7 +85,7 @@ TextFieldV2.defaultProps = {
  */
 
 function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactElement {
-	const {title, titlePosition, singleLineTitle, width, gap, ...rest} = props;
+	const {title, titlePosition, singleLineTitle, width, gap, titleXs, inputXs, ...rest} = props;
 
 	const flexResolver = React.useCallback((titlePosition: string | undefined) => {
 		switch (titlePosition) {
@@ -76,17 +108,20 @@ function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactEle
 					gap={gap}
 				>
 					<React.Fragment>
-						<Grid item xs={["bottom", "top"].includes(titlePosition || "") ? 12 : 6} display="flex" alignItems="center" justifyContent={titlePosition === "right" ? "end" : "start"}>
+						<Grid item xs={["bottom", "top"].includes(titlePosition || "") ? 12 : titleXs || 6} display="flex" alignItems="center" justifyContent={titlePosition === "right" ? "end" : "start"}
+						>
 							<Typography singleLine={singleLineTitle}>{`${title}`}</Typography>
 						</Grid>
-						<Grid item xs={["bottom", "top"].includes(titlePosition || "") ? 12 : 6}>
+						<Grid item xs={["bottom", "top"].includes(titlePosition || "") ? 12 : inputXs || 6}>
 							<StyledComponent {...rest}/>
 						</Grid>
 					</React.Fragment>
 				</Grid>
 			}
 			{!title &&
-				<StyledComponent width={width} {...rest}/>
+				<Grid width={width}>
+					<StyledComponent {...rest}/>
+				</Grid>
 			}
 		</React.Fragment>
 	)

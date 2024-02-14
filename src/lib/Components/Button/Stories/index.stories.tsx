@@ -38,12 +38,5 @@ export const Width = LiveEditStory(cleanMask(WidthCode));
 export const Loading = LiveEditStory(cleanMask(LoadingCode));
 
 export const Sample: Story = {
-  args: {
-    children: "Button",
-    onClick: () => {},
-    variant: "contained",
-    disabled: false,
-    width: "auto",
-    color: "normal",
-  },
+  args: Button.sampleProps,
 };

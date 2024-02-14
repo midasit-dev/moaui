@@ -8,6 +8,18 @@ Panel.defaultProps = {
 	flexItem: false,
 } as StyledProps;
 
+Panel.sampleProps = {
+	children: <></>,
+	variant: 'shadow2',
+	width: '100px',
+	height: '100px',
+	flexItem: false,
+	backgroundColor: '#fff',
+	borderRadius: '5px',
+	border: 'none',
+	relative: false,
+} as StyledProps;
+
 /**
  * moaui Styled Panel
  * 

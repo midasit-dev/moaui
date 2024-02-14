@@ -6,6 +6,16 @@ Button.defaultProps = {
 	loading: false,
 } as StyledProps;
 
+Button.sampleProps = {
+	children: "Button",
+	onClick: () => {},
+	variant: "contained",
+	disabled: false,
+	width: '100px',
+	color: "normal",
+	loading: false,
+} as StyledProps;
+
 /**
  * moaui Styled Button
  * 

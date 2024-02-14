@@ -38,6 +38,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.DialogOnClose: return <All.DialogOnClose />;
 		case ItemTypes.DropListDisabled: return <All.DropListDisabled />;
 		case ItemTypes.DropListDropdown: return <All.DropListDropdown />;
+		case ItemTypes.DropListItemListFromArray: return <All.DropListItemListFromArray />;
 		case ItemTypes.DropListListWidth: return <All.DropListListWidth />;
 		case ItemTypes.DropListMaxLength: return <All.DropListMaxLength />;
 		case ItemTypes.FloatingBoxClassName: return <All.FloatingBoxClassName />;
@@ -112,6 +113,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.TextFieldLeft: return <All.TextFieldLeft />;
 		case ItemTypes.TextFieldMultiLine: return <All.TextFieldMultiLine />;
 		case ItemTypes.TextFieldRight: return <All.TextFieldRight />;
+		case ItemTypes.TextFieldWrappedWidth: return <All.TextFieldWrappedWidth />;
 		case ItemTypes.TextFieldV2Basic: return <All.TextFieldV2Basic />;
 		case ItemTypes.TextFieldV2Bottom: return <All.TextFieldV2Bottom />;
 		case ItemTypes.TextFieldV2CheckErrorAsFunction: return <All.TextFieldV2CheckErrorAsFunction />;
@@ -124,6 +126,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.TextFieldV2NumberOptionPositiveInteger: return <All.TextFieldV2NumberOptionPositiveInteger />;
 		case ItemTypes.TextFieldV2Right: return <All.TextFieldV2Right />;
 		case ItemTypes.TextFieldV2SinglelineTitle: return <All.TextFieldV2SinglelineTitle />;
+		case ItemTypes.TextFieldV2TitleInputScale: return <All.TextFieldV2TitleInputScale />;
 		case ItemTypes.TextFieldV2Top: return <All.TextFieldV2Top />;
 		case ItemTypes.TooltipArrowBorder: return <All.TooltipArrowBorder />;
 		case ItemTypes.TooltipRight: return <All.TooltipRight />;

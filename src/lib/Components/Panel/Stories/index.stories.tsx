@@ -38,11 +38,5 @@ export const Padding0 = LiveEditStory(cleanMask(Padding0Code));
 export const Border = LiveEditStory(cleanMask(BorderCode));
 
 export const Sample: Story = {
-	args: {
-		children: "",
-		width: "100px",
-		height: "100px",
-		variant: "shadow",
-		flexItem: true,
-	},
+	args: Panel.sampleProps,
 };

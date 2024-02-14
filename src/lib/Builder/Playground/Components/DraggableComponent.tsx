@@ -325,6 +325,7 @@ const DropListCategory: React.FC<{}> = () => (
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.DropListDisabled}>Disabled</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>Dropdown</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.DropListItemListFromArray}>ItemListFromArray</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DropListListWidth}>ListWidth</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.DropListMaxLength}>MaxLength</CustomDraggableComponent>
 			</div>
@@ -819,6 +820,7 @@ const TextFieldCategory: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldLeft}>Left</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldMultiLine}>MultiLine</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldRight}>Right</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldWrappedWidth}>WrappedWidth</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -851,6 +853,7 @@ const TextFieldV2Category: React.FC<{}> = () => (
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2NumberOptionPositiveInteger}>NumberOptionPositiveInteger</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Right}>Right</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2SinglelineTitle}>SinglelineTitle</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2TitleInputScale}>TitleInputScale</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TextFieldV2Top}>Top</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -1092,6 +1095,9 @@ export const DropListDisabled =
 export const DropListDropdown = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListDropdown}>DropListDropdown</CustomDraggableComponent>;
 
+export const DropListItemListFromArray = 
+	() => <CustomDraggableComponent itemType={ItemTypes.DropListItemListFromArray}>DropListItemListFromArray</CustomDraggableComponent>;
+
 export const DropListListWidth = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DropListListWidth}>DropListListWidth</CustomDraggableComponent>;
 
@@ -1314,6 +1320,9 @@ export const TextFieldMultiLine =
 export const TextFieldRight = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldRight}>TextFieldRight</CustomDraggableComponent>;
 
+export const TextFieldWrappedWidth = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldWrappedWidth}>TextFieldWrappedWidth</CustomDraggableComponent>;
+
 export const TextFieldV2Basic = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Basic}>TextFieldV2Basic</CustomDraggableComponent>;
 
@@ -1349,6 +1358,9 @@ export const TextFieldV2Right =
 
 export const TextFieldV2SinglelineTitle = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2SinglelineTitle}>TextFieldV2SinglelineTitle</CustomDraggableComponent>;
+
+export const TextFieldV2TitleInputScale = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2TitleInputScale}>TextFieldV2TitleInputScale</CustomDraggableComponent>;
 
 export const TextFieldV2Top = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TextFieldV2Top}>TextFieldV2Top</CustomDraggableComponent>;

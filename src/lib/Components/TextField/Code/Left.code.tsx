@@ -1,6 +1,7 @@
 import { TextField } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsTextFieldLeft = ({
+	wrappedWidth = '150px',/**${props-separator}*/
 	width = '100px',/**${props-separator}*/
 	placeholder = 'placeholder',/**${props-separator}*/
 	title = 'title',/**${props-separator}*/
@@ -12,6 +13,7 @@ const ComponentsTextFieldLeft = ({
 }: any) => {
   return (
 		<TextField 
+			wrappedWidth={wrappedWidth}
 			width={width}
 			placeholder={placeholder}
 			title={title}

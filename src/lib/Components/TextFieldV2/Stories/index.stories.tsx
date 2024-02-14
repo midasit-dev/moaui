@@ -18,6 +18,7 @@ import {
 	NumberOptionCode,
 	NumberOptionNegativeIntegerCode,
 	NumberOptionPositiveIntegerCode,
+	TitleInputScaleCode,
 } from '../Code';
 
 const meta = {
@@ -46,15 +47,8 @@ export const Number = LiveEditStory(cleanMask(NumberCode));
 export const NumberOption = LiveEditStory(cleanMask(NumberOptionCode));
 export const NumberOptionNegativeInteger = LiveEditStory(cleanMask(NumberOptionNegativeIntegerCode));
 export const NumberOptionPositiveInteger = LiveEditStory(cleanMask(NumberOptionPositiveIntegerCode));
+export const TitleInputScale = LiveEditStory(cleanMask(TitleInputScaleCode));
 
 export const Sample: Story = {
-	args: {
-		width: "150px",
-		placeholder: "placeholder",
-		title: "title",
-		titlePosition: "left",
-		disabled: false,
-		defaultValue: "",
-		error: false,
-	}
+	args: TextFieldV2.sampleProps,
 };

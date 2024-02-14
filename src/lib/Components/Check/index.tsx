@@ -7,9 +7,8 @@ import { forwardRef } from "react";
  * @param props 
  * @returns React.ReactElement
 */
-const Check = forwardRef((props: StyledProps, ref: any) => {
-		return (<StyledComponent {...props} inputRef={ref} />)
-	});
+const Check = forwardRef((props: StyledProps, ref: any) => (<StyledComponent {...props} inputRef={ref} />));
+
 Check.defaultProps = {
 	disabled: false,
 	ariaLabel: "CheckBox",

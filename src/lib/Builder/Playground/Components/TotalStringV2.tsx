@@ -324,6 +324,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.DialogOnClose ? `${extractComponentName(All.DialogOnClose)}` : ""}
 					${item.type === ItemTypes.DropListDisabled ? `${extractComponentName(All.DropListDisabled)}` : ""}
 					${item.type === ItemTypes.DropListDropdown ? `${extractComponentName(All.DropListDropdown)}` : ""}
+					${item.type === ItemTypes.DropListItemListFromArray ? `${extractComponentName(All.DropListItemListFromArray)}` : ""}
 					${item.type === ItemTypes.DropListListWidth ? `${extractComponentName(All.DropListListWidth)}` : ""}
 					${item.type === ItemTypes.DropListMaxLength ? `${extractComponentName(All.DropListMaxLength)}` : ""}
 					${item.type === ItemTypes.FloatingBoxClassName ? `${extractComponentName(All.FloatingBoxClassName)}` : ""}
@@ -397,6 +398,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TextFieldLeft ? `${extractComponentName(All.TextFieldLeft)}` : ""}
 					${item.type === ItemTypes.TextFieldMultiLine ? `${extractComponentName(All.TextFieldMultiLine)}` : ""}
 					${item.type === ItemTypes.TextFieldRight ? `${extractComponentName(All.TextFieldRight)}` : ""}
+					${item.type === ItemTypes.TextFieldWrappedWidth ? `${extractComponentName(All.TextFieldWrappedWidth)}` : ""}
 					${item.type === ItemTypes.TextFieldV2Basic ? `${extractComponentName(All.TextFieldV2Basic)}` : ""}
 					${item.type === ItemTypes.TextFieldV2Bottom ? `${extractComponentName(All.TextFieldV2Bottom)}` : ""}
 					${item.type === ItemTypes.TextFieldV2CheckErrorAsFunction ? `${extractComponentName(All.TextFieldV2CheckErrorAsFunction)}` : ""}
@@ -409,6 +411,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TextFieldV2NumberOptionPositiveInteger ? `${extractComponentName(All.TextFieldV2NumberOptionPositiveInteger)}` : ""}
 					${item.type === ItemTypes.TextFieldV2Right ? `${extractComponentName(All.TextFieldV2Right)}` : ""}
 					${item.type === ItemTypes.TextFieldV2SinglelineTitle ? `${extractComponentName(All.TextFieldV2SinglelineTitle)}` : ""}
+					${item.type === ItemTypes.TextFieldV2TitleInputScale ? `${extractComponentName(All.TextFieldV2TitleInputScale)}` : ""}
 					${item.type === ItemTypes.TextFieldV2Top ? `${extractComponentName(All.TextFieldV2Top)}` : ""}
 					${item.type === ItemTypes.TooltipArrowBorder ? `${extractComponentName(All.TooltipArrowBorder)}` : ""}
 					${item.type === ItemTypes.TooltipRight ? `${extractComponentName(All.TooltipRight)}` : ""}
