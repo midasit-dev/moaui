@@ -75,7 +75,7 @@ TextFieldV2.sampleProps = {
 	gap: 1,
 	inputAlign: "left",
 	singleLineTitle: false,
-} as StyledProps;
+} as StyledProps & StyledPropsExtension;
 
 /**
  * moaui Styled TextField

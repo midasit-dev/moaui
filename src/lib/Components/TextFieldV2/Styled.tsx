@@ -192,8 +192,8 @@ const StyledComponent = styled((props:StyledProps) => {
 						style:{
 							textAlign: props?.inputAlign,
 						},
-						min: numberOptionsMin,
-						max: numberOptionsMax,
+						min: numberOptionsMin || undefined,
+						max: numberOptionsMax || undefined,
 						step: props?.numberOptions?.step,
 					}
 				}}
