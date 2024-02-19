@@ -8,6 +8,7 @@ import {
 	TypescriptCode,
 	BackgroundColorCode,
 	PaddingCode,
+	LanguageCode,
 } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -30,6 +31,7 @@ export const Javascript = LiveEditStory(cleanMask(JavascriptCode));
 export const Typescript = LiveEditStory(cleanMask(TypescriptCode));
 export const BackgroundColor = LiveEditStory(cleanMask(BackgroundColorCode));
 export const Padding = LiveEditStory(cleanMask(PaddingCode));
+export const Language = LiveEditStory(cleanMask(LanguageCode));
 
 export const Sample: Story = {
 	args: {

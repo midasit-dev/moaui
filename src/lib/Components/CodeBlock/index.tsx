@@ -4,6 +4,8 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Box from "@mui/material/Box";
 import prettier from "prettier/standalone";
 import parserBabel from 'prettier/parser-babel';
+import parserTs from 'prettier/parser-typescript';
+import parserMarkdown from 'prettier/parser-markdown';
 // import parserBabel from "prettier/plugins/babel";
 import { Typography, Color, GuideBox, Button } from "../..";
 	
@@ -15,9 +17,16 @@ interface CodeComponentProps {
 	children: string;
 	/**
 	 * The language of the code
-	 * @default "javascript"
+	 * @default "js"
 	 */
-	language: string;
+	language?: 
+		'js'
+		| 'javascript'
+		| 'ts'
+		| 'typescript'
+		| 'json'
+		| 'markdown'
+		| string;
 	/**
 	 * The title of the code
 	 * @default ""
@@ -69,7 +78,7 @@ interface CodeComponentProps {
 
 CodeBlock.defaultProps = {
 	children: "",
-	language: "javascript",
+	language: "js",
 	title: "",
 	radius: 8,
 	width: "100%",
@@ -89,6 +98,23 @@ const combinePadding = (
 	if (paddingX !== undefined) return `0.5rem ${paddingX}`;
 	if (paddingY !== undefined) return `${paddingY} 0.5rem`;
 	return "0.5rem";
+}
+
+const getParserName = (language: string) => {
+	switch (language) {
+		case "js":
+		case "javascript":
+			return "babel";
+		case "ts":
+		case "typescript":
+			return "typescript";
+		case "json":
+			return "json";
+		case "markdown":
+			return "markdown";
+		default:
+			return "babel";
+	}
 }
 
 /**
@@ -112,9 +138,9 @@ function CodeBlock(props: CodeComponentProps){
   React.useEffect(() => {
     const formatCode = async () => {
       try {
-        const result = await prettier.format(props.children, {
-					parser: "babel",
-					plugins: [parserBabel],
+        const result = prettier.format(props.children, {
+					parser: getParserName(props.language || 'js'),
+					plugins: [parserBabel, parserTs, parserMarkdown],
 					useTabs: true,
 					semi: true,
 					singleQuote: true,
@@ -130,7 +156,7 @@ function CodeBlock(props: CodeComponentProps){
     };
 
     formatCode();
-  }, [props.children]);
+  }, [props.children, props.language]);
 
 	async function copyToClipboard() {
 		try {

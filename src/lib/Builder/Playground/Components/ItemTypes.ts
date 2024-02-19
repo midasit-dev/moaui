@@ -51,6 +51,7 @@ export const ItemTypes = {
 	GuideBoxLayout4: 'GuideBoxLayout4',
 	GuideBoxLayout5: 'GuideBoxLayout5',
 	GuideBoxLoading: 'GuideBoxLoading',
+	GuideBoxOnKeyDown: 'GuideBoxOnKeyDown',
 	GuideBoxOpacity: 'GuideBoxOpacity',
 	GuideBoxOverflow: 'GuideBoxOverflow',
 	GuideBoxPulse: 'GuideBoxPulse',

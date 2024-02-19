@@ -144,6 +144,18 @@ export type StyledProps = {
 	 * </GuideBox>
 	 */
 	flexGrow?: number;
+
+	/**
+	 * onKeyDown Event
+	 * 
+	 * @example
+	 * <GuideBox onKeyDown={(e) => 
+	 * 	if (e.ctrlKey && e.key === 'a) {
+	 * 		console.log('ctrl + a');
+	 * 	}
+	 * } />
+	 */
+	onKeyDown?: (e: React.KeyboardEvent) => void;
 } & MarginTypes & PaddingTypes;
 
 const getItemDirection = (props: StyledProps): {
@@ -327,6 +339,7 @@ const GuideBox = (props: StyledProps) => {
 		borderRadius,
 		border,
 		flexGrow,
+		onKeyDown,
 		...rest 
 	} = props;
 
@@ -355,6 +368,7 @@ const GuideBox = (props: StyledProps) => {
 			justifyContent={getItemDirection(props).value === 'row' ? getItemHorizontalAlign(props).value : getItemVerticalAlign(props).value}
 			alignItems={getItemDirection(props).value === 'row' ? getItemVerticalAlign(props).value : getItemHorizontalAlign(props).value}
 			flexGrow={flexGrow || undefined}
+			onKeyDown={onKeyDown || undefined}
 		>
 			{/* Existing children */}
 			{props.children}
