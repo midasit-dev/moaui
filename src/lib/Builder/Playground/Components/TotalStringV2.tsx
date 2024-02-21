@@ -384,7 +384,9 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.SwitchGroupControlled ? `${extractComponentName(All.SwitchGroupControlled)}` : ""}
 					${item.type === ItemTypes.SwitchGroupUnControlled ? `${extractComponentName(All.SwitchGroupUnControlled)}` : ""}
 					${item.type === ItemTypes.TabLabel ? `${extractComponentName(All.TabLabel)}` : ""}
+					${item.type === ItemTypes.TabSizeControl ? `${extractComponentName(All.TabSizeControl)}` : ""}
 					${item.type === ItemTypes.TabGroupHorizontal ? `${extractComponentName(All.TabGroupHorizontal)}` : ""}
+					${item.type === ItemTypes.TabGroupSizeControl ? `${extractComponentName(All.TabGroupSizeControl)}` : ""}
 					${item.type === ItemTypes.TabGroupVertical ? `${extractComponentName(All.TabGroupVertical)}` : ""}
 					${item.type === ItemTypes.TabGroupWithDataGrid ? `${extractComponentName(All.TabGroupWithDataGrid)}` : ""}
 					${item.type === ItemTypes.TabGroupWithTable ? `${extractComponentName(All.TabGroupWithTable)}` : ""}

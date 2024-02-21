@@ -107,7 +107,9 @@ export { default as ComponentsSwitchLabel } from "./Components/Switch/Code/Label
 export { default as ComponentsSwitchGroupControlled } from "./Components/SwitchGroup/Code/Controlled.code";
 export { default as ComponentsSwitchGroupUnControlled } from "./Components/SwitchGroup/Code/UnControlled.code";
 export { default as ComponentsTabLabel } from "./Components/Tab/Code/Label.code";
+export { default as ComponentsTabSizeControl } from "./Components/Tab/Code/SizeControl.code";
 export { default as ComponentsTabGroupHorizontal } from "./Components/TabGroup/Code/Horizontal.code";
+export { default as ComponentsTabGroupSizeControl } from "./Components/TabGroup/Code/SizeControl.code";
 export { default as ComponentsTabGroupVertical } from "./Components/TabGroup/Code/Vertical.code";
 export { default as ComponentsTabGroupWithDataGrid } from "./Components/TabGroup/Code/WithDataGrid.code";
 export { default as ComponentsTabGroupWithTable } from "./Components/TabGroup/Code/WithTable.code";

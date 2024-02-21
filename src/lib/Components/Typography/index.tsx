@@ -21,3 +21,7 @@ function Typography(props: StyledProps) : JSX.Element {
 }
 
 export default Typography;
+
+export {
+	type StyledProps,
+}

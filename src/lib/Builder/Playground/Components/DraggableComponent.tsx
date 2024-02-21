@@ -746,6 +746,7 @@ const TabCategory: React.FC<{}> = () => (
 				width: '188px',
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.TabLabel}>Label</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TabSizeControl}>SizeControl</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -767,6 +768,7 @@ const TabGroupCategory: React.FC<{}> = () => (
 				width: '188px',
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.TabGroupHorizontal}>Horizontal</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.TabGroupSizeControl}>SizeControl</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TabGroupVertical}>Vertical</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TabGroupWithDataGrid}>WithDataGrid</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.TabGroupWithTable}>WithTable</CustomDraggableComponent>
@@ -1280,8 +1282,14 @@ export const SwitchGroupUnControlled =
 export const TabLabel = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TabLabel}>TabLabel</CustomDraggableComponent>;
 
+export const TabSizeControl = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TabSizeControl}>TabSizeControl</CustomDraggableComponent>;
+
 export const TabGroupHorizontal = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TabGroupHorizontal}>TabGroupHorizontal</CustomDraggableComponent>;
+
+export const TabGroupSizeControl = 
+	() => <CustomDraggableComponent itemType={ItemTypes.TabGroupSizeControl}>TabGroupSizeControl</CustomDraggableComponent>;
 
 export const TabGroupVertical = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TabGroupVertical}>TabGroupVertical</CustomDraggableComponent>;

@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
-import { Color, Font } from "../../";
+import { Color, Font, type TypographyProps } from "../../";
 
 import Tab from '@mui/material/Tab';
 
@@ -31,27 +31,61 @@ export type StyledProps = {
 	 * @type boolean
 	 */
 	selected?: boolean;
+
+	/**
+	 * The width of the Tab.
+	 */
+	width?: string | number;
+	/**
+	 * The height of the Tab.
+	 */
+	height?: string | number;
+	/**
+	 * The fontSize of the Tab.
+	 */
+	fontSize?: TypographyProps["size"];
+	/**
+	 * The minWidth of the Tab.
+	 */
+	minWidth?: string | number;
+	/**
+	 * The minHeight of the Tab.
+	 */
+	minHeight?: string | number;
 }
 const StyledComponent = styled((props: StyledProps) => {
+	const {
+		value,
+		label,
+		onChange,
+		disabled,
+		selected,
+		width,
+		height,
+		fontSize,
+		minWidth,
+		minHeight,
+	} = props;
+
 	return (
 		<Tab 
-			value={props?.value}
-			label={props?.label}
-			onClick={(event) => props?.onChange ? props?.onChange?.(event, props?.value) : {}}
-			disabled={props?.disabled}
+			value={value ?? undefined}
+			label={label ?? undefined}
+			onClick={(event) => onChange ? onChange(event, value) : {}}
+			disabled={disabled ?? undefined}
 			sx={{
-				color: props?.selected ? Color.text.primary : Color.text.secondary,
-				fontWeight: props?.selected ? 700 : 500, /** bold */
-				fontSize: "0.75rem", /** 12px */
-				lineHeight: "0.875rem", /** 14px */
+				width: width ?? undefined,
+				height: height ?? undefined,
+				minWidth: minWidth ?? undefined,
+				minHeight: minHeight ?? undefined,
 				...Font.defaultFontSet,
+				color: selected ? Color.text.primary : Color.text.secondary,
+				fontWeight: selected ? 700 : 500, /** bold */
+				fontSize: Font.getFontSize(fontSize ?? undefined),
+				lineHeight: "0.875rem", /** 14px */
 				padding: '0.625rem',
-				'&:hover': {
-					color: Color.text.primary
-				},
-				'&.Mui-disabled': {
-					color: Color.text.disable
-				}
+				'&:hover': { color: Color.text.primary },
+				'&.Mui-disabled': { color: Color.text.disable }
 			}}
 		/>
 	)

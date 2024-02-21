@@ -99,7 +99,9 @@ function DraggedComponent(props: any){
 		case ItemTypes.SwitchGroupControlled: return <All.SwitchGroupControlled />;
 		case ItemTypes.SwitchGroupUnControlled: return <All.SwitchGroupUnControlled />;
 		case ItemTypes.TabLabel: return <All.TabLabel />;
+		case ItemTypes.TabSizeControl: return <All.TabSizeControl />;
 		case ItemTypes.TabGroupHorizontal: return <All.TabGroupHorizontal />;
+		case ItemTypes.TabGroupSizeControl: return <All.TabGroupSizeControl />;
 		case ItemTypes.TabGroupVertical: return <All.TabGroupVertical />;
 		case ItemTypes.TabGroupWithDataGrid: return <All.TabGroupWithDataGrid />;
 		case ItemTypes.TabGroupWithTable: return <All.TabGroupWithTable />;

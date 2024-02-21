@@ -145,15 +145,6 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	center?: boolean;
 }
 
-const getFontSize = (size: any) => {
-	switch (size) {
-		case 'small': return '0.75rem'; /** 12px */
-		case 'medium': return '1rem'; /** 16px */
-		case 'large': return '1.375rem' /** 22px */
-		default: return '0.75rem';
-	}
-}
-
 const getHorizontalAlign = (props: StyledProps) => {
 	if (props.center) return 'center';
 	if (props.horLeft) return 'flex-start';
@@ -202,7 +193,7 @@ const StyledComponent = styled((props: StyledProps) => {
 				alignItems: getVerticalAlign(props),
 				width: props.width || 'auto',
 				height: props.height || 'auto',
-				fontSize: getFontSize(size),
+				fontSize: Font.getFontSize(size),
 			}}
 			color={FontColor.selector(color)}
 		>

@@ -29,7 +29,7 @@ import { default as Separator } from "./Components/Separator";
 import { default as Stack } from "./Components/Stack";
 import { default as Switch } from "./Components/Switch";
 import { default as SwitchGroup } from "./Components/SwitchGroup";
-import { default as Tab } from "./Components/Tab";
+import { default as Tab, type StyledProps as TabProps } from "./Components/Tab";
 import { default as TabGroup } from "./Components/TabGroup";
 import { default as Table } from "./Components/Table";
 import { default as TableBody } from "./Components/TableBody";
@@ -38,7 +38,7 @@ import { default as TableHead } from "./Components/TableHead";
 import { default as TableRow } from "./Components/TableRow";
 import { default as TextField, type StyledProps as TextFieldProps } from "./Components/TextField";
 import { default as TextFieldV2, type StyledProps as TextFieldV2Props } from "./Components/TextFieldV2";
-import { default as Typography } from "./Components/Typography";
+import { default as Typography, type StyledProps as TypographyProps } from "./Components/Typography";
 import { default as TypographyGroup } from "./Components/TypographyGroup";
 import { default as Icon } from "./Components/Icon";
 import { default as CodeBlock } from "./Components/CodeBlock";
@@ -146,6 +146,7 @@ export {
   Switch,
   SwitchGroup,
   Tab,
+	TabProps,
   TabGroup,
   Table,
   TableBody,
@@ -157,6 +158,7 @@ export {
   TextFieldV2,
 	TextFieldV2Props,
   Typography,
+	TypographyProps,
   TypographyGroup,
   Icon,
   CodeBlock,

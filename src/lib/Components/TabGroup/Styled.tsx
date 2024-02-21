@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 
 import MoaStyledComponent from "../../Style/MoaStyled";
-import { Color } from "../../";
+import { Color, type TabProps } from "../../";
 
 export type StyledProps = {
 	/**
@@ -47,12 +47,50 @@ export type StyledProps = {
 	 * The label for the Tab Group as a string.
 	 */
 	'aria-label'?: string;
+
+	/**
+	 * The width of the Tab Group.
+	 */
+	width?: string | number;
+	/**
+	 * The height of the Tab Group.
+	 */
+	height?: string | number;
+	/**
+	 * The fontSize of the Tab Group.
+	 */
+	fontSize?: string | number;
+	/**
+	 * The minWidth of the Tab Group.
+	 */
+	minWidth?: string | number;
+	/**
+	 * The minHeight of the Tab Group.
+	 */
+	minHeight?: string | number;
+
+	/**
+	 * The props of the inner `Tab` component. effect all included tabs
+	 */
+	tabProps?: {
+		width?: TabProps["width"];
+		height?: TabProps["height"];
+		fontSize?: TabProps["fontSize"];
+		minWidth?: TabProps["minWidth"];
+		minHeight?: TabProps["minHeight"];
+	}
 }
 const StyledComponent = styled((props: StyledProps) => {
+	const { width, height, minWidth, minHeight, tabProps } = props;
+
 	const [value, setValue] = useState(props?.value);
 	const cloneArr = Children.map(props.children, (child, idx) => {
 		if (!child) return createElement(Fragment, { key: idx });
-		return cloneElement(child, { onChange: props?.onChange, selected: value === child.props.value })
+		return cloneElement(child, { 
+			onChange: props?.onChange, 
+			selected: value === child.props.value,
+			...tabProps,
+		})
 	});
 
 	const locateIndicator = useCallback((props: StyledProps) => {
@@ -77,6 +115,12 @@ const StyledComponent = styled((props: StyledProps) => {
 					...locateIndicator(props),
 					backgroundColor: Color.secondary.main
 				}
+			}}
+			sx={{
+				width: width ?? undefined,
+				height: height ?? undefined,
+				minWidth: minWidth ?? undefined,
+				minHeight: minHeight ?? undefined,
 			}}
 		>
 			{cloneArr}

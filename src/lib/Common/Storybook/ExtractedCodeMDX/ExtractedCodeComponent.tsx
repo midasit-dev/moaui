@@ -114,7 +114,9 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/SwitchGroup/Code/Controlled.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/SwitchGroup/Code/UnControlled.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Tab/Code/Label.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/Tab/Code/SizeControl.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TabGroup/Code/Horizontal.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/TabGroup/Code/SizeControl.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TabGroup/Code/Vertical.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TabGroup/Code/WithDataGrid.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TabGroup/Code/WithTable.code.tsx?raw"));
