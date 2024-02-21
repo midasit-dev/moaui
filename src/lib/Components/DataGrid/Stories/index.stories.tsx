@@ -5,6 +5,7 @@ import Explore from './Explore.mdx';
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { 
 	PaginationCode,
+	RowUpdateCode,
  } from '../Code';
 import { cleanMask, } from "../../../Common/Storybook/CodeExtractor";
 
@@ -22,6 +23,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Pagination = LiveEditStory(cleanMask(PaginationCode));
+export const RowUpdate = LiveEditStory(cleanMask(RowUpdateCode));
 
 export const Sample: Story = {
   args: {

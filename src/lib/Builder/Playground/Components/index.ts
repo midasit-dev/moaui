@@ -21,6 +21,7 @@ export { default as CheckGroupUnControlled } from '../../../Components/CheckGrou
 export { default as ChipDefault } from '../../../Components/Chip/Code/Default.code';
 export { default as CodeBlockBackgroundColor } from '../../../Components/CodeBlock/Code/BackgroundColor.code';
 export { default as CodeBlockJavascript } from '../../../Components/CodeBlock/Code/Javascript.code';
+export { default as CodeBlockLanguage } from '../../../Components/CodeBlock/Code/Language.code';
 export { default as CodeBlockPadding } from '../../../Components/CodeBlock/Code/Padding.code';
 export { default as CodeBlockTypescript } from '../../../Components/CodeBlock/Code/Typescript.code';
 export { default as DataGridPagination } from '../../../Components/DataGrid/Code/Pagination.code';

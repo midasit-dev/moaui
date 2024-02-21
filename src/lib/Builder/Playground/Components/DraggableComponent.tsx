@@ -255,6 +255,7 @@ const CodeBlockCategory: React.FC<{}> = () => (
 			}}>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockBackgroundColor}>BackgroundColor</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>Javascript</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.CodeBlockLanguage}>Language</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockPadding}>Padding</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.CodeBlockTypescript}>Typescript</CustomDraggableComponent>
 			</div>
@@ -1065,6 +1066,9 @@ export const CodeBlockBackgroundColor =
 
 export const CodeBlockJavascript = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockJavascript}>CodeBlockJavascript</CustomDraggableComponent>;
+
+export const CodeBlockLanguage = 
+	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockLanguage}>CodeBlockLanguage</CustomDraggableComponent>;
 
 export const CodeBlockPadding = 
 	() => <CustomDraggableComponent itemType={ItemTypes.CodeBlockPadding}>CodeBlockPadding</CustomDraggableComponent>;

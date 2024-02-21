@@ -28,6 +28,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.ChipDefault: return <All.ChipDefault />;
 		case ItemTypes.CodeBlockBackgroundColor: return <All.CodeBlockBackgroundColor />;
 		case ItemTypes.CodeBlockJavascript: return <All.CodeBlockJavascript />;
+		case ItemTypes.CodeBlockLanguage: return <All.CodeBlockLanguage />;
 		case ItemTypes.CodeBlockPadding: return <All.CodeBlockPadding />;
 		case ItemTypes.CodeBlockTypescript: return <All.CodeBlockTypescript />;
 		case ItemTypes.DataGridPagination: return <All.DataGridPagination />;

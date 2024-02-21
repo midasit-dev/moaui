@@ -22,6 +22,7 @@ export const ItemTypes = {
 	ChipDefault: 'ChipDefault',
 	CodeBlockBackgroundColor: 'CodeBlockBackgroundColor',
 	CodeBlockJavascript: 'CodeBlockJavascript',
+	CodeBlockLanguage: 'CodeBlockLanguage',
 	CodeBlockPadding: 'CodeBlockPadding',
 	CodeBlockTypescript: 'CodeBlockTypescript',
 	DataGridPagination: 'DataGridPagination',

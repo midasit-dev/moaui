@@ -33,6 +33,7 @@ export { default as ComponentsCodeBlockLanguage } from "./Components/CodeBlock/C
 export { default as ComponentsCodeBlockPadding } from "./Components/CodeBlock/Code/Padding.code";
 export { default as ComponentsCodeBlockTypescript } from "./Components/CodeBlock/Code/Typescript.code";
 export { default as ComponentsDataGridPagination } from "./Components/DataGrid/Code/Pagination.code";
+export { default as ComponentsDataGridRowUpdate } from "./Components/DataGrid/Code/RowUpdate.code.except";
 export { default as ComponentsDialogDialogButton } from "./Components/Dialog/Code/DialogButton.code";
 export { default as ComponentsDialogHelp } from "./Components/Dialog/Code/Help.code.except";
 export { default as ComponentsDialogHelpButton } from "./Components/Dialog/Code/HelpButton.code";

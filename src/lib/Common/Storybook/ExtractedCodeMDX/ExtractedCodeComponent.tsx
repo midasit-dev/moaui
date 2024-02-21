@@ -43,6 +43,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/Chip/Code/Default.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/BackgroundColor.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Javascript.code.tsx?raw"));
+			rawCodes.push(await import("../../../Components/CodeBlock/Code/Language.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Padding.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/CodeBlock/Code/Typescript.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/DataGrid/Code/Pagination.code.tsx?raw"));
