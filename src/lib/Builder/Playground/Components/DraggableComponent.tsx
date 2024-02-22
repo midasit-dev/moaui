@@ -966,6 +966,7 @@ const AutoDropListCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
+				<CustomDraggableComponent itemType={ItemTypes.AutoDropListAutoDropList}>AutoDropList</CustomDraggableComponent>
 				<CustomDraggableComponent itemType={ItemTypes.AutoDropListTemplatesAutoDropList}>TemplatesAutoDropList</CustomDraggableComponent>
 			</div>
 		</GuideBox>
@@ -1425,6 +1426,9 @@ export const TypographySingleLine =
 
 export const TypographyGroupText = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TypographyGroupText}>TypographyGroupText</CustomDraggableComponent>;
+
+export const AutoDropListAutoDropList = 
+	() => <CustomDraggableComponent itemType={ItemTypes.AutoDropListAutoDropList}>AutoDropListAutoDropList</CustomDraggableComponent>;
 
 export const AutoDropListTemplatesAutoDropList = 
 	() => <CustomDraggableComponent itemType={ItemTypes.AutoDropListTemplatesAutoDropList}>AutoDropListTemplatesAutoDropList</CustomDraggableComponent>;

@@ -155,6 +155,7 @@ const App = () => {
 			rawCodes.push(await import("../../../Components/Typography/Code/H1.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/Typography/Code/SingleLine.code.tsx?raw"));
 			rawCodes.push(await import("../../../Components/TypographyGroup/Code/Text.code.tsx?raw"));
+			rawCodes.push(await import("../../../Templates/AutoDropList/Code/AutoDropList.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/AutoDropList/Code/TemplatesAutoDropList.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/DualComponents/Code/TypographyDropListSpaceBetween.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code.tsx?raw"));

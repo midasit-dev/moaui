@@ -134,6 +134,7 @@ export const ItemTypes = {
 	TypographyH1: 'TypographyH1',
 	TypographySingleLine: 'TypographySingleLine',
 	TypographyGroupText: 'TypographyGroupText',
+	AutoDropListAutoDropList: 'AutoDropListAutoDropList',
 	AutoDropListTemplatesAutoDropList: 'AutoDropListTemplatesAutoDropList',
 	DualComponentsTypographyDropListSpaceBetween: 'DualComponentsTypographyDropListSpaceBetween',
 	DualComponentsTypographyTextFieldSpaceBetween: 'DualComponentsTypographyTextFieldSpaceBetween',

@@ -133,6 +133,7 @@ export { default as TypographyBody3 } from '../../../Components/Typography/Code/
 export { default as TypographyH1 } from '../../../Components/Typography/Code/H1.code';
 export { default as TypographySingleLine } from '../../../Components/Typography/Code/SingleLine.code';
 export { default as TypographyGroupText } from '../../../Components/TypographyGroup/Code/Text.code';
+export { default as AutoDropListAutoDropList } from '../../../Templates/AutoDropList/Code/AutoDropList.code';
 export { default as AutoDropListTemplatesAutoDropList } from '../../../Templates/AutoDropList/Code/TemplatesAutoDropList.code';
 export { default as DualComponentsTypographyDropListSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyDropListSpaceBetween.code';
 export { default as DualComponentsTypographyTextFieldSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code';
