@@ -425,6 +425,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TypographyH1 ? `${extractComponentName(All.TypographyH1)}` : ""}
 					${item.type === ItemTypes.TypographySingleLine ? `${extractComponentName(All.TypographySingleLine)}` : ""}
 					${item.type === ItemTypes.TypographyGroupText ? `${extractComponentName(All.TypographyGroupText)}` : ""}
+					${item.type === ItemTypes.AutoDropListTemplatesAutoDropList ? `${extractComponentName(All.AutoDropListTemplatesAutoDropList)}` : ""}
 					${item.type === ItemTypes.DualComponentsTypographyDropListSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyDropListSpaceBetween)}` : ""}
 					${item.type === ItemTypes.DualComponentsTypographyTextFieldSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyTextFieldSpaceBetween)}` : ""}
 					${item.type === ItemTypes.TendonProfileConverterBottomButtons ? `${extractComponentName(All.TendonProfileConverterBottomButtons)}` : ""}

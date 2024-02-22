@@ -148,6 +148,8 @@ export { default as ComponentsTypographyBody3 } from "./Components/Typography/Co
 export { default as ComponentsTypographyH1 } from "./Components/Typography/Code/H1.code";
 export { default as ComponentsTypographySingleLine } from "./Components/Typography/Code/SingleLine.code";
 export { default as ComponentsTypographyGroupText } from "./Components/TypographyGroup/Code/Text.code";
+export { default as AutoDropList } from "./Templates/AutoDropList/Code/AutoDropList.code";
+export { default as TemplatesAutoDropListTemplatesAutoDropList } from "./Templates/AutoDropList/Code/TemplatesAutoDropList.code";
 export { default as TemplatesDualComponentsTypographyDropListSpaceBetween } from "./Templates/DualComponents/Code/TypographyDropListSpaceBetween.code";
 export { default as TemplatesDualComponentsTypographyTextFieldSpaceBetween } from "./Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code";
 export { default as TemplatesFunctionalComponentsDataGridWithClipboardOption } from "./Templates/FunctionalComponents/Code/DataGridWithClipboardOption.code.except";

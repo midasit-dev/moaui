@@ -140,6 +140,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.TypographyH1: return <All.TypographyH1 />;
 		case ItemTypes.TypographySingleLine: return <All.TypographySingleLine />;
 		case ItemTypes.TypographyGroupText: return <All.TypographyGroupText />;
+		case ItemTypes.AutoDropListTemplatesAutoDropList: return <All.AutoDropListTemplatesAutoDropList />;
 		case ItemTypes.DualComponentsTypographyDropListSpaceBetween: return <All.DualComponentsTypographyDropListSpaceBetween />;
 		case ItemTypes.DualComponentsTypographyTextFieldSpaceBetween: return <All.DualComponentsTypographyTextFieldSpaceBetween />;
 		case ItemTypes.TendonProfileConverterBottomButtons: return <All.TendonProfileConverterBottomButtons />;

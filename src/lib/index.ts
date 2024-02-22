@@ -54,6 +54,7 @@ import { default as Alert } from "./Components/Alert";
 import { default as Chip } from "./Components/Chip";
 import { default as Tooltip } from "./Components/Tooltip";
 import { default as FloatingBox, type StyledProps as FloatingBoxProps } from "./Components/FloatingBox";
+import { default as AutoDropList } from "./Templates/AutoDropList/Code/AutoDropList.code";
 
 // moaui authentication
 import { default as VerifyDialog } from "./Authentication/VerifyDialog";
@@ -114,6 +115,7 @@ const Moaui = {
   VerifyDialog,
   VerifyUtil,
   Signature,
+  AutoDropList,
 };
 
 export default Moaui;
@@ -180,6 +182,7 @@ export {
   VerifyDialog,
   VerifyUtil,
   Signature,
+  AutoDropList,
 };
 
 // testing Components

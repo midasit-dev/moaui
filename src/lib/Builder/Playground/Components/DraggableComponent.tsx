@@ -932,7 +932,7 @@ const TypographyGroupCategory: React.FC<{}> = () => (
 	</GuideBox>
 );
 
-const DualComponentsCategory: React.FC<{}> = () => (
+const AutoDropListCategory: React.FC<{}> = () => (
 	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
 			<div style={{ 
@@ -953,6 +953,27 @@ const DualComponentsCategory: React.FC<{}> = () => (
 				marginBottom: '5px'
 			}} />
 		</GuideBox>
+		<GuideBox show={false} tag="title" fill='2'>
+			<div style={{
+				marginTop: '5px',
+				marginLeft: '5px'
+			}}>
+				<h4>AutoDropList</h4>
+			</div>
+		</GuideBox>
+		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+			<div style={{
+				marginBottom: '30px',
+				width: '188px',
+			}}>
+				<CustomDraggableComponent itemType={ItemTypes.AutoDropListTemplatesAutoDropList}>TemplatesAutoDropList</CustomDraggableComponent>
+			</div>
+		</GuideBox>
+	</GuideBox>
+);
+
+const DualComponentsCategory: React.FC<{}> = () => (
+	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -1405,6 +1426,9 @@ export const TypographySingleLine =
 export const TypographyGroupText = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TypographyGroupText}>TypographyGroupText</CustomDraggableComponent>;
 
+export const AutoDropListTemplatesAutoDropList = 
+	() => <CustomDraggableComponent itemType={ItemTypes.AutoDropListTemplatesAutoDropList}>AutoDropListTemplatesAutoDropList</CustomDraggableComponent>;
+
 export const DualComponentsTypographyDropListSpaceBetween = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DualComponentsTypographyDropListSpaceBetween}>DualComponentsTypographyDropListSpaceBetween</CustomDraggableComponent>;
 
@@ -1477,6 +1501,7 @@ const DraggableComponent: React.FC = () => {
 			<TooltipCategory />
 			<TypographyCategory />
 			<TypographyGroupCategory />
+			<AutoDropListCategory />
 			<DualComponentsCategory />
 			<TendonProfileConverterCategory />
 		</div>

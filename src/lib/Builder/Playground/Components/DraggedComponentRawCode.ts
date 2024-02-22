@@ -133,6 +133,7 @@ export { default as TypographyBody3 } from '../../../Components/Typography/Code/
 export { default as TypographyH1 } from '../../../Components/Typography/Code/H1.code.tsx?raw';
 export { default as TypographySingleLine } from '../../../Components/Typography/Code/SingleLine.code.tsx?raw';
 export { default as TypographyGroupText } from '../../../Components/TypographyGroup/Code/Text.code.tsx?raw';
+export { default as AutoDropListTemplatesAutoDropList } from '../../../Templates/AutoDropList/Code/TemplatesAutoDropList.code.tsx?raw';
 export { default as DualComponentsTypographyDropListSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyDropListSpaceBetween.code.tsx?raw';
 export { default as DualComponentsTypographyTextFieldSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code.tsx?raw';
 export { default as TendonProfileConverterBottomButtons } from '../../../Templates/TendonProfileConverter/Code/BottomButtons.code.tsx?raw';
