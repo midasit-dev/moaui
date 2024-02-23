@@ -137,6 +137,7 @@ export { default as AutoDropListAutoDropList } from '../../../Templates/AutoDrop
 export { default as AutoDropListTemplatesAutoDropList } from '../../../Templates/AutoDropList/Code/TemplatesAutoDropList.code';
 export { default as DualComponentsTypographyDropListSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyDropListSpaceBetween.code';
 export { default as DualComponentsTypographyTextFieldSpaceBetween } from '../../../Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code';
+export { default as SamplesDevToolsUI } from '../../../Templates/Samples/Code/DevToolsUI.code';
 export { default as TendonProfileConverterBottomButtons } from '../../../Templates/TendonProfileConverter/Code/BottomButtons.code';
 export { default as TendonProfileConverterComposite } from '../../../Templates/TendonProfileConverter/Code/Composite.code';
 export { default as TendonProfileConverterHelpIconButton } from '../../../Templates/TendonProfileConverter/Code/HelpIconButton.code';

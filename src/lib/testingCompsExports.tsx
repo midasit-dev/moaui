@@ -155,6 +155,7 @@ export { default as TemplatesDualComponentsTypographyTextFieldSpaceBetween } fro
 export { default as TemplatesFunctionalComponentsDataGridWithClipboardOption } from "./Templates/FunctionalComponents/Code/DataGridWithClipboardOption.code.except";
 export { default as TemplatesFunctionalComponentsDataGridWithClipboardOptionSample } from "./Templates/FunctionalComponents/Code/DataGridWithClipboardOptionSample.code.except";
 export { default as TemplatesFunctionalComponentsValidCheckDialog } from "./Templates/FunctionalComponents/Code/ValidCheckDialog.code.except";
+export { default as TemplatesSamplesDevToolsUI } from "./Templates/Samples/Code/DevToolsUI.code";
 export { default as TemplatesTendonProfileConverterBottomButtons } from "./Templates/TendonProfileConverter/Code/BottomButtons.code";
 export { default as TemplatesTendonProfileConverterComposite } from "./Templates/TendonProfileConverter/Code/Composite.code";
 export { default as TemplatesTendonProfileConverterHelpIconButton } from "./Templates/TendonProfileConverter/Code/HelpIconButton.code";

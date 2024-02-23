@@ -144,6 +144,7 @@ function DraggedComponent(props: any){
 		case ItemTypes.AutoDropListTemplatesAutoDropList: return <All.AutoDropListTemplatesAutoDropList />;
 		case ItemTypes.DualComponentsTypographyDropListSpaceBetween: return <All.DualComponentsTypographyDropListSpaceBetween />;
 		case ItemTypes.DualComponentsTypographyTextFieldSpaceBetween: return <All.DualComponentsTypographyTextFieldSpaceBetween />;
+		case ItemTypes.SamplesDevToolsUI: return <All.SamplesDevToolsUI />;
 		case ItemTypes.TendonProfileConverterBottomButtons: return <All.TendonProfileConverterBottomButtons />;
 		case ItemTypes.TendonProfileConverterComposite: return <All.TendonProfileConverterComposite />;
 		case ItemTypes.TendonProfileConverterHelpIconButton: return <All.TendonProfileConverterHelpIconButton />;
