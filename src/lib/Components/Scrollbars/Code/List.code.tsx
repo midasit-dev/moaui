@@ -45,8 +45,10 @@ const ComponentsScrollbarsList = () => {
   return (
     <>
       <Scrollbars
-        outline="strock"
-        width={400}
+				panelProps={{
+					variant: 'strock',
+				}}
+				width={400}
         height={150}
         title="Scrollbars Title Text"
         titleVariant="body2"
@@ -55,7 +57,7 @@ const ComponentsScrollbarsList = () => {
         <ComponentsListDynamic values={values} setValues={setValues} />
       </Scrollbars>
       {values.map((value: any, index: any) => (
-        <Typography key={index} marginTop={2} textAlign="center">
+        <Typography key={index} marginTop={2} center>
           {value.checked ? "Checked" : "UnChecked"}
         </Typography>
       ))}

@@ -1,15 +1,22 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import Scrollbars from "rc-scrollbars";
-import { Panel, Stack, Typography } from "../..";
+import { Panel, Stack, Typography, type PanelProps } from "../..";
 
 export interface StyledProps {
 	/**
-	 * `box`, `shadow`, `strock` outlined panel
+	 * Outline Panel Property
 	 * 
-	 * @default box
+	 * @example
+	 * <Scrollbars
+	 * 		panelProps={{
+	 * 			variant: 'box',
+	 * 			width: 300,
+	 * 		}}
+	 * />
 	 */
-	outline?: 'box' | 'shadow' | 'strock';
+	panelProps?: PanelProps;
+
 	/**
 	 * React Element
 	 */
@@ -45,37 +52,51 @@ export interface StyledProps {
 	 * 
 	 * @default left
 	 */
-	titleAlign: "center" | "left";
+	titleAlign?: "left" | "center" | "right";
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { outline, width, height, title, titleVariant, titleColor, titleAlign, ...rest } = props;
+	const { 
+		panelProps, 
+		width,
+		height, 
+		title, 
+		titleVariant, 
+		titleColor, 
+		titleAlign, 
+		...rest
+	} = props;
 
 	return (
 		<Panel 
-			variant={outline}
-			width={width}
+			width={width || undefined}
+			{...panelProps}
 		>
-			{props.title &&
+
+			{title &&
 				<Stack paddingTop={1.5} paddingBottom={1.5}>
 					<Typography 
 						variant={titleVariant}
 						color={titleColor}
-						textAlign={titleAlign}
+						horLeft={titleAlign === "left"}
+						horCenter={titleAlign === "center"}
+						horRight={titleAlign === "right"}
 					>
 						{title}
 					</Typography>
 				</Stack>
 			}
+
 			<Scrollbars 
-				{...rest} 
+				{...rest}
 				autoHeight
 				autoHeightMax={height}
 				autoHeightMin={height}
 			/>
+
 		</Panel>
 	)
-})(({theme}) => ({ }))
+})(() => ({ }))
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

@@ -3,12 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider, closeSnackbar } from 'notistack';
+import './overrideMidasController';
+import { IconButton, Icon } from '@midasit-dev/moaui';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SnackbarProvider maxSnack={6}>
+    <SnackbarProvider 
+			maxSnack={6}
+			action={(key) => (
+				<IconButton transparent transparentColor="white" onClick={() => closeSnackbar(key)}>
+					<Icon iconName="Close" />
+				</IconButton>
+			)}
+		>
       <App />
     </SnackbarProvider>
   </React.StrictMode>

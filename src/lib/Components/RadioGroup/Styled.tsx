@@ -12,6 +12,9 @@ export interface StyledProps extends RadioGroupProps {
 	 * @default "Radio Group"
 	 */
 	ariaLabel?: string,
+	/**
+	 * The content of the component.
+	 */
 	children?: React.ReactElement[],
 	/**
 	 * The default value. Use when the component is not controlled.
@@ -38,6 +41,10 @@ export interface StyledProps extends RadioGroupProps {
 	 * Value of the header text. If leave empty this field, header field will not show.
 	 */
 	text?: string,
+	/**
+	 * set a spacing between radio buttons.
+	 */
+	spacing?: number,
 
 	/**
 	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
@@ -47,16 +54,22 @@ export interface StyledProps extends RadioGroupProps {
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { ariaLabel, text, sx, ...rest } = props;
+	const { ariaLabel, text, children, sx, ...rest } = props;
+	if (sx) console.error('The sx prop is not used in StyledComponent');
 	
 	return (
 		<FormControl aria-label={`${text} ${ariaLabel}`}>
 			{text && <div style={{padding: '0.25rem'}}><Typography>{text}</Typography></div>}
-			<RadioGroup {...rest} style={{paddingLeft: text ? '0.5rem' : '0rem'}} />
+			<RadioGroup 
+				{...rest}
+				style={{paddingLeft: text ? '0.5rem' : '0rem'}}
+			>
+				{children}
+			</RadioGroup>
 		</FormControl>
 	)
 
-})(({theme}) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

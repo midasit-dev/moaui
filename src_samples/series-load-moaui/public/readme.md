@@ -1,3 +1,5 @@
+![](https://hubs.ly/Q02hx5J70)
+
 # Series Load
 - Apply a customized static beam load on the structure continuously at regular intervals.
 ## Details

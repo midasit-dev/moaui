@@ -1,12 +1,12 @@
 import * as React from 'react';
-import MoaStack from "@midasit-dev/moaui/Stack";
-import MoaDataGrid from '@midasit-dev/moaui/DataGrid';
-import MoaIconButton from '@midasit-dev/moaui/IconButton';
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
+import MoaDataGrid from '@midasit-dev/moaui/Components/DataGrid';
+import MoaIconButton from '@midasit-dev/moaui/Components/IconButton';
 import { useGridApiContext  } from '@mui/x-data-grid';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import HelpIcon from '@mui/icons-material/Help';
-import DropList from '@midasit-dev/moaui/DropList';
+import DropList from '@midasit-dev/moaui/Components/DropList';
 
 //Select for Line Type in Alignments Data Grid
 function SelectEditInputCell(props) {

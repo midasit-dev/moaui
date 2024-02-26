@@ -7,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Color from "../../Style/Color";
 import Font from "../../Style/Font";
-import Box from '@mui/material/Box'
 
 export type StyledProps = {
 	/**
@@ -25,7 +24,10 @@ export type StyledProps = {
 	 * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
 	 * @defaultValue new Map()
 	 */
-	itemList : Map<string, string | number> | (() => Map<string, string | number>);
+	itemList : 
+			Map<string, string | number> 
+		| (() => Map<string, string | number>)
+		| Array<[string, string | number]>;
 	/**
    * Callback fired when a menu item is selected.
    *
@@ -51,11 +53,71 @@ export type StyledProps = {
 	 * @defaultValue ""
    */
 	defaultValue?: any;
+	/**
+	 * If true, the droplist is disabled.
+	 * @defaultValue false
+	 */
+	disabled?: boolean;
+	/**
+		 * Set the background color of droplist
+		 */
+	backgroundColor?: string;
+
+	/**
+	 * Set the width value of droplist's list width.
+	 */
+	listWidth?: string | number;
+
+	/**
+	 * Set the placeholder of droplist's input.
+	 */
+	placeholder?: string;
+
+	/**
+	 * Set a string max length of droplist's input.
+	 */
+	maxLength?: number;
+}
+
+const useDroplistOpenCloseEffect = () => {
+	const [isDroplistOpen, setIsDroplistOpen] = React.useState<boolean>(false);
+
+	const truncateText = React.useCallback((text: string | undefined, maxLength: number | undefined) => {
+		if (text === undefined) {
+			return "";
+		}
+
+		if (isDroplistOpen) {
+			return text;
+		}
+
+		if (maxLength !== undefined && text.length > maxLength) {
+			return text.slice(0, maxLength) + "...";
+		}
+		return text;
+	}, [isDroplistOpen]);
+
+	return { 
+		isDroplistOpen, 
+		setIsDroplistOpen, 
+		truncateText,
+	};
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	const {itemList, width, value, onChange, defaultValue} = props;
-	const itemMap = typeof itemList === 'function' ? itemList() : itemList;
+	const {itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
+	
+	let itemMap: Map<string, string | number> = new Map();
+	if (itemList instanceof Function) {
+		itemMap = itemList();
+	} else if (itemList instanceof Array) {
+		itemMap = new Map(itemList);
+	} else if (itemList instanceof Map) {
+		itemMap = itemList;
+	} else {
+		console.error('itemList is not a Map or a function that returns a Map');
+		itemMap = new Map();
+	}
 
 	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
 	const parentRef = React.useRef<HTMLDivElement | null>(null);
@@ -66,82 +128,119 @@ const StyledComponent = styled((props:StyledProps) => {
 		}
 	},[width]);
 
-	return (
-		<React.Fragment>
-			<FormControl ref={parentRef} sx={{width: width, maxHeightight:"1.75rem"}}>
-				<DropList
-					defaultValue={defaultValue}
-					autoWidth
-					value={value}
-					sx={{
-						'& .MuiOutlinedInput-input.MuiSelect-select':{
-							display: "flex",
-							alignItems: "center",
-							gap: "0.375rem",
-							alignSelf: "stretch",
-							padding: "0.375rem 0.375rem 0.375rem 0.625rem",
-							//font
-							color: Color.text.secondary,
-							fontFeatureSettings: Font.fontFeatureSettings,
-						},
-						height: "1.75rem",
-					}}
-					onChange={onChange}
-				>
-					{Array.from(itemMap.keys()).map((key, index) => {
-						if(key === "subheader")
-							return (
-								<ListSubheader key={"subheader" + itemMap.get(key) + index}
-									sx={{
-										display: "flex",
-										padding: "0.25rem 0.625rem",
-										justifyContent: "center",
-										alignItems: "center",
-										gap: "0.625rem",
-										alignSelf: "stretch",
-										height: "1.75rem",
-										width: `${parentWidthInPixels}px`,
-										//font
-										color: Color.text.secondary,
-										fontFeatureSettings: Font.fontFeatureSettings,
-									}}
-								>
-									{itemMap.get(key)}
-								</ListSubheader>
-							)
+	const { truncateText, isDroplistOpen, setIsDroplistOpen } = useDroplistOpenCloseEffect();
 
-						return (
-							<MenuItem key={"item"+ itemMap.get(key) + index} value={itemMap.get(key)}
-								sx={{
-									display: "flex",
-									padding: "0.25rem 0.625rem",
-									justifyContent: "center",
-									alignItems: "center",
-									gap: "0.625rem",
-									alignSelf: "stretch",
-									minHeight:"1.75rem",
-									width: `${parentWidthInPixels}px`,
-									height:"1.75rem",
-									//font
-									color: Color.text.secondary,
-									fontFeatureSettings: Font.fontFeatureSettings,
-									'&.Mui-selected':{
-										backgroundColor: `${Color.primary.enable_strock}!important`,
-									},
-									'&:hover': {
-										backgroundColor: `${Color.component.gray_light}!important`,
-									}
-								}}
-							>
-								{key}
-							</MenuItem>
-						)
-					})}
-				</DropList>	
-			</FormControl>
-		</React.Fragment>
-	)
-})(({theme}) => ({
+	return (
+    <React.Fragment>
+      <FormControl
+        ref={parentRef}
+        sx={{ width: width, maxHeight: "1.75rem" }}
+      >
+        <DropList
+          defaultValue={defaultValue}
+          autoWidth
+          value={value}
+          sx={{
+            "& .MuiOutlinedInput-input.MuiSelect-select": {
+              display: "flex",
+              alignItems: "center",
+              gap: "0.375rem",
+              alignSelf: "stretch",
+              padding: "0.375rem 0.375rem 0.375rem 0.625rem",
+              //font
+              color: Color.text.secondary,
+              fontFeatureSettings: Font.fontFeatureSettings,
+
+              //background color
+              backgroundColor: backgroundColor || Color.primary.white,
+            },
+            height: "1.75rem",
+          }}
+          onChange={onChange}
+          disabled={props?.disabled}
+          displayEmpty={props?.placeholder ? true : false}
+
+					open={isDroplistOpen}
+					onOpen={() => setIsDroplistOpen(true)}
+					onClose={() => setIsDroplistOpen(false)}
+        >
+					{props?.placeholder && 
+						<MenuItem disabled value=""
+							sx={{
+								display: "flex",
+								padding: "0.25rem 0.625rem",
+								justifyContent: "center",
+								alignItems: "center",
+								gap: "0.625rem",
+								alignSelf: "stretch",
+								minHeight: "1.75rem",
+								width: listWidth || `${parentWidthInPixels}px`,
+								height: "1.75rem",
+								//font
+								color: Color.text.secondary,
+								fontFeatureSettings: Font.fontFeatureSettings,
+							}}
+						>
+							<em>{`${truncateText(props?.placeholder, maxLength || undefined)}`}</em>
+						</MenuItem>
+					}
+          {Array.from(itemMap.keys()).map((key, index) => {
+            if (key === "subheader")
+              return (
+                <ListSubheader
+                  key={"subheader" + itemMap.get(key) + index}
+                  sx={{
+                    display: "flex",
+                    padding: "0.25rem 0.625rem",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "0.625rem",
+                    alignSelf: "stretch",
+                    height: "1.75rem",
+                    width: `${parentWidthInPixels}px`,
+                    //font
+                    color: Color.text.secondary,
+                    fontFeatureSettings: Font.fontFeatureSettings,
+                  }}
+                >
+                  {itemMap.get(key)}
+                </ListSubheader>
+              );
+
+            return (
+              <MenuItem
+                key={"item" + itemMap.get(key) + index}
+                value={itemMap.get(key)}
+                sx={{
+                  display: "flex",
+                  padding: "0.25rem 0.625rem",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "0.625rem",
+                  alignSelf: "stretch",
+                  minHeight: "1.75rem",
+                  width: listWidth || `${parentWidthInPixels}px`,
+                  height: "1.75rem",
+                  //font
+                  color: Color.text.secondary,
+                  fontFeatureSettings: Font.fontFeatureSettings,
+                  "&.Mui-selected": {
+                    backgroundColor: `${Color.primary.enable_strock}!important`,
+                  },
+                  "&:hover": {
+                    backgroundColor: `${Color.component.gray_light}!important`,
+                  },
+                }}
+              >
+                {truncateText(key, maxLength || undefined)}
+              </MenuItem>
+            );
+          })}
+        </DropList>
+      </FormControl>
+    </React.Fragment>
+  );
+})(() => ({
 	display: "flex",
 	fullWidth: true,
 	alignItems: "center",

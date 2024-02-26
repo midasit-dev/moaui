@@ -1,9 +1,46 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from '../../Style/MoaStyled';
 import MuiButton from '@mui/material/Button';
-import Color from "../../Style/Color";
 import Font from "../../Style/Font";
 import React from 'react';
+import Box from '@mui/material/Box';
+import CircularProgress, { circularProgressClasses } from '@mui/material/CircularProgress';
+import { Color } from "../..";
+
+function CustomCircularProgress({
+	color
+}: any) {
+  return (
+    <Box sx={{ position: 'relative', display: 'flex', opacity: 0.3 }}>
+      <CircularProgress
+        variant="determinate"
+        sx={{
+          // color: (theme) => theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+					color: color === "negative" ? Color.primaryNegative.enable : Color.primary.enable,
+        }}
+        size={15}
+        thickness={4}
+        value={100}
+      />
+      <CircularProgress
+        variant="indeterminate"
+        disableShrink
+        sx={{
+          // color: (theme) => (theme.palette.mode === 'light' ? Color.primary.enable_strock : '#308fe8'),
+					color: color === "negative" ? Color.primaryNegative.white : Color.primary.enable_strock,
+          animationDuration: '550ms',
+          position: 'absolute',
+          left: 0,
+          [`& .${circularProgressClasses.circle}`]: {
+            strokeLinecap: 'round',
+          },
+        }}
+        size={15}
+        thickness={4}
+      />
+    </Box>
+  );
+}
 
 export type StyledProps = {
 	/**
@@ -69,10 +106,19 @@ export type StyledProps = {
 	 * color="negative"
 	 */
 	color?: "normal" | "negative"
+
+	/**
+	 * If the value is true, The state of the button is loading.
+	 * 
+	 * @default false
+	 */
+	loading?: boolean
 }
 
 
 const StyledComponent = styled((props:StyledProps) => {
+	const { variant, disabled, width, onClick, color, children, loading, } = props;
+
 	const commonButtonProps = React.useMemo(() => ({
 		disableFocusRipple:true,
 		disableRipple:true,
@@ -80,7 +126,7 @@ const StyledComponent = styled((props:StyledProps) => {
 	}), []);
 
 	const commonButtonStyle = React.useMemo(() => ({
-		width:`${props?.width}`,
+		width:`${width}`,
 		display: "inline-flex",
 		height: "1.75rem",
 		padding: "0.625rem 1.25rem",
@@ -98,7 +144,7 @@ const StyledComponent = styled((props:StyledProps) => {
 		fontWeight: 500,
 		lineHeight: "0.875rem",
 		textTransform: "none",
-	}), [props?.width]);
+	}), [width]);
 
 	const CustomButtonStyleByVariant = React.useCallback(({ variant, color }: { variant:StyledProps["variant"], color: StyledProps["color"] }) => {
 		const borderConfig = variant !== "text" ? `1px solid` : "none";
@@ -179,20 +225,24 @@ const StyledComponent = styled((props:StyledProps) => {
 	return (
 		<MuiButton
 			{...commonButtonProps}
-			variant={props?.variant}
-			disabled={props?.disabled}
-			fullWidth={props?.width === "100%" ? true : false}
-			onClick={props?.onClick}
+			variant={variant}
+			disabled={disabled || loading}
+			fullWidth={width === "100%" ? true : false}
+			onClick={onClick}
 			sx={{
 				...commonButtonStyle,
-				...CustomButtonStyleByVariant({ variant: props?.variant, color: props?.color })
+				...CustomButtonStyleByVariant({ variant: variant, color: color })
 			}}
 		>
-			{props?.children}
+			{loading ? 
+				<CustomCircularProgress color={color} />
+			 : 
+			 	children
+			}
 		</MuiButton>
 	)
 })
-(({theme}) => ({}))
+(() => ({}))
 
 
 const ThemedComponent = (props: StyledProps) => (

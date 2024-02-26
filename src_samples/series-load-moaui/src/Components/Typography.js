@@ -1,6 +1,6 @@
 import * as React from 'react';
-import MoaStack from '@midasit-dev/moaui/Stack';
-import MoaTypography from '@midasit-dev/moaui/Typography';
+import MoaStack from '@midasit-dev/moaui/Components/Stack';
+import MoaTypography from '@midasit-dev/moaui/Components/Typography';
 
 export default function StyledTypo(title) {
   return (

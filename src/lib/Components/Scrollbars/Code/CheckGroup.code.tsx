@@ -3,8 +3,10 @@ import { Scrollbars, Stack, Check } from "@midasit-dev/moaui"; /**${comma}*/
 const ComponentsScrollbarsCheckGroup = () => {
   return (
     <Scrollbars
-      outline="strock"
-      width={400}
+			panelProps={{
+				variant: 'strock',
+			}}
+			width={400}
       height={287}
       title="Convertable Tendon Profile List"
       titleVariant='body2'

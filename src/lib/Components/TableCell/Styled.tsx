@@ -71,19 +71,17 @@ export type StyledProps = {
 	sx?: never,
 };
 
-type InnerStyledProps = {
-	theme: any;
-};
-
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	const { showCheckbox, hideLabel, showLeftIcon, showRightIcon, enabled, sx, ...muiProps } = props;
+	if (showCheckbox || hideLabel || showLeftIcon || showRightIcon || enabled) console.error('The showCheckbox, hideLabel, showLeftIcon, showRightIcon, enabled props are not used in StyledComponent');
+	if (sx) console.error('The sx prop is not used in StyledComponent');
 	
 	return (
 		<TableCell {...muiProps} sx={{
 			padding: "0.75rem"
 		}} />
 	)
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

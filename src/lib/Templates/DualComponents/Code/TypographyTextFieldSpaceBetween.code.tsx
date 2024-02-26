@@ -2,26 +2,26 @@ import React from 'react';/**${comma}*/
 import { GuideBox, Typography, TextField } from "@midasit-dev/moaui";/**${comma}*/
 
 const TemplatesDualComponentsTypographyTextFieldSpaceBetween = ({
-	width = 300,/**${props-seperator}*/
-	height = 30,/**${props-seperator}*/
-	title = 'Title',/**${props-seperator}*/
-	textFieldWidth = 150,/**${props-seperator}*/
-	placeholder = 'placeholder ...',/**${props-seperator}*/
-	defaultValue = '',/**${props-seperator}*/
-	error = false,/**${props-seperator}*/
-	disabled = false,/**${props-seperator}*/
-	value = undefined,/**${props-seperator}*/
-	onChange = undefined,/**${props-seperator}*/
-	show = false,/**${props-seperator}*/
-}) => {
+	width = 300,/**${props-separator}*/
+	height = 30,/**${props-separator}*/
+	title = 'Title',/**${props-separator}*/
+	textFieldWidth = 150,/**${props-separator}*/
+	placeholder = 'placeholder ...',/**${props-separator}*/
+	defaultValue = '',/**${props-separator}*/
+	error = false,/**${props-separator}*/
+	disabled = false,/**${props-separator}*/
+	value = undefined,/**${props-separator}*/
+	onChange = undefined,/**${props-separator}*/
+	show = false,/**${props-separator}*/
+}: any) => {
 	const [valueLocal, setValueLocal] = React.useState(defaultValue);
 	let onChangeLocal = (e: any) => {
 		setValueLocal(e.target.value);
 	}
 
 	return (
-		<GuideBox show={show} width={width} height={height} itemDirection='row' itemHorizontalAlign='space-between'>
-			<Typography flexItem textAlign='center' height={height}>{title}</Typography>
+		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
+			<Typography center height={height}>{title}</Typography>
 			<TextField
 				width={textFieldWidth}
 				height={30}

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ListItemButton from "..";
+import { ListItemButton, Typography } from "../../../index";
 import Explore from "./Explore.mdx";
-import { Typography } from "../../..";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";

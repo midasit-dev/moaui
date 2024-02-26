@@ -2,20 +2,20 @@ import React from "react";/**${comma}*/
 import { TabGroup, Tab, Panel, Table, TableHead, TableRow, TableCell, TableBody, Typography } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsTabGroupWithTable = ({
-	tab1TableHeadRow = [ 'header1', 'header2', 'header3', 'header4' ],/**${props-seperator}*/
+	tab1TableHeadRow = [ 'header1', 'header2', 'header3', 'header4' ],/**${props-separator}*/
 	tab1TableDataRows = [
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-	],/**${props-seperator}*/
-	tab2TableHeadRow = [ 'another1', 'another2', 'another3', 'another4' ],/**${props-seperator}*/
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+	],/**${props-separator}*/
+	tab2TableHeadRow = [ 'another1', 'another2', 'another3', 'another4' ],/**${props-separator}*/
 	tab2TableDataRows = [
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-		{ header1: <Typography variant="body1" textAlign='center'>text</Typography>, header2: <Typography variant="body1" textAlign='center'>text</Typography>, header3: <Typography variant="body1" textAlign='center'>text</Typography>, header4: <Typography variant="body1" textAlign='center'>text</Typography> },
-	],/**${props-seperator}*/
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+		{ header1: <Typography variant="body1" center>text</Typography>, header2: <Typography variant="body1" center>text</Typography>, header3: <Typography variant="body1" center>text</Typography>, header4: <Typography variant="body1" center>text</Typography> },
+	],/**${props-separator}*/
 }: any) => {
 	const [value, setValue] = React.useState('Tab 1');
 	const CompTable = ({ headRow, dataRows }: any) => {

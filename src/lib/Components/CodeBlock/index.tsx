@@ -1,16 +1,15 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import IconButton from "@mui/material/IconButton"
 import Box from "@mui/material/Box";
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import SpellcheckOutlinedIcon from '@mui/icons-material/SpellcheckOutlined';
 import prettier from "prettier/standalone";
 import parserBabel from 'prettier/parser-babel';
+import parserTs from 'prettier/parser-typescript';
+import parserMarkdown from 'prettier/parser-markdown';
 // import parserBabel from "prettier/plugins/babel";
-import { Typography, Color } from "../..";
+import { Typography, Color, GuideBox, Button } from "../..";
 	
-interface CodeComponentProps {	
+interface CodeComponentProps {
 	/**
 	 * The code to be displayed
 	 * @default ""
@@ -18,35 +17,106 @@ interface CodeComponentProps {
 	children: string;
 	/**
 	 * The language of the code
-	 * @default "javascript"
+	 * @default "js"
 	 */
-	language: string;
+	language?: 
+		'js'
+		| 'javascript'
+		| 'ts'
+		| 'typescript'
+		| 'json'
+		| 'markdown'
+		| string;
 	/**
 	 * The title of the code
 	 * @default ""
 	 */
 	title?:string;
 	/**
-	 * Whether to hide the title
-	 * 
-	 * @default false
-	 */
-	hidetitle?: string;
-	/**
-	 * The border radius of the code block
+	 * The radius of the code block
 	 * 
 	 * @default 8
 	 */
-	borderRadius?: number;
-}
+	radius?: number;
+	/**
+	 * The width of the code block
+	 * 
+	 * @default "100%"
+	 */
+	width?: number | string;
+	/**
+	 * The background color of the code block
+	 */
+	backgroundColor?: string;
+
+	/**
+	 * The padding of the code block
+	 */
+	titlePadding?: number | string;
+	/**
+	 * The padding X of the code block
+	 */
+	titlePaddingX?: number | string;
+	/**
+	 * The padding Y of the code block
+	 */
+	titlePaddingY?: number | string;
+
+	/**
+	 * The padding of the code block
+	 */
+	codePadding?: number | string;
+	/**
+	 * The padding X of the code block
+	 */
+	codePaddingX?: number | string;
+	/**
+	 * The padding Y of the code block
+	 */
+	codePaddingY?: number | string;
+};
 
 CodeBlock.defaultProps = {
 	children: "",
-	language: "javascript",
+	language: "js",
 	title: "",
-	hidetitle: "false",
-	borderRadius: 8,
+	radius: 8,
+	width: "100%",
 }
+
+const combinePadding = (
+	padding: number | string | undefined, 
+	paddingX: number | string | undefined,
+	paddingY: number | string | undefined
+) => {
+	if (typeof padding === "number") padding = `${padding * 8}px`;
+	if (typeof paddingX === "number") paddingX = `${paddingX * 8}px`;
+	if (typeof paddingY === "number") paddingY = `${paddingY * 8}px`;
+
+	if (padding !== undefined) return padding;
+	if (paddingX !== undefined && paddingY !== undefined) return `${paddingY} ${paddingX}`;
+	if (paddingX !== undefined) return `0.5rem ${paddingX}`;
+	if (paddingY !== undefined) return `${paddingY} 0.5rem`;
+	return "0.5rem";
+}
+
+const getParserName = (language: string) => {
+	switch (language) {
+		case "js":
+		case "javascript":
+			return "babel";
+		case "ts":
+		case "typescript":
+			return "typescript";
+		case "json":
+			return "json";
+		case "markdown":
+			return "markdown";
+		default:
+			return "babel";
+	}
+}
+
 /**
  * A code block with syntax highlighting
  * 
@@ -68,9 +138,9 @@ function CodeBlock(props: CodeComponentProps){
   React.useEffect(() => {
     const formatCode = async () => {
       try {
-        const result = await prettier.format(props.children, {
-					parser: "babel",
-					plugins: [parserBabel],
+        const result = prettier.format(props.children, {
+					parser: getParserName(props.language || 'js'),
+					plugins: [parserBabel, parserTs, parserMarkdown],
 					useTabs: true,
 					semi: true,
 					singleQuote: true,
@@ -86,11 +156,11 @@ function CodeBlock(props: CodeComponentProps){
     };
 
     formatCode();
-  }, [props.children]);
+  }, [props.children, props.language]);
 
 	async function copyToClipboard() {
 		try {
-			await navigator.clipboard.writeText(props.children);
+			await navigator.clipboard.writeText(formattedCode);
 			setCopySuccess(true);
 		} catch (err) {
 			console.error('Async: Could not copy text: ', err);
@@ -98,46 +168,50 @@ function CodeBlock(props: CodeComponentProps){
 	}
 
 	return (
-		<>
-			<Box
-				display="flex"
-				justifyContent={"space-between"}
-				alignItems='center'
-				sx={{
-					backgroundColor: Color.primaryNegative.enable,
-					width: "100%",
-					height: "2rem",
-					borderTopLeftRadius: props.borderRadius,
-					borderTopRightRadius: props.borderRadius,
-				}}
+		<Box width={props.width}>
+			<GuideBox
+				show
+				fill={Color.primaryNegative.enable}
+				width="100%"
+				row
+				horSpaceBetween
+				verCenter
+				padding={combinePadding(props.titlePadding, props.titlePaddingX, props.titlePaddingY)}
+				borderRadius={`${props.radius}px ${props.radius}px 0 0`}
 			>
-				{/* <Button sx={{display:"flex", justifyContent:"left", textTransform:"none", color:"#FFFFFF", ml:1, width:"auto"}}>{props.title}</Button> */}
-				<Typography color={Color.primaryNegative.white} variant="h1" paddingLeft='1.4rem'>{props.title}</Typography>
-				<IconButton onClick={copyToClipboard} sx={{backgroundColor:"transparent", width:"30px", height:"100%", mr: '0.6rem'}}>
-					{copySuccess ? (
-						<SpellcheckOutlinedIcon style={{ color: "gray", fontSize: "20" }}/>
-					) : (
-						<CodeRoundedIcon style={{ color: "white", fontSize: "20" }} />
-					)}
-				</IconButton>
-			</Box>
+				<Typography 
+					color={Color.primaryNegative.white} 
+					variant="h1"
+					paddingLeft='11px'
+				>
+					{props.title}
+				</Typography>
+				{
+					copySuccess ? 
+						<Button variant="text" disabled>copied</Button> :
+							<Button variant="text" onClick={copyToClipboard}>copy</Button>
+				}
+			</GuideBox>
 			<SyntaxHighlighter
 				showLineNumbers
 				style={vscDarkPlus}
 				wrapLines={true}
 				customStyle={{
-					borderBottomRightRadius: props.borderRadius,
-					borderBottomLeftRadius: props.borderRadius,
-					padding: '1rem 1rem 1rem 0',
+					borderBottomRightRadius: props.radius,
+					borderBottomLeftRadius: props.radius,
 					fontSize: "3px",
 					margin: 0,
+					width: '100%',
 					// minHeight: "100px",
+					...(props.backgroundColor !== undefined && { backgroundColor: props.backgroundColor }),
+					boxSizing: "border-box",
+					padding: combinePadding(props.codePadding, props.codePaddingX, props.codePaddingY),
 				}}
 				{...props}
 			>
 				{formattedCode}
 			</SyntaxHighlighter>
-		</>
+		</Box>
 	);
 }
 

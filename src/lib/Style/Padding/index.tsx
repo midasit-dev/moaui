@@ -76,14 +76,30 @@ export type PaddingTypes = {
 	paddingRight?: CSS.StandardLonghandProperties['paddingRight'] | number;
 }
 
+export const hasPaddingProps = (props: any) => {
+	const isUndefined = (value: any) => value === undefined;
+
+	return (
+		!isUndefined(props.padding) ||
+		!isUndefined(props.paddingX) ||
+		!isUndefined(props.paddingY) ||
+		!isUndefined(props.paddingTop) ||
+		!isUndefined(props.paddingBottom) ||
+		!isUndefined(props.paddingLeft) ||
+		!isUndefined(props.paddingRight)
+	);
+}
+
 export const PaddingProps = (props: any) => {
 	let paddingObject: any = {};
-	if (props && props.padding) paddingObject.padding = props.padding;
-	if (props && props.paddingX) paddingObject.paddingX = props.paddingX;
-	if (props && props.paddingY) paddingObject.paddingY = props.paddingY;
-	if (props && props.paddingTop) paddingObject.paddingTop = props.paddingTop;
-	if (props && props.paddingBottom) paddingObject.paddingBottom = props.paddingBottom;
-	if (props && props.paddingLeft) paddingObject.paddingLeft = props.paddingLeft;
-	if (props && props.paddingRight) paddingObject.paddingRight = props.paddingRight;
+
+	if (props && props.padding       !== undefined) paddingObject.padding = props.padding;
+	if (props && props.paddingX      !== undefined) paddingObject.paddingX = props.paddingX;
+	if (props && props.paddingY      !== undefined) paddingObject.paddingY = props.paddingY;
+	if (props && props.paddingTop    !== undefined) paddingObject.paddingTop = props.paddingTop;
+	if (props && props.paddingBottom !== undefined) paddingObject.paddingBottom = props.paddingBottom;
+	if (props && props.paddingLeft   !== undefined) paddingObject.paddingLeft = props.paddingLeft;
+	if (props && props.paddingRight  !== undefined) paddingObject.paddingRight = props.paddingRight;
+
 	return paddingObject;
 }

@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { DataGrid, Panel } from "../../../index";
 import Explore from './Explore.mdx';
-import DataGrid from "..";
-import { Panel } from "../../../";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { PaginationCode, } from '../Code';
-import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
+import { 
+	PaginationCode,
+	RowUpdateCode,
+ } from '../Code';
+import { cleanMask, } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
   title: 'Components/DataGrid',
@@ -21,6 +23,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Pagination = LiveEditStory(cleanMask(PaginationCode));
+export const RowUpdate = LiveEditStory(cleanMask(RowUpdateCode));
 
 export const Sample: Story = {
   args: {

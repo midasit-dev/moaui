@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Button from "..";
+import { Button } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
@@ -10,7 +10,8 @@ import {
 	TextCode, 
 	NormalCode, 
 	NegativeCode, 
-	WidthCode 
+	WidthCode,
+	LoadingCode,
 } from "../Code";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -34,14 +35,8 @@ export const Text = LiveEditStory(cleanMask(TextCode));
 export const Normal = LiveEditStory(cleanMask(NormalCode));
 export const Negative = LiveEditStory(cleanMask(NegativeCode));
 export const Width = LiveEditStory(cleanMask(WidthCode));
+export const Loading = LiveEditStory(cleanMask(LoadingCode));
 
 export const Sample: Story = {
-  args: {
-    children: "Button",
-    onClick: () => {},
-    variant: "contained",
-    disabled: false,
-    width: "auto",
-    color: "normal",
-  },
+  args: Button.sampleProps,
 };

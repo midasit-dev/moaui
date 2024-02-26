@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import IconButton from "..";
-import { Icon } from "../../..";
+import { IconButton, Icon } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { AddCode, CloseCode, WithNameCode } from '../Code';
+import { AddCode, CloseCode, WithNameCode, TransparentCode } from "../Code";
 
 const meta = {
   title: 'Components/IconButton',
@@ -23,6 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const Add = LiveEditStory(cleanMask(AddCode));
 export const Close = LiveEditStory(cleanMask(CloseCode));
 export const WithName = LiveEditStory(cleanMask(WithNameCode));
+export const Transparent = LiveEditStory(cleanMask(TransparentCode));
 
 export const Sample: Story = {
 	args: {

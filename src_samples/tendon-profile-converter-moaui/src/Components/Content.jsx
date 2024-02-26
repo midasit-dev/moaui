@@ -1,9 +1,9 @@
 import React from "react";
 
-import MoaTypography from "@midasit-dev/moaui/Typography";
-import MoaButton from "@midasit-dev/moaui/Button";
+import { GuideBox, Typography as MoaTypography } from "@midasit-dev/moaui";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
 import IconButton from "@mui/material/IconButton";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import Scrollbars from "rc-scrollbars";
 import List from "./List";
 
@@ -14,6 +14,7 @@ import ListEmpty from "./ListEmpty";
 import ListLoading from "./ListLoading";
 import { importTdnaFromProduct } from "../Workers/Downstream";
 import { useUpstream } from "../Workers/Upstream";
+import { Panel } from "@midasit-dev/moaui";
 
 export default function Contents() {
 	const [selected, setSelected] = React.useState({});
@@ -49,27 +50,31 @@ export default function Contents() {
 	return (
 		<React.Fragment>
 			<HelpDlg open={showHelp} setOpen={setShowHelp} />
-			<MoaStack direction="column" justifyContent="center" margin={2} spacing={1}>
-				<MoaButton onClick={handleImportData} disabled={loading}>Import Tendon Profile List</MoaButton>
-				<MoaStack border={"solid 1px #E6E6E6"} borderRadius="4px">
-					<MoaStack padding={1.5}>
-						<MoaTypography variant="body2" color="disable">Convertable Tendon Profile List</MoaTypography>
+			<MoaStack width="100%" direction="column" justifyContent="center" spacing={2}>
+				<MoaButton onClick={handleImportData} disabled={loading} color="negative">Import Tendon Profile List</MoaButton>
+				<Panel width={380} variant='shadow2'>
+					<MoaStack border={"solid 1px #E6E6E6"} borderRadius="4px">
+						<MoaStack padding={1.5}>
+							<MoaTypography variant="body2" color="disable">Convertable Tendon Profile List</MoaTypography>
+						</MoaStack>
+						<Scrollbars autoHeight autoHeightMin="287px" autoHeightMax="287px">
+							{loading && <ListLoading height="287px" />}
+							{isItemsEmpty() && <ListEmpty height="287px" />}
+							{!isItemsEmpty() && <List
+								items={items}
+								state={state}
+								setState={setState}
+								selected={selected}
+								setSelected={setSelected}
+							/>}
+						</Scrollbars>
 					</MoaStack>
-					<Scrollbars autoHeight autoHeightMin="287px" autoHeightMax="287px">
-						{loading && <ListLoading height="287px" />}
-						{isItemsEmpty() && <ListEmpty height="287px" />}
-						{!isItemsEmpty() && <List
-							items={items}
-							state={state}
-							setState={setState}
-							selected={selected}
-							setSelected={setSelected}
-						/>}
-					</Scrollbars>
-				</MoaStack>
-				<MoaButton variant="text" onClick={handleSelectAll} disabled={loading || isItemsEmpty()}>
-					{isSelectedEmpty() ? "Select All" : "Deselect All"}
-				</MoaButton>
+					<GuideBox width="100%" center marginTop={1}>
+						<MoaButton variant="text" onClick={handleSelectAll} disabled={loading || isItemsEmpty()}>
+							{isSelectedEmpty() ? "Select All" : "Deselect All"}
+						</MoaButton>
+					</GuideBox>
+				</Panel>
 				<MoaStack direction="row" justifyContent="space-between">
 					<IconButton onClick={() => setShowHelp(true)}>
 						<HelpIcon />

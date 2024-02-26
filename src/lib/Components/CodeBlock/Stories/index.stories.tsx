@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CodeBlock from "..";
+import { CodeBlock } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { 
 	JavascriptCode,
 	TypescriptCode,
+	BackgroundColorCode,
+	PaddingCode,
+	LanguageCode,
 } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -26,6 +29,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Javascript = LiveEditStory(cleanMask(JavascriptCode));
 export const Typescript = LiveEditStory(cleanMask(TypescriptCode));
+export const BackgroundColor = LiveEditStory(cleanMask(BackgroundColorCode));
+export const Padding = LiveEditStory(cleanMask(PaddingCode));
+export const Language = LiveEditStory(cleanMask(LanguageCode));
 
 export const Sample: Story = {
 	args: {

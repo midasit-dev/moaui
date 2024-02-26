@@ -24,7 +24,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			{children}
 		</ListItemButton>
 	)
-})(({theme}) => ({ }))
+})(() => ({ }))
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

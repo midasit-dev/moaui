@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ChartLine from "..";
+import { ChartLine } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
@@ -7,6 +7,7 @@ import {
 	AxisTopRightCode, 
 	AxisPointSizeCode,
 	AxisLegendCode,
+	DecimalsCode,
 } from "../Code";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -26,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const AxisTopRight = LiveEditStory(cleanMask(AxisTopRightCode));
 export const AxisPointSize = LiveEditStory(cleanMask(AxisPointSizeCode));
 export const AxisLegend = LiveEditStory(cleanMask(AxisLegendCode));
+export const Decimals = LiveEditStory(cleanMask(DecimalsCode));
 
 export const Sample: Story = {
   args: {

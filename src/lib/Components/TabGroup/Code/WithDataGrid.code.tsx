@@ -6,15 +6,15 @@ const ComponentsTabGroupWithDataGrid = ({
 		{ field: 'id', headerName: 'ID', width: 70, editable: true },
 		{ field: 'firstName', headerName: 'First name', width: 130, editable: true },
 		{ field: 'lastName', headerName: 'Last name', width: 130 },
-	],/**${props-seperator}*/
+	],/**${props-separator}*/
 	tab1DataGridRows = [
 		{ id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
 		{ id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
 		{ id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
 		{ id: 4, lastName: 'Korea', firstName: 'Kim', age: 40 },
-	],/**${props-seperator}*/
-	tab2Title = `This is Title!`,/**${props-seperator}*/
-	tab2Description = `This is Description!\nWrite your description here.`,/**${props-seperator}*/
+	],/**${props-separator}*/
+	tab2Title = `This is Title!`,/**${props-separator}*/
+	tab2Description = `This is Description!\nWrite your description here.`,/**${props-separator}*/
 }: any) => {
 	const [value, setValue] = React.useState('Tab 1');
 

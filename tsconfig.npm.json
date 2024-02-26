@@ -9,6 +9,5 @@
     "src/**/*.code.*",
 		"src/lib/Common/*",
 		"src/lib/Builder/*",
-		"src/lib/Templates/*",
   ]
 }

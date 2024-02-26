@@ -97,16 +97,6 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 */
 	color?: 'primary' | 'secondary' | 'third' | 'disable' | string;
 	/**
-	 * Set the text align
-	 * 
-	 * @default left
-	 */
-	textAlign: "center" | "left";
-	/**
-	 * Set the flexItem
-	 */
-	flexItem?: boolean;
-	/**
 	 * Set the width
 	 */
 	width?: string | number;
@@ -114,30 +104,103 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * Set the height
 	 */
 	height?: string | number;
+	/**
+	 * Set the Size
+	 */
+	size?: 'small' | 'medium' | 'large';
+	/**
+	 * Make typography into a single line
+	 */
+	singleLine?: boolean;
+
+	/**
+	 * Set the alignItems (Top)
+	 */
+	verTop?: boolean;
+	/**
+	 * Set the alignItems (Middle)
+	 */
+	verCenter?: boolean;
+	/**
+	 * Set the alignItems (Bottom)
+	 */
+	verBottom?: boolean;
+
+	/**
+	 * Set the justifyContent (Left)
+	 */
+	horLeft?: boolean;
+	/**
+	 * Set the justifyContent (Center)
+	 */
+	horCenter?: boolean;
+	/**
+	 * Set the justifyContent (Right)
+	 */
+	horRight?: boolean;
+
+	/**
+	 * Set the center (vertical, horizontal)
+	 */
+	center?: boolean;
+}
+
+const getHorizontalAlign = (props: StyledProps) => {
+	if (props.center) return 'center';
+	if (props.horLeft) return 'flex-start';
+	if (props.horCenter) return 'center';
+	if (props.horRight) return 'flex-end';
+	return 'flex-start';
+}
+
+const getVerticalAlign = (props: StyledProps) => {
+	if (props.center) return 'center';
+	if (props.verTop) return 'flex-start';
+	if (props.verCenter) return 'center';
+	if (props.verBottom) return 'flex-end';
+	return 'flex-start';
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { children, variant, color, textAlign } = props;
+	const { 
+		children, 
+		variant, 
+		color, 
+		size, 
+		singleLine,
+		// verTop,
+		// verCenter,
+		// verBottom,
+		// horLeft,
+		// horCenter,
+		// horRight,
+		// center,
+	} = props;
 
 	return (
 		<Typography 
 			sx={{
+				whiteSpace: singleLine ? 'nowrap' : 'pre-line',
+				overflow: singleLine ? 'hidden' : 'visible',
+				textOverflow: singleLine ? 'ellipsis' : 'clip',
+				wordBreak: 'break-word',
 				...FontStyle.selector(variant),
 				...Font.defaultFontSet,
 				...MarginProps(props),
 				...PaddingProps(props),
-				textAlign: textAlign,
-				alignItems: textAlign,
-				display: props.flexItem ? 'flex' : 'block',
+				display: singleLine ? "block" : 'flex',
+				justifyContent: getHorizontalAlign(props),
+				alignItems: getVerticalAlign(props),
 				width: props.width || 'auto',
 				height: props.height || 'auto',
+				fontSize: Font.getFontSize(size),
 			}}
 			color={FontColor.selector(color)}
 		>
 			{children}
 		</Typography>
 	)
-})(({theme}) => ({
+})(() => ({
 	display: "flex",
 	fontFeatureSettings: "'clig' off, 'liga' off",
 }));

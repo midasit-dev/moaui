@@ -2,8 +2,8 @@ import { GuideBox, Button } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsGuideBoxRowDirection = () => {
 	return (
-		<GuideBox show fill='2' padding={2}>
-			<GuideBox show itemDirection='row' padding={2} fill='3' >
+		<GuideBox show fill='2' padding={1}>
+			<GuideBox show padding={1} fill='3' row>
 				{/** Type your components ... */}
 				<Button>Button 1</Button>
 				<Button color="negative">Button 2</Button>

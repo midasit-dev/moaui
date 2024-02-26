@@ -1,6 +1,6 @@
 import * as React from 'react';
-import MoaStack from '@midasit-dev/moaui/Stack';
-import MoaDataGrid from '@midasit-dev/moaui/DataGrid';
+import MoaStack from '@midasit-dev/moaui/Components/Stack';
+import MoaDataGrid from '@midasit-dev/moaui/Components/DataGrid';
 import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
@@ -69,7 +69,7 @@ export default function DataGridAxle(axleLoads ,setAxleLoads) {
 
   return (
     <MoaStack spacing={1} justifyContent={"center"} alignItems={"flex-start"} direction="row">
-		<MoaStack height={190} width={250}>
+		<MoaStack height={190} width={260}>
           <MoaDataGrid
             rows={axleLoads}
             columns={columns}
@@ -79,9 +79,9 @@ export default function DataGridAxle(axleLoads ,setAxleLoads) {
             rowHeight={25}
             processRowUpdate={processRowUpdate}
             onProcessRowUpdateError={handleProcessRowUpdateError}
-            columnHeaderHeight={25}
-            showCellVerticalBorder
-            showColumnVerticalBorder
+            columnHeaderHeight={46}
+            // showCellVerticalBorder
+            // showColumnVerticalBorder
           />
 		</MoaStack>
 		<MoaStack direction="column">

@@ -10,6 +10,7 @@ const ComponentsTextFieldRight = () => {
 			disabled={false}
 			defaultValue=""
 			error={false}
+			spacing={2}
 		/>
   );
 }; /**${comma}*/

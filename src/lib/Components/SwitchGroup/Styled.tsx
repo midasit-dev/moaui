@@ -24,7 +24,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		</FormControl>
 	)
 
-})(({theme}) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

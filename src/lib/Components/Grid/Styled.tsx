@@ -6,16 +6,14 @@ export interface StyledProps extends GridProps {
 	sx? : never;
 };
 
-type InnerStyledProps = {
-	theme: any;
-};
-
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	const {sx, ...rest} = props;
+	if (sx) console.error('The sx prop is not used in StyledComponent');
+
 	return (
 		<Grid {...rest} />
 	)
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

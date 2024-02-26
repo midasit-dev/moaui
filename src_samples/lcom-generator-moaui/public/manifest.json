@@ -1,6 +1,6 @@
 {
-  "short_name": "LCOM-Generator v2",
-  "name": "MIDAS Plug-in",
+  "short_name": "Load Combination Generator",
+  "name": "Load Combination Generator",
   "icons": [
     {
       "src": "icon.svg",
@@ -13,6 +13,6 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "width": "900",
-  "height": "860"
+  "width": "948",
+  "height": "901"
 }

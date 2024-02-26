@@ -36,19 +36,16 @@ export type StyledProps = {
 	sx?: never,
 } & TableProps;
 
-type InnerStyledProps = {
-	theme: any;
-};
-
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {	
 	const { sx, ...rest } = props;
+	if (sx) console.error('The sx prop is not used in StyledComponent');
 
 	return (
 		<Table {...rest} sx={{
 			border: `1px solid ${Color.component.gray_01}}`
 		}} />
 	)
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

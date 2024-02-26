@@ -1,25 +1,25 @@
 import "./App.css";
 import * as React from "react";
 // Material UI import data
-import MoaPanel from "@midasit-dev/moaui/Panel";
-import MoaGrid from "@midasit-dev/moaui/Grid";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import { GuideBox, Panel } from "@midasit-dev/moaui";
 import { useSnackbar } from "notistack";
 // UserDefined Components
 import RadioButtonsGroup from "./Components/RadioGroup";
-import MoaTextField from "@midasit-dev/moaui/TextField";
+import MoaTextFieldV2 from "@midasit-dev/moaui/Components/TextFieldV2";
 // import TextFieldInput from "./Components/TextField";
-import MoaButton from "@midasit-dev/moaui/Button/Styled";
+import MoaButton from "@midasit-dev/moaui/Components/Button/Styled";
 import * as Charts from "./Components/Chart";
 import * as Modals from "./Components/Modal";
 import * as Common from "./Function/Common";
 import * as Spline from "./Function/Spline";
-import MoaTypography from "@midasit-dev/moaui/Typography";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
+
+import { VerifyDialog, VerifyUtil } from '@midasit-dev/moaui';
 
 const enqueueMessage = (func, message, variant = "error") => {
 	func(message, {
 		variant: variant,
-		autoHideDuration: 3000,
+		autoHideDuration: variant === 'success' ? 1500 : 3000,
 		anchorOrigin: { vertical: "bottom", horizontal: "center" },
 	});
 };
@@ -204,59 +204,57 @@ function Main() {
 	}, [radioOp]);
 
 	return (
-		<MoaPanel>
-			<MoaGrid container spacing={1} paddingBottom={1}>
-				<MoaGrid item xs={8}>
-					<MoaPanel>
-						<MoaStack margin="20px" justifyContent="left">
-							<MoaTypography variant="h1">Cubic Spline</MoaTypography>
-							{RadioButtonsGroup(radioOp, setRadioOp)}
-							<br />
-							<MoaStack
-								spacing={2}
-								direction="row"
-								justifyContent="right"
-								alignItems="center"
-							>
-								<MoaTextField title="Start Point" placeholder={disText + ""} value={startPt} onChange={(e) => setStartPt(e.target.value)} />
-								<MoaTextField title="End Point" placeholder={disText + ""} value={endPt} onChange={(e) => setEndPt(e.target.value)} />
-							</MoaStack>
-						</MoaStack>
-					</MoaPanel>
-				</MoaGrid>
-				<MoaGrid item xs={4}>
-					<MoaStack
-						spacing={1}
-						direction="column"
-						justifyContent="center"
-						alignItems="center"
-						height="100%"
-					>
-						<MoaButton variant="contained" width="100%" onClick={openHelpDialog}>
-							SPLINE
-						</MoaButton>
-						<MoaButton variant="contained" width="100%" onClick={async () => {
-							const data = await Common.midasAPI("GET", "/view/select");
-							const arrNode = data["SELECT"]["NODE_LIST"];
-							if (arrNode.length === 0) {
-								enqueueMessage(enqueueSnackbar, "No Nodes are selected", "error");
-							}
-							enqueueMessage(enqueueSnackbar, `Getting Selected Nodes is successfully (Count: ${arrNode.length})`, "success");
-							const strNodes = arrNode.toString();
-							setNode(strNodes);
-							await showNode(strNodes);
-							// openNodeDialog();
-						}}>
-							IMPORT NODE
-						</MoaButton>
-						<MoaButton variant="contained" width="100%" onClick={LocalAxis}>
-							APPLY LOCAL AXIS
-						</MoaButton>
-					</MoaStack>
-				</MoaGrid>
-			</MoaGrid>
-			<MoaPanel width="700px" height="350px">
-				<MoaStack spacing={1} paddingBottom={1}>
+		<GuideBox padding={2} spacing={2}>
+			<Panel variant="shadow2" width="100%">
+				<GuideBox spacing={1}>
+					<GuideBox width="100%" row horSpaceBetween>
+
+						<GuideBox spacing={1} paddingBottom={1}>
+							<GuideBox spacing={1}>
+								<MoaTypography variant="h1">Cubic Spline</MoaTypography>
+								<GuideBox paddingLeft={1}>
+									{RadioButtonsGroup(radioOp, setRadioOp)}
+								</GuideBox>
+							</GuideBox>
+						</GuideBox>
+
+						<GuideBox>
+							<GuideBox spacing={1} center>
+								<MoaButton variant="contained" width="100%" onClick={openHelpDialog}>SPLINE</MoaButton>
+								<MoaButton variant="contained" width="100%" onClick={async () => {
+									const data = await Common.midasAPI("GET", "/view/select");
+									const arrNode = data["SELECT"]["NODE_LIST"];
+									if (arrNode.length === 0) {
+										enqueueMessage(enqueueSnackbar, "No Nodes are selected", "error");
+									}
+									enqueueMessage(enqueueSnackbar, `Getting Selected Nodes is successfully (Count: ${arrNode.length})`, "success");
+									const strNodes = arrNode.toString();
+									setNode(strNodes);
+									await showNode(strNodes);
+									// openNodeDialog();
+								}}>
+									IMPORT NODE
+								</MoaButton>
+								<MoaButton variant="contained" width="100%" onClick={LocalAxis} color='negative'>APPLY LOCAL AXIS</MoaButton>
+							</GuideBox>
+						</GuideBox>
+
+					</GuideBox>
+					<GuideBox width="100%" spacing={2} row paddingLeft={1}>
+						<GuideBox row verCenter spacing={1}>
+							<MoaTypography>Start Point</MoaTypography>
+							<MoaTextFieldV2 placeholder={disText + ""} value={startPt} onChange={(e) => setStartPt(e.target.value)} />
+						</GuideBox>
+						<GuideBox row verCenter spacing={1}>
+							<MoaTypography>End Point</MoaTypography>
+							<MoaTextFieldV2 placeholder={disText + ""} value={endPt} onChange={(e) => setEndPt(e.target.value)} />
+						</GuideBox>
+					</GuideBox>
+				</GuideBox>
+			</Panel>
+
+			<Panel variant='shadow2' width="100%" height="350px" padding={0}>
+				<GuideBox>
 					<div className="userWrap">
 						<div className="chartStyle">
 							{Charts.ChartScatter(chartNodeData, chartScale)}
@@ -265,20 +263,30 @@ function Main() {
 							{Charts.ChartLine(chartSplineData, chartScale)}
 						</div>
 					</div>
-				</MoaStack>
-			</MoaPanel>
+				</GuideBox>
+			</Panel>
 			{/* {Modals.NodeImportDialog(nodeDialogState, closeNodeDialog, setNode, showNode)} */}
 			{Modals.HelpDialog(helpDialogState, closeHelpDialog)}
-		</MoaPanel>
+		</GuideBox>
 	);
 }
 
 function App() {
+	//moaUI Verify Dialog
+	const [openFormDlg, setOpenFormDlg] = React.useState(false);
+	React.useEffect(() => {
+		if (!VerifyUtil.isExistQueryStrings('redirectTo') && !VerifyUtil.isExistQueryStrings('mapiKey')) {
+			setOpenFormDlg(true);
+		}
+	}, []);
+
 	return (
 		<div className="App">
-			<div className="MainApp">
-				<Main />
-			</div>
+			{openFormDlg ? <VerifyDialog /> :
+				<>
+					<Main />
+				</>
+			}
 		</div>
 	);
 }

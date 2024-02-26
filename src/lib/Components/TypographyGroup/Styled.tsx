@@ -64,6 +64,6 @@ const StyledComponent = styled((props: StyledProps) => {
 			</Box>
 		</Box>
 	)
-})(({theme}) => ({}));
+})(() => ({}));
 
 export default StyledComponent;

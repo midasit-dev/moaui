@@ -2,8 +2,8 @@ import React from "react";
 import MuiList from "@mui/material/List";
 import MuiListItem from "@mui/material/ListItem";
 import MuiListItemButton from "@mui/material/ListItemButton";
-import MoaTypography from "@midasit-dev/moaui/Typography";
-import MoaCheck from "@midasit-dev/moaui/Check";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
+import MoaCheck from "@midasit-dev/moaui/Components/Check";
 
 List.defaultProps = {
 	items: {},

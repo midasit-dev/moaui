@@ -22,7 +22,7 @@ function Item(props: any) {
 	)
 }
 
-function Search(props: any) {
+function Search() {
 	const [textFieldValue, setTextFieldValue] = React.useState("");
 	const [results, setResults] = React.useState(new Array<string>());
 

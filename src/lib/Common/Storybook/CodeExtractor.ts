@@ -1,8 +1,8 @@
-const codeBlockSeperatorRegex = /\/\*\*\$\{comma\}\*\//gi; // 원래 형태: /**${comma}*/ 코드를 의미 단위로 분리하기 위함
-const propsSeperatorRegex = /\/\*\*\$\{props-seperator\}\*\//gi; // 원래 형태: /**${props-seperator}*/
+const codeBlockSeparatorRegex = /\/\*\*\$\{comma\}\*\//gi; // 원래 형태: /**${comma}*/ 코드를 의미 단위로 분리하기 위함
+const propsSeparatorRegex = /\/\*\*\$\{props-separator\}\*\//gi; // 원래 형태: /**${props-separator}*/
 
 const splitByMask = (code: string): string[] => {
-	return code.split(codeBlockSeperatorRegex);
+	return code.split(codeBlockSeparatorRegex);
 }
 
 const getCode = (arrCode: string[], regex: RegExp): string => {
@@ -21,6 +21,8 @@ const getCode = (arrCode: string[], regex: RegExp): string => {
 }
 
 const getComponentName = (componentCode: string, regex: RegExp) => {
+	if (!regex) return '';
+
 	//첫번째 const ... = () => { 를 찾아서 그 안에 있는 ... 을 찾아 분리
 	const componentNameRegex = /const\s+(.*)\s?=\s?\(\)\s?=>\s?{/ig;
 	const componentNameMatch = componentNameRegex.exec(componentCode);
@@ -38,7 +40,7 @@ const transformReadyToUse = (componentString: string): string => {
   const componentNameRegex = /const (\w+) = \(\{/;
 
   // 속성들을 추출하기 위한 정규식 (분석을 위한 lazy quantifier사용)
-  const propsRegex = /(\w+)\s*=\s*((?:(?!,\s*\/\*\*\${props-seperator}\*\/)[\s\S])*)(?=\s*,\s*\/\*\*\${props-seperator}\*\/)/ig;
+  const propsRegex = /(\w+)\s*=\s*((?:(?!,\s*\/\*\*\${props-separator}\*\/)[\s\S])*)(?=\s*,\s*\/\*\*\${props-separator}\*\/)/ig;
 
   const matchesComponentName = componentNameRegex.exec(componentString);
   const componentName = matchesComponentName ? matchesComponentName[1] : '';
@@ -50,7 +52,7 @@ const transformReadyToUse = (componentString: string): string => {
   let match;
   while ((match = propsRegex.exec(componentString))) {
 		console.log(match);
-    const [fullMatch, propName, propValue] = match;
+    const [, propName, propValue] = match;
     props[propName] = propValue;
   }
 
@@ -92,7 +94,7 @@ export const extract = (code: string): ExtractedCode => {
 
 	const componentCode = getCode(arrCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
 	const componentName = getComponentName(componentCode, /const\s+(Components|Authentication|Style|Templates).*\s?=\s?\(\)\s?=>\s?{/ig);
-	const componentCodeWithProps = (transformReadyToUse(componentCode)).replace(propsSeperatorRegex, '');
+	const componentCodeWithProps = (transformReadyToUse(componentCode)).replace(propsSeparatorRegex, '');
 	
 	return {
 		importCodes: importCodes,
@@ -103,7 +105,7 @@ export const extract = (code: string): ExtractedCode => {
 }
 
 export const cleanMask = (code: string) => {
-	return code.replace(codeBlockSeperatorRegex, '').replace(propsSeperatorRegex, '');
+	return code.replace(codeBlockSeparatorRegex, '').replace(propsSeparatorRegex, '');
 }
 
 const Extractor = {

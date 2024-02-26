@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Grid from "..";
-import { Typography, Panel } from "../../..";
+import { Grid, Typography, Panel } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
@@ -25,10 +24,8 @@ export const Row = LiveEditStory(cleanMask(RowCode));
 export const Column = LiveEditStory(cleanMask(ColumnCode));
 
 export const Sample: Story = {
-	args: {
-		xs: 6
-	},
-	render: (xs) => {
+	args: {},
+	render: () => {
 		return (
 			<Panel width="200px">
 				<Typography variant="h1" marginBottom="10px">Grid Demo</Typography>

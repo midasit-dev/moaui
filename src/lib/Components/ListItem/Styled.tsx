@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
 import MuiListItem from "@mui/material/ListItem";
-import { Check } from "../..";
 import { MarginProps, MarginTypes } from "../../Style/Margin";
 import { PaddingProps, PaddingTypes } from "../../Style/Padding";
 
@@ -47,7 +46,7 @@ const StyledComponent = styled((props: StyledProps) => {
       {children}
     </MuiListItem>
   );
-})(({theme}) => ({ }))
+})(() => ({ }))
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

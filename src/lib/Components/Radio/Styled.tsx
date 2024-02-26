@@ -8,6 +8,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Circle from '@mui/icons-material/Circle';
 import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
 import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked';
+import { MarginTypes, MarginProps, hasMarginProps } from '../../Style/Margin';
+import { PaddingTypes, PaddingProps } from '../../Style/Padding';
 
 export type StyledProps = {
 	/**
@@ -50,7 +52,7 @@ export type StyledProps = {
 	 * @default undefined
 	 */
 	sx?: never,
-};
+} & MarginTypes & PaddingTypes;
 
 
 type RadioButtonIconProps = {
@@ -138,15 +140,16 @@ const StyledComponent =
 			}
 			label={props?.name}
 			sx={{
-				margin: 0,
+				...(!hasMarginProps(props) ? { marginLeft: 0, marginRight: 0} : MarginProps(props)),
+				...PaddingProps(props),
 				".MuiFormControlLabel-label": {
-					marginLeft: "0.25rem", /** 4px */
+					// marginLeft: "0.25rem", /** 4px */
 					color: `${Color.text.secondary}!important`,
 				},
 			}}
 		/>
 	)
-})(({ theme }) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

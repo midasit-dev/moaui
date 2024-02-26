@@ -20,6 +20,8 @@ export type StyledProps = {
 
 const StyledComponent = styled((props: StyledProps) => {
 	const { text, sx, ...rest } = props;
+
+	if (sx) console.error('The sx prop is not used in StyledComponent');
 	
 	return (
 		<FormControl>
@@ -28,7 +30,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		</FormControl>
 	)
 
-})(({theme}) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

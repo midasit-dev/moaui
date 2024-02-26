@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Table from "..";
-import { TableHead, TableBody, TableRow, TableCell, Typography } from "../../..";
+import { Table, TableHead, TableBody, TableRow, TableCell, Typography } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';

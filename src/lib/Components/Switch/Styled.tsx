@@ -30,10 +30,6 @@ export type StyledProps = {
 	disabled?: boolean;
 };
 
-type InnerStyledProps = {
-	theme: any;
-};
-
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	//thumb 스타일 (Switch 내부 버튼)
 	const thumbStyle = props?.disabled ? {
@@ -141,7 +137,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 			label={props?.label}
 		/>
 	)
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

@@ -28,7 +28,7 @@ const ComponentsListDynamic = () => {
 					</ListItem>
 				)
 			})}
-			{values.map((value, index) => (<Typography key={index} marginTop={2} textAlign="center">{value.checked ? 'Checked' : 'UnChecked'}</Typography>))}
+			{values.map((value, index) => (<Typography key={index} marginTop={2} center>{value.checked ? 'Checked' : 'UnChecked'}</Typography>))}
     </List>
   );
 }; /**${comma}*/

@@ -32,7 +32,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			{children}
 		</MuiList>
 	)
-})(({theme}) => ({ }))
+})(() => ({ }))
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

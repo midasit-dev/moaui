@@ -28,9 +28,9 @@ class Text {
 }
 
 class TextNegative {
-	readonly primary = "#BDC2C8";
-	readonly secondary = "#5F666B";
-	readonly third = "#5F666B";
+	readonly primary = "#FFFFFF";
+	readonly secondary = "#BDC2C8";
+	readonly third = "#000000";
 	readonly disable = "#4B5563";
 }
 

@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Textfield from "..";
+import { TextField } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { LeftCode, RightCode, LabelCode, ErrorCode, BasicCode } from '../Code';
+import { LeftCode, RightCode, LabelCode, ErrorCode, BasicCode, MultiLineCode, WrappedWidthCode } from '../Code';
 
 const meta = {
   title: 'Components/TextField',
-  component: Textfield,
+  component: TextField,
 	tags: ['autodocs'],
   parameters: { 
 		docs: { page: Explore },
 		layout: 'centered',
 	},
-} satisfies Meta<typeof Textfield>;
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -24,15 +24,9 @@ export const Left = LiveEditStory(cleanMask(LeftCode));
 export const Right = LiveEditStory(cleanMask(RightCode));
 export const Label = LiveEditStory(cleanMask(LabelCode));
 export const Error = LiveEditStory(cleanMask(ErrorCode));
+export const MultiLine = LiveEditStory(cleanMask(MultiLineCode));
+export const WrappedWidth = LiveEditStory(cleanMask(WrappedWidthCode));
 
 export const Sample: Story = {
-	args: {
-		width: "100px",
-		placeholder: "placeholder",
-		title: "title",
-		titlePosition: "left",
-		disabled: false,
-		defaultValue: "",
-		error: false,
-	}
+	args: TextField.sampleProps,
 };

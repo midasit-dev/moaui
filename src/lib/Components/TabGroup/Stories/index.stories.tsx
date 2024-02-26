@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TabGroup from "..";
-import { Tab } from "../../..";
+import { TabGroup, Tab } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
@@ -10,6 +9,7 @@ import {
 	VerticalCode, 
 	WithDataGridCode,
 	WithTableCode,
+	SizeControlCode,
 } from '../Code';
 
 const meta = {
@@ -29,6 +29,7 @@ export const Horizontal = LiveEditStory(cleanMask(HorizontalCode));
 export const Vertical = LiveEditStory(cleanMask(VerticalCode));
 export const WithDataGrid = LiveEditStory(cleanMask(WithDataGridCode));
 export const WithTable = LiveEditStory(cleanMask(WithTableCode));
+export const SizeControl = LiveEditStory(cleanMask(SizeControlCode));
 
 export const Sample: Story = {
 	args: {

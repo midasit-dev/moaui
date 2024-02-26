@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import GuideBox from "..";
+import { GuideBox, Button } from "../../../index";
 import Explore from "./Explore.mdx";
-import { Button } from "../../..";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
@@ -17,6 +16,15 @@ import {
 	Layout3_SampleCode,
 	Layout4Code,
 	Layout4_SampleCode,
+	Layout5Code,
+	Layout5_SampleCode,
+	OpacityCode,
+	PulseCode,
+	LoadingCode,
+	OverflowCode,
+	SpaceBetweenCode,
+	FlexGrowCode,
+	OnKeyDownCode,
 } from "../Code";
 
 const meta = {
@@ -43,21 +51,30 @@ export const Layout3 = LiveEditStory(cleanMask(Layout3Code));
 export const Layout3_Sample = LiveEditStory(cleanMask(Layout3_SampleCode));
 export const Layout4 = LiveEditStory(cleanMask(Layout4Code));
 export const Layout4_Sample = LiveEditStory(cleanMask(Layout4_SampleCode));
+export const Layout5 = LiveEditStory(cleanMask(Layout5Code));
+export const Layout5_Sample = LiveEditStory(cleanMask(Layout5_SampleCode));
+export const Opacity = LiveEditStory(cleanMask(OpacityCode));
+export const Pulse = LiveEditStory(cleanMask(PulseCode));
+export const Loading = LiveEditStory(cleanMask(LoadingCode));
+export const Overflow = LiveEditStory(cleanMask(OverflowCode));
+export const SpaceBetween = LiveEditStory(cleanMask(SpaceBetweenCode));
+export const FlexGrow = LiveEditStory(cleanMask(FlexGrowCode));
+export const OnKeyDown = LiveEditStory(cleanMask(OnKeyDownCode));
 
 export const Sample: Story = {
   args: {
 		show: true,
 		fill: '2',
 		padding: 2,
-		itemDirection: 'row',
+		row: true,
   },
-	render: ({ show, fill, padding, itemDirection }) => {
+	render: ({ show, fill, padding, row }) => {
 		return (
 			<GuideBox 
 				show={show} 
 				fill={fill} 
 				padding={padding}
-				itemDirection={itemDirection}
+				row={row}
 			>
 				<Button>Button 1</Button>
 				<Button color="negative">Button 2</Button>

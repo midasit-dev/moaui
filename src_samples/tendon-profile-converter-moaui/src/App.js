@@ -1,8 +1,7 @@
 import React from "react";
-import MKeyDialog from "./Components/MKeyDialog";
 import Contents from "./Components/Content";
 import { SnackbarProvider } from "notistack";
-import { VerifyUtil } from "@midasit-dev/moaui";
+import { GuideBox, VerifyDialog, VerifyUtil } from "@midasit-dev/moaui";
 
 function App() {
 	const [showDialog, setDialogShowState] = React.useState(false);
@@ -18,8 +17,12 @@ function App() {
 	return (
 		<React.Fragment>
 			<SnackbarProvider maxSnack={3}>
-				{showDialog && <MKeyDialog />}
-				<Contents />
+				{showDialog && <VerifyDialog />}
+				<GuideBox width="100%" center>
+					<GuideBox padding={2}>
+						<Contents />
+					</GuideBox>
+				</GuideBox>
 			</SnackbarProvider>
 			<py-script src="./Runtime/pyruntime.py"></py-script>
 		</React.Fragment>

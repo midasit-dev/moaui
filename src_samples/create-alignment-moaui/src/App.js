@@ -1,8 +1,8 @@
 import './App.css';
 import * as React from 'react';
-import MoaPanel from "@midasit-dev/moaui/Panel";
-import MoaStack from "@midasit-dev/moaui/Stack";
-import Sep from '@midasit-dev/moaui/Seperator';
+import { GuideBox, Panel } from '@midasit-dev/moaui';
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
+import Sep from '@midasit-dev/moaui/Components/Separator';
 import { useSnackbar } from 'notistack';
 // UserDefined Components
 import * as Buttons from './Components/Buttons'
@@ -14,8 +14,8 @@ import VerticalTabs from './Components/Tabs';
 import { CreateLayout } from './Function/CreateLayout';
 import { midasAPI, convertChartData, chartScaleSet } from './Function/Common';
 import { checkAllTrue, AlignDataValid, SegmDataValid, NodeElemValid } from './Function/Validation';
-import { VerifyUtil } from "@midasit-dev/moaui";
-import MKeyDialog from "./Components/MKeyDialog";
+import { VerifyUtil, VerifyDialog } from "@midasit-dev/moaui";
+// import MKeyDialog from "./Components/MKeyDialog";
 
 //Data Grid Default Setting
 const AlignDefault = [
@@ -42,7 +42,7 @@ const enqueueMessage = (func, message, variant = "error") => {
   );
 };
 
-function Seperator() {
+function Separator() {
 	return (
 		<div width="100%">
 			<Sep direction="vertical" />
@@ -201,9 +201,13 @@ function App() {
   //Main UI
   return (
 	<div className="App" >
-		{showDialog && <MKeyDialog />}
-		<div className="MainApp" style={{marginTop:"0.2rem"}}>
-			<MoaPanel height={657}>
+		{/* {showDialog && <MKeyDialog />} */}
+		{showDialog && <VerifyDialog />}
+		<GuideBox
+			padding={2}
+			center
+		>
+			<Panel width={630} height={657} variant='shadow2'>
 				<MoaStack direction="row" justifyContent="space-between" alignItems="center" marginY={1}>
 					<MoaStack direction="row" spacing={2}>
 						{TextFieldInput("Start Node", nodeStart, setNodeStart)}
@@ -214,7 +218,7 @@ function App() {
 						{Buttons.SubButton("contained", "Data Clear", clearData)}
 					</MoaStack>
 				</MoaStack>
-				<Seperator />
+				<Separator />
 				<MoaStack height={293}>
 					{VerticalTabs(
 						tabValue, setTabValue,
@@ -222,7 +226,7 @@ function App() {
 						DataGrids.DataGridSegm(segmGrid, setSegmGrid, SegmModalOpen)
 					)}
 				</MoaStack>
-				<Seperator />
+				<Separator />
 				<MoaStack height={295} padding={0}>
 				<div className='userWrap'>
 					<div className='chartStyle'>
@@ -233,10 +237,10 @@ function App() {
 					</div>
 				</div>
 				</MoaStack>
-			</MoaPanel>
-		{Modals.AlignHelp(openAlignModal, AlignModalClose)}
-		{Modals.SegmHelp(openSegmModal, SegmModalClose)}
-		</div>
+			</Panel>
+			{Modals.AlignHelp(openAlignModal, AlignModalClose)}
+			{Modals.SegmHelp(openSegmModal, SegmModalClose)}
+		</GuideBox>
 	</div>
   );
 }

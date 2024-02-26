@@ -58,14 +58,15 @@ export type StyledProps = {
   indeterminate?: boolean;
 
   /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef?: React.Ref<HTMLInputElement>;
+
+  /**
    * `Not Used` The sx prop lets you style elements quickly using values from your theme.
    * @defaultValue undefined
    */
   sx?: never;
-};
-
-type InnerStyledProps = {
-  theme: any;
 };
 
 const StyledComponent = styled((props: StyledProps): React.ReactElement => {
@@ -86,6 +87,7 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
           disableFocusRipple
           disableRipple
           disableTouchRipple
+          inputRef={props?.inputRef}
           inputProps={{
             "aria-label": `${props?.name || ""} ${props?.ariaLabel}`,
           }}
@@ -123,11 +125,14 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
         gap: "0.25rem",
         ".MuiTypography-root": {
           color: `${Color.text.secondary}!important`,
+					"&.Mui-disabled": {
+						color: `${Color.component.gray_light}!important`,
+					},
         },
       }}
     />
   );
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

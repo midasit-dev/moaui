@@ -36,7 +36,7 @@ const ComponentsListControlled = () => {
           <Typography marginLeft={1}>List Item Button 1</Typography>
         </ListItemButton>
       </ListItem>
-			{values.map((value, index) => (<Typography key={index} marginTop={2} textAlign="center">{value ? 'Checked' : 'UnChecked'}</Typography>))}
+			{values.map((value, index) => (<Typography key={index} marginTop={2} center>{value ? 'Checked' : 'UnChecked'}</Typography>))}
     </List>
   );
 }; /**${comma}*/

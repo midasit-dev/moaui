@@ -1,7 +1,7 @@
 import React from "react";
-import MoaTypography from "@midasit-dev/moaui/Typography";
-import MoaButton from "@midasit-dev/moaui/Button";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import { Typography as MoaTypography } from "@midasit-dev/moaui";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
 import HelpIcon from "./HelpIcon";
 
 //mui
@@ -44,21 +44,23 @@ export default function Help(props) {
 					direction="column"
 					justifyContent="center"
 					padding={2}
-					spacing={1}
+					spacing={1}e
 				>
 					<MoaTypography variant="h1">
 						Tendon Profile Coordinate Converter
 					</MoaTypography>
 					<MoaTypography paddingLeft={1}>
-						This Plug-in converts <b>Element</b> tendon profile to{" "}
-						<b>Straight</b> tendon profile.
+						This Plug-in converts
+					</MoaTypography>
+					<MoaTypography paddingLeft={1}>
+						Element tendon profile to Straight tendon profile.
 					</MoaTypography>
 					<br />
 					<MoaTypography variant="h1">Details</MoaTypography>
 					<MoaStack direction="column" spacing={1}>
 						<MoaButton>Import Tendon Profile List</MoaButton>
 						<MoaTypography paddingLeft={1}>
-							Only Import : 2D/3D, Splice, Element type tendon profile
+							Only Import : 2D/3D, Splice, Element typ tendon profile
 						</MoaTypography>
 					</MoaStack>
 					<MoaStack direction="row" alignItems="center" spacing={1}>

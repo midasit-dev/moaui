@@ -4,7 +4,6 @@ Typography.defaultProps = {
 	children: "",
 	variant: "body1",
 	color: "primary",
-	textAlign: "left",
 } as StyledProps;
 
 /**
@@ -22,3 +21,7 @@ function Typography(props: StyledProps) : JSX.Element {
 }
 
 export default Typography;
+
+export {
+	type StyledProps,
+}

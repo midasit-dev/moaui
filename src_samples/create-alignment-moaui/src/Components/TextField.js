@@ -1,6 +1,6 @@
 import * as React from "react";
-import MoaTextField from "@midasit-dev/moaui/TextField";
-import MoaStack from "@midasit-dev/moaui/Stack";
+import MoaTextFieldV2 from "@midasit-dev/moaui/Components/TextFieldV2";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
 
 export default function TextFieldInput(title = NaN, values, SetValue, Display) {
 	return (
@@ -11,7 +11,7 @@ export default function TextFieldInput(title = NaN, values, SetValue, Display) {
 			justifyContent="space-between"
 			width="10rem"
 		>
-			<MoaTextField
+			<MoaTextFieldV2
 				variant="standard"
 				type="number"
 				size="small"
@@ -30,9 +30,14 @@ export default function TextFieldInput(title = NaN, values, SetValue, Display) {
 							marginLeft: "5px",
 						},
 					},
-					inputProps: {
-						step: 1,
-					},
+				}}
+				numberOptions={{
+					min: 1,
+					step: 1,
+					onlyInteger: true,
+					condition: {
+						min: "greaterEqual",
+					}
 				}}
 			/>
 		</MoaStack>

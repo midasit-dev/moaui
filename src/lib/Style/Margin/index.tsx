@@ -75,16 +75,30 @@ export type MarginTypes = {
 	marginRight?: CSS.StandardLonghandProperties['marginRight'] | number;
 }
 
+export const hasMarginProps = (props: any) => {
+	const isUndefined = (value: any) => value === undefined;
+
+	return (
+		!isUndefined(props.margin) ||
+		!isUndefined(props.marginX) ||
+		!isUndefined(props.marginY) ||
+		!isUndefined(props.marginTop) ||
+		!isUndefined(props.marginBottom) ||
+		!isUndefined(props.marginLeft) ||
+		!isUndefined(props.marginRight)
+	);
+}
+
 export const MarginProps = (props: any) => {
 	let MarginObject: any = {};
-	if (props && props.margin) MarginObject.margin = props.margin;
-	if (props && props.marginX) MarginObject.marginLeft = props.marginX;
-	if (props && props.marginX) MarginObject.marginRight = props.marginX;
-	if (props && props.marginY) MarginObject.marginTop = props.marginY;
-	if (props && props.marginY) MarginObject.marginBottom = props.marginY;
-	if (props && props.marginTop) MarginObject.marginTop = props.marginTop;
-	if (props && props.marginBottom) MarginObject.marginBottom = props.marginBottom;
-	if (props && props.marginLeft) MarginObject.marginLeft = props.marginLeft;
-	if (props && props.marginRight) MarginObject.marginRight = props.marginRight;
+	if (props && props.margin       !== undefined) MarginObject.margin = props.margin;
+	if (props && props.marginX      !== undefined) MarginObject.marginLeft = props.marginX;
+	if (props && props.marginX      !== undefined) MarginObject.marginRight = props.marginX;
+	if (props && props.marginY      !== undefined) MarginObject.marginTop = props.marginY;
+	if (props && props.marginY      !== undefined) MarginObject.marginBottom = props.marginY;
+	if (props && props.marginTop    !== undefined) MarginObject.marginTop = props.marginTop;
+	if (props && props.marginBottom !== undefined) MarginObject.marginBottom = props.marginBottom;
+	if (props && props.marginLeft   !== undefined) MarginObject.marginLeft = props.marginLeft;
+	if (props && props.marginRight  !== undefined) MarginObject.marginRight = props.marginRight;
 	return MarginObject;
 }

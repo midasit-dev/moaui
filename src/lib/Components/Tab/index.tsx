@@ -12,3 +12,7 @@ Tab.defaultProps = {
  * @returns React.Element
  */
 export default function Tab(props: StyledProps) : React.ReactElement { return ( <StyledComponent {...props} /> ) }	
+
+export {
+	type StyledProps,
+}

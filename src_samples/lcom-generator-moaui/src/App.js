@@ -2,25 +2,35 @@
 import * as LCOM from "./Workers/LoadCombinationWorker";
 
 //library
-import MoaButton from "@midasit-dev/moaui/Button";
-import MoaDroplist from "@midasit-dev/moaui/DropList";
-import MoaStack from "@midasit-dev/moaui/Stack";
-import MoaTextField from "@midasit-dev/moaui/TextField";
-import MoaSeperator from "@midasit-dev/moaui/Seperator";
-import MoaTypography from "@midasit-dev/moaui/Typography";
+import MoaButton from "@midasit-dev/moaui/Components/Button";
+import MoaDroplist from "@midasit-dev/moaui/Components/DropList";
+import MoaStack from "@midasit-dev/moaui/Components/Stack";
+import MoaTextField from "@midasit-dev/moaui/Components/TextField";
+import MoaTypography from "@midasit-dev/moaui/Components/Typography";
 import * as mui from "@mui/material";
 import * as React from "react";
 import Scrollbars from "rc-scrollbars";
 import { useSnackbar } from "notistack";
 import {
 	makeCombData,
-	processToken,
 	sendData,
 } from "./utils";
-import { VerifyUtil } from '@midasit-dev/moaui';
+import {
+  VerifyUtil,
+  VerifyDialog,
+  GuideBox,
+  Panel,
+  IconButton,
+  Icon,
+  Typography,
+  Tooltip,
+  Dialog,
+  Button,
+	Color,
+} from "@midasit-dev/moaui";
 
 //component
-import MoaDataGrid from "@midasit-dev/moaui/DataGrid";
+import MoaDataGrid from "@midasit-dev/moaui/Components/DataGrid";
 import { GridActionsCellItem, useGridApiRef } from "@mui/x-data-grid";
 import { GridListComponents } from "./Components/GridListComponents";
 
@@ -43,70 +53,6 @@ const defaultCombValues = {
 	data: [],
 };
 
-function FormDialog() {
-	const [open, setOpen] = React.useState(true);
-	const handleClose = () => setOpen(false);
-
-	const [baseUrl, setBaseUrl] = React.useState("");
-	const [mapiKey, setMapiKey] = React.useState("");
-	const handleOk = () => {
-		window.location.search = `?redirectTo=${baseUrl}&mapiKey=${mapiKey}`;
-	};
-
-	const handleBaseUrlChange = (e) => {
-		console.log(e);
-		setBaseUrl(e.target.value)
-	};
-
-	const handleMapiKeyChange = (e) => {
-		console.log(e);
-		setMapiKey(e.target.value)
-	};
-
-	return (
-		<div>
-			<mui.Dialog open={open} onClose={handleClose}>
-				<mui.DialogTitle>Enter URL and MAPI-Key</mui.DialogTitle>
-				<mui.DialogContent>
-					<MoaTypography>
-						To use the plugin, <br />
-						you need a base URL and an MAPI-key
-					</MoaTypography>
-					<br />
-					<MoaTypography variant="h1">Base URL</MoaTypography>
-					<MoaTextField
-						autoFocus
-						margin="dense"
-						id="baseurl"
-						placeholder="ex) https://api-beta.midasit.com"
-						type="email"
-						fullWidth
-						variant="standard"
-						onChange={handleBaseUrlChange}
-					/>
-					<div style={{ height: "1rem" }} />
-					<MoaTypography variant="h1">MAPI-Key</MoaTypography>
-					<MoaTextField
-						id="mapikey"
-						type="email"
-						fullWidth
-						variant="standard"
-						onChange={handleMapiKeyChange}
-					/>
-				</mui.DialogContent>
-				<mui.DialogActions>
-					<MoaButton onClick={handleOk}>OK</MoaButton>
-					<MoaButton onClick={handleClose}>CANCEL</MoaButton>
-				</mui.DialogActions>
-			</mui.Dialog>
-		</div>
-	);
-}
-
-function App() {
-	return <Main />;
-}
-
 function Main() {
 	const ref = React.useRef({});
 	const { enqueueSnackbar } = useSnackbar();
@@ -116,7 +62,7 @@ function Main() {
 	const [userLcomList, setUserLcomList] = React.useState([]);
 	const [requestData, setRequestData] = React.useState(false);
 
-	const [numberPadLeft, setNumberPadLeft] = React.useState(1);
+	// const [numberPadLeft, setNumberPadLeft] = React.useState(1);
 
 	//States
 	const [combData, setCombData] = React.useState([]);
@@ -154,12 +100,19 @@ function Main() {
 		try {
 			if (VerifyUtil.isExistQueryStrings('mapiKey')) {
 				const newLcomList = [...lcomList];
+
+				if (newLcomList.length === 0) {
+					setCombNumber(1);
+					setCombName(`${defaultCombValues.name} 1`);
+				}
+
 				if (newLcomList.length > 0) {
 					const lcomListLength = newLcomList.length;
 					const lastItem = newLcomList[lcomListLength - 1];
 					const lastItemNumber = lastItem.key * 1 + 1;
 					setCombNumber(lastItemNumber);
-					setNumberPadLeft(String(lcomListLength).length);
+					// setNumberPadLeft(String(lcomListLength).length);
+					setCombName(`${defaultCombValues.name} ${lastItemNumber}`);
 				}
 			}
 		} catch (_) {}
@@ -196,8 +149,10 @@ function Main() {
 		}
 
 		setModifyMode(true);
+		setIsAddCombinationStatus(false);
+		setIsClickedLcomTableCell(true);
 		setCombValue(combValue);
-	}, []);
+	}, [setCombValue]);
 
 	// const handleCopy = React.useCallback(
 	// 	(params) => {
@@ -249,6 +204,8 @@ function Main() {
 		initializeCombInput();
 		setModifyMode(false);
 		gridRef.current.selectRow(-1, false, true);
+		setIsAddCombinationStatus(false);
+		setIsClickedLcomTableCell(false);
 	}, [gridRef, initializeCombInput, loadLcom]);
 
 	const handleNew = React.useCallback(() => {
@@ -261,7 +218,11 @@ function Main() {
 		setUserLcomList([]);
 		ref.current.init();
 		initializeCombInput();
-	}, [initializeCombInput]);
+		setModifyMode(false);
+		gridRef.current.selectRow(-1, false, true);
+		setIsAddCombinationStatus(false);
+		setIsClickedLcomTableCell(false);
+	}, [gridRef, initializeCombInput]);
 
 	const handleRegisterLcom = React.useCallback(() => {
 		if (combData.length === 0) {
@@ -301,7 +262,7 @@ function Main() {
 		setUserLcomList(newUserLcomList);
 		refreshLocalComponent();
 
-		enqueueSnackbar(`"${combName}" is added.`, { variant: "success" });
+		enqueueSnackbar(`"${combName}" is added.`, { variant: "success", autoHideDuration: 1500 });
 	}, [combActive, combData, combName, combNumber, combType, enqueueSnackbar, isModifyMode, refreshLocalComponent, userLcomList]);
 
 	const appendCombData = React.useCallback(
@@ -338,6 +299,24 @@ function Main() {
 		awaiter();
 	}, [lcomList]);
 
+	const handleOverwriteDataIntoCivil = React.useCallback(() => {
+		const awaiter = async () => {
+			//delete LCOM-GEN
+			await sendData("/db/LCOM-GEN", "", "DELETE");
+
+			//put LCOM-GEN
+			const dataObject = { Assign: {} };
+			for (const value of lcomList) dataObject["Assign"][value.key] = { ...value };
+			await sendData('/db/LCOM-GEN', JSON.stringify(dataObject), "PUT");
+
+			setOverwriteDlgOpen(false);
+
+			handleReflectDataIntoCivil();
+		};
+
+		awaiter();
+	}, [handleReflectDataIntoCivil, lcomList]);
+
 	const handleOnCellEditCommit = (params, event) => {
 		let newCombData = [...combData];
 		const findResult = newCombData.findIndex(
@@ -360,6 +339,7 @@ function Main() {
 				field: "key",
 				headerName: "No.",
 				editable: false,
+				sortable: false,
 				valueGetter: (params) => `${params.row.key}${!params.row.isPending ? "*" : ""}`,
 				flex: 0.1,
 			},
@@ -367,6 +347,7 @@ function Main() {
 				field: "NAME",
 				headerName: "Name",
 				editable: false,
+				sortable: false,
 				flex: 1,
 			},
 			{
@@ -410,24 +391,27 @@ function Main() {
 				],
 			},
 		],
-		[handleEdit, handleRemove, numberPadLeft]
+		[handleRemove]
 	);
 
 	const AllGridDef = React.useMemo(
 		() => [
 			{
+				flex: 1.2,
 				field: "NAME",
 				headerName: "Load Cases",
 				editable: false,
-				flex: 1,
+				sortable: false,
 			},
 			{
+				flex: 1,
 				field: "FACTOR",
 				headerName: "Factor",
 				editable: true,
-				flex: 0.5,
+				sortable: false,
 			},
 			{
+				flex: 1,
 				field: "Delete",
 				headerName: "Delete",
 				type: "actions",
@@ -452,154 +436,238 @@ function Main() {
 		[combData]
 	);
 
+	const [overwriteDlgOpen, setOverwriteDlgOpen] = React.useState(false);
+	const [isAddCombinationStatus, setIsAddCombinationStatus] = React.useState(false);
+	const [isClickedLcomTableCell, setIsClickedLcomTableCell] = React.useState(false);
+
 	return (
-		<div style={{width:"100%", display: "flex", justifyContent: "center", backgroundColor: "white"}}>
+		<div style={{width:"100%", display: "flex", justifyContent: "center"}}>
 			{openFormDlg === true ? (
-				<FormDialog />
+				<VerifyDialog />
 			) : (
-				<MoaStack width="100%" maxWidth="844px" sx={{mb:"1rem"}}>
-					<GridListComponents
-						dataRequested={requestData}
-						setDataRequested={setRequestData}
-						updateCombData={appendCombData}
-						additionalData={{ LCOM: userLcomList }}
-						ref={ref}
-					/>
-					<MoaStack marginBottom="10px">
-						<MoaSeperator />
-					</MoaStack>
-					<MoaStack direction={isPortrate ? "column" : "row"} width="100%" spacing={1} justifyContent="center">
-						<MoaStack direction="column" width={isPortrate? "100%" : "70%"}>
-							<Scrollbars
-								autoHide
-								autoHeightMax="343px"
-								autoHeight
+				<GuideBox width="100%" center>
+					<MoaStack spacing={2} padding={2}>
+						<GridListComponents
+							dataRequested={requestData}
+							setDataRequested={setRequestData}
+							updateCombData={appendCombData}
+							additionalData={{ LCOM: userLcomList }}
+							setIsAddCombinationStatus={setIsAddCombinationStatus}
+							isModifyMode={isModifyMode}
+							isClickedLcomTableCell={isClickedLcomTableCell}
+							ref={ref}
+						/>
+						<MoaStack direction={isPortrate ? "column" : "row"} justifyContent="center" spacing={2}>
+							<MoaStack 
+								direction="column" width={isPortrate? "100%" : 600}
+								sx={{ 
+									opacity: 
+										isAddCombinationStatus ? 
+											0.5 : 1, 
+								}}
 							>
-								<MoaDataGrid
-									apiRef={gridRef}
-									onCellClick={(params) => {
-										if (params.field === "Delete") return;
-										handleEdit(params);
-									}}
-									initialState={{
-										filter: {
-											filterModel: {
-												items: [
-													{
-														columnField: "KIND",
-														operator: "equals",
-														value: "GEN",
+								<Panel 
+									width='inherit'
+									variant='shadow2'
+									border={
+										isClickedLcomTableCell ? 
+											`1px solid ${Color.primaryNegative.enable_strock}` : 
+												'1px solid #eee'
+									}
+								>
+									<GuideBox spacing={2} height={395} verSpaceBetween>
+										<Scrollbars
+											autoHide
+											autoHeightMax="350px"
+											autoHeight
+										>
+											<MoaDataGrid
+												apiRef={gridRef}
+												onCellClick={(params) => {
+													if (params.field === "Delete") return;
+													handleEdit(params);
+												}}
+												initialState={{
+													filter: {
+														filterModel: {
+															items: [
+																{
+																	columnField: "KIND",
+																	operator: "equals",
+																	value: "GEN",
+																},
+															],
+														},
 													},
-												],
-											},
-										},
-										columns: {
-											columnVisibilityModel: {
-												KIND: false,
-											},
-										},
-									}}
-									loading={isLcomLoading}
-									rows={lcomList}
-									columns={LcomListGridDef}
-									getRowId={(row) => row.key}
-									density="compact"
-									disableColumnMenu
-									sx={{ width: "100%", height: "343px" }}
-									experimentalFeatures={{ newEditingApi: true }}
-									hideFooter
-								/>
-							</Scrollbars>
-							<MoaStack direction="row" justifyContent="center" marginTop={1} spacing={1}>
-								<MoaButton onClick={handleRefreshData}>
-									CALL DATA FROM MIDAS
-								</MoaButton>
-								<MoaButton onClick={handleReflectDataIntoCivil}>
-									SEND DATA TO MIDAS
-								</MoaButton>
+													columns: {
+														columnVisibilityModel: {
+															KIND: false,
+														},
+													},
+												}}
+												loading={isLcomLoading}
+												rows={lcomList}
+												columns={LcomListGridDef}
+												getRowId={(row) => row.key}
+												density="compact"
+												disableColumnMenu
+												sx={{ 
+													width: "100%", 
+													height: "350px",
+												}}
+												experimentalFeatures={{ newEditingApi: true }}
+												hideFooter
+											/>
+										</Scrollbars>
+										<GuideBox width='100%' row center spacing={2}>
+											<Tooltip title="Refresh Data From MIDAS Civil" placement="top">
+												<IconButton onClick={handleRefreshData}>
+													<Icon iconName="Refresh" />
+												</IconButton>
+											</Tooltip>
+											<Tooltip title="Update Lcom Data in MIDAS Civil" placement="top">
+												<MoaButton onClick={handleReflectDataIntoCivil}>
+													UPDATE
+												</MoaButton>
+											</Tooltip>
+											<Tooltip title="Overwrite Lcom Data in MIDAS Civil" placement="top">
+												<MoaButton onClick={() => setOverwriteDlgOpen(true)}>
+													OVERWRITE
+												</MoaButton>
+											</Tooltip>
+											<Dialog
+												open={overwriteDlgOpen}
+												setOpen={setOverwriteDlgOpen}
+												onClose={() => setOverwriteDlgOpen(false)}
+												headerIcon={<Icon iconName="Warning" />}
+												headerTitle="Warning"
+											>
+												<GuideBox spacing={2}>
+													<GuideBox spacing={1} center>
+														<Typography>Delete all General Load Combinations and</Typography>
+														<Typography>overwrite with new Load Combinations.</Typography>
+														<Typography>Do you want to proceed?</Typography>
+													</GuideBox>
+
+													<GuideBox width='100%' row spacing={2} center>
+														<Button 
+															color="negative"
+															onClick={handleOverwriteDataIntoCivil}
+														>
+															Continue
+														</Button>
+													</GuideBox>
+												</GuideBox>
+											</Dialog>
+										</GuideBox>
+									</GuideBox>
+								</Panel>
 							</MoaStack>
-						</MoaStack>
-						<MoaStack direction="column" width={isPortrate? "100%"  :"30%"}>
-							<MoaStack direction="row" width="100%" spacing={1} paddingBottom={1}>
-								<MoaTextField
-									id="NumberField"
-									title="No."
-									titlePosition="label"
-									variant="standard"
-									disabled
-									value={combNumber}
-								/>
-								<MoaTextField
-									id="NameField"
-									title="Name"
-									titlePosition="label"
-									variant="standard"
-									value={combName}
-									disabled={combNameLocked}
-									onChange={(e) => setCombName(e.target.value)}
-								/>
-							</MoaStack>
-							<MoaStack direction="row" spacing={1} paddingBottom={1} width="100%" justifyContent="space-between" alignItems="center">
-								<MoaStack direction="row" spacing={1} width="50%" alignItems="center">
-									<MoaTypography>Active</MoaTypography>
-									<MoaDroplist
-										width="100%"
-										title="Active"
-										itemList={() => {
-											let map = new Map();
-											for (const value of activeValueOptions) {
-												map.set(value, value);
+							<MoaStack direction="column" width={isPortrate? "100%"  : 300}>
+								<Panel 
+									width='inherit'
+									variant="shadow2" 
+									border={
+										// isAddCombinationStatus || isClickedLcomTableCell ? 
+										isAddCombinationStatus ?
+											`1px solid ${Color.primaryNegative.enable_strock}` : 
+												'1px solid #eee'
+									}
+								>
+									<GuideBox width="100%" height={395} verSpaceBetween>
+										<GuideBox width="100%" spacing={1}>
+											<GuideBox width="100%" row spacing={1}>
+												<MoaTextField
+													id="NumberField"
+													title="No."
+													titlePosition="label"
+													variant="standard"
+													disabled
+													value={combNumber}
+												/>
+												<MoaTextField
+													id="NameField"
+													title="Name"
+													titlePosition="label"
+													variant="standard"
+													value={combName}
+													disabled={combNameLocked}
+													onChange={(e) => setCombName(e.target.value)}
+												/>
+											</GuideBox>
+											<GuideBox width="100%" row spacing={1}>
+												<GuideBox row spacing={1} width="50%" verCenter horSpaceBetween>
+													<MoaTypography>Active</MoaTypography>
+													<MoaDroplist
+														title="Active"
+														width={80}
+														itemList={() => {
+															let map = new Map();
+															for (const value of activeValueOptions) {
+																map.set(value, value);
+															}
+															return map;
+														}}
+														value={combActive}
+														onChange={(e) => setCombActive(e.target.value)}		
+													/>
+												</GuideBox>
+												<GuideBox row spacing={1} width="50%" verCenter horSpaceBetween>
+													<MoaTypography>Type</MoaTypography>
+													<MoaDroplist
+														title="Type"
+														width={75}
+														itemList={() => {
+															let map = new Map();
+															for (const value of typeValueOptions) {
+																map.set(value.label, value.value);
+															}
+															return map;
+														}}
+														value={combType}
+														onChange={(e) => setCombType(e.target.value)}
+													/>
+												</GuideBox>
+											</GuideBox>
+											<GuideBox width="100%">
+												<Scrollbars
+													autoHide
+													autoHeight
+													autoHeightMax={"260px"}
+												>
+													<MoaDataGrid
+														rows={combData}
+														columns={AllGridDef}
+														getRowId={(row) => row.NAME}
+														density="compact"
+														disableColumnMenu
+														sx={{ width: "100%", height: "260px" }}
+														onCellEditStop={handleOnCellEditCommit}
+														experimentalFeatures={{ newEditingApi: true }}
+														hideFooter
+													/>
+												</Scrollbars>
+											</GuideBox>
+										</GuideBox>
+										<GuideBox width="100%" row horRight spacing={1}>
+											{isModifyMode && 
+												<MoaButton onClick={handleRegisterLcom}>
+													MODIFY
+												</MoaButton>
 											}
-											return map;
-										}}
-										value={combActive}
-										onChange={(e) => setCombActive(e.target.value)}		
-									/>
-								</MoaStack>
-								<MoaStack direction="row" spacing={1} width="50%" alignItems="center">
-									<MoaTypography>Type</MoaTypography>
-									<MoaDroplist
-										width="100%"
-										title="Type"
-										itemList={() => {
-											let map = new Map();
-											for (const value of typeValueOptions) {
-												map.set(value.label, value.value);
+											{!isModifyMode && 
+												<MoaButton onClick={handleRegisterLcom} disabled={!isAddCombinationStatus}>
+													ADD
+												</MoaButton>
 											}
-											return map;
-										}}
-										value={combType}
-										onChange={(e) => setCombType(e.target.value)}
-									/>
-								</MoaStack>
-							</MoaStack>
-							<Scrollbars
-								autoHide
-								autoHeight
-								autoHeightMax={"257px"}
-								style={{ width: "100%" }}
-							>
-								<MoaDataGrid
-									rows={combData}
-									columns={AllGridDef}
-									getRowId={(row) => row.NAME}
-									density="compact"
-									disableColumnMenu
-									sx={{ minWidth: "40%", height: "257px" }}
-									onCellEditStop={handleOnCellEditCommit}
-									experimentalFeatures={{ newEditingApi: true }}
-									hideFooter
-								/>
-							</Scrollbars>
-							<MoaStack direction="row" justifyContent="right" spacing={1} marginTop={1}>
-								<MoaButton onClick={handleRegisterLcom}>
-									{isModifyMode ? "MODIFY" : "ADD"}
-								</MoaButton>
-								<MoaButton onClick={handleNew}>CLEAR</MoaButton>
+											<MoaButton onClick={handleNew} color='negative'>CLEAR</MoaButton>
+										</GuideBox>
+									</GuideBox>
+								</Panel>
 							</MoaStack>
 						</MoaStack>
 					</MoaStack>
-				</MoaStack>
+				</GuideBox>
 			)}
 		</div>
 	);

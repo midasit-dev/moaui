@@ -1,16 +1,16 @@
 import { Table, TableHead, TableRow, TableCell, TableBody, Typography, Stack, TextField, Panel } from "@midasit-dev/moaui"; /**${comma}*/
 
 const ComponentsTableWithTitle = ({
-	title = "Table Title Text", /**${props-seperator}*/
-  spacing = 2, /**${props-seperator}*/
+	title = "Table Title Text", /**${props-separator}*/
+  spacing = 2, /**${props-separator}*/
   headers = [
     'head1', 'head2', 'head3'
-  ], /**${props-seperator}*/
+  ], /**${props-separator}*/
   rows = [
     [ 'Row Text', <TextField width='50px' />, <TextField width='50px' /> ],
     [ 'Row Text', <TextField width='50px' />, <TextField width='50px' /> ],
     [ 'Row Text', <TextField width='50px' />, <TextField width='50px' /> ],
-  ], /**${props-seperator}*/
+  ], /**${props-separator}*/
 }) => {
   return (
 		<Panel width={300}>
@@ -21,7 +21,7 @@ const ComponentsTableWithTitle = ({
 				<Table padding="normal" width={300}>
 					<TableHead>
 						<TableRow>
-							{headers.map((header, index) => <TableCell key={index}><Typography textAlign='center'>{header}</Typography></TableCell>)}
+							{headers.map((header, index) => <TableCell key={index}><Typography center>{header}</Typography></TableCell>)}
 						</TableRow>
 					</TableHead>
 					<TableBody>

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import MoaDropList from '@midasit-dev/moaui/DropList';
-import MoaStack from '@midasit-dev/moaui/Stack';
-import MoaTypography from '@midasit-dev/moaui/Typography';
+import MoaDropList from '@midasit-dev/moaui/Components/DropList';
+import MoaStack from '@midasit-dev/moaui/Components/Stack';
+import MoaTypography from '@midasit-dev/moaui/Components/Typography';
 
 
-export default function SelectVariants(title, preSetList, preListNb, setPreListNb) {
+export default function SelectVariants(title, preSetList, preListNb, setPreListNb, dropListWidth) {
 	const convertKeyValuePair = React.useCallback((key) => {
 		return [preSetList[key], key];
 	}, [preSetList]);
@@ -30,6 +30,7 @@ export default function SelectVariants(title, preSetList, preListNb, setPreListN
 				itemList={values}
 				value={preListNb}
 				onChange={(e) => setPreListNb(e.target.value)}
+				width={dropListWidth || undefined}
 			/>
 		</MoaStack>
 	);

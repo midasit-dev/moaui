@@ -1,10 +1,8 @@
 import React from "react";
 import StyledComponent, {type StyledProps} from "./Styled";
-import MoaStack from "../Stack";
-import { Typography, Stack } from "../..";
-import * as mui from "@mui/material";
+import { GuideBox, Typography } from "../..";
 
-Textfield.defaultProps = {
+TextField.defaultProps = {
 	autoFocus: false,
 	type: "text",
 	title : "",
@@ -12,6 +10,28 @@ Textfield.defaultProps = {
 	error : false,
 	disabled : false,
 	spacing: 1,
+	textAlign: "left",
+} as StyledProps;
+
+TextField.sampleProps = {
+	autoFocus: false,
+	type: "text",
+	placeholder: "Placeholder",
+	title : "Title",
+	titlePosition : "left",
+	defaultValue: "Default Value",
+	error : false,
+	disabled : false,
+	onChange: () => {},
+	value: "Value",
+	wrappedWidth: '150px',
+	width: '100px',
+	height: '30px',
+	spacing: 1,
+	textAlign: "left",
+	multiline: false,
+	rows: 1,
+	maxRows: 1,
 } as StyledProps;
 
 /**
@@ -21,52 +41,48 @@ Textfield.defaultProps = {
  * @returns {React.ReactElement} moaTextField
  */
 
-function Textfield(props: StyledProps) : React.ReactElement {
+function TextField(props: StyledProps) : React.ReactElement {
 	const {title, titlePosition, ...rest} = props;
 
-	const boxStyle = React.useCallback((position: StyledProps["titlePosition"]) => {
-		// if(position === "left")
-		// 	return {
-		// 		display: "inline-flex", alignItems:"center"
-		// 	}
-		// if(position === "label")
-		// 	return {
-		// 		display: "inline-flex",  alignItems:"flex-start", justifyContent:"center"
-		// 	}
-		// if(position === "right")
-		// 	return {
-		// 		display: "inline-flex",  alignItems:"center"
-		// 	}
-		return {}
-	}, [])
+	const WrappedStyles = {
+		width: props?.wrappedWidth || 'auto',
+		spacing: props?.spacing,
+		verCenter: true,
+		horSpaceBetween: true,
+	}
 
 	return (
 		<React.Fragment>
-			{ title !== "" ?
-				<MoaStack 
-					width={props?.width}
-					{...boxStyle(titlePosition)} 
-					direction={(titlePosition === "label") ? "column" : "row"}
-					spacing={props.spacing}
-				>
-					{
-						titlePosition === "right" ?
-						<>
-							<StyledComponent {...rest} />
-							<Typography flexItem textAlign="center">{`${title}`}</Typography>
-						</>
-						:
-						<>
-							<Typography flexItem textAlign="center">{`${title}`}</Typography>
-							<StyledComponent {...rest}/>
-						</>
-					}
-				</MoaStack>
-				:
+			{
+				title !== "" && titlePosition === 'label' &&
+					<GuideBox {...WrappedStyles}>
+						<GuideBox width='auto'><Typography>{`${title}`}</Typography></GuideBox>
+						<GuideBox width={props?.width}><StyledComponent {...rest} /></GuideBox>
+					</GuideBox>
+			}
+			{
+				title !== "" && titlePosition === 'left' &&
+					<GuideBox {...WrappedStyles} row>
+						<GuideBox width='auto'><Typography>{`${title}`}</Typography></GuideBox>
+						<GuideBox width={props?.width}><StyledComponent {...rest} /></GuideBox>
+					</GuideBox>
+			}
+			{
+				title !== "" && titlePosition === 'right' &&
+					<GuideBox {...WrappedStyles} row>
+						<GuideBox width={props?.width}><StyledComponent {...rest} /></GuideBox>
+						<GuideBox width='auto'><Typography>{`${title}`}</Typography></GuideBox>
+					</GuideBox>
+			}
+			{title === '' &&
 				<StyledComponent {...rest}/>
 			}
 		</React.Fragment>
 	)
 }
 
-export default Textfield;
+export default TextField;
+
+export {
+	type StyledProps,
+};
