@@ -126,7 +126,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			{cloneArr}
 		</Tabs>
 	)
-})(({theme}) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

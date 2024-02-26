@@ -71,7 +71,7 @@ const StyledComponent = styled((props:StyledProps) => {
 	}
 
 	return <Typography>direction is not available</Typography>;
-})(({theme}) => ({
+})(() => ({
 }))
 
 const ThemedComponent = (props: StyledProps) => (

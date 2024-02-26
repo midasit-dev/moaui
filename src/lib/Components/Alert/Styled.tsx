@@ -69,7 +69,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			</Alert>
 		</Stack>
 	)
-}) (({theme}) => ({}))
+}) (() => ({}))
 
 
 const ThemedComponent = (props: StyledProps) => (

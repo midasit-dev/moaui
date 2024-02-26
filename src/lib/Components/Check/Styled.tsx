@@ -69,10 +69,6 @@ export type StyledProps = {
   sx?: never;
 };
 
-type InnerStyledProps = {
-  theme: any;
-};
-
 const StyledComponent = styled((props: StyledProps): React.ReactElement => {
   return (
     <FormControlLabel
@@ -136,7 +132,7 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
       }}
     />
   );
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

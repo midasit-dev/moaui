@@ -7,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Color from "../../Style/Color";
 import Font from "../../Style/Font";
-import Box from '@mui/material/Box'
 
 export type StyledProps = {
 	/**
@@ -241,7 +240,7 @@ const StyledComponent = styled((props:StyledProps) => {
       </FormControl>
     </React.Fragment>
   );
-})(({theme}) => ({
+})(() => ({
 	display: "flex",
 	fullWidth: true,
 	alignItems: "center",

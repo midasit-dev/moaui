@@ -33,7 +33,7 @@ export type StyledProps = {
 }
 
 const Default = (props: StyledProps) => {
-	const { iconName, opacity, ...rest } = props;
+	const { iconName, opacity } = props;
 
 	if (iconName === undefined || 
 			iconName === null ||
@@ -54,7 +54,7 @@ const Default = (props: StyledProps) => {
 }
 
 const ToButton = (props: StyledProps) => {
-	const { iconName, opacity, onClick, ...rest } = props;
+	const { iconName, opacity, onClick, } = props;
 
   const [varOpacity, setVarOpacity] = React.useState(1);
 
@@ -96,7 +96,7 @@ const StyledComponent = styled((props:StyledProps) => {
 
 	return <Default {...props} />
 })
-(({theme}) => ({}))
+(() => ({}))
 
 const ThemedComponent = (props: StyledProps) => (
 	<StyledComponent {...props} />

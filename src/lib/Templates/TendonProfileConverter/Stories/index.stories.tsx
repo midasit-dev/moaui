@@ -7,8 +7,6 @@ import {
 	UpdateButtonCode,
 	ListCode,
 	BottomButtonsCode,
-	SelectButtonCode,
-	HelpIconButtonCode,
 } from "../Code";
 
 const meta = {
@@ -24,5 +22,3 @@ export const S_Composite = LiveEditStory(cleanMask(CompositeCode));
 export const C_UpdateButton = LiveEditStory(cleanMask(UpdateButtonCode));
 export const C_List = LiveEditStory(cleanMask(ListCode));
 export const C_BottomButtons = LiveEditStory(cleanMask(BottomButtonsCode));
-// export const C_SelectButton = LiveEditStory(cleanMask(SelectButtonCode));
-// export const C_HelpIconButton = LiveEditStory(cleanMask(HelpIconButtonCode));

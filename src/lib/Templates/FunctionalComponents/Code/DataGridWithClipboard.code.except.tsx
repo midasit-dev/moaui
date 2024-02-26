@@ -294,6 +294,7 @@ const CompClipboardController = (props: any) => {
 
 								const filter_rows_mapArr = Array.from(rows).map((row: any) => {
 									const { id, ...rest } = row;
+									if (id) {}
 									const restKeys = Object.keys(rest);
 									let result = new Map();
 									orderedColNames.forEach((headerName: string) => {
@@ -311,7 +312,7 @@ const CompClipboardController = (props: any) => {
 								let s_rows = '';
 								filter_rows_mapArr.forEach((map: Map<any, any>) => {
 									const valArr: any[] = [];
-									map.forEach((value: any, key: any) => valArr.push(value));
+									map.forEach((value: any) => valArr.push(value));
 									s_rows += valArr.join('\t');
 									s_rows += '\n';
 								});

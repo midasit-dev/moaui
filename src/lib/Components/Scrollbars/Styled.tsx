@@ -52,7 +52,7 @@ export interface StyledProps {
 	 * 
 	 * @default left
 	 */
-	titleAlign: "left" | "center" | "right";
+	titleAlign?: "left" | "center" | "right";
 }
 
 const StyledComponent = styled((props: StyledProps) => {
@@ -96,7 +96,7 @@ const StyledComponent = styled((props: StyledProps) => {
 
 		</Panel>
 	)
-})(({theme}) => ({ }))
+})(() => ({ }))
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

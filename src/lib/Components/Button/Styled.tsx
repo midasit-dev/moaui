@@ -117,7 +117,7 @@ export type StyledProps = {
 
 
 const StyledComponent = styled((props:StyledProps) => {
-	const { variant, disabled, width, onClick, color, children, loading, ...rest } = props;
+	const { variant, disabled, width, onClick, color, children, loading, } = props;
 
 	const commonButtonProps = React.useMemo(() => ({
 		disableFocusRipple:true,
@@ -242,7 +242,7 @@ const StyledComponent = styled((props:StyledProps) => {
 		</MuiButton>
 	)
 })
-(({theme}) => ({}))
+(() => ({}))
 
 
 const ThemedComponent = (props: StyledProps) => (

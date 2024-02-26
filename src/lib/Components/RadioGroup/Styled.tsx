@@ -55,6 +55,7 @@ export interface StyledProps extends RadioGroupProps {
 
 const StyledComponent = styled((props: StyledProps) => {
 	const { ariaLabel, text, children, sx, ...rest } = props;
+	if (sx) console.error('The sx prop is not used in StyledComponent');
 	
 	return (
 		<FormControl aria-label={`${text} ${ariaLabel}`}>
@@ -68,7 +69,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		</FormControl>
 	)
 
-})(({theme}) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

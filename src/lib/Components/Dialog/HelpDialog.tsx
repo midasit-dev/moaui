@@ -1,5 +1,5 @@
 import { Dialog } from "@mui/material";
-import { Stack, Typography, IconButton, Icon, Button } from "../..";
+import { Stack, Typography, IconButton, Icon } from "../..";
 
 export interface BodyProps {
 	/**

@@ -24,10 +24,8 @@ export const Row = LiveEditStory(cleanMask(RowCode));
 export const Column = LiveEditStory(cleanMask(ColumnCode));
 
 export const Sample: Story = {
-	args: {
-		xs: 6
-	},
-	render: (xs) => {
+	args: {},
+	render: () => {
 		return (
 			<Panel width="200px">
 				<Typography variant="h1" marginBottom="10px">Grid Demo</Typography>

@@ -17,7 +17,6 @@ const StyledComponent = styled((props: StyledProps) => {
 	const {
 		icoSrc,
 		title,
-		...rest
 	} = props;
 
 	const [opacityValue, setOpacityValue] = React.useState(1);
@@ -70,7 +69,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			</span>
 		</div>
 	)
-}) (({theme}) => ({}))
+}) (() => ({}))
 
 
 const ThemedComponent = (props: StyledProps) => (

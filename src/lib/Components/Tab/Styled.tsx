@@ -89,7 +89,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			}}
 		/>
 	)
-})(({theme}) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

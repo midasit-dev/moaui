@@ -48,11 +48,6 @@ export type StyledProps = {
 	onClose?: () => void
 
 	/**
-	 * If you define maxWidth, it makes dialog dynamic
-	 */
-	maxWidth?: string | number | false;
-
-	/**
 	 * Set a Hidden Close Option
 	 */
 	hiddenClose?: boolean;
@@ -67,7 +62,6 @@ const StyledComponent = styled((props: StyledProps) => {
     headerIcon,
     headerTitle,
     onClose,
-		maxWidth,
 		hiddenClose,
     ...rest
   } = props;
@@ -98,7 +92,7 @@ const StyledComponent = styled((props: StyledProps) => {
     </Dialog>
   );
 })
-(({theme}) => ({}))
+(() => ({}))
 
 
 const ThemedComponent = (props: StyledProps) => (

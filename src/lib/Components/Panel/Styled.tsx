@@ -85,7 +85,6 @@ const StyledComponent = styled((props: StyledProps) => {
 		borderRadius,
 		border,
 		relative,
-		...rest
 	} = props;
 
 	let _sx = {};
@@ -114,7 +113,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			{children}
 		</Box>
 	)
-})(({theme}) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

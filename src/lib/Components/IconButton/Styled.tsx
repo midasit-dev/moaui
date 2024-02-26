@@ -100,7 +100,9 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 
 const StyledComponent = styled((props: StyledProps) => {
 	const { sx, children, color, transparent, transparentColor, border, ...rest } = props;
-	const CustomBackgroundColor = useCallback(({color, transparent, border} : { 
+	if (sx) console.error('The sx prop is not used in StyledComponent');
+
+	const CustomBackgroundColor = useCallback(({color, transparent} : { 
 			color: StyledProps["color"];
 			transparent: StyledProps["transparent"];
 			border: StyledProps["border"];
@@ -168,7 +170,7 @@ const StyledComponent = styled((props: StyledProps) => {
 				...negativeStyle,
 				...transparentStyle,
 			};
-	}, []);
+	}, [transparentColor]);
 
 	return (
 		<IconButton
@@ -190,7 +192,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			{children && cloneElement(children as React.ReactElement, {width: "16px", height: "16px"})}
 		 </IconButton>
 	);
-})(({theme}) => ({}))
+})(() => ({}))
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

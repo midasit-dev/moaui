@@ -4,7 +4,7 @@ import MoaStyledComponent from '../../Style/MoaStyled';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { Typography } from "../../";
 
-const BootstrapTooltip = styled(({ className, arrowBorder, ...props }: TooltipProps & { arrowBorder?: boolean } ) => (
+const BootstrapTooltip = styled(({ className, ...props }: TooltipProps & { arrowBorder?: boolean } ) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
 ))(({ theme, arrowBorder }: { theme: any, arrowBorder?: boolean }) => ({
   [`& .${tooltipClasses.arrow}`]: {
@@ -68,9 +68,7 @@ const StyledComponent = styled((props: StyledProps) => {
 		children,
 		title,
 		placement,
-		open,
 		arrowBorder,
-		...rest
 	} = props;
 
 	return (
@@ -85,8 +83,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			</div>
 		</BootstrapTooltip>
 	)
-})(({theme}) => ({}))
-
+})(() => ({}))
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

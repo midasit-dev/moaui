@@ -14,17 +14,17 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import TotalCodeString from './ComponentString/TotalString';
 
 const DropAcceptList = [
-  ItemTypes.BUTTON,
-  ItemTypes.TEXTFIELD,
-  ItemTypes.CHECKBOX,
-  ItemTypes.RADIO,
-  ItemTypes.SWITCH,
-  ItemTypes.SEPARATOR,
-  ItemTypes.TYPOGRAPHY,
-  ItemTypes.DROPLIST,
-  ItemTypes.TAB,
-  ItemTypes.TABLE,
-  ItemTypes.BOX
+  ItemTypes.ButtonText,
+  // ItemTypes.TEXTFIELD,
+  // ItemTypes.CHECKBOX,
+  // ItemTypes.RADIO,
+  // ItemTypes.SWITCH,
+  // ItemTypes.SEPARATOR,
+  // ItemTypes.TYPOGRAPHY,
+  // ItemTypes.DROPLIST,
+  // ItemTypes.TAB,
+  // ItemTypes.TABLE,
+  // ItemTypes.BOX
 ];
 
 const fontStyle = {
@@ -39,7 +39,7 @@ const fontStyle = {
 function DraggedComponent(props: any) : any {
   const item = props.item;
 
-  if(item.type === ItemTypes.BUTTON){
+  if(item.type === ItemTypes.ButtonText){
     return(
       <MoaButton
         variant={"contained"}
@@ -51,29 +51,16 @@ function DraggedComponent(props: any) : any {
       </MoaButton>
     )
   }
-  else if(item.type === ItemTypes.TEXTFIELD){
-    return (
-      <MoaTextField
-        width={"auto"}
-        placeholder={"Moa TextField"}
-        title={"Title"}
-        titlePosition={"left"}
-        disabled={false}
-        defaultValue={""}
-        error={false}
-      />
-    )
-  }
 }
 
 function getComponentType(droppedItems: any){
   let ComponentType: string[] = [];
   for(let i=0; i<droppedItems.length; i++){
-    if(droppedItems[i]["props"]["item"]["type"] === ItemTypes.BUTTON){
-      ComponentType.push(ItemTypes.BUTTON);
-    } else if(droppedItems[i]["props"]["item"]["type"] === ItemTypes.TEXTFIELD){
-      ComponentType.push(ItemTypes.TEXTFIELD);
-    }
+    // if(droppedItems[i]["props"]["item"]["type"] === ItemTypes.BUTTON){
+    //   ComponentType.push(ItemTypes.BUTTON);
+    // } else if(droppedItems[i]["props"]["item"]["type"] === ItemTypes.TEXTFIELD){
+    //   ComponentType.push(ItemTypes.TEXTFIELD);
+    // }
   }
   return ComponentType;
 }

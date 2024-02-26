@@ -149,7 +149,7 @@ const StyledComponent =
 			}}
 		/>
 	)
-})(({ theme }) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

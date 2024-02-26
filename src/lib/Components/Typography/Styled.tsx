@@ -200,7 +200,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			{children}
 		</Typography>
 	)
-})(({theme}) => ({
+})(() => ({
 	display: "flex",
 	fontFeatureSettings: "'clig' off, 'liga' off",
 }));

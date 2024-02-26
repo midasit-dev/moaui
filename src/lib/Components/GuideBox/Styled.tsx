@@ -310,27 +310,26 @@ const loadingStyles: React.CSSProperties = {
 const GuideBox = (props: StyledProps) => {
 	const { 
 		children, 
-		tag, 
 		show, 
 		width, 
 		height, 
 		fill, 
-		column, 
-		row, 
-		rowReverse,
-		columnReverse,
+		// column, 
+		// row, 
+		// rowReverse,
+		// columnReverse,
 		spacing, 
-		center, 
-		horLeft, 
-		horCenter, 
-		horRight, 
-		horSpaceBetween, 
-		verTop, 
-		verCenter, 
-		verBottom,
-		verSpaceBetween,
-		padding, paddingX, paddingY, paddingTop, paddingBottom, paddingLeft, paddingRight,
-		margin, marginX, marginY, marginTop, marginBottom, marginLeft, marginRight, 
+		// center, 
+		// horLeft, 
+		// horCenter, 
+		// horRight, 
+		// horSpaceBetween, 
+		// verTop, 
+		// verCenter, 
+		// verBottom,
+		// verSpaceBetween,
+		// padding, paddingX, paddingY, paddingTop, paddingBottom, paddingLeft, paddingRight,
+		// margin, marginX, marginY, marginTop, marginBottom, marginLeft, marginRight, 
 		opacity,
 		duration,
 		pulse,
@@ -371,7 +370,7 @@ const GuideBox = (props: StyledProps) => {
 			onKeyDown={onKeyDown || undefined}
 		>
 			{/* Existing children */}
-			{props.children}
+			{children}
 
 			{/* Loading loading */}
 			{loading && (
@@ -386,7 +385,7 @@ const GuideBox = (props: StyledProps) => {
 const StyledComponent = styled((props: StyledProps): React.ReactElement => {
 	return <GuideBox {...props} />;
 })
-(({theme}) => ({}));
+(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

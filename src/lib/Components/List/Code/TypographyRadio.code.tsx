@@ -52,7 +52,7 @@ const ComponentsListTypographyRadio = ({
                 >
                   <ListItemButton 
 										padding={0.8}
-										onClick={(e: any) => setState({...state, selected: item})}
+										onClick={() => setState({...state, selected: item})}
 									>
                     <Typography marginLeft={1}>{item}</Typography>
                   </ListItemButton>

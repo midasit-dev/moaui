@@ -40,8 +40,8 @@ const CustomDraggableComponent = (props: any) => {
 }
 
 const VerifyDialogCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
-		<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
+		<GuideBox show={false} tag="super" fill='2' center spacing={0}>
 			<div style={{ 
 				width: 200, 
 				height: 30, 
@@ -68,7 +68,7 @@ const VerifyDialogCategory: React.FC<{}> = () => (
 				<h4>VerifyDialog</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -81,8 +81,8 @@ const VerifyDialogCategory: React.FC<{}> = () => (
 );
 
 const AlertCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
-		<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
+		<GuideBox show={false} tag="super" fill='2' center spacing={0}>
 			<div style={{ 
 				width: 200, 
 				height: 30, 
@@ -109,7 +109,7 @@ const AlertCategory: React.FC<{}> = () => (
 				<h4>Alert</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -121,7 +121,7 @@ const AlertCategory: React.FC<{}> = () => (
 );
 
 const ButtonCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -130,7 +130,7 @@ const ButtonCategory: React.FC<{}> = () => (
 				<h4>Button</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -149,7 +149,7 @@ const ButtonCategory: React.FC<{}> = () => (
 );
 
 const ChartLineCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -158,7 +158,7 @@ const ChartLineCategory: React.FC<{}> = () => (
 				<h4>ChartLine</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -173,7 +173,7 @@ const ChartLineCategory: React.FC<{}> = () => (
 );
 
 const CheckCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -182,7 +182,7 @@ const CheckCategory: React.FC<{}> = () => (
 				<h4>Check</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -196,7 +196,7 @@ const CheckCategory: React.FC<{}> = () => (
 );
 
 const CheckGroupCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -205,7 +205,7 @@ const CheckGroupCategory: React.FC<{}> = () => (
 				<h4>CheckGroup</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -218,7 +218,7 @@ const CheckGroupCategory: React.FC<{}> = () => (
 );
 
 const ChipCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -227,7 +227,7 @@ const ChipCategory: React.FC<{}> = () => (
 				<h4>Chip</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -239,7 +239,7 @@ const ChipCategory: React.FC<{}> = () => (
 );
 
 const CodeBlockCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -248,7 +248,7 @@ const CodeBlockCategory: React.FC<{}> = () => (
 				<h4>CodeBlock</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -264,7 +264,7 @@ const CodeBlockCategory: React.FC<{}> = () => (
 );
 
 const DataGridCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -273,7 +273,7 @@ const DataGridCategory: React.FC<{}> = () => (
 				<h4>DataGrid</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -285,7 +285,7 @@ const DataGridCategory: React.FC<{}> = () => (
 );
 
 const DialogCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -294,7 +294,7 @@ const DialogCategory: React.FC<{}> = () => (
 				<h4>Dialog</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -310,7 +310,7 @@ const DialogCategory: React.FC<{}> = () => (
 );
 
 const DropListCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -319,7 +319,7 @@ const DropListCategory: React.FC<{}> = () => (
 				<h4>DropList</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -335,7 +335,7 @@ const DropListCategory: React.FC<{}> = () => (
 );
 
 const FloatingBoxCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -344,7 +344,7 @@ const FloatingBoxCategory: React.FC<{}> = () => (
 				<h4>FloatingBox</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -359,7 +359,7 @@ const FloatingBoxCategory: React.FC<{}> = () => (
 );
 
 const GridCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -368,7 +368,7 @@ const GridCategory: React.FC<{}> = () => (
 				<h4>Grid</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -382,7 +382,7 @@ const GridCategory: React.FC<{}> = () => (
 );
 
 const GuideBoxCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -391,7 +391,7 @@ const GuideBoxCategory: React.FC<{}> = () => (
 				<h4>GuideBox</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -417,7 +417,7 @@ const GuideBoxCategory: React.FC<{}> = () => (
 );
 
 const IconCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -426,7 +426,7 @@ const IconCategory: React.FC<{}> = () => (
 				<h4>Icon</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -440,7 +440,7 @@ const IconCategory: React.FC<{}> = () => (
 );
 
 const IconButtonCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -449,7 +449,7 @@ const IconButtonCategory: React.FC<{}> = () => (
 				<h4>IconButton</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -464,7 +464,7 @@ const IconButtonCategory: React.FC<{}> = () => (
 );
 
 const ListCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -473,7 +473,7 @@ const ListCategory: React.FC<{}> = () => (
 				<h4>List</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -488,7 +488,7 @@ const ListCategory: React.FC<{}> = () => (
 );
 
 const ListItemCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -497,7 +497,7 @@ const ListItemCategory: React.FC<{}> = () => (
 				<h4>ListItem</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -509,7 +509,7 @@ const ListItemCategory: React.FC<{}> = () => (
 );
 
 const ListItemButtonCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -518,7 +518,7 @@ const ListItemButtonCategory: React.FC<{}> = () => (
 				<h4>ListItemButton</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -530,7 +530,7 @@ const ListItemButtonCategory: React.FC<{}> = () => (
 );
 
 const MidasControllerCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -539,7 +539,7 @@ const MidasControllerCategory: React.FC<{}> = () => (
 				<h4>MidasController</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -551,7 +551,7 @@ const MidasControllerCategory: React.FC<{}> = () => (
 );
 
 const PanelCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -560,7 +560,7 @@ const PanelCategory: React.FC<{}> = () => (
 				<h4>Panel</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -579,7 +579,7 @@ const PanelCategory: React.FC<{}> = () => (
 );
 
 const RadioCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -588,7 +588,7 @@ const RadioCategory: React.FC<{}> = () => (
 				<h4>Radio</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -600,7 +600,7 @@ const RadioCategory: React.FC<{}> = () => (
 );
 
 const RadioGroupCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -609,7 +609,7 @@ const RadioGroupCategory: React.FC<{}> = () => (
 				<h4>RadioGroup</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -622,7 +622,7 @@ const RadioGroupCategory: React.FC<{}> = () => (
 );
 
 const ScrollbarsCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -631,7 +631,7 @@ const ScrollbarsCategory: React.FC<{}> = () => (
 				<h4>Scrollbars</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -644,7 +644,7 @@ const ScrollbarsCategory: React.FC<{}> = () => (
 );
 
 const SeparatorCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -653,7 +653,7 @@ const SeparatorCategory: React.FC<{}> = () => (
 				<h4>Separator</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -666,7 +666,7 @@ const SeparatorCategory: React.FC<{}> = () => (
 );
 
 const StackCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -675,7 +675,7 @@ const StackCategory: React.FC<{}> = () => (
 				<h4>Stack</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -688,7 +688,7 @@ const StackCategory: React.FC<{}> = () => (
 );
 
 const SwitchCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -697,7 +697,7 @@ const SwitchCategory: React.FC<{}> = () => (
 				<h4>Switch</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -709,7 +709,7 @@ const SwitchCategory: React.FC<{}> = () => (
 );
 
 const SwitchGroupCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -718,7 +718,7 @@ const SwitchGroupCategory: React.FC<{}> = () => (
 				<h4>SwitchGroup</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -731,7 +731,7 @@ const SwitchGroupCategory: React.FC<{}> = () => (
 );
 
 const TabCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -740,7 +740,7 @@ const TabCategory: React.FC<{}> = () => (
 				<h4>Tab</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -753,7 +753,7 @@ const TabCategory: React.FC<{}> = () => (
 );
 
 const TabGroupCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -762,7 +762,7 @@ const TabGroupCategory: React.FC<{}> = () => (
 				<h4>TabGroup</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -778,7 +778,7 @@ const TabGroupCategory: React.FC<{}> = () => (
 );
 
 const TableCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -787,7 +787,7 @@ const TableCategory: React.FC<{}> = () => (
 				<h4>Table</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -804,7 +804,7 @@ const TableCategory: React.FC<{}> = () => (
 );
 
 const TextFieldCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -813,7 +813,7 @@ const TextFieldCategory: React.FC<{}> = () => (
 				<h4>TextField</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -831,7 +831,7 @@ const TextFieldCategory: React.FC<{}> = () => (
 );
 
 const TextFieldV2Category: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -840,7 +840,7 @@ const TextFieldV2Category: React.FC<{}> = () => (
 				<h4>TextFieldV2</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -865,7 +865,7 @@ const TextFieldV2Category: React.FC<{}> = () => (
 );
 
 const TooltipCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -874,7 +874,7 @@ const TooltipCategory: React.FC<{}> = () => (
 				<h4>Tooltip</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -887,7 +887,7 @@ const TooltipCategory: React.FC<{}> = () => (
 );
 
 const TypographyCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -896,7 +896,7 @@ const TypographyCategory: React.FC<{}> = () => (
 				<h4>Typography</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -912,7 +912,7 @@ const TypographyCategory: React.FC<{}> = () => (
 );
 
 const TypographyGroupCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -921,7 +921,7 @@ const TypographyGroupCategory: React.FC<{}> = () => (
 				<h4>TypographyGroup</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -933,8 +933,8 @@ const TypographyGroupCategory: React.FC<{}> = () => (
 );
 
 const AutoDropListCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
-		<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
+		<GuideBox show={false} tag="super" fill='2' center spacing={0}>
 			<div style={{ 
 				width: 200, 
 				height: 30, 
@@ -961,7 +961,7 @@ const AutoDropListCategory: React.FC<{}> = () => (
 				<h4>AutoDropList</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -974,7 +974,7 @@ const AutoDropListCategory: React.FC<{}> = () => (
 );
 
 const DualComponentsCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -983,7 +983,7 @@ const DualComponentsCategory: React.FC<{}> = () => (
 				<h4>DualComponents</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -996,7 +996,7 @@ const DualComponentsCategory: React.FC<{}> = () => (
 );
 
 const SamplesCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -1005,7 +1005,7 @@ const SamplesCategory: React.FC<{}> = () => (
 				<h4>Samples</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',
@@ -1017,7 +1017,7 @@ const SamplesCategory: React.FC<{}> = () => (
 );
 
 const TendonProfileConverterCategory: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 		<GuideBox show={false} tag="title" fill='2'>
 			<div style={{
 				marginTop: '5px',
@@ -1026,7 +1026,7 @@ const TendonProfileConverterCategory: React.FC<{}> = () => (
 				<h4>TendonProfileConverter</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',

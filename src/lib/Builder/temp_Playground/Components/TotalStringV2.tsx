@@ -79,18 +79,6 @@ export default function TotalCodeString(){
 				extractCode = extractComponentImport(All.TextFieldError);
 			else if(value.type === ItemTypes.TypographyBody1 || value.type === ItemTypes.TypographyBody2 || value.type === ItemTypes.TypographyBody3 || value.type === ItemTypes.TypographyH1 || value.type === ItemTypes.TypographyGroupText)
 				extractCode = extractComponentImport(All.TypographyBody1);
-			else if(value.type === ItemTypes.TendonProfileConverterBottomButtons)
-				extractCode = extractComponentImport(All.TendonProfileConverterBottomButtons);
-			else if(value.type === ItemTypes.TendonProfileConverterComposite)
-				extractCode = extractComponentImport(All.TendonProfileConverterComposite);
-			else if(value.type === ItemTypes.TendonProfileConverterHelpIconButton)
-				extractCode = extractComponentImport(All.TendonProfileConverterHelpIconButton);
-			else if(value.type === ItemTypes.TendonProfileConverterList)
-				extractCode = extractComponentImport(All.TendonProfileConverterList);
-			else if(value.type === ItemTypes.TendonProfileConverterSelectButton)
-				extractCode = extractComponentImport(All.TendonProfileConverterSelectButton);
-			else if(value.type === ItemTypes.TendonProfileConverterUpdateButton)
-				extractCode = extractComponentImport(All.TendonProfileConverterUpdateButton);
 			
 			extractCode = extractCode.replace(/import { /ig, "");
 			extractCode = extractCode.replace(/ } from "@midasit-dev\/moaui";/ig, "");
@@ -257,18 +245,6 @@ export default function TotalCodeString(){
 				extractCode = extractComponentCode(All.TypographyH1);
 			else if(value === ItemTypes.TypographyGroupText)
 				extractCode = extractComponentCode(All.TypographyGroupText);
-			else if(value === ItemTypes.TendonProfileConverterBottomButtons)
-				extractCode = extractComponentCode(All.TendonProfileConverterBottomButtons);
-			else if(value === ItemTypes.TendonProfileConverterComposite)
-				extractCode = extractComponentCode(All.TendonProfileConverterComposite);
-			else if(value === ItemTypes.TendonProfileConverterHelpIconButton)
-				extractCode = extractComponentCode(All.TendonProfileConverterHelpIconButton);
-			else if(value === ItemTypes.TendonProfileConverterList)
-				extractCode = extractComponentCode(All.TendonProfileConverterList);
-			else if(value === ItemTypes.TendonProfileConverterSelectButton)
-				extractCode = extractComponentCode(All.TendonProfileConverterSelectButton);
-			else if(value === ItemTypes.TendonProfileConverterUpdateButton)
-				extractCode = extractComponentCode(All.TendonProfileConverterUpdateButton);
 		
 			return extractCode;
 		});
@@ -425,17 +401,6 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.TypographyH1 ? `${extractComponentName(All.TypographyH1)}` : ""}
 					${item.type === ItemTypes.TypographySingleLine ? `${extractComponentName(All.TypographySingleLine)}` : ""}
 					${item.type === ItemTypes.TypographyGroupText ? `${extractComponentName(All.TypographyGroupText)}` : ""}
-					${item.type === ItemTypes.AutoDropListAutoDropList ? `${extractComponentName(All.AutoDropListAutoDropList)}` : ""}
-					${item.type === ItemTypes.AutoDropListTemplatesAutoDropList ? `${extractComponentName(All.AutoDropListTemplatesAutoDropList)}` : ""}
-					${item.type === ItemTypes.DualComponentsTypographyDropListSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyDropListSpaceBetween)}` : ""}
-					${item.type === ItemTypes.DualComponentsTypographyTextFieldSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyTextFieldSpaceBetween)}` : ""}
-					${item.type === ItemTypes.SamplesTemplatesSamplesDevToolsUI ? `${extractComponentName(All.SamplesTemplatesSamplesDevToolsUI)}` : ""}
-					${item.type === ItemTypes.TendonProfileConverterBottomButtons ? `${extractComponentName(All.TendonProfileConverterBottomButtons)}` : ""}
-					${item.type === ItemTypes.TendonProfileConverterComposite ? `${extractComponentName(All.TendonProfileConverterComposite)}` : ""}
-					${item.type === ItemTypes.TendonProfileConverterHelpIconButton ? `${extractComponentName(All.TendonProfileConverterHelpIconButton)}` : ""}
-					${item.type === ItemTypes.TendonProfileConverterList ? `${extractComponentName(All.TendonProfileConverterList)}` : ""}
-					${item.type === ItemTypes.TendonProfileConverterSelectButton ? `${extractComponentName(All.TendonProfileConverterSelectButton)}` : ""}
-					${item.type === ItemTypes.TendonProfileConverterUpdateButton ? `${extractComponentName(All.TendonProfileConverterUpdateButton)}` : ""}
 				</div>`
 			)
 		});

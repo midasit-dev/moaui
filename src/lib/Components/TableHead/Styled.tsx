@@ -16,18 +16,15 @@ export type StyledProps = {
 	sx?: never,
 };
 
-type InnerStyledProps = {
-	theme: any;
-};
-
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	const { sx, ...rest } = props;
+	if (sx) console.error('The sx prop is not used in StyledComponent');
 	return (
 		<TableHead {...rest} sx={{
 			backgroundColor: Color.component.gray_01,
 		}} />
 	)
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

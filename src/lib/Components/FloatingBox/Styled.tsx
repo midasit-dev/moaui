@@ -125,7 +125,7 @@ const FloatingBox = (props: StyledProps) => {
 const StyledComponent = styled((props: StyledProps): React.ReactElement => {
 	return <FloatingBox {...props} />;
 })
-(({theme}) => ({}));
+(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

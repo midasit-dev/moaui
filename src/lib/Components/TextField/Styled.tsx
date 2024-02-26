@@ -155,7 +155,7 @@ const StyledComponent = styled((props:StyledProps) => {
 			maxRows={props?.maxRows}
 		/>
 	)
-})(({theme}) => ({
+})(() => ({
 	display:"flex",
 	fullWidth: true,
 }))

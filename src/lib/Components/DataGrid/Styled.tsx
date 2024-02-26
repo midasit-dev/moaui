@@ -7,7 +7,6 @@ import {
   GridCellParams,
   GridCellEditStartParams,
 	GridCellEditStopParams,
-	GridValueSetterParams,
 	MuiBaseEvent,
 } from "@mui/x-data-grid";
 import Color from "../../Style/Color";
@@ -36,10 +35,6 @@ export interface StyledProps extends DataGridProps {
 	sx?: never,
 };
 
-type InnerStyledProps = {
-	theme: any;
-};
-
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {	
 	const { 
 		onCellClick, 
@@ -49,6 +44,8 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 		sx, 
 		...rest 
 	} = props;
+
+	if (sx) console.error('The sx prop is not used in StyledComponent');
 	
 	return (
 		<DataGrid
@@ -96,7 +93,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 			onCellEditStop={onCellEditStop}
 		/>
 	)
-})((props: InnerStyledProps) => ({}));
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
 	<MoaStyledComponent>

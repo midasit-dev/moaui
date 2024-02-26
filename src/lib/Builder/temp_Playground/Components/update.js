@@ -432,9 +432,9 @@ const uniqueComponentsType = Array.from(new Set(ComponentsType));
 
 const ComponentsGroupString = (filteredArrInfo, DraggbleComps) => {
 const String = `const ${filteredArrInfo[0].ComponentType}Category: React.FC<{}> = () => (
-	<GuideBox show={false} tag="outline" fill='1' itemSpacing={1}>
+	<GuideBox show={false} tag="outline" fill='1' spacing={1}>
 	${ uniqueComponentsCategory.includes(filteredArrInfo[0].Category) ?
-		`\t<GuideBox show={false} tag="super" fill='2' itemCenter itemSpacing={0}>
+		`\t<GuideBox show={false} tag="super" fill='2' center spacing={0}>
 			<div style={{ 
 				width: 200, 
 				height: 30, 
@@ -464,7 +464,7 @@ const String = `const ${filteredArrInfo[0].ComponentType}Category: React.FC<{}> 
 				<h4>${filteredArrInfo[0].ComponentType}</h4>
 			</div>
 		</GuideBox>
-		<GuideBox show={false} tag="contents" fill='2' itemDirection="row" itemSpacing={0}>
+		<GuideBox show={false} tag="contents" fill='2' row spacing={0}>
 			<div style={{
 				marginBottom: '30px',
 				width: '188px',

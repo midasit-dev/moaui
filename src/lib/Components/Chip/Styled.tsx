@@ -68,6 +68,8 @@ const StyledComponent = styled((props: StyledProps) => {
 		...rest
 	} = props;
 
+	if (children) {}
+
 	return (
 		<Chip
 			sx={{
@@ -80,7 +82,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			{...rest}
 		/>
 	)
-}) (({theme}) => ({}))
+}) (() => ({}))
 
 
 const ThemedComponent = (props: StyledProps) => (

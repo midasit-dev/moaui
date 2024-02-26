@@ -24,17 +24,19 @@ export const List = LiveEditStory(cleanMask(ListCode));
 
 export const Sample: Story = {
 	args: {
-		outline: 'shadow',
+		panelProps: {
+			variant: 'shadow2',
+		},
 		width: 200,
 		height: 150,
 		title: 'Scrollbars Title Text',
 		titleVariant: 'body1',
 		titleColor: 'disable',
 	},
-	render: ({outline, width, height, title, titleVariant, titleColor}) => {
+	render: ({panelProps, width, height, title, titleVariant, titleColor}) => {
 		return (
       <Scrollbars
-				outline={outline}
+				panelProps={panelProps}
 				width={width}
 				height={height}
 				title={title}

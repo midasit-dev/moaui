@@ -1,4 +1,4 @@
-import { GuideBox, Button, Typography, Panel } from "@midasit-dev/moaui";/**${comma}*/
+import { GuideBox, Typography, Panel } from "@midasit-dev/moaui";/**${comma}*/
 
 const ComponentsGuideBoxSpaceBetween = () => {
 	return (

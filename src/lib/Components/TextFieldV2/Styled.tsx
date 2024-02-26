@@ -203,7 +203,7 @@ const StyledComponent = styled((props:StyledProps) => {
 				maxRows={props?.maxRows}
 			/>
 		)
-	}, []);
+	}, [numberOptionsMax, numberOptionsMin]);
 
 	const errorResolver = useCallback((value: string | undefined) => {
 		if (typeof error === "function") {
@@ -279,7 +279,7 @@ const StyledComponent = styled((props:StyledProps) => {
 			<Text {...others} error={errorResolver(localValue)} onBlur={(e: any) => setLocalValue(e.target.value)} />
 		)
 	}
-})(({theme}) => ({
+})(() => ({
 	display:"flex",
 	fullWidth: true,
 }))

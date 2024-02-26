@@ -67,14 +67,15 @@
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@storybook/addon-essentials": "^7.6.8",
-    "@storybook/addon-interactions": "^7.6.8",
-    "@storybook/addon-links": "^7.6.8",
-    "@storybook/blocks": "^7.6.8",
-    "@storybook/manager-api": "^7.6.8",
-    "@storybook/react": "^7.6.8",
-    "@storybook/react-webpack5": "^7.6.8",
-    "@storybook/theming": "^7.6.8",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-interactions": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/blocks": "^7.6.17",
+    "@storybook/manager-api": "^7.6.17",
+    "@storybook/preset-create-react-app": "^7.6.17",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-webpack5": "^7.6.17",
+    "@storybook/theming": "^7.6.17",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
@@ -95,9 +96,9 @@
     "react-router-dom": "^6.21.2",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.7",
-    "storybook": "^7.6.8",
+    "storybook": "^7.6.17",
     "storybook-addon-code-editor": "^2.2.0",
-    "typescript": "^5.3.3",
+    "typescript": "^5.1.6",
     "web-vitals": "^3.5.1"
   },
   "overrides": {
@@ -120,7 +121,10 @@
       "react-app",
       "react-app/jest",
       "plugin:storybook/recommended"
-    ]
+    ],
+		"rules": {
+      "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^React$" }]
+    }
   },
   "browserslist": {
     "production": [

@@ -21,6 +21,8 @@ const getCode = (arrCode: string[], regex: RegExp): string => {
 }
 
 const getComponentName = (componentCode: string, regex: RegExp) => {
+	if (!regex) return '';
+
 	//첫번째 const ... = () => { 를 찾아서 그 안에 있는 ... 을 찾아 분리
 	const componentNameRegex = /const\s+(.*)\s?=\s?\(\)\s?=>\s?{/ig;
 	const componentNameMatch = componentNameRegex.exec(componentCode);
@@ -50,7 +52,7 @@ const transformReadyToUse = (componentString: string): string => {
   let match;
   while ((match = propsRegex.exec(componentString))) {
 		console.log(match);
-    const [fullMatch, propName, propValue] = match;
+    const [, propName, propValue] = match;
     props[propName] = propValue;
   }
 

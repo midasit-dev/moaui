@@ -163,6 +163,6 @@ const StyledComponent = styled((props: StyledProps) => {
       </GuideBox>
     </Dialog>
 	);
-})(({theme}) => ({}));
+})(() => ({}));
 
 export default StyledComponent;

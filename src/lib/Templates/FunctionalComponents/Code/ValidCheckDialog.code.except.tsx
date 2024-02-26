@@ -37,7 +37,7 @@ interface Props {
 const TemplatesFunctionalComponentsValidCheckDialog = (props: Props) => {
 	const {
 		open = true,
-		setOpen = (open: boolean) => {},
+		setOpen = () => {},
 		checkList = [
 			{
 				title: "Title",
