@@ -3,10 +3,6 @@
 */
 export { default as AuthenticationVerifyDialogDefault } from "./Authentication/VerifyDialog/Code/Default.code";
 export { default as AuthenticationVerifyDialogLoading } from "./Authentication/VerifyDialog/Code/Loading.code";
-export { default as BuilderCanvasTestingApp1 } from "./Builder/Canvas/Code/TestingApp1.code.except";
-export { default as BuilderCanvasTestingApp2 } from "./Builder/Canvas/Code/TestingApp2.code.except";
-export { default as BuilderCanvasTestingApp3 } from "./Builder/Canvas/Code/TestingApp3.code.except";
-export { default as BuilderCanvasTestingApp4 } from "./Builder/Canvas/Code/TestingApp4.code.except";
 export { default as ComponentsAlertError } from "./Components/Alert/Code/Error.code";
 export { default as ComponentsButtonComposite } from "./Components/Button/Code/Composite.code";
 export { default as ComponentsButtonContained } from "./Components/Button/Code/Contained.code";
