@@ -57,7 +57,7 @@ Here is an example of a basic app using moaui's `Button` component:
 
 ```jsx
 import * as React from 'react';
-import Button from '@midasit-dev/moaui';
+import { Button } from '@midasit-dev/moaui';
 
 function App() {
   return <Button>Hello World</Button>;
