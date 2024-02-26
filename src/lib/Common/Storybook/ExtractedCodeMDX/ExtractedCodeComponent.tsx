@@ -159,7 +159,6 @@ const App = () => {
 			rawCodes.push(await import("../../../Templates/AutoDropList/Code/TemplatesAutoDropList.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/DualComponents/Code/TypographyDropListSpaceBetween.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/DualComponents/Code/TypographyTextFieldSpaceBetween.code.tsx?raw"));
-			rawCodes.push(await import("../../../Templates/Samples/Code/DevToolsUI.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/TendonProfileConverter/Code/BottomButtons.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/TendonProfileConverter/Code/Composite.code.tsx?raw"));
 			rawCodes.push(await import("../../../Templates/TendonProfileConverter/Code/HelpIconButton.code.tsx?raw"));

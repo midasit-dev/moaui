@@ -429,7 +429,7 @@ export default function TotalCodeString(){
 					${item.type === ItemTypes.AutoDropListTemplatesAutoDropList ? `${extractComponentName(All.AutoDropListTemplatesAutoDropList)}` : ""}
 					${item.type === ItemTypes.DualComponentsTypographyDropListSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyDropListSpaceBetween)}` : ""}
 					${item.type === ItemTypes.DualComponentsTypographyTextFieldSpaceBetween ? `${extractComponentName(All.DualComponentsTypographyTextFieldSpaceBetween)}` : ""}
-					${item.type === ItemTypes.SamplesDevToolsUI ? `${extractComponentName(All.SamplesDevToolsUI)}` : ""}
+					${item.type === ItemTypes.SamplesTemplatesSamplesDevToolsUI ? `${extractComponentName(All.SamplesTemplatesSamplesDevToolsUI)}` : ""}
 					${item.type === ItemTypes.TendonProfileConverterBottomButtons ? `${extractComponentName(All.TendonProfileConverterBottomButtons)}` : ""}
 					${item.type === ItemTypes.TendonProfileConverterComposite ? `${extractComponentName(All.TendonProfileConverterComposite)}` : ""}
 					${item.type === ItemTypes.TendonProfileConverterHelpIconButton ? `${extractComponentName(All.TendonProfileConverterHelpIconButton)}` : ""}

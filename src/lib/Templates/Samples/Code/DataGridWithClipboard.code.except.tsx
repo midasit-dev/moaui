@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	TemplatesFunctionalComponentsDataGridWithClipboardOption
+	TemplatesFunctionalComponentsDataGridWithClipboard as DataGridWidthClipboard
 } from "@midasit-dev/moaui";
 
 const columnsDefault = [
@@ -20,7 +20,7 @@ const App = () => {
 	const [rows, setRows] = React.useState(rowsDefault);
 
 	return (
-		<TemplatesFunctionalComponentsDataGridWithClipboardOption
+		<DataGridWidthClipboard
 			columns={columns}
 			rows={rows}
 			setColumns={setColumns}

@@ -6,6 +6,7 @@ const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
 	height = 30,/**${props-separator}*/
 	title = 'Title',/**${props-separator}*/
 	dropListwidth = 150,/**${props-separator}*/
+	droplistDisabled = false,/**${props-separator}*/
 	items = [ 
 		['Korean', 	 1],
 		['American', 2],
@@ -22,13 +23,13 @@ const TemplatesDualComponentsTypographyDropListSpaceBetween = ({
 		setValueLocal(e.target.value);
 	}
 
-	const itemsMap = new Map<string, number>(items as [string, number][]);
 	return (
 		<GuideBox show={show} width={width} height={height} row horSpaceBetween>
 			<Typography center height={height}>{title}</Typography>
 			<DropList 
-				itemList={itemsMap} 
+				itemList={items} 
 				width={dropListwidth} 
+				disabled={droplistDisabled}
 				defaultValue={defaultValue}
 				value={value || valueLocal}
 				onChange={onChange || onChangeLocal}

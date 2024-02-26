@@ -1010,7 +1010,7 @@ const SamplesCategory: React.FC<{}> = () => (
 				marginBottom: '30px',
 				width: '188px',
 			}}>
-				<CustomDraggableComponent itemType={ItemTypes.SamplesDevToolsUI}>DevToolsUI</CustomDraggableComponent>
+				<CustomDraggableComponent itemType={ItemTypes.SamplesTemplatesSamplesDevToolsUI}>TemplatesSamplesDevToolsUI</CustomDraggableComponent>
 			</div>
 		</GuideBox>
 	</GuideBox>
@@ -1460,8 +1460,8 @@ export const DualComponentsTypographyDropListSpaceBetween =
 export const DualComponentsTypographyTextFieldSpaceBetween = 
 	() => <CustomDraggableComponent itemType={ItemTypes.DualComponentsTypographyTextFieldSpaceBetween}>DualComponentsTypographyTextFieldSpaceBetween</CustomDraggableComponent>;
 
-export const SamplesDevToolsUI = 
-	() => <CustomDraggableComponent itemType={ItemTypes.SamplesDevToolsUI}>SamplesDevToolsUI</CustomDraggableComponent>;
+export const SamplesTemplatesSamplesDevToolsUI = 
+	() => <CustomDraggableComponent itemType={ItemTypes.SamplesTemplatesSamplesDevToolsUI}>SamplesTemplatesSamplesDevToolsUI</CustomDraggableComponent>;
 
 export const TendonProfileConverterBottomButtons = 
 	() => <CustomDraggableComponent itemType={ItemTypes.TendonProfileConverterBottomButtons}>TendonProfileConverterBottomButtons</CustomDraggableComponent>;

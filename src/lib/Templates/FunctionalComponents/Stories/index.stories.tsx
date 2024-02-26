@@ -4,8 +4,9 @@ import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 import { 
 	ValidCheckDialogCode,
-	DataGridWithClipboardOptionCode,
-	DataGridWithClipboardOptionSampleCode,
+	DataGridWithClipboardCode,
+	UploadButtonCode,
+	DownloadButtonCode,
 } from "../Code";
 
 const meta = {
@@ -18,5 +19,6 @@ const meta = {
 export default meta;
 
 export const ValidCheckDialog = LiveEditStory(cleanMask(ValidCheckDialogCode));
-export const DataGridWithClipboardOption = LiveEditStory(cleanMask(DataGridWithClipboardOptionCode));
-export const DataGridWithClipboardOptionSample = LiveEditStory(cleanMask(DataGridWithClipboardOptionSampleCode));
+export const DataGridWithClipboard = LiveEditStory(cleanMask(DataGridWithClipboardCode));
+export const UploadButton = LiveEditStory(cleanMask(UploadButtonCode));
+export const DownloadButton = LiveEditStory(cleanMask(DownloadButtonCode));

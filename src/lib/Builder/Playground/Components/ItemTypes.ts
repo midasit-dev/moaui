@@ -138,7 +138,7 @@ export const ItemTypes = {
 	AutoDropListTemplatesAutoDropList: 'AutoDropListTemplatesAutoDropList',
 	DualComponentsTypographyDropListSpaceBetween: 'DualComponentsTypographyDropListSpaceBetween',
 	DualComponentsTypographyTextFieldSpaceBetween: 'DualComponentsTypographyTextFieldSpaceBetween',
-	SamplesDevToolsUI: 'SamplesDevToolsUI',
+	SamplesTemplatesSamplesDevToolsUI: 'SamplesTemplatesSamplesDevToolsUI',
 	TendonProfileConverterBottomButtons: 'TendonProfileConverterBottomButtons',
 	TendonProfileConverterComposite: 'TendonProfileConverterComposite',
 	TendonProfileConverterHelpIconButton: 'TendonProfileConverterHelpIconButton',
