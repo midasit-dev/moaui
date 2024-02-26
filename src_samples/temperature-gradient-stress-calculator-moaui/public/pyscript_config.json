@@ -1,0 +1,18 @@
+{
+	"packages": [
+		"numpy", "matplotlib"
+	],
+	"fetch": [
+		{
+			"files": [
+				"./pyscript_engineers_web.py",
+				"./data_check.py",
+				"./eqv_stress.py",
+				"./nonlinear_aashto.py",
+				"./section_properties.py",
+				"./section_vertices.py",
+				"./table_print.py"
+			]
+		}
+	]
+}

@@ -23,9 +23,15 @@
 		"outDir": "./dist",
 		"importHelpers": true,
 		"noEmitHelpers": true,
+		"baseUrl": ".",
+		"paths": {
+      "@midasit-dev/moaui": ["./src/lib/"]
+    },
+    "downlevelIteration": true,
   },
 	"include": [
 		"./src/lib/**/*.tsx", 
-		"./src/lib/**/*.ts"
+		"./src/lib/**/*.ts",
+    "./src/lib/**/*.css"
 	]
 }
