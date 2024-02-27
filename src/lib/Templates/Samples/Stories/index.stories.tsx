@@ -7,6 +7,7 @@ import {
 	DevToolsUICode,
 	UploadDownloadCode,
 	DataGridWithCivilRebarCode,
+	DataGridWithCivilRebarFloatingBoxCode,
 } from "../Code";
 
 const meta = {
@@ -22,3 +23,4 @@ export const DataGridWithClipboard = LiveEditStory(cleanMask(DataGridWithClipboa
 export const DevToolsUI = LiveEditStory(cleanMask(DevToolsUICode));
 export const UploadDownload = LiveEditStory(cleanMask(UploadDownloadCode));
 export const DataGridWithCivilRebar = LiveEditStory(cleanMask(DataGridWithCivilRebarCode));
+export const DataGridWithCivilRebarFloatingBox = LiveEditStory(cleanMask(DataGridWithCivilRebarFloatingBoxCode));

@@ -99,6 +99,7 @@ export { default as ComponentsScrollbarsCheckGroup } from "./Components/Scrollba
 export { default as ComponentsScrollbarsList } from "./Components/Scrollbars/Code/List.code";
 export { default as ComponentsSeparatorHorizontal } from "./Components/Separator/Code/Horizontal.code";
 export { default as ComponentsSeparatorVertical } from "./Components/Separator/Code/Vertical.code";
+export { default as ComponentsSpreadSheetColumnLabels } from "./Components/SpreadSheet/Code/ColumnLabels.code.except";
 export { default as ComponentsStackColumn } from "./Components/Stack/Code/Column.code";
 export { default as ComponentsStackRow } from "./Components/Stack/Code/Row.code";
 export { default as ComponentsSwitchLabel } from "./Components/Switch/Code/Label.code";

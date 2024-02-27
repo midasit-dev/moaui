@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
+	FloatingBox,
 	Typography,
 	GuideBox,
 	DataGrid,
@@ -48,61 +49,119 @@ const App = () => {
 	}, []);
 
 	return (
-		<GuideBox show width={900} spacing={2} fill="#f5f5f7" padding={2} border='1px solid #d1d1d1' borderRadius={1}>
-			<TabGroup
-				value={curTab}
-				onChange={(event: React.SyntheticEvent, newValue: string) => setCurTab(newValue)}
-				aria-label="horizontal tabs example"
-				minWidth={30}
-				minHeight={35}
-				tabProps={{
-					minWidth: 65,
-					minHeight: 28,
-					fontSize: 'small'
-				}}
-			>
-				<Tab value="Tab 1" label="TOP" />
-				<Tab value="Tab 2" label="BOTTOM" />
-				<Tab value="Tab 3" label="STIRRUP" />
-			</TabGroup>
+		<GuideBox spacing={1}>
+			<Typography variant='h1'>for FloatingBox</Typography>
+			<Panel relative width={900} height={480} backgroundColor="#f5f5f7" border='1px solid #d1d1d1' variant='box'>
+				<FloatingBox x={16} y={16}>
+					<TabGroup
+						value={curTab}
+						onChange={(event: React.SyntheticEvent, newValue: string) => setCurTab(newValue)}
+						aria-label="horizontal tabs example"
+						minWidth={30}
+						minHeight={35}
+						tabProps={{
+							minWidth: 65,
+							minHeight: 28,
+							fontSize: 'small'
+						}}
+					>
+						<Tab label="TOP" 			value="Tab 1" />
+						<Tab label="BOTTOM" 	value="Tab 2" />
+						<Tab label="STIRRUP" 	value="Tab 3" />
+					</TabGroup>
+				</FloatingBox>
+				<FloatingBox x={16} y={72} width={868}>
+					<Panel width='100%' height={350} variant="shadow2">
+						<GuideBox width="100%" spacing={1}>
+							<GuideBox width="100%" row verCenter horSpaceBetween>
+								<GuideBox row spacing={2} verCenter>
+									<Typography variant="body1">Select Layer</Typography>
+									<DropList 
+										itemList={[
+											['1', 1], ['2', 2], ['3', 3]
+										]} 
+										width="50px" 
+										defaultValue="1"
+										value={curLayer}
+										onChange={onChangeCurLayer}
+									/>
+								</GuideBox>
+								<GuideBox>
+									<Typography variant="body1">Unit: (mm)</Typography>
+								</GuideBox>
+							</GuideBox>
 
-			<Panel width='100%' height={350} variant="shadow2">
-				<GuideBox width="100%" spacing={1}>
-					<GuideBox width="100%" row verCenter horSpaceBetween>
-						<GuideBox row spacing={2} verCenter>
-							<Typography variant="body1">Select Layer</Typography>
-							<DropList 
-								itemList={[
-									['1', 1], ['2', 2], ['3', 3]
-								]} 
-								width="50px" 
-								defaultValue="1"
-								value={curLayer}
-								onChange={onChangeCurLayer}
-							/>
+							<Panel variant='box' width="100%" height={290} padding={0}>
+								<DataGrid />
+							</Panel>
 						</GuideBox>
-						<GuideBox>
-							<Typography variant="body1">Unit: (mm)</Typography>
-						</GuideBox>
-					</GuideBox>
-
-					<Panel variant='box' width="100%" height={290} padding={0}>
-						<DataGrid
-							initialState={{
-								columns: { columnVisibilityModel: curColumnVisiblity }
-							}}
-							columnVisibilityModel={curColumnVisiblity}
-							hideFooter
-							columns={columnsDefault}
-							rows={rowsDefault}
-						/>
 					</Panel>
-				</GuideBox>
+				</FloatingBox>
+				<FloatingBox x={16} y={436} width={868}>
+					<GuideBox width="100%" row horSpaceBetween>
+						<Button>Refresh</Button>
+						<Button color='negative'>Apply</Button>
+					</GuideBox>
+				</FloatingBox>
 			</Panel>
 
-			<GuideBox width="100%" row horSpaceBetween>
-				<Button>Refresh</Button>
-				<Button color='negative'>Apply</Button>
+			<Typography variant='h1'>for GuideBox</Typography>
+			<GuideBox show width={900} spacing={2} fill="#f5f5f7" padding={2} border='1px solid #d1d1d1' borderRadius={1}>
+				<TabGroup
+					value={curTab}
+					onChange={(event: React.SyntheticEvent, newValue: string) => setCurTab(newValue)}
+					aria-label="horizontal tabs example"
+					minWidth={30}
+					minHeight={35}
+					tabProps={{
+						minWidth: 65,
+						minHeight: 28,
+						fontSize: 'small'
+					}}
+				>
+					<Tab value="Tab 1" label="TOP" />
+					<Tab value="Tab 2" label="BOTTOM" />
+					<Tab value="Tab 3" label="STIRRUP" />
+				</TabGroup>
+
+				<Panel width='100%' height={350} variant="shadow2">
+					<GuideBox width="100%" spacing={1}>
+						<GuideBox width="100%" row verCenter horSpaceBetween>
+							<GuideBox row spacing={2} verCenter>
+								<Typography variant="body1">Select Layer</Typography>
+								<DropList 
+									itemList={[
+										['1', 1], ['2', 2], ['3', 3]
+									]} 
+									width="50px" 
+									defaultValue="1"
+									value={curLayer}
+									onChange={onChangeCurLayer}
+								/>
+							</GuideBox>
+							<GuideBox>
+								<Typography variant="body1">Unit: (mm)</Typography>
+							</GuideBox>
+						</GuideBox>
+
+						<Panel variant='box' width="100%" height={290} padding={0}>
+							<DataGrid
+								initialState={{
+									columns: { columnVisibilityModel: curColumnVisiblity }
+								}}
+								columnVisibilityModel={curColumnVisiblity}
+								hideFooter
+								columns={columnsDefault}
+								rows={rowsDefault}
+							/>
+						</Panel>
+					</GuideBox>
+				</Panel>
+
+				<GuideBox width="100%" row horSpaceBetween>
+					<Button>Refresh</Button>
+					<Button color='negative'>Apply</Button>
+				</GuideBox>
 			</GuideBox>
 		</GuideBox>
 	)
