@@ -1,4 +1,9 @@
-import StyledComponent, { type StyledProps } from "./Styled";
+import StyledComponent, { 
+	type StyledProps, 
+	GridToolbar,
+	GridToolbarContainer,
+	GridToolbarExport,
+} from "./Styled";
 
 DataGrid.defaultProps = {
 	rows: [],
@@ -12,3 +17,9 @@ DataGrid.defaultProps = {
  * @returns React.ReactElement
  */
 export default function DataGrid(props: StyledProps) { return (<StyledComponent {...props} />) };
+
+export {
+	GridToolbar,
+	GridToolbarContainer,
+	GridToolbarExport,
+}

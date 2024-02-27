@@ -6,6 +6,8 @@ import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { 
 	PaginationCode,
 	RowUpdateCode,
+	GridToolbarCode,
+	CustomGridToolbarCode,
  } from '../Code';
 import { cleanMask, } from "../../../Common/Storybook/CodeExtractor";
 
@@ -24,6 +26,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Pagination = LiveEditStory(cleanMask(PaginationCode));
 export const RowUpdate = LiveEditStory(cleanMask(RowUpdateCode));
+export const GridToolbar = LiveEditStory(cleanMask(GridToolbarCode));
+export const CustomGridToolbar = LiveEditStory(cleanMask(CustomGridToolbarCode));
 
 export const Sample: Story = {
   args: {

@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.1.105",
+  "version": "0.1.106",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -94,6 +94,7 @@
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.21.2",
     "react-scripts": "5.0.1",
+    "react-spreadsheet": "^0.9.4",
     "recoil": "^0.7.7",
     "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0",

@@ -18,7 +18,7 @@ import { default as Font } from "./Style/Font";
 import { default as Button, type StyledProps as ButtonProps } from "./Components/Button";
 import { default as Check, type StyledProps as CheckProps } from "./Components/Check";
 import { default as CheckGroup } from "./Components/CheckGroup";
-import { default as DataGrid } from "./Components/DataGrid";
+import { default as DataGrid, GridToolbar as DataGridToolbar, GridToolbarContainer as DataGridToolbarContainer, GridToolbarExport as DataGridToolbarExport } from "./Components/DataGrid";
 import { default as DropList } from "./Components/DropList";
 import { default as Grid } from "./Components/Grid";
 import { default as IconButton } from "./Components/IconButton";
@@ -77,6 +77,9 @@ const Moaui = {
   Check,
   CheckGroup,
   DataGrid,
+	DataGridToolbar,
+	DataGridToolbarContainer,
+	DataGridToolbarExport,
   DropList,
   Grid,
   IconButton,
@@ -136,6 +139,9 @@ export {
 	CheckProps,
   CheckGroup,
   DataGrid,
+	DataGridToolbar,
+	DataGridToolbarContainer,
+	DataGridToolbarExport,
   DropList,
   Grid,
   IconButton,
