@@ -156,6 +156,7 @@ export { default as TemplatesFunctionalComponentsDownloadButton } from "./Templa
 export { default as TemplatesFunctionalComponentsUploadButton } from "./Templates/FunctionalComponents/Code/UploadButton.code.except";
 export { default as TemplatesFunctionalComponentsValidCheckDialog } from "./Templates/FunctionalComponents/Code/ValidCheckDialog.code.except";
 export { default as TemplatesSamplesDataGridWithCivilRebar } from "./Templates/Samples/Code/DataGridWithCivilRebar.code.except";
+export { default as TemplatesSamplesDataGridWithCivilRebarFloatingBox } from "./Templates/Samples/Code/DataGridWithCivilRebarFloatingBox.code.except";
 export { default as TemplatesSamplesDataGridWithClipboard } from "./Templates/Samples/Code/DataGridWithClipboard.code.except";
 export { default as TemplatesSamplesDevToolsUI } from "./Templates/Samples/Code/DevToolsUI.code.except";
 export { default as TemplatesSamplesUploadDownload } from "./Templates/Samples/Code/UploadDownload.code.except";

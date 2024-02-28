@@ -30,10 +30,6 @@ const sampleDataByColumns = [
 	{ label: "Ed1-Dia", values: [], },
 ];
 
-const getColumnVisibilityModel = (count: number) => {
-	
-}
-
 // const sampleColumnLabels = [
 // 	"Sect ID", "Sect Name", "C1"
 // ]
@@ -70,7 +66,7 @@ function convertDataToSpreadsheetFormat(dataByColumns: any) {
 }
 
 const ComponentsSpreadSheetColumnLabels = () => {
-  const [dataByColumns, setDataByColumns] = useState(sampleDataByColumns);
+  const [dataByColumns, ] = useState(sampleDataByColumns);
   const [columnLabels, setColumnLabels] = useState([]);
   const [rows, setRows] = useState<any[]>([]);
 
@@ -83,10 +79,10 @@ const ComponentsSpreadSheetColumnLabels = () => {
 
 	//Layer DropList
 	const [curLayer, setCurLayer] = useState(1);
-	const [curColumnVisiblity, setCurColumnVisibility] = useState(getColumnVisibilityModel(1));
+	const [, setCurColumnVisibility] = useState([]);
 	const onChangeCurLayer = useCallback((event: any) => {
 		setCurLayer(event.target.value);
-		setCurColumnVisibility(getColumnVisibilityModel(event.target.value));
+		setCurColumnVisibility([]);
 	}, []);
 
   return (

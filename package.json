@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.1.106",
+  "version": "0.1.107",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -38,7 +38,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.3",
-		"@mui/x-data-grid": "^6.19.5",
+    "@mui/x-data-grid": "^6.19.5",
     "@nivo/core": "^0.84.0",
     "@nivo/line": "^0.84.0",
     "@types/react": "^18.2.43",
