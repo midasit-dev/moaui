@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import {
-  SpreadSheet,
+  ExperimentalSpreadSheet,
   GuideBox,
   Typography,
   DropList,
@@ -107,7 +107,7 @@ const ComponentsSpreadSheetColumnLabels = () => {
         </GuideBox>
       </GuideBox>
 
-      <SpreadSheet data={rows} columnLabels={columnLabels} onChange={setRows} />
+      <ExperimentalSpreadSheet data={rows} columnLabels={columnLabels} onChange={setRows} />
       <pre>{JSON.stringify(rows, null, 2)}</pre>
       <style>
         {`

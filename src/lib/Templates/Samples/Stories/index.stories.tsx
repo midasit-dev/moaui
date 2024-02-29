@@ -8,6 +8,7 @@ import {
 	UploadDownloadCode,
 	DataGridWithCivilRebarCode,
 	DataGridWithCivilRebarFloatingBoxCode,
+	EditContinuePopupCode,
 } from "../Code";
 
 const meta = {
@@ -24,3 +25,4 @@ export const DevToolsUI = LiveEditStory(cleanMask(DevToolsUICode));
 export const UploadDownload = LiveEditStory(cleanMask(UploadDownloadCode));
 export const DataGridWithCivilRebar = LiveEditStory(cleanMask(DataGridWithCivilRebarCode));
 export const DataGridWithCivilRebarFloatingBox = LiveEditStory(cleanMask(DataGridWithCivilRebarFloatingBoxCode));
+export const EditContinuePopup = LiveEditStory(cleanMask(EditContinuePopupCode));

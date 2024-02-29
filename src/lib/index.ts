@@ -42,6 +42,7 @@ import { default as Typography, type StyledProps as TypographyProps } from "./Co
 import { default as TypographyGroup } from "./Components/TypographyGroup";
 import { default as Icon } from "./Components/Icon";
 import { default as CodeBlock } from "./Components/CodeBlock";
+import { default as ScatterPlot, type StyledProps as ScatterPlotProps } from "./Components/ScatterPlot";
 import { default as Scrollbars } from "./Components/Scrollbars";
 import { default as List } from "./Components/List";
 import { default as ListItem } from "./Components/ListItem";
@@ -54,7 +55,6 @@ import { default as Alert } from "./Components/Alert";
 import { default as Chip } from "./Components/Chip";
 import { default as Tooltip } from "./Components/Tooltip";
 import { default as FloatingBox, type StyledProps as FloatingBoxProps } from "./Components/FloatingBox";
-import { default as SpreadSheet, type StyledProps as SpreadSheetProps } from "./Components/SpreadSheet";
 import { default as AutoDropList } from "./Templates/AutoDropList/Code/AutoDropList.code";
 
 // moaui authentication
@@ -104,6 +104,7 @@ const Moaui = {
   TypographyGroup,
   Icon,
   CodeBlock,
+	ScatterPlot,
   Scrollbars,
   List,
   ListItem,
@@ -119,7 +120,6 @@ const Moaui = {
   VerifyDialog,
   VerifyUtil,
   Signature,
-	SpreadSheet,
   AutoDropList,
 };
 
@@ -172,6 +172,8 @@ export {
   TypographyGroup,
   Icon,
   CodeBlock,
+	ScatterPlot,
+	ScatterPlotProps,
   Scrollbars,
   List,
   ListItem,
@@ -190,10 +192,12 @@ export {
   VerifyDialog,
   VerifyUtil,
   Signature,
-	SpreadSheet,
-	SpreadSheetProps,
   AutoDropList,
 };
+
+// experimental Components
+export { default as ExperimentalSpreadSheet } from "./Experimental/SpreadSheet";
+export { default as ExperimentalThreeJS } from "./Experimental/ThreeJS";
 
 // testing Components
 export * from "./testingCompsExports";

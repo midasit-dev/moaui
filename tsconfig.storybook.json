@@ -18,6 +18,7 @@
     "src/**/*.code.*",
 		"src/lib/Common/*",
 		"src/lib/Builder/*",
-		"src/lib/Templates/*"
+		"src/lib/Templates/*",
+		"src/lib/Experimental/*"
   ]
 }
