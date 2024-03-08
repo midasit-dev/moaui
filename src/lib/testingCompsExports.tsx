@@ -163,6 +163,7 @@ export { default as TemplatesSamplesDataGridWithCivilRebarFloatingBox } from "./
 export { default as TemplatesSamplesDataGridWithClipboard } from "./Templates/Samples/Code/DataGridWithClipboard.code.except";
 export { default as TemplatesSamplesDevToolsUI } from "./Templates/Samples/Code/DevToolsUI.code.except";
 export { default as TemplatesSamplesEditContinuePopup } from "./Templates/Samples/Code/EditContinuePopup.code.except";
+export { default as TemplatesSamplesNodeAPIFloatingBox } from "./Templates/Samples/Code/NodeAPIFloatingBox.code.except";
 export { default as TemplatesSamplesUploadDownload } from "./Templates/Samples/Code/UploadDownload.code.except";
 export { default as TemplatesTendonProfileConverterBottomButtons } from "./Templates/TendonProfileConverter/Code/BottomButtons.code";
 export { default as TemplatesTendonProfileConverterComposite } from "./Templates/TendonProfileConverter/Code/Composite.code";
