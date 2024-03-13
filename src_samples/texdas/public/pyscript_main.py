@@ -189,6 +189,28 @@ def create_text(input_json):
 		indices_set = set(indices_to_remove)
 		return [elem for i, elem in enumerate(lst) if i not in indices_set]
 	
+	def missing_ranges(list):
+		missing_ranges_with_values = []
+
+		# A 리스트의 첫 번째 숫자가 1이 아닌 경우를 처리
+		if list[0] > 1:
+			missing_ranges_with_values.append((0, 1, list[0] - 1))
+
+		# A 리스트 내의 빠진 숫자 범위 찾기
+		for i in range(len(list) - 1):
+			if list[i] + 1 < list[i + 1]:
+				# 빠진 숫자들의 시작 인덱스, 그 값, 그리고 길이 계산
+				start = i + 1
+				start_value = list[i] + 1
+				length = list[i + 1] - list[i] - 1
+				missing_ranges_with_values.append((start, start_value, length))
+
+		# A 리스트의 마지막 숫자가 999999보다 작은 경우를 처리
+		if list[-1] < 999999:
+			missing_ranges_with_values.append((len(list), list[-1] + 1, 999999 - list[-1]))
+		
+		return missing_ranges_with_values
+
 	# 입력값을 변수에 저장
 	input_json = json.loads(input_json)
 
@@ -263,7 +285,33 @@ def create_text(input_json):
 			ReSized_coord[i][j][0] = (ReSized_coord[i][j][0] - min_x)
 			ReSized_coord[i][j][1] = (ReSized_coord[i][j][1] - min_y)
 
-	# MIDAS CIVIL에 업로드
+	# Node Number Check
+	civil = MidasAPI(Product.CIVIL, "KR")
+	res_node = civil.db_read("NODE")
+	
+	if "error" in res_node.keys() :
+		pass
+	else:
+		res_node_id = list(res_node.keys())
+		missing_index = missing_ranges(res_node_id)
+		missing_check = False
+		for i in range(len(missing_index)):
+			if missing_index[i][2] >= len(node_number_uniq):
+				missing_check = True
+				new_node_start = missing_index[i][1]
+				new_node_end = missing_index[i][1] + len(node_number_uniq)
+				break
+
+		if missing_check == False:
+			message = {"error": "Not enough node number. Please check node number."}
+			return json.dumps(message)
+		else:
+			# Node Number Reassign
+			for i in range(len(node_number_uniq)):
+				for j in range(3):
+					node_number_uniq[i][j] = node_number_uniq[i][j] + new_node_start - 1
+
+	# Create Node
 	dupleNo = []
 	node_body = {}
 	for i in range(len(ReSized_coord)):
@@ -278,9 +326,30 @@ def create_text(input_json):
 				}
 				dupleNo.append(int(node_number_uniq[i][j]))
 
+	# Element Number Check
+	res_elem = civil.db_read("ELEM")
+
+	if "error" in res_elem.keys() :
+		new_node_start = 1
+		pass
+	else:
+		res_elem_id = list(res_elem.keys())
+		missing_index = missing_ranges(res_elem_id)
+		missing_check = False
+		for i in range(len(missing_index)):
+			if missing_index[i][2] >= len(ReSized_coord):
+				missing_check = True
+				new_node_start = missing_index[i][1]
+				break
+
+		if missing_check == False:
+			message = {"error": "Not enough element number. Please check element number."}
+			return json.dumps(message)
+
+	# Create Element
 	elem_body = {}
 	start_id = 1
-	for i in range(len(tri_coord_uniq)):
+	for i in range(len(ReSized_coord)):
 		node_id1 = int(node_number_uniq[i][0])
 		node_id2 = int(node_number_uniq[i][1])
 		node_id3 = int(node_number_uniq[i][2])
@@ -294,7 +363,7 @@ def create_text(input_json):
 		elif node_1_coord[1] == node_2_coord[1] and node_2_coord[1] == node_3_coord[1]:
 			pass
 		else:
-			elem_body[start_id] = {
+			elem_body[new_node_start] = {
 				"TYPE": "PLATE",
 				"MATL": 1,
 				"SECT": thik_number_uniq[i],
@@ -306,8 +375,31 @@ def create_text(input_json):
 				"ANGLE": 0,
 				"STYPE": 1
 			}
-			start_id += 1
+			new_node_start += 1
 
+	# Thick Number Check
+	res_thik = civil.db_read("THIK")
+
+	if "error" in res_thik.keys() :
+		new_node_start = 1
+		pass
+	else:
+		res_thik_id = list(res_thik.keys())
+		missing_index = missing_ranges(res_thik_id)
+		missing_check = False
+		for i in range(len(missing_index)):
+			if missing_index[i][2] >= len(set(thik_number_uniq)):
+				missing_check = True
+				new_node_start = missing_index[i][1]
+				break
+
+		if missing_check == False:
+			message = {"error": "Not enough element number. Please check element number."}
+			return json.dumps(message)
+
+	for i in range(len(thik_number_uniq)):
+		thik_number_uniq[i] = thik_number_uniq[i] + new_node_start - 1
+	
 	dupleNo = []
 	thik_body = {}
 	for i in range(len(thik_number_uniq)):
@@ -317,10 +409,11 @@ def create_text(input_json):
 			thik_body[thik_number_uniq[i]] = {
 				"NAME": thik_number_uniq[i],
 				"TYPE": "VALUE",
-				"T_IN": float(tri_thick_uniq[i]),
+				"T_IN": float(tri_thick_uniq[i])*scale,
 				"T_OUT": 0,
 			}
 			dupleNo.append(int(thik_number_uniq[i]))
+
 	dupleNo = []
 	co_t_body= {}
 	for i in range(len(thik_number_uniq)):
@@ -342,7 +435,6 @@ def create_text(input_json):
 				"FACT":0.5
 			}
 
-	civil = MidasAPI(Product.CIVIL, "KR")
 	civil.db_create("THIK", thik_body)
 	civil.db_create("NODE", node_body)
 	civil.db_create("ELEM", elem_body)
