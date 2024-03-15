@@ -16,8 +16,11 @@ import {
 	GuideBox, 
 	Panel,
 	TextField,
-	Button
+	Button,
 } from '@midasit-dev/moaui';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 import { default as WelcomeDevTools } from './DevTools/Welcome';
 import { useSnackbar } from 'notistack';
 import { checkPyScriptReady } from './utils_pyscript';
@@ -46,6 +49,8 @@ const App = () => {
 	const [color, setColor] = React.useState({ r: 50, g: 100, b: 150 });
 	const [insertValue, setInsertValue] = React.useState('0,0,0');
 	const [height, setHeight] = React.useState("1");
+
+	const [loading, setLoading] = React.useState(false);
 
 	const InsertHandleChange = (e:any) => {
 		setInsertValue(e.target.value);
@@ -77,50 +82,56 @@ const App = () => {
 	}
 	
 	function Create(){
-		checkPyScriptReady(()=>{
-			if (InsertValidation()) {
-				enqueueSnackbar("Invalid Insert points", { variant: "error" });
-				return;
-			}
-			if (HeightValidation()) {
-				enqueueSnackbar("Invalid Height", { variant: "error" });
-				return;
-			}
-			if (text === '') {
-				enqueueSnackbar("Input any text", { variant: "error" });
-				return;
-			}
-			if (color.r === 255 && color.g === 255 && color.b === 255) {
-				enqueueSnackbar("Invalid color", { variant: "error" });
-				return;
-			}
-			let input_json = {
-				"text": text,
-				"color": color,
-				"insert": insertValue,
-				"height": height
-			}
+
+		if (InsertValidation()) {
+			enqueueSnackbar("Invalid Insert points", { variant: "error" });
+			return;
+		}
+		if (HeightValidation()) {
+			enqueueSnackbar("Invalid Height", { variant: "error" });
+			return;
+		}
+		if (text === '') {
+			enqueueSnackbar("Input any text", { variant: "error" });
+			return;
+		}
+		if (color.r === 255 && color.g === 255 && color.b === 255) {
+			enqueueSnackbar("Invalid color", { variant: "error" });
+			return;
+		}
+		let input_json = {
+			"text": text,
+			"color": color,
+			"insert": insertValue,
+			"height": height
+		}
+
+		setLoading(true);
+
+		setTimeout(() => {
 			const py_func = pyscript.interpreter.globals.get("create_text");
 			const results = py_func(JSON.stringify(input_json));
 			const paringResults = JSON.parse(results);
+
 			if (paringResults.hasOwnProperty("error")) {
 				enqueueSnackbar(paringResults["error"], { variant: "error" });
+				setLoading(false);
 				return;
 			} else if (paringResults.hasOwnProperty("success")) {
 				enqueueSnackbar(paringResults["success"], { variant: "success" });
-				return;
+				setLoading(false);
 			}
-		})
+		}, 500);
 	}
 
 	return (
-		<GuideBox width={400} height={100} spacing={2} padding={2}>
+		<GuideBox width={400} spacing={2} padding={2}>
 			<GuideBox row width='100%' spacing={2} opacity={opacity}>
 				<Panel variant="shadow2" width='100%' height="100%">
 					<GuideBox column width='100%' spacing={2} opacity={opacity}>
 						<GuideBox row width='100%' spacing={2} opacity={opacity}>
 							<TextField width={252} placeholder="Input any text" value={text} onChange={(e)=>setText(e.target.value)} />
-							<Button variant='contained' onClick={Create}>Create</Button>
+							<Button width="25%" color="negative" onClick={Create} loading={loading}>Create</Button>
 						</GuideBox>
 						<GuideBox row width='100%' spacing={2} opacity={opacity}>
 							<RgbColorPicker color={color} onChange={setColor} />

@@ -1,6 +1,6 @@
 {
-  "short_name": "Plug-in Title",
-  "name": "Plug-in Title",
+  "short_name": "Sign on",
+  "name": "Sign on",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,6 +12,6 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#f5f5f7",
-  "width": 600,
-  "height": 600
+  "width": 400,
+  "height": 328
 }

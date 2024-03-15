@@ -1,6 +1,6 @@
-# Plug-in Item Title
-- Plug-in Item Description
+# Sign On
+- Sign on your model
 <br />
 ## Details
 ### version 1.0.0
-- This Plug-in Detail contents...
+- Create plate element as text
