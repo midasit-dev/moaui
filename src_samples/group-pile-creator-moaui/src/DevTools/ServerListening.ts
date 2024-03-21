@@ -1,2 +1,2 @@
-const devServerStatus: string = 'listening';
+const devServerStatus: string = '';
 export const isDevServerListening = () => devServerStatus === 'listening';

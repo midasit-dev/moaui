@@ -142,8 +142,17 @@ def create_group_pile(
     # ===================================================================
     # Get Civil data
     select_node = select_node[0]
-    skew_info = civil.db_read_item("SKEW", select_node)
+    try:
+      skew_info = civil.db_read_item("SKEW", select_node)
+    except:
+      return json.dumps({"error":"Please check the pile section shape"})
+        
     node_info = civil.db_read_item("NODE", select_node)
+    
+    if "error" in skew_info:
+      return json.dumps(skew_info)
+    if "error" in node_info:
+      return json.dumps(node_info)
 
     # Calculation local normalization vector
     node_normalz_vector = vc.nomarlz_vector_skew_info(skew_info)
@@ -237,6 +246,11 @@ def create_group_pile(
     # Check Node and Element Data
     res_node = civil.db_read("NODE")
     res_elem = civil.db_read("ELEM")
+    
+    if "error" in res_node:
+      return json.dumps(res_node)
+    if "error" in res_elem:
+      return json.dumps(res_elem)
 
     exist_node_list = list(res_node.keys())
     exist_elem_list = list(res_elem.keys())

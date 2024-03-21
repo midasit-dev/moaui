@@ -28,6 +28,16 @@ import json
 
 import numpy as np
 
+def is_json(text):
+    text = text.strip()
+    return text.startswith('{') and text.endswith('}') or text.startswith('[') and text.endswith(']')
+
+def response_handler(xhr):
+	if (is_json(xhr.responseText)):
+		return json.loads(xhr.responseText)
+	else:
+		return {"error": "Error: Unable to find the registry key or value for " + xhr.responseURL}
+
 class requests_json:
     @staticmethod
     def post(url, headers, jsonObj):
@@ -36,7 +46,8 @@ class requests_json:
         for key, value in headers.items():
             xhr.setRequestHeader(key, value)
         xhr.send(json.dumps(jsonObj))
-        return json.loads(xhr.responseText)
+        # return json.loads(xhr.responseText)
+        return response_handler(xhr)
 
     def get(url, headers):
         xhr = XMLHttpRequest.new()
@@ -44,7 +55,8 @@ class requests_json:
         for key, value in headers.items():
             xhr.setRequestHeader(key, value)
         xhr.send()
-        return json.loads(xhr.responseText)
+        # return json.loads(xhr.responseText)
+        return response_handler(xhr)
     
     def put(url, headers, jsonObj):
         xhr = XMLHttpRequest.new()
@@ -52,7 +64,8 @@ class requests_json:
         for key, value in headers.items():
             xhr.setRequestHeader(key, value)
         xhr.send(json.dumps(jsonObj))
-        return json.loads(xhr.responseText)
+        # return json.loads(xhr.responseText)
+        return response_handler(xhr)
     
     def delete(url, headers):
         xhr = XMLHttpRequest.new()
@@ -60,7 +73,8 @@ class requests_json:
         for key, value in headers.items():
             xhr.setRequestHeader(key, value)
         xhr.send()
-        return json.loads(xhr.responseText)
+        # return json.loads(xhr.responseText)
+        return response_handler(xhr)
 
 class Product:
     CIVIL = 1,
