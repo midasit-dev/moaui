@@ -1,0 +1,1 @@
+export { default as SampleCode } from './Sample.code.except.tsx?raw';
