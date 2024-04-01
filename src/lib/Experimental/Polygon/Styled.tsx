@@ -77,6 +77,10 @@ export type StyledProps = {
 	strokeDashoffset?: number,
 
 	/**
+	 * The labelColor of the Polygon.
+	 */
+	labelColor?: string,
+	/**
 	 * The labels of the Polygon.
 	 */
 	labels?: string[],
@@ -100,6 +104,20 @@ export type StyledProps = {
 	"right",
 };
 
+// label position에 따라 guideBoxProps 옵션 변경
+const getLabelPositionRealOptions = (labelPosition: string | undefined) => {
+	if (labelPosition === "center") return { center: true, }
+	if (labelPosition === "leftTop") return { horLeft: true, verTop: true, }
+	if (labelPosition === "rightTop") return { horRight: true, verTop: true, }
+	if (labelPosition === "leftBottom") return { horLeft: true, verBottom: true, }
+	if (labelPosition === "rightBottom") return { horRight: true, verBottom: true, }
+	if (labelPosition === "top") return { horCenter: true, verTop: true, }
+	if (labelPosition === "bottom") return { horCenter: true, verBottom: true, }
+	if (labelPosition === "left") return { horLeft: true, verCenter: true, }
+	if (labelPosition === "right") return { horRight: true, verCenter: true, }
+	return { center: true, }
+}
+
 const StyledComponent = (props: StyledProps) => {
 	const {
 		coordinates,
@@ -113,6 +131,7 @@ const StyledComponent = (props: StyledProps) => {
 		strokeLinejoin,
 		strokeDasharray,
 		strokeDashoffset,
+		labelColor,
 		labels,
 		labelSpacing,
 		labelPosition,
@@ -121,7 +140,6 @@ const StyledComponent = (props: StyledProps) => {
 	const [points, setPoints] = useState('');
 	const [scaledMaxWidth, setScaledMaxWidth] = useState(0);
 	const [scaledMaxHeight, setScaledMaxHeight] = useState(0);
-	const [labelPositionRealOptions, setLabelPositionRealOptions] = useState<GuideBoxProps>({});
 
 	useEffect(() => {
 		setScaledMaxWidth(getScaledMaxWidth(scale, coordinates));
@@ -132,21 +150,6 @@ const StyledComponent = (props: StyledProps) => {
 		const coordinatesSVG = toScaledSVGCoordinates(scale, coordinates, scaledMaxHeight);
 		setPoints(coordinatesSVG.map(coord => coord.join(',')).join(' '));
   }, [scaledMaxHeight, coordinates, scale]);
-
-	useEffect(() => {
-		setLabelPositionRealOptions((pre: GuideBoxProps) => {
-			if (labelPosition === "center") return { center: true, }
-			if (labelPosition === "leftTop") return { horLeft: true, verTop: true, }
-			if (labelPosition === "rightTop") return { horRight: true, verTop: true, }
-			if (labelPosition === "leftBottom") return { horLeft: true, verBottom: true, }
-			if (labelPosition === "rightBottom") return { horRight: true, verBottom: true, }
-			if (labelPosition === "top") return { horCenter: true, verTop: true, }
-			if (labelPosition === "bottom") return { horCenter: true, verBottom: true, }
-			if (labelPosition === "left") return { horLeft: true, verCenter: true, }
-			if (labelPosition === "right") return { horRight: true, verCenter: true, }
-			return { center: true, }
-		})
-	}, [labelPosition]);
 
   return (
     <div style={{ width: 'auto', height: 'auto' }}>
@@ -174,11 +177,11 @@ const StyledComponent = (props: StyledProps) => {
 						width: 'inherit',
 						height: 'inherit',
 						spacing: labelSpacing,
-						...labelPositionRealOptions,
+						...getLabelPositionRealOptions(labelPosition),
 					}}
 				>
 					{labels && labels.map((label, index) => (
-						<Typography key={index}>{label}</Typography>
+						<Typography key={index} color={labelColor || undefined}>{label}</Typography>
 					))}
 				</FloatingBox>
 			</div>

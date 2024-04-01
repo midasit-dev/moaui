@@ -150,6 +150,7 @@ export { default as ComponentsTypographySingleLine } from "./Components/Typograp
 export { default as ComponentsTypographyGroupText } from "./Components/TypographyGroup/Code/Text.code";
 export { default as ExperimentalPolygonDefault } from "./Experimental/Polygon/Code/Default.code.except";
 export { default as ExperimentalPolygonGrid } from "./Experimental/Polygon/Code/Grid.code.except";
+export { default as ExperimentalPolygonsApplyAll } from "./Experimental/Polygons/Code/ApplyAll.code.except";
 export { default as ExperimentalPolygonsSample } from "./Experimental/Polygons/Code/Sample.code.except";
 export { default as ExperimentalSpreadSheetColumnLabels } from "./Experimental/SpreadSheet/Code/ColumnLabels.code.except";
 export { default as ExperimentalThreeJSBox } from "./Experimental/ThreeJS/Code/Box.code.except";
