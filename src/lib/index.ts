@@ -10,6 +10,9 @@
 
 import './Style/Font';
 
+// moaui common
+import { type CustomUnionType } from './Common/UnionType';
+
 // moaui style
 import { default as Color } from "./Style/Color";
 import { default as Font } from "./Style/Font";
@@ -133,6 +136,7 @@ export default Moaui;
 // ╚══════╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝
 
 export {
+	CustomUnionType,
   Color,
   Font,
   Button,

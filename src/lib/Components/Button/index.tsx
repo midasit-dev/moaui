@@ -1,3 +1,4 @@
+import { toUnionType } from "../../Common/UnionType";
 import StyledComponent, { type StyledProps } from "./Styled";
 
 Button.defaultProps = {
@@ -15,6 +16,16 @@ Button.sampleProps = {
 	color: "normal",
 	loading: false,
 } as StyledProps;
+
+Button.playgroundProps = {
+	children: "Button",
+	onClick: () => {},
+	variant: toUnionType({ values: ['contained', 'outlined', 'text'] }),
+	disabled: false,
+	width: '100px',
+	color: toUnionType({ values: ['normal', 'negative'] }),
+	loading: false,
+};
 
 /**
  * moaui Styled Button
