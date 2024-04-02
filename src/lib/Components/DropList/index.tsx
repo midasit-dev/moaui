@@ -31,3 +31,7 @@ export default function DropList(props: StyledProps) : React.ReactElement {
 		<StyledComponent {...props} />
 	)
 }
+
+export {
+	type StyledProps,
+}

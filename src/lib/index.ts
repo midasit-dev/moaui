@@ -19,7 +19,7 @@ import { default as Button, type StyledProps as ButtonProps } from "./Components
 import { default as Check, type StyledProps as CheckProps } from "./Components/Check";
 import { default as CheckGroup } from "./Components/CheckGroup";
 import { default as DataGrid, GridToolbar as DataGridToolbar, GridToolbarContainer as DataGridToolbarContainer, GridToolbarExport as DataGridToolbarExport } from "./Components/DataGrid";
-import { default as DropList } from "./Components/DropList";
+import { default as DropList, type StyledProps as DropListProps } from "./Components/DropList";
 import { default as Grid } from "./Components/Grid";
 import { default as IconButton } from "./Components/IconButton";
 import { default as Panel, type StyledProps as PanelProps } from "./Components/Panel";
@@ -145,6 +145,7 @@ export {
 	DataGridToolbarContainer,
 	DataGridToolbarExport,
   DropList,
+	DropListProps,
   Grid,
   IconButton,
   Panel,
@@ -196,6 +197,7 @@ export {
 };
 
 // experimental Components
+export { default as ExperimentalLanguageDropList } from "./Experimental/LanguageDropList";
 export { default as ExperimentalPolygon, type StyledProps as ExperimentalPolygonType } from "./Experimental/Polygon";
 export { default as ExperimentalPolygons } from "./Experimental/Polygons";
 export { default as ExperimentalSpreadSheet } from "./Experimental/SpreadSheet";
