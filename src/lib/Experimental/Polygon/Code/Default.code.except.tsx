@@ -1,4 +1,4 @@
-import { GuideBox, ExperimentalPolygon as Polygon } from "@midasit-dev/moaui";
+import { ExperimentalPolygon as Polygon } from "@midasit-dev/moaui";
 
 const coordinates = [
 	[0, 0],

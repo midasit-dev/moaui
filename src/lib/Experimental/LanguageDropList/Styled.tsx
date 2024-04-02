@@ -46,15 +46,24 @@ const StyledComponent = (props: StyledProps) => {
 			setData(new Map([
 				[1, { name: 'Korean', path: 'ko' }],
 				[2, { name: 'English', path: 'en' }],
-				[3, { name: 'Japanese', path: 'jp' }],
+				[3, { name: 'Japanese', path: 'ja' }],
 			]))
 		}
 	}, [languages]);
 
 	useEffect(() => {
+		if (data.size === 0) return;
 		setItems(Array.from(data.keys()).map((key: number) => {
 			return [data.get(key)?.name, key];
-		}))
+		}));
+
+		const curPathName = window.location.pathname;
+		for (const [key, value] of data) {
+			if (value.path === curPathName) {
+				setValue(key);
+				break;
+			}
+		}
 	}, [data]);
 
 	useEffect(() => {

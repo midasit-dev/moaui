@@ -5,7 +5,14 @@ const App = () => {
   return (
     <GuideBox row spacing={2} verCenter>
       <Typography>Language</Typography>
-		  <LanguageDropList storybook />
+		  <LanguageDropList 
+				storybook
+				languages={[
+					{ name: 'Korean', path: 'ko' },
+					{ name: 'English', path: 'en' },
+					{ name: 'Japanese', path: 'ja' },
+				]}
+			/>
     </GuideBox>
   );
 }
