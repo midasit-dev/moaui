@@ -24,7 +24,10 @@ export type StyledProps = {
 	 * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
 	 * @defaultValue new Map()
 	 */
-	itemList : Map<string, string | number> | (() => Map<string, string | number>);
+	itemList : 
+			Map<string, string | number> 
+		| (() => Map<string, string | number>)
+		| Array<[string, string | number]>;
 	/**
    * Callback fired when a menu item is selected.
    *
@@ -103,7 +106,17 @@ const useDroplistOpenCloseEffect = () => {
 
 const StyledComponent = styled((props:StyledProps) => {
 	const {itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
-	const itemMap = typeof itemList === 'function' ? itemList() : itemList;
+	let itemMap: Map<string, string | number> = new Map();
+	if (itemList instanceof Function) {
+		itemMap = itemList();
+	} else if (itemList instanceof Array) {
+		itemMap = new Map(itemList);
+	} else if (itemList instanceof Map) {
+		itemMap = itemList;
+	} else {
+		console.error('itemList is not a Map or a function that returns a Map');
+		itemMap = new Map();
+	}
 
 	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
 	const parentRef = React.useRef<HTMLDivElement | null>(null);
