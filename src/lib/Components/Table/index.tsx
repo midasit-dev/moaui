@@ -1,15 +1,24 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Table.defaultProps = {
-	padding: 'normal',
-	size: 'medium',
-	stickyHeader: false,
-} as StyledProps;
-
 /**
  * moaui Styled Table
  * 
  * @param {StyledProps} props 
  * @returns React.ReactElement
  */
-export default function Table(props: StyledProps) { return (<StyledComponent {...props} />) };
+const Table = (props: StyledProps) => (<StyledComponent {...props} />);
+
+Table.defaultProps = {
+	padding: 'normal',
+	size: 'medium',
+	stickyHeader: false,
+} as StyledProps;
+
+const SampleProps = {};
+
+export default Table;
+
+export {
+	type StyledProps as TableProps,
+	SampleProps as TableSample,
+}

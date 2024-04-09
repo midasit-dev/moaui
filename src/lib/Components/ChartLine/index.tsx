@@ -1,5 +1,15 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
+/**
+ * moaui Styled ChartLine
+ * 
+ * @param props 
+ * @returns React.ReactElement
+ */
+function ChartLine(props: StyledProps) {	
+	return <StyledComponent {...props} />
+}
+
 ChartLine.defaultProps = {
 	data: [],
 	width: '100%',
@@ -12,7 +22,7 @@ ChartLine.defaultProps = {
 	pointSize: 2,
 } as StyledProps;
 
-ChartLine.playgroundProps = {
+const SampleProps = {
 	data: [
 		{
 			'id': 'ID1',
@@ -67,14 +77,9 @@ ChartLine.playgroundProps = {
 	yDecimals: 0,
 }
 
-/**
- * moaui Styled ChartLine
- * 
- * @param props 
- * @returns React.ReactElement
- */
-function ChartLine(props: StyledProps) {	
-	return <StyledComponent {...props} />
-}
-
 export default ChartLine;
+
+export {
+	type StyledProps as ChartLineProps,
+	SampleProps as ChartLineSample,
+}

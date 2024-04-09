@@ -28,5 +28,5 @@ export const MultiLine = LiveEditStory(cleanMask(MultiLineCode));
 export const WrappedWidth = LiveEditStory(cleanMask(WrappedWidthCode));
 
 export const Sample: Story = {
-	args: TextField.sampleProps,
+	args: TextField.defaultProps,
 };

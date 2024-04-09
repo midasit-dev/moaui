@@ -41,50 +41,13 @@ type StyledPropsExtension = {
 	inputXs?: number,
 };
 
-TextFieldV2.defaultProps = {
-	autoFocus: false,
-	type: "text",
-	title : "",
-	titlePosition : "left",
-	error : false,
-	disabled : false,
-	gap: 1,
-	inputAlign: "left",
-	singleLineTitle: false,
-} as StyledProps & StyledPropsExtension;
-
-TextFieldV2.sampleProps = {
-	autoFocus: false,
-	type: "text",
-	placeholder: "Placeholder",
-	title : "Title",
-	titlePosition : "left",
-	defaultValue: "Default Value",
-	error : false,
-	disabled : false,
-	onChange: () => {},
-	value: "",
-	width: '150px',
-	titleXs: 3,
-	inputXs: 9,
-	height: '30px',
-	textAlign: "left",
-	multiline: false,
-	rows: 1,
-	maxRows: 1,
-	gap: 1,
-	inputAlign: "left",
-	singleLineTitle: false,
-} as StyledProps & StyledPropsExtension;
-
 /**
  * moaui Styled TextField
  * 
  * @param {MoaTextFieldProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange
  * @returns {React.ReactElement} moaTextField
  */
-
-function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactElement {
+const TextFieldV2 = (props: StyledProps & StyledPropsExtension) => {
 	const {title, titlePosition, singleLineTitle, width, gap, titleXs, inputXs, ...rest} = props;
 
 	const flexResolver = React.useCallback((titlePosition: string | undefined) => {
@@ -127,8 +90,45 @@ function TextFieldV2(props: StyledProps & StyledPropsExtension) : React.ReactEle
 	)
 }
 
+TextFieldV2.defaultProps = {
+	autoFocus: false,
+	type: "text",
+	title : "",
+	titlePosition : "left",
+	error : false,
+	disabled : false,
+	gap: 1,
+	inputAlign: "left",
+	singleLineTitle: false,
+} as StyledProps & StyledPropsExtension;
+
+const SampleProps = {
+	autoFocus: false,
+	type: "text",
+	placeholder: "Placeholder",
+	title : "Title",
+	titlePosition : "left",
+	defaultValue: "Default Value",
+	error : false,
+	disabled : false,
+	onChange: () => {},
+	value: "",
+	width: '150px',
+	titleXs: 3,
+	inputXs: 9,
+	height: '30px',
+	textAlign: "left",
+	multiline: false,
+	rows: 1,
+	maxRows: 1,
+	gap: 1,
+	inputAlign: "left",
+	singleLineTitle: false,
+};
+
 export default TextFieldV2;
 
 export {
-	type StyledProps,
+	type StyledProps as TextFieldV2Props,
+	SampleProps as TextFieldV2Sample,
 };

@@ -25,7 +25,6 @@ export const Default = LiveEditStory(cleanMask(DefaultCode));
 
 export const Sample: Story = {
   args: {
-    children: "Chip",
 		size: "medium",
 		label: "Chip",
 		severity: "success",

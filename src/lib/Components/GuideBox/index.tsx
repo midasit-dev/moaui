@@ -1,5 +1,13 @@
 import StyledComponent, { type StyledProps, fillColor } from "./Styled";
 
+/**
+ * moaui Styled GuideBox
+ * 
+ * @param props 
+ * @returns React.ReactElement
+ */
+const GuideBox = (props: StyledProps) => (<StyledComponent {...props} />);
+
 GuideBox.defaultProps = {
 	show: false,
 	width: 'auto',
@@ -9,15 +17,13 @@ GuideBox.defaultProps = {
 	duration: 1,
 } as StyledProps;
 
-/**
- * moaui Styled GuideBox
- * 
- * @param props 
- * @returns React.ReactElement
- */
-export default function GuideBox(props: StyledProps) { return (<StyledComponent {...props} />) };
+const SampleProps = {};
+
+export default GuideBox;
 
 export { 
-	type StyledProps,
-	fillColor,
+	type StyledProps as GuideBoxProps,
+	SampleProps as GuideBoxSample,
+
+	fillColor as GuideBoxFillColor,
 };

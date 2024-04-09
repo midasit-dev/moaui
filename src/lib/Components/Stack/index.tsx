@@ -1,13 +1,22 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Stack.defaultProps = {
-	direction: "column",
-} as StyledProps;
-
 /**
  * moaui Styled Stack (wrapper)
  * 
  * @param props 
  * @returns React.ReactElement
  */
-export default function Stack(props: StyledProps) : React.ReactElement { return (<StyledComponent {...props} />) };
+const Stack = (props: StyledProps) => (<StyledComponent {...props} />);
+
+Stack.defaultProps = {
+	direction: "column",
+} as StyledProps;
+
+const SampleProps = {};
+
+export default Stack;
+
+export {
+	type StyledProps as StackProps,
+	SampleProps as StackSample,
+}

@@ -1,16 +1,20 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Tooltip.defaultProps = {
-} as StyledProps;
-
 /**
  * moaui Styled Tooltip
  * 
  * @param props 
  * @returns React.ReactElement
  */
-function Tooltip(props: StyledProps) {	
-	return <StyledComponent {...props} />
-}
+const Tooltip = (props: StyledProps) => (<StyledComponent {...props} />);
+
+Tooltip.defaultProps = {} as StyledProps;
+
+const SampleProps = {};
 
 export default Tooltip;
+
+export {
+	type StyledProps as TooltipProps,
+	SampleProps as TooltipSample,
+}

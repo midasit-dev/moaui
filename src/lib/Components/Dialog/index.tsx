@@ -1,8 +1,5 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Dialog.defaultProps = {
-} as StyledProps;
-
 /**
  * moaui Styled Dialog
  * Demos:
@@ -12,8 +9,16 @@ Dialog.defaultProps = {
  * @param props 
  * @returns React.ReactElement
  */
-function Dialog(props: StyledProps) {	
-	return <StyledComponent {...props} />
-}
+const Dialog = (props: StyledProps) => (<StyledComponent {...props} />);
+
+Dialog.defaultProps = {
+} as StyledProps;
+
+const SampleProps = {}
 
 export default Dialog;
+
+export {
+	type StyledProps as DialogProps,
+	SampleProps as DialogSample,
+}

@@ -6,4 +6,15 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props 
  * @returns React.ReactElement
  */
-export default function CheckGroup(props: StyledProps) { return (<StyledComponent {...props} />) };
+const CheckGroup = (props: StyledProps) => (<StyledComponent {...props} />);
+
+CheckGroup.defaultProps = {};
+
+const SampleProps = {};
+
+export default CheckGroup;
+
+export {
+	type StyledProps as CheckGroupProps,
+	SampleProps as CheckGroupSample,
+}

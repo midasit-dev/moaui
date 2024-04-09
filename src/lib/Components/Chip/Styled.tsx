@@ -5,11 +5,6 @@ import Chip from '@mui/material/Chip';
 
 export type StyledProps = {
   /**
-   * alert children.
-   */
-  children?: React.ReactNode;
-
-  /**
    * set a alert severity.
    */
   severity?: "success" | "error" | "warning" | "info";
@@ -58,7 +53,6 @@ const getSeverityColor = (severity: any) => {
 
 const StyledComponent = styled((props: StyledProps) => {
 	const {
-		children,
 		severity,
 		bgColor,
 		color,
@@ -67,8 +61,6 @@ const StyledComponent = styled((props: StyledProps) => {
 		disabled,
 		...rest
 	} = props;
-
-	if (children) {}
 
 	return (
 		<Chip
@@ -79,7 +71,6 @@ const StyledComponent = styled((props: StyledProps) => {
 			size={size}
 			label={label}
 			disabled={disabled}
-			{...rest}
 		/>
 	)
 }) (() => ({}))

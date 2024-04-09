@@ -1,10 +1,5 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-MidasController.defaultProps = {
-	icoSrc: '',
-	title: '',
-} as StyledProps;
-
 /**
  * moaui Styled MidasController
  * 
@@ -15,4 +10,16 @@ function MidasController(props: StyledProps) {
 	return <StyledComponent {...props} />
 }
 
+MidasController.defaultProps = {
+	icoSrc: '',
+	title: '',
+} as StyledProps;
+
+const SampleProps = {};
+
 export default MidasController;
+
+export {
+	type StyledProps as MidasControllerProps,
+	SampleProps as MidasControllerSample,
+}

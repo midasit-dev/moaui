@@ -1,9 +1,6 @@
 import React from "react";
 import StyledComponent, { type StyledProps } from "./Styled";
-
-Tab.defaultProps = {
-	label: "Tab Label Text",
-} as StyledProps;
+import { toUnionType } from "../../Common/UnionType";
 
 /**
  * moaui Styled Tab
@@ -11,8 +8,26 @@ Tab.defaultProps = {
  * @param props
  * @returns React.Element
  */
-export default function Tab(props: StyledProps) : React.ReactElement { return ( <StyledComponent {...props} /> ) }	
+const Tab = (props: StyledProps) => ( <StyledComponent {...props} /> );
+
+Tab.defaultProps = {} as StyledProps;
+
+const SampleProps = {
+	value: "value",
+	label: "Tab",
+	onChange: () => {},
+	disabled: false,
+	selected: false,
+	width: "auto",
+	height: "auto",
+	fontSize: toUnionType({ values: ["h1", "body1", "body2", "body3"] }),
+	minWidth: "auto",
+	minHeight: "auto",
+};
+
+export default Tab;
 
 export {
-	type StyledProps,
+	type StyledProps as TabProps,
+	SampleProps as TabSample,
 }

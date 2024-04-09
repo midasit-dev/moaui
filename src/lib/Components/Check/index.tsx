@@ -1,5 +1,6 @@
-import StyledComponent, { type StyledProps } from "./Styled";
 import { forwardRef } from "react";
+import { toUnionType } from "../../Common/UnionType";
+import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
  * moaui Styled Check
@@ -14,8 +15,21 @@ Check.defaultProps = {
 	ariaLabel: "CheckBox",
 } as StyledProps;
 
+const SampleProps = {
+	defaultChecked: false,
+	onChange: () => {},
+	required: false,
+	checked: false,
+	disabled: false,
+	name: "",
+	namePlacement: toUnionType({ values: ["start", "end", "top", "bottom"] }),
+	ariaLabel: "CheckBox",
+	indeterminate: false,
+}
+
 export default Check;
 
 export {
-	type StyledProps,
+	type StyledProps as CheckProps,
+	SampleProps as CheckSample,
 }

@@ -75,6 +75,7 @@ export { default as ComponentsIconClose } from "./Components/Icon/Code/Close.cod
 export { default as ComponentsIconToButton } from "./Components/Icon/Code/ToButton.code";
 export { default as ComponentsIconButtonAdd } from "./Components/IconButton/Code/Add.code";
 export { default as ComponentsIconButtonClose } from "./Components/IconButton/Code/Close.code";
+export { default as ComponentsIconButtonIconName } from "./Components/IconButton/Code/IconName.code.except";
 export { default as ComponentsIconButtonTransparent } from "./Components/IconButton/Code/Transparent.code";
 export { default as ComponentsIconButtonWithName } from "./Components/IconButton/Code/WithName.code";
 export { default as ComponentsListControlled } from "./Components/List/Code/Controlled.code";

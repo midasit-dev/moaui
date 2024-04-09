@@ -5,6 +5,7 @@ import IconButton, { type IconButtonProps } from '@mui/material/IconButton';
 import Color from '../../Style/Color';
 import { MarginTypes, MarginProps } from '../../Style/Margin';
 import { PaddingTypes, PaddingProps } from '../../Style/Padding';
+import { Icon } from '../../';
 
 export interface StyledProps extends MarginTypes, PaddingTypes {
 	/**
@@ -22,6 +23,13 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 	 * @type React.ReactNode
 	 */
 	children?: React.ReactNode,
+
+	/**
+	 * The name of the icon.
+	 * @defaultValue "Apple"
+	 * @optional
+	 */
+	iconName?: string;
 
 	/**
 	 * The color of the button.
@@ -99,7 +107,7 @@ export interface StyledProps extends MarginTypes, PaddingTypes {
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { sx, children, color, transparent, transparentColor, border, ...rest } = props;
+	const { sx, children, iconName, color, transparent, transparentColor, border, ...rest } = props;
 	if (sx) console.error('The sx prop is not used in StyledComponent');
 
 	const CustomBackgroundColor = useCallback(({color, transparent} : { 
@@ -189,7 +197,12 @@ const StyledComponent = styled((props: StyledProps) => {
 				...CustomBackgroundColor({color, transparent, border}),
 			}}
 		 >
-			{children && cloneElement(children as React.ReactElement, {width: "16px", height: "16px"})}
+			{children ? 
+				cloneElement(children as React.ReactElement, {width: "16px", height: "16px"}) : 
+					iconName ? 
+						<Icon iconName='Apple' /> : 
+							null
+			}
 		 </IconButton>
 	);
 })(() => ({}))

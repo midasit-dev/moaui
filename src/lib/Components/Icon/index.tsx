@@ -1,20 +1,27 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Icon.defaultProps = {
-	iconName: "Add",
-	opacity: 1,
-} as StyledProps;
-
 /**
  * moaui Styled Icon (Single)
  * 
  * @param props 
  * @returns React.ReactElement
  */
-function Icon(props: StyledProps) : React.ReactElement {
-	return (
-		<StyledComponent {...props} />
-	)
-}
+const Icon = (props: StyledProps) => (<StyledComponent {...props} />);
+
+Icon.defaultProps = {
+	iconName: "Add",
+	opacity: 1,
+} as StyledProps;
+
+const SampleProps = {
+	iconName: "Apple",
+	opacity: 1,
+	toButton: false,
+};
 
 export default Icon;
+
+export {
+	type StyledProps as IconProps,
+	SampleProps as IconSample,
+}

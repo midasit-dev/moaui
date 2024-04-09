@@ -32,5 +32,5 @@ export const MaxLength = LiveEditStory(cleanMask(MaxLengthCode));
 export const ItemListFromArray = LiveEditStory(cleanMask(ItemListFromArrayCode));
 
 export const Sample: Story = {
-  args: DropList.sampleProps
+  args: DropList.defaultProps
 };

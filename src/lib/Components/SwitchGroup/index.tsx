@@ -6,6 +6,15 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props 
  * @returns React.ReactElement
  */
-export default function SwitchGroup(props: StyledProps): React.ReactElement { 
-	return (<StyledComponent {...props} />) 
-};
+const SwitchGroup = (props: StyledProps) => (<StyledComponent {...props} />);
+
+SwitchGroup.defaultProps = {} as StyledProps;
+
+const SampleProps = {};
+
+export default SwitchGroup;
+
+export {
+	type StyledProps as SwitchGroupProps,
+	SampleProps as SwitchGroupSample,
+}

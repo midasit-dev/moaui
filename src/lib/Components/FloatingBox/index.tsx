@@ -1,15 +1,20 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-FloatingBox.defaultProps = {} as StyledProps;
-
 /**
  * moaui Styled FloatingBox
  * 
  * @param props 
  * @returns React.ReactElement
  */
-export default function FloatingBox(props: StyledProps) { return (<StyledComponent {...props} />) };
+const FloatingBox = (props: StyledProps) => (<StyledComponent {...props} />);
+
+FloatingBox.defaultProps = {} as StyledProps;
+
+const SampleProps = {};
+
+export default FloatingBox;
 
 export {
-	type StyledProps,
+	type StyledProps as FloatingBoxProps,
+	SampleProps as FloatingBoxSample,
 }

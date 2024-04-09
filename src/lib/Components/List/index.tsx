@@ -1,9 +1,5 @@
 import React from "react";
-import StyledComponent, {type StyledProps} from "./Styled";
-
-List.defaultProps = {
-	dense: true,
-} as StyledProps;
+import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
  * moaui Styled List
@@ -11,8 +7,17 @@ List.defaultProps = {
  * @param props 
  * @returns React.ReactElement
  */
-export default function List(props: StyledProps): React.ReactElement {
-	return (
-		<StyledComponent {...props}/>
-	)
+const List = (props: StyledProps) => (<StyledComponent {...props}/>);
+
+List.defaultProps = {
+	dense: true,
+} as StyledProps;
+
+const SampleProps = {};
+
+export default List;
+
+export {
+	type StyledProps as ListProps,
+	SampleProps as ListSample,
 }

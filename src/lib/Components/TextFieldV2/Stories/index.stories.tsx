@@ -50,5 +50,5 @@ export const NumberOptionPositiveInteger = LiveEditStory(cleanMask(NumberOptionP
 export const TitleInputScale = LiveEditStory(cleanMask(TitleInputScaleCode));
 
 export const Sample: Story = {
-	args: TextFieldV2.sampleProps,
+	args: TextFieldV2.defaultProps,
 };

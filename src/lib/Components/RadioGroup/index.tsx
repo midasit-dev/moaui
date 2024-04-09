@@ -1,13 +1,22 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-RadioGroup.defaultProps = {
-	ariaLabel: "Radio Group",
-} as StyledProps;
-
 /**
  * moaui Styled Radio Button Group
  * 
  * @param props 
  * @returns React.ReactElement
  */
-export default function RadioGroup(props: StyledProps) { return (<StyledComponent {...props} />) };
+const RadioGroup = (props: StyledProps) => (<StyledComponent {...props} />);
+
+RadioGroup.defaultProps = {
+	ariaLabel: "Radio Group",
+} as StyledProps;
+
+const SampleProps = {};
+
+export default RadioGroup;
+
+export {
+	type StyledProps as RadioGroupProps,
+	SampleProps as RadioGroupSample,
+}
