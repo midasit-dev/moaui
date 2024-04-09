@@ -6,7 +6,21 @@ import { toUnionType } from "../../Common/UnionType";
 /**
  * moaui Styled Icon Button
  * 
- * @param props 
+ * @param props - children, disabled, iconName, color, width, height, onClick, transparent, transparentColor, border
+ * @example
+ * <IconButton
+ * 	disabled={false}
+ * 	iconName="Apple"
+ * 	color="normal"
+ * 	width="auto"
+ * 	height="auto"
+ * 	onClick={() => {}}
+ * 	transparent={false}
+ * 	transparentColor=""
+ * 	border={true || false}
+ * >
+ * 	<Icon iconName="Apple" />
+ * </IconButton>
  * @returns JSX.Element
  */
 

@@ -6,7 +6,11 @@ TableBody.defaultProps = {
 /**
  * maoui Styled Table Body
  * 
- * @param {StyledProps} props 
+ * @param {StyledProps} props - children
+ * @example
+ * <TableBody>
+ * 	{children}
+ * </TableBody>
  * @returns React.ReactElement
  */
 export default function TableBody(props: StyledProps) { return (<StyledComponent {...props} />) };

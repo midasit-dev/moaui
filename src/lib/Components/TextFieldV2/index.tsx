@@ -44,7 +44,36 @@ type StyledPropsExtension = {
 /**
  * moaui Styled TextField
  * 
- * @param {MoaTextFieldProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange
+ * @param {StyledProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange, value, width, height, multiline, rows, maxRows, numberOptions
+ * @example
+ * <TextFieldV2
+ * 	autoFocus={false || true}
+ * 	type={'text' || 'number' || 'password'}
+ * 	placeholder={'Placeholder'}
+ * 	title={'Title'}
+ * 	titlePosition={'left' || 'right' || 'top' || 'bottom'}
+ * 	defaultValue={'Default Value'}
+ * 	error={false || true}
+ * 	disabled={false || true}
+ * 	onChange={(event) => {}}
+ * 	value={''}
+ * 	width={'150px'}
+ * 	height={'30px'}
+ * 	textAlign={'left' || 'center' || 'right'}
+ * 	multiline={false || true}
+ * 	rows={1}
+ * 	maxRows={1}
+ * 	numberOptions={{
+ * 		min: 0,
+ * 		max: 100,
+ * 		step: 1,
+ * 		onlyInteger: {true || false},
+ * 		condition: {{
+ * 				min: 0,
+ * 				max: 100,
+ * 		}}
+ * 	}}
+ * 
  * @returns {React.ReactElement} moaTextField
  */
 const TextFieldV2 = (props: StyledProps & StyledPropsExtension) => {

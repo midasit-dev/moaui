@@ -3,7 +3,16 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Radio Button
  * 
- * @param props 
+ * @param props - checked, onChange, value, name, ariaLabel, disabled
+ * @example
+ * <Radio
+ * 	checked={true || false}
+ * 	onChange={() => {}}
+ * 	value={"Radio"}
+ * 	name={"Radio"}
+ * 	ariaLabel={"Radio button"}
+ * 	disabled={true || false}
+ * />
  * @returns React.ReactElement
  */
 const Radio = (props: StyledProps) => (<StyledComponent {...props} />);

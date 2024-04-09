@@ -6,7 +6,11 @@ import StyledComponent, { type StyledProps } from "./Styled";
  *
  * - [Dialog](https://dev--6556d17f924e868b000ddaf5.chromatic.com/?path=/story/components-dialog--help/)
  * 
- * @param props 
+ * @param props - children, open, setOpen, json, headerIcon, headerTitle, onClose, hiddenClose, justPreview
+ * @example
+ * <Dialog headerTitle="Dialog Title" open={true} setOpen={setOpen} onClose={onClose}>
+ *  {children}
+ * </Dialog>
  * @returns React.ReactElement
  */
 const Dialog = (props: StyledProps) => (<StyledComponent {...props} />);

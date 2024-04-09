@@ -6,6 +6,10 @@ import { toUnionType } from "../../Common/UnionType";
  * moaui Styled Separator
  * 
  * @param {MoaSeparatorProps} props - direction
+ * @example
+ * <Separator
+ * 	direction={"horizontal" || "vertical"}
+ * />
  * @returns {React.ReactElement} MoaSeparator
  */
 const Separator = (props:StyledProps) => (<StyledComponent {...props}/>);

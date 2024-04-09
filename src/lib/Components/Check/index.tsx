@@ -5,7 +5,19 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Check
  * 
- * @param props 
+ * @param props - defaultChecked, onChange, required, checked, disabled, name, namePlacement, ariaLabel, indeterminate
+ * @example
+ * <Check
+ * 	defaultChecked={false || true}
+ * 	onChange={() => {}}
+ * 	required={false || true}
+ * 	checked={false || true}
+ * 	disabled={false || true}
+ * 	name=""
+ * 	namePlacement="start" || "end" || "top" || "bottom"
+ * 	ariaLabel="CheckBox" 
+ * 	indeterminate={false || true}
+ * />
  * @returns React.ReactElement
 */
 const Check = forwardRef((props: StyledProps, ref: any) => (<StyledComponent {...props} inputRef={ref} />));

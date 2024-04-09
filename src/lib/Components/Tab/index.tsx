@@ -5,7 +5,20 @@ import { toUnionType } from "../../Common/UnionType";
 /**
  * moaui Styled Tab
  * 
- * @param props
+ * @param props - value, label, onChange, disabled, selected, width, height, fontSize, minWidth, minHeight
+ * @example
+ * <Tab
+ * 	value="value"
+ * 	label="Tab"
+ * 	onChange={() => {}}
+ * 	disabled={false || true}
+ * 	selected={false || true}
+ * 	width="auto"
+ * 	height="auto"
+ * 	fontSize="h1" || "body1" || "body2" || "body3"
+ * 	minWidth="auto"
+ * 	minHeight="auto"
+ * />
  * @returns React.Element
  */
 const Tab = (props: StyledProps) => ( <StyledComponent {...props} /> );

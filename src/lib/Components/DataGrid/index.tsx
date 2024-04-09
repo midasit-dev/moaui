@@ -8,7 +8,7 @@ import StyledComponent, {
 /**
  * moaui Styled DataGrid
  * 
- * @param {StyledProps} props 
+ * @param {StyledProps} props - onCellClick, onCellKeyDown, onCellEditStart, onCellEditStop, columnMenu, columnSelector, columnFilter, densitySelector, disableRowSelectionOnClick
  * @returns React.ReactElement
  */
 export default function DataGrid(props: StyledProps) { return (<StyledComponent {...props} />) };

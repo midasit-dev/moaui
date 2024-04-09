@@ -3,7 +3,34 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled ChartLine
  * 
- * @param props 
+ * @param props - data, width, height, axisTop, axisRight, axisBottom, axisLeft, legends, pointSize
+ * @example
+ * <ChartLine
+ * 	data={[
+ * 		{
+ * 			'id': 'ID1',
+ * 			'color': '#87CEEB',
+ * 			'data': [
+ * 					{ "x": 0, "y": 0 },
+ * 					{ "x": 1, "y": 1 },
+ * 					{ "x": 2, "y": 2 },
+ * 					{ "x": 3, "y": 3 },
+ * 					{ "x": 4, "y": 4 },
+ * 					{ "x": 7, "y": 5 },
+ * 			],
+ * 		},
+ * 	]}
+ * 	width='300px'
+ * 	height='300px'
+ * 	legends={true} || {false}
+ * 	axisTop, axisRight, axisBottom, axisLeft = {true} || {false}
+ * 	axisTopLegendPosition, axisRightLegendPosition, axisBottomLegendPosition, axisLeftLegendPosition = 'middle' || 'start' || 'end'
+ * 	axisTopLegend='Top' 
+ * 	axisRightLegend='Right'
+ * 	axisBottomLegend='Bottom'
+ * 	axisLeftLegend='Left'
+ * 	axisTopTickValues, axisTopTickRotation, axisTopDecimals, axisTopLegendOffset, ... = {number}
+ * />
  * @returns React.ReactElement
  */
 function ChartLine(props: StyledProps) {	

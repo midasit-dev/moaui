@@ -4,12 +4,21 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Button
  * 
- * @param props 
+ * @param props - onClick, variant, disabled, width, color, loading, children
+ * @example
+ * <Button
+ * 	onClick={() => {}}
+ * 	variant="contained" || "outlined" || "text"
+ * 	disabled={false} || {true}
+ * 	width="100px" || "auto"
+ * 	color="normal" || "negative"
+ * 	loading={false} || {true}
+ * >
+ * 	{children} - set a Button Text
+ * </Button>
  * @returns React.ReactElement
  */
-function Button(props: StyledProps) {	
-	return <StyledComponent {...props} />
-}
+const Button = (props: StyledProps) => (<StyledComponent {...props} />);
 
 Button.defaultProps = {
 	variant: "contained",

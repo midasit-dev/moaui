@@ -3,7 +3,13 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Stack (wrapper)
  * 
- * @param props 
+ * @param props - children, direction
+ * @example
+ * <Stack
+ * 	direction={"column" || "row" || "column-reverse" || "row-reverse"}
+ * >
+ * 	{children}
+ * </Stack>
  * @returns React.ReactElement
  */
 const Stack = (props: StyledProps) => (<StyledComponent {...props} />);

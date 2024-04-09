@@ -3,7 +3,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled FloatingBox
  * 
- * @param props 
+ * @param props - key, show, x, y, width, height, fill, guideBoxProps, children, onMouseDown, onMouseUp, onMouseOver, onMouseLeave, onClick, cursor, opacity, transition, border
  * @returns React.ReactElement
  */
 const FloatingBox = (props: StyledProps) => (<StyledComponent {...props} />);

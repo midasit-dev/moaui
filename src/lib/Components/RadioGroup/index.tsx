@@ -3,7 +3,19 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Radio Button Group
  * 
- * @param props 
+ * @param props - ariaLabel, children, defaultValue, name, onChange, value, text, spacing
+ * @example
+ * <RadioGroup
+ * 	ariaLabel={"Radio Group"}
+ * 	defaultValue={"Radio 1"}
+ * 	name={"Radio Group"}
+ * 	onChange={() => {}}
+ * 	value={"Radio 1"}
+ * 	text={"Radio Group"}
+ * 	spacing={1}
+ * >
+ * 	{children}
+ * </RadioGroup>
  * @returns React.ReactElement
  */
 const RadioGroup = (props: StyledProps) => (<StyledComponent {...props} />);

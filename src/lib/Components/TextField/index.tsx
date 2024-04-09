@@ -5,7 +5,27 @@ import { GuideBox, Typography } from "../..";
 /**
  * moaui Styled TextField
  * 
- * @param {MoaTextFieldProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange
+ * @param {StyledProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange, value, autoFocus, type, width, height, spacing, textAlign, multiline, rows, maxRows
+ * @example
+ * <TextField
+ * 	title="Title"
+ * 	titlePosition="left"
+ * 	placeholder="Placeholder"
+ * 	defaultValue="Default Value"
+ * 	error={false}
+ * 	disabled={false}
+ * 	onChange={() => {}}
+ * 	value="Value"
+ * 	autoFocus={false}
+ * 	type="text"
+ * 	width="100px"
+ * 	height="30px"
+ * 	spacing={1}
+ * 	textAlign="left"
+ * 	multiline={false}
+ * 	rows={1}
+ * 	maxRows={1}
+ * />
  * @returns {React.ReactElement} moaTextField
  */
 

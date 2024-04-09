@@ -4,7 +4,14 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled List
  * 
- * @param props 
+ * @param props - children, dense, disablePadding
+ * @example
+ * <List
+ * 	dense={true || false}
+ * 	disablePadding={true || false}
+ * >
+ * 	{children}
+ * </List>
  * @returns React.ReactElement
  */
 const List = (props: StyledProps) => (<StyledComponent {...props}/>);
