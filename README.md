@@ -5,7 +5,6 @@
 </p>
 
 <h1 align="center">moaui</h1>
-test
 
 <p align="center">
   <b>moaui</b> contains foundational React UI component libraries for shipping new features faster.
