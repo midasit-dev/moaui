@@ -189,3 +189,67 @@ export function getReactionTable(keyindex:any, loadcomb:any){
 		return JSON.parse(result);
 	});
 }
+
+export function postNewProject(){
+	return checkPyScriptReady(() => {
+		const py_post_new_project_func = pyscript.interpreter.globals.get('py_NewPorject');
+		const result = py_post_new_project_func();
+		return JSON.parse(result);
+	});
+}
+
+export function CreateBasePlateOutlines(PlateWidth:number, PlateHeigth:number, HBeamHeight:number, HBeamWidth:number){
+	return checkPyScriptReady(() => {
+		const py_CreateBasePlateOutlines_func = pyscript.interpreter.globals.get('py_CreateBasePlateOutlines');
+		const result = py_CreateBasePlateOutlines_func(PlateWidth, PlateHeigth, HBeamHeight, HBeamWidth);
+		return JSON.parse(result);
+	});
+}
+
+export function AutoMeshing(PlateWidth:number, PlateHeight:number, PlateMaterial:string, PlateThickness:number){
+	return checkPyScriptReady(() => {
+		const py_AutoMeshing_func = pyscript.interpreter.globals.get('py_meshing');
+		const result = py_AutoMeshing_func(PlateWidth, PlateHeight, PlateMaterial, PlateThickness);
+		return JSON.parse(result);
+	});
+}
+
+export function Applyloads(loaddata:any, PlateWidth:number, PlateHeight:number){
+	return checkPyScriptReady(() => {
+		const py_Applyloads_func = pyscript.interpreter.globals.get('py_applyloads');
+		const result = py_Applyloads_func(loaddata, PlateWidth, PlateHeight);
+		return JSON.parse(result);
+	});
+}
+
+export function Analysis(DBName:any){
+	return checkPyScriptReady(() => {
+		const py_Analysis_func = pyscript.interpreter.globals.get('py_analysis');
+		const result = py_Analysis_func(DBName);
+		return JSON.parse(result);
+	});
+}
+
+export function GetResult(){
+	return checkPyScriptReady(() => {
+		const py_GetResult_func = pyscript.interpreter.globals.get('py_getresult');
+		const result = py_GetResult_func();
+		return JSON.parse(result);
+	});
+}
+
+export function calculate_baseplate(jsondata : any){
+	return checkPyScriptReady(() => {
+		const py_calculate_baseplate_func = pyscript.interpreter.globals.get('Calculatation');
+		const result = py_calculate_baseplate_func(jsondata);
+		return JSON.parse(result);
+	});
+}
+
+export function covertMarkdown(jsondata : any){
+	return checkPyScriptReady(() => {
+		const py_convert_markdown_func = pyscript.interpreter.globals.get('convert_to_Markdown');
+		const result = py_convert_markdown_func(jsondata);
+		return JSON.parse(result);
+	});
+}

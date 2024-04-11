@@ -22,6 +22,7 @@ import { selectNodeList, setColumnInfo, dbReadItem, getNodeInfo, dbRead, getReac
 import {
   TextField
 } from '@mui/material'
+import { useSnackbar } from 'notistack';
 
 import Load from './Load/Load';
 import { set } from 'lodash';
@@ -37,6 +38,7 @@ const NodeFetching = () => {
 }
 
 const App = () => {
+	const { enqueueSnackbar } = useSnackbar();
 
 	const CanvasSize = 350
 
@@ -65,11 +67,11 @@ const App = () => {
 		setTabName(newValue);
 	};
 
+	// Node 정보 Fetching
 	const FetchingNodes = () => {
     const FetchingResults = NodeFetching();
-
     if (FetchingResults.length === 0){
-      console.error('No Nodes')
+      enqueueSnackbar('선택된 절점이 없습니다', {variant: 'error', autoHideDuration: 3000})
     }
     else{
       setSelectedNodes(FetchingResults.join(','))
@@ -77,6 +79,10 @@ const App = () => {
   }
 
 	const SetInitialData = () => {
+		if (selectedNodes === '' || selectedNodes === undefined || selectedNodes === null){
+			enqueueSnackbar('선택된 절점이 없습니다', {variant: 'error', autoHideDuration: 3000})
+			return;
+		}
     const nodeList = selectedNodes.split(',');
     const selected_data = setColumnInfo(nodeList);
 
@@ -114,37 +120,43 @@ const App = () => {
 		// Node_BP_Data
 		let newNodeBPData :any = {};
 		for (let i = 0; i < nodeList.length; i++){
-			const sectionid = selected_data[nodeList[i]]['section_id']
-			const sectiondim = section_dim[sectionid]
-			const splitspace = sectiondim.split(' ')
-			const splitdim = splitspace[1].split('x')
-			const splieslash = splitdim[2].split('/')
-			const dimarray = [Number(splitdim[0]), Number(splitdim[1]), Number(splieslash[0]), Number(splieslash[1])]
-			const columnName = sectiondata[sectionid].SECT_NAME
-			newNodeBPData[nodeList[i]] = {
-				COLUMN_NAME : columnName,
-				NODECORD : [nodedata[nodeList[i]].X, nodedata[nodeList[i]].Y],
-				BASEPLATE: {
-					COLUMN : {
-						MATL : '24',
-						SHAPE : 'H',
-						DB : sectiondim,
+			try{
+				const sectionid = selected_data[nodeList[i]]['section_id']
+				const sectiondim = section_dim[sectionid]
+				const splitspace = sectiondim.split(' ')
+				const splitdim = splitspace[1].split('x')
+				const splieslash = splitdim[2].split('/')
+				const dimarray = [Number(splitdim[0]), Number(splitdim[1]), Number(splieslash[0]), Number(splieslash[1])]
+				const columnName = sectiondata[sectionid].SECT_NAME
+				newNodeBPData[nodeList[i]] = {
+					COLUMN_NAME : columnName,
+					NODECORD : [nodedata[nodeList[i]].X, nodedata[nodeList[i]].Y],
+					BASEPLATE: {
+						COLUMN : {
+							MATL : '24',
+							SHAPE : 'H',
+							DB : sectiondim,
+						},
+						PLATE : {
+							MATL : "SS275",
+							SHAPE : "REC",
+							WIDTH : 1000,
+							HEIGHT : 1000,
+							THIK : 12
+						}
 					},
-					PLATE : {
+					PEDESTAL : {
 						MATL : "SS275",
 						SHAPE : "REC",
-						WIDTH : 500,
-						HEIGHT : 500,
-						THIK : 12
-					}
-				},
-				PEDESTAL : {
-					MATL : "SS275",
-					SHAPE : "REC",
-					WIDTH : 1000,
-					HEIGHT : 1000,
-				},
+						WIDTH : 1500,
+						HEIGHT : 1500,
+					},
+				}
 			}
+			catch(err){
+				enqueueSnackbar('절점 상부 요소 단면 확인 필요', {variant: 'error', autoHideDuration: 3000})
+			}
+				
 		}
 		
 		setNode_BP_Data(newNodeBPData);
@@ -171,6 +183,11 @@ const App = () => {
 		setSelectedColumnIndex(section_name[0][1]);		
 
 		const SteelLC = dbRead('LCOM-STEEL');
+		if (SteelLC.hasOwnProperty('error')){
+			enqueueSnackbar('Steel Design 하중 조합이 없습니다.', {variant: 'error', autoHideDuration: 3000})
+			return
+		}
+		
 		let LClist:any = {ENV : [], ADD : []}
 		for(let key in SteelLC){
 			if(SteelLC[key].ACTIVE == 'STRENGTH' && SteelLC[key].iTYPE == 1){
@@ -188,6 +205,10 @@ const App = () => {
 		const LClistTotal = LClistENV.concat(LClistADD)
 		
 		const GetReactions = getReactionTable(nodeList, LClistTotal);
+		if (GetReactions.hasOwnProperty('error')){
+			enqueueSnackbar('선택된 절점에 대한 하중 결과가 없습니다.', {variant: 'error', autoHideDuration: 3000})
+			return
+		}
 		const ReactionData :any = GetReactions['Reaction(Global)'].DATA
 
 		let ReactionDataList :any = {}
@@ -197,6 +218,7 @@ const App = () => {
 			ReactionDataList[nodeNum][loadCase] = reactions;
 		})
 		setReactionResult(ReactionDataList)
+		enqueueSnackbar('Import 완료', {variant: 'success', autoHideDuration: 3000})
 
 	}	
 	

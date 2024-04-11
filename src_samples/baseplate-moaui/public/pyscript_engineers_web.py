@@ -12,14 +12,14 @@ def set_g_values(g_values):
 	g_MAPI_key = _g_values['g_mapi_key']
 	g_base_uri = _g_values['g_base_uri']
 	g_base_port = _g_values['g_base_port']
-  
+
 def get_g_values():
-  return json.dumps({
-		'g_mapi_key': g_MAPI_key,
-		'g_base_uri': g_base_uri,
-		'g_base_port': g_base_port
-	})
-  
+    return json.dumps({
+        'g_mapi_key': g_MAPI_key,
+        'g_base_uri': g_base_uri,
+        'g_base_port': g_base_port
+    })
+
 # from javascript import globalThis
 # fetch = globalThis.fetch
 # JSON = globalThis.JSON
@@ -36,7 +36,12 @@ class requests_json:
         for key, value in headers.items():
             xhr.setRequestHeader(key, value)
         xhr.send(json.dumps(jsonObj))
-        return json.loads(xhr.responseText)
+        ## responseText가 json 형식이 아닐 경우, error return
+        try:
+            return json.loads(xhr.responseText)
+        except:
+            return {"error": "Error: responseText is not json format"}
+        
 
     def get(url, headers):
         xhr = XMLHttpRequest.new()
@@ -188,6 +193,17 @@ class MidasAPI:
             return 1
         return min(map(int, res_all.keys()))
     
+    def meshing(self, items):
+        url = f'{self.base_url}/OPE/AUTOMESH'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Argument': items})
+    
+    def divide_element(self, items):
+        url = f'{self.base_url}/OPE/DIVIDEELEM'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Argument': items})
+    
+    def saveas(self, file_path):
+        url = f'{self.base_url}/doc/saveas'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Argument': file_path})
     ## view ############################################################################################################
     def view_select_get(self):
         url = f'{self.base_url}/view/select'
@@ -202,7 +218,7 @@ class MidasAPI:
     def post_reactiontable(self, keyindex, loadcomb):
         url = f'{self.base_url}/POST/TABLE'
         jsonObj = {
-            'Argument': {
+            "Argument": {
                 "TABLE_NAME": "Reaction(Global)",
                 "TABLE_TYPE": "REACTIONG",
                 "UNIT": {
@@ -230,7 +246,16 @@ class MidasAPI:
                 "LOAD_CASE_NAMES": loadcomb
             }
         }
-        return requests_json.post(url, headers=self.headers, jsonObj=jsonObj)
+        result = requests_json.post(url, headers=self.headers, jsonObj=jsonObj)
+        return result
+    
+    def NewProject(self):
+        url = f'{self.base_url}/doc/new'
+        return requests_json.post(url, headers=self.headers, jsonObj={})
+    
+    def GetResult(self, items):
+        url = f'{self.base_url}/POST/TABLE'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Argument': items})
 # function ##########################################################################################################
 
 def select_by_subkey(value, dict, *subkey):

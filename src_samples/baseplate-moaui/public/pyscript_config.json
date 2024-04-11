@@ -1,11 +1,17 @@
 {
 	"packages": [
-		"numpy"
+		"numpy",
+		"mdutils"
 	],
 	"fetch": [
 		{
 			"files": [
-				"./pyscript_engineers_web.py"
+				"./pyscript_engineers_web.py",
+				"./base/steel/steelutil.py",
+				"./base/steel/KS18.json",
+				"./base/ReportUtil.py",
+				"./baseplate_KDS41_30_2022_calc.py",
+				"./baseplate_KDS41_30_2022_report.py"
 			]
 		}
 	]
