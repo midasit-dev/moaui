@@ -218,3 +218,49 @@ export const BPName = atom({
   key: 'BPName',
   default: 'BP1',
 });
+
+export const ENVLoad = atom({
+  key: 'ENVLoad',
+  default: { 0 : [[0,0,0,0,0]]}
+});
+
+export const DesignResult = atom({
+  key: 'DesignResult',
+  default: {
+    "Pu" : 0,
+    "Mux" : 0,
+    "Muy" : 0,
+    "Vux" : 0,
+    "Vuy" : 0,
+    "Tu" : 0,
+    "Sigma_max" : 0,
+    "Sigma_min" : 0,
+    "fck" : 0,
+    "BP_Area" : 0,
+    "BP_thick" : 0,
+    "BP_Fy" : 0,
+    "Bolt_Dia" : 0,
+    "Bolt_Length" : 0,
+    "Bolt_Num" : 0,
+  }
+});
+
+export const PlanviewNodeCheck = atom({
+  key: 'planviewNodeCheck',
+  default: false,
+});
+
+export const PlanviewColumnNameCheck = atom({
+  key: 'planviewColumnNameCheck',
+  default: false,
+});
+
+export const PlanviewBPNameCheck = atom({
+  key: 'planviewBPNameCheck',
+  default: false,
+});
+
+export const MDResult = atom({
+  key: 'MDResult',
+  default: ''
+});

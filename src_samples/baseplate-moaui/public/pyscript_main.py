@@ -14,7 +14,8 @@
 import json
 from pyscript_engineers_web import set_g_values, get_g_values, requests_json
 from pyscript_engineers_web import MidasAPI, Product
-
+from baseplate_KDS41_30_2022_calc import calc
+from baseplate_KDS41_30_2022_report import GenerateReport
 def HelloWorld():
 	return (f'Hello World! this message is from def HelloWorld of PythonCode.py')
 
@@ -68,6 +69,14 @@ def py_db_delete(item_name, item_id):
 '''
 def py_select_node_list():
 	civil = MidasAPI(Product.CIVIL)
+	civil.db_update("UNIT", {
+        "1": {
+            "FORCE": "KN",
+            "DIST": "M",
+            "HEAT": "BTU",
+            "TEMPER": "C"
+        }
+    })
 	select = civil.view_select_get()
 	if select == None:
 			error_message = {"error" : "Cannot get selected node list"}
@@ -149,4 +158,490 @@ def py_get_reaction_table(keyindex, loadcomb):
 	## keyindex 안의 값을 str 에서 int로 변경
 
 	loadcomb= json.loads(loadcomb)
-	return json.dumps(civil.post_reactiontable(keyindex, loadcomb))
+	result = civil.post_reactiontable(keyindex, loadcomb)
+	return json.dumps(result)
+
+def py_NewPorject():
+	civil = MidasAPI(Product.CIVIL)
+	return json.dumps(civil.NewProject())
+
+def py_CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeigth, HBeamWidth):
+  
+	civil = MidasAPI(Product.CIVIL)
+	## 단위계 변경
+	civil.db_update("UNIT", {
+        "1": {
+            "FORCE": "N",
+            "DIST": "MM",
+            "HEAT": "BTU",
+            "TEMPER": "C"
+        }
+    })
+ 
+ ## node를 생성
+ 
+	node_items = {
+		"1": {
+			"X": 0,
+			"Y": 0,
+			"Z": 0
+		},
+		"2": {
+			"X": PlateWidth,
+			"Y": 0,
+			"Z": 0
+		},
+		"3": {
+			"X": PlateWidth,
+			"Y": PlateHeight,
+			"Z": 0
+		},
+		"4": {
+			"X": 0,
+			"Y": PlateHeight,
+			"Z": 0
+		},
+		"5": {
+				"X": PlateWidth/2,
+				"Y": PlateHeight/2 - HBeamHeigth/2,
+				"Z": 0
+			},
+		"6": {
+				"X": PlateWidth/2,
+				"Y": PlateHeight/2 + HBeamHeigth/2,
+				"Z": 0
+			},
+		"7": {
+				"X": PlateWidth/2 - HBeamWidth/2,
+				"Y": PlateHeight/2 - HBeamHeigth/2,
+				"Z": 0
+			},
+		"8": {
+				"X": PlateWidth/2 + HBeamWidth/2,
+				"Y": PlateHeight/2 - HBeamHeigth/2,
+				"Z": 0
+			},
+		"9": {
+			"X": PlateWidth/2 - HBeamWidth/2,
+			"Y": PlateHeight/2 + HBeamHeigth/2,
+			"Z": 0
+		},
+		"10": {
+				"X": PlateWidth/2 + HBeamWidth/2,
+				"Y": PlateHeight/2 + HBeamHeigth/2,
+				"Z": 0
+			},
+	
+	}
+	civil.db_create("NODE",node_items)
+	element_items = {
+		"1": {
+            "TYPE": "BEAM",
+            "MATL": 1,
+            "SECT": 1,
+            "NODE": [
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "ANGLE": 0,
+            "STYPE": 0
+        },
+		"2": {
+            "TYPE": "BEAM",
+            "MATL": 1,
+            "SECT": 1,
+            "NODE": [
+                2,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "ANGLE": 0,
+            "STYPE": 0
+        },
+		"3": {
+            "TYPE": "BEAM",
+            "MATL": 1,
+            "SECT": 1,
+            "NODE": [
+                3,
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "ANGLE": 0,
+            "STYPE": 0
+        },
+		"4": {
+            "TYPE": "BEAM",
+            "MATL": 1,
+            "SECT": 1,
+            "NODE": [
+                4,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "ANGLE": 0,
+            "STYPE": 0
+        },
+		"5": {
+			"TYPE": "BEAM",
+			"MATL": 1,
+			"SECT": 1,
+			"NODE": [
+					5,
+					6,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+			],
+			"ANGLE": 0,
+			"STYPE": 0
+		},
+  "6": {
+			"TYPE": "BEAM",
+			"MATL": 1,
+			"SECT": 1,
+			"NODE": [
+					7,
+					5,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+			],
+			"ANGLE": 0,
+			"STYPE": 0
+		},
+  "7": {
+			"TYPE": "BEAM",
+			"MATL": 1,
+			"SECT": 1,
+			"NODE": [
+					5,
+					8,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+			],
+			"ANGLE": 0,
+			"STYPE": 0
+		},
+  "8": {
+			"TYPE": "BEAM",
+			"MATL": 1,
+			"SECT": 1,
+			"NODE": [
+					9,
+					6,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+			],
+			"ANGLE": 0,
+			"STYPE": 0
+		},
+  "9": {
+			"TYPE": "BEAM",
+			"MATL": 1,
+			"SECT": 1,
+			"NODE": [
+					6,
+					10,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+			],
+			"ANGLE": 0,
+			"STYPE": 0
+		}
+	}
+	civil.db_create("ELEM", element_items)
+	divide_items = {
+		"TARGETS": [
+				5,6,7,8,9
+		],
+		"DIVIDE": {
+				"ELEM_TYPE": "Frame",
+				"DIV_METHOD": "Equal",
+				"OPTION": {
+						"EQUAL_OPTION": {
+								"NUM_X": 10
+						}
+				}
+		}
+	}
+	civil.divide_element(divide_items)
+	node_data = civil.db_read("NODE")
+	node_list = []
+	for key, value in node_data.items():
+		node_list.append(key)
+	## node_list 에서 1,2,3,4 삭제
+	node_list.remove(1)
+	node_list.remove(2)
+	node_list.remove(3)
+	node_list.remove(4)
+
+	boundary_items = {}
+	for key in node_list:
+		boundary_items[key] = {
+			"ITEMS": [
+				{
+					"ID": 1,
+					"CONSTRAINT": "1111110"
+				}
+			]
+		}
+	civil.db_create("CONS", boundary_items)
+	return json.dumps("civil.CreateBasePlateOutlines(PlateWidth, PlateHeight)")
+
+def py_meshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness):
+	minsize = min(PlateWidth, PlateHeight) / 30
+	civil = MidasAPI(Product.CIVIL)
+	items = {
+        "MESHER": {
+            "TARGETS": [
+                1,2,3,4
+            ],
+            "TYPE": "Quad and triangle",
+            "MESH_INNER_DOMAIN": False,
+            "INCLUDE_INTERIOR_NODES": {
+                "OPT_CHECK": True,
+                "OPTION": "Auto"
+            },
+            "INCLUDE_INTERIOR_LINES": {
+                "OPT_CHECK": True,
+                "OPTION": "Auto"
+            },
+            "INCLUDE_BOUNDARY_CONNECTIVITY": True
+        },
+        "MESH_SIZE": {
+            "LENGTH" : minsize
+        },
+        "PROPERTY": {
+            "ELEMENT_TYPE": "Plate",
+            "ELEMENT_SUB_TYPE": {
+                "TYPE": "Thick",
+                "WITH_DRILLING_DOF": False
+            },
+            "MATERIAL": 1,
+            "THICKNESS": 1
+        },
+        "DOMAIN_NAME": {
+            "NAME": "frame2"
+        },
+        "ADDITIONAL_OPTION": {
+            "DELETE_LINE_ELEM": True,
+            "SUBDIVIDE_LINE_ELEM": True
+        }
+    }
+	civil.meshing(items)
+	deleted_element_list = []
+	element_data = civil.db_read("ELEM")
+	for key, value in element_data.items():
+		if (value['TYPE'] == 'BEAM'):
+			deleted_element_list.append(key)
+	## 배열을 ,로 구분하여 문자열로 변환
+	deleted_element_list = ','.join(map(str, deleted_element_list))
+	civil.db_delete("ELEM", deleted_element_list)
+	material_items = {
+		"1": {
+			"TYPE": "STEEL",
+			"NAME": "Plate",
+			"HE_SPEC": 0,
+			"HE_COND": 0,
+			"PLMT": 0,
+			"P_NAME": "",
+			"bMASS_DENS": False,
+			"DAMP_RAT": 0.02,
+			"PARAM": [
+					{
+							"P_TYPE": 1,
+							"STANDARD": "KS22(S)",
+							"CODE": "",
+							"DB": PlateMaterial,
+							"bELAST": False,
+							"ELAST": 210
+					}
+			]
+		}
+	}
+	civil.db_create("MATL", material_items)
+	thickness_items = {
+		"1": {
+			"NAME": "1",
+			"TYPE": "VALUE",
+			"bINOUT": False,
+			"T_IN": PlateThickness,
+			"T_OUT": 0,
+			"O_VALUE": 0
+		}
+	}
+	civil.db_create("THIK", thickness_items)
+	return json.dumps("civil.CreateBasePlateOutlines(PlateWidth, PlateHeight)")
+
+def py_applyloads(loaddata, PlateWidth, PlateHeight):
+	civil = MidasAPI(Product.CIVIL)
+	loadcase_items = {}
+	for i in range(len(loaddata)):
+		loadcase_items[str(i+1)] = {
+			"NO" : str(i+1),
+			"NAME" : "LoadCase" + str(i+1),
+			"TYPE" : "D",
+			"DESC" : ""
+		}
+	civil.db_create("STLD", loadcase_items)
+	
+	element_data = civil.db_read("ELEM")
+	element_list = []
+	for key, value in element_data.items():
+		element_list.append(key)
+	pressure_load_items = {}
+	for i in range(len(element_list)):
+		loaditems = []
+		for j in range(len(loaddata)):
+			eachload = {
+				"ID" : j+1,
+				"LCNAME" : "LoadCase" + str(j+1),
+				"GROUP_NAME" : "",
+				"CMD" : "PRES",
+				"ELEM_TYPE" : "PLATE",
+				"FACE_EDGE_TYPE": "FACE",
+				"DIRECTION": "GZ",
+				"FORCES": [
+					- round(float(loaddata[j])*1000/(float(PlateWidth)*float(PlateHeight)),6),
+					0,0,0,0
+				]
+			}
+			loaditems.append(eachload)
+		pressure_load_items[element_list[i]] = {"ITEMS" : loaditems }
+	
+	civil.db_create("PRES", pressure_load_items)
+	
+	return json.dumps("civil.CreateBasePlateOutlines(PlateWidth, PlateHeight)")
+
+def py_analysis(DBName):
+	civil = MidasAPI(Product.CIVIL)
+	save_items = "C:\\MIDAS\\Test"+str(DBName)+".mcb"
+	civil.saveas(save_items)
+	civil.doc_anal()
+
+	element_data = civil.db_read("ELEM")
+	element_list = []
+	for key, value in element_data.items():
+		element_list.append(key)
+  
+	return json.dumps("civil.CreateBasePlateOutlines(PlateWidth, PlateHeight)")
+
+def py_getresult():
+	civil = MidasAPI(Product.CIVIL)
+	element_data = civil.db_read("ELEM")
+	element_list = []
+	for key, value in element_data.items():
+		element_list.append(key)
+
+	loadcase_data = civil.db_read("STLD")
+	loadcase_list = []
+	for key, value in loadcase_data.items():
+		loadcase_name = value["NAME"] + ("(ST)")
+		loadcase_list.append(loadcase_name)
+  
+	getresult_items = {
+		"TABLE_NAME": "PlateForce(UnitLength:UCS)",
+		"TABLE_TYPE": "PLATEFORCEUG",
+		"UNIT": {
+				"FORCE": "kN",
+				"DIST": "m"
+		},
+		"STYLES": {
+				"FORMAT": "Fixed",
+				"PLACE": 12
+		},
+		"COMPONENTS": [
+				"Elem",
+				"Load",
+				"Node",
+				"Mxx"
+		],
+		"NODE_ELEMS": {
+				"KEYS": element_list
+		},
+		"LOAD_CASE_NAMES": loadcase_list,
+		"AVERAGE_NODAL_RESULT": True,
+		"NODE_FLAG": {
+				"CENTER": False,
+				"NODES": True
+		}
+	}
+ 
+	result = civil.GetResult(getresult_items)
+	result = result["PlateForce(UnitLength:UCS)"]["DATA"]
+	result_array = {}
+	for i in range(len(result)):
+		## result_array 에 {elementkey : {loadcase : [result]}} 형태로 저장
+		elementkey = result[i][1]
+		loadcase = result[i][2]
+		if elementkey not in result_array.keys():
+			result_array[elementkey] = {}
+		if loadcase not in result_array[elementkey].keys():
+			result_array[elementkey][loadcase] = []
+		result_array[elementkey][loadcase].append(float(result[i][4]))
+
+	## result_array 안의 결과값의 평균으로 저장
+	for key in result_array.keys():
+		for loadcase in result_array[key].keys():
+			result_array[key][loadcase] = sum(result_array[key][loadcase])/len(result_array[key][loadcase])
+
+	## 최소값 저장
+	result = {"min" : 100000000}
+	for key in result_array.keys():
+		for loadcase in result_array[key].keys():
+			if result_array[key][loadcase] < result["min"]:
+				result["min"] = result_array[key][loadcase]
+
+	return json.dumps(result)
+
+## baseplate_KDS41_30_2022_calc.py 의 calc 함수 호출
+def Calculatation(jsondata):
+
+	cal_result = calc(jsondata)
+	return json.dumps(cal_result)
+
+
+def convert_to_Markdown(data):
+	## baseplate_KDS41_30_2022_report.py 의 GenerateReport 함수 호출
+	report = GenerateReport(data)
+	return json.dumps(report)

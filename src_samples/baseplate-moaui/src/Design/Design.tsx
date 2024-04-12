@@ -13,18 +13,18 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import TypoGraphyTextField from '../NewComponents/TypoGraphyTextField';
 import {selectNodeList, setColumnInfo } from '.././utils_pyscript';
 import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex, BasePlateName,
-  HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, ReactionResult
+  HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, ReactionResult, DesignResult, MDResult
 } from '../variables';
 import PlanViewDrawing from '../Components/PlanViewDrawing';
 import TypoGraphyDropList from '../NewComponents/TypoGraphyDropList';
-import {dbReadItem }from '../utils_pyscript'
+import {dbReadItem, postNewProject, CreateBasePlateOutlines, AutoMeshing, Applyloads, Analysis, GetResult, calculate_baseplate, covertMarkdown, }from '../utils_pyscript'
 import { set } from 'lodash';
-
+import MDReport from '../Design/MDReport';
 
 
 
 function Design() {
-
+  const marked = require('marked');
   const [tabName, setTabName] = React.useState('Column');  
   const [selectedColumnIndex, setSelectedColumnIndex] = useRecoilState(SelectedColumnIndex);
   const [hSectionDB, setHSectionDB] = useRecoilState(HSectionDB);
@@ -44,7 +44,8 @@ function Design() {
 
   const [minMaxCoordinates, setMinMaxCoordinates] = useRecoilState(MinMaxCoordinates);
   const [reactionResult, setReactionResult] = useRecoilState(ReactionResult);
-  
+  const [designResult, setDesignResult] = useRecoilState(DesignResult);
+  const [mDResult, setMDResult] = useRecoilState(MDResult);
   const columns : any = [
     {field : 'ItemName', headerName : 'Check Item.', width : 100, editable : true, sortable : false},
     {field : 'Demand', headerName : 'Demand', width : 100, editable : true, sortable : false},
@@ -72,6 +73,77 @@ function Design() {
     setSelectedColumnIndex(e.target.value)
     
   }
+  
+  const handleDesignClick = () => {
+    postNewProject(); 
+    const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
+    console.log(DBSection_Name)
+    const BPData = JSON.parse(JSON.stringify(node_BP_Data));
+    let PlateWidth = 0
+    let PlateHeight = 0
+    let SectionDim = ''
+    let PlateMaterial = ''
+    let PlateThickness = 0
+    let keyindex = ''
+    for(let key in BPData){
+      if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
+        keyindex = key
+        PlateWidth = BPData[key].BASEPLATE.PLATE.WIDTH
+        PlateHeight = BPData[key].BASEPLATE.PLATE.HEIGHT
+        SectionDim = BPData[key].BASEPLATE.COLUMN.DB
+        PlateMaterial = BPData[key].BASEPLATE.PLATE.MATL
+        PlateThickness = BPData[key].BASEPLATE.PLATE.THIK
+        break;
+      }
+    }
+
+    const splitspace = SectionDim.split(' ')
+    const splitdim = splitspace[1].split('x')
+    const HBeamHeight = Number(splitdim[0])
+    const HBeamWidth = Number(splitdim[1])
+    CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeight, HBeamWidth)
+    AutoMeshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness)
+    
+    let loaddata = []
+    for(let key in BPData){
+      if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
+        for(let reaction_key in reactionResult){
+          if(reaction_key == key){
+            for(let load_key in reactionResult[reaction_key]){
+              loaddata.push(reactionResult[reaction_key][load_key][2])
+            }
+          }
+        }
+      }
+    }
+    Applyloads(loaddata, PlateWidth, PlateHeight)
+    Analysis(selectedColumnIndex)
+    const Pu_Result = GetResult()
+    let new_DesignResult = JSON.parse(JSON.stringify(designResult))
+    new_DesignResult.Pu = 1
+    new_DesignResult.Mux = Math.abs(Number(Pu_Result['min']))
+    new_DesignResult.Muy = 1
+    new_DesignResult.Vux = 1
+    new_DesignResult.Vuy = 1
+    new_DesignResult.Tu = 1
+    new_DesignResult.Sigma_max = 1
+    new_DesignResult.Sigma_min = 1
+    new_DesignResult.fck = Number(BPData[keyindex].BASEPLATE.COLUMN.MATL)
+    new_DesignResult.BP_Area = BPData[keyindex].BASEPLATE.PLATE.WIDTH * BPData[keyindex].BASEPLATE.PLATE.HEIGHT
+    new_DesignResult.BP_thick = BPData[keyindex].BASEPLATE.PLATE.THIK
+    new_DesignResult.BP_Fy = 1
+    new_DesignResult.Bolt_Dia = 1
+    new_DesignResult.Bolt_Length = 1
+    new_DesignResult.Bolt_Num = 1
+    setDesignResult(new_DesignResult)
+    console.log('Design Result', new_DesignResult)
+    const calculate_result = calculate_baseplate(JSON.stringify(new_DesignResult))
+    
+    const markdown = covertMarkdown(JSON.stringify(calculate_result))
+    setMDResult(markdown)
+
+  }
+  
   
   return (
     <GuideBox row >
@@ -104,10 +176,18 @@ function Design() {
           <GuideBox width={400} horRight>
             <Button 
               variant='outlined'
-              
+              onClick={handleDesignClick}
             >Design Check</Button>
           </GuideBox>
           
+        </GuideBox>
+      </Panel>
+      <Panel height={550} width={500}>
+        <GuideBox spacing={1}>
+          <Typography variant='h1'>Design Report</Typography>
+          <div style = {{height: 500, width: '100%', overflowY: 'scroll'}}>
+          <MDReport></MDReport>
+          </div>
         </GuideBox>
       </Panel>
     </GuideBox>

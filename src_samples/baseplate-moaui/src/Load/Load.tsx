@@ -13,7 +13,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import TypoGraphyTextField from '../NewComponents/TypoGraphyTextField';
 import {selectNodeList, setColumnInfo } from '.././utils_pyscript';
 import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex, BasePlateName,
-  HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, ReactionResult
+  HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, ReactionResult,
+  ENVLoad
 } from '../variables';
 import PlanViewDrawing from '../Components/PlanViewDrawing';
 import TypoGraphyDropList from '../NewComponents/TypoGraphyDropList';
@@ -44,6 +45,7 @@ function Load() {
 
   const [minMaxCoordinates, setMinMaxCoordinates] = useRecoilState(MinMaxCoordinates);
   const [reactionResult, setReactionResult] = useRecoilState(ReactionResult);
+  const [envLoad, setEnvLoad] = useRecoilState(ENVLoad);
   
   const columns : any = [
     {field : 'NodeIndex', headerName : 'Node No.', width : 80, editable : true, sortable : false},
@@ -55,9 +57,10 @@ function Load() {
     {field : 'Sheary', headerName : 'Vuy', width : 100, editable : true, sortable : false},
   ]
   
-  let rows_ENV :any= [];
+
 
   const [rows_ADD, setRows_ADD] = useState<any>([]);
+  const [rows_ENV, setRows_ENV] = useState<any>([]);
 
   const ColumnSelected = (e:any) => {
     setSelectedColumnIndex(e.target.value)
@@ -78,11 +81,44 @@ function Load() {
               id : id_index,
               NodeIndex : j,
               LoadComb : k,
-              Axial : reactionResult[j][k][2],
-              Momentx : reactionResult[j][k][4],
-              Momenty : reactionResult[j][k][3],
-              Shearx : reactionResult[j][k][0],
-              Sheary : reactionResult[j][k][1],
+              Axial : Number(reactionResult[j][k][2]).toFixed(2),
+              Momentx : Math.abs(reactionResult[j][k][4]).toFixed(2),
+              Momenty : Math.abs(reactionResult[j][k][3]).toFixed(2),
+              Shearx : Math.abs(reactionResult[j][k][0]).toFixed(2),
+              Sheary : Math.abs(reactionResult[j][k][1]).toFixed(2),
+            })
+            id_index += 1
+          }
+        }
+      }
+    }
+
+    setRows_ADD(new_rows_ADD)
+  }
+  
+  useEffect(() => {
+    const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
+    let Node_List = []
+    for (let key in node_BP_Data){
+      if (node_BP_Data[key].BASEPLATE.COLUMN.DB === DBSection_Name){
+        Node_List.push(key)
+      }
+    }
+    let id_index = 0
+    let new_rows_ADD = []
+    for (let i=0; i<Node_List.length; i++){
+      for (let j in reactionResult){
+        if (j == Node_List[i]){
+          for (let k in reactionResult[j]){
+            new_rows_ADD.push({
+              id : id_index,
+              NodeIndex : j,
+              LoadComb : k,
+              Axial : Number(reactionResult[j][k][2]).toFixed(2),
+              Momentx : Math.abs(reactionResult[j][k][4]).toFixed(2),
+              Momenty : Math.abs(reactionResult[j][k][3]).toFixed(2),
+              Shearx : Math.abs(reactionResult[j][k][0]).toFixed(2),
+              Sheary : Math.abs(reactionResult[j][k][1]).toFixed(2),
             })
             id_index += 1
           }
@@ -90,8 +126,8 @@ function Load() {
       }
     }
     setRows_ADD(new_rows_ADD)
-  }
-  
+  }, [])
+
   return (
     <GuideBox row >
       <Panel height={550}>
@@ -109,21 +145,9 @@ function Load() {
 
           </GuideBox>
 
-          <Typography variant='h1'>LoadCase(ENV)</Typography>
-
-          <div style={{height: 200, width: '100%'}}>
-            <DataGrid
-              columnHeaderHeight={60}
-              rowHeight={80}
-              hideFooter
-              columns={columns}
-              rows = {rows_ENV}
-            ></DataGrid>
-          </div>
-
           <Typography variant='h1'>LoadCase(ADD)</Typography>
 
-          <div style={{height: 200, width: '100%'}}>
+          <div style={{height: 350, width: '100%'}}>
             <DataGrid
               columnHeaderHeight={60}
               rowHeight={80}

@@ -15,13 +15,14 @@ import BasePlate from './BasePlate';
 import {selectNodeList, setColumnInfo } from '.././utils_pyscript';
 import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex, BasePlateName,
   HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, PlateThickness, BasePlateMaterial,
-  ConcreteMaterial, BPName
+  ConcreteMaterial, BPName, PlanviewBPNameCheck, PlanviewColumnNameCheck, PlanviewNodeCheck
 } from '../variables';
 import PlanViewDrawing from '../Components/PlanViewDrawing';
 import TypoGraphyDropList from '../NewComponents/TypoGraphyDropList';
 import {dbReadItem }from '../utils_pyscript'
 import { set } from 'lodash';
 import Pedestal from './Pedestal';
+
 
 
 
@@ -34,6 +35,9 @@ function Member() {
   const [columnIndex_DBName, setcolumnIndex_DBName] = useRecoilState(SelectedColumnIndex_DBName);
   const [selectedColumnList, setSelectedColumnList] = useRecoilState(SelectedColumnList);
   const [basePlateName, setBasePlateName] = useRecoilState(BasePlateName);
+  const [planViewNodeCheck, setPlanViewNodeCheck] = useRecoilState(PlanviewNodeCheck);
+  const [planViewColumnNameCheck, setPlanViewColumnNameCheck] = useRecoilState(PlanviewColumnNameCheck);
+  const [planViewBPNameCheck, setPlanViewBPNameCheck] = useRecoilState(PlanviewBPNameCheck);
 
 
   const node_BP_Data = useRecoilValue(Node_BP_Data);
@@ -105,7 +109,7 @@ function Member() {
     setBasePlateName(BPList)
   }
   return (
-    <GuideBox row>
+    <GuideBox row spacing={1}>
       <Panel height={550}>
         <GuideBox marginTop={1}>
           
@@ -149,6 +153,28 @@ function Member() {
       </Panel>
       <GuideBox show width = {500} height={500}>
         <Panel>
+          <Typography variant='h1'>Plan View</Typography>
+          <GuideBox row verCenter spacing={2}>
+            <GuideBox row verCenter>
+              <Check 
+                  checked = {planViewNodeCheck}
+              />
+              <Typography>Node No.</Typography>              
+            </GuideBox>
+            <GuideBox row verCenter>
+              <Check 
+                  checked
+              />
+              <Typography>Column Name</Typography>              
+            </GuideBox>
+            <GuideBox row verCenter>
+              <Check 
+                  checked
+              />
+              <Typography>Base Plate Name</Typography>              
+            </GuideBox>
+          </GuideBox>
+          
           <PlanViewDrawing 
           panelSize = {500}
           MinMaxCord = {minMaxCoordinates}
