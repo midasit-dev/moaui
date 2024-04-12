@@ -86,7 +86,16 @@ const StyledComponent = styled((props: StyledProps) => {
           {headerIcon ? headerIcon : <></>}
           <Typography variant="h1">{headerTitle}</Typography>
         </GuideBox>
-				{!hiddenClose && <Icon iconName='Close' toButton onClick={() => setOpen?.(false)}/>}
+        {!hiddenClose && (
+          <Icon
+            iconName='Close'
+            toButton 
+            onClick={() => {
+              setOpen?.(false);
+              onClose?.();
+            }}
+          />
+        )}
       </GuideBox>
       <GuideBox padding={2}>{children}</GuideBox>
     </Dialog>
