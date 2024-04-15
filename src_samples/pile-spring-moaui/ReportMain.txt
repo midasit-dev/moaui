@@ -1,0 +1,472 @@
+import { prototype } from 'events';
+import * as xlsx from 'xlsx-js-style'
+import {ProjectName, SoilData} from '../variables'
+import React from 'react';
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'; 
+import PileTable from '../PileProperties/PileTable';
+import {CalculateBeta, CalculateBeta_Period, CalculateKv, CalculateKvalue, CalculateKvalue_Period, CalculateProperties, CalculateMatrix, Test} from '../../utils_pyscript'
+
+
+function ExcelReport(
+    projectName: string, piletableData: any, soilData : any,
+    topLevel : any, GroundLevel : any, Waterlevel : any,
+    GroupEffectValue : any, SlopeEffectState : any, foundationwidth : any, sidelength : any
+    ){
+
+    
+    
+    const BaseSheetFilePath = 'BaseSheet.xlsx'
+    
+    fetch(BaseSheetFilePath)
+    .then((response) => {
+        return response.arrayBuffer();
+    })
+    .then((arrayBuffer) => {
+        const workbook = xlsx.read(arrayBuffer, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        
+        // 병합된 셀의 정보를 가져옴
+        const mergeLoc: xlsx.Range[]| undefined = sheet['!merges'] ;
+        let InsertPoint = 0;
+        // 복사할 새로운 workbook 생성
+        const newWorkbook = xlsx.utils.book_new();
+        const newSheetName = 'CopiedSheet';
+
+        // 새 시트 생성
+        let newSheet: Record<string, any> = {};
+        
+         // 각 열의 너비를 2로 설정
+        const cols = [];
+         for (let i = 0; i < 50; i++) { // 예시로 100개 열을 설정
+             cols.push({ wpx: 16}); // 너비 2를 설정 (기본 픽셀 단위인 wpx 사용)
+        }
+        
+        //환경 세팅
+        let i = 0
+        newSheet['!cols'] = cols;
+        newSheet['!ref'] = 'A1:AI500'; 
+        newSheet['!merges'] = [];
+
+        // 프로젝트 명
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 0, 5,mergeLoc, [[2,5,projectName]], true);
+        const test = Test(soilData, piletableData, 'Period', SlopeEffectState, GroupEffectValue)
+        // 1.1 일반
+        for (i = 0; i < piletableData.length; i++) {
+            console.log('test')
+            // Test
+            
+            const Property = CalculateProperties(JSON.stringify(piletableData[i]))
+            let Data = [
+                
+                [6,2,'('+(i+1)+') 말뚝 타입 '+ (i+1) + ' : ' + piletableData[i].pileName], 
+                [7,10,topLevel], 
+                [8,10,piletableData[i].pileType], 
+                [9,10,piletableData[i].constructionMethod],
+                [10,10,piletableData[i].headCondition],
+                [11,10,piletableData[i].bottomCondition],
+                [12,9,(Property[3])],
+                [13,9,piletableData[i].pileLength],
+            ];
+            [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 6, 14, mergeLoc, Data);
+        }
+        /*
+        // 1.2 말뚝 배치
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 15, 15 ,mergeLoc, [],true);
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 16, 29 ,mergeLoc);
+        [newSheet, InsertPoint] = InsertTableHead(newSheet, sheet, InsertPoint, 30, 30 ,mergeLoc, 3,29);
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 31, 33 ,mergeLoc);
+        
+        // 1.3 말뚝 제원 
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 34, 34 ,mergeLoc, [],true);
+
+        // 개별 말뚝 제원
+        for (i= 0; i< piletableData.length; i++){
+            const Property = CalculateProperties(JSON.stringify(piletableData[i]))
+            if (piletableData[i].pileType === '소일시멘트말뚝'){
+                let Data = [
+                    [48,2,'('+(i+1)+') 말뚝 타입 '+ (i+1)],
+                    [49,9,piletableData[i].pileType],
+                    [51,9,Property[6]],
+                    [52,9,Property[4].toFixed(6)],
+                    [53,9,Property[8].toFixed(6)],
+                    [51,26,Property[7]],
+                    [52,26,Property[5].toFixed(6)],
+                    [53,26,Property[9].toFixed(6)], 
+                ];
+                [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 48, 54 ,mergeLoc, Data);
+            }
+            else {
+                let Data = [
+                    [35,2,'('+(i+1)+') 말뚝 타입 '+ (i+1)],
+                    [36,9,piletableData[i].pileType],
+                    [37,9,Property[1]],
+                    [38,9,Property[0].toFixed(6)],
+                    [39,9,Property[2].toFixed(6)],
+                ];
+                [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 35, 40 ,mergeLoc, Data);
+            }
+        }
+        
+        // 1.4 지반조건
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 56, 56 ,mergeLoc, [],true);
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 57, 58 ,mergeLoc, [[57,9,GroundLevel],[58,9,Waterlevel]]);
+        [newSheet, InsertPoint] = InsertTableHead(newSheet, sheet, InsertPoint, 59, 61 ,mergeLoc,2,33);
+        let Level = Number(GroundLevel)
+        for (i =0; i<soilData.length; i++){
+            let Data = [
+                [62,2, soilData[i].LayerNo],
+                [62,4, soilData[i].LayerType],
+                [62,7, Level.toFixed(3)],
+                [62,10, soilData[i].Depth],
+                [62,13, soilData[i].AvgNValue],
+                [62,15, soilData[i].gamma],
+                [62,18, soilData[i].aE0],
+                [62,21, soilData[i].aE0_Seis],
+                [62,24, soilData[i].vd],
+                [62,26, soilData[i].Vsi],
+                [62,29, soilData[i].ED],
+                [62,32, soilData[i].DE],
+            ];
+            Level = Level - soilData[i].Depth;
+            [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 62, 62 ,mergeLoc, Data);
+        }
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 65, 65 ,mergeLoc);
+
+        // 2. 지반반력계수, 2.1 수평방향 지반반력계수
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 67, 68 ,mergeLoc, [],true);
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 69, 101 ,mergeLoc);
+        
+        // 2.1 수평방향 지반반력계수 - 말뚝 별 제원
+        const CalBetaResult = CalculateBeta(soilData, piletableData, 'normal', SlopeEffectState)
+        const CalBetaResult_Seismic = CalculateBeta(soilData, piletableData, 'seismic', SlopeEffectState)
+        const CalBetaResult_Period = CalculateBeta_Period(soilData, piletableData, SlopeEffectState)
+        for (i = 0; i < piletableData.length; i++) {
+            let Data =[
+                [102,2,'('+(i+1)+') 말뚝 타입 '+ (i+1) + ' : ' + piletableData[i].pileName],
+                [104,16, (CalBetaResult[0][i]).toFixed(6)],
+                [105,16, (CalBetaResult[1][i]).toFixed(3)],
+                [106,16, (CalBetaResult[2][i]).toFixed(3)],
+                [107,16, (CalBetaResult[3][i]).toFixed(3)],
+                [108,16, (CalBetaResult[4][i]).toFixed(3)],
+                [109,16, GroupEffectValue],
+            ];
+            [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 102, 110 ,mergeLoc, Data);
+            [newSheet, InsertPoint] = InsertTableHead(newSheet, sheet, InsertPoint, 111, 113 ,mergeLoc,3,34);
+            for (let j = 0; j < soilData.length; j++){
+                //지진시 BH 는 상시의 BH 로 계산
+                let Level = Number(GroundLevel)
+                let KH0 =soilData[j].aE0 / 0.3 * CalBetaResult[5][i][j]
+                let KH0_Seis = soilData[j].aE0_Seis / 0.3 * CalBetaResult[5][i][j] * soilData[j].DE
+                let KH = (KH0)*Math.pow((CalBetaResult[2][i]/0.3),(-3/4))*GroupEffectValue
+                let KH_Seis = (KH0_Seis)*Math.pow((CalBetaResult[2][i]/0.3),(-3/4))
+                let Data = [
+                    [114,3,soilData[j].LayerNo],
+                    [114,5,Level.toFixed(3)],
+                    [114,8,soilData[j].Depth],
+                    [114,11,soilData[j].DE],
+                    [114,14,CalBetaResult[5][i][j]],
+                    [114,17,soilData[j].aE0],
+                    [114,20,soilData[j].aE0_Seis],
+                    [114,23,(KH0).toFixed(3)],
+                    [114,26,(KH0_Seis).toFixed(3)],
+                    [114,29,(KH).toFixed(3)],
+                    [114,32,(KH_Seis).toFixed(3)],
+                ];
+                Level = Level - soilData[j].Depth;
+                [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 114, 114 ,mergeLoc, Data);
+                
+            }
+            Data = [
+                [119,16, (CalBetaResult_Period[0][i]).toFixed(6)],
+                [120,16, (CalBetaResult_Period[1][i]).toFixed(3)],
+                [121,16, (CalBetaResult_Period[2][i]).toFixed(3)],
+                [122,16, (CalBetaResult_Period[3][i]).toFixed(3)],
+                [123,16, (CalBetaResult_Period[4][i]).toFixed(3)],
+                [124,16, GroupEffectValue],
+            ];
+            [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 117, 125 ,mergeLoc, Data);
+            [newSheet, InsertPoint] = InsertTableHead(newSheet, sheet, InsertPoint, 126, 127 ,mergeLoc,3,25);
+            for (let j = 0; j < soilData.length; j++){
+                let Level = Number(GroundLevel)
+                let KH0 = soilData[j].ED / 0.3 * CalBetaResult_Period[5][i][j] * soilData[j].DE
+                let KH =  (KH0)*Math.pow((CalBetaResult_Period[2][i]/0.3),(-3/4))*GroupEffectValue
+                let Data = [
+                    [128,3,soilData[j].LayerNo],
+                    [128,5,Level],
+                    [128,8,soilData[j].Depth],
+                    [128,11,soilData[j].DE],
+                    [128,14,CalBetaResult_Period[5][i][j]],
+                    [128,17,soilData[j].ED],
+                    [128,20,(KH0).toFixed(3)],
+                    [128,23,(KH).toFixed(3)],
+                ];
+                Level = Level - soilData[j].Depth;
+                [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 128, 128 ,mergeLoc, Data);
+            }
+        }
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 131, 131 ,mergeLoc, );
+        
+        // 3. 말뚝 스프링 정수
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 133, 134 ,mergeLoc, [],true);
+        const CalKvResult = CalculateKv(piletableData)
+        console.log(JSON.stringify(CalKvResult))
+        for (i = 0; i < piletableData.length; i++) {
+            if (piletableData[i].pileType === '소일시멘트말뚝'){
+                let Data = [
+                    [146,3,'('+(i+1)+') 말뚝 타입 '+ (i+1) + ' : ' + piletableData[i].pileName],
+                    [158,7, CalKvResult[1][i]],
+                    [158,13, CalKvResult[2][i]],
+                ];
+                [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 146, 158 ,mergeLoc, Data);
+            }
+            else {
+                let Data = [
+                    [135,3,'('+(i+1)+') 말뚝 타입 '+ (i+1) + ' : ' + piletableData[i].pileName],
+                    [145,6, CalKvResult[1][i]],
+                    [145,12, CalKvResult[2][i]],
+                ];
+                [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 135, 145 ,mergeLoc, Data);
+            }
+        }
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 159, 159 ,mergeLoc,);
+
+        //말뚝 별 정수 추가해야함
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 160, 160 ,mergeLoc,[],true );
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 161, 171 ,mergeLoc, );
+        [newSheet, InsertPoint] = InsertTableHead(newSheet, sheet, InsertPoint, 172, 174 ,mergeLoc,3,31);
+        const CalKValueResult = CalculateKvalue(piletableData, GroundLevel, topLevel, soilData, 'normal', SlopeEffectState)
+        const CalKValueResult_Seismic = CalculateKvalue(piletableData, GroundLevel, topLevel, soilData, 'seismic', SlopeEffectState)
+        const CalKvalueResult_Period = CalculateKvalue_Period(piletableData, GroundLevel, topLevel, soilData, SlopeEffectState)
+        for (i = 0; i < piletableData.length; i++) {
+            let Data = [
+                [175,3,(i+1)],
+                [175,5,CalKValueResult[i][0]],
+                [175,8,CalKValueResult[i][1]],
+                [175,11,CalKValueResult[i][2]],
+                [175,14,CalKValueResult[i][3]],
+                [175,17,CalKValueResult_Seismic[i][0]],
+                [175,20,CalKValueResult_Seismic[i][1]],
+                [175,23,CalKValueResult_Seismic[i][2]],
+                [175,26,CalKValueResult_Seismic[i][3]],
+                [175,29,CalKvResult[0][i]],
+            ];
+            [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 175, 175 ,mergeLoc, Data);
+        }
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 178, 179 ,mergeLoc, );
+        [newSheet, InsertPoint] = InsertTableHead(newSheet, sheet, InsertPoint, 180, 181 ,mergeLoc,3,19);
+        for (i = 0; i < piletableData.length; i++) {
+            let Data = [
+                [182,3, (i+1)],
+                [182,5, CalKvalueResult_Period[i][0]],
+                [182,8, CalKvalueResult_Period[i][1]],
+                [182,11, CalKvalueResult_Period[i][2]],
+                [182,14, CalKvalueResult_Period[i][3]],
+                [182,17, CalKvResult[0][i]],
+            ];
+            [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 182, 182 ,mergeLoc, Data);
+        }
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 185, 187 ,mergeLoc, );
+        //3.3 말뚝 반력 및 변위 계산
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 188, 188 ,mergeLoc, [], true);
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 189, 231 ,mergeLoc,);
+        
+        
+        const NormalXResult = CalculateMatrix(piletableData, foundationwidth, sidelength, GroundLevel, topLevel, soilData, SlopeEffectState, 'normal', 'X')
+        let Data = [
+            [232,13, NormalXResult[0].toFixed(3)],
+            [232,18, NormalXResult[1].toFixed(3)],
+            [232,23, NormalXResult[2].toFixed(3)],
+            [234,13, NormalXResult[1].toFixed(3)],
+            [234,18, NormalXResult[3].toFixed(3)],
+            [234,23, NormalXResult[4].toFixed(3)],
+            [236,13, NormalXResult[2].toFixed(3)],
+            [236,18, NormalXResult[4].toFixed(3)],
+            [236,23, NormalXResult[5].toFixed(3)],
+        ];
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 232, 237 ,mergeLoc, Data);
+        const SeismicXResult = CalculateMatrix(piletableData, foundationwidth, sidelength, GroundLevel, topLevel, soilData, SlopeEffectState, 'seismic', 'X')
+        Data = [
+            [239,13, SeismicXResult[0].toFixed(3)],
+            [239,18, SeismicXResult[1].toFixed(3)],
+            [239,23, SeismicXResult[2].toFixed(3)],
+            [241,13, SeismicXResult[1].toFixed(3)],
+            [241,18, SeismicXResult[3].toFixed(3)],
+            [241,23, SeismicXResult[4].toFixed(3)],
+            [243,13, SeismicXResult[2].toFixed(3)],
+            [243,18, SeismicXResult[4].toFixed(3)],
+            [243,23, SeismicXResult[5].toFixed(3)],
+        ];
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 238, 244 ,mergeLoc, Data);
+        const PeriodXResult = CalculateMatrix(piletableData, foundationwidth, sidelength, GroundLevel, topLevel, soilData, SlopeEffectState, 'period', 'X')
+        Data = [
+            [246,13, PeriodXResult[0].toFixed(3)],
+            [246,18, PeriodXResult[1].toFixed(3)],
+            [246,23, PeriodXResult[2].toFixed(3)],
+            [248,13, PeriodXResult[1].toFixed(3)],
+            [248,18, PeriodXResult[3].toFixed(3)],
+            [248,23, PeriodXResult[4].toFixed(3)],
+            [250,13, PeriodXResult[2].toFixed(3)],
+            [250,18, PeriodXResult[4].toFixed(3)],
+            [250,23, PeriodXResult[5].toFixed(3)],
+        ];
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 245, 253 ,mergeLoc, Data);
+
+        const NormalZResult = CalculateMatrix(piletableData, foundationwidth, sidelength, GroundLevel, topLevel, soilData, SlopeEffectState, 'normal', 'Z')
+        Data = [
+            [254,13, NormalZResult[0].toFixed(3)],
+            [254,18, NormalZResult[1].toFixed(3)],
+            [254,23, NormalZResult[2].toFixed(3)],
+            [256,13, NormalZResult[1].toFixed(3)],
+            [256,18, NormalZResult[3].toFixed(3)],
+            [256,23, NormalZResult[4].toFixed(3)],
+            [258,13, NormalZResult[2].toFixed(3)],
+            [258,18, NormalZResult[4].toFixed(3)],
+            [258,23, NormalZResult[5].toFixed(3)],
+        ];
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 254, 259 ,mergeLoc, Data);
+        const SeismicZResult = CalculateMatrix(piletableData, foundationwidth, sidelength, GroundLevel, topLevel, soilData, SlopeEffectState, 'seismic', 'Z')
+        Data = [
+            [261,13, SeismicZResult[0].toFixed(3)],
+            [261,18, SeismicZResult[1].toFixed(3)],
+            [261,23, SeismicZResult[2].toFixed(3)],
+            [263,13, SeismicZResult[1].toFixed(3)],
+            [263,18, SeismicZResult[3].toFixed(3)],
+            [263,23, SeismicZResult[4].toFixed(3)],
+            [265,13, SeismicZResult[2].toFixed(3)],
+            [265,18, SeismicZResult[4].toFixed(3)],
+            [265,23, SeismicZResult[5].toFixed(3)],
+        ];
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 260, 266 ,mergeLoc, Data);
+        const PeriodZResult = CalculateMatrix(piletableData, foundationwidth, sidelength, GroundLevel, topLevel, soilData, SlopeEffectState, 'period', 'Z')
+        Data = [
+            [268,13, PeriodZResult[0].toFixed(3)],
+            [268,18, PeriodZResult[1].toFixed(3)],
+            [268,23, PeriodZResult[2].toFixed(3)],
+            [270,13, PeriodZResult[1].toFixed(3)],
+            [270,18, PeriodZResult[3].toFixed(3)],
+            [270,23, PeriodZResult[4].toFixed(3)],
+            [272,13, PeriodZResult[2].toFixed(3)],
+            [272,18, PeriodZResult[4].toFixed(3)],
+            [272,23, PeriodZResult[5].toFixed(3)],
+        ];
+        [newSheet, InsertPoint] = InsertPartWithValues(newSheet, sheet, InsertPoint, 267, 273 ,mergeLoc, Data);
+        xlsx.utils.book_append_sheet(newWorkbook, newSheet, newSheetName);
+        xlsx.writeFile(newWorkbook, 'NewWorkbook.xlsx');
+        */
+    })
+}
+
+export default ExcelReport
+
+
+
+function InsertPartWithValues(newSheet: Record<string, any>, 
+    sheet: Record<string, any>, 
+    InsertPoint : number, 
+    OrgStartRow: number, // BaseSheet에서 복사할 시작 행
+    OrgEndRow: number, // BaseSheet에서 복사할 끝 행
+    mergeLoc?: xlsx.Range[] | undefined,
+    Data? : any,// 삽입할 값이 있는 경우 
+    OrgBorder? : boolean,
+    ValueBorder? : boolean
+    ):[Record<string, any>, number]{
+    // range를 복사하여 새로운 시트에 추가
+    
+    for (let i = OrgStartRow; i <= OrgEndRow; i++) {
+        for (let j = 0; j < 35; j++) { 
+            const OrgCellAddress = xlsx.utils.encode_cell({ c: j, r: i });
+            const newCellAddress = xlsx.utils.encode_cell({ c: j, r: (i-OrgStartRow+InsertPoint) });
+            newSheet[newCellAddress] = sheet[OrgCellAddress];
+            if (OrgBorder) {
+                newSheet[newCellAddress] = {...newSheet[newCellAddress], s: {font: { bold : true, name: "Malgun Gothic", sz: 10 }, alignment : {vertical : 'center'}}};
+            }
+            else{
+                newSheet[newCellAddress] = {...newSheet[newCellAddress], s: {font: { name: "Malgun Gothic", sz: 10 }, alignment : {vertical : 'center'}}};
+            }
+        }
+    }
+
+    // 병합된 셀의 정보를 가져옴
+    if (mergeLoc) {
+        mergeLoc.forEach((range) => {        
+            if (range.s.r >= OrgStartRow && range.e.r <= OrgEndRow) {
+                const newRange = {
+                    s: { c: range.s.c, r: range.s.r + InsertPoint- OrgStartRow},
+                    e: { c: range.e.c, r: range.e.r + InsertPoint- OrgStartRow},
+                };
+                newSheet['!merges'].push(newRange);
+            }
+        });
+    }
+
+    // 특정 셀에 값을 추가
+    if (Data) {
+        for (let i = 0; i < Data.length; i++) {
+            // Data[i] 의 첫번째 값은 BaseSheet 행번호, 두번째 값은 BaseSheet 열번호, 세번째 값은 삽입할 값
+            const newCellAddress = xlsx.utils.encode_cell({ c: Data[i][1], r: InsertPoint + Data[i][0] - OrgStartRow });
+            newSheet[newCellAddress] = {v : Data[i][2], t: 's'}
+            if (ValueBorder) {
+                newSheet[newCellAddress] = {...newSheet[newCellAddress], s: {font: { bold : true, name: "Malgun Gothic", sz: 10 }, alignment : {vertical : 'center'}}};
+            }
+            newSheet[newCellAddress] = {...newSheet[newCellAddress], s: {font: { name: "Malgun Gothic", sz: 10 }}};
+        }
+    }
+    InsertPoint = InsertPoint + OrgEndRow - OrgStartRow + 1;
+    return [newSheet, InsertPoint]
+}
+
+function InsertTableHead(newSheet: Record<string, any>, 
+    sheet: Record<string, any>, 
+    InsertPoint : number, 
+    OrgStartRow: number, // BaseSheet에서 복사할 시작 행
+    OrgEndRow: number, // BaseSheet에서 복사할 끝 행
+    mergeLoc: xlsx.Range[] | undefined,
+    TableStartCol : number,
+    TableEndCol : number,
+    ):[Record<string, any>, number]{
+    // range를 복사하여 새로운 시트에 추가
+    
+    for (let i = OrgStartRow; i <= OrgEndRow; i++) {
+        for (let j = 0; j < 35; j++) { 
+            const OrgCellAddress = xlsx.utils.encode_cell({ c: j, r: i });
+            const newCellAddress = xlsx.utils.encode_cell({ c: j, r: (i-OrgStartRow+InsertPoint) });
+            newSheet[newCellAddress] = sheet[OrgCellAddress];
+            newSheet[newCellAddress] = {...newSheet[newCellAddress], 
+                s: {
+                font: { name: "Malgun Gothic", sz: 10 }, 
+                alignment : {vertical : 'center'}
+            }};
+        }
+    }
+    
+    for(let i = OrgStartRow; i <= OrgEndRow; i++){
+        for (let j= TableStartCol; j <= TableEndCol; j++){
+            const newCellAddress = xlsx.utils.encode_cell({ c: j, r: (i-OrgStartRow+InsertPoint) });
+            newSheet[newCellAddress] = {...newSheet[newCellAddress], 
+                s: {
+                    font: {bold : true, name: "Malgun Gothic", sz: 8 }, 
+                    alignment : {vertical : 'center', horizontal :'center'}, 
+                    fill : {fgColor : {rgb : "E9E9E9"}},
+                    
+                }};
+        }
+    }
+
+    // 병합된 셀의 정보를 가져옴
+    if (mergeLoc) {
+        mergeLoc.forEach((range) => {        
+            if (range.s.r >= OrgStartRow && range.e.r <= OrgEndRow) {
+                const newRange = {
+                    s: { c: range.s.c, r: range.s.r + InsertPoint- OrgStartRow},
+                    e: { c: range.e.c, r: range.e.r + InsertPoint- OrgStartRow},
+                };
+                newSheet['!merges'].push(newRange);
+            }
+        });
+    }
+
+    InsertPoint = InsertPoint + OrgEndRow - OrgStartRow + 1;
+    return [newSheet, InsertPoint]
+}
+
