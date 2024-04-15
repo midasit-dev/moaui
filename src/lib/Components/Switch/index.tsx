@@ -13,7 +13,9 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * />
  * @returns React.ReactElement
  */
-const Switch = (props: StyledProps) => (<StyledComponent {...props} />);
+function Switch(props: StyledProps) {
+	return <StyledComponent {...props} />
+};
 
 Switch.defaultProps = {} as StyledProps;
 
