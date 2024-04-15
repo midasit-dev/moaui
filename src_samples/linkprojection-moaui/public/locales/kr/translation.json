@@ -1,0 +1,5 @@
+{
+  "PluginMainDescription" : "Master Node 로부터 가장 가까운 Slave Node에 Rigid Link를 생성합니다.",
+  "MasterNodeSelection" : "Master Node 선택 : ",
+  "SlaveNodeSelection" : "Slave Node 선택 : "
+}
