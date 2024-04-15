@@ -4,7 +4,16 @@ import { toUnionType } from "../../Common/UnionType";
 /**
  * moaui Styled Chip
  * 
- * @param props 
+ * @param props - severity, bgColor, color, size, label, disabled
+ * @example
+ * <Chip
+ * 	severity="success" || "error" || "warning" || "info"
+ * 	bgColor=""
+ * 	color=""
+ * 	size="small" || "medium"
+ * 	label="chip"
+ * 	disabled={false || true}
+ * />
  * @returns React.ReactElement
  */
 function Chip(props: StyledProps) {	

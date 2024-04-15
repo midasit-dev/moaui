@@ -6,7 +6,11 @@ TableHead.defaultProps = {
 /**
  * moaui Styled Table Head
  * 
- * @param {StyledProps} props 
+ * @param {StyledProps} props - children
+ * @example
+ * <TableHead>
+ * 	{children}
+ * </TableHead>
  * @returns React.ReactElement
  */
 export default function TableHead(props: StyledProps) { return (<StyledComponent {...props} />) };

@@ -4,7 +4,20 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Panel
  * 
- * @param props
+ * @param props - children, variant, width, height, flexItem, backgroundColor, borderRadius, border, relative
+ * @example
+ * <Panel
+ * 	variant={"box" || "shadow" || "shadow2" || "strock"}
+ * 	width={"100px"}
+ * 	height={"100px"}
+ * 	flexItem={false || true}
+ * 	backgroundColor={"#fff"}
+ * 	borderRadius={"5px"}
+ * 	border={"none"}
+ * 	relative={false || true}
+ * >
+ * 	{children}
+ * </Panel>
  * @returns JSX.Element
  */
 function Panel(props: StyledProps) : JSX.Element {

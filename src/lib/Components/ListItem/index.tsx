@@ -4,7 +4,15 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled ListItem
  * 
- * @param props 
+ * @param props - children, disableGutters, secondaryAction, onClick
+ * @example
+ * <ListItem
+ * 	disableGutters={false || true}
+ * 	secondaryAction={React.ReactNode}
+ * 	onClick={() => {}}
+ * >
+ * 	{children}
+ * </ListItem>
  * @returns React.ReactElement
  */
 const ListItem = (props: StyledProps) => (<StyledComponent {...props}/>);

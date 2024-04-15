@@ -3,7 +3,12 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Typography Group
  * 
- * @param props
+ * @param props - titleText, bodyText
+ * @example
+ * <TypographyGroup
+ * 	titleText="Title"
+ * 	bodyText="Body"
+ * />
  * @returns JSX.Element
  */
 const TypographyGroup = (props: StyledProps) => (<StyledComponent {...props} />);

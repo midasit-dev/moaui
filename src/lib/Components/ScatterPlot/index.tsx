@@ -3,7 +3,8 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled ScatterPlot
  * 
- * @param props 
+ * @param props - data, width, height, margin, xScale, xFormat, yScale, yFormat, axisTop, axisRight, axisLeft, axisBottom, legends, legendsDefault, nodeSize
+ * @link https://nivo.rocks/scatterplot
  * @returns React.ReactElement
  */
 const ScatterPlot = (props: StyledProps) => (<StyledComponent {...props} />);

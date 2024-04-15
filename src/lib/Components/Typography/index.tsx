@@ -3,7 +3,25 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
  * moaui Styled Typography
- * @param props
+ * @param props - children, variant, color, width, height, size, verTop, verCenter, verBottom, horLeft, horCenter, horRight, center
+ * @example
+ * <Typography
+ * 	variant={"body1" || "body2" || "body3" || "h1"}
+ * 	color={'primary' | 'secondary' | 'third' | 'disable' | string}
+ * 	width={string | number}
+ * 	height={string | number}
+ * 	size={"small" | "medium" | "large"}
+ * 	singleLine={true || false}
+ * 	verTop={true || false}
+ * 	verCenter={true || false}
+ * 	verBottom={true || false}
+ * 	horLeft={true || false}
+ * 	horCenter={true || false}
+ * 	horRight={true || false}
+ * 	center={true || false}
+ * >
+ * 	{children}
+ * </Typography>
  * @returns TypographyComponent
  */
 const Typography = (props: StyledProps) => {

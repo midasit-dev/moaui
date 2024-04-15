@@ -3,7 +3,13 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Check Group.
  * 
- * @param props 
+ * @param props - text, children
+ * @example
+ * <CheckGroup text="Check Group">
+ * 	<Check />
+ * 	<Check />
+ * 	<Check />
+ * </CheckGroup> 
  * @returns React.ReactElement
  */
 const CheckGroup = (props: StyledProps) => (<StyledComponent {...props} />);

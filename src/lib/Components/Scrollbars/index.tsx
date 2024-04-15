@@ -5,7 +5,19 @@ import { toUnionType } from "../../Common/UnionType";
 /**
  * moaui Styled Scrollbars
  *  
- * @param props 
+ * @param props - panelProps, children, width, height, title, titleVariant, titleColor, titleAlign
+ * @example
+ * <Scrollbars
+ * 	panelProps={{ variant: 'box', width: 300 }}
+ *  width={300}
+ * 	height={300}
+ * 	title="Title"
+ * 	titleVariant={'h1' || 'body1' || 'body2' || 'body3'}
+ * 	titleColor={'primary' || 'secondary' || 'third' || 'disable'}
+ * 	titleAlign={'left' || 'center' || 'right'}
+ * >
+ * 	{children}
+ * </Scrollbars>
  * @returns React.ReactElement
  */
 const Scrollbars = (props: StyledProps) => (<StyledComponent {...props}/>);

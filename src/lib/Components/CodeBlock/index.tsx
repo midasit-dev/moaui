@@ -5,6 +5,7 @@ import { toUnionType } from "../../Common/UnionType";
  * moaui styled code block with syntax highlighting
  * 
  * @param props  - The props of the component (children, language, title)
+ * @link https://github.com/react-syntax-highlighter/react-syntax-highlighter
  * @returns A code block with syntax highlighting
  */
 function CodeBlock(props: StyledProps) {	

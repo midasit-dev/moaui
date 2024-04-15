@@ -4,7 +4,15 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Alert
  * 
- * @param props 
+ * @param props - title, variant, severity, children
+ * @example
+ * <Alert
+ * 	title="Title"
+ * 	variant="filled"
+ * 	severity="success"
+ * >
+ * 	{children} - set a Alert Message
+ * </Alert>
  * @returns React.ReactElement
  */
 function Alert(props: StyledProps) {	

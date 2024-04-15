@@ -3,7 +3,15 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled Table
  * 
- * @param {StyledProps} props 
+ * @param {StyledProps} props - children, padding, size, stickyHeader
+ * @example
+ * <Table
+ * 	padding={'normal' || 'checkbox' || 'none'}
+ * 	size={'medium'}
+ * 	stickyHeader={false || true}
+ * >
+ * 	{children}
+ * </Table>
  * @returns React.ReactElement
  */
 const Table = (props: StyledProps) => (<StyledComponent {...props} />);

@@ -4,7 +4,11 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled ListItemButton
  * 
- * @param props 
+ * @param props - children
+ * @example
+ * <ListItemButton>
+ * 	{children}
+ * </ListItemButton>
  * @returns React.ReactElement
  */
 const ListItemButton = (props: StyledProps) => (<StyledComponent {...props}/>);

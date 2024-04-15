@@ -3,7 +3,12 @@ import StyledComponent, { type StyledProps } from "./Styled";
 /**
  * moaui Styled MidasController
  * 
- * @param props 
+ * @param props - icoSrc, title
+ * @example
+ * <MidasController
+ * 	icoSrc="https://www.example.com"
+ * 	title="Title"
+ * />
  * @returns React.ReactElement
  */
 function MidasController(props: StyledProps) {	

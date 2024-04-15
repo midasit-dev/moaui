@@ -106,7 +106,6 @@ const useDroplistOpenCloseEffect = () => {
 
 const StyledComponent = styled((props:StyledProps) => {
 	const {itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
-	
 	let itemMap: Map<string, string | number> = new Map();
 	if (itemList instanceof Function) {
 		itemMap = itemList();
