@@ -19,8 +19,6 @@ import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, Selected
 } from '../variables';
 import PlanViewDrawing from '../Components/PlanViewDrawing';
 import TypoGraphyDropList from '../NewComponents/TypoGraphyDropList';
-import {dbReadItem }from '../utils_pyscript'
-import { set } from 'lodash';
 import Pedestal from './Pedestal';
 
 
@@ -158,18 +156,21 @@ function Member() {
             <GuideBox row verCenter>
               <Check 
                   checked = {planViewNodeCheck}
+                  onChange={() => setPlanViewNodeCheck(!planViewNodeCheck)}
               />
               <Typography>Node No.</Typography>              
             </GuideBox>
             <GuideBox row verCenter>
               <Check 
-                  checked
+                  checked = {planViewColumnNameCheck}
+                  onChange={() => setPlanViewColumnNameCheck(!planViewColumnNameCheck)}
               />
               <Typography>Column Name</Typography>              
             </GuideBox>
             <GuideBox row verCenter>
               <Check 
-                  checked
+                  checked = {planViewBPNameCheck}
+                  onChange={() => setPlanViewBPNameCheck(!planViewBPNameCheck)}
               />
               <Typography>Base Plate Name</Typography>              
             </GuideBox>

@@ -20,7 +20,7 @@ import TypoGraphyDropList from '../NewComponents/TypoGraphyDropList';
 import {dbReadItem, postNewProject, CreateBasePlateOutlines, AutoMeshing, Applyloads, Analysis, GetResult, calculate_baseplate, covertMarkdown, }from '../utils_pyscript'
 import { set } from 'lodash';
 import MDReport from '../Design/MDReport';
-
+import { useSnackbar } from 'notistack';
 
 
 function Design() {
@@ -46,6 +46,9 @@ function Design() {
   const [reactionResult, setReactionResult] = useRecoilState(ReactionResult);
   const [designResult, setDesignResult] = useRecoilState(DesignResult);
   const [mDResult, setMDResult] = useRecoilState(MDResult);
+
+  const { enqueueSnackbar } = useSnackbar();
+
   const columns : any = [
     {field : 'ItemName', headerName : 'Check Item.', width : 100, editable : true, sortable : false},
     {field : 'Demand', headerName : 'Demand', width : 100, editable : true, sortable : false},
@@ -141,7 +144,7 @@ function Design() {
     
     const markdown = covertMarkdown(JSON.stringify(calculate_result))
     setMDResult(markdown)
-
+    enqueueSnackbar('Design Check Completet', {variant: 'success', autoHideDuration: 3000})
   }
   
   
@@ -185,7 +188,7 @@ function Design() {
       <Panel height={550} width={500}>
         <GuideBox spacing={1}>
           <Typography variant='h1'>Design Report</Typography>
-          <div style = {{height: 500, width: '100%', overflowY: 'scroll'}}>
+          <div style = {{height: 500, width: '100%', overflowY: 'scroll', fontSize : 12}}>
           <MDReport></MDReport>
           </div>
         </GuideBox>

@@ -1,7 +1,8 @@
 import {GuideBox, ChartLine, Typography} from '@midasit-dev/moaui';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Node_BP_Data, SelectedColumnIndex, SelectedColumnIndex_DBName } from '../variables';
+import { Node_BP_Data, SelectedColumnIndex, SelectedColumnIndex_DBName, PlanviewBPNameCheck, PlanviewColumnNameCheck, PlanviewNodeCheck, BasePlateName} from '../variables';
+import { text } from 'stream/consumers';
 const PlanViewDrawing = ({
   panelSize = 500,
   MinMaxCord = [1,1,1,1]
@@ -21,12 +22,15 @@ const PlanViewDrawing = ({
   const selectedColumnIndex_DBName = useRecoilValue(SelectedColumnIndex_DBName);
   const [node_BP_Data, setNode_BP_Data] = useRecoilState(Node_BP_Data);
 
-
+  const planViewNodeCheck = useRecoilValue(PlanviewNodeCheck);
+  const planViewColumnNameCheck = useRecoilValue(PlanviewColumnNameCheck);
+  const planViewBPNameCheck = useRecoilValue(PlanviewBPNameCheck);
+  const basePlateName:any = useRecoilValue(BasePlateName);
   // Scale 지정
   let scale = 0
   scale = canvasSize * 0.95 / Math.max(MaxXCord-MinXCord, MaxYCord-MinYCord);
 
-  const drawHBeam = (ctx:any, BP_Data:any) => {
+  const drawHBeam = (ctx:any, BP_Data:any, nodekey : any) => {
     let SectionDBName = ''
     for (let key in selectedColumnIndex_DBName){
       if (key == selectedColumnIndex.toString()){
@@ -34,11 +38,12 @@ const PlanViewDrawing = ({
       }
     }
     if (SectionDBName == BP_Data.BASEPLATE.COLUMN.DB){
-      console.log('Selected Column', BP_Data.BASEPLATE.COLUMN.DB)
       ctx.strokeStyle = '#FF0000';
+      ctx.fillStyle = '#FF0000';
     }
     else{
       ctx.strokeStyle = '#000000';
+      ctx.fillStyle = '#000000';
     }
 
     const DBName = BP_Data.BASEPLATE.COLUMN.DB
@@ -79,6 +84,42 @@ const PlanViewDrawing = ({
     ctx.fill();
     ctx.closePath();
 
+    if (SectionDBName == BP_Data.BASEPLATE.COLUMN.DB){
+      ctx.strokeStyle = '#FF0000';
+      ctx.fillStyle = '#FF0000';
+    }
+    else{
+      ctx.strokeStyle = '#000000';
+      ctx.fillStyle = '#000000';
+    }
+    
+    ctx.font = '10px Arial';
+    
+    ctx.textAlign = 'center';
+    let textstring = ''
+    if (planViewNodeCheck){
+      textstring = textstring + "Node : " + nodekey
+    }
+    if (planViewColumnNameCheck){
+      textstring = textstring + " Column : " + BP_Data.COLUMN_NAME
+    }
+    const DBSectionName = BP_Data.BASEPLATE.COLUMN.DB
+    let sectionid = ''
+    for(let key in selectedColumnIndex_DBName){
+      if (selectedColumnIndex_DBName[key] === DBSectionName){
+        sectionid = key
+      }
+    }
+    let BPName = ''
+    for(let key in basePlateName){
+      if (key == sectionid){
+        BPName = basePlateName[key]
+      }
+    }
+    if (planViewBPNameCheck){
+      textstring = textstring + " Baseplate Name : " + BPName
+    }
+    ctx.fillText(textstring, 0, -HBeamHeight/2000*scale-10);
     ctx.strokeStyle = '#000000';
   }
   const drawColumn = (ctx:any) => {
@@ -88,7 +129,7 @@ const PlanViewDrawing = ({
       ctx.lineWidth = 1.5
       ctx.beginPath();
       ctx.translate((node_BP_Data[key].NODECORD[0]-CenterXCord)*scale, (CenterYCord-node_BP_Data[key].NODECORD[1])*scale);
-      drawHBeam(ctx, node_BP_Data[key])
+      drawHBeam(ctx, node_BP_Data[key], key)
       ctx.closePath();
       ctx.translate(-(node_BP_Data[key].NODECORD[0]-CenterXCord)*scale, -(CenterYCord-node_BP_Data[key].NODECORD[1])*scale);
       
@@ -129,7 +170,7 @@ const PlanViewDrawing = ({
     drawColumn(context)
 
     
-  }, [node_BP_Data, selectedColumnIndex])
+  }, [node_BP_Data, selectedColumnIndex, planViewNodeCheck, planViewColumnNameCheck, planViewBPNameCheck, basePlateName])
 
 return (
   <div>
