@@ -14,7 +14,7 @@ i18n
       escapeValue: false, // React에서는 이미 안전함
     },
     backend: {
-      loadPath: "/locales/{{lng}}/translation.json", // 언어 리소스 파일 위치
+      loadPath: "./locales/{{lng}}/translation.json", // 언어 리소스 파일 위치
     },
   });
 export default i18n;
