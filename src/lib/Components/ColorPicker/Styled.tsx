@@ -95,7 +95,6 @@ const StyledComponent = (props: StyledProps) => {
                 min: 0,
                 onlyInteger: true,
               }}
-              tooltips={{ placement: "right" }}
             />
           </div>
           <div
@@ -114,7 +113,6 @@ const StyledComponent = (props: StyledProps) => {
                 max: 255,
                 min: 0,
               }}
-              tooltips={{ placement: "right" }}
             />
           </div>
           <div style={{ marginBottom: "5px" }}>
@@ -131,7 +129,6 @@ const StyledComponent = (props: StyledProps) => {
                 max: 255,
                 min: 0,
               }}
-              tooltips={{ placement: "right" }}
             />
           </div>
         </div>
