@@ -73,8 +73,6 @@ type StyledPropsExtension = {
  * 				max: 100,
  * 		}}
  * 	}}
- * tooltip={{placement: 'right'}}
- * />
  * 
  * @returns {React.ReactElement} moaTextField
  */

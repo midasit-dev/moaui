@@ -4,7 +4,7 @@ import MoaStyledComponent from "../../Style/MoaStyled";
 import TextField from '@mui/material/TextField';
 import Color from '../../Style/Color';
 import Font from '../../Style/Font';
-import Tooltip, { type TooltipProps } from '../Tooltip';
+import Tooltip from '../Tooltip';
 
 export type StyledProps = {
 	/**
@@ -136,9 +136,6 @@ export type StyledProps = {
 			 */
 			min?: "greater" | "greaterEqual",
 		},
-	},
-	tooltips?: {
-		placement? : TooltipProps["placement"]
 	}
 }
 
@@ -239,7 +236,7 @@ const StyledComponent = styled((props:StyledProps) => {
 		}, [props?.numberOptions?.condition?.max, props?.numberOptions?.condition?.min, numberOptionsMax, numberOptionsMin, props.type]);
 
 		return (
-			<Tooltip open={errorOverride} title={tooltipText} arrowBorder placement={props.tooltips?.placement}>
+			<Tooltip open={errorOverride} title={tooltipText} arrowBorder>
 				<Text {...others} error={errorResolver(localValue) || errorOverride} onBlur={(e: any) => {
 					let value = Number((e.target as HTMLInputElement).value);
 					setLocalValue(e.target.value);
