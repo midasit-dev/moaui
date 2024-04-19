@@ -1,4 +1,5 @@
 import StyledComponent, { type StyledProps } from "./Styled";
+import { toUnionType } from "../../Common/UnionType";
 
 /**
  * 
@@ -23,10 +24,10 @@ ColorPicker.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
-	color: { r: 255, g: 255, b: 255 },
-	onChange: ()=>{},
-	showRGB: true,
-	direction: "column",
+  color: { r: 255, g: 255, b: 255 },
+  onChange: () => {},
+  showRGB: true,
+  direction: toUnionType({ values: ["column", "row"] }),
 };
 
 export default ColorPicker;
