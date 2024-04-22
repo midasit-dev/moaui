@@ -29,7 +29,6 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "@midasit-dev/moaui": "0.1.109",
     "@types/jsoneditor": "^9.9.5",
     "@types/lodash": "^4.14.202",
     "@types/node": "^16.18.87",
@@ -51,6 +50,7 @@
     "uuid": "^9.0.1"
   },
   "dependencies": {
+    "@midasit-dev/moaui": "^0.1.128",
     "d3-delaunay": "^6.0.4",
     "react-color": "^2.19.3"
   }

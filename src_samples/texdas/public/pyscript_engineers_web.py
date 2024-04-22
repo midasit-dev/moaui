@@ -133,7 +133,7 @@ class MidasAPI:
         # check response.json()[item_name] is Exist
         if item_name not in responseJson:
             error_message = {"error": f"Error: Unable to find the registry key or value for {item_name}"}
-            return error_message
+            return None
         keyVals = responseJson[item_name]
         return { int(k): v for k, v in keyVals.items() }
 
@@ -154,7 +154,7 @@ class MidasAPI:
         # check responseJson[item_name] is Exist
         if item_name not in responseJson:
             error_message = {"error": f"Error: Unable to find the registry key or value for {item_name}"}
-            return error_message
+            return None
         if item_id_str not in responseJson[item_name]:
             error_message = {"error": f"Error: Unable to find the registry key or value for {item_id}"}
             return error_message

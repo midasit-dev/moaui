@@ -15,84 +15,64 @@ import json
 from pyscript_engineers_web import set_g_values, get_g_values, requests_json
 from pyscript_engineers_web import MidasAPI, Product
 
-def HelloWorld():
-	return (f'Hello World! this message is from def HelloWorld of PythonCode.py')
-
-def ApiGet():
-	values = json.loads(get_g_values())
-	base_uri = values["g_base_uri"]
-	res = requests_json.get(url=f'https://{base_uri}/health', headers={
-		'Content-Type': 'application/json'
-	})
-	return json.dumps(res)
-
-# Basic CRUD Sample
-def py_db_create(item_name, items):
-	civil = MidasAPI(Product.CIVIL, "KR")
-	return json.dumps(civil.db_create(item_name, json.loads(items)))
-
-def py_db_create_item(item_name, item_id, item):
-  civil = MidasAPI(Product.CIVIL, "KR")
-  return json.dumps(civil.db_create_item(item_name, item_id, json.loads(item)))
-
-def py_db_read(item_name):
-	civil = MidasAPI(Product.CIVIL, "KR")
-	return json.dumps(civil.db_read(item_name))
-
-def py_db_read_item(item_name, item_id):
-	civil = MidasAPI(Product.CIVIL, "KR")
-	return json.dumps(civil.db_read_item(item_name, item_id))
-
-def py_db_update(item_name, items):
-	civil = MidasAPI(Product.CIVIL, "KR")
-	return json.dumps(civil.db_update(item_name, json.loads(items)))
-
-def py_db_update_item(item_name, item_id, item):
-	civil = MidasAPI(Product.CIVIL, "KR")
-	return json.dumps(civil.db_update_item(item_name, item_id, json.loads(item)))
-
-def py_db_delete(item_name, item_id):
-	civil = MidasAPI(Product.CIVIL, "KR")
-	return json.dumps(civil.db_delete(item_name, item_id))
-
-'''
-
-██╗    ██╗██████╗ ██╗████████╗███████╗    ██╗  ██╗███████╗██████╗ ███████╗
-██║    ██║██╔══██╗██║╚══██╔══╝██╔════╝    ██║  ██║██╔════╝██╔══██╗██╔════╝
-██║ █╗ ██║██████╔╝██║   ██║   █████╗      ███████║█████╗  ██████╔╝█████╗  
-██║███╗██║██╔══██╗██║   ██║   ██╔══╝      ██╔══██║██╔══╝  ██╔══██╗██╔══╝  
-╚███╔███╔╝██║  ██║██║   ██║   ███████╗    ██║  ██║███████╗██║  ██║███████╗
- ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝    ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
-                                                                          
-↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ write a main logic here ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-'''
-
 from PIL import Image, ImageDraw, ImageFont
 import matplotlib.pyplot as plt
 from scipy.spatial import Delaunay
 import numpy as np
+import json
+from dataclasses import dataclass, field as dataclass_field
 
-def create_text(input_json):
+def text_to_plate_call(json_str:str) -> str:
+    return text_to_plate_mesh(**json.loads(json_str))
+
+@dataclass
+class PrintColor:
+    """
+    The color of the RGB, [0~255, 0~255, 0~255]
+    """
+    r: int = dataclass_field(default=0, metadata={"description": "The red component of the color"})
+    g: int = dataclass_field(default=0, metadata={"description": "The green component of the color"})
+    b: int = dataclass_field(default=0, metadata={"description": "The blue component of the color"})
+
+
+def text_to_plate_mesh(text: str, color: PrintColor, insert: str, height: str) -> str:
 	"""
-	입력받는 값
-	- text: 텍스트
-	- color: 텍스트 색상
-	- insert: 삽입 위치(좌하단)
-	- height: 높이
-	위에 데이터에 따라, 텍스트 이미지를 생성하고, 이미지를 삼각형 메쉬로 변환하여 MIDAS CIVIL에 업로드합니다.
+	Convert the text to a plate mesh and upload the image as a triangular mesh to MIDAS CIVIL.
+
+	Args:
+		text: The text to convert
+		color: The color of the text RGB, [0~255, 0~255, 0~255]
+		insert: The insert point of the text (lower left corner)
+		height: The height of the text
+
+	Returns:
+		str: The result of the conversion
 	"""
-	def rgb_to_hex(rgb):
+  
+	def rgb_to_hex(rgb: tuple[int,3])-> str:
 		"""
-		RGB 값을 16진수로 변환합니다.
+		Convert RGB to HEX
+  
+		Args:
+			rgb (tuple[int,3]): The RGB color
+
+		Returns:
+			str: The HEX color
 		"""
 		return "#{:02x}{:02x}{:02x}".format(int(rgb[0]), int(rgb[1]), int(rgb[2]))
 
-	def image_to_triangular_mesh(image):
+	def image_to_triangular_mesh(image: Image)-> tuple[list[list[list[int]]], list[float], list[list[int]]]:
 		"""
-		이미지를 삼각형 메쉬로 변환합니다.
+		Convert the image to a triangular mesh.
+  
+		Args:
+			image (Image): The image to convert
+   
+		Returns:
+			tuple[list[list[list[int]]], list[float], list[list[int]]]: The triangular mesh
 		"""
 		# Number of Points
-		num_points= 9999
+		num_points=10000
 
 		# Load image
 		img = np.array(image)
@@ -119,7 +99,7 @@ def create_text(input_json):
 			if simplex_color.shape[0] ==4:
 				simplex_color = simplex_color[:3]
 
-			if not np.allclose(simplex_color, [255,255,255], atol=0):
+			if not np.allclose(simplex_color, [255,255,255], atol=10):
 				simplex_color /= 255.0        
 				hex_color = rgb_to_hex(simplex_color*255)
 				plt.fill(*zip(*simplex_points), color=simplex_color)
@@ -139,9 +119,17 @@ def create_text(input_json):
 		# plt.show()
 		return tri_coord, tri_thick, tri_color
 
-	def unique_index(arrays_list):
+	import numpy as np
+
+	def unique_index(arrays_list: list[list[int]]) -> list[int]:
 		"""
-		주어진 배열들을 하나의 배열로 합치고, 각 값들에 대해 고유한 번호를 부여합니다.
+		Combine the given arrays into a single array and assign unique numbers to each value.
+
+		Args:
+			arrays_list (list[list[int]]): A list of arrays to be combined.
+
+		Returns:
+			list[int]: A list of unique numbers assigned to each value in the combined array.
 		"""
 		combined_array = np.vstack(arrays_list)
 		flattened_array = np.ravel_multi_index(combined_array.T, combined_array.max(axis=0) + 1)
@@ -150,9 +138,15 @@ def create_text(input_json):
 		combined_array_numbers = np.searchsorted(unique_values, flattened_array) + 1
 		return combined_array_numbers
 
-	def assign_unique_numbers(input_list):
+	def assign_unique_numbers(input_list: list[int])-> list[int]:
 		"""
-		주어진 리스트의 각 값들에 대해 고유한 번호를 부여합니다.
+		Assigns unique numbers to each value in the given list.
+
+		Args:
+			input_list (list): The list of values to assign unique numbers to.
+
+		Returns:
+			list: A list of assigned unique numbers corresponding to the input values.
 		"""
 		unique_numbers = {}
 		assigned_numbers = []
@@ -164,33 +158,73 @@ def create_text(input_json):
 
 		return assigned_numbers
 
-	def group_into_threes(lst):
+	def group_into_threes(lst: list[int])-> list[list[int]]:
 		"""
-		주어진 리스트를 3개씩 묶어서 새로운 리스트를 반환합니다.
+		Group the given list into sublists of three elements each and return a new list.
+
+		Args:
+			lst (list): The input list
+
+		Returns:
+			list: The new list with sublists of three elements each
 		"""
 		return [lst[i:i+3] for i in range(0, len(lst), 3)]
 
-	def find_duplicates_in_nparray(lst):
+	import numpy as np
+
+	def find_duplicates_in_nparray(lst: list[int]) -> list[int]:
 		"""
-		주어진 리스트에서 중복되는 값들의 인덱스를 반환합니다.
+		Return the indices of duplicate values in the given list.
+
+		Args:
+			lst (list[int]): The given list
+
+		Returns:
+			list[int]: The list of indices of duplicate values
 		"""
 		duplicate_indices = []
-
 		for i, sublist in enumerate(lst):
 			if len(sublist) != len(np.unique(sublist)):
 				duplicate_indices.append(i)
-
 		return duplicate_indices
 
-	def remove_indices(lst, indices_to_remove):
+	def remove_indices(lst, indices_to_remove)-> list[int]:
 		"""
-		리스트에서 주어진 인덱스들을 삭제하고 새로운 리스트를 반환합니다.
+		Remove the elements at the given indices from the list and return a new list.
+
+		Args:
+			lst (list): The input list.
+			indices_to_remove (list): The indices to remove from the list.
+
+		Returns:
+			list: A new list with the elements removed.
+
+		Example:
+			>>> lst = [1, 2, 3, 4, 5]
+			>>> indices_to_remove = [1, 3]
+			>>> remove_indices(lst, indices_to_remove)
+			[1, 3, 5]
 		"""
 		indices_set = set(indices_to_remove)
 		return [elem for i, elem in enumerate(lst) if i not in indices_set]
-	
-	def missing_ranges(list):
+
+	def missing_ranges(list: list[int]) -> list[tuple[int, int, int]]:
+		"""
+		Find the missing ranges in a list of numbers.
+
+		Args:
+			list (list[int]): The list of numbers.
+
+		Returns:
+			list[tuple[int, int, int]]: The list of missing ranges, each represented as a tuple (start, length, value).
+
+		Example:
+			>>> lst = [1, 2, 4, 5, 7, 8]
+			>>> missing_ranges(lst)
+			[(3, 1, 3), (6, 1, 6)]
+		"""
 		missing_ranges_with_values = []
+
 
 		# A 리스트의 첫 번째 숫자가 1이 아닌 경우를 처리
 		if list[0] > 1:
@@ -211,32 +245,26 @@ def create_text(input_json):
 		
 		return missing_ranges_with_values
 
-	# 입력값을 변수에 저장
-	input_json = json.loads(input_json)
-
-	text = input_json["text"]
-	color = input_json["color"]
-	insert = input_json["insert"]
-	height = input_json["height"]
+	
+	
 
 	# 입력값 검증
 	if text == None or text == "":
 		message = {"error": "text is empty"}
 		return json.dumps(message)
 	
-	# 폰트 설정
+	# 이미지 생성
 	font_path = './NotoSansKR-Medium.ttf'
 	font_size = 40
 	font = ImageFont.truetype(font_path, font_size)
 	
-	# 텍스트 이미지 생성
 	text_color = (color["r"], color["g"], color["b"])
 	dummy_image = Image.new("RGB", (1, 1))
 	dummy_draw = ImageDraw.Draw(dummy_image)
 	text_bbox = dummy_draw.textbbox((0, 0), text, font=font)
 	text_width, text_height = text_bbox[2] - text_bbox[0], text_bbox[3] - text_bbox[1]
 
-	margin = 20
+	margin = 20 
 	image_size = (text_width + margin * 2, text_height + margin * 2)
 	
 	image = Image.new("RGBA", image_size, (255, 255, 255, 0))
@@ -247,29 +275,29 @@ def create_text(input_json):
 	text_y = (image_size[1] - text_height) / 2
 	draw.text((text_x, text_y), text, fill=text_color, font=font)
 
-	# 삼각형 메쉬로 변환
 	tri_coord, tri_thick, tri_color = image_to_triangular_mesh(image)
 	node_number = unique_index(tri_coord)
 	node_number = group_into_threes(node_number)
-    
+	
 	dupleIndex = find_duplicates_in_nparray(node_number)
-    
+	
 	tri_coord_uniq = remove_indices(tri_coord, dupleIndex)
 	tri_thick_uniq = remove_indices(tri_thick, dupleIndex)
 	tri_color_uniq = remove_indices(tri_color, dupleIndex)
 	node_number_uniq = remove_indices(node_number, dupleIndex)
 	thik_number_uniq = assign_unique_numbers(tri_thick_uniq)
 
-	# 삽입 위치 설정
+	# 절점의 좌하단의 위치를 Insert에 맞게 재지정
 	origin_split = insert.split(",")
 	origin_coord = [float(x) if x else 0 for x in origin_split] + [0]*(3-len(origin_split))
 	origin_x, origin_y, origin_z = origin_coord[:3]
 	
-	# 이미지의 크기를 기준으로 삼각형 메쉬의 크기를 조정
+	# tri_coord_uniq의 인덱스 기준으로 최소값 찾는다.
 	min_x = min([min([x[0] for x in tri_coord_uniq[i]]) for i in range(len(tri_coord_uniq))])
 	min_y = min([min([x[1]*-1 for x in tri_coord_uniq[i]]) for i in range(len(tri_coord_uniq))])
 	max_y = max([max([x[1]*-1 for x in tri_coord_uniq[i]]) for i in range(len(tri_coord_uniq))])
 
+	# 이미지의 크기를 기준으로 삼각형 메쉬의 크기를 조정
 	ReSized_coord = [[[0 for _ in range(2)] for _ in range(3)] for _ in range(len(tri_coord_uniq))]
 	scale = float(height) / (max_y - min_y)
 	for i in range(len(tri_coord_uniq)):
@@ -288,8 +316,9 @@ def create_text(input_json):
 	# Node Number Check
 	civil = MidasAPI(Product.CIVIL, "KR")
 	res_node = civil.db_read("NODE")
-	
-	if "error" in res_node.keys() :
+ 
+	if res_node == None:
+		new_node_start = 1
 		pass
 	else:
 		res_node_id = list(res_node.keys())
@@ -305,11 +334,11 @@ def create_text(input_json):
 		if missing_check == False:
 			message = {"error": "Not enough node number. Please check node number."}
 			return json.dumps(message)
-		else:
-			# Node Number Reassign
-			for i in range(len(node_number_uniq)):
-				for j in range(3):
-					node_number_uniq[i][j] = node_number_uniq[i][j] + new_node_start - 1
+
+	# Node Number Reassign
+	for i in range(len(node_number_uniq)):
+		for j in range(3):
+			node_number_uniq[i][j] = node_number_uniq[i][j] + new_node_start - 1
 
 	# Create Node
 	dupleNo = []
@@ -329,7 +358,7 @@ def create_text(input_json):
 	# Element Number Check
 	res_elem = civil.db_read("ELEM")
 
-	if "error" in res_elem.keys() :
+	if res_elem == None:
 		new_node_start = 1
 		pass
 	else:
@@ -380,7 +409,7 @@ def create_text(input_json):
 	# Thick Number Check
 	res_thik = civil.db_read("THIK")
 
-	if "error" in res_thik.keys() :
+	if res_thik == None:
 		new_node_start = 1
 		pass
 	else:

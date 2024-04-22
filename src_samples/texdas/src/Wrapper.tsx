@@ -34,8 +34,6 @@ import {
 } from './utils_pyscript';
 import Signature from './Signature';
 import { Signature as SignatureMoaui } from '@midasit-dev/moaui';
-import { isDevServerListening } from './DevTools/ServerListening';
-import DevKit from './DevTools/Kit';
 
 // PY Terminal 삭제하는 코드
 //// py-terminal 태그를 가진 모든 요소 가져오기
@@ -150,17 +148,9 @@ const ValidWrapper = (props: any) => {
 							</IconButton>
 						)}
 					>
-					{process.env.NODE_ENV === 'development' && isDevServerListening() ?
-						<DevKit bgColorState={[bgColor, setBgColor]}>
-							<GuideBox tag="AppBackground" show center fill={bgColor} borderRadius='0 0 4px 4px' spacing={3}>
-								<App />
-							</GuideBox>
-						</DevKit>
-						:
 						<GuideBox tag="AppBackground" show center fill={bgColor} width="100%">
 							<App />
 						</GuideBox>
-					}
 					</SnackbarProvider>
 				</RecoilRoot>
 			)}
