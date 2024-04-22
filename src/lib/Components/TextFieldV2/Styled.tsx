@@ -157,7 +157,7 @@ const StyledComponent = styled((props:StyledProps) => {
 		
 		return (
 			<TextField
-				id={props?.id || "TextFieldV2Id"}
+				id={props?.id || ""}
 				autoFocus={props?.autoFocus}
 				type={props?.type}
 				onChange={props?.onChange}
