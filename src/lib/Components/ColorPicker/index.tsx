@@ -6,6 +6,7 @@ import { toUnionType } from "../../Common/UnionType";
  * @param props - color, onChange
  * @example
  * <ColorPicker
+ * 	id="ColorPickerId"
  * 	color="{ r: 255, g: 255, b: 255 }"
  * 	onChange={(color) => {}}
  *  showRGB={true || false}
@@ -17,6 +18,7 @@ import { toUnionType } from "../../Common/UnionType";
 const ColorPicker = (props: StyledProps) => (<StyledComponent {...props} />);
 
 ColorPicker.defaultProps = {
+	id: "ColorPickerId",
 	color: { r: 255, g: 255, b: 255 },
 	onChange: ()=>{},
 	showRGB: true,
@@ -24,6 +26,7 @@ ColorPicker.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: "ColorPickerId",
   color: { r: 255, g: 255, b: 255 },
   onChange: () => {},
   showRGB: true,

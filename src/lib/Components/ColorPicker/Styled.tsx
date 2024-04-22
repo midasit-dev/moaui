@@ -4,6 +4,13 @@ import TextFieldV2 from "../TextFieldV2";
 
 export type StyledProps = {
   /**
+   * The id of the button.
+   * @defaultValue "ColorPickerId"
+   * @optional
+   * @type string
+   */
+  id?: string;
+  /**
    * The color of the button.
    * @defaultValue "black"
    * @optional
@@ -45,6 +52,7 @@ const StyledComponent = (props: StyledProps) => {
 
   return (
     <div
+      id={props?.id || "ColorPickerId"}
       style={{
         display: "flex",
         justifyContent: "center",
