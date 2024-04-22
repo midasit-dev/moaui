@@ -255,7 +255,9 @@ class MidasAPI:
     
     def GetResult(self, items):
         url = f'{self.base_url}/POST/TABLE'
+        print({'Argument': items})
         return requests_json.post(url, headers=self.headers, jsonObj={'Argument': items})
+    
 # function ##########################################################################################################
 
 def select_by_subkey(value, dict, *subkey):

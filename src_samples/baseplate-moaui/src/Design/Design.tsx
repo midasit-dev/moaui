@@ -12,7 +12,7 @@ import {
 import { useRecoilState, useRecoilValue } from 'recoil';
 import TypoGraphyTextField from '../NewComponents/TypoGraphyTextField';
 import {selectNodeList, setColumnInfo } from '.././utils_pyscript';
-import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex, BasePlateName,
+import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex,
   HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, ReactionResult, DesignResult, MDResult
 } from '../variables';
 import PlanViewDrawing from '../Components/PlanViewDrawing';
@@ -31,7 +31,6 @@ function Design() {
   const [selectedDBIndex, setSelectedDBIndex] = useRecoilState(SelectedDBIndex);
   const [columnIndex_DBName, setcolumnIndex_DBName] = useRecoilState(SelectedColumnIndex_DBName);
   const [selectedColumnList, setSelectedColumnList] = useRecoilState(SelectedColumnList);
-  const [basePlateName, setBasePlateName] = useRecoilState(BasePlateName);
 
   const node_BP_Data = useRecoilValue(Node_BP_Data);
   const [hBeamH, setHBeamH] = useRecoilState(HBeamH);
@@ -80,7 +79,6 @@ function Design() {
   const handleDesignClick = () => {
     postNewProject(); 
     const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
-    console.log(DBSection_Name)
     const BPData = JSON.parse(JSON.stringify(node_BP_Data));
     let PlateWidth = 0
     let PlateHeight = 0
@@ -139,7 +137,6 @@ function Design() {
     new_DesignResult.Bolt_Length = 1
     new_DesignResult.Bolt_Num = 1
     setDesignResult(new_DesignResult)
-    console.log('Design Result', new_DesignResult)
     const calculate_result = calculate_baseplate(JSON.stringify(new_DesignResult))
     
     const markdown = covertMarkdown(JSON.stringify(calculate_result))

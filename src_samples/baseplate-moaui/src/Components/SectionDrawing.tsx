@@ -1,18 +1,23 @@
 import {GuideBox, ChartLine, Typography} from '@midasit-dev/moaui';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { BasePlateWidth, BasePlateHeight, HBeamVertices, PedestalCheck, PedestalHeight, PedestalWidth } from '../variables';
+import { BasePlateWidth, BasePlateHeight, HBeamVertices
+,HBeamB, HBeamH, HBeamtf, HBeamtw, SelectedColumnIndex, ColumnData  } from '../variables';
 const SectionDrawing = ({
   panelSize = 200,
 
 }:any) => {
+
+  interface Details {
+    SectionID: number;
+    DBName: string;
+  }
+
   const basePlateWidth = useRecoilValue(BasePlateWidth);
   const basePlateHeight = useRecoilValue(BasePlateHeight);
   const hBeamVertices = useRecoilValue(HBeamVertices);
-  const pedestalCheck = useRecoilValue(PedestalCheck);
-  const pedestalHeight = useRecoilValue(PedestalHeight);
-  const pedestalWidth = useRecoilValue(PedestalWidth);
-
+  const selectedColumnIndex = useRecoilValue(SelectedColumnIndex);
+  const columnData:Record<string, Details> = useRecoilValue(ColumnData);
   const canvasRef = useRef(null);
   const canvasSize = panelSize-20;
   
@@ -20,16 +25,11 @@ const SectionDrawing = ({
   let scale = 0
   let TopDimLine = 0
   let LeftDimLine = 0
-  if (pedestalCheck === true){
-    scale = canvasSize*(2/3) / Math.max(basePlateWidth, basePlateHeight, pedestalWidth, pedestalHeight);
-    TopDimLine = Math.max(basePlateHeight, pedestalHeight)/2*scale
-    LeftDimLine = Math.max(basePlateWidth, pedestalWidth)/2*scale
-  }
-  else{
-    scale = canvasSize*(2/3) / Math.max(basePlateWidth, basePlateHeight);
-    TopDimLine = basePlateHeight/2*scale
-    LeftDimLine = basePlateWidth/2*scale
-  }
+
+  scale = canvasSize*(2/3) / Math.max(basePlateWidth, basePlateHeight, 500);
+  TopDimLine = Math.max(basePlateHeight,500)/2*scale
+  LeftDimLine = Math.max(basePlateWidth, 500)/2*scale
+  
   
   
   // 좌표계 변환 함수
@@ -38,38 +38,10 @@ const SectionDrawing = ({
     return transformedy
   }
 
-  //Pedestal Drawing
-  const drawPedestal = (ctx:any) => {
-    ctx.fillStyle = '#F5F9FF';
-    ctx.translate(canvasSize / 2, canvasSize / 2);
-    ctx.fillRect(-pedestalWidth/2*scale, -pedestalHeight/2*scale, pedestalWidth*scale, pedestalHeight*scale);
-    
-    //상부 치수선
-    ctx.beginPath();
-    const dimOffset = 35
-    const dimTickSize = 2
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 0.5;
-    ctx.moveTo(-LeftDimLine, tfc(TopDimLine + dimOffset));
-    ctx.lineTo(LeftDimLine, tfc(TopDimLine + dimOffset));
-    ctx.moveTo(-LeftDimLine, tfc(TopDimLine + dimOffset+dimTickSize));
-    ctx.lineTo(-LeftDimLine, tfc(TopDimLine + dimOffset-dimTickSize));
-    ctx.moveTo(LeftDimLine, tfc(TopDimLine + dimOffset+dimTickSize));
-    ctx.lineTo(LeftDimLine, tfc(TopDimLine + dimOffset-dimTickSize));
-    ctx.stroke();
-
-    ctx.fillStyle = 'black';
-    ctx.font = '10px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(pedestalWidth.toString(), 0, tfc(TopDimLine + dimOffset + 3))
-    ctx.closePath();
-    
-    ctx.translate(-canvasSize / 2, -canvasSize / 2)
-  }
   //Base Plate Drawing
   const drawBasePlate = (ctx:any) => {
     
-    ctx.fillStyle = '#D0E3FF';
+    ctx.fillStyle = '#E8F1FF';
 
     //좌표계 원점을 캔버스 중앙으로 이동
     ctx.translate(canvasSize / 2, canvasSize / 2);
@@ -121,27 +93,56 @@ const SectionDrawing = ({
     const dimOffset = 5
     const dimTickSize = 2
     // H Beam Vertex 를 돌며 선을 그림
+    let SectionDB = ''
+    let HBeamHeight = 0
+    let HBeamWidth = 0
+    let HBeamtw = 0
+    let HBeamtf = 0
+    console.log('selectedColumnIndex', selectedColumnIndex)
+    if (selectedColumnIndex == 0){
+
+    }
+    else{
+      for (const [sectionName, details] of Object.entries(columnData)){
+        if (details.SectionID === selectedColumnIndex){
+          SectionDB = details.DBName
+          console.log('SectionDB', SectionDB)
+        }
+      }
+      HBeamHeight = Number(SectionDB.split(' ')[1].split('x')[0])
+      HBeamWidth = Number(SectionDB.split(' ')[1].split('x')[1])
+      HBeamtw = Number(SectionDB.split(' ')[1].split('x')[2].split('/')[0])
+      HBeamtf = Number(SectionDB.split(' ')[1].split('x')[2].split('/')[1])
+      console.log('HBeamHeight', HBeamHeight)
+    }
+    
+    const HBeamvertex = [
+      [HBeamWidth/2, HBeamHeight/2],
+      [HBeamWidth/2, HBeamHeight/2-HBeamtf],
+      [HBeamtw/2, HBeamHeight/2-HBeamtf],
+      [HBeamtw/2, -HBeamHeight/2+HBeamtf],
+      [HBeamWidth/2, -HBeamHeight/2+HBeamtf],
+      [HBeamWidth/2, -HBeamHeight/2],
+      [-HBeamWidth/2, -HBeamHeight/2],
+      [-HBeamWidth/2, -HBeamHeight/2+HBeamtf],
+      [-HBeamtw/2, -HBeamHeight/2+HBeamtf],
+      [-HBeamtw/2, HBeamHeight/2-HBeamtf],
+      [-HBeamWidth/2, HBeamHeight/2-HBeamtf],
+      [-HBeamWidth/2, HBeamHeight/2],
+    ]
+
     ctx.translate(canvasSize / 2, canvasSize / 2)
     ctx.beginPath();
-    ctx.moveTo((hBeamVertices.vertices[0].x)*scale, tfc((hBeamVertices.vertices[0].y)*scale));
-    ctx.lineTo(hBeamVertices.vertices[1].x*scale, tfc(hBeamVertices.vertices[1].y*scale));
-    ctx.lineTo(hBeamVertices.vertices[2].x*scale, tfc(hBeamVertices.vertices[2].y*scale));
-    ctx.lineTo(hBeamVertices.vertices[3].x*scale, tfc(hBeamVertices.vertices[3].y*scale));
-    ctx.arc(hBeamVertices.vertices[3].x*scale, tfc(hBeamVertices.vertices[4].y*scale), hBeamVertices.vertices[3].y*scale-hBeamVertices.vertices[4].y*scale, -Math.PI/2, -Math.PI, true);
-    ctx.lineTo(hBeamVertices.vertices[5].x*scale, tfc(hBeamVertices.vertices[5].y*scale));
-    ctx.arc(hBeamVertices.vertices[6].x*scale, tfc(hBeamVertices.vertices[5].y*scale), hBeamVertices.vertices[5].y*scale-hBeamVertices.vertices[6].y*scale, Math.PI, Math.PI/2, true);
-    ctx.lineTo(hBeamVertices.vertices[7].x*scale, tfc(hBeamVertices.vertices[7].y*scale));
-    ctx.lineTo(hBeamVertices.vertices[8].x*scale, tfc(hBeamVertices.vertices[8].y*scale));
-    ctx.lineTo(hBeamVertices.vertices[9].x*scale, tfc(hBeamVertices.vertices[9].y*scale));
-    ctx.lineTo(hBeamVertices.vertices[10].x*scale, tfc(hBeamVertices.vertices[10].y*scale));
-    ctx.lineTo(hBeamVertices.vertices[11].x*scale, tfc(hBeamVertices.vertices[11].y*scale));
-    ctx.arc(hBeamVertices.vertices[11].x*scale, tfc(hBeamVertices.vertices[12].y*scale), hBeamVertices.vertices[12].y*scale-hBeamVertices.vertices[11].y*scale, -Math.PI*3/2, -Math.PI*2, true)
-    ctx.lineTo(hBeamVertices.vertices[13].x*scale, tfc(hBeamVertices.vertices[13].y*scale));
-    ctx.arc(hBeamVertices.vertices[14].x*scale, tfc(hBeamVertices.vertices[13].y*scale), hBeamVertices.vertices[14].y*scale-hBeamVertices.vertices[13].y*scale, 0, -Math.PI/2, true)
-    ctx.lineTo(hBeamVertices.vertices[15].x*scale, tfc(hBeamVertices.vertices[15].y*scale));
-    ctx.closePath();
-    ctx.fillStyle = '#0064FF';
+    ctx.moveTo(HBeamvertex[0][0]*scale, HBeamvertex[0][1]*scale);
+    for (let i=1; i<HBeamvertex.length; i++){
+      ctx.lineTo(HBeamvertex[i][0]*scale, HBeamvertex[i][1]*scale);
+      console.log(scale)
+      console.log('HBeamvertex', HBeamvertex[i][0]*scale, HBeamvertex[i][1]*scale)
+    }
+    ctx.stroke();
+    ctx.fillStyle = '#000000';
     ctx.fill();
+    ctx.closePath();
     
     //상부 치수선
     ctx.moveTo(hBeamVertices.vertices[0].x*scale, tfc(TopDimLine + dimOffset));
@@ -177,12 +178,9 @@ const SectionDrawing = ({
     const canvas:any = canvasRef.current;
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-    if (pedestalCheck === true){
-      drawPedestal(context)
-    }
     drawBasePlate(context)
     drawHBeam(context)
-  }, [basePlateWidth, basePlateHeight, hBeamVertices, pedestalCheck]);
+  }, [basePlateWidth, basePlateHeight, hBeamVertices, SelectedColumnIndex]);
 
 return (
   <div>

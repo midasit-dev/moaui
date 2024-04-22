@@ -1,7 +1,8 @@
 import {GuideBox, ChartLine, Typography} from '@midasit-dev/moaui';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Node_BP_Data, SelectedColumnIndex, SelectedColumnIndex_DBName, PlanviewBPNameCheck, PlanviewColumnNameCheck, PlanviewNodeCheck, BasePlateName} from '../variables';
+import { Node_BP_Data, SelectedColumnIndex, SelectedColumnIndex_DBName, PlanviewBPNameCheck, 
+  PlanviewColumnNameCheck, PlanviewNodeCheck, PlanViewSelectedNode} from '../variables';
 import { text } from 'stream/consumers';
 const PlanViewDrawing = ({
   panelSize = 500,
@@ -25,10 +26,12 @@ const PlanViewDrawing = ({
   const planViewNodeCheck = useRecoilValue(PlanviewNodeCheck);
   const planViewColumnNameCheck = useRecoilValue(PlanviewColumnNameCheck);
   const planViewBPNameCheck = useRecoilValue(PlanviewBPNameCheck);
-  const basePlateName:any = useRecoilValue(BasePlateName);
+
+  const [planViewSelectedNode, setPlanViewSelectedNode] = useRecoilState(PlanViewSelectedNode);
+
   // Scale 지정
   let scale = 0
-  scale = canvasSize * 0.95 / Math.max(MaxXCord-MinXCord, MaxYCord-MinYCord);
+  scale = canvasSize * 0.90 / Math.max(MaxXCord-MinXCord, MaxYCord-MinYCord);
 
   const drawHBeam = (ctx:any, BP_Data:any, nodekey : any) => {
     let SectionDBName = ''
@@ -69,7 +72,7 @@ const PlanViewDrawing = ({
       [-HBeamWidth/2, HBeamHeight/2],
     ]
     ctx.beginPath();
-    ctx.fillStyle = '#F7FF9E';
+    ctx.fillStyle = '#8CFFA5';
     ctx.fillRect(-BaseplateWidth/2000*scale, -BaseplateHeight/2000*scale, BaseplateWidth/1000*scale, BaseplateHeight/1000*scale);
     ctx.stroke();
     ctx.closePath();
@@ -98,10 +101,10 @@ const PlanViewDrawing = ({
     ctx.textAlign = 'center';
     let textstring = ''
     if (planViewNodeCheck){
-      textstring = textstring + "Node : " + nodekey
+      textstring = textstring + nodekey
     }
     if (planViewColumnNameCheck){
-      textstring = textstring + " Column : " + BP_Data.COLUMN_NAME
+      textstring = textstring + BP_Data.COLUMN_NAME
     }
     const DBSectionName = BP_Data.BASEPLATE.COLUMN.DB
     let sectionid = ''
@@ -111,13 +114,15 @@ const PlanViewDrawing = ({
       }
     }
     let BPName = ''
-    for(let key in basePlateName){
-      if (key == sectionid){
-        BPName = basePlateName[key]
-      }
+    if (BP_Data.BASEPLATE.PLATE.NAME == undefined){
+      BPName = ''
     }
+    else{
+      BPName = BP_Data.BASEPLATE.PLATE.NAME
+    }
+    
     if (planViewBPNameCheck){
-      textstring = textstring + " Baseplate Name : " + BPName
+      textstring = textstring + BPName
     }
     ctx.fillText(textstring, 0, -HBeamHeight/2000*scale-10);
     ctx.strokeStyle = '#000000';
@@ -135,7 +140,6 @@ const PlanViewDrawing = ({
       
     }
     ctx.translate(-canvasSize / 2, -canvasSize / 2);
-
   }
 
   const drawCordSystem = (ctx:any) => {
@@ -162,15 +166,94 @@ const PlanViewDrawing = ({
     ctx.fillText('X', 0.06*canvasSize, 0.995*canvasSize);
     ctx.fillText('Y', 0.01*canvasSize, 0.945*canvasSize);
   }
+
   useEffect(() => {
     const canvas:any = canvasRef.current;
     const context = canvas.getContext('2d');
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawCordSystem(context);
-    drawColumn(context)
+    drawColumn(context);
+    
+    let isDragging = false;
+    let startPoint = { x: 0, y: 0 };
+    let endPoint = { x: 0, y: 0 };
+    let selectedNodes:any = [];
+
+    // 마우스 움직일 때 동작
+    const onMouseMove = (e:any) => {
+      if (!isDragging) return;
+      endPoint = { x: e.offsetX, y: e.offsetY };
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      drawCordSystem(context);
+      drawColumn(context);
+      drawSelectionArea(context, startPoint, endPoint);
+    };
+    // 마우스 눌렀을 때
+    const onMouseDown = (e:any) => {
+      isDragging = true;
+      startPoint = { x: e.offsetX, y: e.offsetY };
+    };
+     // 마우스 뗏을 때 동작
+    const onMouseUp = (e:any) => {
+      isDragging = false;
+      endPoint = { x: e.offsetX, y: e.offsetY };
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      drawCordSystem(context);
+      drawColumn(context);
+      selectNodesWithinArea(startPoint, endPoint);
+    };
+    // 선택 영역 그리기
+    const drawSelectionArea = (ctx:any, startPoint:any, endPoint:any) => {
+      ctx.beginPath();
+      ctx.setLineDash([3]);
+      ctx.strokeStyle = 'blue';
+      ctx.rect(startPoint.x , startPoint.y , endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    };
+    // 선택된 노드 찾기
+    const selectNodesWithinArea = (start:any, end:any) => {
+      selectedNodes = Object.keys(node_BP_Data).filter((key) => {
+        let SectionDBName = ''
+        for (let key in selectedColumnIndex_DBName){
+          if (key == selectedColumnIndex.toString()){
+            SectionDBName = selectedColumnIndex_DBName[key]
+          }
+        }
+        if (SectionDBName == node_BP_Data[key].BASEPLATE.COLUMN.DB){
+          const nodeCord = node_BP_Data[key].NODECORD;
+          const canvasNodeX = (nodeCord[0] - CenterXCord) * scale + canvasSize / 2;
+          const canvasNodeY = (CenterYCord - nodeCord[1]) * scale + canvasSize / 2;
+          return (
+            canvasNodeX >= start.x &&
+            canvasNodeX <= end.x &&
+            canvasNodeY >= start.y &&
+            canvasNodeY <= end.y
+          );
+        }
+      });
+      // 기존의 선택된 노드에 추가
+      setPlanViewSelectedNode((prevSelectedNodes:any) => {
+        // 이전 선택된 노드와 새로 선택된 노드들을 합칩니다.
+        const updatedSelectedNodes = [...prevSelectedNodes, ...selectedNodes];
+        // Set을 통해 중복을 제거합니다.
+        const uniqueSelectedNodes = Array.from(new Set(updatedSelectedNodes));
+        return uniqueSelectedNodes;
+      });
+    };
+
+    canvas.addEventListener('mousedown', onMouseDown);
+    canvas.addEventListener('mousemove', onMouseMove);
+    canvas.addEventListener('mouseup', onMouseUp);
 
     
-  }, [node_BP_Data, selectedColumnIndex, planViewNodeCheck, planViewColumnNameCheck, planViewBPNameCheck, basePlateName])
+    return () => {
+      canvas.removeEventListener('mousedown', onMouseDown);
+      canvas.removeEventListener('mousemove', onMouseMove);
+      canvas.removeEventListener('mouseup', onMouseUp);
+    };
+  }, [node_BP_Data, selectedColumnIndex, planViewNodeCheck, planViewColumnNameCheck, planViewBPNameCheck])
 
 return (
   <div>

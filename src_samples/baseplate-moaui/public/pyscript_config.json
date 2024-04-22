@@ -1,7 +1,8 @@
 {
 	"packages": [
 		"numpy",
-		"mdutils"
+		"mdutils",
+		"pandas"
 	],
 	"fetch": [
 		{

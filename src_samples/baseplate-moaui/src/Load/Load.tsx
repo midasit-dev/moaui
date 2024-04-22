@@ -12,28 +12,28 @@ import {
 import { useRecoilState, useRecoilValue } from 'recoil';
 import TypoGraphyTextField from '../NewComponents/TypoGraphyTextField';
 import {selectNodeList, setColumnInfo } from '.././utils_pyscript';
-import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex, BasePlateName,
+import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex,
   HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, ReactionResult,
-  ENVLoad
+  ENVLoad, BP_List, SelectedBPList, BP_Node, DesignResult, MDResult
 } from '../variables';
 import PlanViewDrawing from '../Components/PlanViewDrawing';
 import TypoGraphyDropList from '../NewComponents/TypoGraphyDropList';
 import {dbReadItem }from '../utils_pyscript'
 import { set } from 'lodash';
-
+import {postNewProject, CreateBasePlateOutlines, AutoMeshing, Applyloads, Analysis, GetResult, calculate_baseplate, covertMarkdown, }from '../utils_pyscript'
+import { useSnackbar } from 'notistack';
 
 
 
 function Load() {
-
+  const { enqueueSnackbar } = useSnackbar();
   const [tabName, setTabName] = React.useState('Column');  
   const [selectedColumnIndex, setSelectedColumnIndex] = useRecoilState(SelectedColumnIndex);
   const [hSectionDB, setHSectionDB] = useRecoilState(HSectionDB);
   const [selectedDBIndex, setSelectedDBIndex] = useRecoilState(SelectedDBIndex);
   const [columnIndex_DBName, setcolumnIndex_DBName] = useRecoilState(SelectedColumnIndex_DBName);
   const [selectedColumnList, setSelectedColumnList] = useRecoilState(SelectedColumnList);
-  const [basePlateName, setBasePlateName] = useRecoilState(BasePlateName);
-
+  const [bpList, setBPList] = useRecoilState(BP_List);
   const node_BP_Data = useRecoilValue(Node_BP_Data);
   const [hBeamH, setHBeamH] = useRecoilState(HBeamH);
 	const [hBeamB, setHBeamB] = useRecoilState(HBeamB);
@@ -42,11 +42,12 @@ function Load() {
 	const [hBeamr, setHBeamr] = useRecoilState(HBeamr);
   const [basePlateWidth, setBasePlateWidth] = useRecoilState(BasePlateWidth);
   const [basePlateHeight, setBasePlateHeight] = useRecoilState(BasePlateHeight);
-
+  const [selectedBPList, setSelectedBPList] = useRecoilState(SelectedBPList);
   const [minMaxCoordinates, setMinMaxCoordinates] = useRecoilState(MinMaxCoordinates);
   const [reactionResult, setReactionResult] = useRecoilState(ReactionResult);
-  const [envLoad, setEnvLoad] = useRecoilState(ENVLoad);
-  
+  const [bpNode, setBPNode] = useRecoilState(BP_Node);
+  const [designResult, setDesignResult] = useRecoilState(DesignResult);
+  const [mDResult, setMDResult] = useRecoilState(MDResult);
   const columns : any = [
     {field : 'NodeIndex', headerName : 'Node No.', width : 80, editable : true, sortable : false},
     {field : 'LoadComb', headerName : 'sLC', width : 100, editable : true, sortable : false},
@@ -60,17 +61,13 @@ function Load() {
 
 
   const [rows_ADD, setRows_ADD] = useState<any>([]);
-  const [rows_ENV, setRows_ENV] = useState<any>([]);
 
-  const ColumnSelected = (e:any) => {
-    setSelectedColumnIndex(e.target.value)
-    const DBSection_Name = columnIndex_DBName[e.target.value]
-    let Node_List = []
-    for (let key in node_BP_Data){
-      if (node_BP_Data[key].BASEPLATE.COLUMN.DB === DBSection_Name){
-        Node_List.push(key)
-      }
-    }
+  const BPListSelected = (e:any) => {
+    setSelectedBPList(e.target.value)
+    let selectedBPName = e.target.value
+    let newBP_Node = JSON.parse(JSON.stringify(bpNode))
+    let Node_List = newBP_Node[selectedBPName]['NODE']
+    console.log(Node_List)
     let id_index = 0
     let new_rows_ADD = []
     for (let i=0; i<Node_List.length; i++){
@@ -97,13 +94,9 @@ function Load() {
   }
   
   useEffect(() => {
-    const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
-    let Node_List = []
-    for (let key in node_BP_Data){
-      if (node_BP_Data[key].BASEPLATE.COLUMN.DB === DBSection_Name){
-        Node_List.push(key)
-      }
-    }
+    let selectedBPName = bpList[0][0]
+    let newBP_Node = JSON.parse(JSON.stringify(bpNode))
+    let Node_List = newBP_Node[selectedBPName]['NODE']
     let id_index = 0
     let new_rows_ADD = []
     for (let i=0; i<Node_List.length; i++){
@@ -128,25 +121,90 @@ function Load() {
     setRows_ADD(new_rows_ADD)
   }, [])
 
+  const handleDesignClick = () => {
+    postNewProject(); 
+    const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
+    const BPData = JSON.parse(JSON.stringify(node_BP_Data));
+    let PlateWidth = 0
+    let PlateHeight = 0
+    let SectionDim = ''
+    let PlateMaterial = ''
+    let PlateThickness = 0
+    let keyindex = ''
+    for(let key in BPData){
+      if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
+        keyindex = key
+        PlateWidth = BPData[key].BASEPLATE.PLATE.WIDTH
+        PlateHeight = BPData[key].BASEPLATE.PLATE.HEIGHT
+        SectionDim = BPData[key].BASEPLATE.COLUMN.DB
+        PlateMaterial = BPData[key].BASEPLATE.PLATE.MATL
+        PlateThickness = BPData[key].BASEPLATE.PLATE.THIK
+        break;
+      }
+    }
+
+    const splitspace = SectionDim.split(' ')
+    const splitdim = splitspace[1].split('x')
+    const HBeamHeight = Number(splitdim[0])
+    const HBeamWidth = Number(splitdim[1])
+    CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeight, HBeamWidth)
+    AutoMeshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness)
+    
+    let loaddata = []
+    for(let key in BPData){
+      if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
+        for(let reaction_key in reactionResult){
+          if(reaction_key == key){
+            for(let load_key in reactionResult[reaction_key]){
+              loaddata.push(reactionResult[reaction_key][load_key][2])
+            }
+          }
+        }
+      }
+    }
+    Applyloads(loaddata, PlateWidth, PlateHeight)
+    Analysis(selectedColumnIndex)
+    const Pu_Result = GetResult()
+    let new_DesignResult = JSON.parse(JSON.stringify(designResult))
+    new_DesignResult.Pu = 1
+    new_DesignResult.Mux = Math.abs(Number(Pu_Result['min']))
+    new_DesignResult.Muy = 1
+    new_DesignResult.Vux = 1
+    new_DesignResult.Vuy = 1
+    new_DesignResult.Tu = 1
+    new_DesignResult.Sigma_max = 1
+    new_DesignResult.Sigma_min = 1
+    new_DesignResult.fck = Number(BPData[keyindex].BASEPLATE.COLUMN.MATL)
+    new_DesignResult.BP_Area = BPData[keyindex].BASEPLATE.PLATE.WIDTH * BPData[keyindex].BASEPLATE.PLATE.HEIGHT
+    new_DesignResult.BP_thick = BPData[keyindex].BASEPLATE.PLATE.THIK
+    new_DesignResult.BP_Fy = 1
+    new_DesignResult.Bolt_Dia = 1
+    new_DesignResult.Bolt_Length = 1
+    new_DesignResult.Bolt_Num = 1
+    setDesignResult(new_DesignResult)
+    const calculate_result = calculate_baseplate(JSON.stringify(new_DesignResult))
+    
+    const markdown = covertMarkdown(JSON.stringify(calculate_result))
+    setMDResult(markdown)
+    enqueueSnackbar('Design Check Completet', {variant: 'success', autoHideDuration: 3000})
+  }
+
   return (
     <GuideBox row >
       <Panel height={550}>
         <GuideBox spacing={1}>
           <GuideBox marginTop={1} spacing={1}>
             <TypoGraphyDropList
-              title = "Column :"
+              title = "Baseplate :"
               width = {350}
               dropListwidth = {200}
-              items = {selectedColumnList}
-              defaultValue = {selectedColumnIndex}
-              value = {selectedColumnIndex}
-              onChange = {ColumnSelected}
+              items = {bpList}
+              defaultValue = {bpList[0][0]}
+              value = {selectedBPList}
+              onChange = {BPListSelected}
             />
-
           </GuideBox>
-
           <Typography variant='h1'>LoadCase(ADD)</Typography>
-
           <div style={{height: 350, width: '100%'}}>
             <DataGrid
               columnHeaderHeight={60}
@@ -154,8 +212,15 @@ function Load() {
               hideFooter
               columns={columns}
               rows = {rows_ADD}
+              checkboxSelection
             ></DataGrid>
           </div>
+        </GuideBox>
+        <GuideBox width={400} horRight>
+          <Button 
+            variant='outlined'
+            onClick={handleDesignClick}
+          >Design Check</Button>
         </GuideBox>
       </Panel>
     </GuideBox>

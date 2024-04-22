@@ -2,37 +2,37 @@ import {SetRecoilState, atom, selector,DefaultValue} from 'recoil';
 
 export const BasePlateWidth = atom<any>({
   key: 'BasePlateWidth',
-  default: 500,
+  default: 0,
 });
 
 export const BasePlateHeight = atom<any>({
   key: 'BasePlateHeight',
-  default: 500,
+  default: 0,
 });
 
 export const HBeamH = atom({
   key: 'HBeamH',
-  default: 300,
+  default: 0,
 });
 
 export const HBeamB = atom({
   key: 'HBeamB',
-  default: 150,
+  default: 0,
 });
 
 export const HBeamtw = atom({
   key: 'HBeamtw',
-  default: 6,
+  default: 0,
 });
 
 export const HBeamtf = atom({
   key: 'HBeamtf',
-  default: 9,
+  default: 0,
 });
 
 export const HBeamr = atom({
   key: 'HBeamr',
-  default: 12,
+  default: 0,
 });
 
 export const HBeamVertices = selector({
@@ -67,21 +67,6 @@ export const HBeamVertices = selector({
     }
     return vertex;
   },
-});
-
-export const PedestalCheck = atom({
-  key: 'PedestalCheck',
-  default: false,
-});
-
-export const PedestalHeight = atom({
-  key: 'PedestalHeight',
-  default: 1000,
-});
-
-export const PedestalWidth = atom({
-  key: 'PedestalWidth',
-  default: 1000,
 });
 
 export const UserDefineState = atom({
@@ -138,11 +123,6 @@ export const SelectedDBIndex = atom({
   default: 0,
 });
 
-export const BasePlateName = atom({
-  key: 'BasePlateName',
-  // {'section_id' : 'BasePlateName'}
-  default: {0 : 'BP1'}
-});
 
 export const Node_BP_Data = atom<any>({
   key: 'SectionDimList',
@@ -169,7 +149,7 @@ export const Node_BP_Data = atom<any>({
         SHAPE : "REC",
         WIDTH : 1000,
         HEIGHT : 1000,
-      },
+      }
     }
   }
 }
@@ -216,7 +196,7 @@ export const ConcreteMaterial = atom({
 
 export const BPName = atom({
   key: 'BPName',
-  default: 'BP1',
+  default: '',
 });
 
 export const ENVLoad = atom({
@@ -262,5 +242,30 @@ export const PlanviewBPNameCheck = atom({
 
 export const MDResult = atom({
   key: 'MDResult',
+  default: ''
+});
+
+export const ColumnData = atom<any>({
+  key : 'ColumnInfo',
+  default : {}
+})
+
+export const PlanViewSelectedNode = atom<any>({
+  key: 'PlanViewSelectedNode',
+  default: []
+})
+
+export const BP_Node = atom({
+  key: 'BP_Node',
+  default: {}
+})
+
+export const BP_List = atom({
+  key: 'BP_List',
+  default: []
+});
+
+export const SelectedBPList = atom({
+  key: 'SelectedBPList',
   default: ''
 });

@@ -16,6 +16,7 @@ from pyscript_engineers_web import set_g_values, get_g_values, requests_json
 from pyscript_engineers_web import MidasAPI, Product
 from baseplate_KDS41_30_2022_calc import calc
 from baseplate_KDS41_30_2022_report import GenerateReport
+import pandas as pd
 def HelloWorld():
 	return (f'Hello World! this message is from def HelloWorld of PythonCode.py')
 
@@ -95,7 +96,6 @@ def py_set_column_info(selectedNodeList):
 	for key, value in node_list.items():
 		if str(key) in selectedNodeList:
 			selected_nodes[key] = value
-	
 	elements = civil.db_read("ELEM")
 	## selected node에 연결된 부재 정보 추출
 	if elements == None:
@@ -121,12 +121,19 @@ def py_set_column_info(selectedNodeList):
 							if start_angle > angle:
 								start_angle = angle
 								selected_element_key = key
+			if elements[selected_element_key]['NODE'][0] == nodekey:
+				Position = "I"
+			else:
+				Position = "J"
+    
 			selected_data[nodekey] = {
 				"element_key" : selected_element_key,
 				"section_id" : elements[selected_element_key]['SECT'],
 				"material_id" : elements[selected_element_key]['MATL'],
+				"angle" : elements[selected_element_key]['ANGLE'],
+				"position" : Position
 			}
-  
+	
 	return json.dumps(selected_data)
 
 def py_get_node_info():
@@ -399,7 +406,7 @@ def py_CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeigth, HBeamWidth)
 				"DIV_METHOD": "Equal",
 				"OPTION": {
 						"EQUAL_OPTION": {
-								"NUM_X": 10
+								"NUM_X": 1
 						}
 				}
 		}
@@ -606,33 +613,17 @@ def py_getresult():
 				"NODES": True
 		}
 	}
- 
+	
 	result = civil.GetResult(getresult_items)
 	result = result["PlateForce(UnitLength:UCS)"]["DATA"]
-	result_array = {}
-	for i in range(len(result)):
-		## result_array 에 {elementkey : {loadcase : [result]}} 형태로 저장
-		elementkey = result[i][1]
-		loadcase = result[i][2]
-		if elementkey not in result_array.keys():
-			result_array[elementkey] = {}
-		if loadcase not in result_array[elementkey].keys():
-			result_array[elementkey][loadcase] = []
-		result_array[elementkey][loadcase].append(float(result[i][4]))
-
-	## result_array 안의 결과값의 평균으로 저장
-	for key in result_array.keys():
-		for loadcase in result_array[key].keys():
-			result_array[key][loadcase] = sum(result_array[key][loadcase])/len(result_array[key][loadcase])
-
-	## 최소값 저장
-	result = {"min" : 100000000}
-	for key in result_array.keys():
-		for loadcase in result_array[key].keys():
-			if result_array[key][loadcase] < result["min"]:
-				result["min"] = result_array[key][loadcase]
-
-	return json.dumps(result)
+	
+	df = pd.DataFrame(result, columns = ['ID', 'ElementKey', 'LoadCase', 'NodeNo', 'Mxx'])
+	df['Mxx'] = df['Mxx'].astype(float)
+	result_df = df.groupby(['ElementKey', 'LoadCase'])['Mxx'].mean().reset_index()
+	minvalue = result_df['Mxx'].min()
+	min_result = {"min" : minvalue}
+	
+	return json.dumps(min_result)
 
 ## baseplate_KDS41_30_2022_calc.py 의 calc 함수 호출
 def Calculatation(jsondata):

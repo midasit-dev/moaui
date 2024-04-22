@@ -1,5 +1,5 @@
 import {
-	GuideBox, Separator,
+	GuideBox, Separator, Button,
 } from '@midasit-dev/moaui';
 
 import ManifestHeadLine from './Manifest/HeadLine';
@@ -32,6 +32,7 @@ const Home = (props: HomeProps) => {
 					containerSize={containerSize}
 					bgColor={bgColor}
 				/>
+				<Button loading={true} color='negative'>Test</Button>
 				<HomeManifestTitleUpdator titleState={[title, setTitle]} />
 				<HomeManifestContainerSizeUpdator containerSizeState={[containerSize, setContainerSize]} />
 				<HomeManifestContainerBackgroundUpdator containerBackgroundColorState={[bgColor, setBgColor]} />

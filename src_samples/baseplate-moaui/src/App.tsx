@@ -12,11 +12,11 @@ import {
 import { default as WelcomeDevTools } from './DevTools/Welcome';
 import SectionDrawing from './Components/SectionDrawing';
 import TypoGraphyTextField from './NewComponents/TypoGraphyTextField';
-import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, BasePlateName, Node_BP_Data
+import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, Node_BP_Data
 , HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, MinMaxCoordinates, SelectedColumnIndex
-, LoadCombinations, ReactionResult
+, LoadCombinations, ReactionResult, ColumnData, HSectionDB, SelectedDBIndex
 } from './variables';
-import { useRecoilState, SetRecoilState } from 'recoil';
+import { useRecoilState, SetRecoilState, useRecoilValue} from 'recoil';
 import Member from './Member/Member';
 import { selectNodeList, setColumnInfo, dbReadItem, getNodeInfo, dbRead, getReactionTable} from './utils_pyscript';
 import {
@@ -46,9 +46,8 @@ const App = () => {
 	const [selectedNodes, setSelectedNodes] = useRecoilState(SelectedNodes);
 	const [selectedColumnList, setSelectedColumnList] = useRecoilState(SelectedColumnList);
 	const [columnIndex_DBName, setcolumnIndex_DBName] = useRecoilState(SelectedColumnIndex_DBName);
-	const [basePlateName, setBasePlateName] = useRecoilState(BasePlateName);
 	const [node_BP_Data, setNode_BP_Data] = useRecoilState(Node_BP_Data);
-
+	const [columnData, setColumnData] = useRecoilState(ColumnData);
 	const [hBeamH, setHBeamH] = useRecoilState(HBeamH);
 	const [hBeamB, setHBeamB] = useRecoilState(HBeamB);
 	const [hBeamtf, setHBeamtf] = useRecoilState(HBeamtf);
@@ -56,13 +55,14 @@ const App = () => {
 	const [hBeamr, setHBeamr] = useRecoilState(HBeamr);
 	const [basePlateWidth, setBasePlateWidth] = useRecoilState(BasePlateWidth);
 	const [basePlateHeight, setBasePlateHeight] = useRecoilState(BasePlateHeight);
-
+	const [selectedDBIndex, setSelectedDBIndex] = useRecoilState(SelectedDBIndex);
 	const [minMaxCoordinates, setMinMaxCoordinates] = useRecoilState(MinMaxCoordinates);
 	const [selectedColumnIndex, setSelectedColumnIndex] = useRecoilState(SelectedColumnIndex);
-
+	const hSectionDB = useRecoilValue(HSectionDB);
 	const [loadCombinations, setLoadCombinations] = useRecoilState(LoadCombinations);
 	const [reactionResult, setReactionResult] = useRecoilState(ReactionResult);
 	const [tabName, setTabName] = React.useState('Member');
+
 	const handleTabChange = (event: React.ChangeEvent<{}>, newValue: string) => {
 		setTabName(newValue);
 	};
@@ -86,10 +86,11 @@ const App = () => {
     const nodeList = selectedNodes.split(',');
     const selected_data = setColumnInfo(nodeList);
 
+
 		//Section id 만 추출
-    const sections = Object.values(selected_data).map((item:any) => item['section_id']);
-    //중복 제거
-		const sectionArray = sections.filter((value, index, self) => {
+
+		const sections = Object.values(selected_data).map((item:any) => item['section_id']);
+		const sectionArray = sections.filter((value:any, index:any, self:any) => {
       return self.indexOf(value) === index;
     });
     const sectionid = sectionArray.join(',');
@@ -99,7 +100,7 @@ const App = () => {
 		const section_name = sectionArray.map((key:any) => [sectiondata[key].SECT_NAME, key])
 
 		// 각 Section id에 해당하는 Section Dimension 저장
-    let section_dim :any = {};
+    let section_dim:any = {};
 		for (let i = 0; i < sectionArray.length; i++){
 			section_dim[sectionArray[i]] = sectiondata[sectionArray[i]].SECT_BEFORE.SECT_I.SECT_NAME
 		}
@@ -109,24 +110,29 @@ const App = () => {
 		// Set Section Dim
     setcolumnIndex_DBName(section_dim);
 		
-		
+		let newColumnData :any = {};
+		for (let i =0; i<sectionArray.length; i++){
+			const SectionID = sectionArray[i];
+			const SectionName = sectiondata[SectionID].SECT_NAME;
+			// selected_data 에서 sectionid 가 SectionID 인 것들을 찾아서 배열로 저장
+			const Nodelist = Object.entries(selected_data).filter(([_, value]:any) => value['section_id'] === SectionID);
+			const DBName = sectiondata[SectionID].SECT_BEFORE.SECT_I.SECT_NAME;
+			newColumnData[SectionName] = {
+				SectionID : SectionID,
+				DBName : DBName,
+				NodeList : Nodelist.map((item:any) => item[0])
+			}
+		}
+		setColumnData(newColumnData);
+
 		const nodedata = dbReadItem('NODE', selectedNodes);
 
-		let newBasePlateName :any = {};
-		for (let i=0; i<sectionArray.length; i++){
-			newBasePlateName[sectionArray[i]] = 'BP'+(i+1).toString()
-		}
-		setBasePlateName(newBasePlateName);
 		// Node_BP_Data
 		let newNodeBPData :any = {};
 		for (let i = 0; i < nodeList.length; i++){
 			try{
 				const sectionid = selected_data[nodeList[i]]['section_id']
 				const sectiondim = section_dim[sectionid]
-				const splitspace = sectiondim.split(' ')
-				const splitdim = splitspace[1].split('x')
-				const splieslash = splitdim[2].split('/')
-				const dimarray = [Number(splitdim[0]), Number(splitdim[1]), Number(splieslash[0]), Number(splieslash[1])]
 				const columnName = sectiondata[sectionid].SECT_NAME
 				newNodeBPData[nodeList[i]] = {
 					COLUMN_NAME : columnName,
@@ -138,19 +144,14 @@ const App = () => {
 							DB : sectiondim,
 						},
 						PLATE : {
-							MATL : "SS275",
+							MATL : "SS235",
 							SHAPE : "REC",
-							WIDTH : 1000,
-							HEIGHT : 1000,
-							THIK : 12
+							WIDTH : 0,
+							HEIGHT : 0,
+							THIK : 0
 						}
 					},
-					PEDESTAL : {
-						MATL : "SS275",
-						SHAPE : "REC",
-						WIDTH : 1500,
-						HEIGHT : 1500,
-					},
+					
 				}
 			}
 			catch(err){
@@ -158,7 +159,6 @@ const App = () => {
 			}
 				
 		}
-		
 		setNode_BP_Data(newNodeBPData);
 
 		// Set Initial Section Dim
@@ -178,10 +178,16 @@ const App = () => {
 		}
 		
 		const MinMaxCord = getNodeInfo();
+
 		setMinMaxCoordinates(MinMaxCord);
 
 		setSelectedColumnIndex(section_name[0][1]);		
-
+		const DBSection_Name = section_dim[section_name[0][1]];
+		for(let i=0; i< hSectionDB.length; i++){
+      if (hSectionDB[i][0] === DBSection_Name){
+        setSelectedDBIndex(i)
+      }
+    }
 		const SteelLC = dbRead('LCOM-STEEL');
 		if (SteelLC.hasOwnProperty('error')){
 			enqueueSnackbar('Steel Design 하중 조합이 없습니다.', {variant: 'error', autoHideDuration: 3000})
@@ -222,9 +228,9 @@ const App = () => {
 
 	}	
 	
-
+	
 	return (
-		<GuideBox>
+		<GuideBox width='auto'>
 			<GuideBox row verCenter spacing={1} height={35} margin={1}>
 				<Typography variant='h1'>Select Nodes :</Typography>
 				<TextField
@@ -239,7 +245,7 @@ const App = () => {
 					onClick = {SetInitialData}
 				>Add</Button>
 		</GuideBox>
-			<GuideBox width={1000} height={600} row>
+			<GuideBox width={1220} height={600} row>
 					<TabGroup
 						orientation='vertical'
 						value = {tabName}
