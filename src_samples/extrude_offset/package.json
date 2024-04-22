@@ -1,0 +1,53 @@
+{
+  "name": "extrude_offset",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "cd src/DevTools && node server.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": ".",
+  "devDependencies": {
+    "@midasit-dev/moaui": "^0.1.111",
+    "@types/jsoneditor": "^9.9.5",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^16.18.91",
+    "@types/react": "^18.2.70",
+    "@types/react-dom": "^18.2.22",
+    "@types/react-rnd": "^8.0.0",
+    "@types/uuid": "^9.0.8",
+    "cors": "^2.8.5",
+    "jsoneditor": "^10.0.2",
+    "lodash": "^4.17.21",
+    "notistack": "^3.0.1",
+    "react": "^18.2.0",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^18.2.0",
+    "react-rnd": "^10.4.1",
+    "react-scripts": "^5.0.1",
+    "recoil": "^0.7.7",
+    "typescript": "^4.9.5",
+    "uuid": "^9.0.1"
+  }
+}

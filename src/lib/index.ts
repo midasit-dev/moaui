@@ -25,6 +25,7 @@ import { default as Check, type CheckProps, CheckSample } from "./Components/Che
 import { default as CheckGroup, type CheckGroupProps, CheckGroupSample } from "./Components/CheckGroup";
 import { default as Chip, type ChipProps, ChipSample } from "./Components/Chip";
 import { default as CodeBlock, type CodeBlockProps, CodeBlockSample } from "./Components/CodeBlock";
+import { default as ColorPicker, type ColorPickerProps, ColorPickerSample } from "./Components/ColorPicker";
 import { default as Dialog, type DialogProps, DialogSample } from "./Components/Dialog";
 import { default as DataGrid, DataGridToolbar, DataGridToolbarContainer, DataGridToolbarExport, type DataGridProps, DataGridSample } from "./Components/DataGrid";
 import { default as DropList, type DropListProps, DropListSample } from "./Components/DropList";
@@ -89,6 +90,7 @@ const Moaui = {
   CheckGroup, CheckGroupSample,
 	Chip, ChipSample,
 	CodeBlock, CodeBlockSample,
+  ColorPicker, ColorPickerSample,
   DataGrid, DataGridToolbar, DataGridToolbarContainer, DataGridToolbarExport, DataGridSample,
   Dialog, DialogSample,
   DropList, DropListSample,
@@ -146,6 +148,7 @@ export {
   CheckGroup, CheckGroupSample, type CheckGroupProps,
 	Chip, ChipSample, type ChipProps,
 	CodeBlock, CodeBlockSample, type CodeBlockProps,
+  ColorPicker, ColorPickerSample, type ColorPickerProps,
   DataGrid, DataGridToolbar, DataGridToolbarContainer, DataGridToolbarExport, DataGridSample, type DataGridProps,
   Dialog, DialogSample, type DialogProps,
 	DropList, DropListSample, type DropListProps,

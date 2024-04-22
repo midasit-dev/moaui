@@ -1,0 +1,17 @@
+{
+  "short_name": "Sign on",
+  "name": "Sign on",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#f5f5f7",
+  "width": 400,
+  "height": 328
+}

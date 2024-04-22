@@ -8,6 +8,13 @@ import Tooltip from '../Tooltip';
 
 export type StyledProps = {
 	/**
+	 * The id of the textfield.
+	 * @defaultValue "TextFieldV2Id"
+	 * @optional
+	 * @type string
+	 */
+	id?: string,
+	/**
 	 * If `true`, the `input` element is focused during the first mount.
 	 * @default false
 	 */
@@ -150,6 +157,7 @@ const StyledComponent = styled((props:StyledProps) => {
 		
 		return (
 			<TextField
+				id={props?.id || "TextFieldV2Id"}
 				autoFocus={props?.autoFocus}
 				type={props?.type}
 				onChange={props?.onChange}
