@@ -50,6 +50,8 @@ const StyledComponent = (props: StyledProps) => {
     b: 255,
   });
 
+	const [currentColor, setCurrentColor] = React.useState<string>(JSON.stringify(color || rgbColor));
+
   return (
     <div
       id={props?.id || "ColorPickerId"}
@@ -61,6 +63,7 @@ const StyledComponent = (props: StyledProps) => {
         width: direction === "column" ? "200px" : "auto",
         height: direction === "row" ? "200px" : "auto",
       }}
+			data-temporary={currentColor}
     >
       <div
         style={{
@@ -73,6 +76,7 @@ const StyledComponent = (props: StyledProps) => {
           onChange={(newColor) => {
             setrgbColor(newColor as RgbColor);
             onChange?.(newColor as RgbColor);
+						setCurrentColor(JSON.stringify(newColor as RgbColor));
           }}
         />
       </div>
