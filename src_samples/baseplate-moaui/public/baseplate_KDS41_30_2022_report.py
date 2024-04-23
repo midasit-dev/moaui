@@ -42,7 +42,7 @@ def GenerateReport(JsonData):
   RptUtil.add_line_fvu("A_1", find_data(RptData, "Bearing_A1") , enUnit.AREA)
   RptUtil.add_line_fvu("A_2", find_data(RptData, "Bearing_A2") , enUnit.AREA)
   RptUtil.add_line_fvu(r"F_n = 0.85 f_ck \\sqrt{\\frac{A_2}{A_1}}", find_data(RptData, "Bearing_Fn") , enUnit.STRESS)
-  RptUtil.add_line_fvu("øF_n", find_data(RptData, "Bearing_PhiFn") , enUnit.STRESS)
+  RptUtil.add_line_fvu("øF_n", find_data(RptData, "Bearing_phiFn") , enUnit.STRESS)
   
   RptUtil.add_paragraph("강도비")
   RptUtil.add_line_fvu("σ_{max}/øF_n", find_data(RptData, "Bearing_Ratio") , enUnit.NONE)

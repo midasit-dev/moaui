@@ -30,7 +30,7 @@ import {
   MinMaxCoordinates,
   ReactionResult,
   DesignResult,
-  MDResult,
+  MDResult, BP_List, BP_Node
 } from "../variables";
 import PlanViewDrawing from "../Components/PlanViewDrawing";
 import TypoGraphyDropList from "../NewComponents/TypoGraphyDropList";
@@ -78,9 +78,9 @@ function Design() {
   const [reactionResult, setReactionResult] = useRecoilState(ReactionResult);
   const [designResult, setDesignResult] = useRecoilState(DesignResult);
   const [mDResult, setMDResult] = useRecoilState(MDResult);
-
+  const [bpList, setBPList] = useRecoilState(BP_List);
   const { enqueueSnackbar } = useSnackbar();
-
+  const [bpNode, setBPNode] = useRecoilState(BP_Node);
   const columns: any = [
     {
       field: "ItemName",
@@ -125,10 +125,10 @@ function Design() {
     { id: 10, ItemName: "Length (mm)", Demand: "", Capacity: "", Ratio: "" },
   ];
 
-  const [rows_ADD, setRows_ADD] = useState<any>([]);
+  const [rows_ADD, setRows_ADD] = useState<any>(rows_ENV);
 
   const ColumnSelected = (e: any) => {
-    setSelectedColumnIndex(e.target.value);
+    setSelectedBPName(e.target.value);
   };
 
   useEffect(() => {
@@ -137,10 +137,12 @@ function Design() {
     }
   }, [loading]);
 
+  const [selectedBPName, setSelectedBPName] = useState(bpList[0][0]);
+  
+  console.log(node_BP_Data)
   const handleDesignClick = () => {
     try {
       postNewProject();
-      const DBSection_Name = columnIndex_DBName[selectedColumnIndex];
       const BPData = JSON.parse(JSON.stringify(node_BP_Data));
       let PlateWidth = 0;
       let PlateHeight = 0;
@@ -149,7 +151,7 @@ function Design() {
       let PlateThickness = 0;
       let keyindex = "";
       for (let key in BPData) {
-        if (BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name) {
+        if (BPData[key].BASEPLATE.PLATE.NAME == selectedBPName) {
           keyindex = key;
           PlateWidth = BPData[key].BASEPLATE.PLATE.WIDTH;
           PlateHeight = BPData[key].BASEPLATE.PLATE.HEIGHT;
@@ -169,7 +171,7 @@ function Design() {
 
       let loaddata = [];
       for (let key in BPData) {
-        if (BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name) {
+        if (BPData[key].BASEPLATE.PLATE.NAME == selectedBPName) {
           for (let reaction_key in reactionResult) {
             if (reaction_key == key) {
               for (let load_key in reactionResult[reaction_key]) {
@@ -179,9 +181,12 @@ function Design() {
           }
         }
       }
+
       Applyloads(loaddata, PlateWidth, PlateHeight);
       Analysis(selectedColumnIndex);
       const Pu_Result = GetResult();
+      console.log('key index', keyindex)
+      console.log()
       let new_DesignResult = JSON.parse(JSON.stringify(designResult));
       new_DesignResult.Pu = 1;
       new_DesignResult.Mux = Math.abs(Number(Pu_Result["min"]));
@@ -193,9 +198,9 @@ function Design() {
       new_DesignResult.Sigma_min = 1;
       new_DesignResult.fck = Number(BPData[keyindex].BASEPLATE.COLUMN.MATL);
       new_DesignResult.BP_Area =
-        BPData[keyindex].BASEPLATE.PLATE.WIDTH *
-        BPData[keyindex].BASEPLATE.PLATE.HEIGHT;
-      new_DesignResult.BP_thick = BPData[keyindex].BASEPLATE.PLATE.THIK;
+        Number(BPData[keyindex].BASEPLATE.PLATE.WIDTH) *
+        Number(BPData[keyindex].BASEPLATE.PLATE.HEIGHT);
+      new_DesignResult.BP_thick = Number(BPData[keyindex].BASEPLATE.PLATE.THIK);
       new_DesignResult.BP_Fy = 1;
       new_DesignResult.Bolt_Dia = 1;
       new_DesignResult.Bolt_Length = 1;
@@ -204,7 +209,20 @@ function Design() {
       const calculate_result = calculate_baseplate(
         JSON.stringify(new_DesignResult)
       );
-
+      console.log(JSON.stringify(calculate_result))
+      rows_ENV = [
+        { id: 1, ItemName: "Bearing Stress", Demand: "", Capacity: "", Ratio: "" },
+        { id: 2, ItemName: "Comp. (MPa)", Demand: calculate_result["Sigma_max"], Capacity: calculate_result["Sigma_max"], Ratio: calculate_result["Sigma_max"] },
+        { id: 3, ItemName: "Tens. (kN)", Demand: "None", Capacity: "None", Ratio: "None" },
+        { id: 4, ItemName: "Baseplate", Demand: "", Capacity: "", Ratio: "" },
+        { id: 5, ItemName: "Mxx (kN.m/m)", Demand: calculate_result["Mux"], Capacity: calculate_result["BPlate_PhiMn"], Ratio: calculate_result["BPlate_Ratio"] },
+        { id: 6, ItemName: "Myy (kN.m/m)", Demand: calculate_result["Muy"], Capacity: calculate_result["BPlate_PhiMn"], Ratio: calculate_result["BPlate_Ratio"] },
+        { id: 7, ItemName: "Anchor Bolt", Demand: "", Capacity: "", Ratio: "" },
+        { id: 8, ItemName: "Vu (kN)", Demand: calculate_result["AnchorBody_Vu1"], Capacity: calculate_result["AnchorBody_PhiRnv"], Ratio: calculate_result["AnchorBody_RatioV"] },
+        { id: 9, ItemName: "Tu (kN)", Demand: "1", Capacity: calculate_result["AnchorBody_Rnt"], Ratio: calculate_result["AnchorBody_Ratiot"] },
+        { id: 10, ItemName: "Length (mm)", Demand: calculate_result["AnchorLength_Len0"], Capacity: calculate_result["AnchorLength_Lanc"], Ratio: calculate_result["AnchorLength_Ratio"] },
+      ];
+      setRows_ADD(rows_ENV);
       const markdown = covertMarkdown(JSON.stringify(calculate_result));
       setMDResult(markdown);
     } catch (e) {
@@ -215,7 +233,7 @@ function Design() {
       });
     } finally {
       setLoading(false);
-      enqueueSnackbar("Design Check Completet", {
+      enqueueSnackbar("Design Check Completed", {
         variant: "success",
         autoHideDuration: 3000,
       });
@@ -224,8 +242,8 @@ function Design() {
 
   return (
     <GuideBox row>
+      <div style={{width:"100%", height:"100%", display:"flex", justifyContent:"center", alignItems:"center"}}>
       {loading && <InfiniLoading />}
-      <React.Fragment>
         <Panel height={550}>
           <GuideBox spacing={1}>
             <GuideBox marginTop={1} spacing={1}>
@@ -233,9 +251,9 @@ function Design() {
                 title="Column :"
                 width={350}
                 dropListwidth={200}
-                items={selectedColumnList}
-                defaultValue={selectedColumnIndex}
-                value={selectedColumnIndex}
+                items={bpList}
+                defaultValue={selectedBPName}
+                value={selectedBPName}
                 onChange={ColumnSelected}
               />
             </GuideBox>
@@ -248,7 +266,7 @@ function Design() {
                 rowHeight={80}
                 hideFooter
                 columns={columns}
-                rows={rows_ENV}
+                rows={rows_ADD}
               ></DataGrid>
             </div>
             <GuideBox width={400} horRight>
@@ -273,7 +291,7 @@ function Design() {
             </div>
           </GuideBox>
         </Panel>
-      </React.Fragment>
+      </div>
     </GuideBox>
   );
 }

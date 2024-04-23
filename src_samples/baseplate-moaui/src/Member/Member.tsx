@@ -139,7 +139,7 @@ function Member() {
       BP_Material : basePlateMaterial,
     }
     setBP_Node(newBP_Node)
-
+    
     setPlanViewSelectedNode([])
 
     let newBPList = JSON.parse(JSON.stringify(bpList))

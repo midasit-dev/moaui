@@ -194,18 +194,18 @@ def py_CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeigth, HBeamWidth)
 			"Z": 0
 		},
 		"2": {
-			"X": PlateWidth,
+			"X": int(PlateWidth),
 			"Y": 0,
 			"Z": 0
 		},
 		"3": {
-			"X": PlateWidth,
-			"Y": PlateHeight,
+			"X": int(PlateWidth),
+			"Y": int(PlateHeight),
 			"Z": 0
 		},
 		"4": {
 			"X": 0,
-			"Y": PlateHeight,
+			"Y": int(PlateHeight),
 			"Z": 0
 		},
 		"5": {
@@ -439,42 +439,42 @@ def py_meshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness):
 	minsize = min(int(PlateWidth), int(PlateHeight)) / 30
 	civil = MidasAPI(Product.CIVIL)
 	items = {
-        "MESHER": {
-            "TARGETS": [
-                1,2,3,4
-            ],
-            "TYPE": "Quad and triangle",
-            "MESH_INNER_DOMAIN": False,
-            "INCLUDE_INTERIOR_NODES": {
-                "OPT_CHECK": True,
-                "OPTION": "Auto"
-            },
-            "INCLUDE_INTERIOR_LINES": {
-                "OPT_CHECK": True,
-                "OPTION": "Auto"
-            },
-            "INCLUDE_BOUNDARY_CONNECTIVITY": True
-        },
-        "MESH_SIZE": {
-            "LENGTH" : minsize
-        },
-        "PROPERTY": {
-            "ELEMENT_TYPE": "Plate",
-            "ELEMENT_SUB_TYPE": {
-                "TYPE": "Thick",
-                "WITH_DRILLING_DOF": False
-            },
-            "MATERIAL": 1,
-            "THICKNESS": 1
-        },
-        "DOMAIN_NAME": {
-            "NAME": "frame2"
-        },
-        "ADDITIONAL_OPTION": {
-            "DELETE_LINE_ELEM": True,
-            "SUBDIVIDE_LINE_ELEM": True
-        }
-    }
+				"MESHER": {
+						"TARGETS": [
+								1,2,3,4
+						],
+						"TYPE": "Quad and triangle",
+						"MESH_INNER_DOMAIN": False,
+						"INCLUDE_INTERIOR_NODES": {
+								"OPT_CHECK": True,
+								"OPTION": "Auto"
+						},
+						"INCLUDE_INTERIOR_LINES": {
+								"OPT_CHECK": True,
+								"OPTION": "Auto"
+						},
+						"INCLUDE_BOUNDARY_CONNECTIVITY": True
+				},
+				"MESH_SIZE": {
+						"LENGTH" : minsize
+				},
+				"PROPERTY": {
+						"ELEMENT_TYPE": "Plate",
+						"ELEMENT_SUB_TYPE": {
+								"TYPE": "Thick",
+								"WITH_DRILLING_DOF": False
+						},
+						"MATERIAL": 1,
+						"THICKNESS": 1
+				},
+				"DOMAIN_NAME": {
+						"NAME": "frame2"
+				},
+				"ADDITIONAL_OPTION": {
+						"DELETE_LINE_ELEM": True,
+						"SUBDIVIDE_LINE_ELEM": True
+				}
+		}
 	civil.meshing(items)
 	deleted_element_list = []
 	element_data = civil.db_read("ELEM")
@@ -512,7 +512,7 @@ def py_meshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness):
 			"NAME": "1",
 			"TYPE": "VALUE",
 			"bINOUT": False,
-			"T_IN": PlateThickness,
+			"T_IN": int(PlateThickness),
 			"T_OUT": 0,
 			"O_VALUE": 0
 		}
@@ -622,7 +622,6 @@ def py_getresult():
 	result_df = df.groupby(['ElementKey', 'LoadCase'])['Mxx'].mean().reset_index()
 	minvalue = result_df['Mxx'].min()
 	min_result = {"min" : minvalue}
-	
 	return json.dumps(min_result)
 
 ## baseplate_KDS41_30_2022_calc.py 의 calc 함수 호출
