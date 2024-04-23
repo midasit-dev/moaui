@@ -76,76 +76,87 @@ function Design() {
     setSelectedColumnIndex(e.target.value)
     
   }
+
+  useEffect(() => {
+    if(loading){
+      handleDesignClick();
+    }
+  }, [loading])
   
   const handleDesignClick = () => {
-    setLoading(true);
-    postNewProject(); 
-    const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
-    const BPData = JSON.parse(JSON.stringify(node_BP_Data));
-    let PlateWidth = 0
-    let PlateHeight = 0
-    let SectionDim = ''
-    let PlateMaterial = ''
-    let PlateThickness = 0
-    let keyindex = ''
-    for(let key in BPData){
-      if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
-        keyindex = key
-        PlateWidth = BPData[key].BASEPLATE.PLATE.WIDTH
-        PlateHeight = BPData[key].BASEPLATE.PLATE.HEIGHT
-        SectionDim = BPData[key].BASEPLATE.COLUMN.DB
-        PlateMaterial = BPData[key].BASEPLATE.PLATE.MATL
-        PlateThickness = BPData[key].BASEPLATE.PLATE.THIK
-        break;
-      }
-    }
+    try{
 
-    const splitspace = SectionDim.split(' ')
-    const splitdim = splitspace[1].split('x')
-    const HBeamHeight = Number(splitdim[0])
-    const HBeamWidth = Number(splitdim[1])
-    CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeight, HBeamWidth)
-    AutoMeshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness)
-    
-    let loaddata = []
-    for(let key in BPData){
-      if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
-        for(let reaction_key in reactionResult){
-          if(reaction_key == key){
-            for(let load_key in reactionResult[reaction_key]){
-              loaddata.push(reactionResult[reaction_key][load_key][2])
+      postNewProject(); 
+      const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
+      const BPData = JSON.parse(JSON.stringify(node_BP_Data));
+      let PlateWidth = 0
+      let PlateHeight = 0
+      let SectionDim = ''
+      let PlateMaterial = ''
+      let PlateThickness = 0
+      let keyindex = ''
+      for(let key in BPData){
+        if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
+          keyindex = key
+          PlateWidth = BPData[key].BASEPLATE.PLATE.WIDTH
+          PlateHeight = BPData[key].BASEPLATE.PLATE.HEIGHT
+          SectionDim = BPData[key].BASEPLATE.COLUMN.DB
+          PlateMaterial = BPData[key].BASEPLATE.PLATE.MATL
+          PlateThickness = BPData[key].BASEPLATE.PLATE.THIK
+          break;
+        }
+      }
+  
+      const splitspace = SectionDim.split(' ')
+      const splitdim = splitspace[1].split('x')
+      const HBeamHeight = Number(splitdim[0])
+      const HBeamWidth = Number(splitdim[1])
+      CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeight, HBeamWidth)
+      AutoMeshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness)
+      
+      let loaddata = []
+      for(let key in BPData){
+        if(BPData[key].BASEPLATE.COLUMN.DB == DBSection_Name){
+          for(let reaction_key in reactionResult){
+            if(reaction_key == key){
+              for(let load_key in reactionResult[reaction_key]){
+                loaddata.push(reactionResult[reaction_key][load_key][2])
+              }
             }
           }
         }
       }
+      Applyloads(loaddata, PlateWidth, PlateHeight)
+      Analysis(selectedColumnIndex)
+      const Pu_Result = GetResult()
+      let new_DesignResult = JSON.parse(JSON.stringify(designResult))
+      new_DesignResult.Pu = 1
+      new_DesignResult.Mux = Math.abs(Number(Pu_Result['min']))
+      new_DesignResult.Muy = 1
+      new_DesignResult.Vux = 1
+      new_DesignResult.Vuy = 1
+      new_DesignResult.Tu = 1
+      new_DesignResult.Sigma_max = 1
+      new_DesignResult.Sigma_min = 1
+      new_DesignResult.fck = Number(BPData[keyindex].BASEPLATE.COLUMN.MATL)
+      new_DesignResult.BP_Area = BPData[keyindex].BASEPLATE.PLATE.WIDTH * BPData[keyindex].BASEPLATE.PLATE.HEIGHT
+      new_DesignResult.BP_thick = BPData[keyindex].BASEPLATE.PLATE.THIK
+      new_DesignResult.BP_Fy = 1
+      new_DesignResult.Bolt_Dia = 1
+      new_DesignResult.Bolt_Length = 1
+      new_DesignResult.Bolt_Num = 1
+      setDesignResult(new_DesignResult)
+      const calculate_result = calculate_baseplate(JSON.stringify(new_DesignResult))
+      
+      const markdown = covertMarkdown(JSON.stringify(calculate_result))
+      setMDResult(markdown)
+    } catch(e){
+      setLoading(false);
+      enqueueSnackbar('Design check Failed', {variant: 'error', autoHideDuration: 3000})
+    } finally {
+      setLoading(false);
+      enqueueSnackbar('Design Check Completet', {variant: 'success', autoHideDuration: 3000})
     }
-    Applyloads(loaddata, PlateWidth, PlateHeight)
-    Analysis(selectedColumnIndex)
-    const Pu_Result = GetResult()
-    let new_DesignResult = JSON.parse(JSON.stringify(designResult))
-    new_DesignResult.Pu = 1
-    new_DesignResult.Mux = Math.abs(Number(Pu_Result['min']))
-    new_DesignResult.Muy = 1
-    new_DesignResult.Vux = 1
-    new_DesignResult.Vuy = 1
-    new_DesignResult.Tu = 1
-    new_DesignResult.Sigma_max = 1
-    new_DesignResult.Sigma_min = 1
-    new_DesignResult.fck = Number(BPData[keyindex].BASEPLATE.COLUMN.MATL)
-    new_DesignResult.BP_Area = BPData[keyindex].BASEPLATE.PLATE.WIDTH * BPData[keyindex].BASEPLATE.PLATE.HEIGHT
-    new_DesignResult.BP_thick = BPData[keyindex].BASEPLATE.PLATE.THIK
-    new_DesignResult.BP_Fy = 1
-    new_DesignResult.Bolt_Dia = 1
-    new_DesignResult.Bolt_Length = 1
-    new_DesignResult.Bolt_Num = 1
-    setDesignResult(new_DesignResult)
-    const calculate_result = calculate_baseplate(JSON.stringify(new_DesignResult))
-    
-    const markdown = covertMarkdown(JSON.stringify(calculate_result))
-    setMDResult(markdown)
-    
-    setLoading(false);
-    enqueueSnackbar('Design Check Completet', {variant: 'success', autoHideDuration: 3000})
   }
   
   
@@ -183,7 +194,7 @@ function Design() {
                 ></DataGrid>
               </div>
               <GuideBox width={400} horRight>
-                <Button variant="outlined" onClick={handleDesignClick}>
+                <Button variant="outlined" onClick={() => setLoading(true)}>
                   Design Check
                 </Button>
               </GuideBox>
