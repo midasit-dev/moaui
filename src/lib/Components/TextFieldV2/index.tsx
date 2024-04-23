@@ -134,17 +134,14 @@ TextFieldV2.defaultProps = {
 } as StyledProps & StyledPropsExtension;
 
 const SampleProps = {
-	id: "TextFieldV2Id",
 	autoFocus: false,
 	type: "text",
 	placeholder: "Placeholder",
 	title : "Title",
 	titlePosition : "left",
-	defaultValue: "Default Value",
 	error : false,
 	disabled : false,
 	onChange: () => {},
-	value: "",
 	width: '150px',
 	titleXs: 3,
 	inputXs: 9,

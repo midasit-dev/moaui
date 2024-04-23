@@ -26,7 +26,6 @@ ColorPicker.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
-	id: "ColorPickerId",
   color: { r: 255, g: 255, b: 255 },
   onChange: () => {},
   showRGB: true,

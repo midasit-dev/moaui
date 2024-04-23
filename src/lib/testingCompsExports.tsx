@@ -155,7 +155,6 @@ export { default as ExperimentalPolygonGrid } from "./Experimental/Polygon/Code/
 export { default as ExperimentalPolygonsApplyAll } from "./Experimental/Polygons/Code/ApplyAll.code.except";
 export { default as ExperimentalPolygonsSample } from "./Experimental/Polygons/Code/Sample.code.except";
 export { default as ExperimentalSpreadSheetColumnLabels } from "./Experimental/SpreadSheet/Code/ColumnLabels.code.except";
-export { default as ExperimentalThreeJSBox } from "./Experimental/ThreeJS/Code/Box.code.except";
 export { default as TemplatesAutoDropListAutoDropList } from "./Templates/AutoDropList/Code/AutoDropList.code";
 export { default as TemplatesAutoDropListTemplatesAutoDropList } from "./Templates/AutoDropList/Code/TemplatesAutoDropList.code";
 export { default as TemplatesDualComponentsTypographyDropListSpaceBetween } from "./Templates/DualComponents/Code/TypographyDropListSpaceBetween.code";

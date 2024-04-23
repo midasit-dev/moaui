@@ -187,7 +187,6 @@ export { default as ExperimentalLanguageDropList } from "./Experimental/Language
 export { default as ExperimentalPolygon, type StyledProps as ExperimentalPolygonType } from "./Experimental/Polygon";
 export { default as ExperimentalPolygons } from "./Experimental/Polygons";
 export { default as ExperimentalSpreadSheet } from "./Experimental/SpreadSheet";
-export { default as ExperimentalThreeJS } from "./Experimental/ThreeJS";
 
 // testing Components
 export * from "./testingCompsExports";

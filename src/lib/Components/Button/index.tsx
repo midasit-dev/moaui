@@ -29,7 +29,6 @@ Button.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
-	id: "ButtonId",
 	children: "Button",
 	onClick: () => {},
 	variant: toUnionType({ values: ['contained', 'outlined', 'text'] }),
