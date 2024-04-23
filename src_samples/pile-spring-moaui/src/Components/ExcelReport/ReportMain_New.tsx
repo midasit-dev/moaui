@@ -5,7 +5,7 @@ import { ReportJsonResult } from "../variables";
 import { report } from "process";
 
 
-function ExcelReport_New(
+async function ExcelReport_New(
   projectName : string,
   piletableData : any,
   soilData : any,
@@ -341,13 +341,13 @@ function ExcelReport_New(
 
   console.log(JSON.stringify(reportjson))
   const BaseSheetFilePath = "BaseSheet.xlsx"
-  fetch(BaseSheetFilePath)
+  await fetch(BaseSheetFilePath)
   .then(response => response.blob())
-  .then(blob => {
+  .then(async blob => {
     const formData = new FormData();
     formData.append("file", blob, "BaseSheet.xlsx");
     formData.append("parameter", JSON.stringify(reportjson));
-    fetch('https://moa.rpm.kr-dv-midasit.com/backend/function-executor/plugin-execute', {
+    await fetch('https://moa.rpm.kr-dv-midasit.com/backend/function-executor/plugin-execute', {
       method: 'POST',
       body: formData, // 필요에 따라 적절한 formData를 설정해주세요.
     })
