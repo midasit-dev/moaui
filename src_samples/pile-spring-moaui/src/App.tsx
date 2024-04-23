@@ -14,12 +14,9 @@ const App = () => {
 	const [projectName, setProjectName] = useRecoilState(ProjectName);
 	const drawingSize = 350;
 	return (
-		<GuideBox width='auto'>
-			<Panel width={drawingSize} height={drawingSize}>
-				
-			</Panel>
+		<GuideBox width='auto' row spacing={1}>
+			<MainWindow/>
 		</GuideBox>
-		
 	);
 }
 

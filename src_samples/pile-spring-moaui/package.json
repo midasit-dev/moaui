@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/lab": "^5.0.0-alpha.170",
+    "@mui/material": "^5.15.15",
+    "@mui/x-data-grid": "^7.2.0",
+    "@mui/x-tree-view": "^7.2.0",
     "@nivo/core": "^0.84.0",
     "@nivo/line": "^0.84.0",
     "@testing-library/jest-dom": "^5.17.0",

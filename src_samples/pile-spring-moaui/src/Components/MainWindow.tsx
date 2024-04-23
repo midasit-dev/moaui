@@ -10,12 +10,13 @@ import {GuideBox,
 import PileProperties from './PileProperties/PileMainWindow';
 import SoilProperties from './SoilProperties/SoilProperties';
 import ExcelReport from './ExcelReport/ReportMain'
-import {ProjectName, PileTableData, SoilData, TopLevel, GroundLevel, Waterlevel, GroupEffectValue, SlopeEffectState, FoundationWidth, SideLength, DownloadData, LiquefactionState, GroupEffectState, CalVsiState} from './variables'
+import {ProjectName, PileTableData, SoilData, TopLevel, GroundLevel, Waterlevel, GroupEffectValue, SlopeEffectState, 
+    FoundationWidth, SideLength, DownloadData, LiquefactionState, GroupEffectState, CalVsiState, ReportJsonResult} from './variables'
 import {useRecoilState, useRecoilValue, useSetRecoilState,} from 'recoil';
-import UploadDownload from './UploadDownload';
-import * as XLSX from 'xlsx';
+import ExcelConnect from './CalSheet/ExcelConnect';
 import ImportSpring from './ImportSpring/ImportSpring';
 import { useSnackbar } from 'notistack';
+import ExcelReport_New from './ExcelReport/ReportMain_New';
 
 function MainWindow(){
 
@@ -32,7 +33,7 @@ function MainWindow(){
     const [liquefactionState, setLiquefactionState] = useRecoilState(LiquefactionState);
     const [groupEffectState, setGroupEffectState] = useRecoilState(GroupEffectState);
     const [calVsiState, setCalVsiState] = useRecoilState(CalVsiState);
-
+    const [reportJsonResult, setReportJsonResult] = useRecoilState(ReportJsonResult)
     const [tabName,setTabName] = useState("Pile")
     
     const { enqueueSnackbar } = useSnackbar();
@@ -60,7 +61,8 @@ function MainWindow(){
     }, [])
     // 엑셀 저장 시 실행
     const handleExcelReport = () => {
-        ExcelReport(projectName, piletableData, soilData, topLevel, groundLevel, waterlevel, groupEffectValue, slopeEffectState, foundationWidth, sideLength)
+        const Result = ExcelReport_New(projectName, piletableData, soilData, topLevel, groundLevel, waterlevel,groupEffectValue, slopeEffectState, foundationWidth, sideLength)
+        setReportJsonResult(Result)
         enqueueSnackbar('Download Calculation Sheet Success', {autoHideDuration: 3000})
     }
 
@@ -79,9 +81,11 @@ function MainWindow(){
                 >
                     <Tab value="Pile" label='말뚝 정보'/>
                     <Tab value="Soil" label='지반 정보'/>
+                    <Tab value="Report" label='계산서'/>
                 </TabGroup>
                 {tabName === "Pile" && <PileProperties/>}
                 {tabName === "Soil" && <SoilProperties/>}
+                {tabName === "Report" && <ExcelConnect/>}
                 
             </GuideBox>
             <GuideBox width={900} row horRight spacing={1} marginBottom={1}>
