@@ -639,3 +639,22 @@ export const DownloadData = selector({
         return {projectName, piletableData, soilData, topLevel, groundLevel, waterlevel, groupEffectValue, slopeEffectState, foundationWidth, sideLength, liquefactionState, calVsiState, groupEffectState}
     }
 })
+
+interface ExcelTableRow {
+    id : number;
+    SheetName: string;
+    AreaName: string;
+    CellName: string;
+    LinkedData : string;
+    Value : any;
+}
+
+export const ExcelData = atom({
+    key: 'ExcelData',
+    default: [] as ExcelTableRow[]
+});
+
+export const ReportJsonResult = atom({
+    key: 'ReportJsonResult',
+    default: {} as any
+});
