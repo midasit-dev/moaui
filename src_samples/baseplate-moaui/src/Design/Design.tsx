@@ -21,11 +21,12 @@ import {dbReadItem, postNewProject, CreateBasePlateOutlines, AutoMeshing, Applyl
 import { set } from 'lodash';
 import MDReport from '../Design/MDReport';
 import { useSnackbar } from 'notistack';
-
+import InfiniLoading from '../InfinitLoading';
 
 function Design() {
   const marked = require('marked');
   const [tabName, setTabName] = React.useState('Column');  
+  const [loading, setLoading] = React.useState(false);
   const [selectedColumnIndex, setSelectedColumnIndex] = useRecoilState(SelectedColumnIndex);
   const [hSectionDB, setHSectionDB] = useRecoilState(HSectionDB);
   const [selectedDBIndex, setSelectedDBIndex] = useRecoilState(SelectedDBIndex);
@@ -77,6 +78,7 @@ function Design() {
   }
   
   const handleDesignClick = () => {
+    setLoading(true);
     postNewProject(); 
     const DBSection_Name = columnIndex_DBName[selectedColumnIndex]
     const BPData = JSON.parse(JSON.stringify(node_BP_Data));
@@ -141,55 +143,67 @@ function Design() {
     
     const markdown = covertMarkdown(JSON.stringify(calculate_result))
     setMDResult(markdown)
+    
+    setLoading(false);
     enqueueSnackbar('Design Check Completet', {variant: 'success', autoHideDuration: 3000})
   }
   
   
   return (
-    <GuideBox row >
-      <Panel height={550}>
-        <GuideBox spacing={1}>
-          <GuideBox marginTop={1} spacing={1}>
-            <TypoGraphyDropList
-              title = "Column :"
-              width = {350}
-              dropListwidth = {200}
-              items = {selectedColumnList}
-              defaultValue = {selectedColumnIndex}
-              value = {selectedColumnIndex}
-              onChange = {ColumnSelected}
-            />
+    <GuideBox row>
+      {loading ? (
+        <InfiniLoading />
+      ) : (
+        <React.Fragment>
+          <Panel height={550}>
+            <GuideBox spacing={1}>
+              <GuideBox marginTop={1} spacing={1}>
+                <TypoGraphyDropList
+                  title="Column :"
+                  width={350}
+                  dropListwidth={200}
+                  items={selectedColumnList}
+                  defaultValue={selectedColumnIndex}
+                  value={selectedColumnIndex}
+                  onChange={ColumnSelected}
+                />
+              </GuideBox>
 
-          </GuideBox>
+              <Typography variant="h1">Design Result</Typography>
 
-          <Typography variant='h1'>Design Result</Typography>
-
-          <div style={{height: 365, width: '100%'}}>
-            <DataGrid
-              columnHeaderHeight={60}
-              rowHeight={80}
-              hideFooter
-              columns={columns}
-              rows = {rows_ENV}
-            ></DataGrid>
-          </div>
-          <GuideBox width={400} horRight>
-            <Button 
-              variant='outlined'
-              onClick={handleDesignClick}
-            >Design Check</Button>
-          </GuideBox>
-          
-        </GuideBox>
-      </Panel>
-      <Panel height={550} width={500}>
-        <GuideBox spacing={1}>
-          <Typography variant='h1'>Design Report</Typography>
-          <div style = {{height: 500, width: '100%', overflowY: 'scroll', fontSize : 12}}>
-          <MDReport></MDReport>
-          </div>
-        </GuideBox>
-      </Panel>
+              <div style={{ height: 365, width: "100%" }}>
+                <DataGrid
+                  columnHeaderHeight={60}
+                  rowHeight={80}
+                  hideFooter
+                  columns={columns}
+                  rows={rows_ENV}
+                ></DataGrid>
+              </div>
+              <GuideBox width={400} horRight>
+                <Button variant="outlined" onClick={handleDesignClick}>
+                  Design Check
+                </Button>
+              </GuideBox>
+            </GuideBox>
+          </Panel>
+          <Panel height={550} width={500}>
+            <GuideBox spacing={1}>
+              <Typography variant="h1">Design Report</Typography>
+              <div
+                style={{
+                  height: 500,
+                  width: "100%",
+                  overflowY: "scroll",
+                  fontSize: 12,
+                }}
+              >
+                <MDReport></MDReport>
+              </div>
+            </GuideBox>
+          </Panel>
+        </React.Fragment>
+      )}
     </GuideBox>
   );
 }
