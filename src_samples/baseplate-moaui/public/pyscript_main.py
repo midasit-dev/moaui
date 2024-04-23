@@ -209,33 +209,33 @@ def py_CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeigth, HBeamWidth)
 			"Z": 0
 		},
 		"5": {
-				"X": PlateWidth/2,
-				"Y": PlateHeight/2 - HBeamHeigth/2,
+				"X": int(PlateWidth)/2,
+				"Y": int(PlateHeight)/2 - int(HBeamHeigth)/2,
 				"Z": 0
 			},
 		"6": {
-				"X": PlateWidth/2,
-				"Y": PlateHeight/2 + HBeamHeigth/2,
+				"X": int(PlateWidth)/2,
+				"Y": int(PlateHeight)/2 + int(HBeamHeigth)/2,
 				"Z": 0
 			},
 		"7": {
-				"X": PlateWidth/2 - HBeamWidth/2,
-				"Y": PlateHeight/2 - HBeamHeigth/2,
+				"X": int(PlateWidth)/2 - int(HBeamWidth)/2,
+				"Y": int(PlateHeight)/2 - int(HBeamHeigth)/2,
 				"Z": 0
 			},
 		"8": {
-				"X": PlateWidth/2 + HBeamWidth/2,
-				"Y": PlateHeight/2 - HBeamHeigth/2,
+				"X": int(PlateWidth)/2 + int(HBeamWidth)/2,
+				"Y": int(PlateHeight)/2 - int(HBeamHeigth)/2,
 				"Z": 0
 			},
 		"9": {
-			"X": PlateWidth/2 - HBeamWidth/2,
-			"Y": PlateHeight/2 + HBeamHeigth/2,
+			"X": int(PlateWidth)/2 - int(HBeamWidth)/2,
+			"Y": int(PlateHeight)/2 + int(HBeamHeigth)/2,
 			"Z": 0
 		},
 		"10": {
-				"X": PlateWidth/2 + HBeamWidth/2,
-				"Y": PlateHeight/2 + HBeamHeigth/2,
+				"X": int(PlateWidth)/2 + int(HBeamWidth)/2,
+				"Y": int(PlateHeight)/2 + int(HBeamHeigth)/2,
 				"Z": 0
 			},
 	
@@ -436,7 +436,7 @@ def py_CreateBasePlateOutlines(PlateWidth, PlateHeight, HBeamHeigth, HBeamWidth)
 	return json.dumps("civil.CreateBasePlateOutlines(PlateWidth, PlateHeight)")
 
 def py_meshing(PlateWidth, PlateHeight, PlateMaterial, PlateThickness):
-	minsize = min(PlateWidth, PlateHeight) / 30
+	minsize = min(int(PlateWidth), int(PlateHeight)) / 30
 	civil = MidasAPI(Product.CIVIL)
 	items = {
         "MESHER": {

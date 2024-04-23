@@ -152,7 +152,9 @@ function Design() {
   return (
     <GuideBox row>
       {loading ? (
-        <InfiniLoading />
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center", position:"absolute", backgroundColor: "rgba(0, 0, 0, 0.5)", top:0, left:0, width:"100%", height:"100%" }}>
+          <InfiniLoading />
+        </div>
       ) : (
         <React.Fragment>
           <Panel height={550}>
