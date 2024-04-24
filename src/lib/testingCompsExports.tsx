@@ -104,6 +104,7 @@ export { default as ComponentsSeparatorHorizontal } from "./Components/Separator
 export { default as ComponentsSeparatorVertical } from "./Components/Separator/Code/Vertical.code";
 export { default as ComponentsStackColumn } from "./Components/Stack/Code/Column.code";
 export { default as ComponentsStackRow } from "./Components/Stack/Code/Row.code";
+export { default as ComponentsSVGSvgTest } from "./Components/SVG/Code/SvgTest.code.except";
 export { default as ComponentsSwitchLabel } from "./Components/Switch/Code/Label.code";
 export { default as ComponentsSwitchGroupControlled } from "./Components/SwitchGroup/Code/Controlled.code";
 export { default as ComponentsSwitchGroupUnControlled } from "./Components/SwitchGroup/Code/UnControlled.code";

@@ -59,6 +59,7 @@ import { default as TextFieldV2, type TextFieldV2Props, TextFieldV2Sample } from
 import { default as Tooltip, type TooltipProps, TooltipSample } from "./Components/Tooltip";
 import { default as Typography, type TypographyProps, TypographySample } from "./Components/Typography";
 import { default as TypographyGroup, type TypographyGroupProps, TypographyGroupSample } from "./Components/TypographyGroup";
+import { default as SVG, type SVGProps, SVGSample } from "./Components/SVG";
 
 import { default as AutoDropList, AutoDropListSample } from "./Templates/AutoDropList/Code/AutoDropList.code";
 
@@ -121,6 +122,7 @@ const Moaui = {
   Tooltip, TooltipSample,
   Typography, TypographySample,
   TypographyGroup, TypographyGroupSample,
+	SVG, SVGSample,
   AutoDropList, AutoDropListSample,
 };
 
@@ -179,6 +181,7 @@ export {
   Tooltip, TooltipSample, type TooltipProps,
   Typography, TypographySample, type TypographyProps,
   TypographyGroup, TypographyGroupSample, type TypographyGroupProps,
+	SVG, SVGProps, SVGSample,
   AutoDropList, AutoDropListSample,
 };
 

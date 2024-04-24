@@ -1,0 +1,1 @@
+export { default as SvgTestCode } from './SvgTest.code.except?raw';
