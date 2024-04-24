@@ -53,7 +53,6 @@ import InfiniLoading from "../InfinitLoading";
 function Design() {
   const marked = require("marked");
   const [tabName, setTabName] = React.useState("Column");
-  const [loading, setLoading] = React.useState(false);
   const [selectedColumnIndex, setSelectedColumnIndex] =
     useRecoilState(SelectedColumnIndex);
   const [hSectionDB, setHSectionDB] = useRecoilState(HSectionDB);
@@ -130,13 +129,6 @@ function Design() {
   const ColumnSelected = (e: any) => {
     setSelectedBPName(e.target.value);
   };
-
-  useEffect(() => {
-    if (loading) {
-      handleDesignClick();
-    }
-  }, [loading]);
-
   const [selectedBPName, setSelectedBPName] = useState(bpList[0][0]);
   
   console.log(node_BP_Data)
@@ -226,13 +218,11 @@ function Design() {
       const markdown = covertMarkdown(JSON.stringify(calculate_result));
       setMDResult(markdown);
     } catch (e) {
-      setLoading(false);
       enqueueSnackbar("Design check Failed", {
         variant: "error",
         autoHideDuration: 3000,
       });
     } finally {
-      setLoading(false);
       enqueueSnackbar("Design Check Completed", {
         variant: "success",
         autoHideDuration: 3000,
@@ -243,7 +233,6 @@ function Design() {
   return (
     <GuideBox row>
       <div style={{width:"100%", height:"100%", display:"flex", justifyContent:"center", alignItems:"center"}}>
-      {loading && <InfiniLoading />}
         <Panel height={550}>
           <GuideBox spacing={1}>
             <GuideBox marginTop={1} spacing={1}>
@@ -270,7 +259,7 @@ function Design() {
               ></DataGrid>
             </div>
             <GuideBox width={400} horRight>
-              <Button variant="outlined" onClick={() => setLoading(true)}>
+              <Button variant="outlined" onClick={handleDesignClick}>
                 Design Check
               </Button>
             </GuideBox>
