@@ -31,7 +31,6 @@ const SampleProps = {
 	defaultChecked: false,
 	onChange: () => {},
 	required: false,
-	checked: false,
 	disabled: false,
 	name: "",
 	namePlacement: toUnionType({ values: ["start", "end", "top", "bottom"] }),
