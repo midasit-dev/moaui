@@ -17,15 +17,9 @@ import {GuideBox,
 import { SimpleTreeView } from '@mui/x-tree-view';
 import {TreeItem} from '@mui/x-tree-view'
 import { ExcelData, ReportJsonResult } from '../variables';
+import { rootCertificates } from 'tls';
 
-const reportjson = {
-  "report": {
-      "_Project": [
-        [1,2],
-        [2,3]
-      ]
-  }
-}
+
 function ExcelConnect() {
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -37,7 +31,7 @@ function ExcelConnect() {
   const [cellName, setCellName] = useState("CellName")  
 
   const [excelData, setExcelData] = useRecoilState(ExcelData)
-
+  
 
 
   const columns: any = [
@@ -77,9 +71,9 @@ function ExcelConnect() {
           // 객체를 포함하는 배열 처리
           const childItems = value.map((item:any, index:any) => {
             const subItemId = `${key}-${index}`;
-            const itemPath = currentPath.concat(index + 1);
+            const itemPath = currentPath.concat(index);
             return (
-              <TreeItem key={subItemId} itemId={subItemId} label={`Case ${index + 1}`}>
+              <TreeItem key={subItemId} itemId={subItemId} label={`Case ${index}`}>
                 {Object.entries(item).map(([itemKey, itemValue]) => (
                   <TreeItem
                     key={`${itemKey}-${index}`}
@@ -148,6 +142,35 @@ function ExcelConnect() {
     }])
   }
 
+  const handleDeleteClick = () => {
+    setExcelData(currentRows => currentRows.filter(row => row.id !== currentRows.length))
+  }
+
+  const handleRefreshClick = () => {
+    let orgin_reportjson:any = JSON.parse(JSON.stringify(reportJsonResult))
+    let newexcelData:any = JSON.parse(JSON.stringify(excelData))
+    for (let i = 0; i < newexcelData.length; i++) {
+      let row = JSON.parse(JSON.stringify(newexcelData[i]))
+      let path = row.LinkedData.split(',')
+      console.log(path)
+      let newvalue = null
+      try{
+        //path 를 통해 reportjson 에 접근하여 value를 가져옴
+        let copy_reportjson = JSON.parse(JSON.stringify(orgin_reportjson))
+        for (let j = 0; j < path.length; j++){
+          newvalue = copy_reportjson[path[j]]
+          copy_reportjson = newvalue
+        }
+        row.Value = newvalue
+      }
+      catch(e){
+        row.Value = 0
+      }
+      newexcelData[i] = row
+    }
+    setExcelData(newexcelData)
+  }
+
   const transformExcelDataToJson = (excelData: ExcelTableRow[]) => {
     interface Result {
       [key: string]: any;
@@ -174,7 +197,9 @@ function ExcelConnect() {
     
     if (!file) return;
 
+
     const jsonData = transformExcelDataToJson(excelData); // ExcelData를 JSON으로 변환
+    console.log(JSON.stringify(jsonData))
     const formData = new FormData();
     formData.append("file", file);
     formData.append("parameter", JSON.stringify(jsonData));
@@ -215,7 +240,7 @@ function ExcelConnect() {
             <GuideBox>
               <Typography variant='h1'>Variables</Typography>
               <Panel>
-                <div style = {{height: 400, width: 250, overflowY: 'scroll', fontSize : 12}}>
+                <div style = {{height: 670, width: 250, overflowY: 'scroll', fontSize : 12}}>
                   <SimpleTreeView
                     multiSelect
                   >
@@ -229,33 +254,56 @@ function ExcelConnect() {
                 Cell Location (Excel)
               </Typography>
               
-              <GuideBox row horSpaceBetween verCenter margin={1} width={400}>
-                <Typography> Sheet Name </Typography>
+              <GuideBox row horSpaceBetween verCenter margin={1} >
+                <GuideBox horCenter width={100}>
+                  <Typography> Sheet Name </Typography>
+                </GuideBox>
+                <GuideBox horCenter width={100}>
                 <Typography> Area Name </Typography>
+                </GuideBox>
+                <GuideBox horCenter width={100}> 
                 <Typography> Cell Name </Typography>
+                </GuideBox>
               </GuideBox>
-              <GuideBox row horSpaceBetween verCenter margin={1} width={400}>
-                <TextField 
-                value = {sheetName}
-                onChange = {(e) => setSheetName(e.target.value)}
-                width={100}/>
-                <TextField 
-                value = {areaName}
-                onChange = {(e) => setAreaName(e.target.value)}
-                width={100}/>
-                <TextField 
-                value = {cellName}
-                onChange = {(e) => setCellName(e.target.value)}
-                width={100}/>
+              <GuideBox row horSpaceBetween verCenter margin={1}>
+                <GuideBox horCenter width={100}>
+                  <TextField 
+                  value = {sheetName}
+                  onChange = {(e) => setSheetName(e.target.value)}
+                  width={100}/>
+                </GuideBox>
+                <GuideBox horCenter width={100}>
+                  <TextField 
+                  value = {areaName}
+                  onChange = {(e) => setAreaName(e.target.value)}
+                  width={100}/>
+                </GuideBox>
+                <GuideBox horCenter width={100}> 
+                  <TextField 
+                  value = {cellName}
+                  onChange = {(e) => setCellName(e.target.value)}
+                  width={100}/>
+                </GuideBox>
               </GuideBox>
-              <Button 
-              variant='outlined' 
-              width="400px"
-              onClick={handleAddClick}
-              > Add</Button>
-
+              <GuideBox row width={485} horRight spacing={1} marginTop={2}>
+                <Button 
+                variant='outlined' 
+                width="100px"
+                onClick={handleAddClick}
+                > Add</Button>
+                <Button 
+                variant='outlined' 
+                width="100px"
+                onClick={handleDeleteClick}
+                > Delete</Button>
+                <Button 
+                variant='outlined' 
+                width="100px"
+                onClick={handleRefreshClick}
+                > Refresh</Button>
+              </GuideBox>
               <Typography margin={1} variant="h1">Linked Data</Typography>
-              <div style={{ height: 200, width: '100%'}}>
+              <div style={{ height: 500, width: '100%'}}>
                 <DataGrid
                   rows={excelData}
                   columns={columns}

@@ -27,7 +27,7 @@ import { useSnackbar } from 'notistack';
 import Load from './Load/Load';
 import { set } from 'lodash';
 import Design from './Design/Design';
-
+import Drawing from './Drawing/Drawing';
 const NodeFetching = () => {
   const response = selectNodeList();
   if (response.hasOwnProperty('error')){
@@ -66,7 +66,7 @@ const App = () => {
 	const handleTabChange = (event: React.ChangeEvent<{}>, newValue: string) => {
 		setTabName(newValue);
 	};
-
+	const [isConnected, setIsConnected] = React.useState(false);
 	// Node 정보 Fetching
 	const FetchingNodes = () => {
     const FetchingResults = NodeFetching();
@@ -149,6 +149,11 @@ const App = () => {
 							WIDTH : 0,
 							HEIGHT : 0,
 							THIK : 0
+						},
+						ANCHOR : {
+							DIAMETER : 0,
+							XPOSITION : 0,
+							YPOSITION : 0
 						}
 					},
 					
@@ -224,13 +229,14 @@ const App = () => {
 			ReactionDataList[nodeNum][loadCase] = reactions;
 		})
 		setReactionResult(ReactionDataList)
+		setIsConnected(true);
 		enqueueSnackbar('Import 완료', {variant: 'success', autoHideDuration: 3000})
 
 	}	
 	
 	
 	return (
-		<GuideBox width='auto'>
+		<GuideBox width={1120}>
 			<GuideBox row verCenter spacing={1} height={35} margin={1}>
 				<Typography variant='h1'>Select Nodes :</Typography>
 				<TextField
@@ -252,13 +258,14 @@ const App = () => {
 						onChange={handleTabChange}
 					>
 						<Tab value = "Member" label='MEMBER'/>
-						<Tab value = "Load"label='LOAD'/>
-						<Tab value = "Design" label='DESIGN'/>
+						<Tab value = "Load" label='LOAD' disabled={!isConnected}/>
+						<Tab value = "Design" label='DESIGN' disabled={!isConnected}/>
 						<Tab value = "Drawing" label = "DRAWING"/>
 					</TabGroup>
 					{tabName === 'Member' && <Member/>}
 					{tabName === 'Load' && <Load/>}
 					{tabName === 'Design' && <Design/>}
+					{tabName === 'Drawing' && <Drawing/>}
 			</GuideBox>
 
 			

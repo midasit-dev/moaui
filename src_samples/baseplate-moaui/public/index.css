@@ -310,3 +310,10 @@ py-terminal[docked] {
 py-terminal[docked] .py-terminal {
   margin: 0;
 }
+.svg-container {
+  width: 50%;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  cursor: zoom-in;
+}

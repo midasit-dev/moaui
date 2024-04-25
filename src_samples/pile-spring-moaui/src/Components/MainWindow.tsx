@@ -10,7 +10,6 @@ import {
 } from "@midasit-dev/moaui";
 import PileProperties from "./PileProperties/PileMainWindow";
 import SoilProperties from "./SoilProperties/SoilProperties";
-import ExcelReport from "./ExcelReport/ReportMain";
 import {
   ProjectName,
   PileTableData,
@@ -32,9 +31,9 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import ExcelConnect from "./CalSheet/ExcelConnect";
 import ImportSpring from "./ImportSpring/ImportSpring";
 import { useSnackbar } from "notistack";
-import ExcelReport_New from "./ExcelReport/ReportMain_New";
+import Calculation from "./ExcelReport/Calculate";
 import InfiniLoading from "./Loading/InfinitLoading";
-
+import ExcelReport from "./ExcelReport/ExcelReport";
 function MainWindow() {
   const [projectName, setProjectName] = useRecoilState(ProjectName);
   const [piletableData, setSetPileTableData] = useRecoilState(PileTableData);
@@ -97,26 +96,14 @@ function MainWindow() {
 
   React.useEffect(() => {
     if (loading) {
-      handleExcelReport();
+      handleExcelReport(reportJsonResult);
     }
   }, [loading]);
 
   // 엑셀 저장 시 실행
-  const handleExcelReport = async () => {
+  const handleExcelReport = async (reportJsonResult:any) => {
     try {
-      const Result = await ExcelReport_New(
-        projectName,
-        piletableData,
-        soilData,
-        topLevel,
-        groundLevel,
-        waterlevel,
-        groupEffectValue,
-        slopeEffectState,
-        foundationWidth,
-        sideLength
-      );
-      setReportJsonResult(Result);
+      const Result = await ExcelReport(reportJsonResult)
     } catch (e) {
       setLoading(false);
       enqueueSnackbar("Download Calculation Sheet Failed", {
@@ -132,6 +119,27 @@ function MainWindow() {
     }
   };
 
+  const handleCalCulation = () => {
+    const JsonResult = Calculation(
+      projectName,
+      piletableData,
+      soilData,
+      topLevel,
+      groundLevel,
+      waterlevel,
+      groupEffectValue,
+      slopeEffectState,
+      foundationWidth,
+      sideLength
+    )
+    console.log('Calculation Result')
+    console.log(JSON.stringify(JsonResult))
+    setReportJsonResult(JsonResult);
+    enqueueSnackbar("Calculate Spring Matrix Success", {
+      variant: "success",
+      autoHideDuration: 3000,
+    });
+  }
   const handleCivilImport = () => {
     ImportSpring(
       projectName,
@@ -183,6 +191,7 @@ function MainWindow() {
             }}
             buttonName="업로드"
           />
+          <Button onClick={handleCalCulation}> 계산 </Button>
           <Button onClick={() => setLoading(true)}> 계산서 출력 </Button>
           <Button onClick={handleCivilImport}> Import General Spring </Button>
         </GuideBox>

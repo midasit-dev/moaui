@@ -1,0 +1,5 @@
+{
+  "PluginMainDescription": "Crea un enlace desde el Nodo Maestro al Nodo Esclavo más cercano.",
+  "MasterNodeSelection": "Seleccione el Nodo Maestro : ",
+  "SlaveNodeSelection": "Seleccione el Nodo Esclavo : "
+}

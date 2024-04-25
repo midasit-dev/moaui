@@ -2,7 +2,7 @@ import {GuideBox, ChartLine, Typography} from '@midasit-dev/moaui';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { BasePlateWidth, BasePlateHeight, HBeamVertices
-,HBeamB, HBeamH, HBeamtf, HBeamtw, SelectedColumnIndex, ColumnData  } from '../variables';
+,HBeamB, HBeamH, HBeamtf, HBeamtw, SelectedColumnIndex, ColumnData, AnchorDiameter, AnchorXPitch, AnchorYPitch  } from '../variables';
 const SectionDrawing = ({
   panelSize = 200,
 
@@ -13,8 +13,11 @@ const SectionDrawing = ({
     DBName: string;
   }
 
-  const basePlateWidth = useRecoilValue(BasePlateWidth);
-  const basePlateHeight = useRecoilValue(BasePlateHeight);
+  const basePlateWidth = Number(useRecoilValue(BasePlateWidth));
+  const basePlateHeight = Number(useRecoilValue(BasePlateHeight));
+  const anchorDiameter = Number(useRecoilValue(AnchorDiameter));
+  const anchorXPitch = Number(useRecoilValue(AnchorXPitch));
+  const anchorYPitch = Number(useRecoilValue(AnchorYPitch));
   const hBeamVertices = useRecoilValue(HBeamVertices);
   const selectedColumnIndex = useRecoilValue(SelectedColumnIndex);
   const columnData:Record<string, Details> = useRecoilValue(ColumnData);
@@ -37,7 +40,72 @@ const SectionDrawing = ({
     const transformedy = - y
     return transformedy
   }
+  //Anchor Drawing
+  const drawAnchor = (ctx:any) => {
+    const dimOffset = 5
+    const dimTickSize = 2
+    ctx.translate(canvasSize / 2, canvasSize / 2)
+    if (selectedColumnIndex == 0){
 
+    }
+    else{
+      ctx.beginPath();
+      ctx.arc((basePlateWidth/2-anchorXPitch)*scale, (basePlateHeight/2-anchorYPitch)*scale, anchorDiameter/2*scale, 0, 2*Math.PI);
+      ctx.stroke();
+      ctx.closePath()
+      
+      ctx.beginPath();
+      ctx.arc((basePlateWidth/2-anchorXPitch)*scale, (-basePlateHeight/2+anchorYPitch)*scale, anchorDiameter/2*scale, 0, 2*Math.PI);
+      ctx.stroke();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.arc((-basePlateWidth/2+anchorXPitch)*scale, (basePlateHeight/2-anchorYPitch)*scale, anchorDiameter/2*scale, 0, 2*Math.PI);
+      ctx.stroke();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.arc((-basePlateWidth/2+anchorXPitch)*scale, (-basePlateHeight/2+anchorYPitch)*scale, anchorDiameter/2*scale, 0, 2*Math.PI);
+      ctx.stroke();
+      ctx.closePath();
+
+      //하부 치수선
+      ctx.beginPath();
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 0.5;
+      ctx.moveTo(LeftDimLine, tfc(-TopDimLine - dimOffset));
+      ctx.lineTo((basePlateWidth/2-anchorXPitch)*scale, tfc(-TopDimLine - dimOffset));
+      ctx.moveTo(LeftDimLine, tfc(-TopDimLine - dimOffset+dimTickSize));
+      ctx.lineTo(LeftDimLine, tfc(-TopDimLine - dimOffset-dimTickSize));
+      ctx.moveTo((basePlateWidth/2-anchorXPitch)*scale, tfc(-TopDimLine - dimOffset+dimTickSize));
+      ctx.lineTo((basePlateWidth/2-anchorXPitch)*scale, tfc(-TopDimLine - dimOffset-dimTickSize));
+      ctx.fillStyle = 'black';
+      ctx.font = '10px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(anchorXPitch.toString(), (basePlateWidth/2-anchorXPitch/2)*scale, tfc(-TopDimLine - dimOffset -15))
+      ctx.stroke();
+
+      //우측 치수선
+      ctx.beginPath();
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 0.5;
+      ctx.moveTo(LeftDimLine + dimOffset, tfc(-TopDimLine));
+      ctx.lineTo(LeftDimLine + dimOffset, tfc(-basePlateHeight/2+anchorYPitch)*scale);
+      ctx.moveTo(LeftDimLine + dimOffset+dimTickSize, tfc(-TopDimLine));
+      ctx.lineTo(LeftDimLine + dimOffset-dimTickSize, tfc(-TopDimLine));
+      ctx.moveTo(LeftDimLine + dimOffset+dimTickSize, tfc(-basePlateHeight/2+anchorYPitch)*scale);
+      ctx.lineTo(LeftDimLine + dimOffset-dimTickSize, tfc(-basePlateHeight/2+anchorYPitch)*scale);
+      ctx.fillStyle = 'black';
+      ctx.font = '10px Arial';
+      ctx.textAlign = 'center';
+      ctx.rotate(-Math.PI/2);
+      ctx.fillText(anchorYPitch.toString(), -(basePlateHeight/2-anchorYPitch/2)*scale, LeftDimLine + dimOffset + 15)
+      ctx.rotate(Math.PI/2);
+      ctx.stroke()
+      ctx.closePath()
+    }
+    ctx.translate(-canvasSize / 2, -canvasSize / 2)
+  }
   //Base Plate Drawing
   const drawBasePlate = (ctx:any) => {
     
@@ -98,7 +166,6 @@ const SectionDrawing = ({
     let HBeamWidth = 0
     let HBeamtw = 0
     let HBeamtf = 0
-    console.log('selectedColumnIndex', selectedColumnIndex)
     if (selectedColumnIndex == 0){
 
     }
@@ -106,14 +173,12 @@ const SectionDrawing = ({
       for (const [sectionName, details] of Object.entries(columnData)){
         if (details.SectionID === selectedColumnIndex){
           SectionDB = details.DBName
-          console.log('SectionDB', SectionDB)
         }
       }
       HBeamHeight = Number(SectionDB.split(' ')[1].split('x')[0])
       HBeamWidth = Number(SectionDB.split(' ')[1].split('x')[1])
       HBeamtw = Number(SectionDB.split(' ')[1].split('x')[2].split('/')[0])
       HBeamtf = Number(SectionDB.split(' ')[1].split('x')[2].split('/')[1])
-      console.log('HBeamHeight', HBeamHeight)
     }
     
     const HBeamvertex = [
@@ -136,8 +201,6 @@ const SectionDrawing = ({
     ctx.moveTo(HBeamvertex[0][0]*scale, HBeamvertex[0][1]*scale);
     for (let i=1; i<HBeamvertex.length; i++){
       ctx.lineTo(HBeamvertex[i][0]*scale, HBeamvertex[i][1]*scale);
-      console.log(scale)
-      console.log('HBeamvertex', HBeamvertex[i][0]*scale, HBeamvertex[i][1]*scale)
     }
     ctx.stroke();
     ctx.fillStyle = '#000000';
@@ -171,6 +234,7 @@ const SectionDrawing = ({
     ctx.rotate(Math.PI/2);
     
     ctx.stroke();
+    ctx.closePath();
     ctx.translate(-canvasSize / 2, -canvasSize / 2);
   }
 
@@ -180,7 +244,8 @@ const SectionDrawing = ({
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     drawBasePlate(context)
     drawHBeam(context)
-  }, [basePlateWidth, basePlateHeight, hBeamVertices, SelectedColumnIndex]);
+    drawAnchor(context)
+  }, [basePlateWidth, basePlateHeight, hBeamVertices, SelectedColumnIndex, anchorDiameter, anchorXPitch, anchorYPitch ]);
 
 return (
   <div>

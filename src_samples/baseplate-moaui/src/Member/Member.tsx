@@ -12,11 +12,12 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import TypoGraphyTextField from '../NewComponents/TypoGraphyTextField';
 import Column from './Column';
 import BasePlate from './BasePlate';
+import Anchor from './Anchor';
 import {selectNodeList, setColumnInfo } from '.././utils_pyscript';
 import { SelectedNodes, SelectedColumnList, SelectedColumnIndex_DBName, SelectedColumnIndex, HSectionDB, SelectedDBIndex,
   HBeamH, HBeamB, HBeamtf, HBeamtw, HBeamr, BasePlateWidth, BasePlateHeight, Node_BP_Data, MinMaxCoordinates, PlateThickness, BasePlateMaterial,
   ConcreteMaterial, BPName, PlanviewBPNameCheck, PlanviewColumnNameCheck, PlanviewNodeCheck, PlanViewSelectedNode, BP_Node, BP_List,
-  SelectedBPList
+  SelectedBPList, AnchorDiameter, AnchorXPitch, AnchorYPitch
 } from '../variables';
 import PlanViewDrawing from '../Components/PlanViewDrawing';
 import TypoGraphyDropList from '../NewComponents/TypoGraphyDropList';
@@ -24,7 +25,7 @@ import { SimpleTreeView } from '@mui/x-tree-view';
 import {TreeItem} from '@mui/x-tree-view'
 import { useSnackbar } from 'notistack';
 import { set } from 'lodash';
-
+import TreeView from '../SimpleTreeView';
 
 function Member() {
   const { enqueueSnackbar } = useSnackbar();
@@ -54,6 +55,9 @@ function Member() {
   const [minMaxCoordinates, setMinMaxCoordinates] = useRecoilState(MinMaxCoordinates);
   const [bpList, setBPList] = useRecoilState(BP_List);
   const [selectedBPList, setSelectedBPList] = useRecoilState(SelectedBPList);
+  const [anchorDiameter, setAnchorDiameter] = useRecoilState(AnchorDiameter);
+  const [anchorXPitch, setAnchorXPitch] = useRecoilState(AnchorXPitch);
+  const [anchorYPitch, setAnchorYPitch] = useRecoilState(AnchorYPitch);
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: string) => {
     setTabName(newValue);
   };
@@ -78,13 +82,15 @@ function Member() {
 				setHBeamtf(HSectionDim[2]);
 				setHBeamtw(HSectionDim[3]);
 				setHBeamr(0);
-        setBasePlateWidth(node_BP_Data[key].BASEPLATE.PLATE.WIDTH);
-        setBasePlateHeight(node_BP_Data[key].BASEPLATE.PLATE.HEIGHT);
-        setPlateThickness(node_BP_Data[key].BASEPLATE.PLATE.THIK);
+        setBasePlateWidth(0);
+        setBasePlateHeight(0);
+        setPlateThickness(0);
         setBasePlateMaterial(node_BP_Data[key].BASEPLATE.PLATE.MATL);
         setConcreteMaterial(node_BP_Data[key].BASEPLATE.COLUMN.MATL);
-      
-
+        setAnchorDiameter(22)
+        setAnchorXPitch(0)
+        setAnchorYPitch(0)
+        
 
       }
     }
@@ -126,6 +132,9 @@ function Member() {
         newNode_BP_Data[key].BASEPLATE.PLATE.HEIGHT = basePlateHeight
         newNode_BP_Data[key].BASEPLATE.PLATE.THIK = plateThickness
         newNode_BP_Data[key].BASEPLATE.PLATE.MATL = basePlateMaterial
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.DIAMETER = anchorDiameter
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.XPOSITION = anchorXPitch
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.YPOSITION = anchorYPitch
       }
     }
     console.log(newNode_BP_Data)
@@ -137,59 +146,35 @@ function Member() {
       COLUMN : sectionName,
       Conc_Material : concreteMaterial + 'MPa',
       BP_Material : basePlateMaterial,
+      BP_Thickness : plateThickness,
+      BP_Width : basePlateWidth,
+      BP_Height : basePlateHeight,
+      Anchor_Diameter : anchorDiameter,
+      Anchor_XPitch : anchorXPitch,
+      Anchor_YPitch : anchorYPitch
     }
     setBP_Node(newBP_Node)
-    
+
     setPlanViewSelectedNode([])
 
     let newBPList = JSON.parse(JSON.stringify(bpList))
     newBPList.push([bPName, bPName])
     setBPList(newBPList)
-    console.log(newBPList[0][0])
     setSelectedBPList(newBPList[0][0])
+    enqueueSnackbar('Baseplate 정의 완료', {variant: 'success', autoHideDuration: 3000})
   }
 
-  const renderTreeItems = (data:any, nodeIdPrefix = '') =>
-  Object.entries(data).map(([key, value], index) => {
-    const nodeId = `${nodeIdPrefix}${key}-${index}`;
-
-    if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
-      // 객체의 경우: 하위 TreeItem을 가짐
-      return (
-        <TreeItem key={nodeId} itemId={nodeId} label={key}>
-          {renderTreeItems(value, `${nodeId}-`)}
-        </TreeItem>
-      );
-    } else {
-      // 기본형(문자열 등)의 경우: 단일 TreeItem
-      return (
-        <TreeItem key={nodeId} itemId={nodeId} label={`${key}: ${value}`} />
-      );
-    }
-  });
-  
-  const getAllNodeIds = (node:any, ids = ['root']) => {
-    if (Array.isArray(node.children)) {
-      node.children.forEach((child:any) => {
-        ids.push(child.id);
-        getAllNodeIds(child, ids);
-      });
-    }
-    return ids; // 모든 노드 ID가 포함된 배열 반환
-  };
-  
-  const allNodeIds = getAllNodeIds(bp_Node); // 모든 노드 ID를 수집
 
   return (
     <GuideBox row spacing={1}>
-      <Panel height={550}>
+      <Panel height={550} width={300}>
         <GuideBox marginTop={1}>
           
           <GuideBox spacing={1}>
             <TypoGraphyDropList
               title = "Baseplate :"
-              width = {350}
-              dropListwidth = {200}
+              width = {280}
+              dropListwidth = {150}
               items = {selectedColumnList}
               defaultValue = {selectedColumnIndex}
               value = {selectedColumnIndex}
@@ -197,41 +182,52 @@ function Member() {
             />
             <TypoGraphyTextField 
               title = "Node No. : "
-              width = {350}
-              textFieldWidth = {200}
+              width = {280}
+              textFieldWidth = {150}
               value = {planViewSelectedNode}
               placeholder = "Select nodes in the Plan View"
             />
             <TypoGraphyTextField 
               title = "Base Plate Name :"
               value = {bPName}
-              width = {350}
-              textFieldWidth = {200}
+              width = {280}
+              textFieldWidth = {150}
               placeholder = "Enter Base Plate Name"
               onChange = {handleBPNameChange}
             />
           </GuideBox>
           
         </GuideBox>
-        <TabGroup
-          orientation = 'horizontal'
-          value = {tabName}
-          onChange={handleTabChange}
-        >
-          <Tab value = "Column" label='Column'/>
-          <Tab value = "Baseplate"label='Baseplate'/>
-          <Tab value = "Anchor" label = "Anchor"/>
-        </TabGroup>
-        {tabName === 'Column' && <Column/>}
-        {tabName === 'Baseplate' && <BasePlate/>}
-        <Button
-        onClick={handleBPUpdate}
-        >
-          Apply
-        </Button>
+        <GuideBox height={390}>
+          <TabGroup
+            orientation = 'horizontal'
+            value = {tabName}
+            onChange={handleTabChange}
+          >
+            <Tab value = "Column" label='Column'/>
+            <Tab value = "Baseplate"label='Baseplate'/>
+            <Tab value = "Anchor" label = "Anchor"/>
+          </TabGroup>
+          {tabName === 'Column' && <Column/>}
+          {tabName === 'Baseplate' && <BasePlate/>}
+          {tabName === 'Anchor' && <Anchor/>}
+        </GuideBox>
+        <GuideBox row horSpaceBetween width={280}>
+          <Button
+          onClick={handleBPUpdate}
+          >
+            Apply
+          </Button>
+          <Button>
+            Modify
+          </Button>
+          <Button>
+            Delete
+          </Button>
+        </GuideBox>
       </Panel>
       <GuideBox show width = {500} height={500}>
-        <Panel>
+        <Panel height={550}>
           <Typography variant='h1'>Plan View</Typography>
           <GuideBox row verCenter spacing={2}>
             <GuideBox row verCenter>
@@ -263,13 +259,9 @@ function Member() {
         </Panel>
       </GuideBox>
       <GuideBox>
-        <Panel width={250} height={550}>
+        <Panel width={200 } height={550} overflow='scroll' textOverflow= 'ellipsis'>
         <Typography>BasePlate Info.</Typography>
-        <SimpleTreeView
-        defaultExpandedItems = {allNodeIds}
-        >
-          {renderTreeItems(bp_Node)}
-        </SimpleTreeView>
+        <TreeView />
         </Panel>
         
 

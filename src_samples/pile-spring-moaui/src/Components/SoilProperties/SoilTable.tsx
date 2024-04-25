@@ -259,7 +259,7 @@ function SoilTable(){
                     <Icon iconName = "Remove" />
                 </IconButton>
             </GuideBox>
-            <div style={{ height: 200, width: '100%'}}>
+            <div style={{ height: 290, width: '100%'}}>
                 <DataGrid
                     columnHeaderHeight={60}
                     rowHeight={80}  

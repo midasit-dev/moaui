@@ -181,7 +181,7 @@ export const ReactionResult = atom<any>({
 
 export const PlateThickness = atom({
   key: 'PlateThickness',
-  default: 6,
+  default: 0,
 });
 
 export const BasePlateMaterial = atom({
@@ -268,4 +268,19 @@ export const BP_List = atom({
 export const SelectedBPList = atom({
   key: 'SelectedBPList',
   default: ''
+});
+
+export const AnchorDiameter = atom({
+  key: 'AnchorDiameter',
+  default: 22
+});
+
+export const AnchorXPitch = atom({
+  key: 'AnchorXPitch',
+  default: 0
+});
+
+export const AnchorYPitch = atom({
+  key: 'AnchorYPitch',
+  default: 0
 });

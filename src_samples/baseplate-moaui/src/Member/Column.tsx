@@ -53,16 +53,16 @@ function Column() {
   }
   return (
     <GuideBox >
-      <GuideBox  width ={350} horCenter>
+      <GuideBox  width ={280} horCenter>
         <SectionDrawing/>
       </GuideBox>
-      <GuideBox width = {350}>
+      <GuideBox width = {280}>
       <Separator />
       </GuideBox>
       <GuideBox  marginTop={1}>
         <TypoGraphyDropList 
           title = "DB"
-          width = {350}
+          width = {280}
           dropListwidth = {150}
           items = {dbList}
           droplistDisabled = {true}
@@ -70,7 +70,7 @@ function Column() {
 
         <TypoGraphyDropList
           title = "H Section DB"
-          width = {350}
+          width = {280}
           dropListwidth = {150}
           items = {hSectionDB}
           value = {selectedDBIndex} 
@@ -78,7 +78,7 @@ function Column() {
         />
         <TypoGraphyDropList
           title = "Concrete Material"
-          width = {350}
+          width = {280}
           dropListwidth = {150}
           items = {concreteMaterialList}
           value = {concreteMaterial}

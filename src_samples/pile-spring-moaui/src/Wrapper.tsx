@@ -151,7 +151,7 @@ const ValidWrapper = (props: any) => {
 					>
 						{/** Production Mode */}
 						{!devTools.IsDevEnv() &&
-							<GuideBox tag="AppBackground" show center fill={bgColor} width="100%">
+							<GuideBox tag="AppBackground" show fill={bgColor} width="100%">
 								<App />
 							</GuideBox>
 						}

@@ -49,10 +49,11 @@ import { set } from "lodash";
 import MDReport from "../Design/MDReport";
 import { useSnackbar } from "notistack";
 import InfiniLoading from "../InfinitLoading";
-
+import TreeView from "../SimpleTreeView";
 function Design() {
   const marked = require("marked");
   const [tabName, setTabName] = React.useState("Column");
+  const [loading, setLoading] = React.useState(false);
   const [selectedColumnIndex, setSelectedColumnIndex] =
     useRecoilState(SelectedColumnIndex);
   const [hSectionDB, setHSectionDB] = useRecoilState(HSectionDB);
@@ -91,21 +92,21 @@ function Design() {
     {
       field: "Demand",
       headerName: "Demand",
-      width: 100,
+      width: 80,
       editable: true,
       sortable: false,
     },
     {
       field: "Capacity",
       headerName: "Capacity",
-      width: 100,
+      width: 80,
       editable: true,
       sortable: false,
     },
     {
       field: "Ratio",
       headerName: "Ratio",
-      width: 100,
+      width: 80,
       editable: true,
       sortable: false,
     },
@@ -129,6 +130,15 @@ function Design() {
   const ColumnSelected = (e: any) => {
     setSelectedBPName(e.target.value);
   };
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        handleDesignClick();
+      }, 1000);
+    }
+  }, [loading]);
+
   const [selectedBPName, setSelectedBPName] = useState(bpList[0][0]);
   
   console.log(node_BP_Data)
@@ -180,11 +190,11 @@ function Design() {
       console.log('key index', keyindex)
       console.log()
       let new_DesignResult = JSON.parse(JSON.stringify(designResult));
-      new_DesignResult.Pu = 1;
+      new_DesignResult.Pu = 1.47;
       new_DesignResult.Mux = Math.abs(Number(Pu_Result["min"]));
-      new_DesignResult.Muy = 1;
-      new_DesignResult.Vux = 1;
-      new_DesignResult.Vuy = 1;
+      new_DesignResult.Muy = 13.5;
+      new_DesignResult.Vux = 1.48;
+      new_DesignResult.Vuy = 0.97;
       new_DesignResult.Tu = 1;
       new_DesignResult.Sigma_max = 1;
       new_DesignResult.Sigma_min = 1;
@@ -204,7 +214,7 @@ function Design() {
       console.log(JSON.stringify(calculate_result))
       rows_ENV = [
         { id: 1, ItemName: "Bearing Stress", Demand: "", Capacity: "", Ratio: "" },
-        { id: 2, ItemName: "Comp. (MPa)", Demand: calculate_result["Sigma_max"], Capacity: calculate_result["Sigma_max"], Ratio: calculate_result["Sigma_max"] },
+        { id: 2, ItemName: "Comp. (MPa)", Demand: "None", Capacity: "None", Ratio: "None" },
         { id: 3, ItemName: "Tens. (kN)", Demand: "None", Capacity: "None", Ratio: "None" },
         { id: 4, ItemName: "Baseplate", Demand: "", Capacity: "", Ratio: "" },
         { id: 5, ItemName: "Mxx (kN.m/m)", Demand: calculate_result["Mux"], Capacity: calculate_result["BPlate_PhiMn"], Ratio: calculate_result["BPlate_Ratio"] },
@@ -217,12 +227,17 @@ function Design() {
       setRows_ADD(rows_ENV);
       const markdown = covertMarkdown(JSON.stringify(calculate_result));
       setMDResult(markdown);
+
+      
+
     } catch (e) {
+      setLoading(false);
       enqueueSnackbar("Design check Failed", {
         variant: "error",
         autoHideDuration: 3000,
       });
     } finally {
+      setLoading(false);
       enqueueSnackbar("Design Check Completed", {
         variant: "success",
         autoHideDuration: 3000,
@@ -231,56 +246,60 @@ function Design() {
   };
 
   return (
-    <GuideBox row>
-      <div style={{width:"100%", height:"100%", display:"flex", justifyContent:"center", alignItems:"center"}}>
-        <Panel height={550}>
-          <GuideBox spacing={1}>
-            <GuideBox marginTop={1} spacing={1}>
-              <TypoGraphyDropList
-                title="Column :"
-                width={350}
-                dropListwidth={200}
-                items={bpList}
-                defaultValue={selectedBPName}
-                value={selectedBPName}
-                onChange={ColumnSelected}
-              />
-            </GuideBox>
-
-            <Typography variant="h1">Design Result</Typography>
-
-            <div style={{ height: 365, width: "100%" }}>
-              <DataGrid
-                columnHeaderHeight={60}
-                rowHeight={80}
-                hideFooter
-                columns={columns}
-                rows={rows_ADD}
-              ></DataGrid>
-            </div>
-            <GuideBox width={400} horRight>
-              <Button variant="outlined" onClick={handleDesignClick}>
-                Design Check
-              </Button>
-            </GuideBox>
+    <GuideBox show row spacing={1}>
+      {loading && <InfiniLoading />}
+      <Panel height={550}>
+        <GuideBox spacing={1}>
+          <GuideBox marginTop={1} spacing={1}>
+            <TypoGraphyDropList
+              title="Baseplate :"
+              width={350}
+              dropListwidth={200}
+              items={bpList}
+              defaultValue={selectedBPName}
+              value={selectedBPName}
+              onChange={ColumnSelected}
+            />
           </GuideBox>
-        </Panel>
-        <Panel height={550} width={500}>
-          <GuideBox spacing={1}>
-            <Typography variant="h1">Design Report</Typography>
-            <div
-              style={{
-                height: 500,
-                width: "100%",
-                overflowY: "scroll",
-                fontSize: 12,
-              }}
-            >
-              <MDReport></MDReport>
-            </div>
+
+          <Typography variant="h1">Design Result</Typography>
+
+          <div style={{ height: 365, width: "100%" }}>
+            <DataGrid
+              columnHeaderHeight={60}
+              rowHeight={80}
+              hideFooter
+              columns={columns}
+              rows={rows_ADD}
+            ></DataGrid>
+          </div>
+          <GuideBox width={350} horRight>
+            <Button variant="outlined" onClick={() => setLoading(true)}>
+              Design Check
+            </Button>
           </GuideBox>
-        </Panel>
-      </div>
+        </GuideBox>
+      </Panel>
+      <Panel height={550} width={430}>
+        <GuideBox spacing={1}>
+          <Typography variant="h1">Design Report</Typography>
+          <div
+            style={{
+              height: 500,
+              width: "100%",
+              overflowY: "scroll",
+              fontSize: 12,
+            }}
+          >
+            <MDReport></MDReport>
+          </div>
+        </GuideBox>
+      </Panel>
+      <Panel width={200 } height={550} overflow='scroll' textOverflow= 'ellipsis'>
+        <Typography>BasePlate Info.</Typography>
+        <TreeView />
+      </Panel>
+      
     </GuideBox>
   );
 }

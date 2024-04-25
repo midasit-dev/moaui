@@ -22,7 +22,7 @@ import {dbReadItem }from '../utils_pyscript'
 import { set } from 'lodash';
 import {postNewProject, CreateBasePlateOutlines, AutoMeshing, Applyloads, Analysis, GetResult, calculate_baseplate, covertMarkdown, }from '../utils_pyscript'
 import { useSnackbar } from 'notistack';
-
+import TreeView from '../SimpleTreeView';
 
 
 function Load() {
@@ -123,8 +123,8 @@ function Load() {
 
 
   return (
-    <GuideBox row >
-      <Panel height={550}>
+    <GuideBox row spacing={1} >
+      <Panel height={550} width={807}>
         <GuideBox spacing={1}>
           <GuideBox marginTop={1} spacing={1}>
             <TypoGraphyDropList
@@ -138,7 +138,7 @@ function Load() {
             />
           </GuideBox>
           <Typography variant='h1'>LoadCase(ADD)</Typography>
-          <div style={{height: 350, width: '100%'}}>
+          <div style={{height: 470, width: '100%'}}>
             <DataGrid
               columnHeaderHeight={60}
               rowHeight={80}
@@ -150,7 +150,12 @@ function Load() {
           </div>
         </GuideBox>
       </Panel>
-    </GuideBox>
+      <Panel width={200 } height={550} overflow='scroll' textOverflow= 'ellipsis'>
+        <Typography>BasePlate Info.</Typography>
+        <TreeView />
+      </Panel>
+      
+    </GuideBox> 
   );
 }
 
