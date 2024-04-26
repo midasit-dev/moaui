@@ -8,6 +8,7 @@ import { GuideBox, Typography } from "../..";
  * @param {StyledProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange, value, autoFocus, type, width, height, spacing, textAlign, multiline, rows, maxRows
  * @example
  * <TextField
+ * 	id=""
  * 	title="Title"
  * 	titlePosition="left"
  * 	placeholder="Placeholder"
@@ -81,6 +82,7 @@ TextField.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: "",
 	autoFocus: false,
 	type: "text",
 	placeholder: "Placeholder",

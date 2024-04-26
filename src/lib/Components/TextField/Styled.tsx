@@ -6,6 +6,13 @@ import Font from '../../Style/Font';
 
 export type StyledProps = {
 	/**
+	 * The id of the FloatingBox.
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id: React.InputHTMLAttributes<HTMLDivElement>['id'];
+	/**
    * If `true`, the `input` element is focused during the first mount.
    * @default false
    */
@@ -105,6 +112,7 @@ export type StyledProps = {
 const StyledComponent = styled((props:StyledProps) => {
 	return(
 		<TextField
+			id={props.id}
 			autoFocus={props?.autoFocus}
 			type={props?.type}
 			onChange={props?.onChange}

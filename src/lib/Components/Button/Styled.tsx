@@ -49,7 +49,7 @@ export type StyledProps = {
 	 * @optional
 	 * @type string
 	 */
-	id?: string,
+	id?: React.HtmlHTMLAttributes<HTMLButtonElement>['id'],
 	/**
 	 * The content of the button.
 	 * @defaultValue "Button"

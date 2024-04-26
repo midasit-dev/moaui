@@ -7,7 +7,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - onClick, variant, disabled, width, color, loading, children
  * @example
  * <Button
- * 	id="ButtonId"
+ * 	id=""
  * 	onClick={() => {}}
  * 	variant="contained" || "outlined" || "text"
  * 	disabled={false} || {true}
@@ -22,13 +22,13 @@ import StyledComponent, { type StyledProps } from "./Styled";
 const Button = (props: StyledProps) => (<StyledComponent {...props} />);
 
 Button.defaultProps = {
-	id: "ButtonId",
 	variant: "contained",
 	disabled: false,
 	loading: false,
 } as StyledProps;
 
 const SampleProps = {
+	id: '',
 	children: "Button",
 	onClick: () => {},
 	variant: toUnionType({ values: ['contained', 'outlined', 'text'] }),

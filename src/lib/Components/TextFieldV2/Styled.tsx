@@ -9,11 +9,11 @@ import Tooltip from '../Tooltip';
 export type StyledProps = {
 	/**
 	 * The id of the textfield.
-	 * @defaultValue "TextFieldV2Id"
+	 * @defaultValue ""
 	 * @optional
 	 * @type string
 	 */
-	id?: string,
+	id?: React.InputHTMLAttributes<HTMLDivElement>['id'];
 	/**
 	 * If `true`, the `input` element is focused during the first mount.
 	 * @default false

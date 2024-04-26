@@ -10,6 +10,16 @@ import {
 } from '../../';
 
 export type StyledProps = {
+	/**
+	 * The id of the FloatingBox.
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id: React.HTMLAttributes<HTMLDivElement>['id'];
+	/**
+	 * class name of floating box
+	 */
 	className?: React.HTMLAttributes<HTMLDivElement>['className'];
 	/**
 	 * key of floating box
@@ -68,6 +78,7 @@ export type StyledProps = {
 
 const FloatingBox = (props: StyledProps) => {
 	const {
+		id,
 		className,
 
 		key,
@@ -94,6 +105,7 @@ const FloatingBox = (props: StyledProps) => {
 
 	return (
 		<div
+			id={id}
 			className={className}
 			key={key}
 			style={{

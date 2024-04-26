@@ -47,7 +47,7 @@ type StyledPropsExtension = {
  * @param {StyledProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange, value, width, height, multiline, rows, maxRows, numberOptions
  * @example
  * <TextFieldV2
- * 	id="TextFieldV2Id"
+ * 	id=""
  * 	autoFocus={false || true}
  * 	type={'text' || 'number' || 'password'}
  * 	placeholder={'Placeholder'}
@@ -134,6 +134,7 @@ TextFieldV2.defaultProps = {
 } as StyledProps & StyledPropsExtension;
 
 const SampleProps = {
+	id: "",
 	autoFocus: false,
 	type: "text",
 	placeholder: "Placeholder",
