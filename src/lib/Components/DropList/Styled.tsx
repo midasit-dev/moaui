@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import MoaStyledComponent from "../../Style/MoaStyled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DropList, { SelectChangeEvent } from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
@@ -113,17 +113,28 @@ const useDroplistOpenCloseEffect = () => {
 
 const StyledComponent = styled((props:StyledProps) => {
 	const {id, itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
-	let itemMap: Map<string, string | number> = new Map();
-	if (itemList instanceof Function) {
-		itemMap = itemList();
-	} else if (itemList instanceof Array) {
-		itemMap = new Map(itemList);
-	} else if (itemList instanceof Map) {
-		itemMap = itemList;
-	} else {
-		console.error('itemList is not a Map or a function that returns a Map');
-		itemMap = new Map();
-	}
+
+	//정방향 map 생성
+	const [itemMap, setItemMap] = useState<Map<string, string | number>>(new Map());
+	useEffect(() => {
+		if (itemList instanceof Function) {
+			setItemMap(itemList());
+		} else if (itemList instanceof Array) {
+			setItemMap(new Map(itemList));
+		} else if (itemList instanceof Map) {
+			setItemMap(itemList);
+		} else {
+			console.error('itemList is not a Map or a function that returns a Map');
+		}
+	}, [itemList]);
+
+	//역방향 map 생성
+	const [reverseItemMap, setReverseItemMap] = useState<Map<string | number, string>>(new Map());
+	useEffect(() => {
+		const reverseMap = new Map();
+		itemMap.forEach((value, key) => reverseMap.set(value, key));
+		setReverseItemMap(reverseMap);
+	}, [itemMap]);
 
 	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
 	const parentRef = React.useRef<HTMLDivElement | null>(null);
@@ -137,13 +148,15 @@ const StyledComponent = styled((props:StyledProps) => {
 	const { truncateText, isDroplistOpen, setIsDroplistOpen } = useDroplistOpenCloseEffect();
 
 	return (
-    <React.Fragment>
+    <div
+			id={id}
+			data-current-value={reverseItemMap.get(value) ?? 'error'}
+		>
       <FormControl
         ref={parentRef}
         sx={{ width: width, maxHeight: "1.75rem" }}
       >
         <DropList
-					id={id}
           defaultValue={defaultValue}
           autoWidth
           value={value}
@@ -245,7 +258,7 @@ const StyledComponent = styled((props:StyledProps) => {
           })}
         </DropList>
       </FormControl>
-    </React.Fragment>
+    </div>
   );
 })(() => ({
 	display: "flex",

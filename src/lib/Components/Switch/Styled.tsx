@@ -79,75 +79,79 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 	}
 
 	return (
-		<FormControlLabel
-			sx={{
-				padding: 0,
-				margin: 0,
-				opacity: 1,
-			}}
-			control={
-				<Switch
-					id={props?.id}
-					name={props?.label}
-					checked={props?.checked} 
-					onChange={props?.onChange}
-					disabled={props?.disabled}
-					sx={{
-						width: '32px',
-						height: '16px',
-						padding: 0,
-						margin: '4px',
-						'& .MuiSwitch-switchBase': {
-							padding: 0,
-							margin: 0,
-							transitionDuration: '300ms',
-							'&:hover': {
-								backgroundColor: 'transparent'
-							},
-							/** Checked 되었을 경우! */
-							'&.Mui-checked': {
-								transform: 'translateX(1rem)',
-								color: '#fff',
-								'.MuiSwitch-thumb': checkedThumbStyle,
-								'& + .MuiSwitch-track': checkedTrackStyle,
-							},
-							'&.Mui-focusVisible .MuiSwitch-thumb': {
-								color: '#33cf4d',
-								border: '6px solid #000',
-								backgroundColor: '#000',
-							},
-							'&.Mui-disabled .MuiSwitch-thumb': {
-								color: '#EEEEEE'
-							},
-							'&.Mui-disabled + .MuiSwitch-track': {
-								opacity: 1
-							},
-						},
-						/** UnChecked 되었을 경우! */
-						'& .MuiSwitch-thumb': {
-							boxSizing: 'border-box',
-							width: '12px',
-							height: '12px',
-							marginTop: '2px',
-							marginLeft: '2px',
-							boxShadow: 'none',
-							...thumbStyle,
-						},
-						'& .MuiSwitch-track': {
-							width: '30px',
-							height: '14px',
-							boxSizing: "content-box",
-							borderRadius: 26 / 2,
-							opacity: 1,
-							transition: 'background-color 300ms linear',
-							...trackStyle,
-						},
-					}}
-				/>
-			}
-			label={props?.label}
-		/>
-	)
+    <div
+			id={props?.id}
+			data-current-value={props?.checked}
+		>
+      <FormControlLabel
+        sx={{
+          padding: 0,
+          margin: 0,
+          opacity: 1,
+        }}
+        control={
+          <Switch
+            name={props?.label}
+            checked={props?.checked}
+            onChange={props?.onChange}
+            disabled={props?.disabled}
+            sx={{
+              width: "32px",
+              height: "16px",
+              padding: 0,
+              margin: "4px",
+              "& .MuiSwitch-switchBase": {
+                padding: 0,
+                margin: 0,
+                transitionDuration: "300ms",
+                "&:hover": {
+                  backgroundColor: "transparent",
+                },
+                /** Checked 되었을 경우! */
+                "&.Mui-checked": {
+                  transform: "translateX(1rem)",
+                  color: "#fff",
+                  ".MuiSwitch-thumb": checkedThumbStyle,
+                  "& + .MuiSwitch-track": checkedTrackStyle,
+                },
+                "&.Mui-focusVisible .MuiSwitch-thumb": {
+                  color: "#33cf4d",
+                  border: "6px solid #000",
+                  backgroundColor: "#000",
+                },
+                "&.Mui-disabled .MuiSwitch-thumb": {
+                  color: "#EEEEEE",
+                },
+                "&.Mui-disabled + .MuiSwitch-track": {
+                  opacity: 1,
+                },
+              },
+              /** UnChecked 되었을 경우! */
+              "& .MuiSwitch-thumb": {
+                boxSizing: "border-box",
+                width: "12px",
+                height: "12px",
+                marginTop: "2px",
+                marginLeft: "2px",
+                boxShadow: "none",
+                ...thumbStyle,
+              },
+              "& .MuiSwitch-track": {
+                width: "30px",
+                height: "14px",
+                boxSizing: "content-box",
+                borderRadius: 26 / 2,
+                opacity: 1,
+                transition: "background-color 300ms linear",
+                ...trackStyle,
+              },
+            }}
+          />
+        }
+        label={props?.label}
+      />
+    </div>
+  );
 })(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (

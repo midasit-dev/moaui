@@ -3,6 +3,7 @@ import MoaStyledComponent from "../../Style/MoaStyled";
 import TextField from '@mui/material/TextField';
 import Color from '../../Style/Color';
 import Font from '../../Style/Font';
+import { useState } from 'react';
 
 export type StyledProps = {
 	/**
@@ -110,59 +111,72 @@ export type StyledProps = {
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	return(
-		<TextField
+	const [value, setValue] = useState(props?.value);
+
+	return (
+    <div
 			id={props.id}
-			autoFocus={props?.autoFocus}
-			type={props?.type}
-			onChange={props?.onChange}
-			defaultValue={props?.defaultValue}
-			error = {props?.error}
-			disabled = {props?.disabled}
-			value = {props?.value}
-			sx={{
-				width: props?.width || "auto",
-				height: props?.height || "auto",
-				'& .MuiOutlinedInput-root': {
-					'& fieldset':{
-						border: `1px solid ${Color.component.gray}`,
-					},
-					'&:hover fieldset': {
-						border: `1px solid ${Color.component.gray_02}`,
-					},
-					'&.Mui-focused fieldset':{
-						border: `1px solid ${Color.component.gray_dark}`,
+			data-current-value={value}
+		>
+      <TextField
+				id={props?.id}
+        autoFocus={props?.autoFocus}
+        type={props?.type}
+        onChange={(e: any) => {
+					setValue(e.target.value);
+					if (props?.onChange) {
+						props?.onChange(e);
 					}
-				},
-				'& .MuiInputBase-input':{
-					padding:0
-				},
-				borderRadius: "0.25rem",
-				background: Color.primary.white
-			}}
-			InputProps={{ // input component의 스타일 변경
-				sx:{
-					width: props?.width || "auto",
-					...(props?.multiline ? {height: "auto"} : {height: "1.75rem"}),
-					padding: "0.375rem 0.375rem 0.375rem 0.625rem",
-					alignItems: "center",
-					flexShrink: 0,
-					//text
-					color: Color.text.secondary,
-					fontFeatureSettings: Font.fontFeatureSettings,
-				},
-				inputProps:{
-					style:{
-						textAlign: props?.textAlign,
-					}
-				}
-			}}
-			placeholder={props?.placeholder}
-			multiline={props?.multiline}
-			rows={props?.rows}
-			maxRows={props?.maxRows}
-		/>
-	)
+				}}
+        defaultValue={props?.defaultValue}
+        error={props?.error}
+        disabled={props?.disabled}
+        value={props?.value}
+        sx={{
+          width: props?.width || "auto",
+          height: props?.height || "auto",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              border: `1px solid ${Color.component.gray}`,
+            },
+            "&:hover fieldset": {
+              border: `1px solid ${Color.component.gray_02}`,
+            },
+            "&.Mui-focused fieldset": {
+              border: `1px solid ${Color.component.gray_dark}`,
+            },
+          },
+          "& .MuiInputBase-input": {
+            padding: 0,
+          },
+          borderRadius: "0.25rem",
+          background: Color.primary.white,
+        }}
+        InputProps={{
+          // input component의 스타일 변경
+          sx: {
+            width: props?.width || "auto",
+            ...(props?.multiline ? { height: "auto" } : { height: "1.75rem" }),
+            padding: "0.375rem 0.375rem 0.375rem 0.625rem",
+            alignItems: "center",
+            flexShrink: 0,
+            //text
+            color: Color.text.secondary,
+            fontFeatureSettings: Font.fontFeatureSettings,
+          },
+          inputProps: {
+            style: {
+              textAlign: props?.textAlign,
+            },
+          },
+        }}
+        placeholder={props?.placeholder}
+        multiline={props?.multiline}
+        rows={props?.rows}
+        maxRows={props?.maxRows}
+      />
+    </div>
+  );
 })(() => ({
 	display:"flex",
 	fullWidth: true,

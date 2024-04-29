@@ -121,7 +121,6 @@ const TextFieldV2 = (props: StyledProps & StyledPropsExtension) => {
 }
 
 TextFieldV2.defaultProps = {
-	id: "TextFieldV2Id",
 	autoFocus: false,
 	type: "text",
 	title : "",

@@ -5,6 +5,7 @@ import { Typography } from '../../';
 
 import RadioGroup, {RadioGroupProps} from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
+import { useEffect, useState } from 'react';
 
 export interface StyledProps extends RadioGroupProps {
   /**
@@ -61,21 +62,27 @@ export interface StyledProps extends RadioGroupProps {
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { id, ariaLabel, text, children, sx, ...rest } = props;
+	const { id, ariaLabel, text, children, value, sx, ...rest } = props;
 	if (sx) console.error('The sx prop is not used in StyledComponent');
 	
 	return (
-		<FormControl aria-label={`${text} ${ariaLabel}`}>
-			{text && <div style={{padding: '0.25rem'}}><Typography>{text}</Typography></div>}
-			<RadioGroup 
-				id={id}
-				{...rest}
-				style={{paddingLeft: text ? '0.5rem' : '0rem'}}
-			>
-				{children}
-			</RadioGroup>
-		</FormControl>
-	)
+    <div id={id} data-current-value={value}>
+      <FormControl aria-label={`${text} ${ariaLabel}`}>
+        {text && (
+          <div style={{ padding: "0.25rem" }}>
+            <Typography>{text}</Typography>
+          </div>
+        )}
+        <RadioGroup
+          value={value}
+          {...rest}
+          style={{ paddingLeft: text ? "0.5rem" : "0rem" }}
+        >
+          {children}
+        </RadioGroup>
+      </FormControl>
+    </div>
+  );
 
 })(() => ({}));
 

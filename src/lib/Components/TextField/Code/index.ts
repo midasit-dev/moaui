@@ -5,3 +5,4 @@ export { default as ErrorCode } from "./Error.code.tsx?raw";
 export { default as BasicCode } from "./Basic.code.tsx?raw";
 export { default as MultiLineCode } from "./MultiLine.code.tsx?raw";
 export { default as WrappedWidthCode } from "./WrappedWidth.code.tsx?raw";
+export { default as DataSetCode } from "./DataSet.code.except.tsx?raw";

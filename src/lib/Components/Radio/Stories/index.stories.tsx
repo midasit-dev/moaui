@@ -4,7 +4,7 @@ import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { NameCode } from '../Code';
+import { NameCode, DataSetCode } from '../Code';
 
 const meta = {
   title: 'Components/Radio',
@@ -20,6 +20,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Name = LiveEditStory(cleanMask(NameCode));
+export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
 	args: {

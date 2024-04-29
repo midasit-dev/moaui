@@ -7,6 +7,7 @@ import {
 	NotRequiredCode,
 	RequiredCode,
 	DisabledCode,
+	DataSetCode,
 } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
@@ -26,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const NotRequired = LiveEditStory(cleanMask(NotRequiredCode));
 export const Required = LiveEditStory(cleanMask(RequiredCode));
 export const Disabled = LiveEditStory(cleanMask(DisabledCode));
+export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
   args: {

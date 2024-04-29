@@ -4,7 +4,7 @@ import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
-import { LabelCode } from '../Code';
+import { LabelCode, DataSetCode } from '../Code';
 
 const meta = {
   title: 'Components/Switch',
@@ -20,6 +20,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Label = LiveEditStory(cleanMask(LabelCode));
+export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
 	args: {

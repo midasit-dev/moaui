@@ -3,6 +3,7 @@ import MoaStyledComponent from "../../Style/MoaStyled";
 import FormGroup from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
 import MoaTypography from '../Typography';
+import { useEffect, useState } from 'react';
 
 export type StyledProps = {
   /**
@@ -30,13 +31,34 @@ const StyledComponent = styled((props: StyledProps) => {
 	const { id, text, sx, ...rest } = props;
 
 	if (sx) console.error('The sx prop is not used in StyledComponent');
+
+	const [checkedValues, setCheckedValues] = useState<string>('');
+	useEffect(() => {
+		if (rest && rest.children && rest.children.length > 0) {
+			const values: string[] = rest.children.map((child: React.ReactElement) => child.props.checked);
+			setCheckedValues(values.join(','));
+		}
+	}, [rest]);
 	
 	return (
-		<FormControl>
-			{text && <div style={{padding: '0.25rem'}}><MoaTypography>{text}</MoaTypography></div>}
-			<FormGroup id={id} {...rest} style={{paddingLeft: text ? '0.5rem' : '0rem'}} />
-		</FormControl>
-	)
+    <div 
+			id={id}
+			data-current-value={checkedValues}
+		>
+      <FormControl>
+        {text && (
+          <div style={{ padding: "0.25rem" }}>
+            <MoaTypography>{text}</MoaTypography>
+          </div>
+        )}
+        <FormGroup
+          id={id}
+          {...rest}
+          style={{ paddingLeft: text ? "0.5rem" : "0rem" }}
+        />
+      </FormControl>
+    </div>
+  );
 
 })(() => ({}));
 
