@@ -44,8 +44,8 @@ function CustomCircularProgress({
 
 export type StyledProps = {
 	/**
-	 * The id of the button.
-	 * @defaultValue "buttonId"
+	 * current element id
+	 * @defaultValue ""
 	 * @optional
 	 * @type string
 	 */
@@ -231,7 +231,7 @@ const StyledComponent = styled((props:StyledProps) => {
 
 	return (
 		<MuiButton
-			id={props?.id || "ButtonId"}
+			id={props?.id || ""}
 			{...commonButtonProps}
 			variant={variant}
 			disabled={disabled || loading}

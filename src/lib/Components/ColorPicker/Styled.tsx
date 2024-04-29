@@ -3,13 +3,13 @@ import { RgbColorPicker, RgbColor } from "react-colorful";
 import TextFieldV2 from "../TextFieldV2";
 
 export type StyledProps = {
-  /**
-   * The id of the button.
-   * @defaultValue "ColorPickerId"
-   * @optional
-   * @type string
-   */
-  id?: string;
+	/**
+	 * current element id
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id?: React.HtmlHTMLAttributes<HTMLDivElement>['id'],
   /**
    * The color of the button.
    * @defaultValue "black"
@@ -54,7 +54,7 @@ const StyledComponent = (props: StyledProps) => {
 
   return (
     <div
-      id={props?.id || "ColorPickerId"}
+      id={props?.id}
       style={{
         display: "flex",
         justifyContent: "center",

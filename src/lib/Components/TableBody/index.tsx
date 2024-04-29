@@ -8,7 +8,7 @@ TableBody.defaultProps = {
  * 
  * @param {StyledProps} props - children
  * @example
- * <TableBody>
+ * <TableBody id="">
  * 	{children}
  * </TableBody>
  * @returns React.ReactElement

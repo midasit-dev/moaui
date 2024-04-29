@@ -8,6 +8,7 @@ import { toUnionType } from "../../Common/UnionType";
  * @param props - panelProps, children, width, height, title, titleVariant, titleColor, titleAlign
  * @example
  * <Scrollbars
+ * 	id=''
  * 	panelProps={{ variant: 'box', width: 300 }}
  *  width={300}
  * 	height={300}
@@ -28,6 +29,7 @@ Scrollbars.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: '',
 	panelProps: {
 		variant: 'shadow2',
 	},

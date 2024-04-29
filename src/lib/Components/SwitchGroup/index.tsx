@@ -6,6 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - children, text
  * @example
  * <SwitchGroup
+ * 	id=""
  * 	text="Switch Group"	
  * >
  * 	{children}

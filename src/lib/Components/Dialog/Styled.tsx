@@ -8,21 +8,28 @@ import { GuideBox, Typography, Icon } from "../..";
 
 export type StyledProps = {
   /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
    * If `true`, the component is shown.
    */
   open: boolean;
-	/**
-	 * title icon of dialog
-	 */
-	headerIcon?: React.ReactNode;
-	/**
-	 * title text of dialog
-	 */
-	headerTitle?: string;
-	/**
-	 * children of dialog
-	 */
-	children?: React.ReactNode;
+  /**
+   * title icon of dialog
+   */
+  headerIcon?: React.ReactNode;
+  /**
+   * title text of dialog
+   */
+  headerTitle?: string;
+  /**
+   * children of dialog
+   */
+  children?: React.ReactNode;
   /**
    * If `true`, the component is only shown.
    */
@@ -42,19 +49,20 @@ export type StyledProps = {
     data: object | HelpProps;
   };
 
-	/**
-	 * If you define onClose, it makes dialog dynamic
-	 */
-	onClose?: () => void
+  /**
+   * If you define onClose, it makes dialog dynamic
+   */
+  onClose?: () => void;
 
-	/**
-	 * Set a Hidden Close Option
-	 */
-	hiddenClose?: boolean;
+  /**
+   * Set a Hidden Close Option
+   */
+  hiddenClose?: boolean;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
 	const {
+		id,
     open,
     setOpen,
     json,
@@ -72,6 +80,7 @@ const StyledComponent = styled((props: StyledProps) => {
 
 	return (
     <Dialog
+			id={id}
       open={open}
       onClose={() => {
 				//esc | backdrop click

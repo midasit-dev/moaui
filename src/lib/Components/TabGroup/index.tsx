@@ -6,6 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - children, orientation, indicator, value, onChange, arai-label, width, height, fontSize, minWidth, minHeight, tabProps
  * @example
  * <TabGroup
+ * 	id=""
  * 	orientation="horizontal" || "vertical"
  * 	indicator="left" || "right"
  * 	value="value"

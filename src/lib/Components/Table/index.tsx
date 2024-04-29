@@ -6,6 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param {StyledProps} props - children, padding, size, stickyHeader
  * @example
  * <Table
+ * 	id=""
  * 	padding={'normal' || 'checkbox' || 'none'}
  * 	size={'medium'}
  * 	stickyHeader={false || true}
@@ -17,6 +18,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
 const Table = (props: StyledProps) => (<StyledComponent {...props} />);
 
 Table.defaultProps = {
+	id: "",
 	padding: 'normal',
 	size: 'medium',
 	stickyHeader: false,

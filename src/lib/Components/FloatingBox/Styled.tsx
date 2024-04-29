@@ -16,7 +16,7 @@ export type StyledProps = {
 	 * @optional
 	 * @type string
 	 */
-	id: React.HTMLAttributes<HTMLDivElement>['id'];
+	id?: React.HTMLAttributes<HTMLDivElement>['id'];
 	/**
 	 * class name of floating box
 	 */

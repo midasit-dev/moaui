@@ -7,6 +7,7 @@ import { toUnionType } from "../../Common/UnionType";
  * @param props - severity, bgColor, color, size, label, disabled
  * @example
  * <Chip
+ * 	id=''
  * 	severity="success" || "error" || "warning" || "info"
  * 	bgColor=""
  * 	color=""
@@ -25,6 +26,7 @@ Chip.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: '',
 	severity: toUnionType({ values: ["success", "error", "warning", "info"] }),
 	bgColor: "",
 	color: "",

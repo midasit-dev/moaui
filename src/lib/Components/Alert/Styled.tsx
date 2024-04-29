@@ -6,24 +6,32 @@ import Alert from '@mui/material/Alert';
 import { Typography, GuideBox } from '../..';
 
 export type StyledProps = {
-	/**
-	 * alert children.
-	 */
-	children?: React.ReactNode
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
 
-	/**
-	 * set a alert variant.
-	 */
-	variant?: "standard" | "outlined" | "filled"
-	/**
-	 * set a alert severity.
-	 */
-	severity?: "success" | "error" | "warning" | "info"
-	/**
-	 * set a alert title.
-	 */
-	title?: string | undefined,
-}
+  /**
+   * alert children.
+   */
+  children?: React.ReactNode;
+
+  /**
+   * set a alert variant.
+   */
+  variant?: "standard" | "outlined" | "filled";
+  /**
+   * set a alert severity.
+   */
+  severity?: "success" | "error" | "warning" | "info";
+  /**
+   * set a alert title.
+   */
+  title?: string | undefined;
+};
 
 const getSeverityColor = (variant: any, severity: any) => {
 	if (variant === 'filled') return '#fff';
@@ -39,6 +47,7 @@ const getSeverityColor = (variant: any, severity: any) => {
 
 const StyledComponent = styled((props: StyledProps) => {
 	const {
+		id,
 		children,
 		variant,
 		severity,
@@ -49,6 +58,7 @@ const StyledComponent = styled((props: StyledProps) => {
 	return (
 		<Stack sx={{ width: '100%' }}>
 			<Alert 
+				id={id}
 				variant={variant}
 				severity={severity}
 				sx={{

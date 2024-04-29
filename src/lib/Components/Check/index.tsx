@@ -8,6 +8,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - defaultChecked, onChange, required, checked, disabled, name, namePlacement, ariaLabel, indeterminate
  * @example
  * <Check
+ * 	id=""
  * 	defaultChecked={false || true}
  * 	onChange={() => {}}
  * 	required={false || true}
@@ -28,6 +29,7 @@ Check.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: '',
 	defaultChecked: false,
 	onChange: () => {},
 	required: false,

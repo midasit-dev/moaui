@@ -7,7 +7,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - id, url, alt, width, height
  * @example
  * <SVG
- * 	id="svg"
+ * 	id=""
  * 	url="https://www.example.com/image.svg"
  * 	alt="image of svg"
  * 	width="auto"
@@ -21,7 +21,7 @@ const SVG = (props: StyledProps) => (<StyledComponent	{...props} />);
 SVG.defaultProps = {}
 
 const SampleProps = {
-	id: "midas_logo_svg",
+	id: "",
 	url: "https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/svg/midas_ci_mono_350_150.svg",
 	alt: "image of svg",
 	width: "350px",

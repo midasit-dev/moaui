@@ -27,44 +27,52 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps & { arrow
 
 export type StyledProps = {
   /**
-	 * children of the component
-	 */
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * children of the component
+   */
   children?: React.ReactNode;
   /**
    * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
   title: React.ReactNode;
-	/**
+  /**
    * Tooltip placement.
    * @default 'bottom'
    */
-	placement?:
-	| 'bottom-end'
-	| 'bottom-start'
-	| 'bottom'
-	| 'left-end'
-	| 'left-start'
-	| 'left'
-	| 'right-end'
-	| 'right-start'
-	| 'right'
-	| 'top-end'
-	| 'top-start'
-	| 'top';
-	/**
-	 * Tooltip open state.
-	 * @default undefined
-	 */
-	open?: boolean;
-	/**
-	 * Draw border around the arrow.
-	 * @default false
-	 */
-	arrowBorder?: boolean;
+  placement?:
+    | "bottom-end"
+    | "bottom-start"
+    | "bottom"
+    | "left-end"
+    | "left-start"
+    | "left"
+    | "right-end"
+    | "right-start"
+    | "right"
+    | "top-end"
+    | "top-start"
+    | "top";
+  /**
+   * Tooltip open state.
+   * @default undefined
+   */
+  open?: boolean;
+  /**
+   * Draw border around the arrow.
+   * @default false
+   */
+  arrowBorder?: boolean;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
 	const {
+		id,
 		children,
 		title,
 		placement,
@@ -78,7 +86,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			open={props?.open}
 			arrowBorder={arrowBorder}
 		>
-			<div>
+			<div id={id}>
 				{children}
 			</div>
 		</BootstrapTooltip>

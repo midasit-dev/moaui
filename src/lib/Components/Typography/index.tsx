@@ -6,6 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - children, variant, color, width, height, size, verTop, verCenter, verBottom, horLeft, horCenter, horRight, center
  * @example
  * <Typography
+ * 	id=""
  * 	variant={"body1" || "body2" || "body3" || "h1"}
  * 	color={'primary' | 'secondary' | 'third' | 'disable' | string}
  * 	width={string | number}

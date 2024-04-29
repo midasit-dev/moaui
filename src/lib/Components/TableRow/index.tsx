@@ -11,6 +11,7 @@ TableRow.defaultProps = {
  * @param {StyledProps} props - children, hover, selected
  * @example
  * <TableRow
+ * 	id=""
  * 	hover={true || false}
  * 	selected={true || false}
  * >

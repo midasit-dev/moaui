@@ -9,75 +9,82 @@ import Color from "../../Style/Color";
 import Font from "../../Style/Font";
 
 export type StyledProps = {
-	/**
-	 * Set the width value of droplist.
-	 * The width value is applied to the droplist and the droplist's input.
-	 * @optional
-	 * @type string
-	 * @example
-	 * width="100px"
-	 * width="100%"
-	 * @defaultValue "auto"
-	 */
-	width? : string | number;
-	/**
-	 * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
-	 * @defaultValue new Map()
-	 */
-	itemList : 
-			Map<string, string | number> 
-		| (() => Map<string, string | number>)
-		| Array<[string, string | number]>;
-	/**
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * Set the width value of droplist.
+   * The width value is applied to the droplist and the droplist's input.
+   * @optional
+   * @type string
+   * @example
+   * width="100px"
+   * width="100%"
+   * @defaultValue "auto"
+   */
+  width?: string | number;
+  /**
+   * This is a form in which the droplist items are stored in a Map (text:string, value:string | number)
+   * @defaultValue new Map()
+   */
+  itemList:
+    | Map<string, string | number>
+    | (() => Map<string, string | number>)
+    | Array<[string, string | number]>;
+  /**
    * Callback fired when a menu item is selected.
    *
    * @param {SelectChangeEvent<Value>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
-	 * 
-	 * @defaultValue () => {}
+   *
+   * @defaultValue () => {}
    */
-	onChange: (event: SelectChangeEvent) => void;
+  onChange: (event: SelectChangeEvent) => void;
   /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
-	 * @defaultValue ""
+   * @defaultValue ""
    */
-	value: any;
-	/**
+  value: any;
+  /**
    * The default value. Use when the component is not controlled.
-	 * @defaultValue ""
+   * @defaultValue ""
    */
-	defaultValue?: any;
-	/**
-	 * If true, the droplist is disabled.
-	 * @defaultValue false
-	 */
-	disabled?: boolean;
-	/**
-		 * Set the background color of droplist
-		 */
-	backgroundColor?: string;
+  defaultValue?: any;
+  /**
+   * If true, the droplist is disabled.
+   * @defaultValue false
+   */
+  disabled?: boolean;
+  /**
+   * Set the background color of droplist
+   */
+  backgroundColor?: string;
 
-	/**
-	 * Set the width value of droplist's list width.
-	 */
-	listWidth?: string | number;
+  /**
+   * Set the width value of droplist's list width.
+   */
+  listWidth?: string | number;
 
-	/**
-	 * Set the placeholder of droplist's input.
-	 */
-	placeholder?: string;
+  /**
+   * Set the placeholder of droplist's input.
+   */
+  placeholder?: string;
 
-	/**
-	 * Set a string max length of droplist's input.
-	 */
-	maxLength?: number;
-}
+  /**
+   * Set a string max length of droplist's input.
+   */
+  maxLength?: number;
+};
 
 const useDroplistOpenCloseEffect = () => {
 	const [isDroplistOpen, setIsDroplistOpen] = React.useState<boolean>(false);
@@ -105,7 +112,7 @@ const useDroplistOpenCloseEffect = () => {
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	const {itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
+	const {id, itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
 	let itemMap: Map<string, string | number> = new Map();
 	if (itemList instanceof Function) {
 		itemMap = itemList();
@@ -136,6 +143,7 @@ const StyledComponent = styled((props:StyledProps) => {
         sx={{ width: width, maxHeight: "1.75rem" }}
       >
         <DropList
+					id={id}
           defaultValue={defaultValue}
           autoWidth
           value={value}

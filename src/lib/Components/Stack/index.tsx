@@ -6,7 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - children, direction
  * @example
  * <Stack
- * 	direction={"column" || "row" || "column-reverse" || "row-reverse"}
+ * 	id='' direction={"column" || "row" || "column-reverse" || "row-reverse"}
  * >
  * 	{children}
  * </Stack>

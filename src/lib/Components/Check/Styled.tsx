@@ -6,6 +6,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 export type StyledProps = {
   /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+
+  /**
    * If `true`, the component is checked.
    * @defaultValue false
    */
@@ -41,10 +49,10 @@ export type StyledProps = {
    */
   name?: string;
 
-	/**
-	 * The placement of the name.
-	 */
-	namePlacement?: 'start' | 'end' | 'top' | 'bottom';
+  /**
+   * The placement of the name.
+   */
+  namePlacement?: "start" | "end" | "top" | "bottom";
 
   /**
    * Defines a string value that labels the current element.
@@ -82,6 +90,7 @@ const StyledComponent = styled((props: StyledProps): React.ReactElement => {
       checked={props?.checked}
       control={
         <Checkbox
+					id={props?.id}
           defaultChecked={props?.defaultChecked}
           indeterminate={props?.indeterminate}
           disableFocusRipple

@@ -4,6 +4,14 @@ import MoaStyledComponent from '../../Style/MoaStyled';
 import Chip from '@mui/material/Chip';
 
 export type StyledProps = {
+	/**
+	 * current element id
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id?: React.HtmlHTMLAttributes<HTMLDivElement>['id'],
+
   /**
    * set a alert severity.
    */
@@ -53,6 +61,7 @@ const getSeverityColor = (severity: any) => {
 
 const StyledComponent = styled((props: StyledProps) => {
 	const {
+		id,
 		severity,
 		bgColor,
 		color,
@@ -64,6 +73,7 @@ const StyledComponent = styled((props: StyledProps) => {
 
 	return (
 		<Chip
+			id={id}
 			sx={{
 				backgroundColor: bgColor || getSeverityBgColor(severity),
 				color: color || getSeverityColor(severity),

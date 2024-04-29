@@ -3,18 +3,26 @@ import { styled } from '@mui/material/styles';
 import MoaStyledComponent from '../../Style/MoaStyled';
 
 export type StyledProps = {
-	/**
-	 * set a favicon ico.
-	 */
-	icoSrc?: string,
-	/**
-	 * set a title.
-	 */
-	title?: string | undefined,
-}
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * set a favicon ico.
+   */
+  icoSrc?: string;
+  /**
+   * set a title.
+   */
+  title?: string | undefined;
+};
 
 const StyledComponent = styled((props: StyledProps) => {
 	const {
+		id,
 		icoSrc,
 		title,
 	} = props;
@@ -38,6 +46,7 @@ const StyledComponent = styled((props: StyledProps) => {
 					</span>
 				</div>
 				<div 
+					id={id}
 					style={{ 
 						width: '3rem', 
 						userSelect: 'none', 

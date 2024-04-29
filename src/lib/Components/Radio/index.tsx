@@ -6,7 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - checked, onChange, value, name, ariaLabel, disabled
  * @example
  * <Radio
- * 	checked={true || false}
+ * 	id=''
  * 	onChange={() => {}}
  * 	value={"Radio"}
  * 	name={"Radio"}
@@ -24,7 +24,7 @@ Radio.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
-	checked: false,
+	id: '',
 	onChange: () => {},
 	name: "Radio",
 	ariaLabel: "Radio button",

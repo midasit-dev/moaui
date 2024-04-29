@@ -6,6 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - ariaLabel, children, defaultValue, name, onChange, value, text, spacing
  * @example
  * <RadioGroup
+ * 	id=''
  * 	ariaLabel={"Radio Group"}
  * 	defaultValue={"Radio 1"}
  * 	name={"Radio Group"}

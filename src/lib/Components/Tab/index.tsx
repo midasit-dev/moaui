@@ -8,6 +8,7 @@ import { toUnionType } from "../../Common/UnionType";
  * @param props - value, label, onChange, disabled, selected, width, height, fontSize, minWidth, minHeight
  * @example
  * <Tab
+ * 	id=''
  * 	value="value"
  * 	label="Tab"
  * 	onChange={() => {}}
@@ -26,6 +27,7 @@ const Tab = (props: StyledProps) => ( <StyledComponent {...props} /> );
 Tab.defaultProps = {} as StyledProps;
 
 const SampleProps = {
+	id: '',
 	value: "value",
 	label: "Tab",
 	onChange: () => {},

@@ -12,47 +12,55 @@ import { MarginTypes, MarginProps, hasMarginProps } from '../../Style/Margin';
 import { PaddingTypes, PaddingProps } from '../../Style/Padding';
 
 export type StyledProps = {
-	/**
-	 * If `true`, the component appears checked.
-	 */
-	checked?: boolean,
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * If `true`, the component appears checked.
+   */
+  checked?: boolean;
 
-	/**
-	 * Callback fired when the state is changed.
-	 * @param event The event source of the callback. You can pull out the new checked state by accessing event.target.checked (boolean).
-	 */
-	onChange?: (event: React.SyntheticEvent, checked: boolean) => void,
-	
-	/**
-	 * The value of the component.
-	 * @defaultValue ""
-	 */
-	value?: unknown,
+  /**
+   * Callback fired when the state is changed.
+   * @param event The event source of the callback. You can pull out the new checked state by accessing event.target.checked (boolean).
+   */
+  onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
 
-	/**
-	 * The Name of the component.
-	 * If not empty, text will appears after button.
-	 */
-	name?: string,
+  /**
+   * The value of the component.
+   * @defaultValue ""
+   */
+  value?: unknown;
 
-	/**
-	 * Defines a string value that labels the current element.
-	 * @defaultValue "Radio Button"
-	 */
-	ariaLabel?: string,
+  /**
+   * The Name of the component.
+   * If not empty, text will appears after button.
+   */
+  name?: string;
 
-	/**
-	 * If `true`, the component appears disabled.
-	 * @defaultValue false
-	 */
-	disabled?: boolean,
+  /**
+   * Defines a string value that labels the current element.
+   * @defaultValue "Radio Button"
+   */
+  ariaLabel?: string;
 
-	/**
-	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
-	 * @default undefined
-	 */
-	sx?: never,
-} & MarginTypes & PaddingTypes;
+  /**
+   * If `true`, the component appears disabled.
+   * @defaultValue false
+   */
+  disabled?: boolean;
+
+  /**
+   * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+   * @default undefined
+   */
+  sx?: never;
+} & MarginTypes &
+  PaddingTypes;
 
 
 type RadioButtonIconProps = {
@@ -109,6 +117,7 @@ const StyledComponent =
 			name={props?.name}
 			control={
 				<Radio
+					id={props?.id}
 					disableFocusRipple
 					disableRipple
 					aria-label={`${props?.name} ${props?.ariaLabel}`}

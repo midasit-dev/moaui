@@ -21,6 +21,7 @@ CodeBlock.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: '',
 	children: `// this is javascript code.
 	const value = 1;`,
 	language: toUnionType({ values: ['js', 'javascript', 'ts', 'typescript', 'json', 'markdown'] }),

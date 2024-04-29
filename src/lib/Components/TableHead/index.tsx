@@ -8,7 +8,7 @@ TableHead.defaultProps = {
  * 
  * @param {StyledProps} props - children
  * @example
- * <TableHead>
+ * <TableHead id="">
  * 	{children}
  * </TableHead>
  * @returns React.ReactElement

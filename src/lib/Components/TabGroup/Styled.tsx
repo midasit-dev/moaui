@@ -7,81 +7,91 @@ import MoaStyledComponent from "../../Style/MoaStyled";
 import { Color, type TabProps } from "../../";
 
 export type StyledProps = {
-	/**
-	 * The tabs orientation (layout flow direction).
-	 * @default "horizontal"
-	 * @optional
-	 * @type "horizontal" | "vertical"
-	 * @example
-	 * orientation="horizontal"
-	 * orientation="vertical"
-	 */
-	orientation?: "horizontal" | "vertical";
-	/**
-	 * The tabs indicator orientation (layout flow direction).
-	 * @default "right"
-	 * @optional
-	 * @type "right" | "left"
-	 * @example
-	 * indicator="right"
-	 * indicator="left"
-	 */
-	indicator?: "right" | "left";	
-	/**
-	 * The content of the component.
-	 */
-	children?: React.ReactElement<any, string | React.JSXElementConstructor<any>>[];
-	/**
-	 * The value of the currently selected `Tab`.
-	 * If you don't want any selected `Tab`, you can set this prop to `false`.
-	 */
-	value?: any;
-	/**
-	 * Callback fired when the value changes.
-	 *
-	 * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
-	 * @param {any} value We default to the index of the child (number)
-	 */
-	onChange?: (event: React.SyntheticEvent, value: any) => void;
-	/**
-	 * The label for the Tab Group as a string.
-	 */
-	'aria-label'?: string;
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * The tabs orientation (layout flow direction).
+   * @default "horizontal"
+   * @optional
+   * @type "horizontal" | "vertical"
+   * @example
+   * orientation="horizontal"
+   * orientation="vertical"
+   */
+  orientation?: "horizontal" | "vertical";
+  /**
+   * The tabs indicator orientation (layout flow direction).
+   * @default "right"
+   * @optional
+   * @type "right" | "left"
+   * @example
+   * indicator="right"
+   * indicator="left"
+   */
+  indicator?: "right" | "left";
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactElement<
+    any,
+    string | React.JSXElementConstructor<any>
+  >[];
+  /**
+   * The value of the currently selected `Tab`.
+   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   */
+  value?: any;
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {any} value We default to the index of the child (number)
+   */
+  onChange?: (event: React.SyntheticEvent, value: any) => void;
+  /**
+   * The label for the Tab Group as a string.
+   */
+  "aria-label"?: string;
 
-	/**
-	 * The width of the Tab Group.
-	 */
-	width?: string | number;
-	/**
-	 * The height of the Tab Group.
-	 */
-	height?: string | number;
-	/**
-	 * The fontSize of the Tab Group.
-	 */
-	fontSize?: string | number;
-	/**
-	 * The minWidth of the Tab Group.
-	 */
-	minWidth?: string | number;
-	/**
-	 * The minHeight of the Tab Group.
-	 */
-	minHeight?: string | number;
+  /**
+   * The width of the Tab Group.
+   */
+  width?: string | number;
+  /**
+   * The height of the Tab Group.
+   */
+  height?: string | number;
+  /**
+   * The fontSize of the Tab Group.
+   */
+  fontSize?: string | number;
+  /**
+   * The minWidth of the Tab Group.
+   */
+  minWidth?: string | number;
+  /**
+   * The minHeight of the Tab Group.
+   */
+  minHeight?: string | number;
 
-	/**
-	 * The props of the inner `Tab` component. effect all included tabs
-	 */
-	tabProps?: {
-		width?: TabProps["width"];
-		height?: TabProps["height"];
-		fontSize?: TabProps["fontSize"];
-		minWidth?: TabProps["minWidth"];
-		minHeight?: TabProps["minHeight"];
-	}
-}
+  /**
+   * The props of the inner `Tab` component. effect all included tabs
+   */
+  tabProps?: {
+    width?: TabProps["width"];
+    height?: TabProps["height"];
+    fontSize?: TabProps["fontSize"];
+    minWidth?: TabProps["minWidth"];
+    minHeight?: TabProps["minHeight"];
+  };
+};
 const StyledComponent = styled((props: StyledProps) => {
-	const { width, height, minWidth, minHeight, tabProps } = props;
+	const { id, width, height, minWidth, minHeight, tabProps } = props;
 
 	const [value, setValue] = useState(props?.value);
 	const cloneArr = Children.map(props.children, (child, idx) => {
@@ -106,6 +116,7 @@ const StyledComponent = styled((props: StyledProps) => {
 
 	return (
 		<Tabs
+			id={id}
 			orientation={props?.orientation}
 			value={value}
 			onChange={(e, v) => props?.onChange?.(e, v) || setValue(v)}

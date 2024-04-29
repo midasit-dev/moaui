@@ -13,6 +13,7 @@ TableCell.defaultProps = {
  * @param {StyledProps} props - align, children, padding, size, sortDirection, showCheckbox, hideLabel, showLeftIcon, showRightIcon, enabled
  * @example
  * <TableCell
+ * 	id=""
  * 	align={'center'}
  * 	padding={'normal' || 'checkbox' || 'none'}
  * 	size={'medium'}

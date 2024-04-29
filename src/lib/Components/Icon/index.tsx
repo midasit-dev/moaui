@@ -20,6 +20,7 @@ Icon.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: '',
 	iconName: "Apple",
 	opacity: 1,
 	toButton: false,

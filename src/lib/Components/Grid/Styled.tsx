@@ -3,16 +3,22 @@ import MoaStyledComponent from "../../Style/MoaStyled";
 import Grid, { GridProps } from '@mui/material/Grid';
 
 export interface StyledProps extends GridProps {
+	/**
+	 * current element id
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id?: React.HtmlHTMLAttributes<HTMLDivElement>['id'],
+
 	sx? : never;
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
-	const {sx, ...rest} = props;
+	const {id, sx, ...rest} = props;
 	if (sx) console.error('The sx prop is not used in StyledComponent');
 
-	return (
-		<Grid {...rest} />
-	)
+	return <Grid id={id} {...rest} />;
 })(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (

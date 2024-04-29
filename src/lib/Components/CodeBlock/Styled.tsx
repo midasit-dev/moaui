@@ -10,6 +10,14 @@ import { Typography, Color, GuideBox, Button } from "../..";
 	
 export type StyledProps = {
 	/**
+	 * current element id
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id?: React.HtmlHTMLAttributes<HTMLDivElement>['id'],
+
+	/**
 	 * The code to be displayed
 	 * @default ""
 	 */
@@ -178,6 +186,7 @@ function CodeBlock(props: StyledProps){
 				}
 			</GuideBox>
 			<SyntaxHighlighter
+				id={props.id}
 				showLineNumbers
 				style={vscDarkPlus}
 				wrapLines={true}

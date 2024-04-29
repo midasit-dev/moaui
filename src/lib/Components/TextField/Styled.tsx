@@ -11,7 +11,7 @@ export type StyledProps = {
 	 * @optional
 	 * @type string
 	 */
-	id: React.InputHTMLAttributes<HTMLDivElement>['id'];
+	id?: React.InputHTMLAttributes<HTMLDivElement>['id'];
 	/**
    * If `true`, the `input` element is focused during the first mount.
    * @default false

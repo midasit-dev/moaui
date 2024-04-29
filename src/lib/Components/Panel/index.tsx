@@ -7,6 +7,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - children, variant, width, height, flexItem, backgroundColor, borderRadius, border, relative
  * @example
  * <Panel
+ * 	id=''
  * 	variant={"box" || "shadow" || "shadow2" || "strock"}
  * 	width={"100px"}
  * 	height={"100px"}
@@ -33,6 +34,7 @@ Panel.defaultProps = {
 } as StyledProps;
 
 const SampleProps = {
+	id: '',
 	children: <></>,
 	variant: toUnionType({ values: ['box', 'shadow', 'shadow2', 'strock'] }),
 	width: '100px',

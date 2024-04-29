@@ -352,7 +352,7 @@ const GuideBox = (props: StyledProps) => {
 
 	return (
 		<Stack
-			id={id || undefined}
+			id={id}
 			width={width}
 			height={height}
 			{...rest}

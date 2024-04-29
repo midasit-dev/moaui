@@ -6,6 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - checked, label, onChange, disabled
  * @example
  * <Switch
+ * 	id=""
  * 	checked={false || true}
  * 	label="Switch"
  * 	onChange={() => {}}
@@ -20,6 +21,7 @@ function Switch(props: StyledProps) {
 Switch.defaultProps = {} as StyledProps;
 
 const SampleProps = {
+	id: '',
 	checked: false,
 	label: 'Switch',
 	onChange: () => {},

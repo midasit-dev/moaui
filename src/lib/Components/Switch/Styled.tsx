@@ -7,27 +7,37 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 export type StyledProps = {
-	/**
-	 * If `true`, the component is checked.
-	 */
-	checked?: boolean;
-	/**
-	 * The label of the component.
-	 * It is displayed right of the component.
-	 */
-	label?: string;
-	/**
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * If `true`, the component is checked.
+   */
+  checked?: boolean;
+  /**
+   * The label of the component.
+   * It is displayed right of the component.
+   */
+  label?: string;
+  /**
    * Callback fired when the state is changed.
    *
    * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
-	/**
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void;
+  /**
    * If `true`, the component is disabled.
    */
-	disabled?: boolean;
+  disabled?: boolean;
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
@@ -77,6 +87,7 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 			}}
 			control={
 				<Switch
+					id={props?.id}
 					name={props?.label}
 					checked={props?.checked} 
 					onChange={props?.onChange}

@@ -5,7 +5,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * 
  * @param props - text, children
  * @example
- * <CheckGroup text="Check Group">
+ * <CheckGroup id="" text="Check Group">
  * 	<Check />
  * 	<Check />
  * 	<Check />

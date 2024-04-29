@@ -81,68 +81,76 @@ class FontColor {
 }
 
 export interface StyledProps extends MarginTypes, PaddingTypes {
-	/**
-	 * Represent a text string in typography component
-	 * @defaultValue ''
-	 */
-	children?: string | string[] | JSX.Element;
-	/**
-	 * Set the typography type
-	 * @defaultValue 'body1'
-	 */
-	variant?: 'h1' | 'body1' | 'body2' | 'body3';
-	/**
-	 * Set the text color
-	 * @defaultValue 'primary'
-	 */
-	color?: 'primary' | 'secondary' | 'third' | 'disable' | string;
-	/**
-	 * Set the width
-	 */
-	width?: string | number;
-	/**
-	 * Set the height
-	 */
-	height?: string | number;
-	/**
-	 * Set the Size
-	 */
-	size?: 'small' | 'medium' | 'large';
-	/**
-	 * Make typography into a single line
-	 */
-	singleLine?: boolean;
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
 
-	/**
-	 * Set the alignItems (Top)
-	 */
-	verTop?: boolean;
-	/**
-	 * Set the alignItems (Middle)
-	 */
-	verCenter?: boolean;
-	/**
-	 * Set the alignItems (Bottom)
-	 */
-	verBottom?: boolean;
+  /**
+   * Represent a text string in typography component
+   * @defaultValue ''
+   */
+  children?: string | string[] | JSX.Element;
+  /**
+   * Set the typography type
+   * @defaultValue 'body1'
+   */
+  variant?: "h1" | "body1" | "body2" | "body3";
+  /**
+   * Set the text color
+   * @defaultValue 'primary'
+   */
+  color?: "primary" | "secondary" | "third" | "disable" | string;
+  /**
+   * Set the width
+   */
+  width?: string | number;
+  /**
+   * Set the height
+   */
+  height?: string | number;
+  /**
+   * Set the Size
+   */
+  size?: "small" | "medium" | "large";
+  /**
+   * Make typography into a single line
+   */
+  singleLine?: boolean;
 
-	/**
-	 * Set the justifyContent (Left)
-	 */
-	horLeft?: boolean;
-	/**
-	 * Set the justifyContent (Center)
-	 */
-	horCenter?: boolean;
-	/**
-	 * Set the justifyContent (Right)
-	 */
-	horRight?: boolean;
+  /**
+   * Set the alignItems (Top)
+   */
+  verTop?: boolean;
+  /**
+   * Set the alignItems (Middle)
+   */
+  verCenter?: boolean;
+  /**
+   * Set the alignItems (Bottom)
+   */
+  verBottom?: boolean;
 
-	/**
-	 * Set the center (vertical, horizontal)
-	 */
-	center?: boolean;
+  /**
+   * Set the justifyContent (Left)
+   */
+  horLeft?: boolean;
+  /**
+   * Set the justifyContent (Center)
+   */
+  horCenter?: boolean;
+  /**
+   * Set the justifyContent (Right)
+   */
+  horRight?: boolean;
+
+  /**
+   * Set the center (vertical, horizontal)
+   */
+  center?: boolean;
 }
 
 const getHorizontalAlign = (props: StyledProps) => {
@@ -163,6 +171,7 @@ const getVerticalAlign = (props: StyledProps) => {
 
 const StyledComponent = styled((props: StyledProps) => {
 	const { 
+		id,
 		children, 
 		variant, 
 		color, 
@@ -179,6 +188,7 @@ const StyledComponent = styled((props: StyledProps) => {
 
 	return (
 		<Typography 
+			id={id}
 			sx={{
 				whiteSpace: singleLine ? 'nowrap' : 'pre-line',
 				overflow: singleLine ? 'hidden' : 'visible',

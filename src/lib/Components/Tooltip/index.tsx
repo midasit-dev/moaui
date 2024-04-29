@@ -6,6 +6,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @param props - children, title, placement, open, arrowBorder
  * @example
  * <Tooltip
+ * 	id=""
  * 	title={React.ReactNode}
  * 	placement={'bottom-end' || 'bottom-start' || 'bottom' || 'left-end' || 'left-start' || 'left' || 'right-end' || 'right-start' || 'right' || 'top-end' || 'top-start' || 'top'}
  * 	open={true || false}
