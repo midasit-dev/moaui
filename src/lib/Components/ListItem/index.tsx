@@ -1,19 +1,32 @@
 import React from "react";
-import StyledComponent, {type StyledProps} from "./Styled";
+import StyledComponent, { type StyledProps } from "./Styled";
+
+/**
+ * moaui Styled ListItem
+ * 
+ * @param props - children, disableGutters, secondaryAction, onClick
+ * @example
+ * <ListItem
+ * 	disableGutters={false || true}
+ * 	secondaryAction={React.ReactNode}
+ * 	onClick={() => {}}
+ * >
+ * 	{children}
+ * </ListItem>
+ * @returns React.ReactElement
+ */
+const ListItem = (props: StyledProps) => (<StyledComponent {...props}/>);
 
 ListItem.defaultProps = {
 	paddingLeft: 0,
 	disableGutters: false
 } as StyledProps;
 
-/**
- * moaui Styled ListItem
- * 
- * @param props 
- * @returns React.ReactElement
- */
-export default function ListItem(props: StyledProps): React.ReactElement {
-	return (
-		<StyledComponent {...props}/>
-	)
+const SampleProps = {};
+
+export default ListItem;
+
+export {
+	type StyledProps as ListItemProps,
+	SampleProps as ListItemSample,
 }

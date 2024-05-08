@@ -1,0 +1,13 @@
+{
+	"packages": [
+		"numpy", "openpyxl"
+	],
+	"fetch": [
+		{
+			"files": [
+				"./pyscript_engineers_web.py",
+				"./pyscript_main.py"
+			]
+		}
+	]
+}

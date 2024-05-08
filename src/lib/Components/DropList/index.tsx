@@ -1,5 +1,26 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
+/**
+ * moaui Styled Drop List Component
+ * @param {StyledProps} props - width, itemList, value, onChange, defaultValue, disabled, backgroundColor, listWidth, placeholder, maxLength
+ * @example
+ * <DropList
+ * 	width="100px"
+ * 	itemList={new Map([ ['Midas', 1], ['Civil', 2], ['Gen', 3], ['CIM', 4] ])}
+ * 	onChange={() => {}}
+ * 	value={1}
+ * 	defaultValue={1}
+ * 	disabled={false || true}
+ * 	backgroundColor="white"
+ * 	listWidth="100px"
+ * 	placeholder="placeholder"
+ * 	maxLength={10}
+ * />
+ * @returns {React.ReactElement} MoaDropList
+ */
+
+const DropList = (props: StyledProps) => (<StyledComponent {...props} />);
+
 DropList.defaultProps = {
 	itemList : new Map(),
 	value : "",
@@ -7,9 +28,9 @@ DropList.defaultProps = {
 	defaultValue: ""
 } as StyledProps;
 
-DropList.sampleProps = {
+const SampleProps = {
 	width: '100px',
-	itemList : [ ['Midas', 1], ['Civil', 2], ['Gen', 3], ['CIM', 4] ],
+	itemList : new Map([ ['Midas', 1], ['Civil', 2], ['Gen', 3], ['CIM', 4] ]),
 	onChange: () => {},
 	value : 1,
 	defaultValue: 1,
@@ -20,14 +41,9 @@ DropList.sampleProps = {
 	maxLength: 10,
 } as StyledProps;
 
-/**
- * moaui Styled Drop List Component
- * @param {MoaDropListProps} props - defaultValue, value, itemList, onChange, width
- * @returns {React.ReactElement} MoaDropList
- */
+export default DropList;
 
-export default function DropList(props: StyledProps) : React.ReactElement {
-	return (
-		<StyledComponent {...props} />
-	)
+export {
+	type StyledProps as DropListProps,
+	SampleProps as DropListSample,
 }

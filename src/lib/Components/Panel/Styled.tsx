@@ -32,50 +32,60 @@ class StyleVariant {
 }
 
 export type StyledProps = {
-	/**
-	 * Panel inner contents
-	 */
-	children?: React.ReactNode;
-	/**
-	 * `shadow` panel or `strock` panel
-	 * @defaultValue 'shadow'
-	 */
-	variant?: 'box' | 'shadow' | 'shadow2' | 'strock';
-	/**
-	 * Set the width of panel
-	 * @defaultValue 'fit-content'
-	 */
-	width?: number | string;
-	/**
-	 * Set the height of panel
-	 * @defaultValue 'fit-content'
-	 */
-	height?: number | string;
-	/**
-	 * Set the flexItem of panel
-	 * @defaultValue false
-	 */
-	flexItem?: boolean;
-	/**
-	 * Set the backgroundColor of panel
-	 */
-	backgroundColor?: string;
-	/**
-	 * Set the borderRadius of panel
-	 */
-	borderRadius?: number | string;
-	/**
-	 * Set the border of panel
-	 */
-	border?: string;
-	/**
-	 * Set the position relative of panel
-	 */
-	relative?: boolean;
-} & MarginTypes & PaddingTypes & BoxProps;
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * Panel inner contents
+   */
+  children?: React.ReactNode;
+  /**
+   * `shadow` panel or `strock` panel
+   * @defaultValue 'shadow'
+   */
+  variant?: "box" | "shadow" | "shadow2" | "strock";
+  /**
+   * Set the width of panel
+   * @defaultValue 'fit-content'
+   */
+  width?: number | string;
+  /**
+   * Set the height of panel
+   * @defaultValue 'fit-content'
+   */
+  height?: number | string;
+  /**
+   * Set the flexItem of panel
+   * @defaultValue false
+   */
+  flexItem?: boolean;
+  /**
+   * Set the backgroundColor of panel
+   */
+  backgroundColor?: string;
+  /**
+   * Set the borderRadius of panel
+   */
+  borderRadius?: number | string;
+  /**
+   * Set the border of panel
+   */
+  border?: string;
+  /**
+   * Set the position relative of panel
+   */
+  relative?: boolean;
+} & MarginTypes &
+  PaddingTypes &
+  BoxProps;
 
 const StyledComponent = styled((props: StyledProps) => {
 	const {
+		id,
 		children,
 		variant,
 		width,
@@ -93,6 +103,7 @@ const StyledComponent = styled((props: StyledProps) => {
 	if (variant === 'strock') _sx = StyleVariant.strock;
 	return (
 		<Box 
+			id={id}
 			sx={{
 				..._sx, 
 				width: width,

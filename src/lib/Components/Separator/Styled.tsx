@@ -6,26 +6,35 @@ import { MarginTypes } from '../../Style/Margin';
 import { Typography } from '../../';
 
 export interface StyledProps extends MarginTypes {
-	/**
-	 * The component orientation.
-	 * @defaultValue "horizontal"
-	 * 
-	 * @privateRemarks
-	 *
-	 * The `@privateRemarks` tag starts a block of additional commentary that is not meant
-	 * for an external audience.  A documentation tool must omit this content from an
-	 * API reference web site.  It should also be omitted when generating a normalized
-	 * *.d.ts file.
-	 */
-	direction?: "horizontal" | "vertical"
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+
+  /**
+   * The component orientation.
+   * @defaultValue "horizontal"
+   *
+   * @privateRemarks
+   *
+   * The `@privateRemarks` tag starts a block of additional commentary that is not meant
+   * for an external audience.  A documentation tool must omit this content from an
+   * API reference web site.  It should also be omitted when generating a normalized
+   * *.d.ts file.
+   */
+  direction?: "horizontal" | "vertical";
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	const {direction} = props;
+	const {id, direction} = props;
 
 	if (direction === "horizontal") {
 		return (
 			<Divider
+				id={id}
 				orientation={direction}
 				sx={{
 					width: "inherit",

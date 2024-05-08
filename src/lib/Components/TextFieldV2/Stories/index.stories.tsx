@@ -19,6 +19,7 @@ import {
 	NumberOptionNegativeIntegerCode,
 	NumberOptionPositiveIntegerCode,
 	TitleInputScaleCode,
+	DataSetCode,
 } from '../Code';
 
 const meta = {
@@ -48,7 +49,8 @@ export const NumberOption = LiveEditStory(cleanMask(NumberOptionCode));
 export const NumberOptionNegativeInteger = LiveEditStory(cleanMask(NumberOptionNegativeIntegerCode));
 export const NumberOptionPositiveInteger = LiveEditStory(cleanMask(NumberOptionPositiveIntegerCode));
 export const TitleInputScale = LiveEditStory(cleanMask(TitleInputScaleCode));
+export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
-	args: TextFieldV2.sampleProps,
+	args: TextFieldV2.defaultProps,
 };

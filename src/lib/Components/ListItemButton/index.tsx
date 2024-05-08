@@ -1,16 +1,25 @@
 import React from "react";
-import StyledComponent, {type StyledProps} from "./Styled";
-
-ListItemButton.defaultProps = {} as StyledProps;
+import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
  * moaui Styled ListItemButton
  * 
- * @param props 
+ * @param props - children
+ * @example
+ * <ListItemButton>
+ * 	{children}
+ * </ListItemButton>
  * @returns React.ReactElement
  */
-export default function ListItemButton(props: StyledProps): React.ReactElement {
-	return (
-		<StyledComponent {...props}/>
-	)
+const ListItemButton = (props: StyledProps) => (<StyledComponent {...props}/>);
+
+ListItemButton.defaultProps = {} as StyledProps;
+
+const SampleProps = {};
+
+export default ListItemButton;
+
+export {
+	type StyledProps as ListItemButtonProps,
+	SampleProps as ListItemButtonSample,
 }

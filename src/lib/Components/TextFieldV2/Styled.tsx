@@ -8,6 +8,13 @@ import Tooltip from '../Tooltip';
 
 export type StyledProps = {
 	/**
+	 * The id of the textfield.
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id?: React.InputHTMLAttributes<HTMLDivElement>['id'];
+	/**
 	 * If `true`, the `input` element is focused during the first mount.
 	 * @default false
 	 */
@@ -147,62 +154,62 @@ const StyledComponent = styled((props:StyledProps) => {
 	const numberOptionsMin = useMemo(() => Number(props?.numberOptions?.min), [props?.numberOptions?.min]);
 	const numberOptionsMax = useMemo(() => Number(props?.numberOptions?.max), [props?.numberOptions?.max]);
 	const Text = useCallback((props: any) => {
-		
 		return (
-			<TextField
-				autoFocus={props?.autoFocus}
-				type={props?.type}
-				onChange={props?.onChange}
-				defaultValue={props?.defaultValue}
-				error = {props?.error}
-				disabled = {props?.disabled}
-				value = {props?.value}
-				fullWidth
-				onBlur={props?.onBlur}
-				sx={{
-					height: props?.height || "auto",
-					'& .MuiOutlinedInput-root': {
-						'& fieldset':{
-							border: `1px solid ${Color.component.gray}`,
-						},
-						'&:hover fieldset': {
-							border: `1px solid ${Color.component.gray_02}`,
-						},
-						'&.Mui-focused fieldset':{
-							border: `1px solid ${Color.component.gray_dark}`,
-						}
-					},
-					'& .MuiInputBase-input':{
-						padding:0
-					},
-					borderRadius: "0.25rem",
-					background: Color.primary.white
-				}}
-				InputProps={{ // input component의 스타일 변경
-					sx:{
-						...(props?.multiline ? {height: "auto"} : {height: "1.75rem"}),
-						padding: "0.375rem 0.375rem 0.375rem 0.625rem",
-						alignItems: "center",
-						flexShrink: 0,
-						//text
-						color: Color.text.secondary,
-						fontFeatureSettings: Font.fontFeatureSettings,
-					},
-					inputProps:{
-						style:{
-							textAlign: props?.inputAlign,
-						},
-						min: numberOptionsMin || undefined,
-						max: numberOptionsMax || undefined,
-						step: props?.numberOptions?.step,
-					}
-				}}
-				placeholder={props?.placeholder}
-				multiline={props?.multiline}
-				rows={props?.rows}
-				maxRows={props?.maxRows}
-			/>
-		)
+      <TextField
+        autoFocus={props?.autoFocus}
+        type={props?.type}
+        onChange={props?.onChange}
+        defaultValue={props?.defaultValue}
+        error={props?.error}
+        disabled={props?.disabled}
+        value={props?.value}
+        fullWidth
+        onBlur={props?.onBlur}
+        sx={{
+          height: props?.height || "auto",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              border: `1px solid ${Color.component.gray}`,
+            },
+            "&:hover fieldset": {
+              border: `1px solid ${Color.component.gray_02}`,
+            },
+            "&.Mui-focused fieldset": {
+              border: `1px solid ${Color.component.gray_dark}`,
+            },
+          },
+          "& .MuiInputBase-input": {
+            padding: 0,
+          },
+          borderRadius: "0.25rem",
+          background: Color.primary.white,
+        }}
+        InputProps={{
+          // input component의 스타일 변경
+          sx: {
+            ...(props?.multiline ? { height: "auto" } : { height: "1.75rem" }),
+            padding: "0.375rem 0.375rem 0.375rem 0.625rem",
+            alignItems: "center",
+            flexShrink: 0,
+            //text
+            color: Color.text.secondary,
+            fontFeatureSettings: Font.fontFeatureSettings,
+          },
+          inputProps: {
+            style: {
+              textAlign: props?.inputAlign,
+            },
+            min: numberOptionsMin || undefined,
+            max: numberOptionsMax || undefined,
+            step: props?.numberOptions?.step,
+          },
+        }}
+        placeholder={props?.placeholder}
+        multiline={props?.multiline}
+        rows={props?.rows}
+        maxRows={props?.maxRows}
+      />
+    );
 	}, [numberOptionsMax, numberOptionsMin]);
 
 	const errorResolver = useCallback((value: string | undefined) => {
@@ -236,48 +243,72 @@ const StyledComponent = styled((props:StyledProps) => {
 		}, [props?.numberOptions?.condition?.max, props?.numberOptions?.condition?.min, numberOptionsMax, numberOptionsMin, props.type]);
 
 		return (
-			<Tooltip open={errorOverride} title={tooltipText} arrowBorder>
-				<Text {...others} error={errorResolver(localValue) || errorOverride} onBlur={(e: any) => {
-					let value = Number((e.target as HTMLInputElement).value);
-					setLocalValue(e.target.value);
+      <div id={props?.id} data-current-value={localValue}>
+        <Tooltip open={errorOverride} title={tooltipText} arrowBorder>
+          <Text
+            {...others}
+            error={errorResolver(localValue) || errorOverride}
+            onBlur={(e: any) => {
+              let value = Number((e.target as HTMLInputElement).value);
+              setLocalValue(e.target.value);
 
-					if(props?.numberOptions?.onlyInteger){
-						value = Math.round(value);
-					}
+              if (props?.numberOptions?.onlyInteger) {
+                value = Math.round(value);
+              }
 
-					if (!Number.isNaN(numberOptionsMin)){
-						if (props?.numberOptions?.condition?.min === "greater" && value <= numberOptionsMin) {
-							value = numberOptionsMin + 1;
-						} else if (props?.numberOptions?.condition?.min === "greaterEqual" && value < numberOptionsMax) {
-							value = numberOptionsMin;
-						} else if (value <= numberOptionsMin) {
-							value = numberOptionsMin;
-						}
-					}
-					
-					if (!Number.isNaN(numberOptionsMax)) {
-						if (props?.numberOptions?.condition?.max === "less" && value >= numberOptionsMax) {
-							value = numberOptionsMax - 1;
-						} else if (props?.numberOptions?.condition?.max === "lessEqual" && value > numberOptionsMax) {
-							value = numberOptionsMax;
-						} else if (value >= numberOptionsMax) {
-							value = numberOptionsMax;
-						}
-					}
+              if (!Number.isNaN(numberOptionsMin)) {
+                if (
+                  props?.numberOptions?.condition?.min === "greater" &&
+                  value <= numberOptionsMin
+                ) {
+                  value = numberOptionsMin + 1;
+                } else if (
+                  props?.numberOptions?.condition?.min === "greaterEqual" &&
+                  value < numberOptionsMax
+                ) {
+                  value = numberOptionsMin;
+                } else if (value <= numberOptionsMin) {
+                  value = numberOptionsMin;
+                }
+              }
 
-					(e.target as HTMLInputElement).value = value + "";
-					props?.onChange?.(e as React.ChangeEvent<HTMLInputElement>);
-				}} />
-			</Tooltip>
-		)
+              if (!Number.isNaN(numberOptionsMax)) {
+                if (
+                  props?.numberOptions?.condition?.max === "less" &&
+                  value >= numberOptionsMax
+                ) {
+                  value = numberOptionsMax - 1;
+                } else if (
+                  props?.numberOptions?.condition?.max === "lessEqual" &&
+                  value > numberOptionsMax
+                ) {
+                  value = numberOptionsMax;
+                } else if (value >= numberOptionsMax) {
+                  value = numberOptionsMax;
+                }
+              }
+
+              (e.target as HTMLInputElement).value = value + "";
+              props?.onChange?.(e as React.ChangeEvent<HTMLInputElement>);
+            }}
+          />
+        </Tooltip>
+      </div>
+    );
 	} else {
 		useEffect(() => {
 			setTooltipText(undefined);
 		}, []);
 		
 		return (
-			<Text {...others} error={errorResolver(localValue)} onBlur={(e: any) => setLocalValue(e.target.value)} />
-		)
+      <div id={props?.id} data-current-value={localValue}>
+        <Text
+          {...others}
+          error={errorResolver(localValue)}
+          onBlur={(e: any) => setLocalValue(e.target.value)}
+        />
+      </div>
+    );
 	}
 })(() => ({
 	display:"flex",

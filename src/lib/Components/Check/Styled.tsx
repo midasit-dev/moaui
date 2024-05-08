@@ -6,6 +6,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 export type StyledProps = {
   /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+
+  /**
    * If `true`, the component is checked.
    * @defaultValue false
    */
@@ -41,10 +49,10 @@ export type StyledProps = {
    */
   name?: string;
 
-	/**
-	 * The placement of the name.
-	 */
-	namePlacement?: 'start' | 'end' | 'top' | 'bottom';
+  /**
+   * The placement of the name.
+   */
+  namePlacement?: "start" | "end" | "top" | "bottom";
 
   /**
    * Defines a string value that labels the current element.
@@ -71,66 +79,68 @@ export type StyledProps = {
 
 const StyledComponent = styled((props: StyledProps): React.ReactElement => {
   return (
-    <FormControlLabel
-      label={props?.name}
-			labelPlacement={props?.namePlacement}
-      required={props?.required}
-      onChange={props?.onChange}
-      disabled={props?.disabled}
-      aria-label={`${props?.ariaLabel} FormControlLabel`}
-      name={props?.name}
-      checked={props?.checked}
-      control={
-        <Checkbox
-          defaultChecked={props?.defaultChecked}
-          indeterminate={props?.indeterminate}
-          disableFocusRipple
-          disableRipple
-          disableTouchRipple
-          inputRef={props?.inputRef}
-          inputProps={{
-            "aria-label": `${props?.name || ""} ${props?.ariaLabel}`,
-          }}
-          sx={{
-            ".MuiSvgIcon-root": {
-              fontSize: "1rem",
-            },
-            "&.Mui-checked": {
-              color: Color.primary.main,
-            },
-            "&.MuiCheckbox-indeterminate": {
-              color: Color.primary.main,
-            },
-            ":not(.Mui-checked)": {
-              ":not(.MuiCheckbox-indeterminate)": {
-                "&:hover": {
-                  color: Color.component.gray_dark,
-                },
-                ":not(hover)": {
-                  color: Color.component.gray,
+    <div id={props?.id} data-current-value={props?.checked}>
+      <FormControlLabel
+        label={props?.name}
+        labelPlacement={props?.namePlacement}
+        required={props?.required}
+        onChange={props?.onChange}
+        disabled={props?.disabled}
+        aria-label={`${props?.ariaLabel} FormControlLabel`}
+        name={props?.name}
+        checked={props?.checked}
+        control={
+          <Checkbox
+            defaultChecked={props?.defaultChecked}
+            indeterminate={props?.indeterminate}
+            disableFocusRipple
+            disableRipple
+            disableTouchRipple
+            inputRef={props?.inputRef}
+            inputProps={{
+              "aria-label": `${props?.name || ""} ${props?.ariaLabel}`,
+            }}
+            sx={{
+              ".MuiSvgIcon-root": {
+                fontSize: "1rem",
+              },
+              "&.Mui-checked": {
+                color: Color.primary.main,
+              },
+              "&.MuiCheckbox-indeterminate": {
+                color: Color.primary.main,
+              },
+              ":not(.Mui-checked)": {
+                ":not(.MuiCheckbox-indeterminate)": {
+                  "&:hover": {
+                    color: Color.component.gray_dark,
+                  },
+                  ":not(hover)": {
+                    color: Color.component.gray,
+                  },
                 },
               },
-            },
+              "&.Mui-disabled": {
+                color: `${Color.component.gray_light}!important`,
+              },
+
+              margin: "0.25rem",
+              padding: 0,
+            }}
+          />
+        }
+        sx={{
+          m: 0,
+          gap: "0.25rem",
+          ".MuiTypography-root": {
+            color: `${Color.text.secondary}!important`,
             "&.Mui-disabled": {
               color: `${Color.component.gray_light}!important`,
             },
-
-            margin: "0.25rem",
-            padding: 0,
-          }}
-        />
-      }
-      sx={{
-        m: 0,
-        gap: "0.25rem",
-        ".MuiTypography-root": {
-          color: `${Color.text.secondary}!important`,
-					"&.Mui-disabled": {
-						color: `${Color.component.gray_light}!important`,
-					},
-        },
-      }}
-    />
+          },
+        }}
+      />
+    </div>
   );
 })(() => ({}));
 

@@ -12,3 +12,4 @@ export { default as NumberOptionCode } from "./NumberOption.code.tsx?raw";
 export { default as NumberOptionNegativeIntegerCode } from "./NumberOptionNegativeInteger.code.tsx?raw";
 export { default as NumberOptionPositiveIntegerCode } from "./NumberOptionPositiveInteger.code.tsx?raw";
 export { default as TitleInputScaleCode } from "./TitleInputScale.code.tsx?raw";
+export { default as DataSetCode } from "./DataSet.code.except.tsx?raw";

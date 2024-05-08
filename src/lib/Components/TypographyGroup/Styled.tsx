@@ -6,20 +6,29 @@ import Typography from '@mui/material/Typography';
 import { Color, Font } from "../../";
 
 export type StyledProps = {
-	/**
-	 * text of title
-	 * @defaultValue ''
-	 */
-	titleText: string;
-	/**
-	 * text of body
-	 * @defaultValue ''
-	 */
-	bodyText: string;
-}
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * text of title
+   * @defaultValue ''
+   */
+  titleText: string;
+  /**
+   * text of body
+   * @defaultValue ''
+   */
+  bodyText: string;
+};
 const StyledComponent = styled((props: StyledProps) => {
 	return (
-		<Box sx={{
+		<Box 
+			id={props?.id}
+			sx={{
 			display: 'inline-flex',
 			padding: '0.125rem',
 			flexDirection: 'column',

@@ -9,6 +9,13 @@ import Box from '@mui/material/Box';
 
 export type StyledProps = {
 	/**
+	 * The id of the textfield.
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id?: React.HTMLAttributes<HTMLDivElement>['id'];
+	/**
 	 * children of guide box
 	 */
 	children?: React.ReactNode;
@@ -309,6 +316,7 @@ const loadingStyles: React.CSSProperties = {
 
 const GuideBox = (props: StyledProps) => {
 	const { 
+		id,
 		children, 
 		show, 
 		width, 
@@ -344,6 +352,7 @@ const GuideBox = (props: StyledProps) => {
 
 	return (
 		<Stack
+			id={id}
 			width={width}
 			height={height}
 			{...rest}

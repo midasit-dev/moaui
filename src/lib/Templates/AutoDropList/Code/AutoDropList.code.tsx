@@ -95,7 +95,7 @@ const AutoDropList = ({
 	)
 };/**${comma}*/
 
-AutoDropList.sampleProps = {
+const SampleProps = {
 	width: 300,
 	height: 30,
 	dropListwidth: 150,
@@ -110,3 +110,7 @@ AutoDropList.sampleProps = {
 };/**${comma}*/
 
 export default AutoDropList;
+
+export {
+	SampleProps as AutoDropListSample,
+}

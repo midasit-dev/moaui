@@ -1,0 +1,5 @@
+{
+  "PluginMainDescription": "从主节点创建到最近的从节点的链接。",
+  "MasterNodeSelection": "选择主节点 : ",
+  "SlaveNodeSelection": "选择从节点 : "
+}

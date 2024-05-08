@@ -1,19 +1,28 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Dialog.defaultProps = {
-} as StyledProps;
-
 /**
  * moaui Styled Dialog
  * Demos:
  *
  * - [Dialog](https://dev--6556d17f924e868b000ddaf5.chromatic.com/?path=/story/components-dialog--help/)
  * 
- * @param props 
+ * @param props - children, open, setOpen, json, headerIcon, headerTitle, onClose, hiddenClose, justPreview
+ * @example
+ * <Dialog headerTitle="Dialog Title" open={true} setOpen={setOpen} onClose={onClose}>
+ *  {children}
+ * </Dialog>
  * @returns React.ReactElement
  */
-function Dialog(props: StyledProps) {	
-	return <StyledComponent {...props} />
-}
+const Dialog = (props: StyledProps) => (<StyledComponent {...props} />);
+
+Dialog.defaultProps = {
+} as StyledProps;
+
+const SampleProps = {}
 
 export default Dialog;
+
+export {
+	type StyledProps as DialogProps,
+	SampleProps as DialogSample,
+}

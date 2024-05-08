@@ -4,6 +4,13 @@ import MuiList from "@mui/material/List";
 
 export interface StyledProps {
   /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
    * Represent a text string in typography component
    */
   children?: React.ReactNode;
@@ -22,10 +29,11 @@ export interface StyledProps {
 }
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { children, dense, disablePadding } = props;
+	const { id, children, dense, disablePadding } = props;
 
 	return (
 		<MuiList
+			id={id}
 			dense={dense}
 			disablePadding={disablePadding}
 		>

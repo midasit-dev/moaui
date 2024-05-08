@@ -4,59 +4,67 @@ import Scrollbars from "rc-scrollbars";
 import { Panel, Stack, Typography, type PanelProps } from "../..";
 
 export interface StyledProps {
-	/**
-	 * Outline Panel Property
-	 * 
-	 * @example
-	 * <Scrollbars
-	 * 		panelProps={{
-	 * 			variant: 'box',
-	 * 			width: 300,
-	 * 		}}
-	 * />
-	 */
-	panelProps?: PanelProps;
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * Outline Panel Property
+   *
+   * @example
+   * <Scrollbars
+   * 		panelProps={{
+   * 			variant: 'box',
+   * 			width: 300,
+   * 		}}
+   * />
+   */
+  panelProps?: PanelProps;
 
-	/**
-	 * React Element
-	 */
-	children?: React.ReactNode;
-	/**
-	 * Width pixel
-	 */
-	width?: number | string;
-	/**
-	 * Height pixel
-	 */
-	height?: number | string;
-	/**
-	 * Title Text
-	 * 
-	 * @default undefined
-	 */
-	title?: string;
-	/**
-	 * Set the typography type
-	 * 
-	 * @default body1
-	 */
-	titleVariant?: 'h1' | 'body1' | 'body2' | 'body3';
-	/**
-	 * Set the text color
-	 * 
-	 * @default primary
-	 */
-	titleColor?: 'primary' | 'secondary' | 'third' | 'disable';
-	/**
-	 * Set the text align
-	 * 
-	 * @default left
-	 */
-	titleAlign?: "left" | "center" | "right";
+  /**
+   * React Element
+   */
+  children?: React.ReactNode;
+  /**
+   * Width pixel
+   */
+  width?: number | string;
+  /**
+   * Height pixel
+   */
+  height?: number | string;
+  /**
+   * Title Text
+   *
+   * @default undefined
+   */
+  title?: string;
+  /**
+   * Set the typography type
+   *
+   * @default body1
+   */
+  titleVariant?: "h1" | "body1" | "body2" | "body3";
+  /**
+   * Set the text color
+   *
+   * @default primary
+   */
+  titleColor?: "primary" | "secondary" | "third" | "disable";
+  /**
+   * Set the text align
+   *
+   * @default left
+   */
+  titleAlign?: "left" | "center" | "right";
 }
 
 const StyledComponent = styled((props: StyledProps) => {
 	const { 
+		id,
 		panelProps, 
 		width,
 		height, 
@@ -88,6 +96,7 @@ const StyledComponent = styled((props: StyledProps) => {
 			}
 
 			<Scrollbars 
+				id={id}
 				{...rest}
 				autoHeight
 				autoHeightMax={height}

@@ -5,56 +5,64 @@ import { Color, Font, type TypographyProps } from "../../";
 import Tab from '@mui/material/Tab';
 
 export type StyledProps = {
-	/**
-	 * You can provide your own value. Otherwise, we fallback to the child position index.
-	 */
-	value?: any;
-	/**
-	 * The label element.
-	 */
-	label?: string;
-	/**
-	 * Set Tabs Value Control
-	 */
-	// setValue?: React.Dispatch<any>;
-	onChange?: (event: React.SyntheticEvent, value: any) => void;
-	/**
-	 * If `true`, the component is disabled.
-	 * @defaultValue false
-	 */
-	disabled?: boolean;
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value?: any;
+  /**
+   * The label element.
+   */
+  label?: string;
+  /**
+   * Set Tabs Value Control
+   */
+  // setValue?: React.Dispatch<any>;
+  onChange?: (event: React.SyntheticEvent, value: any) => void;
+  /**
+   * If `true`, the component is disabled.
+   * @defaultValue false
+   */
+  disabled?: boolean;
 
-	/**
-	 * If `true`, the component is selected.
-	 * @defaultValue false
-	 * @optional
-	 * @type boolean
-	 */
-	selected?: boolean;
+  /**
+   * If `true`, the component is selected.
+   * @defaultValue false
+   * @optional
+   * @type boolean
+   */
+  selected?: boolean;
 
-	/**
-	 * The width of the Tab.
-	 */
-	width?: string | number;
-	/**
-	 * The height of the Tab.
-	 */
-	height?: string | number;
-	/**
-	 * The fontSize of the Tab.
-	 */
-	fontSize?: TypographyProps["size"];
-	/**
-	 * The minWidth of the Tab.
-	 */
-	minWidth?: string | number;
-	/**
-	 * The minHeight of the Tab.
-	 */
-	minHeight?: string | number;
-}
+  /**
+   * The width of the Tab.
+   */
+  width?: string | number;
+  /**
+   * The height of the Tab.
+   */
+  height?: string | number;
+  /**
+   * The fontSize of the Tab.
+   */
+  fontSize?: TypographyProps["size"];
+  /**
+   * The minWidth of the Tab.
+   */
+  minWidth?: string | number;
+  /**
+   * The minHeight of the Tab.
+   */
+  minHeight?: string | number;
+};
 const StyledComponent = styled((props: StyledProps) => {
 	const {
+		id,
 		value,
 		label,
 		onChange,
@@ -69,6 +77,7 @@ const StyledComponent = styled((props: StyledProps) => {
 
 	return (
 		<Tab 
+			id={id}
 			value={value ?? undefined}
 			label={label ?? undefined}
 			onClick={(event) => onChange ? onChange(event, value) : {}}

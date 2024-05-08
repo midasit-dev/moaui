@@ -5,24 +5,55 @@ import { Typography } from '../../';
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
+import { useEffect, useState } from 'react';
 
 export type StyledProps = {
-	children?: React.ReactElement[],
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
 	/**
-	 * Value of the header text. If leave empty this field, header field will not show.
+	 * React Element
 	 */
-	text?: string,
+  children?: React.ReactElement[];
+  /**
+   * Value of the header text. If leave empty this field, header field will not show.
+   */
+  text?: string;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { text, ...rest } = props;
+	const { id, text, ...rest } = props;
+
+	const [checkedValues, setCheckedValues] = useState<string>('');
+	useEffect(() => {
+		if (rest && rest.children && rest.children.length > 0) {
+			const values: string[] = rest.children.map((child: React.ReactElement) => child.props.checked);
+			setCheckedValues(values.join(','));
+		}
+	}, [rest]);
 	
 	return (
-		<FormControl>
-			{text && <div style={{padding: '0.25rem'}}><Typography>{text}</Typography></div>}
-			<FormGroup {...rest} style={{paddingLeft: text ? '0.5rem' : '0rem'}} />
-		</FormControl>
-	)
+    <div
+			id={id}
+			data-current-value={checkedValues}
+		>
+      <FormControl>
+        {text && (
+          <div style={{ padding: "0.25rem" }}>
+            <Typography>{text}</Typography>
+          </div>
+        )}
+        <FormGroup
+          {...rest}
+          style={{ paddingLeft: text ? "0.5rem" : "0rem" }}
+        />
+      </FormControl>
+    </div>
+  );
 
 })(() => ({}));
 

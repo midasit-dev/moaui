@@ -3,7 +3,7 @@ import { DropList } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from '../../../Common/Storybook/LiveEditStory';
-import { DropdownCode, DisabledCode, ListWidthCode, MaxLengthCode, ItemListFromArrayCode } from '../Code';
+import { DropdownCode, DisabledCode, ListWidthCode, MaxLengthCode, ItemListFromArrayCode, DataSetCode } from '../Code';
 import { cleanMask } from "../../../Common/Storybook/CodeExtractor";
 
 const meta = {
@@ -30,7 +30,8 @@ export const Disabled = LiveEditStory(cleanMask(DisabledCode));
 export const ListWidth = LiveEditStory(cleanMask(ListWidthCode));
 export const MaxLength = LiveEditStory(cleanMask(MaxLengthCode));
 export const ItemListFromArray = LiveEditStory(cleanMask(ItemListFromArrayCode));
+export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
-  args: DropList.sampleProps
+  args: DropList.defaultProps
 };

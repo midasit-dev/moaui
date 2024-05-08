@@ -1,0 +1,1 @@
+export { default as DefaultCode } from './Default.code.except.tsx?raw';

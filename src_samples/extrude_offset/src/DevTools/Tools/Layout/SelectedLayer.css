@@ -1,0 +1,5 @@
+.selected-layer {
+	overflow: hidden;
+	/* box-shadow: inset -5px 0 20px 0 rgba(0,0,0,0.15); */
+	background-color: rgba(75, 154, 244, .7);
+}

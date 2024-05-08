@@ -4,33 +4,40 @@ import * as MuiIcon from '@mui/icons-material';
 import { type iconNameType, IconNameTypes } from './iconDict';
 
 export type StyledProps = {
-	/**
-	 * The name of the icon.
-	 * Icon name is the same as the name of the icon component in MUI.
-	 * @link https://mui.com/components/material-icons/
-	 * @type string
-	 * @example
-	 * iconName="Add"
-	 * iconName="CheckCircle"
-	 */
-	iconName: iconNameType;
-	/**
-	 * The opacity of the icon.
-	 * @type number
-	 * @defaultValue 1
-	 * @example
-	 * opacity={0.5}
-	 */
-	opacity?: number;
-	/**
-	 * If `true`, the component is shown as a button.
-	 */
-	toButton?: boolean;
-	/**
-	 * The click event handler of the icon.
-	 */
-	onClick?: (event: React.SyntheticEvent) => void;
-}
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * The name of the icon.
+   * Icon name is the same as the name of the icon component in MUI.
+   * @link https://mui.com/components/material-icons/
+   * @type string
+   * @example
+   * iconName="Add"
+   * iconName="CheckCircle"
+   */
+  iconName: iconNameType;
+  /**
+   * The opacity of the icon.
+   * @type number
+   * @defaultValue 1
+   * @example
+   * opacity={0.5}
+   */
+  opacity?: number;
+  /**
+   * If `true`, the component is shown as a button.
+   */
+  toButton?: boolean;
+  /**
+   * The click event handler of the icon.
+   */
+  onClick?: (event: React.SyntheticEvent) => void;
+};
 
 const Default = (props: StyledProps) => {
 	const { iconName, opacity } = props;
@@ -54,7 +61,7 @@ const Default = (props: StyledProps) => {
 }
 
 const ToButton = (props: StyledProps) => {
-	const { iconName, opacity, onClick, } = props;
+	const { id, iconName, opacity, onClick, } = props;
 
   const [varOpacity, setVarOpacity] = React.useState(1);
 
@@ -71,6 +78,7 @@ const ToButton = (props: StyledProps) => {
 
   return (
     <div
+			id={id}
       style={customStyle}
       onMouseOver={() => setVarOpacity(0.5)}
       onMouseOut={() => setVarOpacity(1)}

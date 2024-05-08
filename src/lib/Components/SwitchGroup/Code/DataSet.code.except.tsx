@@ -1,0 +1,43 @@
+import { useEffect, useState } from "react";/**${comma}*/
+import { SwitchGroup, Switch } from "@midasit-dev/moaui";/**${comma}*/
+
+const ComponentsSwitchGroupControlled = () => {
+	const [check1, setCheck1] = useState(false);
+	const [check2, setCheck2] = useState(false);
+	const [check3, setCheck3] = useState(false);
+
+	const labelString = (checked: boolean) => checked ? "Checked" : "Unchecked";
+
+	useEffect(() => {
+		const element = document.getElementById('switch-group-data-set');
+		if (element) {
+			const curValue = element.getAttribute('data-current-value');
+			console.log(curValue);
+		}
+	}, []);
+
+	return (
+    <SwitchGroup 
+			id="switch-group-data-set"
+			text="Switch Header Text"
+		>
+      <Switch
+        label={labelString(check1)}
+        checked={check1}
+        onChange={() => setCheck1(!check1)}
+      />
+      <Switch
+        label={labelString(check2)}
+        checked={check2}
+        onChange={() => setCheck2(!check2)}
+      />
+      <Switch
+        label={labelString(check3)}
+        checked={check3}
+        onChange={() => setCheck3(!check3)}
+      />
+    </SwitchGroup>
+  );
+}/**${comma}*/
+
+export default ComponentsSwitchGroupControlled;

@@ -1,20 +1,28 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
+/**
+ * moaui Styled Typography Group
+ * 
+ * @param props - titleText, bodyText
+ * @example
+ * <TypographyGroup
+ * 	titleText="Title"
+ * 	bodyText="Body"
+ * />
+ * @returns JSX.Element
+ */
+const TypographyGroup = (props: StyledProps) => (<StyledComponent {...props} />);
+
 TypographyGroup.defaultProps = {
 	titleText: "",
 	bodyText: ""
 } as StyledProps;
 
-/**
- * moaui Styled Typography Group
- * 
- * @param props
- * @returns JSX.Element
- */
-function TypographyGroup(props: StyledProps) : JSX.Element {
-	return (
-		<StyledComponent {...props} />
-	)
-}
+const SampleProps = {};
 
 export default TypographyGroup;
+
+export {
+	type StyledProps as TypographyGroupProps,
+	SampleProps as TypographyGroupSample,
+}

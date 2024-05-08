@@ -1,16 +1,30 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-Tooltip.defaultProps = {
-} as StyledProps;
-
 /**
  * moaui Styled Tooltip
  * 
- * @param props 
+ * @param props - children, title, placement, open, arrowBorder
+ * @example
+ * <Tooltip
+ * 	id=""
+ * 	title={React.ReactNode}
+ * 	placement={'bottom-end' || 'bottom-start' || 'bottom' || 'left-end' || 'left-start' || 'left' || 'right-end' || 'right-start' || 'right' || 'top-end' || 'top-start' || 'top'}
+ * 	open={true || false}
+ * 	arrowBorder={true || false}
+ * >
+ * 	{children}
+ * </Tooltip>
  * @returns React.ReactElement
  */
-function Tooltip(props: StyledProps) {	
-	return <StyledComponent {...props} />
-}
+const Tooltip = (props: StyledProps) => (<StyledComponent {...props} />);
+
+Tooltip.defaultProps = {} as StyledProps;
+
+const SampleProps = {};
 
 export default Tooltip;
+
+export {
+	type StyledProps as TooltipProps,
+	SampleProps as TooltipSample,
+}

@@ -2,46 +2,35 @@ import React from "react";
 import StyledComponent, {type StyledProps} from "./Styled";
 import { GuideBox, Typography } from "../..";
 
-TextField.defaultProps = {
-	autoFocus: false,
-	type: "text",
-	title : "",
-	titlePosition : "left",
-	error : false,
-	disabled : false,
-	spacing: 1,
-	textAlign: "left",
-} as StyledProps;
-
-TextField.sampleProps = {
-	autoFocus: false,
-	type: "text",
-	placeholder: "Placeholder",
-	title : "Title",
-	titlePosition : "left",
-	defaultValue: "Default Value",
-	error : false,
-	disabled : false,
-	onChange: () => {},
-	value: "Value",
-	wrappedWidth: '150px',
-	width: '100px',
-	height: '30px',
-	spacing: 1,
-	textAlign: "left",
-	multiline: false,
-	rows: 1,
-	maxRows: 1,
-} as StyledProps;
-
 /**
  * moaui Styled TextField
  * 
- * @param {MoaTextFieldProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange
+ * @param {StyledProps} props - defaultValue, title, titlePosition, error, disabled, placeholder, onChange, value, autoFocus, type, width, height, spacing, textAlign, multiline, rows, maxRows
+ * @example
+ * <TextField
+ * 	id=""
+ * 	title="Title"
+ * 	titlePosition="left"
+ * 	placeholder="Placeholder"
+ * 	defaultValue="Default Value"
+ * 	error={false}
+ * 	disabled={false}
+ * 	onChange={() => {}}
+ * 	value="Value"
+ * 	autoFocus={false}
+ * 	type="text"
+ * 	width="100px"
+ * 	height="30px"
+ * 	spacing={1}
+ * 	textAlign="left"
+ * 	multiline={false}
+ * 	rows={1}
+ * 	maxRows={1}
+ * />
  * @returns {React.ReactElement} moaTextField
  */
 
-function TextField(props: StyledProps) : React.ReactElement {
+const TextField = (props: StyledProps) => {
 	const {title, titlePosition, ...rest} = props;
 
 	const WrappedStyles = {
@@ -81,8 +70,40 @@ function TextField(props: StyledProps) : React.ReactElement {
 	)
 }
 
+TextField.defaultProps = {
+	autoFocus: false,
+	type: "text",
+	title : "",
+	titlePosition : "left",
+	error : false,
+	disabled : false,
+	spacing: 1,
+	textAlign: "left",
+} as StyledProps;
+
+const SampleProps = {
+	id: "",
+	autoFocus: false,
+	type: "text",
+	placeholder: "Placeholder",
+	title : "Title",
+	titlePosition : "left",
+	error : false,
+	disabled : false,
+	onChange: () => {},
+	wrappedWidth: '150px',
+	width: '100px',
+	height: '30px',
+	spacing: 1,
+	textAlign: "left",
+	multiline: false,
+	rows: 1,
+	maxRows: 1,
+};
+
 export default TextField;
 
 export {
-	type StyledProps,
+	type StyledProps as TextFieldProps,
+	SampleProps as TextFieldSample,
 };

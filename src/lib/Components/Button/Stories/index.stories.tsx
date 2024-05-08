@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "../../../index";
+import { Button, ButtonSample } from "../../../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";
@@ -38,5 +38,5 @@ export const Width = LiveEditStory(cleanMask(WidthCode));
 export const Loading = LiveEditStory(cleanMask(LoadingCode));
 
 export const Sample: Story = {
-  args: Button.sampleProps,
+  args: Button.defaultProps,
 };

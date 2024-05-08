@@ -44,6 +44,13 @@ function CustomCircularProgress({
 
 export type StyledProps = {
 	/**
+	 * current element id
+	 * @defaultValue ""
+	 * @optional
+	 * @type string
+	 */
+	id?: React.HtmlHTMLAttributes<HTMLButtonElement>['id'],
+	/**
 	 * The content of the button.
 	 * @defaultValue "Button"
 	 * @optional
@@ -224,6 +231,7 @@ const StyledComponent = styled((props:StyledProps) => {
 
 	return (
 		<MuiButton
+			id={props?.id || ""}
 			{...commonButtonProps}
 			variant={variant}
 			disabled={disabled || loading}

@@ -10,49 +10,58 @@ import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
 import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked';
 import { MarginTypes, MarginProps, hasMarginProps } from '../../Style/Margin';
 import { PaddingTypes, PaddingProps } from '../../Style/Padding';
+import { useState } from 'react';
 
 export type StyledProps = {
-	/**
-	 * If `true`, the component appears checked.
-	 */
-	checked?: boolean,
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * If `true`, the component appears checked.
+   */
+  checked?: boolean;
 
-	/**
-	 * Callback fired when the state is changed.
-	 * @param event The event source of the callback. You can pull out the new checked state by accessing event.target.checked (boolean).
-	 */
-	onChange?: (event: React.SyntheticEvent, checked: boolean) => void,
-	
-	/**
-	 * The value of the component.
-	 * @defaultValue ""
-	 */
-	value?: unknown,
+  /**
+   * Callback fired when the state is changed.
+   * @param event The event source of the callback. You can pull out the new checked state by accessing event.target.checked (boolean).
+   */
+  onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
 
-	/**
-	 * The Name of the component.
-	 * If not empty, text will appears after button.
-	 */
-	name?: string,
+  /**
+   * The value of the component.
+   * @defaultValue ""
+   */
+  value?: unknown;
 
-	/**
-	 * Defines a string value that labels the current element.
-	 * @defaultValue "Radio Button"
-	 */
-	ariaLabel?: string,
+  /**
+   * The Name of the component.
+   * If not empty, text will appears after button.
+   */
+  name?: string;
 
-	/**
-	 * If `true`, the component appears disabled.
-	 * @defaultValue false
-	 */
-	disabled?: boolean,
+  /**
+   * Defines a string value that labels the current element.
+   * @defaultValue "Radio Button"
+   */
+  ariaLabel?: string;
 
-	/**
-	 * `Not Used` The sx prop lets you style elements quickly using values from your theme.
-	 * @default undefined
-	 */
-	sx?: never,
-} & MarginTypes & PaddingTypes;
+  /**
+   * If `true`, the component appears disabled.
+   * @defaultValue false
+   */
+  disabled?: boolean;
+
+  /**
+   * `Not Used` The sx prop lets you style elements quickly using values from your theme.
+   * @default undefined
+   */
+  sx?: never;
+} & MarginTypes &
+  PaddingTypes;
 
 
 type RadioButtonIconProps = {
@@ -99,56 +108,70 @@ function RadioButtonIcon(props : RadioButtonIconProps) {
 
 const StyledComponent = 
 	styled((props: StyledProps) : React.ReactElement => {
+	const [checked, setChecked] = useState(props?.checked);
+
 	return (
-		<FormControlLabel
-			aria-label={`${props?.ariaLabel} FormControlLabel`} 
-			onChange={props?.onChange}
-			checked={props?.checked}
-			disabled={props?.disabled}
-			value={props?.value}
-			name={props?.name}
-			control={
-				<Radio
-					disableFocusRipple
-					disableRipple
-					aria-label={`${props?.name} ${props?.ariaLabel}`}
-					checkedIcon={<RadioButtonChecked />}
-					icon={<RadioButtonIcon />}
-					sx={{
-						".MuiSvgIcon-root": {
-							fontSize: "1rem",
-						},
-						padding: "0.25rem", /** 4px */
-						"&.Mui-disabled": {
-							color: Color.component.gray_light
-						},
-						":not(.Mui-disabled)": {
-							"&.Mui-checked": {
-								color: Color.primary.main,
-							},
-							":not(.Mui-checked)": {
-								"&:hover": {
-									color: Color.component.gray_dark,
-								},
-								":not(hover)": {
-									color: Color.component.gray,
-								}
-							}
-						}
-					}}
-				/>
-			}
-			label={props?.name}
-			sx={{
-				...(!hasMarginProps(props) ? { marginLeft: 0, marginRight: 0} : MarginProps(props)),
-				...PaddingProps(props),
-				".MuiFormControlLabel-label": {
-					// marginLeft: "0.25rem", /** 4px */
-					color: `${Color.text.secondary}!important`,
-				},
-			}}
-		/>
-	)
+    <div
+			id={props?.id}
+			data-current-value={checked}
+		>
+      <FormControlLabel
+        aria-label={`${props?.ariaLabel} FormControlLabel`}
+        onChange={(e: any, checked: any) => {
+					setChecked(checked);
+					if (props?.onChange) {
+						props?.onChange(e, checked);
+					}
+				}}
+        checked={props?.checked}
+        disabled={props?.disabled}
+        value={props?.value}
+        name={props?.name}
+        control={
+          <Radio
+            disableFocusRipple
+            disableRipple
+            aria-label={`${props?.name} ${props?.ariaLabel}`}
+            checkedIcon={<RadioButtonChecked />}
+            icon={<RadioButtonIcon />}
+            sx={{
+              ".MuiSvgIcon-root": {
+                fontSize: "1rem",
+              },
+              padding: "0.25rem" /** 4px */,
+              "&.Mui-disabled": {
+                color: Color.component.gray_light,
+              },
+              ":not(.Mui-disabled)": {
+                "&.Mui-checked": {
+                  color: Color.primary.main,
+                },
+                ":not(.Mui-checked)": {
+                  "&:hover": {
+                    color: Color.component.gray_dark,
+                  },
+                  ":not(hover)": {
+                    color: Color.component.gray,
+                  },
+                },
+              },
+            }}
+          />
+        }
+        label={props?.name}
+        sx={{
+          ...(!hasMarginProps(props)
+            ? { marginLeft: 0, marginRight: 0 }
+            : MarginProps(props)),
+          ...PaddingProps(props),
+          ".MuiFormControlLabel-label": {
+            // marginLeft: "0.25rem", /** 4px */
+            color: `${Color.text.secondary}!important`,
+          },
+        }}
+      />
+    </div>
+  );
 })(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (

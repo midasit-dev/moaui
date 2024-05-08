@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+    </py-env>
+    <style>
+        #plot {
+            border-style: dashed;
+            border-width: 5px;
+            border-color: #ff0000;
+            width: 32%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 70px; font-weight: bolder; color: rgb(52, 83, 219);">Let's plot random numbers</h1>
+    <div id="plot"></div>
+    <py-script output="plot">
+g_MAPI_key = "eyJ1ciI6Imx1Y2lvbGE3IiwicGciOiJnZW4iLCJjbiI6IldlMzY2Ujd3UkEifQ.bde05702fbfc12032d4c768bfe506780f6f20f48dd1ac0cc879d90aab337009f"
+g_base_uri = "moa-engineers.midasit.com"
+g_base_port = "443"
+
+# from javascript import globalThis
+# fetch = globalThis.fetch
+# JSON = globalThis.JSON
+from js import fetch, JSON, XMLHttpRequest
+import json
+
+class requests_json:
+    @staticmethod
+    def post(url, headers, jsonObj):
+        xhr = XMLHttpRequest.new()
+        xhr.open("POST", url, False)
+        for key, value in headers.items():
+            xhr.setRequestHeader(key, value)
+        xhr.send(json.dumps(jsonObj))
+        return json.loads(xhr.responseText)
+
+    def get(url, headers):
+        xhr = XMLHttpRequest.new()
+        xhr.open("GET", url, False)
+        for key, value in headers.items():
+            xhr.setRequestHeader(key, value)
+        xhr.send()
+        return json.loads(xhr.responseText)
+    
+    def put(url, headers, jsonObj):
+        xhr = XMLHttpRequest.new()
+        xhr.open("PUT", url, False)
+        for key, value in headers.items():
+            xhr.setRequestHeader(key, value)
+        xhr.send(json.dumps(jsonObj))
+        return json.loads(xhr.responseText)
+    
+    def delete(url, headers):
+        xhr = XMLHttpRequest.new()
+        xhr.open("DELETE", url, False)
+        for key, value in headers.items():
+            xhr.setRequestHeader(key, value)
+        xhr.send()
+        return json.loads(xhr.responseText)
+
+class Product:
+    CIVIL = 1,
+    GEN = 2,
+
+def get_base_url(product, country="KR"):
+    country_code = country.upper()
+    base_url = ""
+    if(product == Product.CIVIL):
+        base_uri = g_base_uri
+        base_port = g_base_port
+        base_url = f"https://{base_uri}:{base_port}/civil"
+    elif(product == Product.GEN):
+        base_uri = g_base_uri
+        base_port = g_base_port
+        base_url = f"https://{base_uri}:{base_port}/gen"
+    else:
+        print(f"Error: Unable to find the registry key or value for {product}")
+    return base_url
+
+def get_MAPI_Key(product, country="KR"):
+    country_code = country.upper()
+    mapikey = ""
+    if(product == Product.CIVIL):
+        mapikey = g_MAPI_key
+    elif(product == Product.GEN):
+        mapikey = g_MAPI_key
+    else:
+        print(f"Error: Unable to find the registry key or value for {product}")
+    return mapikey
+
+class MidasAPI:
+    def __init__(self, product, country="KR") -> None:
+        self.product = product
+        self.base_url = get_base_url(product, country)
+        self.headers = {
+            'MAPI-Key': get_MAPI_Key(product, country),
+            'Content-Type': 'application/json'
+        }
+    # def __init__(self, product, base_url, mapikey) -> None:
+    #     self.product = product
+    #     self.base_url = base_url
+    #     self.headers = {
+    #         'MAPI-Key': mapikey,
+    #         'Content-Type': 'application/json'
+    #     }
+    
+    ## doc #############################################################################################################
+    def doc_open(self, file_path):
+        url = f'{self.base_url}/doc/open'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Argument': file_path})
+    
+    def doc_anal(self):
+        url = f'{self.base_url}/doc/anal'
+        return requests_json.post(url, headers=self.headers, jsonObj={})
+    
+    ## db #############################################################################################################
+    def db_create(self, item_name, items):
+        url = f'{self.base_url}/db/{item_name}'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Assign': items})
+    
+    def db_create_item(self, item_name, item_id, item):
+        url = f'{self.base_url}/db/{item_name}/{item_id}'
+        return requests_json.post(url, headers=self.headers, jsonObj={'Assign': item})
+    
+    def db_read(self, item_name):
+        url = f'{self.base_url}/db/{item_name}'
+        responseJson = requests_json.get(url, headers=self.headers)
+        # check response.json()[item_name] is Exist
+        if item_name not in responseJson:
+            print(f"Error: Unable to find the registry key or value for {item_name}")
+            return None
+        keyVals = responseJson[item_name]
+        return { int(k): v for k, v in keyVals.items() }
+    
+    def db_read_item(self, item_name, item_id):
+        item_id_str = str(item_id)
+        url = f'{self.base_url}/db/{item_name}/{item_id_str}'
+        responseJson = get(url, headers=self.headers)
+        # check responseJson[item_name] is Exist
+        if item_name not in responseJson:
+            print(f"Error: Unable to find the registry key or value for {item_name}")
+            return None
+        if item_id_str not in responseJson[item_name]:
+            print(f"Error: Unable to find the registry key or value for {item_id}")
+            return None
+        return responseJson[item_name][item_id_str]
+    
+    def db_update(self, item_name, items):
+        url = f'{self.base_url}/db/{item_name}'
+        return requests_json.put(url, headers=self.headers, jsonObj={'Assign': items})
+    
+    def db_update_item(self, item_name, item_id, item):
+        url = f'{self.base_url}/db/{item_name}/{item_id}'
+        return requests_json.put(url, headers=self.headers, jsonObj={'Assign': item})
+    
+    def db_delete(self, item_name):
+        url = f'{self.base_url}/db/{item_name}'
+        return requests_json.delete(url, headers=self.headers)
+    
+    def db_get_next_id(self, item_name):
+        res_all = self.db_read(item_name)
+        if not res_all:
+            return 1
+        next_id = max(map(int, res_all.keys()))
+        return next_id + 1
+    
+    def db_get_max_id(self, item_name):
+        res_all = self.db_read(item_name)
+        if not res_all:
+            return 0
+        return max(map(int, res_all.keys()))
+    
+    def db_get_min_id(self, item_name):
+        res_all = self.db_read(item_name)
+        if not res_all:
+            return 1
+        return min(map(int, res_all.keys()))
+    
+    ## view ############################################################################################################
+    def view_select_get(self):
+        url = f'{self.base_url}/view/select'
+        return requests_json.get(url, headers=self.headers)
+    
+    ## Steel Code Check (Gen Only) ########################################################################################################
+    def post_steelcodecheck(self):
+        url = f'{self.base_url}/post/steelcodecheck'
+        return requests_json.post(url, headers=self.headers, jsonObj={})
+
+## input number of iteration
+num_iter = 2
+
+## Set the target ratio range --> max ratio(comb ratio & slenderness ratio)
+Target_rat_min = 0.6
+Target_rat_max = 0.95
+
+## Set the available section list to be changed
+sect_able_map = {
+    1: [1101,1102,1103,1104,1105,1106,1107,1108,1109,1110,1111,1112,1113,1114,1115],
+    2: [1101,1102,1103,1104,1105,1106,1107,1108,1109,1110,1111,1112,1113,1114,1115],
+    3: [1101,1102,1103,1104,1105,1106,1107,1108,1109,1110,1111,1112,1113,1114,1115],
+    4: [1101,1102,1103,1104,1105,1106,1107,1108,1109,1110,1111,1112,1113,1114,1115],
+    5: [1201,1202,1203,1204,1205,1206,1207,1208],
+}
+
+## --------------------------------------------------------------------------------------------------------------
+genApp = MidasAPI(Product.GEN, "KR")
+
+def get_min_max_rat(check_result, min_boundary, max_boundary):
+    rat_max = None
+    rat_min = None
+    for result_item in check_result:
+        if( result_item['RAT'] > max_boundary ):
+            if rat_max == None:
+                rat_max = result_item
+            elif rat_max['RAT'] < result_item['RAT']:
+                rat_max = result_item
+        if( result_item['RAT'] < min_boundary ):
+            if rat_min == None:
+                rat_min = result_item
+            elif rat_min['RAT'] > result_item['RAT']:
+                 rat_min = result_item
+    # {'ELEM': 10, 'RAT': 0.12739954944771265, 'SLN': 0.10501474926253693, 'DEF': -0.00045659359797293856, 'DEFA': 0.023666666666666666}  
+    return { 'min':rat_min, 'max':rat_max }
+
+def find_group_id_by_elem_id(elem_id, grup_all):
+    for grup_id, group_item in grup_all.items():
+        # if grup['E_LIST'] has elem_id
+        if elem_id in group_item['E_LIST']:
+            return grup_id
+    return None
+
+def get_apply_sect_id(size, sect_id, sect_able_list):
+    if( size == "small" ):
+        for index in range(len(sect_able_list)):
+            if sect_able_list[index] == sect_id:
+                if index > 0:
+                    return sect_able_list[index-1]
+    elif( size == "large" ):
+        for index in range(len(sect_able_list)):
+            if sect_able_list[index] == sect_id:
+                if index < len(sect_able_list)-1:
+                    return sect_able_list[index+1]
+    return None
+
+def make_sect_info_dict(target_elem_id_list, sect_id):
+    change_elem_sect = {}
+    for elem_id in target_elem_id_list:
+        change_elem_sect[elem_id] = {}
+        change_elem_sect[elem_id]['SECT'] = sect_id
+    return change_elem_sect
+
+def make_grup_sect_update_info(elem_id, elem_all, grup_all, sect_able_tb, size_direction):
+    change_elem_sect = {}
+    grup_id = find_group_id_by_elem_id(elem_id, grup_all)
+    sect_id = elem_all[elem_id]['SECT']
+    sect_apply_id = get_apply_sect_id(size_direction, sect_id, sect_able_tb[grup_id])
+    target_elem_id_list = grup_all[grup_id]['E_LIST']
+    change_elem_sect = make_sect_info_dict(target_elem_id_list, sect_apply_id)
+    return change_elem_sect
+
+def run_sect_steel_optimization(sect_able_tb, Target_rat_min, Target_rat_max, max_iter):
+
+    if(sect_able_tb == None or sect_able_tb == {}):
+        ## make sect_able_tb
+        sect_able_tb = {}
+        grup_list = genApp.db_read("GRUP")
+        sect_list = genApp.db_read("SECT")
+        # sect_list key to array
+        sect_list_key = []
+        for sect_id, sect_item in sect_list.items():
+            sect_list_key.append(sect_id)
+            
+        for grup_id, grup_item in grup_list.items():
+            sect_able_tb[grup_id] = sect_list_key
+
+    genApp.doc_anal()
+    check_result = genApp.post_steelcodecheck()
+    min_max_rat = get_min_max_rat(check_result['vELEM'], Target_rat_min, Target_rat_max)
+
+    while (min_max_rat['max'] or min_max_rat['min']) and max_iter > 0:
+        elem_all = genApp.db_read("ELEM")
+        grup_all = genApp.db_read("GRUP")
+        elems_update_all = {}
+
+        while (min_max_rat['max'] or min_max_rat['min']):
+            if( min_max_rat['max'] ):
+                elems_update = make_grup_sect_update_info(min_max_rat['max']['ELEM'], elem_all, grup_all, sect_able_tb, "large")
+                elems_update_all.update(elems_update)
+                for elem_id in elems_update:
+                    for index in range(len(check_result['vELEM'])):
+                        if check_result['vELEM'][index]['ELEM'] == elem_id:
+                            check_result['vELEM'].pop(index)
+                            break
+                    
+
+            if( min_max_rat['min'] ):
+                elems_update = make_grup_sect_update_info(min_max_rat['min']['ELEM'], elem_all, grup_all, sect_able_tb, "small")
+                elems_update_all.update(elems_update)
+                for elem_id in elems_update:
+                    for index in range(len(check_result['vELEM'])):
+                        if check_result['vELEM'][index]['ELEM'] == elem_id:
+                            check_result['vELEM'].pop(index)
+                            break
+
+            min_max_rat = get_min_max_rat(check_result['vELEM'], Target_rat_min, Target_rat_max)
+        
+        # remove elems_update_all[index] == None
+        elems_update_buffer = {}
+        for elem_id, elem_info in elems_update_all.items():
+            if elem_info['SECT'] != None:
+                elems_update_buffer[elem_id] = elem_info
+        genApp.db_update("ELEM", elems_update_buffer)
+        genApp.doc_anal()
+        check_result = genApp.post_steelcodecheck()
+        min_max_rat = get_min_max_rat(check_result['vELEM'], Target_rat_min, Target_rat_max)
+        max_iter = max_iter - 1
+
+    min_max_rat = get_min_max_rat(check_result['vELEM'], Target_rat_min, Target_rat_max)
+    return min_max_rat
+
+
+# run_sect_steel_optimization(sect_able_map, Target_rat_min, Target_rat_max, num_iter)
+
+    </py-script>
+</body>
+</html>

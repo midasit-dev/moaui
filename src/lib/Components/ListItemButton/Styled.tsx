@@ -5,16 +5,26 @@ import { MarginProps, MarginTypes } from '../../Style/Margin';
 import { PaddingProps, PaddingTypes } from '../../Style/Padding';
 
 export type StyledProps = {
-	/**
-	 * Represent a text string in typography component
-	 */
-	children?: React.ReactNode;
-} & ListItemButtonProps & MarginTypes & PaddingTypes;
+  /**
+   * current element id
+   * @defaultValue ""
+   * @optional
+   * @type string
+   */
+  id?: React.HtmlHTMLAttributes<HTMLDivElement>["id"];
+  /**
+   * Represent a text string in typography component
+   */
+  children?: React.ReactNode;
+} & ListItemButtonProps &
+  MarginTypes &
+  PaddingTypes;
 
 const StyledComponent = styled((props: StyledProps) => {
-	const { children, ...rest } = props;
+	const { id, children, ...rest } = props;
 	return (
 		<ListItemButton
+			id={id}
 			sx={{
 				...MarginProps(rest),
 				...PaddingProps(rest),
