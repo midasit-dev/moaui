@@ -44,6 +44,20 @@ import devTools from "./DevTools"
 //	pyTerminal.remove();
 //});
 
+
+// TODO 임시로 커스텀 훅 테스트 (나중에 별도로 분리 필요)
+export const useBackgroundColor = () => {
+	const [bgColor, setBgColor] = React.useState('#eee');
+	React.useEffect(() => {
+		fetch(`${process.env.PUBLIC_URL}/manifest.json`)
+			.then(response => response.json())
+			.then(data => data.name ? setBgColor(data.background_color) : null)
+			.catch(error => console.error('Error fetching manifest.json:', error));
+	}, []);
+
+	return { bgColor, setBgColor };
+}
+
 const ValidWrapper = (props: any) => {
 	const { isIntalledPyscript } = props;
 
@@ -117,13 +131,7 @@ const ValidWrapper = (props: any) => {
 		);
 	}
 
-	const [bgColor, setBgColor] = React.useState('#eee');
-	React.useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/manifest.json`)
-      .then(response => response.json())
-      .then(data => data.name ? setBgColor(data.background_color) : null)
-      .catch(error => console.error('Error fetching manifest.json:', error));
-  }, []);
+	const { bgColor } = useBackgroundColor();
 
   return (
     <>
@@ -150,7 +158,7 @@ const ValidWrapper = (props: any) => {
 
 						{/** Development Mode */}
 						{devTools.IsDevEnv() && 
-							<devTools.Kit bgColorState={[bgColor, setBgColor]}>
+							<devTools.Kit>
 								<GuideBox tag="AppBackground" show center fill={bgColor} borderRadius='0 0 4px 4px' spacing={3}>
 									<App />
 								</GuideBox>
@@ -164,7 +172,7 @@ const ValidWrapper = (props: any) => {
 				<GuideBox width="100%" height="100vh" center>
 					<Panel variant="shadow2" padding={3} margin={3}>
 						<GuideBox opacity={0.9} spacing={2}>
-							<Typography variant="h1">Validation Check</Typography>
+							<Typography variant="h1">Validation Check1</Typography>
 							<GuideBox spacing={2}>
 								<ValidationComponent title="pyscript" checkIf={isIntalledPyscript} strValid="Installed" strInvalid={`Not Installed`} />
 								<ValidationComponent title="Base URI" checkIf={checkUri} strValid="Valid" strInvalid="Invalid" />

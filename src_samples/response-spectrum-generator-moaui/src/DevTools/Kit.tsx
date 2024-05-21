@@ -14,10 +14,10 @@ import HomeManifestContainerSizeUpdator from './Home/Manifest/ContainerSizeUpdat
 import HomeManifestContainerBackgroundUpdator from './Home/Manifest/ContainerBackgroundUpdator';
 import HomeBuilder from './Home/Builder';
 import HomeUpgrade from './Home/Upgrade';
+import { useBackgroundColor } from '../Wrapper';
 
 interface KitProps {
 	children: React.ReactNode;
-	bgColorState: [string, React.Dispatch<React.SetStateAction<string>>];
 }
 
 const selectColor = '#e8e8e8';
@@ -26,7 +26,6 @@ const unSelectColor = 'transparent';
 const Kit = (props: KitProps) => {
 	const { 
 		children,
-		bgColorState,
 	} = props;
 
 	//Title
@@ -42,7 +41,7 @@ const Kit = (props: KitProps) => {
 	const [containerSize, setContainerSize] = React.useState({ width: 0, height: 0 });
 
 	//Background Color
-	const [bgColor, setBgColor] = bgColorState;
+	const { bgColor, setBgColor } = useBackgroundColor();
 
 	//Menu Select
 	const [currentMenu, setCurrentMenu] = React.useState('Home');

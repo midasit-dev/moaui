@@ -26,3 +26,4 @@ export function isBetween1And1000000(value: string) {
 	const val = parseFloat(value);
 	return val >= 1 && val <= 1000000;
 }
+

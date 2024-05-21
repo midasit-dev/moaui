@@ -16,10 +16,6 @@ const DualComp = (props: any) => {
 		disabled,
 		blueTitle = false,
 		placeholder = 'Input value ...',
-		textFieldProps = { 
-			width: 150, 
-			height: 30 
-		},
 	} = props;
 
 	const [value, setValue] = React.useState(state);
@@ -50,8 +46,9 @@ const DualComp = (props: any) => {
 					{title}
 				</Typography>
 				<TextFieldV2
-					{...textFieldProps}
 					error={error}
+					width={100}
+					height={25}
 					placeholder={placeholder}
 					onChange={(e: any) => setValue(e.target.value)}
 					value={value}

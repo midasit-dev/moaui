@@ -19,16 +19,15 @@ import {
 	VarValids,
 } from "./Components/variables";
 import CompTypographyAndTextField from "./Components/TypographyAndTextField";
-import CompTypographyAndTextFieldNumOnly from "./Components/TypographyAndTextFieldNumOnly";
 import CompDesignSpectrum from "./Components/DesignSpectrum";
 import CompSeismicDataNZS117052004 from "./Components/SeismicData_NZS1170_5_2004";
+import CompSeismicDataSBC301CR2018 from "./Components/SeismicData_SBC301_CR_2018";
 import CompHelpDialog from "./Components/HelpDialog";
 import CompUpdate from "./Components/Update";
 import CompPreviewRight from "./Components/PreviewRight";
 
 const App = () => {
 	const valids = useRecoilValue(VarValids);
-
   const [func_name, setFunc_name] = useRecoilState(VarFuncName);
 	const design_spectrum = useRecoilValue(VarDesignSpectrum);
   const [maximum_period, setMaximum_period] = useRecoilState(VarMaximumPeriod);
@@ -37,29 +36,20 @@ const App = () => {
     //You can modify the code here and test.
     <GuideBox width="100%" center padding={2}>
 			<GuideBox center spacing={2}>
-
 				<GuideBox row spacing={2}>
-
 					<Panel variant="shadow2" padding={2}>
-						<GuideBox height={490} spacing={2} verSpaceBetween>
+						<GuideBox height={510} spacing={2} verSpaceBetween>
 							<CompTypographyAndTextField title="Function Name" state={func_name} setState={setFunc_name} blueTitle placeholder="RS 01" error={!valids.VarFunctionName(func_name)} />
 							<CompDesignSpectrum />
 							{design_spectrum === 1 && <CompSeismicDataNZS117052004 />}
+							{design_spectrum === 2 && <CompSeismicDataSBC301CR2018 />}
 							{/** 기준이 추가되면 아래로 추가 */}
-							<CompTypographyAndTextFieldNumOnly 
-								title="Maximum Period (sec)" 
-								state={maximum_period} 
-								setState={setMaximum_period} 
-								blueTitle error={!valids.VarMaximumPeriod(maximum_period)}
-								textFieldProps={{
-									width: 200, height: 30,
-								}}
-							/>
+							<CompTypographyAndTextField title="Maximum Period (sec)" state={maximum_period} setState={setMaximum_period} blueTitle error={!valids.VarMaximumPeriod(maximum_period)} />
 						</GuideBox>
 					</Panel>
 
 					<Panel variant="shadow2" padding={2}>
-						<GuideBox height={490}>
+						<GuideBox height={510}>
 							<CompPreviewRight />
 						</GuideBox>
 					</Panel>
@@ -70,6 +60,8 @@ const App = () => {
 					<CompHelpDialog />
 					<CompUpdate />
 				</GuideBox>
+
+				<GuideBox show fill='2' width={40} height={100} />
 
     	</GuideBox>
     </GuideBox>

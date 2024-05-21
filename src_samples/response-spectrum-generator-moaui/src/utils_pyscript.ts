@@ -51,6 +51,7 @@ export function getGlobalVariable() {
 /**
  * @description this function is for python script to create data in database
  * @see ./public/pyscript_main.py
+ * @see ./public/SBC_main.py
  * @param item: item to create
  * @returns
  * @example
@@ -182,6 +183,14 @@ export function createGraphData4NZS1170_5_2004(
   });
 }
 
+export function generalFunction(pyFunctionName: string, pyArgs: any) {
+	return checkPyScriptReady(() => {
+		const py_general_func = pyscript.interpreter.globals.get(pyFunctionName);
+		const result = py_general_func(JSON.stringify(pyArgs));
+		return JSON.parse(result);
+  });
+}
+
 export function spfcUpdate4NZS1170_5_2004(
   funcName: string,
   soliClass: string,
@@ -206,6 +215,66 @@ export function spfcUpdate4NZS1170_5_2004(
       parseFloat(maxPeriod)
     );
 		
+    return JSON.parse(result);
+  });
+}
+
+
+export function createGraphData4SBC301_CR_2018(
+  site_class: string,
+  ss: string,
+  s1: string,
+  I: string,
+  R:string,
+  TL:string,
+  maxPeriod: string
+) {
+  return checkPyScriptReady(() => {
+    const py_create_graph_data_func =
+      pyscript.interpreter.globals.get("SBC_input");
+    const result = py_create_graph_data_func(
+      site_class,
+      parseFloat(ss),
+      parseFloat(s1),
+      parseFloat(I),
+      parseFloat(R),
+      parseFloat(TL),
+      parseFloat(maxPeriod)
+    );
+    return JSON.parse(result);
+  });
+}
+
+
+
+export function spfcUpdate4SBC301_CR_2018(
+  funcName: string,
+  site_class: string,
+  ss: string,
+  s1: string,
+  I: string,
+  R:string,
+  TL:string,
+  maxPeriod: string
+) {
+  return checkPyScriptReady(() => {
+    const py_spfc_update_func = pyscript.interpreter.globals.get(
+      "main_SBC_301_CR_2018"
+    );
+
+    const result = py_spfc_update_func(
+      funcName,
+      site_class,
+      parseFloat(ss),
+      parseFloat(s1),
+      parseFloat(I),
+      parseFloat(R),
+      parseFloat(TL),
+      parseFloat(maxPeriod)
+    );
+
+    console.log(result);
+
     return JSON.parse(result);
   });
 }

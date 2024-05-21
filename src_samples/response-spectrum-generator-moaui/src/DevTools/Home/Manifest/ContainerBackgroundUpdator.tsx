@@ -3,6 +3,7 @@ import Moaui from '@midasit-dev/moaui';
 import { HexColorPicker } from "react-colorful";
 import Header from '../Shared/Header';
 import Body from '../Shared/Body';
+import { useBackgroundColor } from '../../../Wrapper';
 
 /**
  * Container Background Color Updator
@@ -15,8 +16,9 @@ interface ToolProps {
 }
 
 const Tool = (props: ToolProps) => {
-	const { containerBackgroundColorState } = props;
-	const [color, setColor] = containerBackgroundColorState;
+	// const { containerBackgroundColorState } = props;
+	// const [color, setColor] = containerBackgroundColorState;
+	const { bgColor: color, setBgColor: setColor } = useBackgroundColor();
 	const [show, setShow] = React.useState(false);
 
 	return (
