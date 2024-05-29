@@ -3,7 +3,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 /**
  * moaui Styled Button
- * 
+ *
  * @param props - onClick, variant, disabled, width, color, loading, children
  * @example
  * <Button
@@ -19,28 +19,31 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </Button>
  * @returns React.ReactElement
  */
-const Button = (props: StyledProps) => (<StyledComponent {...props} />);
 
-Button.defaultProps = {
-	variant: "contained",
-	disabled: false,
-	loading: false,
-} as StyledProps;
+const Button = (props: Partial<StyledProps>) => {
+	const { variant = "contained", disabled = false, loading = false, children = "button", ...rest } = props;
+	return (
+		<StyledComponent
+			variant={variant}
+			disabled={disabled}
+			loading={loading}
+			children={children}
+			{...rest}
+		/>
+	)
+};
 
 const SampleProps = {
-	id: '',
-	children: "Button",
-	onClick: () => {},
-	variant: toUnionType({ values: ['contained', 'outlined', 'text'] }),
-	disabled: false,
-	width: '100px',
-	color: toUnionType({ values: ['normal', 'negative'] }),
-	loading: false,
+  id: "",
+  children: "Button",
+  onClick: () => {},
+  variant: toUnionType({ values: ["contained", "outlined", "text"] }),
+  disabled: false,
+  width: "100px",
+  color: toUnionType({ values: ["normal", "negative"] }),
+  loading: false,
 };
 
 export default Button;
 
-export {
-	type StyledProps as ButtonProps,
-	SampleProps as ButtonSample,
-}
+export { type StyledProps as ButtonProps, SampleProps as ButtonSample };
