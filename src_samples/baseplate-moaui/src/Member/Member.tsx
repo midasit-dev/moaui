@@ -164,7 +164,73 @@ function Member() {
     enqueueSnackbar('Baseplate 정의 완료', {variant: 'success', autoHideDuration: 3000})
   }
 
+  const handleBPModify = () => {
+    let newNode_BP_Data:any = {}
+    newNode_BP_Data = JSON.parse(JSON.stringify(node_BP_Data))
+    // newNode_BP_Data 중 bPName 에 해당하는 데이터에서, baseplate 정보 수정
+    console.log("BPName : ", bPName)
+    console.log("newNode_BP_Data : ", newNode_BP_Data)
+    
+    for (let key in newNode_BP_Data){
+      if (planViewSelectedNode.includes(key)){
+        newNode_BP_Data[key].BASEPLATE.COLUMN.MATL = concreteMaterial
+        newNode_BP_Data[key].BASEPLATE.PLATE.NAME = bPName
+        newNode_BP_Data[key].BASEPLATE.PLATE.WIDTH = basePlateWidth
+        newNode_BP_Data[key].BASEPLATE.PLATE.HEIGHT = basePlateHeight
+        newNode_BP_Data[key].BASEPLATE.PLATE.THIK = plateThickness
+        newNode_BP_Data[key].BASEPLATE.PLATE.MATL = basePlateMaterial
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.DIAMETER = anchorDiameter
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.XPOSITION = anchorXPitch
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.YPOSITION = anchorYPitch
+      }
+    }
+    console.log(newNode_BP_Data)
+    setNode_BP_Data(newNode_BP_Data)
 
+    // bp_Node 중 bPName 에 해당하는 데이터에서, baseplate 정보 수정
+    let newBP_Node = JSON.parse(JSON.stringify(bp_Node))
+    newBP_Node[bPName] = {
+      NODE : planViewSelectedNode,
+      COLUMN : columnIndex_DBName[selectedColumnIndex],
+      Conc_Material : concreteMaterial + 'MPa',
+      BP_Material : basePlateMaterial,
+      BP_Thickness : plateThickness,
+      BP_Width : basePlateWidth,
+      BP_Height : basePlateHeight,
+      Anchor_Diameter : anchorDiameter,
+      Anchor_XPitch : anchorXPitch,
+      Anchor_YPitch : anchorYPitch
+    }
+    setBP_Node(newBP_Node)
+  }
+  const handleBPDelete = () => {
+    let newNode_BP_Data:any = {}
+    newNode_BP_Data = JSON.parse(JSON.stringify(node_BP_Data))
+    for (let key in newNode_BP_Data){
+      if (planViewSelectedNode.includes(key)){
+        newNode_BP_Data[key].BASEPLATE.COLUMN.MATL = '24'
+        newNode_BP_Data[key].BASEPLATE.PLATE.NAME = ''
+        newNode_BP_Data[key].BASEPLATE.PLATE.WIDTH = 0
+        newNode_BP_Data[key].BASEPLATE.PLATE.HEIGHT = 0
+        newNode_BP_Data[key].BASEPLATE.PLATE.THIK = 0
+        newNode_BP_Data[key].BASEPLATE.PLATE.MATL = ''
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.DIAMETER = 0
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.XPOSITION = 0
+        newNode_BP_Data[key].BASEPLATE.ANCHOR.YPOSITION = 0
+      }
+    }
+    console.log(newNode_BP_Data)
+    setNode_BP_Data(newNode_BP_Data)
+
+    let newBP_Node = JSON.parse(JSON.stringify(bp_Node))
+    delete newBP_Node[bPName]
+    setBP_Node(newBP_Node)
+    let newBPList = JSON.parse(JSON.stringify(bpList))
+    let index = newBPList.findIndex((item:any) => item[0] === bPName)
+    newBPList.splice(index, 1)
+    setBPList(newBPList)
+    setSelectedBPList(newBPList[0][0])
+  }
   return (
     <GuideBox row spacing={1}>
       <Panel height={550} width={300}>
@@ -218,10 +284,14 @@ function Member() {
           >
             Apply
           </Button>
-          <Button>
+          <Button
+          onClick = {handleBPModify}
+          >
             Modify
           </Button>
-          <Button>
+          <Button
+          onClick = {handleBPDelete}
+          >
             Delete
           </Button>
         </GuideBox>
