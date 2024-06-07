@@ -77,3 +77,8 @@ export const VarRowData = atom({
 			angle: 0
 	}],
 });
+
+export const Language = atom({
+	key: "Language",
+	default: "en",
+});

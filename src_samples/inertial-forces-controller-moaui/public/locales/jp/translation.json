@@ -1,0 +1,18 @@
+{
+  "THLoadName_Title" : "時刻歴荷重ケース（静的解析手法）",
+  "STLoadName_Title" : "静的荷重ケース",
+  "Function_Title" : "関数",
+  "Function_Name" : "関数名",
+  "Scale_Factor" : "増減係数",
+  "Angle_of_Horiz_Title" : "X軸との角度",
+  "Angle_Table_Index" : "データ",
+  "Angle_Table_Angle" : "角度[deg]",
+  "Create_Button" : "生成",
+
+  "THLoadCase_Select_Error" : "時刻歴荷重ケースが選択されていません。",
+  "STLoadCase_Select_Error" : "静的荷重ケースが選択されていません。",
+  "ScaleFactor_Input_Error" : "増減係数には0以上の値を入力してください。",
+  "Angle_Input_Non_Error" : "角度データがありません。",
+  "Angle_Input_Error" : "角度データは重複してはいけません。",
+  "Unknown_Error" : "データ生成中に不明なエラーが発生しました。"
+}

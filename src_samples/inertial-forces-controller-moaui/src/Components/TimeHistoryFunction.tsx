@@ -14,8 +14,10 @@ import { VarTHfunction, VarTHfunctionList, VarScaleFactor, VarScaleError } from 
 import { GuideBox, Typography, DropList, TextField ,IconButton, Icon, Separator } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
 import { useSnackbar } from "notistack";
+import { useTranslation } from 'react-i18next';
 
 const CompTHfunction = () => {
+	const { t:translate, i18n: internationalization} = useTranslation();
 	const { enqueueSnackbar } = useSnackbar();
 
 	const [THfunc, setTHfunc] = useRecoilState(VarTHfunction);
@@ -79,14 +81,14 @@ const CompTHfunction = () => {
 		<GuideBox width="100%" spacing={2}>
 
 			<GuideBox width="100%" spacing={1}>
-				<Typography variant="h1">Function</Typography>
+				<Typography variant="h1">{translate("Function_Title")}</Typography>
 				<Separator />
 			</GuideBox>
 
 			<GuideBox width="100%" spacing={1}>
 				<GuideBox width="100%" row horSpaceBetween verCenter>
 					<GuideBox width={248} row horSpaceBetween verCenter height={30}>
-						<Typography>Function Name</Typography>
+						<Typography>{translate("Function_Name")}</Typography>
 						<DropList
 						width={120}
 							itemList={new Map<string, number>(THfuncList as [string, number][])}
@@ -103,7 +105,7 @@ const CompTHfunction = () => {
 
 				<GuideBox width="100%" row horSpaceBetween verCenter>
 					<GuideBox width={248} row horSpaceBetween verCenter height={30}>
-						<Typography>Scale Factor</Typography>
+						<Typography>{translate("Scale_Factor")}</Typography>
 						<TextField
 							type="number"
 							width={120}

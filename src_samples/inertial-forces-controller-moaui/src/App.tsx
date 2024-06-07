@@ -41,6 +41,7 @@ import {
 
 } from './pyscript_utils';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const deletePyscriptTerminalTag = () => {
 	// Get all elements with the py-terminal tag
@@ -53,6 +54,7 @@ const deletePyscriptTerminalTag = () => {
 }
 
 const App = () => {
+	const { t:translate, i18n: internationalization} = useTranslation();
 	//App이 마운트 되었을 때만 실행.
 	React.useEffect(() => deletePyscriptTerminalTag(), []);
 
@@ -74,29 +76,29 @@ const App = () => {
 
 		// Time History Load Case가 선택되지 않았을 경우
 		if (jsoninput["TimeHistoryLC"] === 0) {
-			enqueueSnackbar("No selected Time History Load Case", { variant: "error" });
+			enqueueSnackbar(translate("THLoadCase_Select_Error"), { variant: "error" });
 			return;
 		}
 		// Static Load Case가 선택되지 않았을 경우
 		if (jsoninput["StaticLoadLC"] === 0) {
-			enqueueSnackbar("No selected Static Load Case", { variant: "error" });
+			enqueueSnackbar(translate("STLoadCase_Select_Error"), { variant: "error" });
 			return;
 		}
 		// Scale Factor가 입력되지 않았을 경우
 		if (jsoninput["ScaleFactor"] === "" || jsoninput["ScaleFactor"] === undefined || jsoninput["ScaleFactor"] === null || isNaN(+jsoninput["ScaleFactor"]) || +jsoninput["ScaleFactor"] <= 0) {
-			enqueueSnackbar("Scale factor should be larger than 0", { variant: "error" });
+			enqueueSnackbar(translate("ScaleFactor_Input_Error"), { variant: "error" });
 			return;
 		}
 		// Angle data가 입력되지 않았거나, 중복된 경우
 		const rows = jsoninput["RowData"];
 		const isDuplicate = (value: number) => rows.filter((row) => row.angle === value).length > 1;
 		if (rows.length === 0) {
-			enqueueSnackbar("No angle values", { variant: "error" });
+			enqueueSnackbar(translate("Angle_Input_Non_Error"), { variant: "error" });
 			return;
 		}
 		for (const row of rows) {
 			if (isDuplicate(row.angle)) {
-				enqueueSnackbar("Angle values should be unique", { variant: "error" });
+				enqueueSnackbar(translate("Angle_Input_Error"), { variant: "error" });
 				return;
 			}
 		}
@@ -115,7 +117,7 @@ const App = () => {
 				return;
 			}
 
-			enqueueSnackbar("An unkwon error occurred while creating.", { variant: "error" });
+			enqueueSnackbar(translate("Unknown_Error"), { variant: "error" });
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [RowData, ScaleFactor, StaticLoadLC, THfunction, TimeHistoryLC]);
@@ -152,7 +154,7 @@ const App = () => {
 					}}
 					loading={loading}
 				>
-					Create
+					{translate("Create_Button")}
 				</Button>
 			</GuideBox>
 		</GuideBox>

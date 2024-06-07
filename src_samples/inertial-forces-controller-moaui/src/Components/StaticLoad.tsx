@@ -13,8 +13,9 @@ import { VarSTloadcase, VarSTloadCaseList } from "./variables";
 import { GuideBox, Typography, DropList, IconButton, Icon, Separator } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
 import { useSnackbar } from "notistack";
-
+import { useTranslation } from 'react-i18next';
 const CompStaticLoad = () => {
+	const { t:translate, i18n: internationalization} = useTranslation();
 	const { enqueueSnackbar } = useSnackbar();
 
 	const [value, setValue] = useRecoilState(VarSTloadcase);
@@ -83,7 +84,7 @@ const CompStaticLoad = () => {
 		<GuideBox width="100%" spacing={2}>
 
 			<GuideBox width="100%" spacing={1}>
-				<Typography variant="h1">Static Load</Typography>
+				<Typography variant="h1">{translate("STLoadName_Title")}</Typography>
 				<Separator />
 			</GuideBox>
 
