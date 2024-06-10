@@ -20,17 +20,15 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @returns React.ReactElement
  */
 
-const Button = (props: Partial<StyledProps>) => {
-	const { variant = "contained", disabled = false, loading = false, children = "button", ...rest } = props;
-	return (
-		<StyledComponent
-			variant={variant}
-			disabled={disabled}
-			loading={loading}
-			children={children}
-			{...rest}
-		/>
-	)
+const Button = (props: StyledProps) => {
+	const _props = {
+		variant: "contained", 
+		disabled: false, 
+		loading: false, 
+		...props
+	} as StyledProps;
+
+	return ( <StyledComponent {..._props} /> )
 };
 
 const SampleProps = {
