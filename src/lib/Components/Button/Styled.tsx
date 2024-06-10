@@ -266,17 +266,10 @@ const StyledComponent = styled((props: StyledProps) => {
   );
 })(() => ({}));
 
-const ThemedComponent = (props: Partial<StyledProps>) => {
-	const { variant = "contained", disabled = false, loading = false, children = "button", ...rest } = props;
+const ThemedComponent = (props: StyledProps) => {
   return (
     <MoaStyledComponent>
-			<StyledComponent
-				variant={variant}
-				disabled={disabled}
-				loading={loading}
-				children={children}
-				{...rest}
-			/>
+			<StyledComponent {...props} />
     </MoaStyledComponent>
   );
 };
