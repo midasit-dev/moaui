@@ -12,14 +12,16 @@ import { useRecoilState } from "recoil";
 import { VarRowData } from "./variables";
 import { GuideBox, Typography, IconButton, Icon, DataGrid, Separator, Panel } from "@midasit-dev/moaui";
 import { useGridApiRef, GridColDef } from '@mui/x-data-grid';
+import { useTranslation } from 'react-i18next';
 
 const CompAngleTable = () => {
+	const { t:translate, i18n: internationalization} = useTranslation();
 	const [rows, setRows] = useRecoilState(VarRowData);
 
 	const columns: GridColDef[] = [
 		{
 			field: 'index',
-			headerName: 'Index',
+			headerName: translate("Angle_Table_Index"),
 			type: 'number',
 			align: 'left',
 			headerAlign: 'left',
@@ -28,7 +30,7 @@ const CompAngleTable = () => {
 		},
 		{
 			field: 'angle',
-			headerName: 'Angle [deg]',
+			headerName: translate("Angle_Table_Angle"),
 			type: 'number',
 			width: 180,
 			editable: true,
@@ -87,7 +89,7 @@ const CompAngleTable = () => {
 		<GuideBox width="100%" spacing={2}>
 			<GuideBox width="100%" spacing={1}>
 				<GuideBox width="100%" row verCenter horSpaceBetween>
-					<Typography variant="h1">Angle of Horizontal Load</Typography>
+					<Typography variant="h1">{translate("Angle_of_Horiz_Title")}</Typography>
 					<GuideBox row horRight>
 						<IconButton transparent onClick={handleAddRow}>
 							<Icon iconName="Add" />

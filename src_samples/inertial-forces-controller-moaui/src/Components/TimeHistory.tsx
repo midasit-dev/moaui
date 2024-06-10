@@ -9,12 +9,23 @@
 
 import React from "react";
 import { useRecoilState } from "recoil";
-import { VarTHloadcase, VarTHloadCaseList } from "./variables";
+import { VarTHloadcase, VarTHloadCaseList, Language } from "./variables";
 import { GuideBox, Typography, DropList, IconButton, Icon, Separator } from "@midasit-dev/moaui";
 import { dbRead } from "../pyscript_utils";
 import { useSnackbar } from "notistack";
+import { useTranslation } from 'react-i18next';
 
 const CompTimeHistory = () => {
+	const { t:translate, i18n: internationalization} = useTranslation();
+	const LanguageList: [string, string][] = [
+		["en", "en"],
+		["jp", "jp"],
+	]
+	const [language, setLanguage] = useRecoilState(Language);
+	const handleLanguageChange = (e: any) => {
+		setLanguage(e.target.value);
+		internationalization.changeLanguage(e.target.value);
+	}
 	const { enqueueSnackbar } = useSnackbar();
 
 	const [value, setValue] = useRecoilState(VarTHloadcase);
@@ -54,7 +65,16 @@ const CompTimeHistory = () => {
 		<GuideBox width="100%" spacing={2}>
 
 			<GuideBox width="100%" spacing={1}>
-				<Typography variant="h1">Time History Load Cases Name</Typography>
+				<GuideBox width="100%" row horSpaceBetween verCenter>
+					<Typography variant="h1">{translate("THLoadName_Title")}</Typography>
+					<DropList
+						width= {50}
+						itemList={new Map<string, string>(LanguageList as [string, string][])}
+						defaultValue={language}
+						value={language}
+						onChange={handleLanguageChange}
+					/>
+				</GuideBox>
 				<Separator />
 			</GuideBox>
 

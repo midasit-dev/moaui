@@ -1,23 +1,27 @@
 {
-  "name": "inertial-forces-controller-moaui",
+  "name": "create_alignment",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.22.11",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.6",
+    "@mui/x-data-grid": "^6.11.2",
+    "@nivo/core": "^0.83.0",
+    "@nivo/line": "^0.83.0",
+    "@nivo/scatterplot": "^0.83.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.68",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
-    "i18next": "^23.11.5",
-    "i18next-browser-languagedetector": "^8.0.0",
-    "i18next-http-backend": "^2.5.2",
+    "lodash": "^4.17.21",
+    "notistack": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^14.1.2",
     "react-scripts": "^5.0.1",
-    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -44,10 +48,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": ".",
   "devDependencies": {
-    "@midasit-dev/moaui": "^0.1.91",
-    "notistack": "^3.0.1",
-    "recoil": "^0.7.7"
+    "@midasit-dev/moaui": "^0.1.91"
   }
 }
