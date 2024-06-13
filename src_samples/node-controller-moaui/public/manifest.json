@@ -1,6 +1,6 @@
 {
-  "short_name": "Plug-in Title",
-  "name": "Plug-in Title",
+  "short_name": "Node Controller",
+  "name": "Node Controller",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,7 +11,7 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#fff",
-  "width": 600,
-  "height": 600
+  "background_color": "#f4f5f7",
+  "width": 350,
+  "height": 289
 }
