@@ -12,7 +12,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </Stack>
  * @returns React.ReactElement
  */
-const Stack = (props: StyledProps) => (<StyledComponent {...props} />);
+const Stack = (props: StyledProps) => {
+	const _props = { direction: "column", ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 Stack.defaultProps = {
 	direction: "column",
