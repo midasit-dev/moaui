@@ -21,7 +21,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * />
  * @returns React.ReactElement
 */
-const Check = forwardRef((props: StyledProps, ref: any) => (<StyledComponent {...props} inputRef={ref} />));
+const Check = forwardRef((props: StyledProps, ref: any) => {
+	const _props = { disabled: false, ariaLabel: "CheckBox", ...props } as StyledProps;
+  return <StyledComponent {..._props} inputRef={ref} />;
+});
 
 Check.defaultProps = {
 	disabled: false,
