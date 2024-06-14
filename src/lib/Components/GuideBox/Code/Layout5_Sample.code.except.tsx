@@ -13,9 +13,10 @@ import {
 const ComponentsGuideBoxLayout5 = () => {
   const visible = true;
 	const headers = ["Component", "column", "Cap 1", "Cap 2"];
+	const itemList = new Map([ ['Midas', 1], ['Civil', 2], ['Gen', 3], ['CIM', 4] ])
 	const rows = [
-		["Section", <DropList width={"100%"} />, <DropList width={"100%"} />, <DropList width={"100%"} />],
-		["Material", <DropList width={"100%"} />, <DropList width={"100%"} />, <DropList width={"100%"} />],
+		["Section", <DropList width={"100%"} itemList={itemList} value={1}/>, <DropList width={"100%"} itemList={itemList} value={1}/>, <DropList width={"100%"} itemList={itemList} value={1}/>],
+		["Material", <DropList width={"100%"} itemList={itemList} value={1}/>, <DropList width={"100%"} itemList={itemList} value={1}/>, <DropList width={"100%"} itemList={itemList} value={1}/>],
 		["Length(+Z)", <TextField width={"100%"} placeholder="12" textAlign="center"/>, <TextField width={"100%"} placeholder="1.2" textAlign="center"/>, <TextField width={"100%"} placeholder="0.15" textAlign="center"/>],
 	]
   return (
@@ -34,11 +35,11 @@ const ComponentsGuideBoxLayout5 = () => {
 			</GuideBox>
       <GuideBox show={visible} fill="2" width={"100%"} height={30} row horSpaceBetween verCenter>
 				<ComponentsTypographyBody1 />
-				<DropList width={"30%"} />
+				<DropList width={"30%"} itemList={itemList} value={1}/>
 			</GuideBox>
       <GuideBox show={visible} fill="2" width={"100%"} height={30} row horSpaceBetween verCenter>
 				<ComponentsTypographyBody1 />
-				<DropList width={"30%"} />
+				<DropList width={"30%"} itemList={itemList} value={1}/>
 			</GuideBox>
       <GuideBox
         show={visible}
