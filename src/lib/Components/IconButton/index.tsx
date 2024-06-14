@@ -5,7 +5,7 @@ import { toUnionType } from "../../Common/UnionType";
 
 /**
  * moaui Styled Icon Button
- * 
+ *
  * @param props - children, disabled, iconName, color, width, height, onClick, transparent, transparentColor, border
  * @example
  * <IconButton
@@ -24,30 +24,29 @@ import { toUnionType } from "../../Common/UnionType";
  * @returns JSX.Element
  */
 
-const IconButton = (props: StyledProps) => (<StyledComponent {...props} />);
-
-IconButton.defaultProps = {
-	onClick: () => {},
-	border: false,
-	transparent: false,
-	padding: '0.625rem',
-} as StyledProps;
+const IconButton = (props: StyledProps) => {
+  const _props = {
+    onClick: () => {},
+    border: false,
+    transparent: false,
+    padding: "0.625rem",
+    ...props,
+  };
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {
-	disabled: false,
-	color: toUnionType({ values: [ "normal", "negative" ]}),
-	iconName: "Apple",
-	width: "auto",
-	height: "auto",
-	onClick: () => {},
-	transparent: false,
-	transparentColor: "",
-	border: true,
-}
+  disabled: false,
+  color: toUnionType({ values: ["normal", "negative"] }),
+  iconName: "Apple",
+  width: "auto",
+  height: "auto",
+  onClick: () => {},
+  transparent: false,
+  transparentColor: "",
+  border: true,
+};
 
 export default IconButton;
 
-export {
-	type StyledProps as IconButtonProps,
-	SampleProps as IconButtonSample,
-}
+export { type StyledProps as IconButtonProps, SampleProps as IconButtonSample };
