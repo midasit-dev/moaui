@@ -16,11 +16,6 @@ function MidasController(props: StyledProps) {
 	return <StyledComponent {..._props} />
 }
 
-MidasController.defaultProps = {
-	icoSrc: '',
-	title: '',
-} as StyledProps;
-
 const SampleProps = {};
 
 export default MidasController;

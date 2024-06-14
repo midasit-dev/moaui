@@ -120,18 +120,6 @@ const TextFieldV2 = (props: StyledProps & StyledPropsExtension) => {
 	)
 }
 
-TextFieldV2.defaultProps = {
-	autoFocus: false,
-	type: "text",
-	title : "",
-	titlePosition : "left",
-	error : false,
-	disabled : false,
-	gap: 1,
-	inputAlign: "left",
-	singleLineTitle: false,
-} as StyledProps & StyledPropsExtension;
-
 const SampleProps = {
 	id: "",
 	autoFocus: false,

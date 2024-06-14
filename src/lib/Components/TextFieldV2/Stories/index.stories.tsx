@@ -52,5 +52,15 @@ export const TitleInputScale = LiveEditStory(cleanMask(TitleInputScaleCode));
 export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
-	args: TextFieldV2.defaultProps,
+	args: {
+		autoFocus: false,
+		type: "text",
+		title : "",
+		titlePosition : "left",
+		error : false,
+		disabled : false,
+		gap: 1,
+		inputAlign: "left",
+		singleLineTitle: false,
+	}
 };

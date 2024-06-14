@@ -1,8 +1,5 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-TableHead.defaultProps = {
-} as StyledProps;
-
 /**
  * moaui Styled Table Head
  * 
@@ -13,4 +10,6 @@ TableHead.defaultProps = {
  * </TableHead>
  * @returns React.ReactElement
  */
-export default function TableHead(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function TableHead(props: StyledProps) { 
+  return (<StyledComponent {...props} />)
+};

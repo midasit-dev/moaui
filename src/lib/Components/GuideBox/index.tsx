@@ -13,16 +13,6 @@ const GuideBox = (props: StyledProps) => {
   return <StyledComponent {..._props} />;
 };
 
-GuideBox.defaultProps = {
-	id: '',
-	show: false,
-	width: 'auto',
-	height: 'auto',
-	fill: '1',
-	opacity: 1,
-	duration: 1,
-} as StyledProps;
-
 const SampleProps = {};
 
 export default GuideBox;

@@ -17,11 +17,6 @@ const Icon = (props: StyledProps) => {
   return <StyledComponent {..._props} />;
 };
 
-Icon.defaultProps = {
-	iconName: "Add",
-	opacity: 1,
-} as StyledProps;
-
 const SampleProps = {
 	id: '',
 	iconName: "Apple",

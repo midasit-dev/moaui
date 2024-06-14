@@ -26,13 +26,6 @@ const Table = (props: StyledProps) => {
   return <StyledComponent {...props} />;
 };
 
-Table.defaultProps = {
-	id: "",
-	padding: 'normal',
-	size: 'medium',
-	stickyHeader: false,
-} as StyledProps;
-
 const SampleProps = {};
 
 export default Table;

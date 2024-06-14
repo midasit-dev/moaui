@@ -17,10 +17,6 @@ const Stack = (props: StyledProps) => {
   return <StyledComponent {..._props} />;
 };
 
-Stack.defaultProps = {
-	direction: "column",
-} as StyledProps;
-
 const SampleProps = {};
 
 export default Stack;

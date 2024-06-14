@@ -26,11 +26,6 @@ const Check = forwardRef((props: StyledProps, ref: any) => {
   return <StyledComponent {..._props} inputRef={ref} />;
 });
 
-Check.defaultProps = {
-	disabled: false,
-	ariaLabel: "CheckBox",
-} as StyledProps;
-
 const SampleProps = {
 	id: '',
 	defaultChecked: false,
