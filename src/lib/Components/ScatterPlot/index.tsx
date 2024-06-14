@@ -9,8 +9,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const ScatterPlot = (props: StyledProps) => (<StyledComponent {...props} />);
 
-ScatterPlot.defaultProps = {} as StyledProps;
-
 const SampleProps = {
 	data: [
 		{"id": "dot1", "data":  [{"x": 1.1, 		 "y": 2.1}]},
