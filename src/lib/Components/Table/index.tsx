@@ -15,7 +15,16 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </Table>
  * @returns React.ReactElement
  */
-const Table = (props: StyledProps) => (<StyledComponent {...props} />);
+const Table = (props: StyledProps) => {
+	const _props = {
+    id: "",
+    padding: "normal",
+    size: "medium",
+    stickyHeader: false,
+    ...props,
+  } as StyledProps;
+  return <StyledComponent {...props} />;
+};
 
 Table.defaultProps = {
 	id: "",
