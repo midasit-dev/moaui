@@ -29,5 +29,14 @@ export const WrappedWidth = LiveEditStory(cleanMask(WrappedWidthCode));
 export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
-	args: TextField.defaultProps,
+	args: {
+		autoFocus: false,
+    type: "text",
+    title: "",
+    titlePosition: "left",
+    error: false,
+    disabled: false,
+    spacing: 1,
+    textAlign: "left",
+	}
 };
