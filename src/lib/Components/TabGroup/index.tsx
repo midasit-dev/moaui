@@ -24,8 +24,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const TabGroup = (props: StyledProps) => (<StyledComponent {...props} />);
 
-TabGroup.defaultProps = {} as StyledProps;
-
 const SampleProps = {};
 
 export default TabGroup;
