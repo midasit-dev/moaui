@@ -8,8 +8,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const Grid = (props: StyledProps) => (<StyledComponent {...props} />);
 
-Grid.defaultProps = {} as StyledProps;
-
 const SampleProps = {};
 
 export default Grid;
