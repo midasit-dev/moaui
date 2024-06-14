@@ -24,11 +24,6 @@ const ListItem = (props: StyledProps) => {
   return <StyledComponent {..._props} />;
 };
 
-ListItem.defaultProps = {
-	paddingLeft: 0,
-	disableGutters: false
-} as StyledProps;
-
 const SampleProps = {};
 
 export default ListItem;
