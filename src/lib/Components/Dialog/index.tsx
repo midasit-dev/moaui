@@ -13,10 +13,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </Dialog>
  * @returns React.ReactElement
  */
-const Dialog = (props: StyledProps) => (<StyledComponent {...props} />);
-
-Dialog.defaultProps = {
-} as StyledProps;
+const Dialog = (props: StyledProps) => {
+	const _props = { headerTitle: "Dialog Title", ...props } as StyledProps;
+  return <StyledComponent {...props} />;
+};
 
 const SampleProps = {}
 
