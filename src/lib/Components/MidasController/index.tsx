@@ -11,8 +11,9 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * />
  * @returns React.ReactElement
  */
-function MidasController(props: StyledProps) {	
-	return <StyledComponent {...props} />
+function MidasController(props: StyledProps) {
+	const _props = { icoSrc: '', title: '', ...props } as StyledProps;
+	return <StyledComponent {..._props} />
 }
 
 MidasController.defaultProps = {
