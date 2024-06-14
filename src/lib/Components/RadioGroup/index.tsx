@@ -19,11 +19,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </RadioGroup>
  * @returns React.ReactElement
  */
-const RadioGroup = (props: StyledProps) => (<StyledComponent {...props} />);
-
-RadioGroup.defaultProps = {
-	ariaLabel: "Radio Group",
-} as StyledProps;
+const RadioGroup = (props: StyledProps) => {
+	const _props = { ariaLabel: "Radio Group", ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {};
 
