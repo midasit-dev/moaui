@@ -45,7 +45,7 @@ export type StyledProps = {
    *
    * @defaultValue () => {}
    */
-  onChange: (event: SelectChangeEvent) => void;
+  onChange?: (event: SelectChangeEvent) => void;
   /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.

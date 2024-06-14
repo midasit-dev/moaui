@@ -19,14 +19,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @returns {React.ReactElement} MoaDropList
  */
 
-const DropList = (props: StyledProps) => (<StyledComponent {...props} />);
-
-DropList.defaultProps = {
-	itemList : new Map(),
-	value : "",
-	onChange: () => {},
-	defaultValue: ""
-} as StyledProps;
+const DropList = (props: StyledProps) => {
+	const _props = { onChange: () => {}, defaultValue: "", ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {
 	width: '100px',
