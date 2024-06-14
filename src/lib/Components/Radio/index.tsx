@@ -15,13 +15,15 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * />
  * @returns React.ReactElement
  */
-const Radio = (props: StyledProps) => (<StyledComponent {...props} />);
-
-Radio.defaultProps = {
-	disabled: false,
-	value: "",
-	ariaLabel: "Radio button",
-} as StyledProps;
+const Radio = (props: StyledProps) => {
+	const _props = {
+    disalbed: false,
+    value: "",
+    ariaLabel: "Radio button",
+    ...props,
+  } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {
 	id: '',
