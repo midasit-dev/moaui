@@ -27,7 +27,7 @@ export type StyledProps = {
    * onChange={(color) => {}}
    * onChange={handleChange}
    */
-  onChange: (newColor: RgbColor) => void;
+  onChange?: (newColor: RgbColor) => void;
 
   /**
    * Show RGB Color TextField
