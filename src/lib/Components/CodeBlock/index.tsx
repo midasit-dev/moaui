@@ -8,17 +8,10 @@ import { toUnionType } from "../../Common/UnionType";
  * @link https://github.com/react-syntax-highlighter/react-syntax-highlighter
  * @returns A code block with syntax highlighting
  */
-function CodeBlock(props: StyledProps) {	
-	return <StyledComponent {...props} />
+function CodeBlock(props: StyledProps) {
+	const _props = { language: "js", title: "", radius: 8, width: "100%", ...props } as StyledProps;
+	return <StyledComponent {..._props} />
 }
-
-CodeBlock.defaultProps = {
-	children: "",
-	language: "js",
-	title: "",
-	radius: 8,
-	width: "100%",
-} as StyledProps;
 
 const SampleProps = {
 	id: '',
