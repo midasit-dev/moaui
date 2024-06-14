@@ -18,12 +18,9 @@ import { toUnionType } from "../../Common/UnionType";
  * @returns React.ReactElement
  */
 function Chip(props: StyledProps) {	
-	return <StyledComponent {...props} />
+	const _props = { title : '', ...props } as StyledProps;
+	return <StyledComponent {..._props} />
 }
-
-Chip.defaultProps = {
-	title: '',
-} as StyledProps;
 
 const SampleProps = {
 	id: '',
