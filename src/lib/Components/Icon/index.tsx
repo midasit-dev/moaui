@@ -14,7 +14,7 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const Icon = (props: StyledProps) => {
 	const _props = { opacity: 1, ...props } as StyledProps;
-  return <StyledComponent {...props} />;
+  return <StyledComponent {..._props} />;
 };
 
 Icon.defaultProps = {
