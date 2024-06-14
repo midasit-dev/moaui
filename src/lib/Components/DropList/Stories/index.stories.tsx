@@ -33,5 +33,16 @@ export const ItemListFromArray = LiveEditStory(cleanMask(ItemListFromArrayCode))
 export const DataSet = LiveEditStory(cleanMask(DataSetCode));
 
 export const Sample: Story = {
-  args: DropList.defaultProps
+  args: {
+		width: '100px',
+		itemList: new Map([ ['Midas', 1], ['Civil', 2], ['Gen', 3], ['CIM', 4] ]),
+		onChange: () => {},
+		value: 1,
+		defaultValue: 1,
+		disabled: false,
+		backgroundColor: 'white',
+		listWidth: '100px',
+		placeholder: 'placeholder',
+		maxLength: 10,
+	}
 };

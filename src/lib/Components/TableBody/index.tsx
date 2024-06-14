@@ -1,8 +1,5 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-TableBody.defaultProps = {
-} as StyledProps;
-
 /**
  * maoui Styled Table Body
  * 

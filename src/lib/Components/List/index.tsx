@@ -14,11 +14,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </List>
  * @returns React.ReactElement
  */
-const List = (props: StyledProps) => (<StyledComponent {...props}/>);
-
-List.defaultProps = {
-	dense: true,
-} as StyledProps;
+const List = (props: StyledProps) => {
+	const _props = { dense: true, disablePadding: false, ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {};
 

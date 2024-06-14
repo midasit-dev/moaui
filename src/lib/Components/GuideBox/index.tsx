@@ -8,17 +8,10 @@ import StyledComponent, { type StyledProps, fillColor } from "./Styled";
  * <GuideBox id="" show={true} width={100} height={100} fill='1' /> 
  * @returns React.ReactElement
  */
-const GuideBox = (props: StyledProps) => (<StyledComponent {...props} />);
-
-GuideBox.defaultProps = {
-	id: '',
-	show: false,
-	width: 'auto',
-	height: 'auto',
-	fill: '1',
-	opacity: 1,
-	duration: 1,
-} as StyledProps;
+const GuideBox = (props: StyledProps) => {
+	const _props = { id:'', show: false, width: 'auto', height: 'auto', fill: '1', opacity: 1, duration: 1, ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {};
 

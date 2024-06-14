@@ -33,21 +33,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * />
  * @returns React.ReactElement
  */
-function ChartLine(props: StyledProps) {	
-	return <StyledComponent {...props} />
+function ChartLine(props: StyledProps) {
+	const _props = { width: '100%', height: 400, axisTop: false, axisRight: false, axisLeft: false, axisBottom: false, legends: false, pointSize: 2, ...props } as StyledProps;
+	return <StyledComponent {..._props} />
 }
-
-ChartLine.defaultProps = {
-	data: [],
-	width: '100%',
-	height: 400,
-	axisTop: false,
-	axisRight: false,
-	axisLeft: false,
-	axisBottom: false,
-	legends: false,
-	pointSize: 2,
-} as StyledProps;
 
 const SampleProps = {
 	data: [

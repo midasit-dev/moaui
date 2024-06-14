@@ -455,64 +455,66 @@ def sort_global_coords(x_global_coords, y_global_coords, z_global_coords):
 
 """##################################################################################################################"""
 def proc(ap_profile, node, elem):
-	ap_profile = json.loads(ap_profile)
-	node = json.loads(node)
-	elem = json.loads(elem)
-	sorted_node_list, sorted_elem_list = sort_node_elem_list(ap_profile["ELEM"], elem, ap_profile["AXIS_IJ"])
-	elem_lengths, acc_elem_lengths = calculate_element_lengths(sorted_node_list, node, elem, ap_profile["INS_PT"], ap_profile["INS_ELEM"] )
-    
-	if ap_profile["INPUT"] == "3D" :
-		x_coords, y_re_coords, z_re_coords = tendon_relative_3D_y_z_coordinate(ap_profile["PROF"], ap_profile["OFF_YZ"], ap_profile["XAR_ANGLE"], ap_profile["bPJ"], ap_profile["AXIS_IJ"])
+    ap_profile = json.loads(ap_profile)
+    node = json.loads(node)
+    elem = json.loads(elem)
+    sorted_node_list, sorted_elem_list = sort_node_elem_list(ap_profile["ELEM"], elem, ap_profile["AXIS_IJ"])
+    elem_lengths, acc_elem_lengths = calculate_element_lengths(sorted_node_list, node, elem, ap_profile["INS_PT"], ap_profile["INS_ELEM"] )
 
-	elif ap_profile["INPUT"] == "2D" :
-		x_coords, y_re_coords, z_re_coords = tendon_relative_2D_y_z_coordinate(ap_profile["PROFY"], ap_profile["PROFZ"], ap_profile["OFF_YZ"], ap_profile["XAR_ANGLE"], ap_profile["bPJ"], ap_profile["AXIS_IJ"])
+    if ap_profile["INPUT"] == "3D" :
+        x_coords, y_re_coords, z_re_coords = tendon_relative_3D_y_z_coordinate(ap_profile["PROF"], ap_profile["OFF_YZ"], ap_profile["XAR_ANGLE"], ap_profile["bPJ"], ap_profile["AXIS_IJ"])
 
-	x_re_coords, elem_inx = tendon_relative_x_coordinate(acc_elem_lengths, x_coords)
-	x_global_coords, y_global_coords, z_global_coords = tendon_absolute_coordinates(node,sorted_node_list,elem_inx,x_re_coords,y_re_coords,z_re_coords)
-	x_global_re_coords, y_global_re_coords, z_global_re_coords = sort_global_coords(x_global_coords, y_global_coords, z_global_coords)
+    elif ap_profile["INPUT"] == "2D" :
+        x_coords, y_re_coords, z_re_coords = tendon_relative_2D_y_z_coordinate(ap_profile["PROFY"], ap_profile["PROFZ"], ap_profile["OFF_YZ"], ap_profile["XAR_ANGLE"], ap_profile["bPJ"], ap_profile["AXIS_IJ"])
 
-	# 변환할 텐던 프로파일을 복사
-	new_tdna = ap_profile
+    x_re_coords, elem_inx = tendon_relative_x_coordinate(acc_elem_lengths, x_coords)
+    x_global_coords, y_global_coords, z_global_coords = tendon_absolute_coordinates(node,sorted_node_list,elem_inx,x_re_coords,y_re_coords,z_re_coords)
+    x_global_re_coords, y_global_re_coords, z_global_re_coords = sort_global_coords(x_global_coords, y_global_coords, z_global_coords)
 
-	# STARIGHT 용으로 데이터를 다시 만든다.
-	new_tdna["SHAPE"] = "STRAIGHT"
-	del new_tdna["INS_PT"]
-	del new_tdna["AXIS_IJ"]
-	del new_tdna["XAR_ANGLE"]
-	del new_tdna["OFF_YZ"]
+    # 변환할 텐던 프로파일을 복사
+    new_tdna = ap_profile
 
-	"""기존의 2-D tendon profile들은 (x,y)와 (x,z) 좌표 갯수가 맞지 않을 수 있다. 그렇기에 갯수가 동일한 3D와 달리 2-D tendon profile은 straight 용 데이터의 길이만큼 (x,y), (x,z)의 좌표를 생성한다."""
-	N_Profy =[]
-	N_Profz =[]
-	# 계산된 절대좌표를 입력한다.
-	if ap_profile["INPUT"] == "3D" :
-		for i in range(len(new_tdna["PROF"])) :
-			new_tdna["PROF"][i]["PT"][0] = x_global_re_coords[i]
-			new_tdna["PROF"][i]["PT"][1] = y_global_re_coords[i]
-			new_tdna["PROF"][i]["PT"][2] = z_global_re_coords[i]
+    # STARIGHT 용으로 데이터를 다시 만든다.
+    new_tdna["SHAPE"] = "STRAIGHT"
+    del new_tdna["INS_PT"]
+    del new_tdna["AXIS_IJ"]
+    ## Simon - 2024 06 10
+    ## Modify 시 XAR_ANGLE 에 대한 데이터가 남아 있어, XAR_ANGLE을 0 으로 설정하여 데이터 구성
+    new_tdna["XAR_ANGLE"] = 0
+    del new_tdna["OFF_YZ"]
 
-	elif ap_profile["INPUT"] == "2D" :
-		for i in range(len(x_global_re_coords)) :
-			N_Profy.append({
-				"PT" : [x_global_re_coords[i], y_global_re_coords[i]],
-				"bFiX" : False,
-				"R" : 0,
-				"RADIUS" : 0,
-				"OPT" : "NONE",
-				"bBOTZ" : False
-			})
-		for i in range(len(x_global_re_coords)) :
-			N_Profz.append({
-				"PT" : [x_global_re_coords[i], z_global_re_coords[i]],
-				"bFiX" : False,
-				"R" : 0,
-				"RADIUS" : 0,
-				"OPT" : "NONE",
-				"bBOTZ" : False
-			})     
+    """기존의 2-D tendon profile들은 (x,y)와 (x,z) 좌표 갯수가 맞지 않을 수 있다. 그렇기에 갯수가 동일한 3D와 달리 2-D tendon profile은 straight 용 데이터의 길이만큼 (x,y), (x,z)의 좌표를 생성한다."""
+    N_Profy =[]
+    N_Profz =[]
+    # 계산된 절대좌표를 입력한다.
+    if ap_profile["INPUT"] == "3D" :
+        for i in range(len(new_tdna["PROF"])) :
+            new_tdna["PROF"][i]["PT"][0] = x_global_re_coords[i]
+            new_tdna["PROF"][i]["PT"][1] = y_global_re_coords[i]
+            new_tdna["PROF"][i]["PT"][2] = z_global_re_coords[i]
 
-	new_tdna["PROFY"] = N_Profy
-	new_tdna["PROFZ"] = N_Profz
+    elif ap_profile["INPUT"] == "2D" :
+        for i in range(len(x_global_re_coords)) :
+            N_Profy.append({
+                "PT" : [x_global_re_coords[i], y_global_re_coords[i]],
+                "bFiX" : False,
+                "R" : 0,
+                "RADIUS" : 0,
+                "OPT" : "NONE",
+                "bBOTZ" : False
+            })
+        for i in range(len(x_global_re_coords)) :
+            N_Profz.append({
+                "PT" : [x_global_re_coords[i], z_global_re_coords[i]],
+                "bFiX" : False,
+                "R" : 0,
+                "RADIUS" : 0,
+                "OPT" : "NONE",
+                "bBOTZ" : False
+            })     
 
-	# 새로운 프로파일을 등록한다.
-	return json.dumps(new_tdna)
+    new_tdna["PROFY"] = N_Profy
+    new_tdna["PROFZ"] = N_Profz
+
+    # 새로운 프로파일을 등록한다.
+    return json.dumps(new_tdna)

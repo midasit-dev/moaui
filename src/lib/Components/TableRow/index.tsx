@@ -1,10 +1,5 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-TableRow.defaultProps = {
-	hover: false,
-	selected: false,
-} as StyledProps;
-
 /**
  * moaui Styled Table Row
  * 
@@ -19,4 +14,7 @@ TableRow.defaultProps = {
  * </TableRow>
  * @returns React.ReactElement
  */
-export default function TableRow(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function TableRow(props: StyledProps) { 
+	const _props = { hover: false, selected: false, ...props} as StyledProps;
+	return (<StyledComponent {..._props} />) 
+};

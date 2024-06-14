@@ -12,11 +12,10 @@ import { toUnionType } from "../../Common/UnionType";
  * />
  * @returns {React.ReactElement} MoaSeparator
  */
-const Separator = (props:StyledProps) => (<StyledComponent {...props}/>);
-
-Separator.defaultProps = {
-	direction: "horizontal"
-} as StyledProps;
+const Separator = (props: StyledProps) => {
+	const _props = { direction: "horizontal", ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {
 	direction: toUnionType({ values: ['horizontal', 'vertical'] }),

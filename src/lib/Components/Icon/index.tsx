@@ -12,12 +12,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * />
  * @returns React.ReactElement
  */
-const Icon = (props: StyledProps) => (<StyledComponent {...props} />);
-
-Icon.defaultProps = {
-	iconName: "Add",
-	opacity: 1,
-} as StyledProps;
+const Icon = (props: StyledProps) => {
+	const _props = { opacity: 1, ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {
 	id: '',

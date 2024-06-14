@@ -1,3 +1,4 @@
+import { StyledComponentProps } from "@mui/material";
 import StyledComponent, { 
 	type StyledProps, 
 	GridToolbar,
@@ -11,12 +12,9 @@ import StyledComponent, {
  * @param {StyledProps} props - onCellClick, onCellKeyDown, onCellEditStart, onCellEditStop, columnMenu, columnSelector, columnFilter, densitySelector, disableRowSelectionOnClick
  * @returns React.ReactElement
  */
-export default function DataGrid(props: StyledProps) { return (<StyledComponent {...props} />) };
-
-DataGrid.defaultProps = {
-	rows: [],
-	columns: [],
-} as StyledProps;
+export default function DataGrid(props: StyledProps) {
+	return (<StyledComponent {...props} />)
+};
 
 const SampleProps = {
 	rows: [

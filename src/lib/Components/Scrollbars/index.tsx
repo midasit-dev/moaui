@@ -21,12 +21,10 @@ import { toUnionType } from "../../Common/UnionType";
  * </Scrollbars>
  * @returns React.ReactElement
  */
-const Scrollbars = (props: StyledProps) => (<StyledComponent {...props}/>);
-
-Scrollbars.defaultProps = {
-	outline: 'box',
-	titleAlign: 'left',
-} as StyledProps;
+const Scrollbars = (props: StyledProps) => {
+	const _props = { outline: 'box', titleAlign: 'left', ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {
 	id: '',

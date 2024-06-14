@@ -13,8 +13,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const ListItemButton = (props: StyledProps) => (<StyledComponent {...props}/>);
 
-ListItemButton.defaultProps = {} as StyledProps;
-
 const SampleProps = {};
 
 export default ListItemButton;

@@ -12,9 +12,9 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </CheckGroup> 
  * @returns React.ReactElement
  */
-const CheckGroup = (props: StyledProps) => (<StyledComponent {...props} />);
-
-CheckGroup.defaultProps = {};
+const CheckGroup = (props: StyledProps) => {
+  return <StyledComponent {...props} />;
+};
 
 const SampleProps = {};
 

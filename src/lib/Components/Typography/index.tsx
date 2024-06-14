@@ -26,39 +26,33 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @returns TypographyComponent
  */
 const Typography = (props: StyledProps) => {
-	const children = props.children;
-	return (
-		<StyledComponent {...props}>
-			{children}
-		</StyledComponent>
-	)
-}
-
-Typography.defaultProps = {
-	children: "",
-	variant: "body1",
-	color: "primary",
-} as StyledProps;
+  const _props = {
+    children: "",
+    variant: "body1",
+    color: "primary",
+    ...props,
+  } as StyledProps;
+  return <StyledComponent {..._props}>{_props.children}</StyledComponent>;
+};
 
 const SampleProps = {
-	children: "Typography",
-	variant: toUnionType({ values: ["h1", "body1", "body2", "body3"] }),
-	color: toUnionType({ values: ["primary", "secondary", "tertiary", "quaternary"] }),
-	width: 'auto',
-	height: 'auto',
-	size: toUnionType({ values: ["small", "medium", "large"] }),
-	verTop: false,
-	verCenter: false,
-	verBottom: false,
-	horLeft: false,
-	horCenter: false,
-	horRight: false,
-	center: false,
+  children: "Typography",
+  variant: toUnionType({ values: ["h1", "body1", "body2", "body3"] }),
+  color: toUnionType({
+    values: ["primary", "secondary", "tertiary", "quaternary"],
+  }),
+  width: "auto",
+  height: "auto",
+  size: toUnionType({ values: ["small", "medium", "large"] }),
+  verTop: false,
+  verCenter: false,
+  verBottom: false,
+  horLeft: false,
+  horCenter: false,
+  horRight: false,
+  center: false,
 };
 
 export default Typography;
 
-export {
-	type StyledProps as TypographyProps,
-	SampleProps as TypographySample,
-}
+export { type StyledProps as TypographyProps, SampleProps as TypographySample };
