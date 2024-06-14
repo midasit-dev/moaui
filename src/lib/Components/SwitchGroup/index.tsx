@@ -15,8 +15,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const SwitchGroup = (props: StyledProps) => (<StyledComponent {...props} />);
 
-SwitchGroup.defaultProps = {} as StyledProps;
-
 const SampleProps = {};
 
 export default SwitchGroup;
