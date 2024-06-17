@@ -2,6 +2,7 @@ import React from "react";
 import m from "@midasit-dev/moaui";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useQuery } from 'react-query';
+import { set } from "lodash";
 
 const queryClient = new QueryClient();
 const WrappingReactQuery = () => {
@@ -47,6 +48,7 @@ const App = () => {
 	const [ enableX, setEnableX ] = React.useState(true);
 	const [ enableY, setEnableY ] = React.useState(true);
 	const [ enableZ, setEnableZ ] = React.useState(true);
+	const [ log, setLog ] = React.useState<Array<string>>([]);
 
 	// 페이지가 focus 되었을 때 refetch 실행
 	React.useEffect(() => {
@@ -138,7 +140,8 @@ const App = () => {
 			<SelectedNodesTextField toggle={toggle} selectedNodesState={[selectedNodes, selNodeCount]} reactQuery={[refetch]} />
 			<DistanceToMoveTextField toggle={toggle} distanceToMoveState={[distanceToMove, setDistanceToMove]} />
 			<XYZTextFields coordinateState={[x, setX, y, setY, z, setZ]} enableState={[enableX, enableY, enableZ]} distanceToMoveState={[distanceToMove]} />
-			<ApplyCreateButton toggle={toggle} coordinateState={[x, y, z]} enableState={[enableX, enableY, enableZ]} selectedNodesState={[selectedNodes]} />
+			<ApplyCreateButton toggle={toggle} coordinateState={[x, setX, y, setY, z, setZ]} enableState={[enableX, enableY, enableZ]} selectedNodesState={[selectedNodes]} logState={[setLog]} />
+			<ApplyCreateLogger logState={[log, setLog]} />
 
     </m.GuideBox>
   );
@@ -209,15 +212,18 @@ const XYZTextFields = (props: any) => {
     <m.GuideBox row spacing={1} verCenter width="100%" horSpaceBetween>
       <m.GuideBox center spacing={1}>
         <m.Typography color={!enableX ? "#aaa" : "#000"}>X(m)</m.Typography>
-        <m.TextFieldV2
-          disabled={!enableX}
-          type={!enableX ? "text" : "number"}
-          defaultValue={!enableX ? 'Var.' : x}
-          onChange={(e: any) => setX(Number(e.target.value))}
-					numberOptions={{
-						step: distanceToMove
-					}}
-        />
+				<m.GuideBox row spacing={1}>
+					<m.TextFieldV2
+						disabled={!enableX}
+						type={!enableX ? "text" : "number"}
+						defaultValue={!enableX ? 'Var.' : x}
+						value={!enableX ? 'Var.' : x}
+						onChange={(e: any) => setX(Number(e.target.value))}
+						numberOptions={{
+							step: distanceToMove
+						}}
+					/>
+				</m.GuideBox>
       </m.GuideBox>
 
       <m.GuideBox center spacing={1}>
@@ -226,6 +232,7 @@ const XYZTextFields = (props: any) => {
           disabled={!enableY}
           type={!enableY ? "text" : "number"}
           defaultValue={!enableY ? 'Var.' : y}
+					value={!enableY ? 'Var.' : y}
           onChange={(e: any) => setY(Number(e.target.value))}
 					numberOptions={{
 						step: distanceToMove
@@ -239,6 +246,7 @@ const XYZTextFields = (props: any) => {
           disabled={!enableZ}
           type={!enableZ ? "text" : "number"}
           defaultValue={!enableZ ? 'Var.' : z}
+					value={!enableZ ? 'Var.' : z}
           onChange={(e: any) => setZ(Number(e.target.value))}
 					numberOptions={{
 						step: distanceToMove
@@ -250,10 +258,11 @@ const XYZTextFields = (props: any) => {
 }
 
 const ApplyCreateButton = (props: any) => {
-	const { toggle, coordinateState, enableState, selectedNodesState } = props;
-	const [ x, y, z ] = coordinateState;
+	const { toggle, coordinateState, enableState, selectedNodesState, logState } = props;
+	const [ x, setX, y, setY, z, setZ ] = coordinateState;
 	const [ enableX, enableY, enableZ ] = enableState;
 	const [ selectedNodes ] = selectedNodesState;
+	const [ setLog ] = logState;
 
 	const applyHandler = React.useCallback(async () => {
 		try {
@@ -282,6 +291,10 @@ const ApplyCreateButton = (props: any) => {
 				const resPut = await fetch(endpoint, { method: 'PUT', headers, body: JSON.stringify({ 'Assign': rawBody }) });
 				if (resPut.ok) {
 					const data = await resPut.json();
+					setX(0);
+					setY(0);
+					setZ(0);
+					setLog((prev: Array<string>) => [`${selNodeIdsArr.length} nodes have been modified. (${x}, ${y}, ${z})`, ...prev]);
 					console.log('successfully apply', data);
 				} else {
 					console.error('failure apply', resPut.statusText);
@@ -292,7 +305,7 @@ const ApplyCreateButton = (props: any) => {
 		} catch (err) {
 			console.error('failure apply', err);
 		}
-	}, [selectedNodes, x, y, z, enableX, enableY, enableZ]);
+	}, [selectedNodes, enableX, x, enableY, y, enableZ, z, setX, setY, setZ, setLog]);
 
 	const createHandler = React.useCallback(async () => {
 		try {
@@ -334,6 +347,10 @@ const ApplyCreateButton = (props: any) => {
 				if (resPost.ok) {
 					const data = await resPost.json();
 					console.log('successfully create', data);
+					setX(0);
+					setY(0);
+					setZ(0);
+					setLog((prev: Array<string>) => [`${lastNodeId}: (${x}, ${y}, ${z}) created.`, ...prev]);
 				} else {
 					console.error('failure create', resPost.statusText);
 				}
@@ -341,7 +358,7 @@ const ApplyCreateButton = (props: any) => {
 		} catch (err) {
 			console.error('failure create', err);
 		}
-	}, [x, y, z]);
+	}, [setLog, setX, setY, setZ, x, y, z]);
 
 	return (
     <m.GuideBox width="100%" horRight>
@@ -361,4 +378,22 @@ const ApplyCreateButton = (props: any) => {
       )}
     </m.GuideBox>
   );
+}
+
+const ApplyCreateLogger = (props: any) =>{ 
+	const { logState } = props;
+	const [ log, setLog ] = logState;
+
+	return (
+		<m.Scrollbars width='100%' height={150}>
+			<m.GuideBox width='100%' spacing={1.5}>
+				<m.Typography variant="h1">Controlled Log</m.Typography>
+				<m.GuideBox spacing={0.5}>
+					{log.map((log: string, idx: number) => (
+						<m.Typography key={idx} variant="body1">{log}</m.Typography>
+					))}
+				</m.GuideBox>
+			</m.GuideBox>
+		</m.Scrollbars>
+	)
 }
