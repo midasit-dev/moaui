@@ -1,0 +1,12 @@
+{
+	"packages": [
+		"numpy"
+	],
+	"fetch": [
+		{
+			"files": [
+				"./py_base.py"
+			]
+		}
+	]
+}
