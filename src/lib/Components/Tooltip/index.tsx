@@ -18,8 +18,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const Tooltip = (props: StyledProps) => (<StyledComponent {...props} />);
 
-Tooltip.defaultProps = {} as StyledProps;
-
 const SampleProps = {};
 
 export default Tooltip;

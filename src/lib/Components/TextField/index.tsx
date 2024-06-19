@@ -31,11 +31,21 @@ import { GuideBox, Typography } from "../..";
  */
 
 const TextField = (props: StyledProps) => {
-	const {title, titlePosition, ...rest} = props;
+	const _props = {
+    autoFocus: false,
+    type: "text",
+    title: "",
+    titlePosition: "left",
+    error: false,
+    disabled: false,
+    spacing: 1,
+    textAlign: "left",
+    ...props,
+  } as StyledProps;
 
 	const WrappedStyles = {
-		width: props?.wrappedWidth || 'auto',
-		spacing: props?.spacing,
+		width: _props?.wrappedWidth || 'auto',
+		spacing: _props?.spacing,
 		verCenter: true,
 		horSpaceBetween: true,
 	}
@@ -43,43 +53,32 @@ const TextField = (props: StyledProps) => {
 	return (
 		<React.Fragment>
 			{
-				title !== "" && titlePosition === 'label' &&
+				_props.title !== "" && _props.titlePosition === 'label' &&
 					<GuideBox {...WrappedStyles}>
-						<GuideBox width='auto'><Typography>{`${title}`}</Typography></GuideBox>
-						<GuideBox width={props?.width}><StyledComponent {...rest} /></GuideBox>
+						<GuideBox width='auto'><Typography>{`${_props.title}`}</Typography></GuideBox>
+						<GuideBox width={props?.width}><StyledComponent {..._props} /></GuideBox>
 					</GuideBox>
 			}
 			{
-				title !== "" && titlePosition === 'left' &&
+				_props.title !== "" && _props.titlePosition === 'left' &&
 					<GuideBox {...WrappedStyles} row>
-						<GuideBox width='auto'><Typography>{`${title}`}</Typography></GuideBox>
-						<GuideBox width={props?.width}><StyledComponent {...rest} /></GuideBox>
+						<GuideBox width='auto'><Typography>{`${_props.title}`}</Typography></GuideBox>
+						<GuideBox width={props?.width}><StyledComponent {..._props} /></GuideBox>
 					</GuideBox>
 			}
 			{
-				title !== "" && titlePosition === 'right' &&
+				_props.title !== "" && _props.titlePosition === 'right' &&
 					<GuideBox {...WrappedStyles} row>
-						<GuideBox width={props?.width}><StyledComponent {...rest} /></GuideBox>
-						<GuideBox width='auto'><Typography>{`${title}`}</Typography></GuideBox>
+						<GuideBox width={props?.width}><StyledComponent {..._props} /></GuideBox>
+						<GuideBox width='auto'><Typography>{`${_props.title}`}</Typography></GuideBox>
 					</GuideBox>
 			}
-			{title === '' &&
-				<StyledComponent {...rest}/>
+			{_props.title === '' &&
+				<StyledComponent {..._props}/>
 			}
 		</React.Fragment>
 	)
 }
-
-TextField.defaultProps = {
-	autoFocus: false,
-	type: "text",
-	title : "",
-	titlePosition : "left",
-	error : false,
-	disabled : false,
-	spacing: 1,
-	textAlign: "left",
-} as StyledProps;
 
 const SampleProps = {
 	id: "",

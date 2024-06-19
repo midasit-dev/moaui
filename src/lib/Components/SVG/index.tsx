@@ -18,8 +18,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
 
 const SVG = (props: StyledProps) => (<StyledComponent	{...props} />);
 
-SVG.defaultProps = {}
-
 const SampleProps = {
 	id: "",
 	url: "https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/svg/midas_ci_mono_350_150.svg",

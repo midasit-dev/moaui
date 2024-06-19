@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#000000" />
+	<meta name="description" content="Web site created using cra-template-moaui" />
+	<link rel="icon" href="./favicon.ico">
+	<link rel="stylesheet" href="./index.css" />
+
+	<!-- PYSCRIPT Configuration -->
+	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+	<py-config type="json" src="./py_config.json"></py-config>
+
+	<script>
+    fetch('./manifest.json').then(response => response.json()).then(data => {
+        document.title = data.name;
+				document.bgColor = data.background_color;
+      }).catch(error => console.error('Error fetching manifest.json:', error));
+  </script>
+</head>
+
+<body>
+	<!-- The <noscript> HTML element defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser. -->
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+
+	<!-- Plug-in Item Title Bar Region -->
+	<div id="midas-controller"></div>
+
+	<div id="root"></div>
+	<py-script src="./py_main.py"></py-script>
+</body>
+
+</html>

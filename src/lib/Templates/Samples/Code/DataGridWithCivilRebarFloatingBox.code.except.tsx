@@ -36,6 +36,21 @@ const getColumnVisibilityModel = (count: number) => {
 	return result;
 }
 
+const rows = [
+	{ id: 1, Col1: "", Col2: "", Col3: "", Col4: "" },
+	{ id: 2, Col1: "", Col2: "", Col3: "", Col4: "" },
+	{ id: 3, Col1: "", Col2: "", Col3: "", Col4: "" },
+	{ id: 4, Col1: "", Col2: "", Col3: "", Col4: "" },
+]
+
+const columns = [
+	{ field: "id", headerName: "ID", width: 30, sortable: false },
+	{ field: "Col1", headerName: "Col1", width: 30, sortable: false, editable: true },
+	{ field: "Col2", headerName: "Col2", width: 30, sortable: false, editable: true },
+	{ field: "Col3", headerName: "Col3", width: 30, sortable: false, editable: true },
+	{ field: "Col4", headerName: "Col4", width: 30, sortable: false, editable: true },
+]
+
 const App = () => {
 	//Tab (TOP, BOTTOM)
 	const [curTab, setCurTab] = useState('Tab 1');
@@ -92,7 +107,7 @@ const App = () => {
 							</GuideBox>
 
 							<Panel variant='box' width="100%" height={290} padding={0}>
-								<DataGrid />
+								<DataGrid rows={rows} columns={columns}/>
 							</Panel>
 						</GuideBox>
 					</Panel>

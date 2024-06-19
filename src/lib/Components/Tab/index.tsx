@@ -24,8 +24,6 @@ import { toUnionType } from "../../Common/UnionType";
  */
 const Tab = (props: StyledProps) => ( <StyledComponent {...props} /> );
 
-Tab.defaultProps = {} as StyledProps;
-
 const SampleProps = {
 	id: '',
 	value: "value",

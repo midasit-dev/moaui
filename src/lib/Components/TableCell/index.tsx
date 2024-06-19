@@ -1,12 +1,5 @@
 import StyledComponent, { type StyledProps } from "./Styled";
 
-TableCell.defaultProps = {
-	align: 'center',
-	padding: 'normal',
-	size: 'medium',
-	variant: 'body',
-} as StyledProps;
-
 /**
  * moaui Styled Table Cell
  * 
@@ -28,4 +21,7 @@ TableCell.defaultProps = {
  * </TableCell>
  * @returns React.ReactElement
  */
-export default function TableCell(props: StyledProps) { return (<StyledComponent {...props} />) };
+export default function TableCell(props: StyledProps) {
+	const _props = { aling:'center', padding:'normal', size:'medium', variant:'body', ...props} as StyledProps;
+	return (<StyledComponent {..._props} />)
+};

@@ -15,15 +15,10 @@ import { toUnionType } from "../../Common/UnionType";
  * @returns 
  */
 
-const ColorPicker = (props: StyledProps) => (<StyledComponent {...props} />);
-
-ColorPicker.defaultProps = {
-	id: "ColorPickerId",
-	color: { r: 255, g: 255, b: 255 },
-	onChange: ()=>{},
-	showRGB: true,
-	direction: "column",
-} as StyledProps;
+const ColorPicker = (props: StyledProps) => {
+	const _props = { id: "ColorPickerId", color: { r: 255, g: 255, b: 255 }, onChange: () => {}, showRGB: true, direction: "column", ...props } as StyledProps;
+	return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {
   color: { r: 255, g: 255, b: 255 },

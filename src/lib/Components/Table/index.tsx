@@ -15,14 +15,16 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </Table>
  * @returns React.ReactElement
  */
-const Table = (props: StyledProps) => (<StyledComponent {...props} />);
-
-Table.defaultProps = {
-	id: "",
-	padding: 'normal',
-	size: 'medium',
-	stickyHeader: false,
-} as StyledProps;
+const Table = (props: StyledProps) => {
+	const _props = {
+    id: "",
+    padding: "normal",
+    size: "medium",
+    stickyHeader: false,
+    ...props,
+  } as StyledProps;
+  return <StyledComponent {...props} />;
+};
 
 const SampleProps = {};
 

@@ -21,5 +21,11 @@ type Story = StoryObj<typeof meta>;
 // export const Composite = LiveEditStory(cleanMask(CompositeCode));
 
 export const Sample: Story = {
-  args: ColorPicker.defaultProps,
+  args: {
+    id: "ColorPickerId",
+    color: { r: 255, g: 255, b: 255 },
+    onChange: () => {},
+    showRGB: true,
+    direction: "column",
+  },
 };

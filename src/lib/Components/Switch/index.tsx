@@ -18,8 +18,6 @@ function Switch(props: StyledProps) {
 	return <StyledComponent {...props} />
 };
 
-Switch.defaultProps = {} as StyledProps;
-
 const SampleProps = {
 	id: '',
 	checked: false,

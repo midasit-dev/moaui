@@ -22,16 +22,16 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * @returns JSX.Element
  */
 function Panel(props: StyledProps) : JSX.Element {
-	return ( <StyledComponent {...props} /> )
+	const _props = {
+    children: <></>,
+    variant: "shadow",
+    width: "fit-content",
+    height: "fit-content",
+    flexItem: false,
+    ...props,
+  } as StyledProps;
+	return ( <StyledComponent {..._props} /> )
 }
-
-Panel.defaultProps = {
-	children: <></>,
-	variant: 'shadow',
-	width: 'fit-content',
-	height: 'fit-content',
-	flexItem: false,
-} as StyledProps;
 
 const SampleProps = {
 	id: '',

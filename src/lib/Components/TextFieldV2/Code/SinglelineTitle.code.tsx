@@ -4,7 +4,7 @@ const ComponentsTextFieldSingleTitle = () => {
   return (
 		<>
 			<TextFieldV2
-				width="100px"
+				width="200px"
 				placeholder="placeholder"
 				title="verylongtitle"
 				titlePosition="left"
@@ -15,7 +15,7 @@ const ComponentsTextFieldSingleTitle = () => {
 				singleLineTitle={true}
 			/>
 			<TextFieldV2
-				width="100px"
+				width="200px"
 				placeholder="placeholder"
 				title="verylongtitle"
 				titlePosition="left"

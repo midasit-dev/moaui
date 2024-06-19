@@ -15,12 +15,14 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </ListItem>
  * @returns React.ReactElement
  */
-const ListItem = (props: StyledProps) => (<StyledComponent {...props}/>);
-
-ListItem.defaultProps = {
-	paddingLeft: 0,
-	disableGutters: false
-} as StyledProps;
+const ListItem = (props: StyledProps) => {
+	const _props = {
+    paddingLeft: 0,
+    disableGutters: false,
+    ...props,
+  } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {};
 

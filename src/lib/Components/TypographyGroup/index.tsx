@@ -11,12 +11,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * />
  * @returns JSX.Element
  */
-const TypographyGroup = (props: StyledProps) => (<StyledComponent {...props} />);
-
-TypographyGroup.defaultProps = {
-	titleText: "",
-	bodyText: ""
-} as StyledProps;
+const TypographyGroup = (props: StyledProps) => {
+	const _props = { ...props } as StyledProps;
+  return <StyledComponent {..._props} />;
+};
 
 const SampleProps = {};
 

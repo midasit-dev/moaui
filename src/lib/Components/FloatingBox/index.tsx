@@ -10,8 +10,6 @@ import StyledComponent, { type StyledProps } from "./Styled";
  */
 const FloatingBox = (props: StyledProps) => (<StyledComponent {...props} />);
 
-FloatingBox.defaultProps = {} as StyledProps;
-
 const SampleProps = {
 	id: '',
 	show: false,

@@ -16,13 +16,10 @@ import StyledComponent, { type StyledProps } from "./Styled";
  * </Alert>
  * @returns React.ReactElement
  */
-function Alert(props: StyledProps) {	
-	return <StyledComponent {...props} />
+function Alert(props: StyledProps) {
+	const _props = { title: "" , ...props } as StyledProps;
+	return <StyledComponent {..._props} />
 }
-
-Alert.defaultProps = {
-	title: '',
-} as StyledProps;
 
 const SampleProps = {
 	id: '',
