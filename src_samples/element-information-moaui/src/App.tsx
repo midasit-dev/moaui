@@ -64,20 +64,30 @@ const App = () => {
 	// refetch에 의해 data 변경 시 마다 선택 ELEM 상태 업데이트
 	React.useEffect(() => {
 		const init = async () => {
-			const getFetching = async (path: string): Promise<any> => {
+			const getFetching = async (path: string): Promise<object> => {
 				const url = await m.VerifyUtil.getBaseUrlAsync();
 				const mapiKey = m.VerifyUtil.getMapiKey();
 				const res = await fetch(`${url}${path}`, { headers: { 'Content-Type': 'application/json', 'MAPI-Key': mapiKey } });
-				if (res.ok) return await res.json();
-				else console.error('fetching error', path, res.statusText);
+				if (res.ok) {
+					return await res.json();
+				}
+				else {
+					console.error('fetching error', path, res.statusText);
+					return {};
+				}
 			};
 
 			const postFetching = async (path: string, body: any): Promise<any> => {
 				const url = await m.VerifyUtil.getBaseUrlAsync();
 				const mapiKey = m.VerifyUtil.getMapiKey();
 				const res = await fetch(`${url}${path}`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'MAPI-Key': mapiKey }, body: JSON.stringify(body) });
-				if (res.ok) return await res.json();
-				else console.error('fetching error', path, res.statusText);
+				if (res.ok) {
+					return await res.json();
+				}
+				else {
+					console.error('fetching error', path, res.statusText);
+					return {};
+				}
 			};
 
 			try {
@@ -102,7 +112,7 @@ const App = () => {
 				const indexWeightU = headers.indexOf("Unit Weight");
 				const indexWeightT = headers.indexOf("Total Weight");
 
-				const allBeamEndRelease = (await getFetching('/db/frls') as any)["FRLS"];
+				const allBeamEndRelease = (await getFetching('/db/frls') as any)["FRLS"] ?? {};
 
 				const resultRows = selElemArr.map((elementID: number, index: number) => {
 					const nodeConnectvity = allElemData[elementID]["NODE"].filter((num: number) => num !== 0).toString() ?? '-';
@@ -111,7 +121,7 @@ const App = () => {
 					const sectName = allSectData[allElemData[elementID]["SECT"]] ? allSectData[allElemData[elementID]["SECT"]]["SECT_NAME"] : '-';
 					const curWeightTBRow = allElemWeightData["DATA"].filter((row: any) => Number(row[indexElemID]) === elementID)[0];
 					let beamEndRelease = '-';
-					if (elementType === "BEAM") {
+					if (elementType === "BEAM" && Object.keys(allBeamEndRelease).length !== 0) {
 						const bers = allBeamEndRelease[elementID]["ITEMS"][0];
 						const is_fixed_I = bers["FLAG_I"].split('').every((char: string) => char === '0');
 						const str_i = is_fixed_I ? 'F' : 'P';
@@ -136,7 +146,7 @@ const App = () => {
 				setOpenDetail(false);
 				setSingleRow([]);
 			} catch ( err ) { 
-				console.error(err);
+				console.error('main logic error', err);
 			} finally {
 				setLoading(false);
 			}
