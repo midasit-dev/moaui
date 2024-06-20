@@ -1,0 +1,64 @@
+{
+  "name": "align-local-axis-for-element-moaui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@midasit-dev/moaui": "^0.1.137",
+    "@midasit-dev/playground": "^0.0.30",
+    "cors": "^2.8.5",
+    "i18next": "^23.11.5",
+    "i18next-browser-languagedetector": "^7.2.1",
+    "i18next-http-backend": "^2.5.2",
+    "jsoneditor": "^10.1.0",
+    "lodash": "^4.17.21",
+    "notistack": "^3.0.1",
+    "react": "^18.3.1",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^14.1.2",
+    "react-rnd": "^10.4.11",
+    "react-router-dom": "^6.23.1",
+    "recoil": "^0.7.7",
+    "uuid": "^9.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "cd src/DevTools && node server.js",
+    "css": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": ".",
+  "devDependencies": {
+    "@types/jsoneditor": "^9.9.5",
+    "@types/lodash": "^4.17.5",
+    "@types/node": "^16.18.100",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-rnd": "^8.0.0",
+    "@types/uuid": "^9.0.8",
+    "framer-motion": "^11.2.11",
+    "react-scripts": "^5.0.1",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^4.9.5"
+  }
+}
