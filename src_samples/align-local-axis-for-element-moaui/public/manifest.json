@@ -1,6 +1,6 @@
 {
-  "short_name": "Plug-in Title",
-  "name": "Plug-in Title",
+  "short_name": "Align Local Axis",
+  "name": "Align Local Axis",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,7 +11,7 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#fff",
-  "width": 600,
-  "height": 600
+  "background_color": "#f5f6f7",
+  "width": 400,
+  "height": 180
 }
