@@ -1,4 +1,4 @@
-import { Dimension2D, type CanvasDimension2D, StartCoordinate2D, Coord2D } from "@lib/Sketch/2D/types";
+import { Dimension2D, type CanvasDimension2D, StartCoordinate2D, Coord2D } from "@lab/Sketch/2D/types";
 
 /**
  * convert top-left x-coordinate to bottom-right x-coordinate

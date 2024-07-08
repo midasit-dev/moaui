@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Box } from "@lib/Sketch/2D";
-import { type CanvasDimension2D, type UserDefinedBox } from '@lib/Sketch/2D/types';
+import { Box } from "@lab/Sketch/2D";
+import { type CanvasDimension2D } from '@lab/Sketch/2D/types';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

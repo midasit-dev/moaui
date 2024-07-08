@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactP5Wrapper, P5CanvasInstance } from "@p5-wrapper/react";
-import { type UserDefinedBox, type Dimension2D, type Coord2D } from "@lib/Sketch/2D/types";
-import { toX, toY, toDimension2D, toCoord2D } from "@lib/Sketch/2D/utils";
+import { type UserDefinedBox, type Dimension2D, type Coord2D } from "@lab/Sketch/2D/types";
+import { toX, toY, toDimension2D, toCoord2D } from "@lab/Sketch/2D/utils";
 
 const Box = (props: UserDefinedBox) => {
 	const { canvasDim, startCoords, b, h } = props;
