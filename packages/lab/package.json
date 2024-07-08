@@ -1,33 +1,35 @@
 {
-  "name": "@midasit-dev/moaui-lab",
-  "version": "0.0.1",
-  "description": "<!-- markdownlint-disable-next-line -->\r <br />\r <p align=\"center\">\r   <a href=\"https://midasit.com/\" rel=\"noopener\" target=\"_blank\"><img width=\"150\" src=\"https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/svg/logo_circle_30p.svg\" alt=\"moaui logo\"></a>\r </p>",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
+  "name": "lab",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^7.1.0",
+    "@p5-wrapper/react": "^4.4.2",
+    "@types/node": "^16.18.101",
+    "@types/react": "^18.3.3",
+    "react": "^18.3.1",
+    "typescript": "^4.9.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "craco start",
+    "build": "craco build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/midasit-dev/moaui.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": {
-		"name": "midasit dev team",
-    "email": "developer@midasit.com",
-    "url": "https://github.com/midasit-dev"
-	},
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/midasit-dev/moaui/issues"
-  },
-  "homepage": "https://github.com/midasit-dev/moaui#readme",
-	"keywords": [
-    "moaui",
-    "midasit",
-    "plugin",
-    "react",
-    "react-components"
-  ]
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
