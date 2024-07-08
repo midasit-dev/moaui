@@ -1,0 +1,157 @@
+{
+  "name": "@midasit-dev/moaui-base",
+  "description": "react components for midas plugins",
+  "keywords": [
+    "moaui",
+    "midasit",
+    "plugin",
+    "react",
+    "react-components"
+  ],
+  "author": {
+    "name": "midasit dev team",
+    "email": "developer@midasit.com",
+    "url": "https://github.com/midasit-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/midasit-dev/moaui.git"
+  },
+  "homepage": "https://midasit-dev.github.io/moaui",
+  "contributors": [
+    {
+      "name": "lhy0118"
+    },
+    {
+      "name": "bce0404"
+    },
+    {
+      "name": "kh1012"
+    }
+  ],
+  "version": "0.1.137",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "browser": "./browser/specific/main.js",
+  "peerDependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.3",
+    "@mui/x-data-grid": "^6.19.5",
+    "@nivo/core": "^0.84.0",
+    "@nivo/line": "^0.84.0",
+    "@nivo/scatterplot": "^0.84.0",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.3",
+    "@mui/x-data-grid": "^6.19.5",
+    "@nivo/core": "^0.84.0",
+    "@nivo/line": "^0.84.0",
+    "@nivo/scatterplot": "^0.84.0",
+    "enzyme": "^3.11.0",
+    "lodash": "^4.17.21",
+    "pretendard": "^1.3.9",
+    "prettier": "^2.8.8",
+    "rc-scrollbars": "^1.1.6",
+    "react-colorful": "^5.6.1",
+    "react-grid-layout": "^1.4.4",
+    "react-spreadsheet": "^0.9.4",
+    "react-syntax-highlighter": "^15.5.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.23.8",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-interactions": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/blocks": "^7.6.17",
+    "@storybook/manager-api": "^7.6.17",
+    "@storybook/preset-create-react-app": "^7.6.17",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-webpack5": "^7.6.17",
+    "@storybook/theming": "^7.6.17",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/enzyme": "^3.10.18",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.1",
+    "@types/prettier": "^2.7.3",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-grid-layout": "^1.3.5",
+    "@types/react-syntax-highlighter": "^15.5.11",
+    "chromatic": "^11.0.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.21.2",
+    "react-scripts": "5.0.1",
+    "recoil": "^0.7.7",
+    "rehype-raw": "^7.0.0",
+    "rehype-sanitize": "^6.0.0",
+    "storybook": "^7.6.17",
+    "storybook-addon-code-editor": "^2.2.0",
+    "typescript": "^5.1.6",
+    "web-vitals": "^3.5.1"
+  },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "prepare-npmjs": "npm run update-testing-exports && node prepare.js && tsc -p tsconfig.npm.json",
+    "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish --access public",
+    "update-testing-exports": "cd src/lib && node testingCompsUpdate.js",
+    "prepare-storybook": "npm run update-testing-exports && tsc -p tsconfig.storybook.json",
+    "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
+    "build-storybook": "npm run prepare-storybook && storybook build",
+    "chromatic": "npm run prepare-storybook && npx chromatic --project-token=chpt_8c568868a09ebc7 --force-rebuild --exit-once-uploaded --auto-accept-changes"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:storybook/recommended"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "varsIgnorePattern": "^React$"
+        }
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/midasit-dev/moaui/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "@midasit-dev/moaui@0.0.52"
+}

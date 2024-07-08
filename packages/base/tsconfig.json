@@ -17,7 +17,21 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
-  }
+    "noEmit": false,
+    "jsx": "react-jsx",
+		"declaration": true,
+		"outDir": "./dist",
+		"importHelpers": true,
+		"noEmitHelpers": true,
+		"baseUrl": ".",
+		"paths": {
+      "@midasit-dev/moaui": ["./src/lib/"]
+    },
+    "downlevelIteration": true,
+  },
+	"include": [
+		"./src/lib/**/*.tsx", 
+		"./src/lib/**/*.ts",
+    "./src/lib/**/*.css"
+	]
 }
