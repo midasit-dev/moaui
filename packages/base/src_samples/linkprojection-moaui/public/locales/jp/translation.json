@@ -1,5 +1,0 @@
-{
-  "PluginMainDescription": "マスターノードから最も近いスレーブノードへのリンクを作成します。",
-  "MasterNodeSelection": "マスターノードを選択してください : ",
-  "SlaveNodeSelection": "スレーブノードを選択してください : "
-}
