@@ -9,7 +9,9 @@ import {
   Dialog,
   IconButton,
   Icon,
+	Button,
 } from "@midasit-dev/moaui";
+import { List, ListItem, ListItemButton, Check } from "@midasit-dev/moaui"; 
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   VarDesignDuctilityFactor,
@@ -22,6 +24,46 @@ import {
 import CompTypographyAndTextFieldNumOnly from "./TypographyAndTextFieldNumOnly";
 import { debounce } from 'lodash';
 
+const ComponentsListControlled = () => {
+	const [values, setValues] = React.useState([ false, false, false ]);
+
+	const handleListItemClick = (index: number) => {
+		const newValues = [...values];
+		newValues[index] = !newValues[index];
+		setValues(newValues);
+	}
+
+  return (
+    <List dense={true} disablePadding={true}>
+      <ListItem
+				secondaryAction={<Check checked={values[0]} />}
+				onClick={() => handleListItemClick(0)}
+      >
+        <ListItemButton padding={0.8}>
+          <Typography marginLeft={1}>List Item Button 1</Typography>
+        </ListItemButton>
+      </ListItem>
+			<ListItem
+        secondaryAction={<Check checked={values[1]} />}
+				onClick={() => handleListItemClick(1)}
+      >
+        <ListItemButton padding={0.8}>
+          <Typography marginLeft={1}>List Item Button 1</Typography>
+        </ListItemButton>
+      </ListItem>
+			<ListItem
+        secondaryAction={<Check checked={values[2]} />}
+				onClick={() => handleListItemClick(2)}
+      >
+        <ListItemButton padding={0.8}>
+          <Typography marginLeft={1}>List Item Button 1</Typography>
+        </ListItemButton>
+      </ListItem>
+			{values.map((value, index) => (<Typography key={index} marginTop={2} center>{value ? 'Checked' : 'UnChecked'}</Typography>))}
+    </List>
+  );
+}; 
+
 const CompSeismicData_NZS1170_5_2004 = (props: any) => {
 	const valids = useRecoilValue(VarValids);
 
@@ -30,8 +72,8 @@ const CompSeismicData_NZS1170_5_2004 = (props: any) => {
   const [design_ductility_factor, setDesign_ductility_factor] = useRecoilState(VarDesignDuctilityFactor);
 
 	return (
-		<GuideBox overflow='visible'>
-			<Panel variant="strock" width="100%" padding={2} border="1px solid #ddd">
+		<GuideBox overflow='visible' width={368}>
+			<Panel variant="strock" width="100%" padding={2}>
 				<GuideBox show fill='1' row borderRadius={1} center marginBottom={1}>
 					<Typography variant="h1">Seismic Data</Typography>
 					<CompInfoDialog />
@@ -53,7 +95,6 @@ export default CompSeismicData_NZS1170_5_2004;
 const CompDistanceFromNearestMajorFault = () => {
 	const valids = useRecoilValue(VarValids);
   const [distance_from_nearest_major_fault, setDistance_from_nearest_major_fault,] = useRecoilState(VarDistanceFromNearestMajorFault);
-
 	const [value, setValue] = React.useState(distance_from_nearest_major_fault);
 
 	//for 디바운스!
@@ -79,8 +120,8 @@ const CompDistanceFromNearestMajorFault = () => {
 				</GuideBox>
         <TextFieldV2
           error={!valids.VarDistanceFromNearestMajorFault(distance_from_nearest_major_fault)}
-          width={150}
-          height={30}
+          width={100}
+          height={25}
           placeholder="Input value ..."
           onChange={(e: any) => setValue(e.target.value)}
           value={value}
@@ -117,7 +158,7 @@ const CompSubSoilClass = () => {
           <Radio name="B" value="B" marginLeft={3} />
           <Radio name="C" value="C" marginLeft={3} />
           <Radio name="D" value="D" marginLeft={3} />
-          <Radio name="E" value="E" marginLeft={3} />
+          <Radio name="E" value="E" marginLeft={2} />
         </RadioGroup>
       </GuideBox>
     </GuideBox>
@@ -136,7 +177,7 @@ const CompInfoDialog = () => {
 				open={open}
 				setOpen={setOpen}
 				headerIcon={<Icon iconName="InfoOutlined" />}
-				headerTitle='Seismic Data'
+				headerTitle='Seismic Data : NZS1170.5 (2004)'
 			>
 				<GuideBox spacing={2}>
 					<GuideBox spacing={1}>

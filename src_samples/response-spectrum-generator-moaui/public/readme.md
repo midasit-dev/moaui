@@ -1,5 +1,3 @@
-![](https://hubs.ly/Q02hxwqB0)
-
 # Response Spectrum Generator
 - This plugin generates **Design Response Spectrum Data** based on the national code.
 
