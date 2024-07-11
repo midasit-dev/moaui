@@ -1,4 +1,4 @@
-import { Dimension2D, type CanvasDimension2D, StartCoordinate2D, Coord2D } from "@lab/Sketch/2D/types";
+import { Dimension2D, Canvas, StartCoordinate2D, Coord2D, CanvasDimension2D, Shape } from "@lab/Sketch/2D/types";
 
 /**
  * convert top-left x-coordinate to bottom-right x-coordinate
@@ -21,11 +21,11 @@ export const toY = (y: number, canvasH: number) => (canvasH / 2) - y;
  * @param canvasDim canvas types of dimension
  * @returns { width: number, height: number }
  */
-export const toDimension2D = (canvasDim: CanvasDimension2D): Dimension2D => {
-	if (canvasDim instanceof Array) {
-		return { width: canvasDim[0], height: canvasDim[1] };
+export const toDimension2D = (dim: CanvasDimension2D): Dimension2D => {
+	if (dim instanceof Array) {
+		return { width: dim[0], height: dim[1] };
 	}
-	return canvasDim;
+	return { width: dim.width, height: dim.height };
 }
 
 /**
@@ -38,4 +38,26 @@ export const toCoord2D = (startCoords: StartCoordinate2D): Coord2D => {
 		return { x: startCoords[0], y: startCoords[1] };
 	}
 	return startCoords;
+}
+
+/**
+ * default value of canvas
+ * @param width width of canvas
+ * @param height height of canvas
+ * @returns 
+ */
+export const defaultCanvasValue = (width: number = 100, height: number = 100): Required<Canvas> => {
+	return {
+		background: 'white',
+		dimension: { width, height }
+	};
+}
+
+export const defaultShapeValue = (x: number = 0, y: number = 0): Required<Shape> => {
+	return {
+		startCoords: { x, y },
+		fill: '#00bcd4', //에메랄드 그린
+		stroke: '#004346', //에메랄드 그린 어둡게
+		strokeWeight: 1
+	}
 }
