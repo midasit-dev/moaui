@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   webpack: {
     alias: {
-      '@lab': path.resolve(__dirname, 'src/lib'),
+      '@midasit-dev/moaui-lab': path.resolve(__dirname, 'src/lib'),
     },
   },
 };

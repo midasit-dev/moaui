@@ -1,11 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "skipLibCheck": true,
-		"baseUrl": "./src",
+		"outDir": "./dist",
+		"baseUrl": ".",
 		"paths": {
-			"@lab/*": ["./lib/*"],
+			"@midasit-dev/moaui-lab/*": ["./src/lib/*"],
 		}
   },
-  "include": ["src/**/*", "test/**/*"]
+  "include": [
+		"./src/**/*", 
+		"./test/**/*"
+	]
 }
