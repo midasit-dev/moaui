@@ -22,6 +22,6 @@
 		"importHelpers": true,
 		"noEmitHelpers": true,
 		"declaration": true,
-    "downlevelIteration": true,
+    "downlevelIteration": true
   }
 }

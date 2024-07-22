@@ -1,3 +1,3 @@
-export * as Sketch2DTypes from "./Sketch/2D/types";
+export * as Sketch2DTypes from "./Section/2D/types";
 
-export { default as Sketch2DBox } from "./Sketch/2D/Box";
+export { default as Sketch2DBox } from "./Section/2D/Box";

@@ -4,10 +4,10 @@
 		"outDir": "./dist",
 		"baseUrl": ".",
 		"paths": {
-			"@lablib/*": ["./src/lib/*"],
+			"@lablib/*": ["./src/lib/*"]
 		}
   },
   "include": [
-		"./src/**/*.*",
+		"./src/**/*.*"
 	]
 }
