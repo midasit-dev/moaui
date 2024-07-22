@@ -1,6 +1,6 @@
 {
   "name": "@midasit-dev/moaui-lab",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "private": false,
   "dependencies": {
     "@craco/craco": "^7.1.0",
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build"
+    "publish-npmjs": "node prepare.js && tsc -p tsconfig.npm.json && cd dist && npm publish --access public"
   },
   "eslintConfig": {
     "extends": [
