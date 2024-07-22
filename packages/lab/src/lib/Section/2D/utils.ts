@@ -7,7 +7,7 @@ import {
 	CanvasDimension2D, 
 	Shape, 
 	DimensionLine 
-} from "@lablib/Sketch/2D/types";
+} from "@lablib/Section/2D/types";
 
 /**
  * convert top-left x-coordinate to bottom-right x-coordinate

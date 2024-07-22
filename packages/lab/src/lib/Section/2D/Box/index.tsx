@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ReactP5Wrapper, P5CanvasInstance } from "@p5-wrapper/react";
-import { type UserDefinedBox, type Dimension2D, type Coord2D } from "@lablib/Sketch/2D/types";
-import { reverseY, toDimension2D, toCoord2D, defaultCanvasValue, defaultShapeValue } from "@lablib/Sketch/2D/utils";
-import { drawDimLine, ensureDimLine } from "@lablib/Sketch/2D/utils";
+import { type UserDefinedBox, type Dimension2D, type Coord2D } from "@lablib/Section/2D/types";
+import { reverseY, toDimension2D, toCoord2D, defaultCanvasValue, defaultShapeValue } from "@lablib/Section/2D/utils";
+import { drawDimLine, ensureDimLine } from "@lablib/Section/2D/utils";
 
 /* 
  * Shape of a Box (for 2D Sketch)
