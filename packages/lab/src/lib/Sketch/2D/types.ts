@@ -35,7 +35,7 @@ export type StartCoordinate2D = Coord2D | [number, number];
  * @var background is the background color of the canvas.
  * @var dimension is the dimension of the canvas.
  */
-export type Canvas = {
+export interface Canvas {
 	background?: string;
 	dimension?: CanvasDimension2D;
 };
@@ -47,11 +47,35 @@ export type Canvas = {
  * @var stroke is the stroke color of the shape.
  * @var strokeWeight is the stroke weight of the shape.
  */
-export type Shape = {
+export interface Shape {
 	startCoords?: StartCoordinate2D;
 	fill?: string;
 	stroke?: string;
 	strokeWeight?: number;
+}
+
+/**
+ * DimensionLine is a type that is used to define the properties of a shape. 치수선!
+ * @var offset is the offset of the dimension line.
+ * @var lineExtension is the line extension of the dimension line.
+ * @var lineExtensionAngle is the line extension angle of the dimension line.
+ * @var lineColor is the line color of the dimension line.
+ * @var lineWeight is the line weight of the dimension line.
+ * @var text is the text of the dimension line.
+ * @var textColor is the text color of the dimension line.
+ * @var textSize is the text size of the dimension line.
+ * @var textOffset is the text offset of the dimension line.
+ */
+export interface DimensionLine {
+	offset?: number;
+	lineExtension?: number;
+	lineExtensionAngle?: number;
+	lineColor?: string;
+	lineWeight?: number;
+	text?: string | null;
+	textColor?: string;
+	textSize?: number;
+	textOffset?: number;
 }
 
 /**
@@ -62,18 +86,25 @@ export type Shape = {
 export interface UserDefined {
 	canvas?: Canvas;
 	shape?: Shape;
+	dimensionLine?: DimensionLine;
+}
+
+export interface DimensionLineBox {
+	bottom?: DimensionLine;
+	right?: DimensionLine;
+	top?: DimensionLine;
+	left?: DimensionLine;
 }
 
 /**
  * PreDefined is a type that is used to define the properties of a shape.
+ * @var dimensionLine is the dimension line of the box. (top, left, right, bottom)
  * @var b is width of the shape.
  * @var h is height of the shape.
  */
-export interface UserDefinedBox extends UserDefined {
+export interface UserDefinedBox extends Omit<UserDefined, 'dimensionLine'> {
+	dimensionLine?: DimensionLineBox;
+
 	b: number;
 	h: number;
 }
-
-// export interface UserDefinedH extends UserDefined {
-// 	r: number;
-// }
