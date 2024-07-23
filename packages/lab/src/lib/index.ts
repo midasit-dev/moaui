@@ -1,3 +1,4 @@
-export * as Sketch2DTypes from "./Section/2D/types";
-
-export { default as Sketch2DBox } from "./Section/2D/Box";
+export { 
+	SolidRectangle as Section2DSolidRectangle,
+	HSection as Section2DHSection,
+} from "@lablib/Section/2D";

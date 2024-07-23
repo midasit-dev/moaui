@@ -59,16 +59,16 @@ export const toCoord2D = (startCoords: StartCoordinate2D): Coord2D => {
  */
 export const defaultCanvasValue = (width: number = 100, height: number = 100): Required<Canvas> => {
 	return {
-		background: 'white',
-		dimension: { width, height }
+		background: null,
+		dimension: { width, height },
 	};
 }
 
 export const defaultShapeValue = (x: number = 0, y: number = 0): Required<Shape> => {
 	return {
 		startCoords: { x, y },
-		fill: '#00bcd4', //에메랄드 그린
-		stroke: '#004346', //에메랄드 그린 어둡게
+		fill: 'white', 
+		stroke: 'black', 
 		strokeWeight: 1
 	}
 }

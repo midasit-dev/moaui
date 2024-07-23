@@ -32,11 +32,12 @@ export type StartCoordinate2D = Coord2D | [number, number];
 
 /**
  * Canvas is a type that is used to define the properties of a shape.
+ * @var padding is the padding of the canvas. (default: 0, 1 -> 8px)
  * @var background is the background color of the canvas.
  * @var dimension is the dimension of the canvas.
  */
 export interface Canvas {
-	background?: string;
+	background?: string | null;
 	dimension?: CanvasDimension2D;
 };
 
@@ -79,32 +80,57 @@ export interface DimensionLine {
 }
 
 /**
- * UserDefined is a type that is used to define the properties of a shape.
- * @var canvasDim is the dimension of the canvas.
- * @var startCoords is the starting coordinates of the shape.
- */
-export interface UserDefined {
-	canvas?: Canvas;
-	shape?: Shape;
-	dimensionLine?: DimensionLine;
-}
-
-export interface DimensionLineBox {
-	bottom?: DimensionLine;
-	right?: DimensionLine;
-	top?: DimensionLine;
-	left?: DimensionLine;
-}
-
-/**
  * PreDefined is a type that is used to define the properties of a shape.
- * @var dimensionLine is the dimension line of the box. (top, left, right, bottom)
+ * @var dimensionLine is the dimension line of the SolidRectangle. (b, h)
+ * @var shape is the shape of the SolidRectangle.
  * @var b is width of the shape.
  * @var h is height of the shape.
  */
-export interface UserDefinedBox extends Omit<UserDefined, 'dimensionLine'> {
-	dimensionLine?: DimensionLineBox;
+export interface SolidRectangleProps {
+	canvas?: Canvas;
+	shape?: Shape;
+	dimensionLine?: {
+		b?: DimensionLine;
+		h?: DimensionLine;
+	};
 
 	b: number;
 	h: number;
+}
+
+/**
+ * HSectionProps is a type that is used to define the properties of a shape.
+ * @var dimensionLine is the dimension line of the HSection.
+ * @var shape is the shape of the HSection.
+ * @var h is the height of the shape.
+ * @var tw is the width of the web.
+ * @var b1 is the width of the top flange.
+ * @var tf1 is the thickness of the top flange.
+ * @var b2 is the width of the bottom flange.
+ * @var tf2 is the thickness of the bottom flange.
+ * @var r1 is the radius of the top flange.
+ * @var r2 is the radius of the bottom flange.
+ */
+export interface HSectionProps {
+	canvas?: Canvas;
+	shape?: Shape;
+	dimensionLine?: {
+		h?: DimensionLine;
+		tw?: DimensionLine;
+		b1?: DimensionLine;
+		tf1?: DimensionLine;
+		b2?: DimensionLine;
+		tf2?: DimensionLine;
+		r1?: DimensionLine;
+		r2?: DimensionLine;
+	};
+
+	h: number;
+	tw: number;
+	b1: number;
+	tf1: number;
+	b2: number;
+	tf2: number;
+	r1: number;
+	r2: number;
 }
