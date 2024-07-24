@@ -54,3 +54,20 @@ export const NoCanvas = () => {
 		/>
 	)
 }
+
+export const AutoScale = () => {
+	return (
+		<SolidRectangle
+			canvas={{
+				dimension: {
+					width: 500,
+					height: 500,
+				},
+				autoScale: true, // 기본 값
+			}}
+			referLine={{ b: {}, h: {}, }}
+			b={100}
+			h={100}
+		/>
+	)
+}

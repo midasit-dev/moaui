@@ -5,8 +5,8 @@ export const Default = () => {
     <HSection
 			canvas={{
 				dimension: {
-					width: 500,
-					height: 500,
+					width: 400,
+					height: 400,
 				}
 			}}
 			referLine={{ h: {}, tw: {}, b1: {}, tf1: {}, b2: {}, tf2: {}, r1: {}, r2: {}, }}
@@ -25,6 +25,13 @@ export const Default = () => {
 export const NoCanvas = () => {
 	return (
     <HSection
+			canvas={{
+				dimension: {
+					width: 500,
+					height: 500,
+				},
+				autoScale: false,
+			}}
       referLine={{ h: {}, tw: {}, b1: {}, tf1: {}, b2: {}, tf2: {}, r1: {}, r2: {}, }}
       h={200}
       tw={30}
@@ -34,6 +41,29 @@ export const NoCanvas = () => {
       tf2={50}
       r1={0}
       r2={0}
+    />
+  );
+}
+
+export const AutoScale = () => {
+	return (
+    <HSection
+			canvas={{
+				dimension: {
+					width: 500,
+					height: 500,
+				},
+				autoScale: true, // 기본 값
+			}}
+      referLine={{ h: {}, tw: {}, b1: {}, tf1: {}, b2: {}, tf2: {}, r1: {}, r2: {}, }}
+      h={200}
+      tw={30}
+      b1={200}
+      tf1={50}
+      b2={200}
+      tf2={50}
+      r1={10}
+      r2={10}
     />
   );
 }

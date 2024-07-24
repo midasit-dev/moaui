@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactP5Wrapper, P5CanvasInstance } from "@p5-wrapper/react";
 import { type SolidRectangleProps, } from "@lablib/Section/2D";
-import { calcPropsSolidRectangle, drawSolidRectangle } from './helpers';
+import { autoScaling, calcPropsSolidRectangle, drawSolidRectangle } from '@lablib/Section/2D/SolidRectangle/helpers';
 
 /* 
  * Shape of a SolidRectangle (for 2D Section)
@@ -9,7 +9,7 @@ import { calcPropsSolidRectangle, drawSolidRectangle } from './helpers';
  */
 const SolidRectangle = (props: SolidRectangleProps) => {
 	const { 
-		canvasWH, canvasBackground, canvasTranslateCoord, 
+		canvasWH, canvasBackground, canvasTranslateCoord, canvasAutoScale,
 		...otherVars
 	} = calcPropsSolidRectangle(props);
 
@@ -30,6 +30,8 @@ const SolidRectangle = (props: SolidRectangleProps) => {
 					p5.translate(canvasWH.width / 2, canvasWH.height / 2);
 					//시작점을 평행이동 합니다. (좌하단 기준 1사분면 좌표계 기준)
 					p5.translate(canvasTranslateCoord.x, -canvasTranslateCoord.y);
+					//자동 스케일링을 설정합니다.
+					if (canvasAutoScale) autoScaling(p5, canvasWH, otherVars);
 
 					drawSolidRectangle(p5, otherVars);
 				}

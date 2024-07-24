@@ -1,7 +1,7 @@
 import { P5CanvasInstance } from "@p5-wrapper/react"
 import { HSectionProps } from "@lablib/Section/2D/types/props";
 import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
-import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine } from "@lablib/Section/2D/utils";
+import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
 
 // 기본 Padding 값
 const padding = 150;
@@ -17,15 +17,15 @@ export const calcPropsHSection = (props: HSectionProps) => {
 
 	// from canvas prop
 	const defaultCanvas = defaultCanvasValue(b1 > b2 ? b1 : b2, h);
-	const _canvas = { ...defaultCanvasValue(b1 > b2 ? b1 : b2, h), ...canvas, };
-	const canvasBackground: string | null = _canvas.background;
+	const canvasBackground: string | null = canvas?.background ?? defaultCanvas.background;
 	const tempCvsWH = toDimension2D(canvas?.dimension);
-		const tempCvsWHD = toDimension2D(defaultCanvas.dimension);
-		const canvasWH: Dimension2D = {
-			width: tempCvsWH && tempCvsWH.width ? tempCvsWH.width : tempCvsWHD!.width + padding,
-			height: tempCvsWH && tempCvsWH.height ? tempCvsWH.height : tempCvsWHD!.height + padding,
-		};
-	const canvasTranslateCoord: Coord2D = toCoord2D(_canvas.translateCoords);
+	const tempCvsWHD = toDimension2D(defaultCanvas.dimension);
+	const canvasWH: Dimension2D = {
+		width: tempCvsWH && tempCvsWH.width ? tempCvsWH.width : tempCvsWHD!.width + padding,
+		height: tempCvsWH && tempCvsWH.height ? tempCvsWH.height : tempCvsWHD!.height + padding,
+	};
+	const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
+	const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 
 	// from shape prop
 	const _shape = { ...defaultShapeValue(), ...shape, };
@@ -155,7 +155,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 
 	return {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
-		canvasBackground, canvasWH, canvasTranslateCoord,
+		canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale,
 		shapeFill, shapeStroke, shapeStrokeWeight,
 		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
 		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
@@ -250,5 +250,51 @@ export const drawHSection = (p5: P5CanvasInstance, extractedProps: any) => {
 	const pointR1 = { x: clt.x - (0.5 * r1), y: clt.y + (0.5 * r1) };
 	drawLeaderLine(p5, 'left-bottom', leaderR1, pointR1, String(r1));
 	// 치수선 설정 (r2)
-	drawLeaderLine(p5, 'right-top', leaderR2, rbt, String(r2));
+	drawLeaderLine(p5, 'left-bottom', leaderR2, rtb, String(r2));
+}
+
+export const autoScaling = (
+	p5: P5CanvasInstance, 
+	canvasWH: Dimension2D, 
+	extractedProps: any
+) => {
+	const { 
+		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
+		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
+		r2_rb_st, r2_rb_c1, r2_rb_ed, r2_rb_c2,
+		r1_rb_st, r1_rb_c1, r1_rb_ed, r1_rb_c2,
+		r1_rt_st, r1_rt_c1, r1_rt_ed, r1_rt_c2,
+		r2_rt_st, r2_rt_c1, r2_rt_ed, r2_rt_c2,
+		r2_lt_st, r2_lt_c1, r2_lt_ed, r2_lt_c2,
+		r1_lt_st, r1_lt_c1, r1_lt_ed, r1_lt_c2,
+		r1_lb_st, r1_lb_c1, r1_lb_ed, r1_lb_c2,
+		r2_lb_st, r2_lb_c1, r2_lb_ed, r2_lb_c2,
+		topL, botL, sideC,
+		twL, twR, twC,
+		topC, rttbc, botC, rbtbc, innerRC, outerRC,
+	} = extractedProps;
+
+	const corFactor = 3; //보정계수
+	const maxOffset = 
+		corFactor * Math.max(
+			dimH.offset,
+			dimTW.offset,
+			dimB1.offset,
+			dimTF1.offset,
+			dimB2.offset,
+			dimTF2.offset,
+		);
+
+	const { minX, minY, maxX, maxY } = 
+		findMinMaxCoord([
+			lbb, rbb, ltt, rtt,
+			{ x: sideC.x - maxOffset, y: sideC.y },
+			{ x: topC.x, y: topC.y - maxOffset },
+			{ x: botC.x, y: botC.y + maxOffset },
+			{ x: rbtbc.x + maxOffset, y: rbtbc.y },
+			{ x: rttbc.x + maxOffset, y: rttbc.y },
+		]);
+	const scaleFactor = getScaleFactor(canvasWH, minX, minY, maxX, maxY);
+
+	p5.scale(scaleFactor);
 }

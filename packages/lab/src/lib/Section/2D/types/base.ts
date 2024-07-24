@@ -35,11 +35,13 @@ export type TranslateCoord2D = Coord2D | [number, number];
  * @var background is the background color of the canvas.
  * @var dimension is the dimension of the canvas.
  * @var translateCoords is the starting coordinates of the shape.
+ * @var autoScale is the auto scale of the canvas.
  */
 export interface Canvas {
 	background?: string | null;
 	dimension?: CanvasDimension2D;
 	translateCoords?: TranslateCoord2D;
+	autoScale?: boolean;
 };
 
 /**

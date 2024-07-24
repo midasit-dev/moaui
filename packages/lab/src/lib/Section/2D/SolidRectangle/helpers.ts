@@ -1,6 +1,6 @@
-import { Dimension2D, Coord2D, Canvas } from "@lablib/Section/2D/types/base";
+import { Dimension2D, Coord2D, Canvas, CanvasDimension2D } from "@lablib/Section/2D/types/base";
 import { SolidRectangleProps } from "@lablib/Section/2D/types/props";
-import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine } from "@lablib/Section/2D/utils";
+import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
 import { P5CanvasInstance } from "@p5-wrapper/react";
 
 // 기본 Padding 값
@@ -26,6 +26,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 			height: tempCvsWH && tempCvsWH.height ? tempCvsWH.height : tempCvsWHD!.height + padding,
 		};
 		const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
+		const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 	
 		// from shape prop
 		const _shape = { ...defaultShapeValue(), ...shape, };
@@ -57,7 +58,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 
 		return {
 			b, h,
-			canvasBackground, canvasWH, canvasTranslateCoord, 
+			canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale,
 			shapeFill, shapeStroke, shapeStrokeWeight,
 			dimB, dimH,
 			lb, rb, rt, lt,
@@ -93,4 +94,30 @@ export const drawSolidRectangle = (p5: P5CanvasInstance, extractedProps: any) =>
 	// 치수선 설정 - Bottom -> Right -> Top -> Left
 	drawDimLine(p5, 'bottom', dimB, lb, rb, cb, String(b));
 	drawDimLine(p5, 'left', 	dimH, lt, lb, cl, String(h));
+}
+
+export const autoScaling = (
+	p5: P5CanvasInstance, 
+	canvasWH: Dimension2D, 
+	extractedProps: any
+) => {
+	const { 
+		lb, rb, rt, lt, cb, cl, 
+		dimB, dimH,
+	} = extractedProps;
+
+	const corFactor = 8; //보정계수
+	const maxOffset = corFactor * Math.max(dimB.offset, dimH.offset);
+
+	const { minX, minY, maxX, maxY } = 
+		findMinMaxCoord([
+			lb, rb, rt, lt,
+			//cb (+offset)
+			{ x: cb.x - maxOffset, y: cb.y },
+			//cl (+offset)
+			{ x: cl.x, y: cl.y + maxOffset },
+		]);
+	const scaleFactor = getScaleFactor(canvasWH, minX, minY, maxX, maxY);
+
+	p5.scale(scaleFactor);
 }

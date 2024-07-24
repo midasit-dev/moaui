@@ -72,6 +72,7 @@ export const defaultCanvasValue = (width: number = 100, height: number = 100): R
 		background: '#f3f5f7',
 		dimension: { width, height },
 		translateCoords: { x: 0, y: 0 },
+		autoScale: true,
 	};
 }
 
@@ -254,4 +255,32 @@ export const drawLeaderLine = (
 	}
 
 	p5.pop();
+}
+
+export const findMinMaxCoord = (coords: Coord2D[]) => {
+	const xs = coords.map(c => c.x);
+	const ys = coords.map(c => c.y);
+
+	const minX = Math.min(...xs);
+	const minY = Math.min(...ys);
+	const maxX = Math.max(...xs);
+	const maxY = Math.max(...ys);
+
+	console.log(coords, xs, ys);
+
+	return { minX, minY, maxX, maxY };
+}
+
+export const getScaleFactor = (
+	canvasWH: Dimension2D, 
+	minX: number, 
+	minY: number, 
+	maxX: number, 
+	maxY: number
+) => {
+	const { width, height } = canvasWH;
+	const scaleX = width / (maxX - minX);
+	const scaleY = height / (maxY - minY);
+
+	return Math.min(scaleX, scaleY);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactP5Wrapper, P5CanvasInstance } from "@p5-wrapper/react";
 import { type HSectionProps, } from "@lablib/Section/2D";
-import { calcPropsHSection, drawHSection } from '@lablib/Section/2D/HSection/helpers';
+import { autoScaling, calcPropsHSection, drawHSection } from '@lablib/Section/2D/HSection/helpers';
 
 /* 
  * Shape of a HSection (for 2D Sketch)
@@ -9,9 +9,11 @@ import { calcPropsHSection, drawHSection } from '@lablib/Section/2D/HSection/hel
  */
 const HSection = (props: HSectionProps) => {
 	const { 
-		canvasWH, canvasBackground, canvasTranslateCoord,
+		canvasWH, canvasBackground, canvasTranslateCoord, canvasAutoScale,
 		...otherVars
 	} = calcPropsHSection(props);
+
+	console.log(canvasAutoScale);
 
 	return (
 		<ReactP5Wrapper 
@@ -30,6 +32,8 @@ const HSection = (props: HSectionProps) => {
 					p5.translate(canvasWH.width / 2, canvasWH.height / 2);
 					//시작점을 평행이동 합니다. (좌하단 기준 1사분면 좌표계 기준)
 					p5.translate(canvasTranslateCoord.x, -canvasTranslateCoord.y);
+					//자동 스케일링을 설정합니다.
+					if (canvasAutoScale) autoScaling(p5, canvasWH, otherVars);
 
 					drawHSection(p5, otherVars);
 				}
