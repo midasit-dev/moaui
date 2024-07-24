@@ -3,6 +3,9 @@ import { HSectionProps } from "@lablib/Section/2D/types/props";
 import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
 import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine } from "@lablib/Section/2D/utils";
 
+// 기본 Padding 값
+const padding = 150;
+
 // Properties를 추출한다.
 export const calcPropsHSection = (props: HSectionProps) => {
 	const {
@@ -13,9 +16,15 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	} = props;
 
 	// from canvas prop
+	const defaultCanvas = defaultCanvasValue(b1 > b2 ? b1 : b2, h);
 	const _canvas = { ...defaultCanvasValue(b1 > b2 ? b1 : b2, h), ...canvas, };
 	const canvasBackground: string | null = _canvas.background;
-	const canvasWH: Dimension2D = toDimension2D(_canvas.dimension);
+	const tempCvsWH = toDimension2D(canvas?.dimension);
+		const tempCvsWHD = toDimension2D(defaultCanvas.dimension);
+		const canvasWH: Dimension2D = {
+			width: tempCvsWH && tempCvsWH.width ? tempCvsWH.width : tempCvsWHD!.width + padding,
+			height: tempCvsWH && tempCvsWH.height ? tempCvsWH.height : tempCvsWHD!.height + padding,
+		};
 	const canvasTranslateCoord: Coord2D = toCoord2D(_canvas.translateCoords);
 
 	// from shape prop

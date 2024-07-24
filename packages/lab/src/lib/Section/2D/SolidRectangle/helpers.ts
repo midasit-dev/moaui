@@ -1,7 +1,10 @@
-import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
+import { Dimension2D, Coord2D, Canvas } from "@lablib/Section/2D/types/base";
 import { SolidRectangleProps } from "@lablib/Section/2D/types/props";
 import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine } from "@lablib/Section/2D/utils";
 import { P5CanvasInstance } from "@p5-wrapper/react";
+
+// 기본 Padding 값
+const padding = 120;
 
 // Properties를 추출한다.
 export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
@@ -14,10 +17,15 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 	} = props;
 
 		// from canvas prop
-		let _canvas = { ...defaultCanvasValue(b, h), ...canvas, };
-		const canvasBackground: string | null = _canvas.background;
-		const canvasWH: Dimension2D = toDimension2D(_canvas.dimension);
-		const canvasTranslateCoord: Coord2D = toCoord2D(_canvas.translateCoords);
+		const defaultCanvas = defaultCanvasValue(b, h);
+		const canvasBackground: string | null = canvas?.background ?? defaultCanvas.background;
+		const tempCvsWH = toDimension2D(canvas?.dimension);
+		const tempCvsWHD = toDimension2D(defaultCanvas.dimension);
+		const canvasWH: Dimension2D = {
+			width: tempCvsWH && tempCvsWH.width ? tempCvsWH.width : tempCvsWHD!.width + padding,
+			height: tempCvsWH && tempCvsWH.height ? tempCvsWH.height : tempCvsWHD!.height + padding,
+		};
+		const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 	
 		// from shape prop
 		const _shape = { ...defaultShapeValue(), ...shape, };

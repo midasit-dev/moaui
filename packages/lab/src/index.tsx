@@ -12,8 +12,8 @@ root.render(
     return (
       <React.Fragment>
 				<SR />
-				{/* <SR1 /> */}
-				<HS />
+				<SR1 />
+				{/* <HS /> */}
 				{/* <HS1 /> */}
       </React.Fragment>
     );

@@ -45,11 +45,9 @@ export const Default = () => {
 export const NoCanvas = () => {
 	return (
 		<SolidRectangle
-			canvas={{
-				dimension: {
-					width: 200,
-					height: 200,
-				}
+			referLine={{
+				b: {},
+				h: {},
 			}}
 			b={100}
 			h={100}

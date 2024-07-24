@@ -39,7 +39,9 @@ export const reverseY = (y: number, canvasH: number) => {
  * @param canvasDim canvas types of dimension
  * @returns { width: number, height: number }
  */
-export const toDimension2D = (dim: CanvasDimension2D): Dimension2D => {
+export const toDimension2D = (dim: CanvasDimension2D | undefined): Dimension2D | undefined => {
+	if (!dim) return undefined;
+
 	if (dim instanceof Array) {
 		return { width: dim[0], height: dim[1] };
 	}
