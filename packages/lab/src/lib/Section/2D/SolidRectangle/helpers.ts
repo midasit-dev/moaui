@@ -84,6 +84,7 @@ export const drawSolidRectangle = (p5: P5CanvasInstance, input: any) => {
 	//회전을 설정합니다.
 	if (canvasRotate) p5.rotate(p5.radians(canvasRotate));
 
+	/* eslint-disable-next-line no-lone-blocks */
 	{
 		//도형의 기본 스타일을 설정
 		p5.push();
@@ -102,6 +103,7 @@ export const drawSolidRectangle = (p5: P5CanvasInstance, input: any) => {
 		drawDimLine(p5, 'bottom', dimB, lb, rb, cb, String(b));
 		drawDimLine(p5, 'left', 	dimH, lt, lb, cl, String(h));
 	}
+	/* eslint-disable-next-line no-lone-blocks */
 
 	p5.pop(); // draw push-pop (1)
 }

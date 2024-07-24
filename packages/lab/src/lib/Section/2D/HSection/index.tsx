@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactP5Wrapper, P5CanvasInstance } from "@p5-wrapper/react";
 import { drawGuideLine, type HSectionProps, } from "@lablib/Section/2D";
-import { autoScaling, calcPropsHSection, drawHSection } from '@lablib/Section/2D/HSection/helpers';
+import { calcPropsHSection, drawHSection } from '@lablib/Section/2D/HSection/helpers';
 
 /* 
  * Shape of a HSection (for 2D Section)

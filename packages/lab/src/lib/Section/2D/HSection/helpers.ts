@@ -202,6 +202,7 @@ export const drawHSection = (p5: P5CanvasInstance, input: any) => {
 	//회전을 설정합니다.
 	if (canvasRotate) p5.rotate(p5.radians(canvasRotate));
 
+	/* eslint-disable-next-line no-lone-blocks */
 	{
 		//도형의 기본 스타일을 설정
 		p5.push();
@@ -262,6 +263,7 @@ export const drawHSection = (p5: P5CanvasInstance, input: any) => {
 		// 치수선 설정 (r2)
 		drawLeaderLine(p5, 'left-bottom', leaderR2, rtb, String(r2));
 	}
+	/* eslint-disable-next-line no-lone-blocks */
 
 	p5.pop(); // draw push-pop (1)
 }
