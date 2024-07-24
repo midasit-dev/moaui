@@ -10,7 +10,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		h,
 		canvas,
 		shape,
-		dimensionLine,
+		referLine,
 	} = props;
 
 		// from canvas prop
@@ -26,8 +26,8 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		const shapeStrokeWeight = _shape.strokeWeight;
 	
 		// from dimension line prop
-		const dimB = ensureDimLine(dimensionLine?.b);
-		const dimH = ensureDimLine(dimensionLine?.h);
+		const dimB = ensureDimLine(referLine?.b);
+		const dimH = ensureDimLine(referLine?.h);
 	
 		/** Vertexes of a SolidRectangle
 		 * lb: left bottom

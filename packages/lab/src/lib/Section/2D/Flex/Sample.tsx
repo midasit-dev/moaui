@@ -16,7 +16,7 @@ const Sample = () => {
 					startCoords: [100, 500],
 					fill: 'white',
 				},
-				dimensionLine: {
+				referLine: {
 					b: {}, h: {}
 				},
 				b: 100,
@@ -27,7 +27,7 @@ const Sample = () => {
 				shape: {
 					startCoords: [100, 100],
 				},
-				dimensionLine: {
+				referLine: {
 					h: {}, tw: {}, b1: {}, tf1: {}, b2: {}, tf2: {}, r1: {}, r2: {},
 				},
 				h: 200,

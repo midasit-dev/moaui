@@ -13,7 +13,7 @@ const Sample = () => {
         stroke: "black",
         strokeWeight: 1,
       }}
-			dimensionLine={{
+			referLine={{
 				h: {},
 				tw: {},
 				b1: {},

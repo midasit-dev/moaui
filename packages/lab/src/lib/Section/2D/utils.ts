@@ -164,3 +164,9 @@ export const drawDimLine = (
 	
 	p5.pop();
 }
+
+export const drawLeaderLine = (
+	p5: P5CanvasInstance, 
+) => {
+	
+}

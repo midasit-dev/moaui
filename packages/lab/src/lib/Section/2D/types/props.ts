@@ -8,14 +8,14 @@ export interface FlexProps {
 
 /**
  * PreDefined is a type that is used to define the properties of a shape.
- * @var dimensionLine is the dimension line of the SolidRectangle. (b, h)
+ * @var referLine is the reference line of the shape.
  * @var shape is the shape of the SolidRectangle.
  * @var b is width of the shape.
  * @var h is height of the shape.
  */
 export interface SolidRectangleProps extends SuperProps {
 	shape?: Shape;
-	dimensionLine?: {
+	referLine?: {
 		b?: DimensionLine;
 		h?: DimensionLine;
 	};
@@ -26,7 +26,7 @@ export interface SolidRectangleProps extends SuperProps {
 
 /**
  * HSectionProps is a type that is used to define the properties of a shape.
- * @var dimensionLine is the dimension line of the HSection.
+ * @var referLine is the reference line of the shape.
  * @var shape is the shape of the HSection.
  * @var h is the height of the shape.
  * @var tw is the width of the web.
@@ -39,7 +39,7 @@ export interface SolidRectangleProps extends SuperProps {
  */
 export interface HSectionProps extends SuperProps {
 	shape?: Shape;
-	dimensionLine?: {
+	referLine?: {
 		h?: DimensionLine;
 		tw?: DimensionLine;
 		b1?: DimensionLine;

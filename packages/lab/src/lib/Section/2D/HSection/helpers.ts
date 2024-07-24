@@ -9,7 +9,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
 		canvas,
 		shape,
-		dimensionLine,
+		referLine,
 	} = props;
 
 	// from canvas prop
@@ -25,14 +25,14 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	const shapeStrokeWeight = _shape.strokeWeight;
 
 	// from dimension line prop
-	const dimH 	= ensureDimLine(dimensionLine?.h);
-	const dimTW = ensureDimLine(dimensionLine?.tw);
-	const dimB1 = ensureDimLine(dimensionLine?.b1);
-	const dimTF1 = ensureDimLine(dimensionLine?.tf1);
-	const dimB2 = ensureDimLine(dimensionLine?.b2);
-	const dimTF2 = ensureDimLine(dimensionLine?.tf2);
-	const dimR1 = ensureDimLine(dimensionLine?.r1);
-	const dimR2 = ensureDimLine(dimensionLine?.r2);
+	const dimH 	= ensureDimLine(referLine?.h);
+	const dimTW = ensureDimLine(referLine?.tw);
+	const dimB1 = ensureDimLine(referLine?.b1);
+	const dimTF1 = ensureDimLine(referLine?.tf1);
+	const dimB2 = ensureDimLine(referLine?.b2);
+	const dimTF2 = ensureDimLine(referLine?.tf2);
+	const dimR1 = ensureDimLine(referLine?.r1);
+	const dimR2 = ensureDimLine(referLine?.r2);
 
 	const flangeW1 = (b1 - tw) * 0.5; // Top flange Wing width (1/2)
 	const webH = h - tf1 - tf2;				// Web height
