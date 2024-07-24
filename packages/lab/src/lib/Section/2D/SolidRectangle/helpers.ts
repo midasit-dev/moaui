@@ -118,15 +118,13 @@ export const autoScaling = (
 		dimB, dimH,
 	} = extractedProps;
 
-	const boff1 = dimB.offset + dimB.textSize;
-	const boff2 = dimB.textOffset + dimB.textSize;
-	const hoff1 = dimH.offset + dimH.textSize;
-	const hoff2 = dimH.textOffset + dimH.textSize;
+	const boff1 = dimB ? dimB.offset + dimB.textSize : 0;
+	const boff2 = dimB ? dimB.textOffset + dimB.textSize : 0;
+	const hoff1 = dimH ? dimH.offset + dimH.textSize : 0;
+	const hoff2 = dimH ? dimH.textOffset + dimH.textSize: 0;
 
 	const maxOffset = Math.max(boff1, boff2, hoff1, hoff2);
 
-	console.log(maxOffset);
-	
 	const p = maxOffset + 20; // padding
 	const verties = [
 		{ x: lb.x - p, 	y: lb.y + p},

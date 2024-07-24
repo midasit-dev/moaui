@@ -167,16 +167,7 @@ export const Guide = () => {
 					rotate: 0,
 					guideLine: false,
 				}}
-        referLine={{
-          h: {},
-          tw: {},
-          b1: {},
-          tf1: {},
-          b2: {},
-          tf2: {},
-          r1: {},
-          r2: {},
-        }}
+      
         h={200}
         tw={30}
         b1={200}

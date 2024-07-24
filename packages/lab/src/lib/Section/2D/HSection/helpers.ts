@@ -280,18 +280,18 @@ export const autoScaling = (
 		topC, rttbc, botC, rbtbc,
 	} = extractedProps;
 
-	const hoff1 = dimH.offset + dimH.textSize;
-	const hoff2 = dimH.textOffset + dimH.textSize;
-	const twoff1 = dimTW.offset + dimTW.textSize;
-	const twoff2 = dimTW.textOffset + dimTW.textSize;
-	const b1off1 = dimB1.offset + dimB1.textSize;
-	const b1off2 = dimB1.textOffset + dimB1.textSize;
-	const tf1off1 = dimTF1.offset + dimTF1.textSize;
-	const tf1off2 = dimTF1.textOffset + dimTF1.textSize;
-	const b2off1 = dimB2.offset + dimB2.textSize;
-	const b2off2 = dimB2.textOffset + dimB2.textSize;
-	const tf2off1 = dimTF2.offset + dimTF2.textSize;
-	const tf2off2 = dimTF2.textOffset + dimTF2.textSize;
+	const hoff1    = dimH ? dimH.offset + dimH.textSize : 0;
+	const hoff2    = dimH ? dimH.textOffset + dimH.textSize : 0;
+	const twoff1   = dimTW ? dimTW.offset + dimTW.textSize : 0;
+	const twoff2   = dimTW ? dimTW.textOffset + dimTW.textSize : 0;
+	const b1off1   = dimB1 ? dimB1.offset + dimB1.textSize : 0;
+	const b1off2   = dimB1 ? dimB1.textOffset + dimB1.textSize : 0;
+	const tf1off1  = dimTF1 ? dimTF1.offset + dimTF1.textSize : 0;
+	const tf1off2  = dimTF1 ? dimTF1.textOffset + dimTF1.textSize : 0;
+	const b2off1   = dimB2 ? dimB2.offset + dimB2.textSize : 0;
+	const b2off2   = dimB2 ? dimB2.textOffset + dimB2.textSize : 0;
+	const tf2off1  = dimTF2 ? dimTF2.offset + dimTF2.textSize : 0;
+	const tf2off2  = dimTF2 ? dimTF2.textOffset + dimTF2.textSize : 0;
 	const maxOffset = Math.max(
 		hoff1, hoff2, twoff1, twoff2, b1off1, b1off2, tf1off1, tf1off2, b2off1, b2off2, tf2off1, tf2off2
 	);
