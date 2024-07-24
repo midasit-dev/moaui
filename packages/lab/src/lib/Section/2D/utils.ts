@@ -7,6 +7,7 @@ import {
 	Shape, 
 	DimensionLine,
 	Coord2D,
+	LeaderLine,
 } from "@lablib/Section/2D/types/base";
 
 /**
@@ -165,8 +166,83 @@ export const drawDimLine = (
 	p5.pop();
 }
 
+export const defaultLeaderLineValue = (): Required<LeaderLine> => {
+	return {
+		halfLength: 20,
+		lineColor: 'black',
+		lineWeight: 1,
+		text: null,
+		textColor: 'black',
+		textSize: 14,
+	};
+}
+
+export const ensureLeaderLine = (leaderLine: LeaderLine | undefined): LeaderLine | undefined => {
+	if (!leaderLine) return undefined;
+
+	return {
+		...defaultLeaderLineValue(),
+		...leaderLine,
+	}
+}
+
 export const drawLeaderLine = (
 	p5: P5CanvasInstance, 
+	leadDirection: 'left-bottom' | 'left-top' | 'right-bottom' | 'right-top',
+	leaderLine: LeaderLine | undefined, 
+	point: Coord2D,
+	text: string,
 ) => {
-	
+	if (!leaderLine) return;
+
+	// 리더선 그리기
+	p5.push();
+	p5.stroke(leaderLine.lineColor!);
+	p5.strokeWeight(leaderLine.lineWeight!);
+
+	const st: Coord2D = { x: point.x, y: point.y }; //시작점 좌표
+	const d = leaderLine.halfLength!;	//리더선의 반 길이
+	const x1 = d * Math.cos(Math.PI / 4); //x 평행이동을 위한 값
+	const y1 = d * Math.sin(Math.PI / 4); //y 평행이동을 위한 값
+	let cc: Coord2D = { x: -1, y: -1 }; //평행이동한 중심 좌표
+	let ed: Coord2D = { x: -1, y: -1 }; //끝점 좌표
+
+	if (leadDirection === 'left-bottom') {
+		cc = { x: st.x - x1, y: st.y + y1 };
+		ed = { x: cc.x - d, y: cc.y };
+	} else if (leadDirection === 'left-top') {
+		cc = { x: st.x - x1, y: st.y - y1 };
+		ed = { x: cc.x - d, y: cc.y };
+	} else if (leadDirection === 'right-bottom') {
+		cc = { x: st.x + x1, y: st.y + y1 };
+		ed = { x: cc.x + d, y: cc.y };
+	} else if (leadDirection === 'right-top') {
+		cc = { x: st.x + x1, y: st.y - y1 };
+		ed = { x: cc.x + d, y: cc.y };
+	} else {
+		//어김없이 예외를!
+		throw new Error(`Invalid leadDirection: ${leadDirection}`);
+	}
+
+	p5.line(st.x, st.y, cc.x, cc.y); //대각선
+	p5.line(cc.x, cc.y, ed.x, ed.y); //수평선
+
+	p5.pop();
+
+	p5.push();
+	p5.fill(leaderLine.textColor!);
+	p5.textSize(leaderLine.textSize!);
+
+	if (leadDirection === 'left-bottom' || leadDirection === 'left-top') {
+		p5.textAlign(p5.RIGHT, p5.CENTER);
+		p5.text(text, ed.x - (0.5 * d), ed.y);
+	} else if (leadDirection === 'right-bottom' || leadDirection === 'right-top') {
+		p5.textAlign(p5.LEFT, p5.CENTER);
+		p5.text(text, ed.x + (0.5 * d), ed.y);
+	} else {
+		//어김없이 예외를!
+		throw new Error(`Invalid leadDirection: ${leadDirection}`);
+	}
+
+	p5.pop();
 }

@@ -80,6 +80,24 @@ export interface DimensionLine {
 }
 
 /**
+ * LeaderLine is a type that is used to define the properties of a shape.
+ * @var halfLength is the half length of the leader line.
+ * @var lineColor is the line color of the leader line.
+ * @var lineWeight is the line weight of the leader line.
+ * @var text is the text of the leader line.
+ * @var textColor is the text color of the leader line.
+ * @var textSize is the text size of the leader line.
+ */
+export interface LeaderLine {
+	halfLength?: number;
+	lineColor?: string;
+	lineWeight?: number;
+	text?: string | null;
+	textColor?: string;
+	textSize?: number;
+}
+
+/**
  * SuperProps is a type that is used to define the properties of a section.
  * @var canvas is the canvas of the shape.
  */

@@ -1,4 +1,4 @@
-import { SuperProps, Canvas, Shape, DimensionLine } from '@lablib/Section/2D/types/base';
+import { SuperProps, Canvas, Shape, DimensionLine, LeaderLine } from '@lablib/Section/2D/types/base';
 
 export interface FlexProps {
 	canvas?: 					Canvas;
@@ -46,8 +46,8 @@ export interface HSectionProps extends SuperProps {
 		tf1?: DimensionLine;
 		b2?: DimensionLine;
 		tf2?: DimensionLine;
-		r1?: DimensionLine;
-		r2?: DimensionLine;
+		r1?: LeaderLine;
+		r2?: LeaderLine;
 	};
 
 	h: number;

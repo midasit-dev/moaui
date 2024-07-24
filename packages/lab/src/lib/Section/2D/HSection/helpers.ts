@@ -1,7 +1,7 @@
 import { P5CanvasInstance } from "@p5-wrapper/react"
 import { HSectionProps } from "@lablib/Section/2D/types/props";
 import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
-import { defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine } from "@lablib/Section/2D/utils";
+import { defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine } from "@lablib/Section/2D/utils";
 
 // Properties를 추출한다.
 export const calcPropsHSection = (props: HSectionProps) => {
@@ -31,8 +31,8 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	const dimTF1 = ensureDimLine(referLine?.tf1);
 	const dimB2 = ensureDimLine(referLine?.b2);
 	const dimTF2 = ensureDimLine(referLine?.tf2);
-	const dimR1 = ensureDimLine(referLine?.r1);
-	const dimR2 = ensureDimLine(referLine?.r2);
+	const leaderR1 = ensureLeaderLine(referLine?.r1);
+	const leaderR2 = ensureLeaderLine(referLine?.r2);
 
 	const flangeW1 = (b1 - tw) * 0.5; // Top flange Wing width (1/2)
 	const webH = h - tf1 - tf2;				// Web height
@@ -134,7 +134,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
 		canvasBackground, canvasWH,
 		shapeFill, shapeStroke, shapeStrokeWeight,
-		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, dimR1, dimR2,
+		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
 		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
 		r2_rb_st, r2_rb_c1, r2_rb_ed, r2_rb_c2,
 		r1_rb_st, r1_rb_c1, r1_rb_ed, r1_rb_c2,
@@ -155,7 +155,7 @@ export const drawHSection = (p5: P5CanvasInstance, extractedProps: any) => {
 	const {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
 		shapeFill, shapeStroke, shapeStrokeWeight,
-		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, dimR1, dimR2,
+		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
 		lbb, rbb, rbt, rtb, rtt, ltt, clt,
 		r2_rb_st, r2_rb_c1, r2_rb_ed, r2_rb_c2,
 		r1_rb_st, r1_rb_c1, r1_rb_ed, r1_rb_c2,
@@ -224,7 +224,8 @@ export const drawHSection = (p5: P5CanvasInstance, extractedProps: any) => {
 	// 치수선 설정 (tf2)
 	drawDimLine(p5, 'right', dimTF2, rbt, rbb, rbtbc, String(tf2));
 	// 치수선 설정 (r1)
-	drawDimLine(p5, 'bottom', dimR1, r1_lt_st, clt, innerRC, String(r1));
+	const pointR1 = { x: clt.x - (0.5 * r1), y: clt.y + (0.5 * r1) };
+	drawLeaderLine(p5, 'left-bottom', leaderR1, pointR1, String(r1));
 	// 치수선 설정 (r2)
-	drawDimLine(p5, "bottom", dimR2, r2_rt_st, rtb, outerRC, String(r2));
+	drawLeaderLine(p5, 'right-top', leaderR2, rbt, String(r2));
 }
