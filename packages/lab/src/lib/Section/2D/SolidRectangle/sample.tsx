@@ -131,3 +131,20 @@ export const Offset = () => {
 		</div>
 	)
 }
+
+export const Guide = () => {
+	return (
+		<div>
+			<SolidRectangle
+				canvas={{
+					autoScale: true,
+					rotate: 0,
+					guideLine: true,
+				}}
+				referLine={{ b: {}, h: {}, }}
+				b={200}
+				h={200}
+			/>
+		</div>
+	)
+}

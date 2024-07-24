@@ -38,6 +38,7 @@ export type TranslateCoord2D = Coord2D | [number, number];
  * @var autoScale is the auto scale of the canvas.
  * @var scale is the scale of the canvas.
  * @var rotate is the rotate of the canvas. (in degrees, 0 - 360)
+ * @var guideLine is the guide line of the canvas.
  */
 export interface Canvas {
 	background?: string | null;
@@ -46,6 +47,7 @@ export interface Canvas {
 	autoScale?: boolean;
 	scale?: number;
 	rotate?: number;
+	guideLine?: boolean;
 };
 
 /**

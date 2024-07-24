@@ -20,6 +20,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 	const canvasScale = canvas?.scale ?? defaultCanvas.scale;
 	const canvasRotate = canvas?.rotate ?? defaultCanvas.rotate;
+	const canvasGuideLine = canvas?.guideLine ?? defaultCanvas.guideLine;
 
 	// from shape prop
 	const _shape = { ...defaultShapeValue(), ...shape, };
@@ -149,7 +150,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 
 	return {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
-		canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate,
+		canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate, canvasGuideLine,
 		shapeFill, shapeStroke, shapeStrokeWeight,
 		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
 		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
@@ -168,8 +169,11 @@ export const calcPropsHSection = (props: HSectionProps) => {
 }
 
 // 단면을 스케치한다.
-export const drawHSection = (p5: P5CanvasInstance, extractedProps: any) => {
+export const drawHSection = (p5: P5CanvasInstance, input: any) => {
+	if (!p5 || !input) return;
+
 	const {
+		canvasAutoScale, canvasScale, canvasRotate,
 		h, tw, b1, tf1, r1, b2, tf2, r2,
 		shapeFill, shapeStroke, shapeStrokeWeight,
 		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
@@ -185,74 +189,89 @@ export const drawHSection = (p5: P5CanvasInstance, extractedProps: any) => {
 		topL, botL, sideC,
 		twL, twR, twC,
 		topC, rttbc, botC, rbtbc,
-	} = extractedProps;
+	} = input;
 
-	//도형의 기본 스타일을 설정
-	p5.push();
-	p5.beginShape();
-	p5.fill(shapeFill);
-	p5.stroke(shapeStroke);
-	p5.strokeWeight(shapeStrokeWeight);
+	p5.push(); //draw push-pop (1)
 
-	//Bottom Flange
-	p5.vertex(lbb.x, lbb.y);
-	p5.vertex(rbb.x, rbb.y);
-	//Bottom Flange (오른쪽 아래 호)
-	p5.vertex(r2_rb_st.x, r2_rb_st.y);
-	p5.bezierVertex(r2_rb_c1.x, r2_rb_c1.y, r2_rb_c2.x, r2_rb_c2.y, r2_rb_ed.x, r2_rb_ed.y);
-	//Web (오른쪽 아래 호)
-	p5.vertex(r1_rb_st.x, r1_rb_st.y);
-	p5.bezierVertex(r1_rb_c1.x, r1_rb_c1.y, r1_rb_c2.x, r1_rb_c2.y, r1_rb_ed.x, r1_rb_ed.y);
-	//Web (오른쪽 위 호)
-	p5.vertex(r1_rt_st.x, r1_rt_st.y);
-	p5.bezierVertex(r1_rt_c1.x, r1_rt_c1.y, r1_rt_c2.x, r1_rt_c2.y, r1_rt_ed.x, r1_rt_ed.y);
-	//Top Flange (오른쪽 위 호)
-	p5.vertex(r2_rt_st.x, r2_rt_st.y);
-	p5.bezierVertex(r2_rt_c1.x, r2_rt_c1.y, r2_rt_c2.x, r2_rt_c2.y, r2_rt_ed.x, r2_rt_ed.y);
-	//Top Flange
-	p5.vertex(rtt.x, rtt.y);
-	p5.vertex(ltt.x, ltt.y);
-	//Top Flange (왼쪽 위 호)
-	p5.vertex(r2_lt_st.x, r2_lt_st.y);
-	p5.bezierVertex(r2_lt_c1.x, r2_lt_c1.y, r2_lt_c2.x, r2_lt_c2.y, r2_lt_ed.x, r2_lt_ed.y);
-	//Web (왼쪽 위 호)
-	p5.vertex(r1_lt_st.x, r1_lt_st.y);
-	p5.bezierVertex(r1_lt_c1.x, r1_lt_c1.y, r1_lt_c2.x, r1_lt_c2.y, r1_lt_ed.x, r1_lt_ed.y);
-	//Web (왼쪽 아래 호)
-	p5.vertex(r1_lb_st.x, r1_lb_st.y);
-	p5.bezierVertex(r1_lb_c1.x, r1_lb_c1.y, r1_lb_c2.x, r1_lb_c2.y, r1_lb_ed.x, r1_lb_ed.y);
-	//Bottom Flange (왼쪽 아래 호)
-	p5.vertex(r2_lb_st.x, r2_lb_st.y);
-	p5.bezierVertex(r2_lb_c1.x, r2_lb_c1.y, r2_lb_c2.x, r2_lb_c2.y, r2_lb_ed.x, r2_lb_ed.y);
+	//자동 스케일링을 설정합니다.
+	if (canvasAutoScale) {
+		autoScaling(p5, input);
+	} else {
+		if (canvasScale) p5.scale(canvasScale);
+	}
+	//회전을 설정합니다.
+	if (canvasRotate) p5.rotate(p5.radians(canvasRotate));
 
-	p5.endShape(p5.CLOSE);
-	p5.pop();
+	{
+		//도형의 기본 스타일을 설정
+		p5.push();
+		p5.beginShape();
+		p5.fill(shapeFill);
+		p5.stroke(shapeStroke);
+		p5.strokeWeight(shapeStrokeWeight);
 
-	// 치수선 설정 (h)
-	drawDimLine(p5, 'left', dimH, topL, botL, sideC, String(h));
-	// 치수선 설정 (tw)
-	drawDimLine(p5, 'bottom', dimTW, twL, twR, twC, String(tw));
-	// 치수선 설정 (b1)
-	drawDimLine(p5, 'top', dimB1, ltt, rtt, topC, String(b1));
-	// 치수선 설정 (tf1)
-	drawDimLine(p5, 'right', dimTF1, rtt, rtb, rttbc, String(tf1));
-	// 치수선 설정 (b2)
-	drawDimLine(p5, 'bottom', dimB2, lbb, rbb, botC, String(b2));
-	// 치수선 설정 (tf2)
-	drawDimLine(p5, 'right', dimTF2, rbt, rbb, rbtbc, String(tf2));
-	// 치수선 설정 (r1)
-	const pointR1 = { x: clt.x - (0.5 * r1), y: clt.y + (0.5 * r1) };
-	drawLeaderLine(p5, 'left-bottom', leaderR1, pointR1, String(r1));
-	// 치수선 설정 (r2)
-	drawLeaderLine(p5, 'left-bottom', leaderR2, rtb, String(r2));
+		//Bottom Flange
+		p5.vertex(lbb.x, lbb.y);
+		p5.vertex(rbb.x, rbb.y);
+		//Bottom Flange (오른쪽 아래 호)
+		p5.vertex(r2_rb_st.x, r2_rb_st.y);
+		p5.bezierVertex(r2_rb_c1.x, r2_rb_c1.y, r2_rb_c2.x, r2_rb_c2.y, r2_rb_ed.x, r2_rb_ed.y);
+		//Web (오른쪽 아래 호)
+		p5.vertex(r1_rb_st.x, r1_rb_st.y);
+		p5.bezierVertex(r1_rb_c1.x, r1_rb_c1.y, r1_rb_c2.x, r1_rb_c2.y, r1_rb_ed.x, r1_rb_ed.y);
+		//Web (오른쪽 위 호)
+		p5.vertex(r1_rt_st.x, r1_rt_st.y);
+		p5.bezierVertex(r1_rt_c1.x, r1_rt_c1.y, r1_rt_c2.x, r1_rt_c2.y, r1_rt_ed.x, r1_rt_ed.y);
+		//Top Flange (오른쪽 위 호)
+		p5.vertex(r2_rt_st.x, r2_rt_st.y);
+		p5.bezierVertex(r2_rt_c1.x, r2_rt_c1.y, r2_rt_c2.x, r2_rt_c2.y, r2_rt_ed.x, r2_rt_ed.y);
+		//Top Flange
+		p5.vertex(rtt.x, rtt.y);
+		p5.vertex(ltt.x, ltt.y);
+		//Top Flange (왼쪽 위 호)
+		p5.vertex(r2_lt_st.x, r2_lt_st.y);
+		p5.bezierVertex(r2_lt_c1.x, r2_lt_c1.y, r2_lt_c2.x, r2_lt_c2.y, r2_lt_ed.x, r2_lt_ed.y);
+		//Web (왼쪽 위 호)
+		p5.vertex(r1_lt_st.x, r1_lt_st.y);
+		p5.bezierVertex(r1_lt_c1.x, r1_lt_c1.y, r1_lt_c2.x, r1_lt_c2.y, r1_lt_ed.x, r1_lt_ed.y);
+		//Web (왼쪽 아래 호)
+		p5.vertex(r1_lb_st.x, r1_lb_st.y);
+		p5.bezierVertex(r1_lb_c1.x, r1_lb_c1.y, r1_lb_c2.x, r1_lb_c2.y, r1_lb_ed.x, r1_lb_ed.y);
+		//Bottom Flange (왼쪽 아래 호)
+		p5.vertex(r2_lb_st.x, r2_lb_st.y);
+		p5.bezierVertex(r2_lb_c1.x, r2_lb_c1.y, r2_lb_c2.x, r2_lb_c2.y, r2_lb_ed.x, r2_lb_ed.y);
+
+		p5.endShape(p5.CLOSE);
+		p5.pop();
+
+		// 치수선 설정 (h)
+		drawDimLine(p5, 'left', dimH, topL, botL, sideC, String(h));
+		// 치수선 설정 (tw)
+		drawDimLine(p5, 'bottom', dimTW, twL, twR, twC, String(tw));
+		// 치수선 설정 (b1)
+		drawDimLine(p5, 'top', dimB1, ltt, rtt, topC, String(b1));
+		// 치수선 설정 (tf1)
+		drawDimLine(p5, 'right', dimTF1, rtt, rtb, rttbc, String(tf1));
+		// 치수선 설정 (b2)
+		drawDimLine(p5, 'bottom', dimB2, lbb, rbb, botC, String(b2));
+		// 치수선 설정 (tf2)
+		drawDimLine(p5, 'right', dimTF2, rbt, rbb, rbtbc, String(tf2));
+		// 치수선 설정 (r1)
+		const pointR1 = { x: clt.x - (0.5 * r1), y: clt.y + (0.5 * r1) };
+		drawLeaderLine(p5, 'left-bottom', leaderR1, pointR1, String(r1));
+		// 치수선 설정 (r2)
+		drawLeaderLine(p5, 'left-bottom', leaderR2, rtb, String(r2));
+	}
+
+	p5.pop(); // draw push-pop (1)
 }
 
 export const autoScaling = (
 	p5: P5CanvasInstance, 
-	canvasWH: Dimension2D, 
 	extractedProps: any
 ) => {
 	const { 
+		canvasWH,
 		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, 
 		lbb, rbb, rtt, ltt,
 		sideC,

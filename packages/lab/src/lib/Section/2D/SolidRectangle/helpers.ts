@@ -21,6 +21,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 		const canvasScale = canvas?.scale ?? defaultCanvas.scale;
 		const canvasRotate = canvas?.rotate ?? defaultCanvas.rotate;
+		const canvasGuideLine = canvas?.guideLine ?? defaultCanvas.guideLine;
 	
 		// from shape prop
 		const _shape = { ...defaultShapeValue(), ...shape, };
@@ -52,7 +53,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 
 		return {
 			b, h,
-			canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate,
+			canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate, canvasGuideLine,
 			shapeFill, shapeStroke, shapeStrokeWeight,
 			dimB, dimH,
 			lb, rb, rt, lt,
@@ -61,56 +62,68 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 }
 
 // 단면을 스케치한다.
-export const drawSolidRectangle = (p5: P5CanvasInstance, extractedProps: any) => {
-	if (!p5 || !extractedProps) return;
+export const drawSolidRectangle = (p5: P5CanvasInstance, input: any) => {
+	if (!p5 || !input) return;
 
 	const {
+		canvasAutoScale, canvasScale, canvasRotate,
 		b, h,
 		shapeFill, shapeStroke, shapeStrokeWeight,
 		dimB, dimH,
 		lb, rb, rt, lt,
 		cb, cl,
-	} = extractedProps;
+	} = input;
 
-	//도형의 기본 스타일을 설정
-	p5.push();
-	p5.beginShape();
-	p5.fill(shapeFill);
-	p5.stroke(shapeStroke);
-	p5.strokeWeight(shapeStrokeWeight);
-	p5.vertex(lb.x, lb.y);
-	p5.vertex(rb.x, rb.y);
-	p5.vertex(rt.x, rt.y);
-	p5.vertex(lt.x, lt.y);
-	p5.endShape(p5.CLOSE);
-	p5.pop();
+	p5.push(); //draw push-pop (1)
+	//자동 스케일링을 설정합니다.
+	if (canvasAutoScale) {
+		autoScaling(p5, input);
+	} else {
+		if (canvasScale) p5.scale(canvasScale);
+	}
+	//회전을 설정합니다.
+	if (canvasRotate) p5.rotate(p5.radians(canvasRotate));
 
-	// 치수선 설정 - Bottom -> Right -> Top -> Left
-	drawDimLine(p5, 'bottom', dimB, lb, rb, cb, String(b));
-	drawDimLine(p5, 'left', 	dimH, lt, lb, cl, String(h));
+	{
+		//도형의 기본 스타일을 설정
+		p5.push();
+		p5.beginShape();
+		p5.fill(shapeFill);
+		p5.stroke(shapeStroke);
+		p5.strokeWeight(shapeStrokeWeight);
+		p5.vertex(lb.x, lb.y);
+		p5.vertex(rb.x, rb.y);
+		p5.vertex(rt.x, rt.y);
+		p5.vertex(lt.x, lt.y);
+		p5.endShape(p5.CLOSE);
+		p5.pop();
+
+		// 치수선 설정 - Bottom -> Right -> Top -> Left
+		drawDimLine(p5, 'bottom', dimB, lb, rb, cb, String(b));
+		drawDimLine(p5, 'left', 	dimH, lt, lb, cl, String(h));
+	}
+
+	p5.pop(); // draw push-pop (1)
 }
 
 export const autoScaling = (
 	p5: P5CanvasInstance, 
-	canvasWH: Dimension2D, 
 	extractedProps: any
 ) => {
 	const {
+		canvasWH,
 		lb, rb, rt, lt, cb, cl, 
 		dimB, dimH,
 	} = extractedProps;
 
-	const bof = dimB.offset;
-	const btof = dimB.textOffset;
-	const bts = dimB.textSize;
-	const hof = dimH.offset;
-	const htof = dimH.textOffset;
-	const hts = dimH.textSize;
+	const boff1 = dimB.offset + dimB.textSize;
+	const boff2 = dimB.textOffset + dimB.textSize;
+	const hoff1 = dimH.offset + dimH.textSize;
+	const hoff2 = dimH.textOffset + dimH.textSize;
 
-	const maxOffset = Math.max(
-		bof + bts, btof + bts,
-		hof + hts, htof + hts,
-	);
+	const maxOffset = Math.max(boff1, boff2, hoff1, hoff2);
+
+	console.log(maxOffset);
 	
 	const p = maxOffset + 20; // padding
 	const verties = [

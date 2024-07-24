@@ -153,3 +153,39 @@ export const Offset = () => {
     </>
   );
 }
+
+export const Guide = () => {
+	return (
+    <>
+      <HSection
+				canvas={{
+					dimension: {
+						width: 500,
+						height: 500
+					},
+					autoScale: true,
+					rotate: 0,
+					guideLine: false,
+				}}
+        referLine={{
+          h: {},
+          tw: {},
+          b1: {},
+          tf1: {},
+          b2: {},
+          tf2: {},
+          r1: {},
+          r2: {},
+        }}
+        h={200}
+        tw={30}
+        b1={200}
+        tf1={50}
+        b2={200}
+        tf2={50}
+        r1={10}
+        r2={10}
+      />
+    </>
+  );
+}

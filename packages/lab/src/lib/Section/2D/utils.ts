@@ -73,6 +73,7 @@ export const defaultCanvasValue = (width: number = 100, height: number = 100): R
 		autoScale: true,
 		scale: 1,
 		rotate: 0,
+		guideLine: false,
 	};
 }
 
@@ -267,8 +268,6 @@ export const findMinMaxCoord = (coords: Coord2D[]) => {
 	const xs = coords.map(c => c.x);
 	const ys = coords.map(c => c.y);
 
-	console.log('xs', xs);
-
 	const minX = Math.min(...xs);
 	const minY = Math.min(...ys);
 	const maxX = Math.max(...xs);
@@ -289,4 +288,20 @@ export const getScaleFactor = (
 	const scaleY = height / (maxY - minY);
 
 	return Math.min(scaleX, scaleY);
+}
+
+export const drawGuideLine = (p5: P5CanvasInstance, canvasWH: Dimension2D) => {
+	const { width: w, height: h } = canvasWH;
+
+	p5.push();
+	p5.stroke(255, 0, 0, 64);
+	p5.strokeWeight(1);
+	p5.drawingContext.setLineDash([5, 5]);
+	p5.line(-half(w), 0, half(w), 0);
+	p5.line(0, -half(h), 0, half(h));
+	p5.line(-half(w), -half(h), half(w), half(h));
+	p5.line(-half(w), -half(h), half(w), half(h));
+	p5.line(-half(w), half(h), half(w), -half(h));
+	p5.drawingContext.setLineDash([]);
+	p5.pop();
 }

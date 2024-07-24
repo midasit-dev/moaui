@@ -1,45 +1,37 @@
 import React from 'react';
 import { ReactP5Wrapper, P5CanvasInstance } from "@p5-wrapper/react";
-import { type SolidRectangleProps, } from "@lablib/Section/2D";
-import { autoScaling, calcPropsSolidRectangle, drawSolidRectangle } from '@lablib/Section/2D/SolidRectangle/helpers';
+import { drawGuideLine, type SolidRectangleProps, } from "@lablib/Section/2D";
+import { calcPropsSolidRectangle, drawSolidRectangle } from '@lablib/Section/2D/SolidRectangle/helpers';
 
 /* 
  * Shape of a SolidRectangle (for 2D Section)
- * @param props SolidRectangleProps
  */
 const SolidRectangle = (props: SolidRectangleProps) => {
-	const { 
-		canvasWH, canvasBackground, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate,
-		...otherVars
-	} = calcPropsSolidRectangle(props);
+	const input = calcPropsSolidRectangle(props);
 
 	return (
 		<ReactP5Wrapper 
 			sketch={(p5: P5CanvasInstance) => {
 				p5.setup = () => {
 					//도형의 사이즈를 설정
-					p5.createCanvas(canvasWH.width, canvasWH.height);
+					p5.createCanvas(input.canvasWH.width, input.canvasWH.height);
 					p5.noLoop();
 				}
 
 				p5.draw = () => {
 					//도형의 기본 배경을 설정
-					if (canvasBackground) p5.background(canvasBackground);
+					if (input.canvasBackground) p5.background(input.canvasBackground);
 
 					//시작점을 중심으로 보냅니다.
-					p5.translate(canvasWH.width / 2, canvasWH.height / 2);
+					p5.translate(input.canvasWH.width / 2, input.canvasWH.height / 2);
 					//시작점을 평행이동 합니다. (좌하단 기준 1사분면 좌표계 기준)
-					p5.translate(canvasTranslateCoord.x, -canvasTranslateCoord.y);
-					//자동 스케일링을 설정합니다.
-					if (canvasAutoScale) {
-						autoScaling(p5, canvasWH, otherVars);
-					} else {
-						if (canvasScale) p5.scale(canvasScale);
-					}
-					//회전을 설정합니다.
-					if (canvasRotate) p5.rotate(p5.radians(canvasRotate));
+					p5.translate(input.canvasTranslateCoord.x, -input.canvasTranslateCoord.y);
 
-					drawSolidRectangle(p5, otherVars);
+					//단면을 그립니다.
+					drawSolidRectangle(p5, input);
+
+					//가이드 라인을 그립니다.
+					if (input.canvasGuideLine) drawGuideLine(p5, input.canvasWH);
 				}
 			}}
 		/>
