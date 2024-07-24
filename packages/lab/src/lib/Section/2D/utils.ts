@@ -3,11 +3,11 @@ import {
 	Dimension2D, 
 	Canvas, 
 	StartCoordinate2D, 
-	Coord2D, 
 	CanvasDimension2D, 
 	Shape, 
-	DimensionLine 
-} from "@lablib/Section/2D/types";
+	DimensionLine,
+	Coord2D,
+} from "@lablib/Section/2D/types/base";
 
 /**
  * convert top-left x-coordinate to bottom-right x-coordinate
