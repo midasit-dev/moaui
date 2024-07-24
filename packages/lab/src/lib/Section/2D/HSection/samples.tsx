@@ -82,7 +82,6 @@ const Samples = () => {
 												dimension: [(Math.max(Number(b1), Number(b2)) * scale) + padding, (Number(h) * scale) + padding],
 											}}
 											shape={{
-												startCoords: [padding / 2, padding / 2],
 												fill: "white",
 												stroke: "black",
 												strokeWeight: 1,

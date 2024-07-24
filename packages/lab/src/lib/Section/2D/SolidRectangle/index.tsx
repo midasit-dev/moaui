@@ -8,7 +8,10 @@ import { calcPropsSolidRectangle, drawSolidRectangle } from './helpers';
  * @param props SolidRectangleProps
  */
 const SolidRectangle = (props: SolidRectangleProps) => {
-	const { canvasWH, canvasBackground, ...otherVars } = calcPropsSolidRectangle(props);
+	const { 
+		canvasWH, canvasBackground, canvasTranslateCoord, 
+		...otherVars
+	} = calcPropsSolidRectangle(props);
 
 	return (
 		<ReactP5Wrapper 
@@ -22,6 +25,11 @@ const SolidRectangle = (props: SolidRectangleProps) => {
 				p5.draw = () => {
 					//도형의 기본 배경을 설정
 					if (canvasBackground) p5.background(canvasBackground);
+
+					//시작점을 중심으로 보냅니다.
+					p5.translate(canvasWH.width / 2, canvasWH.height / 2);
+					//시작점을 평행이동 합니다. (좌하단 기준 1사분면 좌표계 기준)
+					p5.translate(canvasTranslateCoord.x, -canvasTranslateCoord.y);
 
 					drawSolidRectangle(p5, otherVars);
 				}

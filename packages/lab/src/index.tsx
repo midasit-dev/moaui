@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import SampleSolidRectangle from "@lablib/Section/2D/SolidRectangle/sample";
-// import SampleHSection from "@lablib/Section/2D/HSection/sample";
-// import SamplesHSection from "@lablib/Section/2D/HSection/samples";
-import SampleFlex from "@lablib/Section/2D/Flex/Sample";
+import { Default as SR, NoCanvas as SR1 } from "@lablib/Section/2D/SolidRectangle/sample";
+import { Default as HS, NoCanvas as HS1 } from "@lablib/Section/2D/HSection/sample";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -13,10 +11,10 @@ root.render(
   (() => {
     return (
       <React.Fragment>
-				{/* <SampleSolidRectangle /> */}
-				{/* <SampleHSection /> */}
-				{/* <SamplesHSection /> */}
-				<SampleFlex />
+				<SR />
+				{/* <SR1 /> */}
+				<HS />
+				{/* <HS1 /> */}
       </React.Fragment>
     );
   })()

@@ -2,13 +2,19 @@ import { P5CanvasInstance } from "@p5-wrapper/react";
 import { 
 	Dimension2D, 
 	Canvas, 
-	StartCoordinate2D, 
 	CanvasDimension2D, 
 	Shape, 
 	DimensionLine,
 	Coord2D,
 	LeaderLine,
 } from "@lablib/Section/2D/types/base";
+
+/**
+ * convert number to half of the number
+ * @param n value
+ * @returns 
+ */
+export const half = (n: number) => 0.5 *  n;
 
 /**
  * convert top-left x-coordinate to bottom-right x-coordinate
@@ -45,7 +51,7 @@ export const toDimension2D = (dim: CanvasDimension2D): Dimension2D => {
  * @param startCoords start coordinate types of 2D
  * @returns { x: number, y: number }
  */
-export const toCoord2D = (startCoords: StartCoordinate2D): Coord2D => {
+export const toCoord2D = (startCoords: Coord2D | [number, number]): Coord2D => {
 	if (startCoords instanceof Array) {
 		return { x: startCoords[0], y: startCoords[1] };
 	}
@@ -54,20 +60,21 @@ export const toCoord2D = (startCoords: StartCoordinate2D): Coord2D => {
 
 /**
  * default value of canvas
- * @param width width of canvas
- * @param height height of canvas
+ * @param background width of the canvas
+ * @param dimension height of the canvas
+ * @param padding padding of the canvas
  * @returns 
  */
 export const defaultCanvasValue = (width: number = 100, height: number = 100): Required<Canvas> => {
 	return {
-		background: null,
+		background: '#f3f5f7',
 		dimension: { width, height },
+		translateCoords: { x: 0, y: 0 },
 	};
 }
 
-export const defaultShapeValue = (x: number = 0, y: number = 0): Required<Shape> => {
+export const defaultShapeValue = (): Required<Shape> => {
 	return {
-		startCoords: { x, y },
 		fill: 'white', 
 		stroke: 'black', 
 		strokeWeight: 1
@@ -88,7 +95,7 @@ export const defaultDimensionLineValue = (): Required<DimensionLine> => {
 	};
 }
 
-export const ensureDimLine = (dimLine: DimensionLine | undefined): DimensionLine | undefined => {
+export const ensureDimLine = (dimLine: DimensionLine | undefined): Required<DimensionLine> | undefined => {
 	if (!dimLine) return undefined;
 
 	return {

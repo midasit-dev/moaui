@@ -25,31 +25,30 @@ export type Dimension2D = {
 export type CanvasDimension2D = Dimension2D | [number, number];
 
 /**
- * StartCoordinate2D is a type that is used to define the starting coordinates of a shape.
+ * TranslateCoord2D is a type that is used to define the starting coordinates of a shape.
  * @var Coord2D is the coordinates of the shape.
  */
-export type StartCoordinate2D = Coord2D | [number, number];
+export type TranslateCoord2D = Coord2D | [number, number];
 
 /**
  * Canvas is a type that is used to define the properties of a shape.
- * @var padding is the padding of the canvas. (default: 0, 1 -> 8px)
  * @var background is the background color of the canvas.
  * @var dimension is the dimension of the canvas.
+ * @var translateCoords is the starting coordinates of the shape.
  */
 export interface Canvas {
 	background?: string | null;
 	dimension?: CanvasDimension2D;
+	translateCoords?: TranslateCoord2D;
 };
 
 /**
  * Shape is a type that is used to define the properties of a shape.
- * @var startCoords is the starting coordinates of the shape.
  * @var fill is the fill color of the shape. (background color)
  * @var stroke is the stroke color of the shape.
  * @var strokeWeight is the stroke weight of the shape.
  */
 export interface Shape {
-	startCoords?: StartCoordinate2D;
 	fill?: string;
 	stroke?: string;
 	strokeWeight?: number;

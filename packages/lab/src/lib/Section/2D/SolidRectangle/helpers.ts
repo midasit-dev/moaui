@@ -1,6 +1,6 @@
 import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
 import { SolidRectangleProps } from "@lablib/Section/2D/types/props";
-import { defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine } from "@lablib/Section/2D/utils";
+import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine } from "@lablib/Section/2D/utils";
 import { P5CanvasInstance } from "@p5-wrapper/react";
 
 // Properties를 추출한다.
@@ -14,13 +14,13 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 	} = props;
 
 		// from canvas prop
-		const _canvas = { ...defaultCanvasValue(b, h), ...canvas, };
+		let _canvas = { ...defaultCanvasValue(b, h), ...canvas, };
 		const canvasBackground: string | null = _canvas.background;
 		const canvasWH: Dimension2D = toDimension2D(_canvas.dimension);
+		const canvasTranslateCoord: Coord2D = toCoord2D(_canvas.translateCoords);
 	
 		// from shape prop
 		const _shape = { ...defaultShapeValue(), ...shape, };
-		const shapeSt: Coord2D = toCoord2D(_shape.startCoords);
 		const shapeFill = _shape.fill;
 		const shapeStroke = _shape.stroke;
 		const shapeStrokeWeight = _shape.strokeWeight;
@@ -35,21 +35,21 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		 * rt: right top
 		 * lt: left top
 		 */
-		const lb: Coord2D = { x: shapeSt.x, 		y: reverseY(shapeSt.y, canvasWH.height)};
-		const rb: Coord2D = { x: shapeSt.x + b, y: reverseY(shapeSt.y, canvasWH.height)};
-		const rt: Coord2D = { x: shapeSt.x + b, y: reverseY(shapeSt.y + h, canvasWH.height)};
-		const lt: Coord2D = { x: shapeSt.x, 		y: reverseY(shapeSt.y + h, canvasWH.height)};
+		const lb: Coord2D = { x: -half(b), 		y: half(h)};
+		const rb: Coord2D = { x: half(b), 		y: half(h)};
+		const rt: Coord2D = { x: half(b), 		y: -half(h)};
+		const lt: Coord2D = { x: -half(b), 		y: -half(h)};
 	
 		/** Center of a SolidRectangle
 		 * cb: center bottom
 		 * cl: center left
 		 */
-		const cb = { x: shapeSt.x + b / 2, 	y: reverseY(shapeSt.y, canvasWH.height)};
-		const cl = { x: shapeSt.x, 					y: reverseY(shapeSt.y + h / 2, canvasWH.height)};
+		const cb = { x: 0, 				y: half(h)};
+		const cl = { x: -half(b), y: 0};
 
 		return {
 			b, h,
-			canvasBackground, canvasWH,
+			canvasBackground, canvasWH, canvasTranslateCoord, 
 			shapeFill, shapeStroke, shapeStrokeWeight,
 			dimB, dimH,
 			lb, rb, rt, lt,

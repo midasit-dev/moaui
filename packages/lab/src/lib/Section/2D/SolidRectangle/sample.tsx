@@ -1,6 +1,6 @@
 import { SolidRectangle } from '@lablib/Section/2D';
 
-const Sample = () => {
+export const Default = () => {
 	return (
     <SolidRectangle
       canvas={{
@@ -8,7 +8,6 @@ const Sample = () => {
         dimension: [300, 300],
       }}
       shape={{
-        startCoords: [100, 100],
         fill: "white",
         stroke: "black",
         strokeWeight: 1,
@@ -43,4 +42,17 @@ const Sample = () => {
   );
 };
 
-export default Sample;
+export const NoCanvas = () => {
+	return (
+		<SolidRectangle
+			canvas={{
+				dimension: {
+					width: 200,
+					height: 200,
+				}
+			}}
+			b={100}
+			h={100}
+		/>
+	)
+}

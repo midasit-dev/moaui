@@ -13,7 +13,6 @@ const Sample = () => {
 
 			solidRectangle={{
 				shape: {
-					startCoords: [100, 500],
 					fill: 'white',
 				},
 				referLine: {
@@ -24,9 +23,6 @@ const Sample = () => {
 			}}
 
 			hSection={{
-				shape: {
-					startCoords: [100, 100],
-				},
 				referLine: {
 					h: {}, tw: {}, b1: {}, tf1: {}, b2: {}, tf2: {}, r1: {}, r2: {},
 				},

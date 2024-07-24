@@ -1,7 +1,7 @@
 import { P5CanvasInstance } from "@p5-wrapper/react"
 import { HSectionProps } from "@lablib/Section/2D/types/props";
 import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
-import { defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine } from "@lablib/Section/2D/utils";
+import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine } from "@lablib/Section/2D/utils";
 
 // Properties를 추출한다.
 export const calcPropsHSection = (props: HSectionProps) => {
@@ -16,10 +16,10 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	const _canvas = { ...defaultCanvasValue(b1 > b2 ? b1 : b2, h), ...canvas, };
 	const canvasBackground: string | null = _canvas.background;
 	const canvasWH: Dimension2D = toDimension2D(_canvas.dimension);
+	const canvasTranslateCoord: Coord2D = toCoord2D(_canvas.translateCoords);
 
 	// from shape prop
 	const _shape = { ...defaultShapeValue(), ...shape, };
-	const shapeSt: Coord2D = toCoord2D(_shape.startCoords);
 	const shapeFill = _shape.fill;
 	const shapeStroke = _shape.stroke;
 	const shapeStrokeWeight = _shape.strokeWeight;
@@ -38,24 +38,38 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	const webH = h - tf1 - tf2;				// Web height
 	const flangeW2 = (b2 - tw) * 0.5; // Bottom flange Wing width (1/2)
 
+	// 시작은 좌측 하단 부터!
+
 	// 상부 플랜지와 하부 플랜지의 길이가 다를 경우,
 	// x좌표 오프셋 적용이 필요함.
-	let widthOffset = b1 !== b2 ? Math.abs(b1 - b2) * 0.5 : 0;
-	if (b1 !== b2) widthOffset *= b1 > b2 ? 1 : -1;
+	// let widthOffset = b1 !== b2 ? Math.abs(b1 - b2) * 0.5 : 0;
+	// if (b1 !== b2) widthOffset *= b1 > b2 ? 1 : -1;
+	// const lbb: Coord2D = { x: shapeSt.x, 													y: reverseY(shapeSt.y, 										canvasWH.height) };
+	// const rbb: Coord2D = { x: shapeSt.x + b2, 										y: reverseY(shapeSt.y, 										canvasWH.height) };
+	// const rbt: Coord2D = { x: shapeSt.x + b2,											y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
+	// const crb: Coord2D = { x: shapeSt.x + b2 - flangeW2, 					y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
+	// const crt: Coord2D = { x: shapeSt.x + b2 - flangeW2, 					y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
+	// const rtb: Coord2D = { x: shapeSt.x + b1 - widthOffset, 			y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
+	// const rtt: Coord2D = { x: shapeSt.x + b1 - widthOffset, 			y: reverseY(shapeSt.y + tf2 + webH + tf1, canvasWH.height) };
+	// const ltt: Coord2D = { x: shapeSt.x - widthOffset, 						y: reverseY(shapeSt.y + tf2 + webH + tf1, canvasWH.height) };
+	// const ltb: Coord2D = { x: shapeSt.x - widthOffset, 						y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
+	// const clt: Coord2D = { x: shapeSt.x + flangeW1 - widthOffset, y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
+	// const clb: Coord2D = { x: shapeSt.x + flangeW1 - widthOffset, y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
+	// const lbt: Coord2D = { x: shapeSt.x, 													y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
 
-	// 시작은 좌측 하단 부터!
-	const lbb: Coord2D = { x: shapeSt.x, 													y: reverseY(shapeSt.y, 										canvasWH.height) };
-	const rbb: Coord2D = { x: shapeSt.x + b2, 										y: reverseY(shapeSt.y, 										canvasWH.height) };
-	const rbt: Coord2D = { x: shapeSt.x + b2,											y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
-	const crb: Coord2D = { x: shapeSt.x + b2 - flangeW2, 					y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
-	const crt: Coord2D = { x: shapeSt.x + b2 - flangeW2, 					y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
-	const rtb: Coord2D = { x: shapeSt.x + b1 - widthOffset, 			y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
-	const rtt: Coord2D = { x: shapeSt.x + b1 - widthOffset, 			y: reverseY(shapeSt.y + tf2 + webH + tf1, canvasWH.height) };
-	const ltt: Coord2D = { x: shapeSt.x - widthOffset, 						y: reverseY(shapeSt.y + tf2 + webH + tf1, canvasWH.height) };
-	const ltb: Coord2D = { x: shapeSt.x - widthOffset, 						y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
-	const clt: Coord2D = { x: shapeSt.x + flangeW1 - widthOffset, y: reverseY(shapeSt.y + tf2 + webH, 			canvasWH.height) };
-	const clb: Coord2D = { x: shapeSt.x + flangeW1 - widthOffset, y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
-	const lbt: Coord2D = { x: shapeSt.x, 													y: reverseY(shapeSt.y + tf2, 							canvasWH.height) };
+	// 중앙점에서 시작!
+	const lbb: Coord2D = { x: -half(b2), 						y: half(h) };
+	const rbb: Coord2D = { x: half(b2), 						y: half(h) };
+	const rbt: Coord2D = { x: half(b2), 						y: half(h) - tf2 };
+	const crb: Coord2D = { x: half(b2) - flangeW2, 	y: half(h) - tf2 };
+	const crt: Coord2D = { x: half(b2) - flangeW2, 	y: half(h) - tf2 - webH };
+	const rtb: Coord2D = { x: half(b1), 						y: half(h) - tf2 - webH };
+	const rtt: Coord2D = { x: half(b1), 						y: half(h) - tf2 - webH - tf1 };
+	const ltt: Coord2D = { x: -half(b1), 						y: half(h) - tf2 - webH - tf1 };
+	const ltb: Coord2D = { x: -half(b1), 						y: half(h) - tf2 - webH };
+	const clt: Coord2D = { x: -half(b1) + flangeW1, y: half(h) - tf2 - webH };
+	const clb: Coord2D = { x: -half(b1) + flangeW1, y: half(h) - tf2 };
+	const lbt: Coord2D = { x: -half(b2), 						y: half(h) - tf2 };
 
 	// r 영역 좌표: 중심점, 호의 시작점, 호의 끝점
 	// flange
@@ -132,7 +146,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 
 	return {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
-		canvasBackground, canvasWH,
+		canvasBackground, canvasWH, canvasTranslateCoord,
 		shapeFill, shapeStroke, shapeStrokeWeight,
 		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
 		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
