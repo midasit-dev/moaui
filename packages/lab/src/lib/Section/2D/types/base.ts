@@ -37,6 +37,7 @@ export type TranslateCoord2D = Coord2D | [number, number];
  * @var translateCoords is the starting coordinates of the shape.
  * @var autoScale is the auto scale of the canvas.
  * @var scale is the scale of the canvas.
+ * @var rotate is the rotate of the canvas. (in degrees, 0 - 360)
  */
 export interface Canvas {
 	background?: string | null;
@@ -44,6 +45,7 @@ export interface Canvas {
 	translateCoords?: TranslateCoord2D;
 	autoScale?: boolean;
 	scale?: number;
+	rotate?: number;
 };
 
 /**
@@ -79,7 +81,7 @@ export interface DimensionLine {
 	text?: string | null;
 	textColor?: string;
 	textSize?: number;
-	textOffset?: number;
+	textOffset?: number | null;
 }
 
 /**

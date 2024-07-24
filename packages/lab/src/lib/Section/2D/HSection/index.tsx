@@ -9,7 +9,7 @@ import { autoScaling, calcPropsHSection, drawHSection } from '@lablib/Section/2D
  */
 const HSection = (props: HSectionProps) => {
 	const { 
-		canvasWH, canvasBackground, canvasTranslateCoord, canvasAutoScale, canvasScale,
+		canvasWH, canvasBackground, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate,
 		...otherVars
 	} = calcPropsHSection(props);
 
@@ -36,6 +36,8 @@ const HSection = (props: HSectionProps) => {
 					} else {
 						if (canvasScale) p5.scale(canvasScale);
 					}
+					//회전을 설정합니다.
+					if (canvasRotate) p5.rotate(p5.radians(canvasRotate));
 
 					drawHSection(p5, otherVars);
 				}

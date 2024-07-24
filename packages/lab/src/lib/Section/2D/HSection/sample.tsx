@@ -91,3 +91,65 @@ export const Scale = () => {
     />
   );
 }
+
+export const Rotate = () => {
+	return (
+    <HSection
+			canvas={{
+				dimension: {
+					width: 500,
+					height: 500,
+				},
+				autoScale: false,
+				scale: 2,
+				rotate: 45,
+			}}
+      referLine={{ h: {}, tw: {}, b1: {}, tf1: {}, b2: {}, tf2: {}, r1: {}, r2: {}, }}
+      h={200}
+      tw={30}
+      b1={200}
+      tf1={50}
+      b2={200}
+      tf2={50}
+      r1={10}
+      r2={10}
+    />
+  );
+}
+
+export const Offset = () => {
+	return (
+    <>
+      <HSection
+				canvas={{
+					dimension: {
+						width: 500,
+						height: 500
+					},
+					autoScale: false,
+					rotate: 45,
+				}}
+        referLine={{
+          h: {},
+          tw: {},
+          b1: {
+						offset: 100,
+					},
+          tf1: {},
+          b2: {},
+          tf2: {},
+          r1: {},
+          r2: {},
+        }}
+        h={200}
+        tw={30}
+        b1={200}
+        tf1={50}
+        b2={200}
+        tf2={50}
+        r1={10}
+        r2={10}
+      />
+    </>
+  );
+}

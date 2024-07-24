@@ -3,9 +3,6 @@ import { SolidRectangleProps } from "@lablib/Section/2D/types/props";
 import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, toDimension2D, drawDimLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
 import { P5CanvasInstance } from "@p5-wrapper/react";
 
-// 기본 Padding 값
-const padding = 120;
-
 // Properties를 추출한다.
 export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 	const {
@@ -19,15 +16,11 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		// from canvas prop
 		const defaultCanvas = defaultCanvasValue(b, h);
 		const canvasBackground: string | null = canvas?.background ?? defaultCanvas.background;
-		const tempCvsWH = toDimension2D(canvas?.dimension);
-		const tempCvsWHD = toDimension2D(defaultCanvas.dimension);
-		const canvasWH: Dimension2D = {
-			width: tempCvsWH && tempCvsWH.width ? tempCvsWH.width : tempCvsWHD!.width + padding,
-			height: tempCvsWH && tempCvsWH.height ? tempCvsWH.height : tempCvsWHD!.height + padding,
-		};
+		const canvasWH: Dimension2D = toDimension2D(canvas?.dimension ?? defaultCanvas.dimension);
 		const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 		const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 		const canvasScale = canvas?.scale ?? defaultCanvas.scale;
+		const canvasRotate = canvas?.rotate ?? defaultCanvas.rotate;
 	
 		// from shape prop
 		const _shape = { ...defaultShapeValue(), ...shape, };
@@ -59,7 +52,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 
 		return {
 			b, h,
-			canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale,
+			canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate,
 			shapeFill, shapeStroke, shapeStrokeWeight,
 			dimB, dimH,
 			lb, rb, rt, lt,
@@ -102,22 +95,34 @@ export const autoScaling = (
 	canvasWH: Dimension2D, 
 	extractedProps: any
 ) => {
-	const { 
+	const {
 		lb, rb, rt, lt, cb, cl, 
 		dimB, dimH,
 	} = extractedProps;
 
-	const corFactor = 8; //보정계수
-	const maxOffset = corFactor * Math.max(dimB.offset, dimH.offset);
+	const bof = dimB.offset;
+	const btof = dimB.textOffset;
+	const bts = dimB.textSize;
+	const hof = dimH.offset;
+	const htof = dimH.textOffset;
+	const hts = dimH.textSize;
 
-	const { minX, minY, maxX, maxY } = 
-		findMinMaxCoord([
-			lb, rb, rt, lt,
-			//cb (+offset)
-			{ x: cb.x - maxOffset, y: cb.y },
-			//cl (+offset)
-			{ x: cl.x, y: cl.y + maxOffset },
-		]);
+	const maxOffset = Math.max(
+		bof + bts, btof + bts,
+		hof + hts, htof + hts,
+	);
+	
+	const p = maxOffset + 20; // padding
+	const verties = [
+		{ x: lb.x - p, 	y: lb.y + p},
+		{ x: rb.x + p, 	y: lb.y + p},
+		{ x: rt.x + p, 	y: rt.y - p},
+		{ x: lt.x - p, 	y: lt.y - p},
+		{ x: cb.x, 			y: cb.y + p },
+		{ x: cl.x - p, 	y: cl.y }
+	];
+
+	const { minX, minY, maxX, maxY } = findMinMaxCoord(verties);
 	const scaleFactor = getScaleFactor(canvasWH, minX, minY, maxX, maxY);
 
 	p5.scale(scaleFactor);

@@ -3,9 +3,6 @@ import { HSectionProps } from "@lablib/Section/2D/types/props";
 import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
 import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
 
-// 기본 Padding 값
-const padding = 150;
-
 // Properties를 추출한다.
 export const calcPropsHSection = (props: HSectionProps) => {
 	const {
@@ -18,15 +15,11 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	// from canvas prop
 	const defaultCanvas = defaultCanvasValue(b1 > b2 ? b1 : b2, h);
 	const canvasBackground: string | null = canvas?.background ?? defaultCanvas.background;
-	const tempCvsWH = toDimension2D(canvas?.dimension);
-	const tempCvsWHD = toDimension2D(defaultCanvas.dimension);
-	const canvasWH: Dimension2D = {
-		width: tempCvsWH && tempCvsWH.width ? tempCvsWH.width : tempCvsWHD!.width + padding,
-		height: tempCvsWH && tempCvsWH.height ? tempCvsWH.height : tempCvsWHD!.height + padding,
-	};
+	const canvasWH: Dimension2D = toDimension2D(canvas?.dimension ?? defaultCanvas.dimension);
 	const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 	const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 	const canvasScale = canvas?.scale ?? defaultCanvas.scale;
+	const canvasRotate = canvas?.rotate ?? defaultCanvas.rotate;
 
 	// from shape prop
 	const _shape = { ...defaultShapeValue(), ...shape, };
@@ -156,7 +149,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 
 	return {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
-		canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale,
+		canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale, canvasRotate,
 		shapeFill, shapeStroke, shapeStrokeWeight,
 		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
 		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
@@ -266,26 +259,36 @@ export const autoScaling = (
 		topC, rttbc, botC, rbtbc,
 	} = extractedProps;
 
-	const corFactor = 3; //보정계수
-	const maxOffset = 
-		corFactor * Math.max(
-			dimH.offset,
-			dimTW.offset,
-			dimB1.offset,
-			dimTF1.offset,
-			dimB2.offset,
-			dimTF2.offset,
-		);
+	const hoff1 = dimH.offset + dimH.textSize;
+	const hoff2 = dimH.textOffset + dimH.textSize;
+	const twoff1 = dimTW.offset + dimTW.textSize;
+	const twoff2 = dimTW.textOffset + dimTW.textSize;
+	const b1off1 = dimB1.offset + dimB1.textSize;
+	const b1off2 = dimB1.textOffset + dimB1.textSize;
+	const tf1off1 = dimTF1.offset + dimTF1.textSize;
+	const tf1off2 = dimTF1.textOffset + dimTF1.textSize;
+	const b2off1 = dimB2.offset + dimB2.textSize;
+	const b2off2 = dimB2.textOffset + dimB2.textSize;
+	const tf2off1 = dimTF2.offset + dimTF2.textSize;
+	const tf2off2 = dimTF2.textOffset + dimTF2.textSize;
+	const maxOffset = Math.max(
+		hoff1, hoff2, twoff1, twoff2, b1off1, b1off2, tf1off1, tf1off2, b2off1, b2off2, tf2off1, tf2off2
+	);
 
-	const { minX, minY, maxX, maxY } = 
-		findMinMaxCoord([
-			lbb, rbb, ltt, rtt,
-			{ x: sideC.x - maxOffset, y: sideC.y },
-			{ x: topC.x, y: topC.y - maxOffset },
-			{ x: botC.x, y: botC.y + maxOffset },
-			{ x: rbtbc.x + maxOffset, y: rbtbc.y },
-			{ x: rttbc.x + maxOffset, y: rttbc.y },
-		]);
+	const p = maxOffset + 20; // padding
+	const vertices = [
+		{ x: lbb.x - p, 	y: lbb.y + p},
+		{ x: rbb.x + p, 	y: lbb.y + p},
+		{ x: rtt.x + p, 	y: rtt.y - p},
+		{ x: ltt.x - p, 	y: ltt.y - p},
+		{ x: sideC.x - p, y: sideC.y },
+		{ x: topC.x, y: topC.y - p },
+		{ x: botC.x, y: botC.y + p },
+		{ x: rttbc.x + p, y: rttbc.y - p },
+		{ x: rbtbc.x + p, y: rbtbc.y + p },
+	];
+
+	const { minX, minY, maxX, maxY } = findMinMaxCoord(vertices);
 	const scaleFactor = getScaleFactor(canvasWH, minX, minY, maxX, maxY);
 
 	p5.scale(scaleFactor);

@@ -89,3 +89,45 @@ export const Scale = () => {
 		/>
 	)
 }
+
+export const Rotate = () => {
+	return (
+		<SolidRectangle
+			canvas={{
+				dimension: {
+					width: 500,
+					height: 500,
+				},
+				autoScale: false,
+				scale: 1,
+				rotate: 135,
+			}}
+			referLine={{ b: {}, h: {}, }}
+			b={100}
+			h={100}
+		/>
+	)
+}
+
+export const Offset = () => {
+	return (
+		<div>
+			<SolidRectangle
+				referLine={{ b: {}, h: {}, }}
+				b={300}
+				h={300}
+			/>
+			<SolidRectangle
+				canvas={{
+					dimension: {
+						width: 300,
+						height: 300,
+					}
+				}}
+				referLine={{ b: {}, h: {}, }}
+				b={200}
+				h={200}
+			/>
+		</div>
+	)
+}

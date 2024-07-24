@@ -39,9 +39,7 @@ export const reverseY = (y: number, canvasH: number) => {
  * @param canvasDim canvas types of dimension
  * @returns { width: number, height: number }
  */
-export const toDimension2D = (dim: CanvasDimension2D | undefined): Dimension2D | undefined => {
-	if (!dim) return undefined;
-
+export const toDimension2D = (dim: CanvasDimension2D): Dimension2D => {
 	if (dim instanceof Array) {
 		return { width: dim[0], height: dim[1] };
 	}
@@ -74,6 +72,7 @@ export const defaultCanvasValue = (width: number = 100, height: number = 100): R
 		translateCoords: { x: 0, y: 0 },
 		autoScale: true,
 		scale: 1,
+		rotate: 0,
 	};
 }
 
@@ -95,7 +94,7 @@ export const defaultDimensionLineValue = (): Required<DimensionLine> => {
 		text: null,
 		textColor: 'black',
 		textSize: 14,
-		textOffset: 15,
+		textOffset: null,
 	};
 }
 
@@ -161,14 +160,20 @@ export const drawDimLine = (
 	const cx = center.x;
 	const cy = center.y;
 	const txt = dimLine.text ?? text;
-	const txtOff = dimLine.textOffset!;
+	const txtOff = dimLine.textOffset;
+	const txtSize = dimLine.textSize!;
 
 	if (position === 'bottom' || position === 'top') {
-		const cyoff = position === 'bottom' ? cy + txtOff * 2 : cy - txtOff * 2;
+		const cyoff = 
+			position === 'bottom' ? 
+				cy + (txtOff ?? off + txtSize) : cy - (txtOff ?? off) - txtSize;
+
 		p5.translate(cx, cyoff);
 		p5.text(txt, 0, 0);
 	} else if (position === 'right' || position === 'left') {
-		const cxoff = position === 'right' ? cx + txtOff * 2 : cx - txtOff * 2;
+		const cxoff = 
+			position === 'right' ? 
+				cx + (txtOff ?? off + txtSize) : cx - (txtOff ?? off) - txtSize;
 		p5.translate(cxoff, cy);
 		p5.rotate(p5.HALF_PI);
 		p5.text(txt, 0, 0);
@@ -262,12 +267,12 @@ export const findMinMaxCoord = (coords: Coord2D[]) => {
 	const xs = coords.map(c => c.x);
 	const ys = coords.map(c => c.y);
 
+	console.log('xs', xs);
+
 	const minX = Math.min(...xs);
 	const minY = Math.min(...ys);
 	const maxX = Math.max(...xs);
 	const maxY = Math.max(...ys);
-
-	console.log(coords, xs, ys);
 
 	return { minX, minY, maxX, maxY };
 }
