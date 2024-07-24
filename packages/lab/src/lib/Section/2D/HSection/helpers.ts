@@ -26,6 +26,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	};
 	const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 	const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
+	const canvasScale = canvas?.scale ?? defaultCanvas.scale;
 
 	// from shape prop
 	const _shape = { ...defaultShapeValue(), ...shape, };
@@ -155,7 +156,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 
 	return {
 		h, tw, b1, tf1, r1, b2, tf2, r2,
-		canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale,
+		canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale,
 		shapeFill, shapeStroke, shapeStrokeWeight,
 		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
 		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
@@ -190,7 +191,7 @@ export const drawHSection = (p5: P5CanvasInstance, extractedProps: any) => {
 		r2_lb_st, r2_lb_c1, r2_lb_ed, r2_lb_c2,
 		topL, botL, sideC,
 		twL, twR, twC,
-		topC, rttbc, botC, rbtbc, innerRC, outerRC,
+		topC, rttbc, botC, rbtbc,
 	} = extractedProps;
 
 	//도형의 기본 스타일을 설정
@@ -259,19 +260,10 @@ export const autoScaling = (
 	extractedProps: any
 ) => {
 	const { 
-		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, leaderR1, leaderR2,
-		lbb, rbb, rbt, crb, crt, rtb, rtt, ltt, ltb, clt, clb, lbt,
-		r2_rb_st, r2_rb_c1, r2_rb_ed, r2_rb_c2,
-		r1_rb_st, r1_rb_c1, r1_rb_ed, r1_rb_c2,
-		r1_rt_st, r1_rt_c1, r1_rt_ed, r1_rt_c2,
-		r2_rt_st, r2_rt_c1, r2_rt_ed, r2_rt_c2,
-		r2_lt_st, r2_lt_c1, r2_lt_ed, r2_lt_c2,
-		r1_lt_st, r1_lt_c1, r1_lt_ed, r1_lt_c2,
-		r1_lb_st, r1_lb_c1, r1_lb_ed, r1_lb_c2,
-		r2_lb_st, r2_lb_c1, r2_lb_ed, r2_lb_c2,
-		topL, botL, sideC,
-		twL, twR, twC,
-		topC, rttbc, botC, rbtbc, innerRC, outerRC,
+		dimH, dimTW, dimB1, dimTF1, dimB2, dimTF2, 
+		lbb, rbb, rtt, ltt,
+		sideC,
+		topC, rttbc, botC, rbtbc,
 	} = extractedProps;
 
 	const corFactor = 3; //보정계수

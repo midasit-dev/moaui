@@ -9,7 +9,7 @@ import { autoScaling, calcPropsSolidRectangle, drawSolidRectangle } from '@labli
  */
 const SolidRectangle = (props: SolidRectangleProps) => {
 	const { 
-		canvasWH, canvasBackground, canvasTranslateCoord, canvasAutoScale,
+		canvasWH, canvasBackground, canvasTranslateCoord, canvasAutoScale, canvasScale,
 		...otherVars
 	} = calcPropsSolidRectangle(props);
 
@@ -31,7 +31,11 @@ const SolidRectangle = (props: SolidRectangleProps) => {
 					//시작점을 평행이동 합니다. (좌하단 기준 1사분면 좌표계 기준)
 					p5.translate(canvasTranslateCoord.x, -canvasTranslateCoord.y);
 					//자동 스케일링을 설정합니다.
-					if (canvasAutoScale) autoScaling(p5, canvasWH, otherVars);
+					if (canvasAutoScale) {
+						autoScaling(p5, canvasWH, otherVars);
+					} else {
+						if (canvasScale) p5.scale(canvasScale);
+					}
 
 					drawSolidRectangle(p5, otherVars);
 				}

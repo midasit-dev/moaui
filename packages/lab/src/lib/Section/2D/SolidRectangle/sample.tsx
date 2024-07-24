@@ -71,3 +71,21 @@ export const AutoScale = () => {
 		/>
 	)
 }
+
+export const Scale = () => {
+	return (
+		<SolidRectangle
+			canvas={{
+				dimension: {
+					width: 500,
+					height: 500,
+				},
+				autoScale: false,
+				scale: 3,
+			}}
+			referLine={{ b: {}, h: {}, }}
+			b={100}
+			h={100}
+		/>
+	)
+}

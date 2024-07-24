@@ -73,6 +73,7 @@ export const defaultCanvasValue = (width: number = 100, height: number = 100): R
 		dimension: { width, height },
 		translateCoords: { x: 0, y: 0 },
 		autoScale: true,
+		scale: 1,
 	};
 }
 

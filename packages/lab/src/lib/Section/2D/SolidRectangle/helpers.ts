@@ -1,6 +1,6 @@
-import { Dimension2D, Coord2D, Canvas, CanvasDimension2D } from "@lablib/Section/2D/types/base";
+import { Dimension2D, Coord2D, } from "@lablib/Section/2D/types/base";
 import { SolidRectangleProps } from "@lablib/Section/2D/types/props";
-import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, reverseY, toDimension2D, drawDimLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
+import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, toDimension2D, drawDimLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
 import { P5CanvasInstance } from "@p5-wrapper/react";
 
 // 기본 Padding 값
@@ -27,6 +27,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		};
 		const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 		const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
+		const canvasScale = canvas?.scale ?? defaultCanvas.scale;
 	
 		// from shape prop
 		const _shape = { ...defaultShapeValue(), ...shape, };
@@ -58,7 +59,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 
 		return {
 			b, h,
-			canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale,
+			canvasBackground, canvasWH, canvasTranslateCoord, canvasAutoScale, canvasScale,
 			shapeFill, shapeStroke, shapeStrokeWeight,
 			dimB, dimH,
 			lb, rb, rt, lt,
