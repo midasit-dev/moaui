@@ -36,3 +36,4 @@ To find information about Properties, [2D/types/props.ts](./2D/types/props.ts).
 
 - [**Solid Rectangle**](./2D/SolidRectangle/sample.tsx)
 - [**H Section**](./2D/HSection/sample.tsx)
+
