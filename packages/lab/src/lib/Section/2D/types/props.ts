@@ -1,4 +1,5 @@
 import { SuperProps, Canvas, Shape, DimensionLine, LeaderLine } from '@lablib/Section/2D/types/base';
+import { Vertex2D } from '@lablib/Section/2D/types/vertex';
 
 export interface FlexProps {
 	canvas?: 					Canvas;
@@ -58,4 +59,11 @@ export interface HSectionProps extends SuperProps {
 	tf2: number;
 	r1: number;
 	r2: number;
+}
+
+export interface PolygonProps extends SuperProps {
+	shape?: Shape;
+	//TODO referLine은 방향을 결정하는 알고리즘을 추가하면 사용할 수 있다.
+
+	vertices: Vertex2D[][];
 }
