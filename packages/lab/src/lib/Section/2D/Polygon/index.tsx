@@ -43,7 +43,7 @@ const calcPropsPolygon = (props: PolygonProps) => {
 	const { 
 		vertices,
 		canvas,
-		shape,
+		// shape,
 	 } = props;
 
 	//TODO 우선 하나만 고려해봅시다!
@@ -76,7 +76,7 @@ const calcPropsPolygon = (props: PolygonProps) => {
 const drawPolygon = (p5: P5CanvasInstance, input: ReturnType<typeof calcPropsPolygon>) => {
 	const { 
 		vertices,
-		canvasWH, canvasAutoScale, canvasScale, canvasRotate,
+		canvasAutoScale, canvasScale, canvasRotate,
 	} = input;
 
 	//TODO 우선 하나만 고려해봅시다!
