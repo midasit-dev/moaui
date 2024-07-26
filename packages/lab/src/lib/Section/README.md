@@ -1,6 +1,6 @@
 # Section Library
 
-welcome section library.
+welcome section library. [Demo Code](../../../test/section/README.md)
 
 ## Getting Started
 
@@ -18,11 +18,11 @@ The foundational library used is **p5.js**. Each section component includes comm
 
 - **Canvas**: Specifies the drawing area options.
 - **Shape**: Contains data related to the starting point and style of the actual drawing.
-- **Dimensions and Measurements**: By specifying the dimensions and measurements, you can draw the desired section components.
+- **Reference Line**: By specifying the dimension lines and leader lines, you can draw the desired section components.
 
 ## Basic Interfaces
 
-For Information about **Canvas**, **Shape** and **DimensionLine**, refer to [2D/types/base.ts](./2D/types/base.ts).
+For Information about **Canvas**, **Shape** and **ReferLine**, refer to [2D/types/base.ts](./2D/types/base.ts).
 
 ## Properties By Section
 
@@ -34,6 +34,50 @@ To find information about Properties, [2D/types/props.ts](./2D/types/props.ts).
 
 ## Examples
 
-- [**Solid Rectangle**](./2D/SolidRectangle/sample.tsx)
-- [**H Section**](./2D/HSection/sample.tsx)
+about Solid Rectangle!
 
+```typescript
+import { SolidRectangle } from '@midasit-dev/moaui-lab/Section/2D';
+
+export default function Component() {
+	return (
+    <SolidRectangle
+      canvas={{
+        background: "#e7e8e9",
+        dimension: [300, 300],
+      }}
+      shape={{
+        fill: "white",
+        stroke: "black",
+        strokeWeight: 1,
+      }}
+      referLine={{
+        b: {
+          offset: 20,
+          lineExtension: 5,
+          lineExtensionAngle: 5,
+          lineColor: "blue",
+          lineWeight: 1,
+          text: null,
+          textColor: "red",
+          textSize: 14,
+          textOffset: 15,
+        },
+        h: {
+          offset: 20,
+          lineExtension: 5,
+          lineExtensionAngle: 5,
+          lineColor: "black",
+          lineWeight: 1,
+          text: null,
+          textColor: "black",
+          textSize: 14,
+          textOffset: 15,
+        },
+      }}
+      b={100}
+      h={100}
+    />
+  );
+};
+```
