@@ -1,0 +1,72 @@
+import { Meta, Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
+
+<Meta isTemplate />
+
+<Title />
+<Description />
+Verify Util Functions
+<br />
+
+## Import
+
+```ts
+import { VerifyUtil } from '@midasit-dev/moaui-components-v1'
+```
+
+<br />
+## Functions
+
+<br />
+### isExistQueryStrings 
+Check MAPI-Key in query string
+```ts
+function isExistQueryStrings(query: string): boolean
+```
+`Example`
+```ts
+const bExist = isExistQueryStrings('https://midasit.com?mapiKey=1234');
+```
+
+<br />
+### getProductionUrl 
+Get production url
+```ts
+function getProductionUrl(): string
+```
+`Example`
+```ts
+const url = getProductionUrl();
+```
+
+<br />
+### getVerifyInfoAsync 
+Get verify info
+```ts
+async function getVerifyInfoAsync(mapiKey: string): Promise<any>
+```
+`Example`
+```ts
+const verifyInfo = await getVerifyInfoAsync('1234');
+```
+
+<br />
+### getBaseUrlAsync 
+Get base url
+```ts
+async function getBaseUrlAsync(): Promise<string>
+```
+`Example`
+```ts
+const baseUrl = await getBaseUrlAsync();
+```
+
+<br />
+### getMapiKey 
+Get MAPI-Key (in query string)
+```ts
+function getMapiKey(): string
+```
+`Example`
+```ts
+const mapiKey = getMapiKey();
+```
