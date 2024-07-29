@@ -35,7 +35,7 @@ Vertices = [
 
 ## Types
 
-- For the type definitions used in the toVertices function, please refer to [types/props.ts](./types/props.ts).
+- For the type definitions used in the toVertices function, please refer to [types/props.ts](./types/declare/props.ts).
 
 # Usage
 
