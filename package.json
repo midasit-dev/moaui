@@ -1,6 +1,6 @@
 {
   "name": "@midasit-dev/moaui-monorepo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "<!-- markdownlint-disable-next-line -->\r <br />\r <p align=\"center\">\r   <a href=\"https://midasit.com/\" rel=\"noopener\" target=\"_blank\"><img width=\"150\" src=\"https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/svg/logo_circle_30p.svg\" alt=\"moaui logo\"></a>\r </p>",
   "main": "index.js",
   "directories": {

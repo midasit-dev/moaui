@@ -1,72 +1,45 @@
 <!-- markdownlint-disable-next-line -->
 <br />
-<p align="center">
-  <a href="https://midasit.com/" rel="noopener" target="_blank"><img width="150" src="https://raw.githubusercontent.com/midasit-dev/moaui-fixed-repo/main/svg/logo_circle_30p.svg" alt="moaui logo"></a>
-</p>
 
-<h1 align="center">moaui</h1>
+<h1 align="center">moaui-monorepo</h1>
 
 <p align="center">
-  <b>moaui</b> contains foundational React UI component libraries for shipping new features faster.
+  Welcome to the MIDAS UI Libraries monorepo! This repository houses a suite of libraries for building and styling modern user interfaces.
 </p>
 
 <div align="center">
 
-[![package version](https://img.shields.io/github/package-json/v/midasit-dev/moaui
-)](https://www.github.com/midasit-dev/moaui)
-[![package version](https://img.shields.io/github/package-json/v/midasit-dev/moaui/dev
-)](https://www.github.com/midasit-dev/moaui)
-
-[![package version](https://img.shields.io/github/forks/midasit-dev/moaui
-)](https://www.github.com/midasit-dev/moaui)
-[![package version](https://img.shields.io/github/stars/midasit-dev/moaui
-)](https://www.github.com/midasit-dev/moaui)
-[![package version](https://img.shields.io/github/watchers/midasit-dev/moaui
-)](https://www.github.com/midasit-dev/moaui)
-
-[![collaborators](https://img.shields.io/npm/collaborators/%40midasit-dev%2Fmoaui
-)](https://www.npmjs.com/package/@midasit-dev/moaui)
-[![npm downloads](https://img.shields.io/npm/dw/%40midasit-dev%2Fmoaui
-)](https://www.npmjs.com/package/@midasit-dev/moaui)
-[![npm downloads](https://img.shields.io/npm/dy/%40midasit-dev%2Fmoaui
-)](https://www.npmjs.com/package/@midasit-dev/moaui)
+[![Forks](https://img.shields.io/github/forks/midasit-dev/moaui)](https://www.github.com/midasit-dev/moaui)
+[![Stars](https://img.shields.io/github/stars/midasit-dev/moaui)](https://www.github.com/midasit-dev/moaui)
+[![Watchers](https://img.shields.io/github/watchers/midasit-dev/moaui)](https://www.github.com/midasit-dev/moaui)  
+[![Collaborators](https://img.shields.io/npm/collaborators/%40midasit-dev%2Fmoaui)](https://www.npmjs.com/package/@midasit-dev/moaui)
+[![Package Version](https://img.shields.io/github/package-json/v/midasit-dev/moaui)](https://www.github.com/midasit-dev/moaui)
 
 </div>
 
-## Installation
+## Overview
 
-moaui is available as an [npm package](https://www.npmjs.com/package/@midasit-dev/moaui).
+The `moaui-monorepo` is designed to simplify and streamline UI development by providing a collection of reusable components and utilities. Our goal is to help developers create beautiful, functional, and consistent user interfaces with ease.
 
-**npm:**
+### Libraries
 
-```bash
-npm install @midasit-dev/moaui
-```
+- **[components-v1](./packages/components-v1/)**  
+  A set of foundational UI components for building user interfaces. This includes buttons, forms, modals, and other essential UI elements.
 
-**yarn:**
+- **[lab](./packages/lab/)**  
+  An experimental playground for new UI components and features. This library is where we test and iterate on upcoming enhancements.
 
-```bash
-yarn add @midasit-dev/moaui
-```
+- **[vertices](./packages/vertices/)**  
+  A collection of utility section vertices.
 
-<br />
-
-## Getting started with moaui
-
-Here is an example of a basic app using moaui's `Button` component:
-
-```jsx
-import * as React from 'react';
-import { Button } from '@midasit-dev/moaui';
-
-function App() {
-  return <Button>Hello World</Button>;
-}
-```
-
-<br />
+## Contributing
+We welcome contributions from the community! If you have suggestions, improvements, or bug fixes, please follow our contribution guidelines. To get started, fork the repository, create a new branch, and submit a pull request.
 
 ## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-This project is licensed under the terms of the
-[MIT license](/LICENSE).
+## Contact
+For any questions or issues, feel free to open an issue on our GitHub repository or reach out to us via email at developers@midasit.com.
+
+Thank you for using moaui-monorepo! We hope you find it helpful and easy to use.  
+Feel free to adjust any sections or add more details specific to your project needs!

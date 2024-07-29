@@ -1,9 +1,13 @@
-# Vertice Library
+<!-- markdownlint-disable-next-line -->
+<h1 align="center">moaui-vertices</h1>
 
-The Vertice Library extracts vertices based on size information. The coordinate system used starts from the top-left corner of the browser window, with the origin point of each vertex being the **bottom-left** corner of the shape.
+<p align="center">
+  The Vertice Library extracts vertices based on size information. The coordinate system used starts from the top-left corner of the browser window, with the origin point of each vertex being the **bottom-left** corner of the shape.
+</p>
 
-The final return value, `Vertices`, is a two-dimensional array.  
-The core concept is an array of arrays of polygon coordinate arrays.
+<p align="center">
+	The final return value, `Vertices`, is a two-dimensional array. The core concept is an array of arrays of polygon coordinate arrays. 
+</p>
 
 ## Concept
 
