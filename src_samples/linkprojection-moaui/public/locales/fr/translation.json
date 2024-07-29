@@ -1,5 +1,0 @@
-{
-  "PluginMainDescription": "Créez un lien du nœud maître au nœud esclave le plus proche.",
-  "MasterNodeSelection": "Sélectionnez le nœud maître : ",
-  "SlaveNodeSelection": "Sélectionnez le nœud esclave : "
-}
