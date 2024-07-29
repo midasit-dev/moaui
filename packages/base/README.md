@@ -35,18 +35,18 @@
 
 ## Installation
 
-moaui is available as an [npm package](https://www.npmjs.com/package/@midasit-dev/moaui).
+moaui is available as an [npm package](https://www.npmjs.com/package/@midasit-dev/moaui-base).
 
 **npm:**
 
 ```bash
-npm install @midasit-dev/moaui
+npm install @midasit-dev/moaui-base
 ```
 
 **yarn:**
 
 ```bash
-yarn add @midasit-dev/moaui
+yarn add @midasit-dev/moaui-base
 ```
 
 <br />
@@ -57,7 +57,7 @@ Here is an example of a basic app using moaui's `Button` component:
 
 ```jsx
 import * as React from 'react';
-import { Button } from '@midasit-dev/moaui';
+import { Button } from '@midasit-dev/moaui-base';
 
 function App() {
   return <Button>Hello World</Button>;
