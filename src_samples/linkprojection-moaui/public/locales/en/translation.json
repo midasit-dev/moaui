@@ -1,5 +1,0 @@
-{
-  "PluginMainDescription" : "Create a link from the Master Node to the nearest Slave Node.",
-  "MasterNodeSelection" : "Select the Master Node : ",
-  "SlaveNodeSelection" : "Select the Slave Node : "
-}
