@@ -2,7 +2,7 @@
 <h1 align="center">moaui-vertices</h1>
 
 <p align="center">
-  The Vertice Library extracts vertices based on size information. The coordinate system used starts from the top-left corner of the browser window, with the origin point of each vertex being the **bottom-left** corner of the shape.
+  The Vertice Library extracts vertices based on size information. The coordinate system used starts from the origin.
 </p>
 
 <p align="center">
