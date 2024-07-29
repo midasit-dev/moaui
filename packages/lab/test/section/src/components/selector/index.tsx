@@ -16,8 +16,9 @@ export default function Selector(props: any) {
         label="Select a Section"
         onChange={handleSelector}
       >
-        <MenuItem value={1}>Solid Rectangle</MenuItem>
-        <MenuItem value={2}>H Section</MenuItem>
+        <MenuItem value={1}>Polygon</MenuItem>
+        <MenuItem value={2}>Solid Rectangle</MenuItem>
+        <MenuItem value={3}>H Section</MenuItem>
       </Select>
     </FormControl>
   );

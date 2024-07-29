@@ -1,5 +1,4 @@
 import { Slider, Stack, Typography } from '@mui/material';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
 import * as _ from 'lodash';
 import { Android12Switch } from '../switch';
 import ColorPicker from './color-picker';
@@ -73,14 +72,6 @@ const PropsShape = (props: any) => {
 }
 
 export default PropsShape;
-
-const textfieldStyle = {
-	fullWidth: true,
-	defaultValue: "",
-	size: "small",
-	variant: "standard",
-	hiddenLabel: true,
-} as TextFieldProps;
 
 const defaultShapeValue = {
 	fill: 'white',

@@ -1,7 +1,6 @@
 import { MuiColorInput } from "mui-color-input";
 import {
   createTheme,
-  CssBaseline,
   ThemeProvider,
   Typography,
 	Stack,
@@ -13,7 +12,7 @@ const theme = createTheme();
 export default function ColorPicker(props) {
 	const { title, defaultValue, onChange } = props;
 	const [color, setColor] = useState(defaultValue);
-	useEffect(() => onChange(color), [color]);
+	useEffect(() => onChange(color), [color, onChange]);
 
   return (
     <ThemeProvider theme={theme}>

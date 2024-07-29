@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import Selector from './components/selector';
+import PolygonTester from './components/polygon';
 import SolidRectangleTester from './components/solid-rectangle';
 import HSectionTester from './components/h-section';
 
@@ -14,8 +14,9 @@ function App() {
 			<div style={selectorStyle}>
 				<Selector {...{selectIdx, setSelectIdx}} />
 			</div>
-			{selectIdx === 1 && <SolidRectangleTester />}
-			{selectIdx === 2 && <HSectionTester />}
+			{selectIdx === 1 && <PolygonTester />}
+			{selectIdx === 2 && <SolidRectangleTester />}
+			{selectIdx === 3 && <HSectionTester />}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
@@ -10,7 +9,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Stack } from '@mui/material';
 import { SvgIconOwnProps, Tooltip } from '@mui/material';
 import { HSection } from '@midasit-dev/moaui-lab/Section/2D';
-import { TextFieldProps } from '@mui/material/TextField';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -22,6 +20,7 @@ import PropsCanvas from '../tabs/props-canvas';
 import PropsShape from '../tabs/props-shape';
 import PropsReferLine from '../tabs/props-reference-line';
 import PropsSize from '../tabs/props-size';
+import { motion } from 'framer-motion';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -37,14 +36,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
-
-const textfieldStyle = {
-	fullWidth: true,
-	defaultValue: "",
-	size: "small",
-	variant: "standard",
-	hiddenLabel: true,
-} as TextFieldProps;
 
 export default function HSectionTester() {
   const [expanded, setExpanded] = React.useState(false);
@@ -171,12 +162,19 @@ export default function HSectionTester() {
 
       <CardContent>
         <Stack direction="row">
-          <Box>
+					<motion.div
+						initial={{ opacity: 0, x: -500 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ type: "spring", stiffness: 260, damping: 20, duration: 0.3 }}
+					>
             <HSection {...allProps} />
-          </Box>
+          </motion.div>
 
-          <Box
-            sx={{
+          <motion.div
+						initial={{ opacity: 0, x: 500 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ type: "spring", stiffness: 260, damping: 20, duration: 0.3 }}
+            style={{
               position: "fixed",
               right: 0,
               top: 0,
@@ -206,7 +204,7 @@ export default function HSectionTester() {
 								}
               </Stack>
             </Stack>
-          </Box>
+          </motion.div>
         </Stack>
       </CardContent>
 
