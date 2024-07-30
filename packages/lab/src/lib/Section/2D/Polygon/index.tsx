@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactP5Wrapper, P5CanvasInstance } from "@p5-wrapper/react";
-import { Coord2D, defaultCanvasValue, Dimension2D, drawGuideLine, findMinMaxCoord, PolygonProps, toCoord2D, toDimension2D } from "@lablib/Section/2D";
+import { Vertex2D, defaultCanvasValue, Dimension2D, drawGuideLine, findMinMaxCoord, PolygonProps, toVertex2D, toDimension2D } from "@lablib/Section/2D";
 
 /* 
  * Shape of a Polygon (for 2D Section)
@@ -61,7 +61,7 @@ const calcPropsPolygon = (props: PolygonProps) => {
 	const defaultCanvas = defaultCanvasValue(maxWH.width, maxWH.height);
 	const canvasBackground: string | null = canvas?.background ?? defaultCanvas.background;
 	const canvasWH: Dimension2D = toDimension2D(canvas?.dimension ?? defaultCanvas.dimension);
-	const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
+	const canvasTranslateCoord: Vertex2D = toVertex2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 	const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 	const canvasScale = canvas?.scale ?? defaultCanvas.scale;
 	const canvasRotate = canvas?.rotate ?? defaultCanvas.rotate;

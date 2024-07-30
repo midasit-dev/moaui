@@ -8,6 +8,7 @@ import { calcPropsSolidRectangle, drawSolidRectangle } from '@lablib/Section/2D/
  */
 const SolidRectangle = (props: SolidRectangleProps) => {
 	const input = calcPropsSolidRectangle(props);
+	if (!input) return null;
 
 	return (
 		<ReactP5Wrapper 

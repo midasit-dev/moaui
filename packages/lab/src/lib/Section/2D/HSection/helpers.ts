@@ -1,7 +1,7 @@
 import { P5CanvasInstance } from "@p5-wrapper/react"
 import { HSectionProps } from "@lablib/Section/2D/types/props";
-import { Dimension2D, Coord2D } from "@lablib/Section/2D/types/base";
-import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
+import { Dimension2D, Vertex2D } from "@lablib/Section/2D/types/base";
+import { half, defaultCanvasValue, defaultShapeValue, toVertex2D, ensureDimLine, toDimension2D, drawDimLine, ensureLeaderLine, drawLeaderLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
 
 // Properties를 추출한다.
 export const calcPropsHSection = (props: HSectionProps) => {
@@ -16,7 +16,7 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	const defaultCanvas = defaultCanvasValue(b1 > b2 ? b1 : b2, h);
 	const canvasBackground: string | null = canvas?.background ?? defaultCanvas.background;
 	const canvasWH: Dimension2D = toDimension2D(canvas?.dimension ?? defaultCanvas.dimension);
-	const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
+	const canvasTranslateCoord: Vertex2D = toVertex2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 	const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 	const canvasScale = canvas?.scale ?? defaultCanvas.scale;
 	const canvasRotate = canvas?.rotate ?? defaultCanvas.rotate;
@@ -43,91 +43,91 @@ export const calcPropsHSection = (props: HSectionProps) => {
 	const flangeW2 = (b2 - tw) * 0.5; // Bottom flange Wing width (1/2)
 
 	// 중앙점에서 시작!
-	const lbb: Coord2D = { x: -half(b2), 						y: half(h) };
-	const rbb: Coord2D = { x: half(b2), 						y: half(h) };
-	const rbt: Coord2D = { x: half(b2), 						y: half(h) - tf2 };
-	const crb: Coord2D = { x: half(b2) - flangeW2, 	y: half(h) - tf2 };
-	const crt: Coord2D = { x: half(b2) - flangeW2, 	y: half(h) - tf2 - webH };
-	const rtb: Coord2D = { x: half(b1), 						y: half(h) - tf2 - webH };
-	const rtt: Coord2D = { x: half(b1), 						y: half(h) - tf2 - webH - tf1 };
-	const ltt: Coord2D = { x: -half(b1), 						y: half(h) - tf2 - webH - tf1 };
-	const ltb: Coord2D = { x: -half(b1), 						y: half(h) - tf2 - webH };
-	const clt: Coord2D = { x: -half(b1) + flangeW1, y: half(h) - tf2 - webH };
-	const clb: Coord2D = { x: -half(b1) + flangeW1, y: half(h) - tf2 };
-	const lbt: Coord2D = { x: -half(b2), 						y: half(h) - tf2 };
+	const lbb: Vertex2D = { x: -half(b2), 						y: half(h) };
+	const rbb: Vertex2D = { x: half(b2), 						y: half(h) };
+	const rbt: Vertex2D = { x: half(b2), 						y: half(h) - tf2 };
+	const crb: Vertex2D = { x: half(b2) - flangeW2, 	y: half(h) - tf2 };
+	const crt: Vertex2D = { x: half(b2) - flangeW2, 	y: half(h) - tf2 - webH };
+	const rtb: Vertex2D = { x: half(b1), 						y: half(h) - tf2 - webH };
+	const rtt: Vertex2D = { x: half(b1), 						y: half(h) - tf2 - webH - tf1 };
+	const ltt: Vertex2D = { x: -half(b1), 						y: half(h) - tf2 - webH - tf1 };
+	const ltb: Vertex2D = { x: -half(b1), 						y: half(h) - tf2 - webH };
+	const clt: Vertex2D = { x: -half(b1) + flangeW1, y: half(h) - tf2 - webH };
+	const clb: Vertex2D = { x: -half(b1) + flangeW1, y: half(h) - tf2 };
+	const lbt: Vertex2D = { x: -half(b2), 						y: half(h) - tf2 };
 
 	// r 영역 좌표: 중심점, 호의 시작점, 호의 끝점 (순서는 st -> c1 -> c2 -> ed)
 	// flange
-	const r2_rbt_st: Coord2D = { x: rbt.x, 										y: rbt.y + r2 };
-	const r2_rbt_c1: Coord2D = { x: r2_rbt_st.x, 							y: r2_rbt_st.y - (r2 * 0.5) };
-	const r2_rbt_ed: Coord2D = { x: rbt.x - r2, 							y: rbt.y };
-	const r2_rbt_c2: Coord2D = { x: r2_rbt_ed.x + (r2 * 0.5), y: r2_rbt_ed.y };
+	const r2_rbt_st: Vertex2D = { x: rbt.x, 										y: rbt.y + r2 };
+	const r2_rbt_c1: Vertex2D = { x: r2_rbt_st.x, 							y: r2_rbt_st.y - (r2 * 0.5) };
+	const r2_rbt_ed: Vertex2D = { x: rbt.x - r2, 							y: rbt.y };
+	const r2_rbt_c2: Vertex2D = { x: r2_rbt_ed.x + (r2 * 0.5), y: r2_rbt_ed.y };
 
 	// web
-	const r1_crb_st: Coord2D = { x: crb.x + r1, 							y: crb.y };
-	const r1_crb_c1: Coord2D = { x: r1_crb_st.x - (r1 * 0.5), y: r1_crb_st.y };
-	const r1_crb_ed: Coord2D = { x: crb.x, 										y: crb.y - r1 };
-	const r1_crb_c2: Coord2D = { x: r1_crb_ed.x, 							y: r1_crb_ed.y + (r1 * 0.5) };
+	const r1_crb_st: Vertex2D = { x: crb.x + r1, 							y: crb.y };
+	const r1_crb_c1: Vertex2D = { x: r1_crb_st.x - (r1 * 0.5), y: r1_crb_st.y };
+	const r1_crb_ed: Vertex2D = { x: crb.x, 										y: crb.y - r1 };
+	const r1_crb_c2: Vertex2D = { x: r1_crb_ed.x, 							y: r1_crb_ed.y + (r1 * 0.5) };
 
 	// web
-	const r1_crt_st: Coord2D = { x: crt.x, 										y: crt.y + r1 };
-	const r1_crt_c1: Coord2D = { x: r1_crt_st.x, 							y: r1_crt_st.y - (r1 * 0.5) };
-	const r1_crt_ed: Coord2D = { x: crt.x + r1, 							y: crt.y };
-	const r1_crt_c2: Coord2D = { x: r1_crt_ed.x - (r1 * 0.5), y: r1_crt_ed.y };
+	const r1_crt_st: Vertex2D = { x: crt.x, 										y: crt.y + r1 };
+	const r1_crt_c1: Vertex2D = { x: r1_crt_st.x, 							y: r1_crt_st.y - (r1 * 0.5) };
+	const r1_crt_ed: Vertex2D = { x: crt.x + r1, 							y: crt.y };
+	const r1_crt_c2: Vertex2D = { x: r1_crt_ed.x - (r1 * 0.5), y: r1_crt_ed.y };
 
 	// flange
-	const r2_rtb_st: Coord2D = { x: rtb.x - r2, 							y: rtb.y };
-	const r2_rtb_c1: Coord2D = { x: r2_rtb_st.x + (r2 * 0.5), y: r2_rtb_st.y };
-	const r2_rtb_ed: Coord2D = { x: rtb.x, 										y: rtb.y - r2 };
-	const r2_rtb_c2: Coord2D = { x: r2_rtb_ed.x, 							y: r2_rtb_ed.y + (r2 * 0.5) };
+	const r2_rtb_st: Vertex2D = { x: rtb.x - r2, 							y: rtb.y };
+	const r2_rtb_c1: Vertex2D = { x: r2_rtb_st.x + (r2 * 0.5), y: r2_rtb_st.y };
+	const r2_rtb_ed: Vertex2D = { x: rtb.x, 										y: rtb.y - r2 };
+	const r2_rtb_c2: Vertex2D = { x: r2_rtb_ed.x, 							y: r2_rtb_ed.y + (r2 * 0.5) };
 
 	// flange
-	const r2_ltb_st: Coord2D = { x: ltb.x, 										y: ltb.y - r2 };
-	const r2_ltb_c1: Coord2D = { x: r2_ltb_st.x, 							y: r2_ltb_st.y + (r2 * 0.5) };
-	const r2_ltb_ed: Coord2D = { x: ltb.x + r2, 							y: ltb.y };
-	const r2_ltb_c2: Coord2D = { x: r2_ltb_ed.x - (r2 * 0.5), y: r2_ltb_ed.y };
+	const r2_ltb_st: Vertex2D = { x: ltb.x, 										y: ltb.y - r2 };
+	const r2_ltb_c1: Vertex2D = { x: r2_ltb_st.x, 							y: r2_ltb_st.y + (r2 * 0.5) };
+	const r2_ltb_ed: Vertex2D = { x: ltb.x + r2, 							y: ltb.y };
+	const r2_ltb_c2: Vertex2D = { x: r2_ltb_ed.x - (r2 * 0.5), y: r2_ltb_ed.y };
 
 	// web
-	const r1_clt_st: Coord2D = { x: clt.x - r1, 							y: clt.y };
-	const r1_clt_c1: Coord2D = { x: r1_clt_st.x + (r1 * 0.5), y: r1_clt_st.y };
-	const r1_clt_ed: Coord2D = { x: clt.x, 										y: clt.y + r1 };
-	const r1_clt_c2: Coord2D = { x: r1_clt_ed.x, 							y: r1_clt_ed.y - (r1 * 0.5) };
+	const r1_clt_st: Vertex2D = { x: clt.x - r1, 							y: clt.y };
+	const r1_clt_c1: Vertex2D = { x: r1_clt_st.x + (r1 * 0.5), y: r1_clt_st.y };
+	const r1_clt_ed: Vertex2D = { x: clt.x, 										y: clt.y + r1 };
+	const r1_clt_c2: Vertex2D = { x: r1_clt_ed.x, 							y: r1_clt_ed.y - (r1 * 0.5) };
 
 	// web
-	const r1_clb_st: Coord2D = { x: clb.x, 										y: clb.y - r1 };
-	const r1_clb_c1: Coord2D = { x: r1_clb_st.x, 							y: r1_clb_st.y + (r1 * 0.5) };
-	const r1_clb_ed: Coord2D = { x: clb.x - r1, 							y: clb.y };
-	const r1_clb_c2: Coord2D = { x: r1_clb_ed.x + (r1 * 0.5), y: r1_clb_ed.y };
+	const r1_clb_st: Vertex2D = { x: clb.x, 										y: clb.y - r1 };
+	const r1_clb_c1: Vertex2D = { x: r1_clb_st.x, 							y: r1_clb_st.y + (r1 * 0.5) };
+	const r1_clb_ed: Vertex2D = { x: clb.x - r1, 							y: clb.y };
+	const r1_clb_c2: Vertex2D = { x: r1_clb_ed.x + (r1 * 0.5), y: r1_clb_ed.y };
 
 	// flange
-	const r2_lbt_st: Coord2D = { x: lbt.x + r2, 							y: lbt.y };
-	const r2_lbt_c1: Coord2D = { x: r2_lbt_st.x - (r2 * 0.5), y: r2_lbt_st.y };
-	const r2_lbt_ed: Coord2D = { x: lbt.x, 										y: lbt.y + r2 };
-	const r2_lbt_c2: Coord2D = { x: r2_lbt_ed.x, 							y: r2_lbt_ed.y - (r2 * 0.5) };
+	const r2_lbt_st: Vertex2D = { x: lbt.x + r2, 							y: lbt.y };
+	const r2_lbt_c1: Vertex2D = { x: r2_lbt_st.x - (r2 * 0.5), y: r2_lbt_st.y };
+	const r2_lbt_ed: Vertex2D = { x: lbt.x, 										y: lbt.y + r2 };
+	const r2_lbt_c2: Vertex2D = { x: r2_lbt_ed.x, 							y: r2_lbt_ed.y - (r2 * 0.5) };
 
 	// 치수선에 필요한 값
 	const leftX: number = Math.min(lbb.x, ltt.x);
 
 	// for h
-	const topL: Coord2D	= { x: leftX, y: ltt.y };
-	const botL: Coord2D	= { x: leftX, y: lbb.y };
-	const sideC: Coord2D = { x: leftX, y: lbb.y - (h * 0.5) };
+	const topL: Vertex2D	= { x: leftX, y: ltt.y };
+	const botL: Vertex2D	= { x: leftX, y: lbb.y };
+	const sideC: Vertex2D = { x: leftX, y: lbb.y - (h * 0.5) };
 	// for tw
-	const twL: Coord2D = { x: clt.x, y: clt.y + (clb.y - clt.y) * 0.5 };
-	const twR: Coord2D = { x: crt.x, y: crt.y + (crb.y - crt.y) * 0.5 };
-	const twC: Coord2D = { x: clt.x + (tw * 0.5), y: crt.y + (crb.y - crt.y) * 0.5 };
+	const twL: Vertex2D = { x: clt.x, y: clt.y + (clb.y - clt.y) * 0.5 };
+	const twR: Vertex2D = { x: crt.x, y: crt.y + (crb.y - crt.y) * 0.5 };
+	const twC: Vertex2D = { x: clt.x + (tw * 0.5), y: crt.y + (crb.y - crt.y) * 0.5 };
 	// for b1
-	const topC: Coord2D = { x: rtt.x - (b1 * 0.5), y: rtt.y };
+	const topC: Vertex2D = { x: rtt.x - (b1 * 0.5), y: rtt.y };
 	// for tf1
-	const rttbc: Coord2D = { x: rtt.x, y: rtt.y - (rtt.y - rtb.y) * 0.5 };
+	const rttbc: Vertex2D = { x: rtt.x, y: rtt.y - (rtt.y - rtb.y) * 0.5 };
 	// for b2
-	const botC: Coord2D 		= { x: rbb.x - (b2 * 0.5), y: rbb.y };
+	const botC: Vertex2D 		= { x: rbb.x - (b2 * 0.5), y: rbb.y };
 	// for tf2
-	const rbtbc: Coord2D = { x: rbt.x, y: rbt.y + (rbb.y - rbt.y) * 0.5 };
+	const rbtbc: Vertex2D = { x: rbt.x, y: rbt.y + (rbb.y - rbt.y) * 0.5 };
 	// for r1
-	const innerRC: Coord2D = { x: r1_clt_st.x + (r1 * 0.5), y: r1_clt_st.y };
+	const innerRC: Vertex2D = { x: r1_clt_st.x + (r1 * 0.5), y: r1_clt_st.y };
 	// for r2
-	const outerRC: Coord2D = { x: r2_rtb_st.x + (r2 * 0.5), y: r2_rtb_st.y };
+	const outerRC: Vertex2D = { x: r2_rtb_st.x + (r2 * 0.5), y: r2_rtb_st.y };
 
 	return {
 		h, tw, b1, tf1, r1, b2, tf2, r2,

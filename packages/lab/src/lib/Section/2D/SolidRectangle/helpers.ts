@@ -1,6 +1,6 @@
-import { Dimension2D, Coord2D, } from "@lablib/Section/2D/types/base";
+import { Dimension2D, Vertex2D, } from "@lablib/Section/2D/types/base";
 import { SolidRectangleProps } from "@lablib/Section/2D/types/props";
-import { half, defaultCanvasValue, defaultShapeValue, toCoord2D, ensureDimLine, toDimension2D, drawDimLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
+import { half, defaultCanvasValue, defaultShapeValue, toVertex2D, ensureDimLine, toDimension2D, drawDimLine, findMinMaxCoord, getScaleFactor } from "@lablib/Section/2D/utils";
 import { P5CanvasInstance } from "@p5-wrapper/react";
 
 // Properties를 추출한다.
@@ -17,7 +17,7 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		const defaultCanvas = defaultCanvasValue(b, h);
 		const canvasBackground: string | null = canvas?.background ?? defaultCanvas.background;
 		const canvasWH: Dimension2D = toDimension2D(canvas?.dimension ?? defaultCanvas.dimension);
-		const canvasTranslateCoord: Coord2D = toCoord2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
+		const canvasTranslateCoord: Vertex2D = toVertex2D(canvas?.translateCoords ?? defaultCanvas.translateCoords);
 		const canvasAutoScale = canvas?.autoScale ?? defaultCanvas.autoScale;
 		const canvasScale = canvas?.scale ?? defaultCanvas.scale;
 		const canvasRotate = canvas?.rotate ?? defaultCanvas.rotate;
@@ -39,10 +39,10 @@ export const calcPropsSolidRectangle = (props: SolidRectangleProps) => {
 		 * rt: right top
 		 * lt: left top
 		 */
-		const lb: Coord2D = { x: -half(b), 		y: half(h)};
-		const rb: Coord2D = { x: half(b), 		y: half(h)};
-		const rt: Coord2D = { x: half(b), 		y: -half(h)};
-		const lt: Coord2D = { x: -half(b), 		y: -half(h)};
+		const lb: Vertex2D = { x: -half(b), 		y: half(h)};
+		const rb: Vertex2D = { x: half(b), 		y: half(h)};
+		const rt: Vertex2D = { x: half(b), 		y: -half(h)};
+		const lt: Vertex2D = { x: -half(b), 		y: -half(h)};
 	
 		/** Center of a SolidRectangle
 		 * cb: center bottom

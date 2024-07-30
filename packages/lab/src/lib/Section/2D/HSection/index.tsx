@@ -8,6 +8,7 @@ import { calcPropsHSection, drawHSection } from '@lablib/Section/2D/HSection/hel
  */
 const HSection = (props: HSectionProps) => {
 	const input = calcPropsHSection(props);
+	if (!input) return null;
 
 	return (
 		<ReactP5Wrapper 

@@ -5,7 +5,7 @@ import {
 	CanvasDimension2D, 
 	Shape, 
 	DimensionLine,
-	Coord2D,
+	Vertex2D,
 	LeaderLine,
 } from "@lablib/Section/2D/types/base";
 
@@ -47,11 +47,11 @@ export const toDimension2D = (dim: CanvasDimension2D): Dimension2D => {
 }
 
 /**
- * convert start coordinate types of 2D to Coord2D
+ * convert start coordinate types of 2D to Vertex2D
  * @param startCoords start coordinate types of 2D
  * @returns { x: number, y: number }
  */
-export const toCoord2D = (startCoords: Coord2D | [number, number]): Coord2D => {
+export const toVertex2D = (startCoords: Vertex2D | [number, number]): Vertex2D => {
 	if (startCoords instanceof Array) {
 		return { x: startCoords[0], y: startCoords[1] };
 	}
@@ -112,9 +112,9 @@ export const drawDimLine = (
 	p5: P5CanvasInstance, 
 	position: 'bottom' | 'right' | 'top' | 'left',
 	dimLine: DimensionLine | undefined, 
-	start: Coord2D, 
-	end: Coord2D,
-	center: Coord2D,
+	start: Vertex2D, 
+	end: Vertex2D,
+	center: Vertex2D,
 	text: string,
 ) => {
 	if (!dimLine) return;
@@ -207,7 +207,7 @@ export const drawLeaderLine = (
 	p5: P5CanvasInstance, 
 	leadDirection: 'left-bottom' | 'left-top' | 'right-bottom' | 'right-top',
 	leaderLine: LeaderLine | undefined, 
-	point: Coord2D,
+	point: Vertex2D,
 	text: string,
 ) => {
 	if (!leaderLine) return;
@@ -217,12 +217,12 @@ export const drawLeaderLine = (
 	p5.stroke(leaderLine.lineColor!);
 	p5.strokeWeight(leaderLine.lineWeight!);
 
-	const st: Coord2D = { x: point.x, y: point.y }; //시작점 좌표
+	const st: Vertex2D = { x: point.x, y: point.y }; //시작점 좌표
 	const d = leaderLine.halfLength!;	//리더선의 반 길이
 	const x1 = d * Math.cos(Math.PI / 4); //x 평행이동을 위한 값
 	const y1 = d * Math.sin(Math.PI / 4); //y 평행이동을 위한 값
-	let cc: Coord2D = { x: -1, y: -1 }; //평행이동한 중심 좌표
-	let ed: Coord2D = { x: -1, y: -1 }; //끝점 좌표
+	let cc: Vertex2D = { x: -1, y: -1 }; //평행이동한 중심 좌표
+	let ed: Vertex2D = { x: -1, y: -1 }; //끝점 좌표
 
 	if (leadDirection === 'left-bottom') {
 		cc = { x: st.x - x1, y: st.y + y1 };
@@ -264,7 +264,7 @@ export const drawLeaderLine = (
 	p5.pop();
 }
 
-export const findMinMaxCoord = (coords: Coord2D[]) => {
+export const findMinMaxCoord = (coords: Vertex2D[]) => {
 	const xs = coords.map(c => c.x);
 	const ys = coords.map(c => c.y);
 

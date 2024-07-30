@@ -1,9 +1,9 @@
 /**
- * Coord2D is a type that is used to define the coordinates of a shape.
+ * Vertex2D is a type that is used to define the coordinates of a shape.
  * @var x is the x-coordinate of the shape.
  * @var y is the y-coordinate of the shape.
  */
-export type Coord2D = {
+export type Vertex2D = {
 	x: number;
 	y: number;
 };
@@ -25,10 +25,10 @@ export type Dimension2D = {
 export type CanvasDimension2D = Dimension2D | [number, number];
 
 /**
- * TranslateCoord2D is a type that is used to define the starting coordinates of a shape.
- * @var Coord2D is the coordinates of the shape.
+ * TranslateVertex2D is a type that is used to define the starting coordinates of a shape.
+ * @var Vertex2D is the coordinates of the shape.
  */
-export type TranslateCoord2D = Coord2D | [number, number];
+export type TranslateVertex2D = Vertex2D | [number, number];
 
 /**
  * Canvas is a type that is used to define the properties of a shape.
@@ -43,7 +43,7 @@ export type TranslateCoord2D = Coord2D | [number, number];
 export interface Canvas {
 	background?: string | null;
 	dimension?: CanvasDimension2D;
-	translateCoords?: TranslateCoord2D;
+	translateCoords?: TranslateVertex2D;
 	autoScale?: boolean;
 	scale?: number;
 	rotate?: number;
