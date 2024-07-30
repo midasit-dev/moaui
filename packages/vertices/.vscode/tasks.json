@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "tsc",
+      "type": "shell",
+      "command": "tsc --incremental -p tsconfig.json",
+      "problemMatcher": ["$tsc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+    },
+    {
+      "label": "tsc-alias",
+      "type": "shell",
+      "command": "tsc-alias -p tsconfig.json",
+      "dependsOn": "tsc -p tsconfig.json",
+      "problemMatcher": [],
+    },
+    {
+      "label": "build and alias with tsconfig.json",
+      "type": "shell",
+      "dependsOn": ["tsc", "tsc-alias"],
+      "problemMatcher": [],
+    }
+  ]
+}

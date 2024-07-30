@@ -18,4 +18,4 @@ function main() {
 	console.log(JSON.stringify(vertices));
 }
 
-main();
+main(); 

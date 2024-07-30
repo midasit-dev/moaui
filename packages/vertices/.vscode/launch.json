@@ -7,10 +7,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "for_debugging",
       "program": "${workspaceFolder}/for_debugging.ts",
-      "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": ["${workspaceFolder}/for_debugging/**/*.js"]
+      "preLaunchTask": "build and alias with tsconfig.json",
+      "outFiles": ["${workspaceFolder}/for_debugging/**/*.js"],
+			"console": "externalTerminal",
     }
   ]
 }
