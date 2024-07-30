@@ -37,7 +37,7 @@ Vertices = [
 
 - For the type definitions used in the toVertices function, please refer to [types/props.ts](./types/declare/props.ts).
 
-# Usage
+## Usage
 
 When using this coordinate information, remember the following:
 
@@ -53,7 +53,7 @@ To install the Vertice Library, you can use npm:
 $ (npm | pnpm | yarn) (i | add) @midasit-dev/moaui-vertices
 ```
 
-# Example Use Case
+## Example Use Case
 
 Here is an example use case demonstrating how to utilize the Vertice Library:
 
@@ -86,11 +86,11 @@ if (verticesSolidRectangle instanceof Error) {
 }
 ```
 
-# Contributing
+## Contributing
 
 We welcome contributions to improve this library. Please feel free to submit a pull request or open an issue.
 
-# License
+## License
 
 This project is licensed under the MIT License.
 
