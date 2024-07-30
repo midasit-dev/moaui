@@ -2,7 +2,7 @@
 	"compilerOptions": {
     "target": "ES5",
     "module": "CommonJS",
-    "outDir": "test",
+    "outDir": "for_debugging",
     "sourceMap": true
   }
 }
