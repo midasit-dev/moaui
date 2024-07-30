@@ -3,10 +3,10 @@ import {
 	SolidRectangleProps,
 	HSectionProps,
 	Vertex2D,
-} from "../../types";
+} from "@lib-types";
 
-import toHSectionVertices from "./h-section";
-import toSolidRectangleVertices from "./solid-rectangle";
+import toHSectionVertices from "@lib-functions/declare/h-section";
+import toSolidRectangleVertices from "@lib-functions/declare/solid-rectangle";
 
 /** @Export */
 export function toVertices(props: ConvertProps): Vertex2D[][] | Error {

@@ -1,6 +1,5 @@
-import { HSectionProps } from "../../types/declare/props";
-import { Vertex2D } from "../../types/declare/vertex";
-import half from "../../utils/half";
+import { HSectionProps, Vertex2D } from "@lib-types";
+import { half } from "@lib-utils";
 
 export default function toHSectionVertices(props: HSectionProps): Vertex2D[][] {
 	const { h, tw, b1, tf1, b2, tf2, r1, r2 } = props;

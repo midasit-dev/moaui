@@ -1,5 +1,5 @@
-import { toVertices } from "../functions";
-import { ConvertProps, Vertex2D } from '../types';
+import { toVertices } from "@lib-functions";
+import { Vertex2D } from '@lib-types';
 
 describe('to-vertices.ts test', () => {
 	test('h-section.ts test', () => {

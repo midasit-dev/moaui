@@ -1,6 +1,5 @@
-import { SolidRectangleProps } from "../../types/declare/props";
-import { Vertex2D } from "../../types/declare/vertex";
-import half from "../../utils/half";
+import { SolidRectangleProps, Vertex2D } from "@lib-types";
+import { half } from "@lib-utils";
 
 export default function toSolidRectangleVertices(props: SolidRectangleProps): Vertex2D[][] {
 	const { b, h } = props;

@@ -1,2 +1,2 @@
-export * from './declare/props';
-export * from './declare/vertex';
+export * from '@lib-types/declare/props';
+export * from '@lib-types/declare/vertex';

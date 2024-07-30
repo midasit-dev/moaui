@@ -1,1 +1,1 @@
-export * from './declare/to-vertices';
+export * from '@lib-functions/declare/to-vertices';

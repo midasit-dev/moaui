@@ -3,6 +3,19 @@
     "target": "ES5",
     "module": "CommonJS",
     "outDir": "for_debugging",
+		"declaration": true,
     "sourceMap": true,
-  }
+		"baseUrl": ".",
+		"paths": {
+			"@lib-functions": ["./functions/"],
+			"@lib-functions/*": ["./functions/*"],
+			"@lib-types": ["./types/"],
+			"@lib-types/*": ["./types/*"],
+			"@lib-utils": ["./utils/"],
+			"@lib-utils/*": ["./utils/*"]
+		}
+  },
+	"tsc-alias": {
+		"verbose": true,
+	}
 }
