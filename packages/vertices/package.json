@@ -8,6 +8,15 @@
   },
   "scripts": {
     "prepare-npmjs": "node prepare.js && tsc -p tsconfig.npm.json",
-    "publish-npmjs": "npm run prepare-npmjs && cd dist && npm publish --access public"
+    "publish-npmjs": "npm run prepare-npmjs && cd dist && npm publish --access public",
+		"test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.25.0",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/jest": "^29.5.12",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
   }
 }

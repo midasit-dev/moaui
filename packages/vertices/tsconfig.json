@@ -3,6 +3,6 @@
     "target": "ES5",
     "module": "CommonJS",
     "outDir": "for_debugging",
-    "sourceMap": true
+    "sourceMap": true,
   }
 }
