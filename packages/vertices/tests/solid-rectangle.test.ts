@@ -1,19 +1,13 @@
 import { toVertices } from "@lib-functions";
 import { Vertex2D } from '@lib-types';
 
-describe('functions/h-section.ts', () => {
-	test('H-300x250x30x50', () => {
+describe('functions/solid-rectangle.ts', () => {
+	test('250x300', () => {
 		const vertices: Vertex2D[][] | Error = toVertices({
-			type: "HSection",
+			type: "SolidRectangle",
 			properties: {
+				b: 250,
 				h: 300,
-				tw: 30,
-				b1: 250,
-				tf1: 50,
-				b2: 250,
-				tf2: 50,
-				r1: 10,
-				r2: 10,
 			},
 		});
 

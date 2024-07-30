@@ -9,7 +9,7 @@
   "scripts": {
     "prepare-npmjs": "npm test && node prepare.js && tsc -p tsconfig.npm.json && tsc-alias -p tsconfig.npm.json",
     "publish-npmjs": "npm run prepare-npmjs && cd dist && npm publish --access public",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "devDependencies": {
     "@babel/core": "^7.24.9",
