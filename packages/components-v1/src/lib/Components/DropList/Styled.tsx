@@ -187,6 +187,9 @@ const StyledComponent = styled((props:StyledProps) => {
               backgroundColor: backgroundColor || Color.primary.white,
             },
             height: "1.75rem",
+            "& .MuiOutlinedInput-notchedOutline":{
+              height: "2rem",
+            }
           }}
           onChange={onChange}
           disabled={props?.disabled}
