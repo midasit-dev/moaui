@@ -35,6 +35,8 @@ const SampleProps = {
 	listWidth: '100px',
 	placeholder: "placeholder",
 	maxLength: 10,
+	disablePortal: false,
+	fullWidth: false,
 } as StyledProps;
 
 export default DropList;

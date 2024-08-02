@@ -89,6 +89,11 @@ export type StyledProps = {
    * Set a string max length of droplist's input.
    */
   maxLength?: number;
+
+  /**
+   * If true, the droplist will appear below the DOM hierarchy of the parent component.
+   */
+  disablePortal?: boolean;
 };
 
 const useDroplistOpenCloseEffect = () => {
@@ -117,7 +122,7 @@ const useDroplistOpenCloseEffect = () => {
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	const {id, itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength, fullWidth = false} = props;
+	const {id, itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength, fullWidth = false, disablePortal = false} = props;
 
 	//정방향 map 생성
 	const [itemMap, setItemMap] = useState<Map<string, string | number>>(new Map());
@@ -188,6 +193,9 @@ const StyledComponent = styled((props:StyledProps) => {
 					open={isDroplistOpen}
 					onOpen={() => setIsDroplistOpen(true)}
 					onClose={() => setIsDroplistOpen(false)}
+					MenuProps={{
+						disablePortal: disablePortal,
+					}}
         >
 					{props?.placeholder && 
 						<MenuItem disabled value=""

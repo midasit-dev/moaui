@@ -45,5 +45,6 @@ export const Sample: Story = {
 		placeholder: 'placeholder',
 		maxLength: 10,
 		fullWidth: false,
+		disablePortal: false,
 	}
 };
