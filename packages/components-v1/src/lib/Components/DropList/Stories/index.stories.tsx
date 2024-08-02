@@ -44,5 +44,6 @@ export const Sample: Story = {
 		listWidth: '100px',
 		placeholder: 'placeholder',
 		maxLength: 10,
+		fullWidth: false,
 	}
 };

@@ -76,6 +76,11 @@ export type StyledProps = {
   listWidth?: string | number;
 
   /**
+   * If true, the droplist will take up the full width of its container.
+   */
+  fullWidth?: boolean;
+
+  /**
    * Set the placeholder of droplist's input.
    */
   placeholder?: string;
@@ -112,7 +117,7 @@ const useDroplistOpenCloseEffect = () => {
 }
 
 const StyledComponent = styled((props:StyledProps) => {
-	const {id, itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength} = props;
+	const {id, itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength, fullWidth = false} = props;
 
 	//정방향 map 생성
 	const [itemMap, setItemMap] = useState<Map<string, string | number>>(new Map());
@@ -136,14 +141,13 @@ const StyledComponent = styled((props:StyledProps) => {
 		setReverseItemMap(reverseMap);
 	}, [itemMap]);
 
-	const [parentWidthInPixels, setParentWidthInPixels] = React.useState<number>(0);
 	const parentRef = React.useRef<HTMLDivElement | null>(null);
 
-	React.useEffect(() => {
-		if(parentRef.current){
-			setParentWidthInPixels(parentRef.current.offsetWidth);
-		}
-	},[width]);
+  const itemWidth = React.useMemo(() => {
+    if (listWidth) return listWidth;
+    if (parentRef?.current) return `${parentRef.current.offsetWidth}px`;
+    return "auto";
+  }, [listWidth]);
 
 	const { truncateText, isDroplistOpen, setIsDroplistOpen } = useDroplistOpenCloseEffect();
 
@@ -154,12 +158,13 @@ const StyledComponent = styled((props:StyledProps) => {
 		>
       <FormControl
         ref={parentRef}
-        sx={{ width: width, maxHeight: "1.75rem" }}
+        sx={{ width: fullWidth ? '100%' : width, maxHeight: "1.75rem" }}
       >
         <DropList
           defaultValue={defaultValue}
-          autoWidth
           value={value}
+          autoWidth={!fullWidth}
+          fullWidth={fullWidth}
           sx={{
             "& .MuiOutlinedInput-input.MuiSelect-select": {
               display: "flex",
@@ -194,7 +199,7 @@ const StyledComponent = styled((props:StyledProps) => {
 								gap: "0.625rem",
 								alignSelf: "stretch",
 								minHeight: "1.75rem",
-								width: listWidth || `${parentWidthInPixels}px`,
+								width: itemWidth,
 								height: "1.75rem",
 								//font
 								color: Color.text.secondary,
@@ -217,7 +222,7 @@ const StyledComponent = styled((props:StyledProps) => {
                     gap: "0.625rem",
                     alignSelf: "stretch",
                     height: "1.75rem",
-                    width: `${parentWidthInPixels}px`,
+                    width: itemWidth,
                     //font
                     color: Color.text.secondary,
                     fontFeatureSettings: Font.fontFeatureSettings,
@@ -239,7 +244,7 @@ const StyledComponent = styled((props:StyledProps) => {
                   gap: "0.625rem",
                   alignSelf: "stretch",
                   minHeight: "1.75rem",
-                  width: listWidth || `${parentWidthInPixels}px`,
+                  width: itemWidth,
                   height: "1.75rem",
                   //font
                   color: Color.text.secondary,
