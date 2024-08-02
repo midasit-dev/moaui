@@ -150,7 +150,7 @@ const StyledComponent = styled((props:StyledProps) => {
 
   const itemWidth = React.useMemo(() => {
     if (listWidth) return listWidth;
-    if (parentRef?.current) return `${parentRef.current.offsetWidth}px`;
+    if (parentRef?.current) return `${parentRef.current.offsetWidth}`;
     return "auto";
   }, [listWidth]);
 
