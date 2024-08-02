@@ -163,7 +163,9 @@ const StyledComponent = styled((props:StyledProps) => {
 		>
       <FormControl
         ref={parentRef}
-        sx={{ width: fullWidth ? '100%' : width, maxHeight: "1.75rem" }}
+        sx={{ width: fullWidth ? '100%' : width, maxHeight: "2rem", '& fieldset':{
+          height: "2rem",
+        } }}
       >
         <DropList
           defaultValue={defaultValue}
