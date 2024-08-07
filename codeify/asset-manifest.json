@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/moaui/codeify/static/css/main.e6c13ad2.css",
+    "main.js": "/moaui/codeify/static/js/main.818dff62.js",
+    "static/js/453.de5a0d7a.chunk.js": "/moaui/codeify/static/js/453.de5a0d7a.chunk.js",
+    "index.html": "/moaui/codeify/index.html",
+    "main.e6c13ad2.css.map": "/moaui/codeify/static/css/main.e6c13ad2.css.map",
+    "main.818dff62.js.map": "/moaui/codeify/static/js/main.818dff62.js.map",
+    "453.de5a0d7a.chunk.js.map": "/moaui/codeify/static/js/453.de5a0d7a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.818dff62.js"
+  ]
+}
