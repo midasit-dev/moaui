@@ -1,6 +1,6 @@
 {
-  "short_name": "moaui-codeify",
-  "name": "moaui-codeify",
+  "short_name": "@midasit-dev/moaui-codeify",
+  "name": "@midasit-dev/moaui-codeify",
   "icons": [
     {
       "src": "favicon.ico",
