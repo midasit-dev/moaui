@@ -72,6 +72,43 @@ export interface StyledProps extends DataGridProps {
 	 * @default undefined
 	 */
 	columnVisibilityModel?: GridColumnVisibilityModel;
+
+	/**
+	 * font size
+	 * @default '0.75rem'
+	 */
+	columnFontSize?: string;
+
+	/**
+	 * font weight
+	 * @default 500
+	 */
+	columnFontWeight?: number;
+
+	/**
+	 * font family
+	 * @default 'Pretendard, sans-serif'
+	 */
+	columnFontFamily?: string;
+
+		/**
+	 * font size
+	 * @default '0.75rem'
+	 */
+	cellFontSize?: string;
+
+		/**
+		 * font weight
+		 * @default 500
+		 */
+	cellFontWeight?: number;
+	
+		/**
+		 * font family
+		 * @default 'Pretendard, sans-serif'
+		 */
+	cellFontFamily?: string;
+
 	/**
 	 * not used
 	 */
@@ -92,6 +129,12 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 		isCellEditable,
 		columnVisibilityModel,
 		slots,
+		columnFontSize,
+		columnFontWeight,
+		columnFontFamily,
+		cellFontSize,
+		cellFontWeight,
+		cellFontFamily,
 		sx, 
 		...rest 
 	} = props;
@@ -102,10 +145,10 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 		<DataGrid
 			density="compact"
 			{...rest}
-			disableColumnMenu={!columnMenu ?? true}
-			disableColumnSelector={!columnSelector ?? true}
-			disableColumnFilter={!columnFilter ?? true}
-			disableDensitySelector={!densitySelector ?? true}
+			disableColumnMenu={columnMenu ?? true}
+			disableColumnSelector={columnSelector ?? true}
+			disableColumnFilter={columnFilter ?? true}
+			disableDensitySelector={densitySelector ?? true}
 			disableRowSelectionOnClick={disableRowSelectionOnClick ?? false}
 			slots={{
 				baseCheckbox: MoaCheck,
@@ -160,6 +203,16 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 				},
 				".MuiSvgIcon-root": {
 					fontSize: '1rem',
+				},
+				".MuiDataGrid-columnHeaderTitle":{
+					fontSize: columnFontSize ?? '0.75rem',
+					fontWeight: columnFontWeight ?? 500,
+					fontFamily: columnFontFamily ?? 'Pretendard, sans-serif',
+				},
+				".MuiDataGrid-cellContent":{
+					fontSize: cellFontSize ?? '0.75rem',
+					fontWeight: cellFontWeight ?? 500,
+					fontFamily: cellFontFamily ?? 'Pretendard, sans-serif',
 				},
 			}}
 			onCellClick={onCellClick}

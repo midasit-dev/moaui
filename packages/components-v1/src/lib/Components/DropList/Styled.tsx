@@ -1,10 +1,10 @@
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import MoaStyledComponent from "../../Style/MoaStyled";
 import React, { useEffect, useState } from "react";
-import DropList, { SelectChangeEvent } from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import ListSubheader from '@mui/material/ListSubheader';
+import DropList, { SelectChangeEvent } from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import ListSubheader from "@mui/material/ListSubheader";
 import Color from "../../Style/Color";
 import Font from "../../Style/Font";
 
@@ -94,78 +94,137 @@ export type StyledProps = {
    * If true, the droplist will appear below the DOM hierarchy of the parent component.
    */
   disablePortal?: boolean;
+
+  /**
+   * Set the scale of the droplist.
+   */
+  scale?: number;
 };
 
 const useDroplistOpenCloseEffect = () => {
-	const [isDroplistOpen, setIsDroplistOpen] = React.useState<boolean>(false);
+  const [isDroplistOpen, setIsDroplistOpen] = React.useState<boolean>(false);
 
-	const truncateText = React.useCallback((text: string | undefined, maxLength: number | undefined) => {
-		if (text === undefined) {
-			return "";
-		}
+  const truncateText = React.useCallback(
+    (text: string | undefined, maxLength: number | undefined) => {
+      if (text === undefined) {
+        return "";
+      }
 
-		if (isDroplistOpen) {
-			return text;
-		}
+      if (isDroplistOpen) {
+        return text;
+      }
 
-		if (maxLength !== undefined && text.length > maxLength) {
-			return text.slice(0, maxLength) + "...";
-		}
-		return text;
-	}, [isDroplistOpen]);
+      if (maxLength !== undefined && text.length > maxLength) {
+        return text.slice(0, maxLength) + "...";
+      }
+      return text;
+    },
+    [isDroplistOpen]
+  );
 
-	return { 
-		isDroplistOpen, 
-		setIsDroplistOpen, 
-		truncateText,
-	};
-}
+  return {
+    isDroplistOpen,
+    setIsDroplistOpen,
+    truncateText,
+  };
+};
 
-const StyledComponent = styled((props:StyledProps) => {
-	const {id, itemList, width, value, onChange, defaultValue, backgroundColor, listWidth, maxLength, fullWidth = false, disablePortal = false} = props;
+const StyledComponent = styled((props: StyledProps) => {
+  const {
+    id,
+    itemList,
+    width,
+    value,
+    onChange,
+    defaultValue,
+    backgroundColor,
+    listWidth,
+    maxLength,
+    fullWidth = false,
+    disablePortal = false,
+    scale = 1,
+  } = props;
 
-	//정방향 map 생성
-	const [itemMap, setItemMap] = useState<Map<string, string | number>>(new Map());
-	useEffect(() => {
-		if (itemList instanceof Function) {
-			setItemMap(itemList());
-		} else if (itemList instanceof Array) {
-			setItemMap(new Map(itemList));
-		} else if (itemList instanceof Map) {
-			setItemMap(itemList);
-		} else {
-			console.error('itemList is not a Map or a function that returns a Map');
-		}
-	}, [itemList]);
+  //정방향 map 생성
+  const [itemMap, setItemMap] = useState<Map<string, string | number>>(
+    new Map()
+  );
+  useEffect(() => {
+    if (itemList instanceof Function) {
+      setItemMap(itemList());
+    } else if (itemList instanceof Array) {
+      setItemMap(new Map(itemList));
+    } else if (itemList instanceof Map) {
+      setItemMap(itemList);
+    } else {
+      console.error("itemList is not a Map or a function that returns a Map");
+    }
+  }, [itemList]);
 
-	//역방향 map 생성
-	const [reverseItemMap, setReverseItemMap] = useState<Map<string | number, string>>(new Map());
-	useEffect(() => {
-		const reverseMap = new Map();
-		itemMap.forEach((value, key) => reverseMap.set(value, key));
-		setReverseItemMap(reverseMap);
-	}, [itemMap]);
+  //역방향 map 생성
+  const [reverseItemMap, setReverseItemMap] = useState<
+    Map<string | number, string>
+  >(new Map());
+  useEffect(() => {
+    const reverseMap = new Map();
+    itemMap.forEach((value, key) => reverseMap.set(value, key));
+    setReverseItemMap(reverseMap);
+  }, [itemMap]);
 
-	const parentRef = React.useRef<HTMLDivElement | null>(null);
+  const parentRef = React.useRef<HTMLDivElement | null>(null);
+
+  const scaledFontSize = React.useMemo(() => {
+    if (scale) return `${0.75 * scale}rem`;
+  }, [scale]);
+
+  const formcontrlWidth = React.useMemo(() => {
+    if (width) {
+      if (typeof width === "string") {
+        if (width.includes("px") || width.includes("rem")) {
+          const idx = width.indexOf("px") || width.indexOf("rem");
+          return `${parseInt(width.slice(0, idx)) * 1}${width.slice(idx)}`;
+        } else {
+          return `${parseInt(width) * 1}px`;
+        }
+      }
+    }
+    return "auto";
+  }, [width]);
 
   const itemWidth = React.useMemo(() => {
-    if (listWidth) return listWidth;
-    if (parentRef?.current) return `${parentRef.current.offsetWidth}`;
-    return "auto";
-  }, [listWidth]);
+    if (listWidth && listWidth !== "auto") {
+      if (typeof listWidth === "string") {
+        if (listWidth.includes("px") || listWidth.includes("rem")) {
+          const idx = listWidth.indexOf("px") || listWidth.indexOf("rem");
+          return `${parseInt(listWidth.slice(0, idx)) * scale}${listWidth.slice(
+            idx
+          )}`;
+        } else {
+          return `${parseInt(listWidth) * scale}px`;
+        }
+      }
+    }
+    if (parentRef?.current) {
+      return `${parentRef.current.clientWidth * scale}px`;
+    }
 
-	const { truncateText, isDroplistOpen, setIsDroplistOpen } = useDroplistOpenCloseEffect();
+    return formcontrlWidth ? formcontrlWidth : "auto";
+  }, [listWidth, scale, formcontrlWidth]);
 
-	return (
-    <div
-			id={id}
-			data-current-value={reverseItemMap.get(value) ?? 'error'}
-		>
+  const { truncateText, isDroplistOpen, setIsDroplistOpen } =
+    useDroplistOpenCloseEffect();
+
+  return (
+    <div id={id} data-current-value={reverseItemMap.get(value) ?? "error"}>
       <FormControl
         ref={parentRef}
-        sx={{ width: fullWidth ? '100%' : width, maxHeight: "2rem", '& fieldset':{
-          height: "2rem",
-        } }}
+        sx={{
+          width: fullWidth ? "100%" : formcontrlWidth,
+          maxHeight: "2rem",
+          "& fieldset": {
+            height: "2rem",
+          },
+        }}
       >
         <DropList
           defaultValue={defaultValue}
@@ -182,46 +241,55 @@ const StyledComponent = styled((props:StyledProps) => {
               //font
               color: Color.text.secondary,
               fontFeatureSettings: Font.fontFeatureSettings,
-
+              // fontSize: scaledFontSize,
               //background color
               backgroundColor: backgroundColor || Color.primary.white,
             },
             height: "1.75rem",
-            "& .MuiOutlinedInput-notchedOutline":{
+            "& .MuiOutlinedInput-notchedOutline": {
               height: "2rem",
-            }
+              marginTop: "-0.05rem",
+            },
           }}
           onChange={onChange}
           disabled={props?.disabled}
           displayEmpty={props?.placeholder ? true : false}
-
-					open={isDroplistOpen}
-					onOpen={() => setIsDroplistOpen(true)}
-					onClose={() => setIsDroplistOpen(false)}
-					MenuProps={{
-						disablePortal: disablePortal,
-					}}
+          open={isDroplistOpen}
+          onOpen={() => setIsDroplistOpen(true)}
+          onClose={() => setIsDroplistOpen(false)}
+          MenuProps={{
+            disablePortal: disablePortal,
+            sx: {
+              marginTop: "0.25rem",
+            },
+          }}
         >
-					{props?.placeholder && 
-						<MenuItem disabled value=""
-							sx={{
-								display: "flex",
-								padding: "0.25rem 0.625rem",
-								justifyContent: "center",
-								alignItems: "center",
-								gap: "0.625rem",
-								alignSelf: "stretch",
-								minHeight: "1.75rem",
-								width: itemWidth,
-								height: "1.75rem",
-								//font
-								color: Color.text.secondary,
-								fontFeatureSettings: Font.fontFeatureSettings,
-							}}
-						>
-							<em>{`${truncateText(props?.placeholder, maxLength || undefined)}`}</em>
-						</MenuItem>
-					}
+          {props?.placeholder && (
+            <MenuItem
+              disabled
+              value=""
+              sx={{
+                display: "flex",
+                padding: "0.25rem 0.625rem",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "0.625rem",
+                alignSelf: "stretch",
+                minHeight: "1.75rem",
+                width: itemWidth,
+                height: 1.75 * scale + "rem",
+                //font
+                color: Color.text.secondary,
+                fontFeatureSettings: Font.fontFeatureSettings,
+                fontSize: scaledFontSize,
+              }}
+            >
+              <em>{`${truncateText(
+                props?.placeholder,
+                maxLength || undefined
+              )}`}</em>
+            </MenuItem>
+          )}
           {Array.from(itemMap.keys()).map((key, index) => {
             if (key === "subheader")
               return (
@@ -234,11 +302,12 @@ const StyledComponent = styled((props:StyledProps) => {
                     alignItems: "center",
                     gap: "0.625rem",
                     alignSelf: "stretch",
-                    height: "1.75rem",
+                    height: 1.75 * scale + "rem",
                     width: itemWidth,
                     //font
                     color: Color.text.secondary,
                     fontFeatureSettings: Font.fontFeatureSettings,
+                    fontSize: scaledFontSize,
                   }}
                 >
                   {itemMap.get(key)}
@@ -258,10 +327,11 @@ const StyledComponent = styled((props:StyledProps) => {
                   alignSelf: "stretch",
                   minHeight: "1.75rem",
                   width: itemWidth,
-                  height: "1.75rem",
+                  height: 1.75 * scale + "rem",
                   //font
                   color: Color.text.secondary,
                   fontFeatureSettings: Font.fontFeatureSettings,
+                  fontSize: scaledFontSize,
                   "&.Mui-selected": {
                     backgroundColor: `${Color.primary.enable_strock}!important`,
                   },
@@ -279,18 +349,18 @@ const StyledComponent = styled((props:StyledProps) => {
     </div>
   );
 })(() => ({
-	display: "flex",
-	fullWidth: true,
-	alignItems: "center",
-	alignSelf: "stretch",
-	borderRadius: "0.25rem",
-	border: `1px solid ${Color.component.gray}`,
-	background: Color.primary.white,
-}))
+  display: "flex",
+  fullWidth: true,
+  alignItems: "center",
+  alignSelf: "stretch",
+  borderRadius: "0.25rem",
+  border: `1px solid ${Color.component.gray}`,
+  background: Color.primary.white,
+}));
 
 const ThemedComponent = (props: StyledProps) => (
-	<MoaStyledComponent>
-		<StyledComponent {...props} />
-	</MoaStyledComponent>
+  <MoaStyledComponent>
+    <StyledComponent {...props} />
+  </MoaStyledComponent>
 );
 export default ThemedComponent;
