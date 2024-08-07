@@ -1,0 +1,1 @@
+export { default as XlsxToCode } from "./xlsx-to-code";
