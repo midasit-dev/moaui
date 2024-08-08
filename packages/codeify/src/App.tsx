@@ -1,8 +1,8 @@
-import { XlsxToCode } from "./lib";
+import { XlsxToCode, XlsxToJson } from "./lib";
 
 const TestApp = () => {
 	return (
-		<XlsxToCode />
+		<XlsxToJson />
 	)
 }
 

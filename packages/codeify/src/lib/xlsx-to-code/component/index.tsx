@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import * as ExcelJS from 'exceljs';
 import { Box, Container, Paper, Typography, Grid, Alert, Tabs, Tab, AlertTitle, Button, TextField, Stack } from '@mui/material';
 import MonacoEditor from '@monaco-editor/react';
-import { toCssObjBorder, toCssObjFont, toCssObjFill } from './to-css';
+import { toCssObjBorder, toCssObjFont, toCssObjFill } from '../to-css';
 import { transform } from '@babel/standalone';
 import { Android12Switch } from './switch';
 
@@ -113,8 +113,6 @@ const ExcelToDiv: React.FC = () => {
 				const decimalPlaces = (numFmt.match(/0/g) || []).length;
 				return value.toFixed(decimalPlaces);
 			}
-
-			console.log('onDrop -> e.target', e.target);
 
       if (e.target && e.target.result) {
         const arrayBuffer = e.target.result as ArrayBuffer;
