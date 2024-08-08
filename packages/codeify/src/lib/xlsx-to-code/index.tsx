@@ -20,29 +20,40 @@ function excelHeightToPixels(excelHeight: number): number {
 	return Math.round(pixels);
 };
 
-function toCellAddress(rowIndex: number, colIndex: number): string {
-	// 열 인덱스를 엑셀 열 이름으로 변환하는 함수
-	function colIndexToExcel(colIndex: number): string {
-			let result = '';
-			let tempIndex = colIndex;
-
-			while (tempIndex >= 0) {
-					const charCode = (tempIndex % 26) + 'A'.charCodeAt(0);
-					result = String.fromCharCode(charCode) + result;
-					tempIndex = Math.floor(tempIndex / 26) - 1;
-			}
-
-			return result;
+function toValueForRender(value: ExcelJS.CellValue): string | number {
+	if (value === null) {
+		return '';
 	}
 
-	// 행 인덱스는 1부터 시작하므로 rowIndex + 1
-	const colLetter = colIndexToExcel(colIndex);
-	const rowNumber = rowIndex + 1;
+	if (typeof value === 'number') {
+		return value;
+	}
 
-	return `${colLetter}${rowNumber}`;
+	if (typeof value === 'string') {
+		return value
+			.replaceAll('>','&gt;')
+			.replaceAll('<','&lt;')
+			.replaceAll('&','&amp;')
+			.replaceAll('"','&quot;')
+			.replaceAll(`'`, '&apos;');
+	}
+
+	if (typeof value === 'object') {
+		//ExcelJS.CellFormulaValue
+		if ('formula' in value && 'result' in value) {
+			const formula = value.formula;
+			const result = value.result;
+			if (!result) return '';
+			if (typeof result === 'string') return result;
+			if (typeof result === 'number') return result;
+			return 'toValueForRender Error - Unsupported Type [object]';
+		}
+	}
+
+	return 'toValueForRender Error - Unsupported Type';
 }
 
-function toValue(value: ExcelJS.CellValue): string | number {
+function toValueForCode(value: ExcelJS.CellValue): string | number {
 	if (value === null) {
 		return '';
 	}
@@ -62,19 +73,15 @@ function toValue(value: ExcelJS.CellValue): string | number {
 
 	if (typeof value === 'object') {
 		//ExcelJS.CellFormulaValue
-		if ('formula' in value) {
-		}
-
-		if ('result' in value) {
+		if ('formula' in value && 'result' in value) {
+			const formula = value.formula;
 			const result = value.result;
 			if (!result) return '';
-			if (typeof result === 'string') return result;
-			if (typeof result === 'number') return result;
-			return 'toValue Error - Unsupported Type in [object]';
+			return `{evaluateFormula('=${formula}')}`;
 		}
 	}
 
-	return 'toValue Error - Unsupported Type';
+	return 'toOnlyResult Error - Unsupported Type';
 }
 
 interface CellWidthHeight {
@@ -87,6 +94,7 @@ const ExcelToDiv: React.FC = () => {
   const [styles, setStyles] = useState<Partial<ExcelJS.Style>[][]>([]);
 	const [widthHeights, setWidthHeights] = useState<CellWidthHeight[][]>([]);
 	const [formulas, setFormulas] = useState<string[][]>([]);
+	const [names, setNames] = useState<string[][]>([]);
   const [tabIndex, setTabIndex] = useState<number>(0);
 
   // Determine max number of columns to handle missing cells
@@ -118,12 +126,14 @@ const ExcelToDiv: React.FC = () => {
         const cellStyles: Partial<ExcelJS.Style>[][] = [];
 				const cellWidthHeights: CellWidthHeight[][] = [];
 				const cellFormulas: string[][] = [];
+				const cellNames: string[][] = [];
 
         worksheet.eachRow({ includeEmpty: true }, (row: ExcelJS.Row, rowNumber: number) => {
           const rowValues: ExcelJS.CellValue[] = [];
           const rowStyles: Partial<ExcelJS.Style>[] = [];
 					const rowWidthHeights: CellWidthHeight[] = [];
 					const rowFormulas: string[] = [];
+					const rowNames: string[] = [];
 
 					const rowHeight = excelHeightToPixels(row.height ?? 17);
 
@@ -153,9 +163,17 @@ const ExcelToDiv: React.FC = () => {
 
 						// formula
 						if (cell.formula) {
-							console.log('cell.formula', cell.formula);
 							const formula = cell.formula;
-							rowFormulas[colNumber - 1] = formula;
+							rowFormulas[colNumber - 1] = `=${formula}`;
+						}
+
+						// address or name
+						if (cell.name) {
+							const name = cell.name;
+							rowNames[colNumber - 1] = name;
+						} else {
+							const address = cell.fullAddress.address;
+							rowNames[colNumber - 1] = address;
 						}
           });
 
@@ -163,12 +181,14 @@ const ExcelToDiv: React.FC = () => {
           cellStyles[rowNumber - 1] = rowStyles;
 					cellWidthHeights[rowNumber - 1] = rowWidthHeights;
 					cellFormulas[rowNumber - 1] = rowFormulas;
+					cellNames[rowNumber - 1] = rowNames;
         });
 
         setValues(cellValues);
         setStyles(cellStyles); // Save styles to state
 				setWidthHeights(cellWidthHeights);
 				setFormulas(cellFormulas);
+				setNames(cellNames);
       }
     };
 
@@ -178,17 +198,58 @@ const ExcelToDiv: React.FC = () => {
 	const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const generateCode = useCallback((
-			data: ExcelJS.CellValue[][], 
+			values: ExcelJS.CellValue[][], 
 			styles: Partial<ExcelJS.Style>[][], 
 			widthHeights: CellWidthHeight[][],
-			formulas: string[][]
+			formulas: string[][],
+			names: string[][],
 		): string => {
-			let codeString = `import React from 'react';\nconst App = () => {\n`;
-			codeString += `  return (\n`
-			codeString += `    <div style={{ display: 'flex', flexDirection: 'column' }}>\n`;
+			let line = '';
 
-			data.forEach((row: ExcelJS.CellValue[], rowIndex: number) => {
-				codeString += `      <div id={\`ROW-${rowIndex + 1}\`} style={{ display: 'flex' }}>\n`;
+			// import
+			line = `import React from 'react';\n`;
+
+			// evaluateFormula
+			line += `const evaluateFormula = (expression: string): string | number => {\n`;
+			line += `  expression = expression.replace(/=/, '').trim();\n`;
+			line += `  const variableRegex = /[a-zA-Z_]\\w*/g;\n`;
+			line += `  let variables = [ ...new Set(expression.match(variableRegex)) ];\n`;
+			line += `  let values: any = {};\n`;
+			line += `  variables.forEach(variable => {\n`;
+			line += `    let element = document.getElementById(variable);\n`;
+			line += `    if (element) {\n`;
+			line += `      let absoluteElement = element.querySelector('div');\n`;
+			line += `      let text = absoluteElement ? absoluteElement.innerText.trim() : '';\n`;
+			line += `      let value = parseFloat(text);\n`;
+			line += `      if (isNaN(value)) {\n`;
+			line += `        console.warn(\`Invalid number for '$\{variable\}': '$\{text\}'\`)\n`;
+			line += `        value = 0; //default Value!\n`;
+			line += `      }\n`;
+			line += `      values[variable] = value;\n`;
+			line += `    } else {\n`;
+			line += `      console.warn(\`Element not found for '$\{variable\}'\`)\n`;
+			line += `      values[variable] = 0; //default Value!\n`;
+			line += `    }\n`;
+			line += `  });\n`;
+			line += `  for (let variable of variables) {\n`;
+			line += `    expression = expression.replace(new RegExp(\`\\\\b$\{variable\}\\\\b\`, 'g'), values[variable]);\n`;
+			line += `  }\n`;
+			line += `  try {\n`;
+			line += `    let result = eval(expression);\n`;
+			line += `    return result;\n`;
+			line += `  } catch (e) {\n`;
+			line += `    console.error('Error evaluating expression:', e);\n`;
+			line += `    return '';\n`;
+			line += `  }\n`;
+			line += `};\n`;
+
+			// App
+			line += `const App = () => {\n`;
+			line += `  return (\n`
+			line += `    <div style={{ display: 'flex', flexDirection: 'column' }}>\n`;
+
+			values.forEach((row: ExcelJS.CellValue[], rowIndex: number) => {
+				line += `      <div id={\`ROW-${rowIndex + 1}\`} style={{ display: 'flex' }}>\n`;
 
 				row.forEach((cell: ExcelJS.CellValue, cellIndex: number) => {
 					const width = widthHeights[rowIndex]?.[cellIndex]?.width ?? 25;
@@ -196,21 +257,21 @@ const ExcelToDiv: React.FC = () => {
 					const style = styles[rowIndex]?.[cellIndex] || {};
 
 					// *** BOX RELATIVE ***
-					codeString += `        <div\n`;
-					codeString += `          id={\`${toCellAddress(rowIndex, cellIndex)}\`}\n`;
-					codeString += `          style={{ /* default */ position: 'relative',\n`;
-					codeString += `            /* cell style */\n`;
-					codeString += `            width: '${width}px',\n`;
-					codeString += `            height: '${height}px',\n`;
-					codeString += `            boxSizing: 'border-box',\n`;
+					line += `        <div\n`;
+					line += `          id={\`${names[rowIndex][cellIndex]}\`}\n`;
+					line += `          style={{ /* default */ position: 'relative',\n`;
+					line += `            /* cell style */\n`;
+					line += `            width: '${width}px',\n`;
+					line += `            height: '${height}px',\n`;
+					line += `            boxSizing: 'border-box',\n`;
 
 					// Apply border styles
 					const borderStyle = toCssObjBorder(style.border);
 					if (borderStyle) {
 						// default border add!
-						codeString += `            border: '${includedGridLines ? '1px solid rgba(0, 0, 0, 0.1)' : 'none'}',\n`;
+						line += `            border: '${includedGridLines ? '1px solid rgba(0, 0, 0, 0.1)' : 'none'}',\n`;
 						Object.entries(borderStyle).forEach(([key, value]) => {
-							codeString += `            ${key}: '${value}',\n`;
+							line += `            ${key}: '${value}',\n`;
 						});
 					}
 
@@ -218,51 +279,51 @@ const ExcelToDiv: React.FC = () => {
 					const fillStyle = toCssObjFill(style.fill);
 					if (fillStyle) {
 						Object.entries(fillStyle).forEach(([key, value]) => {
-							codeString += `            ${key}: '${value}',\n`;
+							line += `            ${key}: '${value}',\n`;
 						});
 					}
 
-					codeString += `          }}\n`;
+					line += `          }}\n`;
 
 					// Add formula
 					const formula = formulas[rowIndex]?.[cellIndex];
 					if (formula) {
-						codeString += `          data-formula="${formula}"\n`;
+						line += `          data-formula="${formula}"\n`;
 					}
 
-					codeString += `				 >\n`;
+					line += `				 >\n`;
 
 					// *** BOX ABSOLUTE ***
-					codeString += `          <div\n`;
-					codeString += `            style={{ /* default */ position: 'absolute', top: 0, left: 0, zIndex: 1, whiteSpace: 'nowrap',\n`;
-					codeString += `            /* font style */\n`;
+					line += `          <div\n`;
+					line += `            style={{ /* default */ position: 'absolute', top: 0, left: 0, zIndex: 1, whiteSpace: 'nowrap',\n`;
+					line += `            /* font style */\n`;
 
 					// Apply font styles
 					const fontStyle = toCssObjFont(style.font);
 					if (fontStyle) {
 						Object.entries(fontStyle).forEach(([key, value]) => {
-							codeString += `              ${key}: '${value}',\n`;
+							line += `              ${key}: '${value}',\n`;
 						});
 					}
 
-					codeString += `						}}\n`;
-					codeString += `					>\n`;
-					codeString += `            ${toValue(cell)}\n`;
-					codeString += `          </div>\n`;
+					line += `						}}\n`;
+					line += `					>\n`;
+					line += `            ${toValueForCode(cell)}\n`;
+					line += `          </div>\n`;
 					// *** BOX ABSOLUTE ***
 
-					codeString += `        </div>\n`;
+					line += `        </div>\n`;
 					// *** BOX RELATIVE ***
 				});
 
-				codeString += `      </div>\n`;
+				line += `      </div>\n`;
 			});
 
-			codeString += `    </div>\n`;
-			codeString += `  );\n`;
-			codeString += `};\n`;
-			codeString += `export default App;\n`;
-			return codeString;
+			line += `    </div>\n`;
+			line += `  );\n`;
+			line += `};\n`;
+			line += `export default App;\n`;
+			return line;
 	} ,[includedGridLines]);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -333,13 +394,13 @@ const ExcelToDiv: React.FC = () => {
           <Grid container spacing={0} sx={{ marginTop: "20px", }}>
 						<Stack direction='row' spacing={2} justifyItems='center'>
 							<TextField 
-								label='cell address'
+								label='이름 상자'
 								variant='outlined'
 								size='small'
-								value={toCellAddress(clickedCellInfo.rowIndex, clickedCellInfo.cellIndex)}
+								value={names[clickedCellInfo.rowIndex]?.[clickedCellInfo.cellIndex] ?? '-'}
 							/>
 							<TextField 
-								label='formula'
+								label='수식 입력줄'
 								variant='outlined'
 								size='small'
 								value={formulas[clickedCellInfo.rowIndex]?.[clickedCellInfo.cellIndex] ?? '-'}
@@ -384,7 +445,7 @@ const ExcelToDiv: React.FC = () => {
 																...toCssObjFont(styles[rowIndex]?.[cellIndex]?.font),
 															}}
 														>
-															{toValue(row[cellIndex])}
+															{toValueForRender(row[cellIndex])}
 														</Box>
 													</Box>
 												)
@@ -399,7 +460,7 @@ const ExcelToDiv: React.FC = () => {
 
 				{/** Code Tab */}
         {values.length > 0 && tabIndex === 1 && (() => {
-					const tsxString = generateCode(values, styles, widthHeights, formulas);
+					const tsxString = generateCode(values, styles, widthHeights, formulas, names);
 					return (
 						<Box sx={{ height: "400px", marginTop: "20px" }}>
 							<Typography sx={{ mb: 2 }}>테스트 해보기 <a href='https://codesandbox.io/p/sandbox/xlsx-to-code-viewer-zzw54n?layout=%257B%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522rootPanelGroup%2522%253A%257B%2522direction%2522%253A%2522horizontal%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522id%2522%253A%2522ROOT_LAYOUT%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522direction%2522%253A%2522vertical%2522%252C%2522id%2522%253A%2522clzjfwql900063j6iobtkjc9p%2522%252C%2522sizes%2522%253A%255B100%252C0%255D%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522EDITOR%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522id%2522%253A%2522clzjfwql900023j6ifkhs5bn8%2522%257D%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522SHELLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522id%2522%253A%2522clzjfwql900033j6iczvgnt7h%2522%257D%255D%257D%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522direction%2522%253A%2522vertical%2522%252C%2522id%2522%253A%2522DEVTOOLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522id%2522%253A%2522clzjfwql900053j6idnzo4uo8%2522%257D%255D%257D%255D%252C%2522sizes%2522%253A%255B50%252C50%255D%257D%252C%2522tabbedPanels%2522%253A%257B%2522clzjfwql900023j6ifkhs5bn8%2522%253A%257B%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522clzjfwql800013j6isx52y8gf%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522FILE%2522%252C%2522filepath%2522%253A%2522%252Fsrc%252Findex.tsx%2522%257D%255D%252C%2522id%2522%253A%2522clzjfwql900023j6ifkhs5bn8%2522%252C%2522activeTabId%2522%253A%2522clzjfwql800013j6isx52y8gf%2522%257D%252C%2522clzjfwql900053j6idnzo4uo8%2522%253A%257B%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522clzjfwql900043j6itdenx1e2%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522UNASSIGNED_PORT%2522%252C%2522port%2522%253A0%257D%255D%252C%2522id%2522%253A%2522clzjfwql900053j6idnzo4uo8%2522%252C%2522activeTabId%2522%253A%2522clzjfwql900043j6itdenx1e2%2522%257D%252C%2522clzjfwql900033j6iczvgnt7h%2522%253A%257B%2522tabs%2522%253A%255B%255D%252C%2522id%2522%253A%2522clzjfwql900033j6iczvgnt7h%2522%257D%257D%252C%2522showDevtools%2522%253Atrue%252C%2522showShells%2522%253Atrue%252C%2522showSidebar%2522%253Atrue%252C%2522sidebarPanelSize%2522%253A15%257D' target='_blank'>Code Sandbox</a></Typography>
