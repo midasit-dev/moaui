@@ -47,14 +47,13 @@ function toCellAddress(rowIndex: number, colIndex: number): string {
 	return `${colLetter}${rowNumber}`;
 }
 
-function toValue(value: ExcelJS.CellValue): ExcelJS.CellValue {
-	let convertedValue = value;
+function toValue(value: ExcelJS.CellValue): string | number {
 	if (value === null) {
-		convertedValue = '';
+		return '';
 	}
 
 	if (typeof value === 'string') {
-		convertedValue = value
+		return value
 			.replaceAll('>','&gt;')
 			.replaceAll('<','&lt;')
 			.replaceAll('&','&amp;')
@@ -62,13 +61,33 @@ function toValue(value: ExcelJS.CellValue): ExcelJS.CellValue {
 			.replaceAll(`'`, '&apos;');
 	}
 
-	return convertedValue;
+	if (typeof value === 'number') {
+		return value;
+	}
+
+	if (typeof value === 'object') {
+		//ExcelJS.CellFormulaValue
+		if ('formula' in value) {
+			console.log('formula', value.formula);
+		}
+
+		if ('result' in value) {
+			const result = value.result;
+			if (!result) return '';
+			if (typeof result === 'string') return result;
+			if (typeof result === 'number') return result;
+			return 'toValue Error - Unsupported Type in [object]';
+		}
+	}
+
+	return 'toValue Error - Unsupported Type';
 }
 
 const ExcelToDiv: React.FC = () => {
   const [excelData, setExcelData] = useState<ExcelJS.CellValue[][]>([]);
   const [styles, setStyles] = useState<Partial<ExcelJS.Style>[][]>([]);
 	const [widthHeights, setWidthHeights] = useState<CellWidthHeight[][]>([]);
+	const [formulas, setFormulas] = useState<string[][]>([]);
   const [tabIndex, setTabIndex] = useState<number>(0);
 
   // Determine max number of columns to handle missing cells
@@ -87,6 +106,8 @@ const ExcelToDiv: React.FC = () => {
 				const decimalPlaces = (numFmt.match(/0/g) || []).length;
 				return value.toFixed(decimalPlaces);
 			}
+
+			console.log('onDrop -> e.target', e.target);
 
       if (e.target && e.target.result) {
         const arrayBuffer = e.target.result as ArrayBuffer;
@@ -128,12 +149,19 @@ const ExcelToDiv: React.FC = () => {
 
             rowData[colNumber - 1] = value;
 						rowWidthHeights[colNumber - 1] = { width: colWidth ?? 25, height: rowHeight ?? 25 };
+
+						// formula
+
           });
 
           rawJson[rowNumber - 1] = rowData;
           cellStyles[rowNumber - 1] = rowStyles;
 					cellWidthHeights[rowNumber - 1] = rowWidthHeights;
         });
+
+				console.log(rawJson);
+				console.log(cellStyles);
+				console.log(cellWidthHeights);
 
         setExcelData(rawJson);
         setStyles(cellStyles); // Save styles to state
@@ -156,19 +184,21 @@ const ExcelToDiv: React.FC = () => {
 			codeString += `    <div style={{ display: 'flex', flexDirection: 'column' }}>\n`;
 
 			data.forEach((row: ExcelJS.CellValue[], rowIndex: number) => {
-				codeString += `      <div key={\`ROW-${rowIndex + 1}\`} style={{ display: 'flex' }}>\n`;
+				codeString += `      <div id={\`ROW-${rowIndex + 1}\`} style={{ display: 'flex' }}>\n`;
 
 				row.forEach((cell: ExcelJS.CellValue, cellIndex: number) => {
 					const width = widthHeights[rowIndex]?.[cellIndex]?.width ?? 25;
 					const height = widthHeights[rowIndex]?.[cellIndex]?.height ?? 25;
 					const style = styles[rowIndex]?.[cellIndex] || {};
 
+					// *** BOX RELATIVE ***
 					codeString += `        <div\n`;
-					codeString += `          key={\`${toCellAddress(rowIndex, cellIndex)}\`}\n`;
+					codeString += `          id={\`${toCellAddress(rowIndex, cellIndex)}\`}\n`;
 					codeString += `          style={{ /* default */ position: 'relative',\n`;
 					codeString += `            /* cell style */\n`;
 					codeString += `            width: '${width}px',\n`;
 					codeString += `            height: '${height}px',\n`;
+					codeString += `            boxSizing: 'border-box',\n`;
 
 					// Apply border styles
 					const borderStyle = toCssObjBorder(style.border);
@@ -211,6 +241,7 @@ const ExcelToDiv: React.FC = () => {
 					// *** BOX ABSOLUTE ***
 
 					codeString += `        </div>\n`;
+					// *** BOX RELATIVE ***
 				});
 
 				codeString += `      </div>\n`;
@@ -286,7 +317,7 @@ const ExcelToDiv: React.FC = () => {
           <Grid container spacing={0} sx={{ marginTop: "20px" }}>
             {excelData.length > 0 && tabIndex === 0 && (
 								<Grid container spacing={0} sx={{ marginTop: "20px" }}>
-									{excelData.map((row: any, rowIndex: number) => (
+									{excelData.map((row: ExcelJS.CellValue[], rowIndex: number) => (
 										<Grid item xs={12} key={rowIndex}>
 											<Box className="row" sx={{ display: "flex" }}>
 												{Array.from({ length: maxColumns }).map((_, cellIndex) => {
@@ -299,6 +330,7 @@ const ExcelToDiv: React.FC = () => {
 																height: widthHeights[rowIndex]?.[cellIndex]?.height ?? 25,
 																overflow: "visible",
 																whiteSpace: "nowrap",
+																boxSizing: "border-box",
 																border: includedGridLines ? "1px solid rgba(0, 0, 0, 0.1)" : "none",
 																...toCssObjBorder(styles[rowIndex]?.[cellIndex]?.border),
 																...toCssObjFill(styles[rowIndex]?.[cellIndex]?.fill),
@@ -313,7 +345,7 @@ const ExcelToDiv: React.FC = () => {
 																	...toCssObjFont(styles[rowIndex]?.[cellIndex]?.font),
 																}}
 															>
-																{row[cellIndex] !== undefined ? row[cellIndex] : ""}
+																{toValue(row[cellIndex])}
 															</Box>
 														</Box>
 													)
