@@ -1,30 +1,47 @@
-import { useState, useCallback } from 'react';
-import { toJson, JsonCells } from '../to-json';
-import { useDropzone } from 'react-dropzone';
-import { Container, Paper, Typography, Box } from '@mui/material';
-import MonacoEditor from '@monaco-editor/react';
+import { useState, useCallback, useEffect } from "react";
+import { toJson } from "../to-json";
+import { useDropzone } from "react-dropzone";
+import { Container, Paper, Typography, Box } from "@mui/material";
+import MonacoEditor from "@monaco-editor/react";
 
-const XlsxToJson: React.FC = () => {
-	const [cells, setCells] = useState<Partial<JsonCells>>({});
+const XlsxToJson = (props: any) => {
+  const { onChange } = props;
 
-	const onDrop = useCallback((acceptedFiles: File[]) => {
-		const file = acceptedFiles[0];
-		const reader = new FileReader();
+  const [cells, setCells] = useState<any>({});
 
-		reader.onload = async (e: ProgressEvent<FileReader>) => {
-			if (e.target?.result instanceof ArrayBuffer) {
-				const jsonCells = await toJson(e.target.result);
-				setCells(jsonCells);
-			}
-		};
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
 
-		reader.readAsArrayBuffer(file);
-	}, []);
+    reader.onload = async (e: ProgressEvent<FileReader>) => {
+      if (e.target?.result instanceof ArrayBuffer) {
+        const jsonCells = await toJson(e.target.result, {
+          rawParse: false,
+          defaultNumFmt: true,
+          defaultBorder: false,
+        });
+        setCells(jsonCells);
+      }
+    };
 
-	const { getRootProps, getInputProps } = useDropzone({ onDrop });
+    reader.readAsArrayBuffer(file);
+  }, []);
 
-	return (
-    <Container>
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  useEffect(() => {
+    if (onChange) {
+      onChange(cells);
+    }
+  }, [cells]);
+
+  return (
+    <Container
+      sx={{
+        width: "100%",
+        height: 700,
+      }}
+    >
       <Paper
         {...getRootProps()}
         sx={{
@@ -54,7 +71,7 @@ const XlsxToJson: React.FC = () => {
       <Box sx={{ height: "400px", marginTop: "20px" }}>
         <MonacoEditor
           theme="vs-dark"
-          height="80vh"
+          height="500px"
           language="json"
           value={JSON.stringify(cells, null, 2)}
           options={{
@@ -65,6 +82,6 @@ const XlsxToJson: React.FC = () => {
       </Box>
     </Container>
   );
-}
+};
 
 export default XlsxToJson;

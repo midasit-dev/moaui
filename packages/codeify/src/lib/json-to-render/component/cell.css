@@ -1,0 +1,6 @@
+.cell {
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  white-space: nowrap;
+}
