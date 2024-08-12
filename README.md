@@ -23,14 +23,17 @@ The `moaui-monorepo` is designed to simplify and streamline UI development by pr
 
 ### Libraries
 
-- **[components-v1](./packages/components-v1/)**  
+- **[components-v1](./packages/components-v1/)**  ([storybook](https://midasit-dev.github.io/moaui/components-v1))  
   A set of foundational UI components for building user interfaces. This includes buttons, forms, modals, and other essential UI elements.
 
-- **[lab](./packages/lab/)**  
+- **[lab](./packages/lab/)** ([static-page of lab/section](https://midasit-dev.github.io/moaui/lab/test/section))  
   An experimental playground for new UI components and features. This library is where we test and iterate on upcoming enhancements.
 
 - **[vertices](./packages/vertices/)**  
   A collection of utility section vertices.
+
+- **[codeify](./pacakges/codeify)** ([staic-page](https://midasit-dev.github.io/moaui/lab/test/section))
+  convert the excel to 'tsx'.
 
 ## Contributing
 We welcome contributions from the community! If you have suggestions, improvements, or bug fixes, please follow our contribution guidelines. To get started, fork the repository, create a new branch, and submit a pull request.
