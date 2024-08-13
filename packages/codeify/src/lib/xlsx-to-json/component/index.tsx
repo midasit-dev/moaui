@@ -18,7 +18,7 @@ const XlsxToJson = (props: any) => {
         const jsonCells = await toJson(e.target.result, {
           rawParse: false,
           defaultNumFmt: true,
-          defaultBorder: false,
+          defaultBorder: true,
         });
         setCells(jsonCells);
       }

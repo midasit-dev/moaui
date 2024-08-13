@@ -76,6 +76,14 @@ export interface WorkSheet<T> {
   cells: {
     [name: string]: T;
   };
+
+  images: {
+    [name: string]: {
+      tl?: { col: number; row: number };
+      br?: { col: number; row: number };
+      base64?: string;
+    };
+  };
 }
 
 export async function toJson(
@@ -97,6 +105,7 @@ export async function toJson(
     rowCount: worksheet.rowCount,
     colCount: worksheet.columnCount,
     cells: {},
+    images: {},
   };
 
   worksheet.eachRow(
@@ -107,6 +116,8 @@ export async function toJson(
       row.eachCell(
         { includeEmpty: true },
         (cell: ExcelJS.Cell, colNumber: number) => {
+          console.log(rowNumber, colNumber);
+
           const colWidth = excelWidthToPixels(
             worksheet.getColumn(colNumber).width ?? 8.08
           );
@@ -131,7 +142,41 @@ export async function toJson(
     }
   );
 
+  worksheet.getImages().forEach((image) => {
+    const imageId = image.imageId;
+    const imageData = workbook.getImage(Number(imageId));
+
+    // 이미지의 시작 및 끝 좌표 가져오기
+    const { tl } = image.range;
+
+    const tl_col = tl.nativeCol;
+    const tl_row = tl.nativeRow;
+
+    // 이미지 데이터를 Base64 형식으로 변환
+    if (!imageData || !imageData.buffer) return;
+
+    // ArrayBuffer를 Base64 형식으로 변환
+    const base64Image = arrayBufferToBase64(imageData.buffer);
+    const base64DataUrl = `data:image/${imageData.extension};base64,${base64Image}`;
+
+    convertedSheet.images[(imageData as ExcelJS.Media).name] = {
+      tl: { col: tl_col, row: tl_row },
+      base64: base64DataUrl,
+    };
+  });
+
   return convertedSheet;
+}
+
+// ArrayBuffer를 Base64로 변환하는 유틸리티 함수
+function arrayBufferToBase64(buffer: ArrayBuffer): string {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
 }
 
 function cellUniqueName(cell: ExcelJS.Cell): string {
