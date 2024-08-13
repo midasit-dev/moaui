@@ -1,0 +1,3 @@
+{
+  "typescript.preferences.importModuleSpecifier": "non-relative", // Use non-relative imports for files in the same folder
+}
