@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+<!-- markdownlint-disable-next-line -->
+<h1 align="center">codeify</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  The <strong>codeify</strong> library extracts JSON from Excel files, provides a React component to render the data, and even generates TSX code based on the JSON data. It's designed to streamline the process of working with Excel data in web applications.
+</p>
 
-## Available Scripts
+## Concept
 
-In the project directory, you can run:
+`codeify` enables seamless integration of Excel data into your React projects by providing tools to convert Excel files to JSON, render the data, and generate TypeScript code.
 
-### `npm start`
+### Key Features:
+- **XlsxToJson**: Converts Excel files into JSON format.
+- **JsonToRender**: Renders the JSON data using React components.
+- **XlsxToCode**: Generates TypeScript (TSX) code based on the extracted JSON data.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You can install the `codeify` library using npm, yarn, or pnpm:
 
-### `npm test`
+```bash
+$ npm install codeify
+or
+$ yarn add codeify
+or
+$ pnpm add codeify
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
+Here's a basic example demonstrating how to use codeify in a React project:  
+```typescript
+import { useState } from "react";
+import { Stack } from "@mui/material";
+import { XlsxToCode, XlsxToJson, JsonToRender } from "codeify";
 
-### `npm run build`
+const TestApp = () => {
+  const [json, setJson] = useState<any>({});
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  return (
+    <Stack>
+      <div>
+        <XlsxToJson onChange={(json: any) => setJson(json)} />
+      </div>
+      <div>
+        <JsonToRender json={json} />
+      </div>
+    </Stack>
+  );
+};
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default TestApp;
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Components:
+- XlsxToJson: A React component that accepts an Excel file and converts it into JSON format.
+- JsonToRender: A React component that renders the JSON data in a structured format.
+- XlsxToCode: A utility that generates TypeScript (TSX) code based on the JSON data extracted from the Excel file.
 
-### `npm run eject`
+## Example Use Case
+Below is an example use case demonstrating how codeify can be utilized to handle Excel data:  
+```typescript
+import { XlsxToJson, JsonToRender, XlsxToCode } from "codeify";
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+// Example component usage
+const ExampleComponent = () => {
+  const [jsonData, setJsonData] = useState<any>({});
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  return (
+    <div>
+      <XlsxToJson onChange={(json: any) => setJsonData(json)} />
+      <JsonToRender json={jsonData} />
+      <pre>{XlsxToCode(jsonData)}</pre> {/* TSX code output */}
+    </div>
+  );
+};
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+export default ExampleComponent;
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributing
+We welcome contributions to improve this library. Please feel free to submit a pull request or open an issue.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+This project is licensed under the MIT License.
