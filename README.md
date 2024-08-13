@@ -32,7 +32,7 @@ The `moaui-monorepo` is designed to simplify and streamline UI development by pr
 - **[vertices](./packages/vertices/)**  
   A collection of utility section vertices.
 
-- **[codeify](./packages/codeify)** ([staic-page](https://midasit-dev.github.io/moaui/lab/test/section))
+- **[codeify](./packages/codeify)** ([staic-page](https://midasit-dev.github.io/moaui/lab/test/section))  
   convert the excel to 'tsx'.
 
 ## Contributing
