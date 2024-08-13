@@ -35,6 +35,9 @@ The `moaui-monorepo` is designed to simplify and streamline UI development by pr
 - **[codeify](./packages/codeify)** ([staic-page](https://midasit-dev.github.io/moaui/codeify))  
   convert the excel to 'tsx'.
 
+- **[api](./packages/api)**
+  A collection of utility midas-api.
+
 ## Contributing
 We welcome contributions from the community! If you have suggestions, improvements, or bug fixes, please follow our contribution guidelines. To get started, fork the repository, create a new branch, and submit a pull request.
 
