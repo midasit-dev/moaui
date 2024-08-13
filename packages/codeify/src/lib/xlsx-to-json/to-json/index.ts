@@ -209,7 +209,6 @@ function toRawCell(
     type,
     formulaType,
     style,
-    ...rest
   } = cell;
 
   return {
