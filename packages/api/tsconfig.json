@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "lib": ["ES2015", "DOM"],
+    "moduleResolution": "Node",
     "target": "ES5",
     "module": "CommonJS",
     "outDir": "for_debugging",
@@ -8,11 +10,7 @@
     "baseUrl": ".",
     "paths": {
       "@lib-apis": ["./apis/"],
-      "@lib-apis/*": ["./apis/*"],
-      "@lib-types": ["./types/"],
-      "@lib-types/*": ["./types/*"],
-      "@lib-utils": ["./utils/"],
-      "@lib-utils/*": ["./utils/*"]
+      "@lib-apis/*": ["./apis/*"]
     }
   },
   "tsc-alias": {
