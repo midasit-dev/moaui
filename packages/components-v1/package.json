@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.1.150",
+  "version": "0.1.153",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -115,7 +115,7 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "copy": "copyfiles -u 2 src/lib/**/*.css dist/ && copyfiles -u 2 src/lib/**/*.json dist/",
+    "copy": "copyfiles -u 2 src/lib/**/*.css dist/ && copyfiles -u 2 src/lib/**/*.json dist/ && copyfiles -u 2 src/lib/**/*.woff dist/ && copyfiles -u 2 src/lib/**/*.woff2 dist/",
     "prepare-npmjs": "npm run update-testing-exports && node prepare.js && tsc -p tsconfig.npm.json & npm run copy",
     "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish --access public",
     "update-testing-exports": "cd src/lib && node testingCompsUpdate.js",
