@@ -29,7 +29,7 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.1.149",
+  "version": "0.1.150",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -104,7 +104,8 @@
     "storybook": "^7.6.17",
     "storybook-addon-code-editor": "^2.2.0",
     "typescript": "^5.1.6",
-    "web-vitals": "^3.5.1"
+    "web-vitals": "^3.5.1",
+    "copyfiles": "^2.4.1"
   },
   "overrides": {
     "react-scripts": {
@@ -114,7 +115,8 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "prepare-npmjs": "npm run update-testing-exports && node prepare.js && tsc -p tsconfig.npm.json",
+    "copy": "copyfiles -u 2 src/lib/**/*.css dist/ && copyfiles -u 2 src/lib/**/*.json dist/",
+    "prepare-npmjs": "npm run update-testing-exports && node prepare.js && tsc -p tsconfig.npm.json & npm run copy",
     "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish --access public",
     "update-testing-exports": "cd src/lib && node testingCompsUpdate.js",
     "prepare-storybook": "npm run update-testing-exports && tsc -p tsconfig.storybook.json",
