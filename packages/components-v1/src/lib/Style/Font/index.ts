@@ -1,4 +1,4 @@
-import "/public/assets/fonts/pretendard.css";
+import "./pretendard.css";
 
 type FontSet = {
   fontFamily: string;
