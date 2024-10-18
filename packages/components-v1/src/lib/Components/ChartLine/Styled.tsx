@@ -1,14 +1,14 @@
-import { styled } from '@mui/material/styles';
-import MoaStyledComponent from '../../Style/MoaStyled';
-import { ResponsiveLine } from '@nivo/line'
+import { styled } from "@mui/material/styles";
+import MoaStyledComponent from "../../Style/MoaStyled";
+// import { ResponsiveLine } from "@nivo/line";
 
 interface SingleLineProps {
-	id: string;
-	color: string;
-	data: {
-		x: number;
-		y: number;
-	}[];
+  id: string;
+  color: string;
+  data: {
+    x: number;
+    y: number;
+  }[];
 }
 
 export type StyledProps = {
@@ -33,218 +33,218 @@ export type StyledProps = {
   height?: number | string;
   /**
    * set a bottom-right legends
-	 * 
-	 * @default false
+   *
+   * @default false
    */
   legends?: boolean;
-	/**
-	 * set a top axis
-	 * 
-	 * @default false
-	 */
-	axisTop?: boolean;
-	/**
-	 * set a top axis tick values
-	 */
-	axisTopTickValues?: number;
-	/**
-	 * set a top axis tick rotation
-	 */
-	axisTopTickRotation?: number;
-	/**
-	 * set a top axis decimals
-	 */
-	axisTopDecimals?: number;
-	/**
-	 * set a top axis legend (write a axis label!)
-	 */
-	axisTopLegend?: string;
-	/**
-	 * set a top axis legend offset
-	 * 
-	 * @default -36
-	 */
-	axisTopLegendOffset?: number;
-	/**
-	 * set a top axis legend position
-	 * 
-	 * @default middle
-	 */
-	axisTopLegendPosition?: 'start' | 'middle' | 'end';
-	/**
-	 * set a right axis
-	 * 
-	 * @default false
-	 */
-	axisRight?: boolean;
-	/**
-	 * set a right axis tick values
-	 */
-	axisRightTickValues?: number;
-	/**
-	 * set a right axis tick rotation
-	 */
-	axisRightTickRotation?: number;
-	/**
-	 * set a right axis decimals
-	 */
-	axisRightDecimals?: number;
-	/**
-	 * set a right axis legend (write a axis label!)
-	 */
-	axisRightLegend?: string; 
-	/**
-	 * set a right axis legend offset
-	 * 
-	 * @default 40
-	 */
-	axisRightLegendOffset?: number;
-	/**
-	 * set a right axis legend position
-	 * 
-	 * @default middle
-	 */
-	axisRightLegendPosition?: 'start' | 'middle' | 'end';
-	/**
-	 * set a bottom axis
-	 * 
-	 * @default false
-	 */
-	axisBottom?: boolean;
-	/**
-	 * set a bottom axis tick values
-	 */
-	axisBottomTickValues?: number;
-	/**
-	 * set a bottom axis tick rotation
-	 */
-	axisBottomTickRotation?: number;
-	/**
-	 * set a bottom axis decimals
-	 */
-	axisBottomDecimals?: number;
-	/**
-	 * set a bottom axis legend (write a axis label!)
-	 */
-	axisBottomLegend?: string;
-	/**
-	 * set a bottom axis legend offset
-	 * 
-	 * @default 36
-	 */
-	axisBottomLegendOffset?: number;
-	/**
-	 * set a bottom axis legend position
-	 * 
-	 * @default middle
-	 */
-	axisBottomLegendPosition?: 'start' | 'middle' | 'end';
-	/**
-	 * set a left axis
-	 * 
-	 * @default false
-	 */
-	axisLeft?: boolean;
-	/**
-	 * set a left axis tick values
-	 */
-	axisLeftTickValues?: number;
-	/**
-	 * set a left axis tick rotation
-	 */
-	axisLeftTickRotation?: number;
-	/**
-	 * set a left axis decimals
-	 */
-	axisLeftDecimals?: number;
-	/**
-	 * set a left axis legend (write a axis label!)
-	 */
-	axisLeftLegend?: string;
-	/**
-	 * set a left axis legend offset
-	 * 
-	 * @default -40
-	 */
-	axisLeftLegendOffset?: number;
-	/**
-	 * set a left axis legend position
-	 * 
-	 * @default middle
-	 */
-	axisLeftLegendPosition?: 'start' | 'middle' | 'end';
-	/**
-	 * set a point size
-	 * 
-	 * @default 2
-	 */
-	pointSize?: number;
+  /**
+   * set a top axis
+   *
+   * @default false
+   */
+  axisTop?: boolean;
+  /**
+   * set a top axis tick values
+   */
+  axisTopTickValues?: number;
+  /**
+   * set a top axis tick rotation
+   */
+  axisTopTickRotation?: number;
+  /**
+   * set a top axis decimals
+   */
+  axisTopDecimals?: number;
+  /**
+   * set a top axis legend (write a axis label!)
+   */
+  axisTopLegend?: string;
+  /**
+   * set a top axis legend offset
+   *
+   * @default -36
+   */
+  axisTopLegendOffset?: number;
+  /**
+   * set a top axis legend position
+   *
+   * @default middle
+   */
+  axisTopLegendPosition?: "start" | "middle" | "end";
+  /**
+   * set a right axis
+   *
+   * @default false
+   */
+  axisRight?: boolean;
+  /**
+   * set a right axis tick values
+   */
+  axisRightTickValues?: number;
+  /**
+   * set a right axis tick rotation
+   */
+  axisRightTickRotation?: number;
+  /**
+   * set a right axis decimals
+   */
+  axisRightDecimals?: number;
+  /**
+   * set a right axis legend (write a axis label!)
+   */
+  axisRightLegend?: string;
+  /**
+   * set a right axis legend offset
+   *
+   * @default 40
+   */
+  axisRightLegendOffset?: number;
+  /**
+   * set a right axis legend position
+   *
+   * @default middle
+   */
+  axisRightLegendPosition?: "start" | "middle" | "end";
+  /**
+   * set a bottom axis
+   *
+   * @default false
+   */
+  axisBottom?: boolean;
+  /**
+   * set a bottom axis tick values
+   */
+  axisBottomTickValues?: number;
+  /**
+   * set a bottom axis tick rotation
+   */
+  axisBottomTickRotation?: number;
+  /**
+   * set a bottom axis decimals
+   */
+  axisBottomDecimals?: number;
+  /**
+   * set a bottom axis legend (write a axis label!)
+   */
+  axisBottomLegend?: string;
+  /**
+   * set a bottom axis legend offset
+   *
+   * @default 36
+   */
+  axisBottomLegendOffset?: number;
+  /**
+   * set a bottom axis legend position
+   *
+   * @default middle
+   */
+  axisBottomLegendPosition?: "start" | "middle" | "end";
+  /**
+   * set a left axis
+   *
+   * @default false
+   */
+  axisLeft?: boolean;
+  /**
+   * set a left axis tick values
+   */
+  axisLeftTickValues?: number;
+  /**
+   * set a left axis tick rotation
+   */
+  axisLeftTickRotation?: number;
+  /**
+   * set a left axis decimals
+   */
+  axisLeftDecimals?: number;
+  /**
+   * set a left axis legend (write a axis label!)
+   */
+  axisLeftLegend?: string;
+  /**
+   * set a left axis legend offset
+   *
+   * @default -40
+   */
+  axisLeftLegendOffset?: number;
+  /**
+   * set a left axis legend position
+   *
+   * @default middle
+   */
+  axisLeftLegendPosition?: "start" | "middle" | "end";
+  /**
+   * set a point size
+   *
+   * @default 2
+   */
+  pointSize?: number;
 
-	/**
-	 * set a marginTop
-	 * 
-	 * @default 50
-	 */
-	marginTop?: number;
-	/**
-	 * set a marginRight
-	 * 
-	 * @default 110
-	 */
-	marginRight?: number;
-	/**
-	 * set a marginBottom
-	 * 
-	 * @default 50
-	 */
-	marginBottom?: number;
-	/**
-	 * set a marginLeft
-	 * 
-	 * @default 60
-	 */
-	marginLeft?: number;
+  /**
+   * set a marginTop
+   *
+   * @default 50
+   */
+  marginTop?: number;
+  /**
+   * set a marginRight
+   *
+   * @default 110
+   */
+  marginRight?: number;
+  /**
+   * set a marginBottom
+   *
+   * @default 50
+   */
+  marginBottom?: number;
+  /**
+   * set a marginLeft
+   *
+   * @default 60
+   */
+  marginLeft?: number;
 
-	/**
-	 * set a x axis decimals
-	 */
-	xDecimals?: number;
-	/**
-	 * set a y axis decimals
-	 */
-	yDecimals?: number;
+  /**
+   * set a x axis decimals
+   */
+  xDecimals?: number;
+  /**
+   * set a y axis decimals
+   */
+  yDecimals?: number;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-	/**
-	 * 최대값과 최소값 계산 (x, y)
-	 */
-	// 모든 x 값들과 y 값들에 대한 배열을 만듭니다.
-	const allXValues = props.data.flatMap(series => series.data.map(point => point.x));
-	const allYValues = props.data.flatMap(series => series.data.map(point => point.y));
+  /**
+   * 최대값과 최소값 계산 (x, y)
+   */
+  // 모든 x 값들과 y 값들에 대한 배열을 만듭니다.
+  const allXValues = props.data.flatMap((series) => series.data.map((point) => point.x));
+  const allYValues = props.data.flatMap((series) => series.data.map((point) => point.y));
 
-	// 모든 x 값들 중에서 최소값과 최대값, 모든 y 값들 중에서 최소값과 최대값을 계산합니다.
-	const minX = Math.min(...allXValues);
-	const maxX = Math.max(...allXValues);
-	const minY = Math.min(...allYValues);
-	const maxY = Math.max(...allYValues);
+  // 모든 x 값들 중에서 최소값과 최대값, 모든 y 값들 중에서 최소값과 최대값을 계산합니다.
+  const minX = Math.min(...allXValues);
+  const maxX = Math.max(...allXValues);
+  const minY = Math.min(...allYValues);
+  const maxY = Math.max(...allYValues);
 
-	/**
-	 * Grid 갯수 계산 (x, y)
-	 */
-	// x축의 grid 갯수를 계산합니다.
-	let xGridCount = Math.max(props.axisTopTickValues || 0, props.axisBottomTickValues || 0);
-	// y축의 grid 갯수를 계산합니다.
-	let yGridCount = Math.max(props.axisLeftTickValues || 0, props.axisRightTickValues || 0);
+  /**
+   * Grid 갯수 계산 (x, y)
+   */
+  // x축의 grid 갯수를 계산합니다.
+  let xGridCount = Math.max(props.axisTopTickValues || 0, props.axisBottomTickValues || 0);
+  // y축의 grid 갯수를 계산합니다.
+  let yGridCount = Math.max(props.axisLeftTickValues || 0, props.axisRightTickValues || 0);
 
-	return (
-		<div
-			style={{
-				width: props.width,
-				height: props.height,
-			}}
-		>
-			<ResponsiveLine
+  return (
+    <div
+      style={{
+        width: props.width,
+        height: props.height,
+      }}
+    >
+      {/* <ResponsiveLine
 				data={props.data}
 				colors={props.data.map((item) => item.color)}
 				margin={
@@ -346,17 +346,15 @@ const StyledComponent = styled((props: StyledProps) => {
 						],
 					},
 				] : []}
-			/>
-		</div>
-	)
-})
-(() => ({}))
-
+			/> */}
+    </div>
+  );
+})(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
-	<MoaStyledComponent>
-		<StyledComponent {...props} />
-	</MoaStyledComponent>
+  <MoaStyledComponent>
+    <StyledComponent {...props} />
+  </MoaStyledComponent>
 );
 export default ThemedComponent;
 

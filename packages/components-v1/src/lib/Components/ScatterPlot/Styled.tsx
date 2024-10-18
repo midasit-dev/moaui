@@ -1,16 +1,5 @@
 import { styled } from "@mui/material/styles";
 import MoaStyledComponent from "../../Style/MoaStyled";
-import { 
-	ResponsiveScatterPlot,
-	type ScatterPlotNodeDynamicSizeSpec,
-} from "@nivo/scatterplot";
-import {
-	type Box,
-	type ValueFormat,
-} from '@nivo/core';
-import { type ScaleSpec, } from '@nivo/scales';
-import { type AxisProps } from '@nivo/axes';
-import { type LegendProps } from '@nivo/legends';
 
 // type definitions
 type Value = number | string | Date;
@@ -47,40 +36,40 @@ export type StyledProps = {
    *
    * @default object { top: 60, right: 140, bottom: 70, left: 90 }
    */
-  margin?: Box;
+  margin?: any;
 
   /**
    * set a xScale
    *
    * @default object { type: 'linear', min: 0, max: 'auto' }
    */
-  xScale?: ScaleSpec;
+  xScale?: any;
 
   /**
    * set a xFormat
    */
-  xFormat?: ValueFormat<Coordinate["x"]>;
+  xFormat?: any;
 
   /**
    * set a yScale
    *
    * @default object { type: 'linear', min: 0, max: 'auto' }
    */
-  yScale?: ScaleSpec;
+  yScale?: any;
 
   /**
    * set a yFormat
    */
-  yFormat?: ValueFormat<Coordinate["y"]>;
+  yFormat?: any;
 
   /**
    * set a axis top
    */
-  axisTop?: AxisProps | null;
+  axisTop?: any | null;
   /**
    * set a axis right
    */
-  axisRight?: AxisProps | null;
+  axisRight?: any | null;
   /**
    * set a axis left
    *
@@ -95,7 +84,7 @@ export type StyledProps = {
    * 	truncateTickAt: 0,
    * }
    */
-  axisLeft?: AxisProps | null;
+  axisLeft?: any | null;
   /**
    * set a axis bottom
    *
@@ -110,14 +99,14 @@ export type StyledProps = {
    * 	truncateTickAt: 0,
    * }
    */
-  axisBottom?: AxisProps | null;
+  axisBottom?: any | null;
 
   /**
    * set a legends
    *
    * @default undefined
    */
-  legends?: LegendProps[];
+  legends?: any[];
 
   /**
    * set a legendsDefault
@@ -152,27 +141,27 @@ export type StyledProps = {
   /**
    * set a nodeSize
    */
-  nodeSize?: number | ScatterPlotNodeDynamicSizeSpec;
+  nodeSize?: number;
 };
 
 const StyledComponent = styled((props: StyledProps) => {
-  const { 
-		data, 
-		width, 
-		height,
-		margin,
-		xScale,
-		xFormat,
-		yScale,
-		yFormat,
-		axisTop,
-		axisRight,
-		axisLeft,
-		axisBottom,
-		legends,
-		legendsDefault,
-		nodeSize,
-	} = props;
+  const {
+    data,
+    width,
+    height,
+    margin,
+    xScale,
+    xFormat,
+    yScale,
+    yFormat,
+    axisTop,
+    axisRight,
+    axisLeft,
+    axisBottom,
+    legends,
+    legendsDefault,
+    nodeSize,
+  } = props;
 
   return (
     <div
@@ -181,59 +170,69 @@ const StyledComponent = styled((props: StyledProps) => {
         height: height || 500,
       }}
     >
-      <ResponsiveScatterPlot
+      {/* <ResponsiveScatterPlot
         data={data}
         margin={margin ?? { top: 50, right: 50, bottom: 50, left: 50 }}
-        xScale={xScale ?? { type: 'linear', min: 0, max: 'auto' }}
+        xScale={xScale ?? { type: "linear", min: 0, max: "auto" }}
         xFormat={xFormat ?? ">-.2f"}
-				yScale={yScale ?? { type: 'linear', min: 0, max: 'auto' }}
+        yScale={yScale ?? { type: "linear", min: 0, max: "auto" }}
         yFormat={yFormat ?? ">-.2f"}
         blendMode="multiply"
         axisTop={axisTop ?? null}
         axisRight={axisRight ?? null}
-				axisLeft={axisLeft ?? {
-					tickSize: 5,
-					tickPadding: 5,
-					tickRotation: 0,
-					legend: "y",
-					legendPosition: "middle",
-					legendOffset: -60,
-					truncateTickAt: 0,
-				}}
-        axisBottom={axisBottom ?? {
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "x",
-          legendPosition: "middle",
-          legendOffset: 46,
-          truncateTickAt: 0,
-        }}
-        legends={legends ? legends : legendsDefault ? [
-					{
-						anchor: "bottom-right",
-						direction: "column",
-						justify: false,
-						translateX: 130,
-						translateY: 0,
-						itemWidth: 100,
-						itemHeight: 12,
-						itemsSpacing: 5,
-						itemDirection: "left-to-right",
-						symbolSize: 12,
-						symbolShape: "circle",
-						effects: [
-							{
-								on: "hover",
-								style: {
-									itemOpacity: 1,
-								},
-							},
-						],
-					},
-				] : undefined}
-				nodeSize={nodeSize ?? undefined}
-      />
+        axisLeft={
+          axisLeft ?? {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: "y",
+            legendPosition: "middle",
+            legendOffset: -60,
+            truncateTickAt: 0,
+          }
+        }
+        axisBottom={
+          axisBottom ?? {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: "x",
+            legendPosition: "middle",
+            legendOffset: 46,
+            truncateTickAt: 0,
+          }
+        }
+        legends={
+          legends
+            ? legends
+            : legendsDefault
+            ? [
+                {
+                  anchor: "bottom-right",
+                  direction: "column",
+                  justify: false,
+                  translateX: 130,
+                  translateY: 0,
+                  itemWidth: 100,
+                  itemHeight: 12,
+                  itemsSpacing: 5,
+                  itemDirection: "left-to-right",
+                  symbolSize: 12,
+                  symbolShape: "circle",
+                  effects: [
+                    {
+                      on: "hover",
+                      style: {
+                        itemOpacity: 1,
+                      },
+                    },
+                  ],
+                },
+              ]
+            : undefined
+        }
+        nodeSize={nodeSize ?? undefined}
+      /> */}
     </div>
   );
 })(() => ({}));
