@@ -214,6 +214,9 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 					fontWeight: cellFontWeight ?? 500,
 					fontFamily: cellFontFamily ?? 'Pretendard, sans-serif',
 				},
+				".MuiDataGrid-virtualScrollerContent":{
+					height: '100%',
+				}
 			}}
 			onCellClick={onCellClick}
 			onCellKeyDown={onCellKeyDown}
