@@ -1,15 +1,11 @@
 {
-	"extends": "../../tsconfig.json",
-  "compilerOptions": {
-		"outDir": "./dist",
-		"baseUrl": ".",
-		"paths": {
-      "@midasit-dev/moaui-components-v1": ["./src/lib/"]
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "paths": {
+            "@midasit-dev/moaui-components-v1": ["./src/lib/"]
+        }
     },
-  },
-	"include": [
-		"./src/lib/**/*.tsx", 
-		"./src/lib/**/*.ts",
-    "./src/lib/**/*.css"
-	]
+    "include": ["./src/lib/**/*.tsx", "./src/lib/**/*.ts", "./src/lib/**/*.css"]
 }

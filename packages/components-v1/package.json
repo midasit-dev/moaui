@@ -29,10 +29,23 @@
       "name": "kh1012"
     }
   ],
-  "version": "0.1.160",
+  "version": "0.1.172",
   "private": false,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/*",
+      "require": "./dist/*",
+      "types": "./dist/*"
+    }
+  },
   "browser": "./browser/specific/main.js",
   "peerDependencies": {
     "@emotion/styled": "^11.11.0",
@@ -110,7 +123,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "copy": "copyfiles -u 2 src/lib/**/*.css dist/ && copyfiles -u 2 src/lib/**/*.json dist/ && copyfiles -u 2 src/lib/**/*.woff dist/ && copyfiles -u 2 src/lib/**/*.woff2 dist/",
-    "prepare-npmjs": "npm run update-testing-exports && node prepare.js && tsc -p tsconfig.npm.json & npm run copy",
+    "prepare-npmjs": "npm run update-testing-exports && node prepare.js && tsc -p tsconfig.npm.json && npm run copy",
     "publish-npmjs": "npm run prepare-npmjs && cd ./dist && npm publish --access public",
     "update-testing-exports": "cd src/lib && node testingCompsUpdate.js",
     "prepare-storybook": "npm run update-testing-exports && tsc -p tsconfig.storybook.json",
@@ -148,6 +161,5 @@
   "bugs": {
     "url": "https://github.com/midasit-dev/moaui/issues"
   },
-  "readme": "ERROR: No README data found!",
-  "_id": "@midasit-dev/moaui@0.0.52"
+  "readme": "ERROR: No README data found!"
 }

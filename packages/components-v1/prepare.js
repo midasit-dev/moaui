@@ -1,28 +1,59 @@
 //from https://stackoverflow.com/questions/40682848/how-to-clean-delete-contents-folder-with-npm
-var fs = require('fs');
+var fs = require("fs");
 
 function deleteFolderRecursive(path) {
-  if (fs.existsSync(path) && fs.lstatSync(path).isDirectory()) {
-    fs.readdirSync(path).forEach(function(file, index){
-      var curPath = path + "/" + file;
-      
-      if (fs.lstatSync(curPath).isDirectory()) { // recurse
-        deleteFolderRecursive(curPath);
-      } else { // delete file
-        fs.unlinkSync(curPath);
-      }
-    });
-    
-    console.log(`Deleting directory "${path}"...`);
-    fs.rmdirSync(path);
-  }
+    if (!fs.existsSync(path)) {
+        return;
+    }
+
+    try {
+        const files = fs.readdirSync(path);
+
+        for (const file of files) {
+            const curPath = path + "/" + file;
+
+            if (fs.lstatSync(curPath).isDirectory()) {
+                // 재귀적으로 하위 디렉토리 삭제
+                deleteFolderRecursive(curPath);
+            } else {
+                // 파일 삭제 시도
+                try {
+                    fs.unlinkSync(curPath);
+                    console.log(`Deleted file: ${curPath}`);
+                } catch (err) {
+                    console.error(`Failed to delete file: ${curPath}`, err);
+                }
+            }
+        }
+
+        // 디렉토리 삭제 시도
+        try {
+            fs.rmdirSync(path);
+            console.log(`Deleted directory: ${path}`);
+        } catch (err) {
+            console.error(`Failed to delete directory: ${path}`, err);
+        }
+    } catch (err) {
+        console.error(`Error while processing directory: ${path}`, err);
+    }
 }
 
 console.log("Cleaning working tree...");
 
 deleteFolderRecursive("./dist");
+
+try {
+    fs.rmdirSync("./dist");
+} catch (err) {
+    console.error(`Failed to delete directory: ./dist`, err);
+}
+
 //make directory (dist)
-fs.mkdirSync("./dist");
+try {
+    fs.mkdirSync("./dist");
+} catch (err) {
+    console.error(`Failed to make directory: ./dist`, err);
+}
 
 console.log("Successfully cleaned working tree!");
 
@@ -50,9 +81,25 @@ console.log(`Updated package.json version to ${newVersion}`);
 
 //remove dist path in dist/package.json at main
 var distPackageJson = require("./dist/package.json");
-distPackageJson.main = "index.js";
-distPackageJson.types = "index.d.ts";
-fs.writeFileSync("./dist/package.json", JSON.stringify(distPackageJson, null, 2));
+distPackageJson.main = "./index.js";
+distPackageJson.module = "./index.js";
+distPackageJson.types = "./index.d.ts";
+distPackageJson.exports = {
+    ".": {
+        import: "./index.js",
+        require: "./index.js",
+        types: "./index.d.ts",
+    },
+    "./*": {
+        import: "./*",
+        require: "./*",
+        types: "./*",
+    },
+};
+fs.writeFileSync(
+    "./dist/package.json",
+    JSON.stringify(distPackageJson, null, 2)
+);
 
 //write console with changed values in dist/package.json
 console.log(`Updated dist/package.json main to ${distPackageJson.main}`);
@@ -63,8 +110,8 @@ var signatureLogger = fs.readFileSync("./src/lib/Signature.tsx", "utf8");
 
 //replace version in Signature.tsx
 signatureLogger = signatureLogger.replace(
-  /const currentVersionFromPackageJson = '[^']*'/,
-  `const currentVersionFromPackageJson = '${newVersion}'`
+    /const currentVersionFromPackageJson = '[^']*'/,
+    `const currentVersionFromPackageJson = '${newVersion}'`
 );
 
 //write Signature.tsx
