@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ScatterPlot } from "../../..";
+import { default as ScatterPlot } from "../index";
 import Explore from "./Explore.mdx";
 
 import LiveEditStory from "../../../Common/Storybook/LiveEditStory";

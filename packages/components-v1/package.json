@@ -129,6 +129,7 @@
     "prepare-storybook": "npm run update-testing-exports && tsc -p tsconfig.storybook.json",
     "dev-storybook": "npm run prepare-storybook && storybook dev -p 6006",
     "build-storybook": "npm run prepare-storybook && storybook build",
+    "serve-storybook": "npx http-server storybook-static -p 6006 -o",
     "chromatic": "npm run prepare-storybook && npx chromatic --project-token=chpt_8c568868a09ebc7 --force-rebuild --exit-once-uploaded --auto-accept-changes"
   },
   "eslintConfig": {

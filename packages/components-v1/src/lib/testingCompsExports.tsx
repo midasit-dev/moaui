@@ -101,6 +101,7 @@ export { default as ComponentsRadioName } from "./Components/Radio/Code/Name.cod
 export { default as ComponentsRadioGroupControlled } from "./Components/RadioGroup/Code/Controlled.code";
 export { default as ComponentsRadioGroupDataSet } from "./Components/RadioGroup/Code/DataSet.code.except";
 export { default as ComponentsRadioGroupUnControlled } from "./Components/RadioGroup/Code/UnControlled.code";
+export { default as ComponentsSVGSvgTest } from "./Components/SVG/Code/SvgTest.code.except";
 export { default as ComponentsScatterPlotDefault } from "./Components/ScatterPlot/Code/Default.code.except";
 export { default as ComponentsScatterPlotGetNodes } from "./Components/ScatterPlot/Code/GetNodes.code.except";
 export { default as ComponentsScrollbarsCheckGroup } from "./Components/Scrollbars/Code/CheckGroup.code";
@@ -109,7 +110,6 @@ export { default as ComponentsSeparatorHorizontal } from "./Components/Separator
 export { default as ComponentsSeparatorVertical } from "./Components/Separator/Code/Vertical.code";
 export { default as ComponentsStackColumn } from "./Components/Stack/Code/Column.code";
 export { default as ComponentsStackRow } from "./Components/Stack/Code/Row.code";
-export { default as ComponentsSVGSvgTest } from "./Components/SVG/Code/SvgTest.code.except";
 export { default as ComponentsSwitchDataSet } from "./Components/Switch/Code/DataSet.code.except";
 export { default as ComponentsSwitchLabel } from "./Components/Switch/Code/Label.code";
 export { default as ComponentsSwitchGroupControlled } from "./Components/SwitchGroup/Code/Controlled.code";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { Prism as _SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Box from "@mui/material/Box";
 import prettier from "prettier/standalone";
@@ -7,6 +7,8 @@ import parserBabel from 'prettier/parser-babel';
 import parserTs from 'prettier/parser-typescript';
 import parserMarkdown from 'prettier/parser-markdown';
 import { Typography, Color, GuideBox, Button } from "../..";
+
+const SyntaxHighlighter = _SyntaxHighlighter as any;
 	
 export type StyledProps = {
 	/**
