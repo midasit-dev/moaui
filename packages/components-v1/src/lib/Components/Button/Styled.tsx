@@ -243,7 +243,27 @@ const StyledComponent = styled((props: StyledProps) => {
           },
         };
       }
-      return <></>;
+      // Default to "contained" variant when variant is undefined
+      return {
+        border: `${borderConfig} ${Color[primaryColorConfig].enable_strock}`,
+        background: Color[primaryColorConfig].enable,
+        color: Color[textColorConfig].primary,
+        "&:hover": {
+          background: Color[primaryColorConfig].hover,
+          color: Color[primaryColorConfig].white,
+          border: `${borderConfig} ${Color[primaryColorConfig].hover}`,
+        },
+        ":active": {
+          background: Color[primaryColorConfig].focus,
+          color: Color[primaryColorConfig].white,
+          border: `${borderConfig} ${Color[primaryColorConfig].focus}`,
+        },
+        ":disabled": {
+          background: Color[primaryColorConfig].enable,
+          color: Color[textColorConfig].disable,
+          border: `${borderConfig} ${Color[primaryColorConfig].enable}`,
+        },
+      };
     },
     []
   );
@@ -269,7 +289,7 @@ const StyledComponent = styled((props: StyledProps) => {
 const ThemedComponent = (props: StyledProps) => {
   return (
     <MoaStyledComponent>
-			<StyledComponent {...props} />
+                        <StyledComponent {...props} />
     </MoaStyledComponent>
   );
 };

@@ -41,48 +41,48 @@ export type StyledProps = {
 };
 
 const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
-	//thumb 스타일 (Switch 내부 버튼)
-	const thumbStyle = props?.disabled ? {
-		border: 'none',
-		backgroundColor: Color.primary.white,
-	} : {
+        //thumb 스타일 (Switch 내부 버튼)
+        const thumbStyle = props?.disabled ? {
+                border: 'none',
+                backgroundColor: Color.primary.white,
+        } : {
 
-		border: `1px solid ${Color.component.gray}`,
-		backgroundColor: Color.primary.white,
-	}
+                border: `1px solid ${Color.component.gray}`,
+                backgroundColor: Color.primary.white,
+        }
 
-	const checkedThumbStyle = props?.disabled ? {
-		border: 'none',
-		backgroundColor: Color.component.gray_light
-	} : {
-		border: 'none',
-		backgroundColor: Color.primary.white
-	}
+        const checkedThumbStyle = props?.disabled ? {
+                border: 'none',
+                backgroundColor: Color.component.gray_light
+        } : {
+                border: 'none',
+                backgroundColor: Color.primary.white
+        }
 
-	//track 스타일 (Switch 버튼 외부)
-	const trackStyle = props?.disabled ? {
-		backgroundColor: Color.component.gray_light,
-		border: `1px solid ${Color.component.gray_light}`,
-	} : {
-		backgroundColor: Color.component.gray_light,
-		border: `1px solid ${Color.component.gray}`,
-	}
+        //track 스타일 (Switch 버튼 외부)
+        const trackStyle = props?.disabled ? {
+                backgroundColor: Color.component.gray_light,
+                border: `1px solid ${Color.component.gray_light}`,
+        } : {
+                backgroundColor: Color.component.gray_light,
+                border: `1px solid ${Color.component.gray}`,
+        }
 
-	const checkedTrackStyle = props?.disabled ? {
-		backgroundColor: Color.component.gray,
-		opacity: 1,
-		border: `1px solid ${Color.component.gray}`
-	} : {
-		backgroundColor: Color.primary.main,
-		opacity: 1,
-		border: `1px solid ${Color.primary.main}`,
-	}
+        const checkedTrackStyle = props?.disabled ? {
+                backgroundColor: Color.component.gray,
+                opacity: 1,
+                border: `1px solid ${Color.component.gray}`
+        } : {
+                backgroundColor: Color.primary.main,
+                opacity: 1,
+                border: `1px solid ${Color.primary.main}`,
+        }
 
-	return (
+        return (
     <div
-			id={props?.id}
-			data-current-value={props?.checked}
-		>
+                        id={props?.id}
+                        data-current-value={props?.checked}
+                >
       <FormControlLabel
         sx={{
           padding: 0,
@@ -106,6 +106,9 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
                 transitionDuration: "300ms",
                 "&:hover": {
                   backgroundColor: "transparent",
+                  "& + .MuiSwitch-track": {
+                    border: `1px solid ${Color.primary.hover}`,
+                  },
                 },
                 /** Checked 되었을 경우! */
                 "&.Mui-checked": {
@@ -155,8 +158,8 @@ const StyledComponent = styled((props: StyledProps) : React.ReactElement => {
 })(() => ({}));
 
 const ThemedComponent = (props: StyledProps) => (
-	<MoaStyledComponent>
-		<StyledComponent {...props} />
-	</MoaStyledComponent>
+        <MoaStyledComponent>
+                <StyledComponent {...props} />
+        </MoaStyledComponent>
 );
 export default ThemedComponent;
